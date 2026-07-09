@@ -31,6 +31,8 @@ export const GALLERY = {
   detail: [g(6), g(2), g(19)],
   nicheBg: g(33),
   ctaImg: g(22),
+  positionRoom: "/images/gallery/position-room.webp",
+  motionWall: [g(8), g(9), g(28), g(31), g(3), g(35), g(23), g(30), g(13), g(19)],
 }
 
 // Hero image walls: four vertical marquee columns mixing client portraits and
@@ -102,12 +104,66 @@ export const ROOM = {
   ),
   meta: "Selected clients · 2017—2024",
   people: [
-    { id: "r1", img: "/images/clients/ben-newman.webp", name: "Ben Newman", result: V("$1.8M · 150 seats", "$1.8M from 150 seats") },
-    { id: "r2", img: "/images/clients/ed-mylett.webp", name: "Ed Mylett", result: V("Sold-out keynote", "Sold-out keynote") },
-    { id: "r3", img: "/images/clients/ali-awad.webp", name: "Ali Awad", result: V("$25K+ average ticket", "$25K+ avg ticket") },
-    { id: "r4", img: "/images/clients/chase-hughes.webp", name: "Chase Hughes", result: V("HMS Belfast build", "HMS Belfast build") },
-    { id: "r5", img: "/images/clients/eddie-maalouf.webp", name: "Eddie Maalouf", result: V("$146K in six days", "$146K in 6 days") },
-    { id: "r6", img: "/images/clients/ravi-abuvala.webp", name: "Ravi Abuvala", result: V("Parking-garage summit", "Parking-garage summit") },
+    {
+      id: "r1",
+      img: "/images/clients/ben-newman.webp",
+      name: "Ben Newman",
+      result: V("$1.8M · 150 seats", "$1.8M from 150 seats"),
+      about: V(
+        "A 007 Casino Royale evening at the Palms — projection-mapped, choreographed, and built to sell a new membership tier from the stage. $1.8M from a hundred and fifty seats.",
+        "We turned the Palms into a 007 Casino Royale night — projection-mapped and built to close. 150 seats, $1.8M in membership sold from the stage."
+      ),
+    },
+    {
+      id: "r2",
+      img: "/images/clients/ed-mylett.webp",
+      name: "Ed Mylett",
+      result: V("Sold-out keynote", "Sold-out keynote"),
+      about: V(
+        "A keynote built to the minute for a room that was sold out before the doors opened. Every beat placed; nothing left to chance.",
+        "A keynote room so dialed in it sold out before doors — every beat built to move the audience."
+      ),
+    },
+    {
+      id: "r3",
+      img: "/images/clients/ali-awad.webp",
+      name: "Ali Awad",
+      result: V("$25K+ average ticket", "$25K+ avg ticket"),
+      about: V(
+        "The CEO Lawyer Summit — a room engineered to sell a $25K offer without a hint of pressure. The close was written into the choreography.",
+        "The CEO Lawyer Summit — we engineered the room to sell a $25K+ ticket. The close was baked into the flow, and it closed."
+      ),
+    },
+    {
+      id: "r4",
+      img: "/images/clients/chase-hughes.webp",
+      name: "Chase Hughes",
+      result: V("HMS Belfast build", "HMS Belfast build"),
+      about: V(
+        "A bespoke build aboard HMS Belfast on the Thames — a warship staged as a room, to the last rivet.",
+        "We built the room on a warship — HMS Belfast on the Thames — staged end to end for one unforgettable night."
+      ),
+    },
+    {
+      id: "r5",
+      img: "/images/clients/eddie-maalouf.webp",
+      name: "Eddie Maalouf",
+      result: V("$146K in six days", "$146K in 6 days"),
+      about: V(
+        "Bad After Dark — an evening that returned $146K in sponsorship inside six days. Restraint on the surface, revenue underneath.",
+        "Bad After Dark pulled $146K in sponsorship in 6 days — a night that looked effortless and printed money."
+      ),
+    },
+    {
+      id: "r6",
+      img: "/images/clients/ravi-abuvala.webp",
+      name: "Ravi Abuvala",
+      result: V("Parking-garage summit", "Parking-garage summit"),
+      about: V(
+        "Scaling With Systems LIVE — a summit staged in a parking garage and made to feel inevitable. The unlikeliest room, fully authored.",
+        "Scaling With Systems LIVE — we turned a parking garage into a summit that looked like a seven-figure production."
+      ),
+    },
   ],
 }
 

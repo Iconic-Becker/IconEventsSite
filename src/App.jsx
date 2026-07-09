@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import {
   NAV,
   HERO,
@@ -25,6 +25,11 @@ import Photo from "./components/Photo.jsx"
 import QualifierForm from "./components/QualifierForm.jsx"
 import VoiceToggle from "./components/VoiceToggle.jsx"
 import { CtaBrackets } from "./components/CtaButtons.jsx"
+import InTheRoom from "./components/InTheRoom.jsx"
+import Brackets from "./components/Brackets.jsx"
+import Position from "./components/Position.jsx"
+import { MotionA, MotionB, MotionC, MotionD, MotionE } from "./components/MotionVariants.jsx"
+import VariantSwitcher from "./components/VariantSwitcher.jsx"
 
 /* ── Identity ───────────────────────────────────────────────────────── */
 function Logo({ tone = "black", className = "" }) {
@@ -154,10 +159,18 @@ function Eyebrow({ children, dark = false }) {
 /* ── Page ───────────────────────────────────────────────────────────── */
 export default function App() {
   const { t } = useVoice()
+  const [motionVariant, setMotionVariant] = useState("E")
+  const MotionSection = { A: MotionA, B: MotionB, C: MotionC, D: MotionD, E: MotionE }[motionVariant]
 
   return (
     <div className="min-h-screen bg-onyx text-bone">
       <VoiceToggle />
+      <VariantSwitcher
+        label="In Motion"
+        options={["A", "B", "C", "D", "E"]}
+        value={motionVariant}
+        onChange={setMotionVariant}
+      />
 
       {/* NAV — its own solid-black section. Centered logo, menus split L/R,
           no CTA. Sticky so it persists on scroll. */}
@@ -337,91 +350,14 @@ export default function App() {
         </div>
       </Section>
 
-      {/* ── 03 · PORTRAIT CAROUSEL — In the Room ──────────────────────── */}
-      <Section className="py-20">
-        <div className="mb-10">
-          <h2 className="font-serif text-4xl font-semibold text-bone sm:text-5xl">{t(ROOM.title)}</h2>
-          <p className="mt-3 max-w-xl font-sans text-bone/60">{t(ROOM.sub)}</p>
-          <p className="mt-2 font-sans text-xs uppercase tracking-[0.18em] text-brass">{ROOM.meta}</p>
-        </div>
-        <div className="-mx-6 flex snap-x gap-5 overflow-x-auto px-6 pb-4">
-          {ROOM.people.map((p) => (
-            <div key={p.id} className="group w-56 shrink-0 snap-start">
-              <div className="relative aspect-[4/5] overflow-hidden border border-brass/20">
-                <img
-                  src={p.img}
-                  alt={p.name}
-                  loading="lazy"
-                  className="h-full w-full object-cover grayscale contrast-[1.05] transition-all duration-700 ease-out group-hover:scale-105 group-hover:grayscale-0"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-onyx/70 via-transparent to-transparent" />
-              </div>
-              <div className="mt-3 font-serif text-lg text-bone">{p.name}</div>
-              <div className="font-sans text-xs uppercase tracking-[0.12em] text-brass">{t(p.result)}</div>
-            </div>
-          ))}
-        </div>
-      </Section>
+      {/* ── 03 · IN THE ROOM — roster index with project reveal ──────────── */}
+      <InTheRoom />
 
-      {/* ── 04 · POSITIONING ──────────────────────────────────────────── */}
-      <Section id="work" className="py-20">
-        <Eyebrow dark>{POSITION.eyebrow}</Eyebrow>
-        <h2 className="max-w-3xl font-serif text-4xl font-semibold leading-[1.05] text-bone sm:text-5xl">
-          {t(POSITION.title)}
-        </h2>
-        <p className="mt-5 max-w-2xl font-sans text-bone/65">{t(POSITION.body)}</p>
-        <div className="mt-12 grid border border-bone/15 md:grid-cols-2">
-          <div className="border-b border-bone/15 p-5 md:border-b-0 md:border-r">
-            <div className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-bone/45">
-              {t(POSITION.colPlanner)}
-            </div>
-          </div>
-          <div className="bg-tidepool p-5">
-            <div className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-brass">
-              {t(POSITION.colEngineer)}
-            </div>
-          </div>
-          {POSITION.rows.map((r, i) => (
-            <div key={i} className="contents">
-              <div className="border-t border-bone/15 p-5 font-sans text-sm text-bone/55 md:border-r">
-                {r.planner}
-              </div>
-              <div className="border-t border-bone/15 bg-tidepool/40 p-5 font-sans text-sm text-bone">
-                {t(r.engineer)}
-              </div>
-            </div>
-          ))}
-        </div>
-      </Section>
+      {/* ── 04 · POSITIONING — Immersive Annotated Room ──────────────────── */}
+      <Position />
 
-      {/* ── Montage band — full-bleed atmosphere filmstrip ────────────── */}
-      <div className="overflow-hidden border-y border-brass/20 bg-onyx py-16">
-        <Section>
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <div className="font-sans text-xs font-bold uppercase tracking-[0.28em] text-brass">
-                {t(MONTAGE.kicker)}
-              </div>
-              <p className="mt-3 max-w-xl font-serif text-2xl italic text-bone/80">
-                {t(MONTAGE.line)}
-              </p>
-            </div>
-          </div>
-        </Section>
-        {/* Filmstrip bleeds past the container edges for energy. */}
-        <div className="mt-10 flex gap-3 px-6 [--h:15rem] sm:[--h:19rem]">
-          {GALLERY.band.map((src, i) => (
-            <Photo
-              key={src}
-              src={src}
-              overlay="from-onyx/30 via-transparent to-transparent"
-              className={`h-[var(--h)] shrink-0 ${
-                i % 3 === 0 ? "w-[36vw] sm:w-[26vw]" : "w-[30vw] sm:w-[20vw]"
-              } ${i % 2 ? "translate-y-4" : ""}`}
-            />
-          ))}
-        </div>
-      </div>
+      {/* ── The Room, In Motion — variation A / B / C via switcher ───────── */}
+      <MotionSection />
 
       {/* ── 05 · SELECTED WORK ────────────────────────────────────────── */}
       <Section className="py-20">
@@ -439,8 +375,9 @@ export default function App() {
 
         {/* Featured case */}
         <div className="mt-10 grid border border-bone/15 lg:grid-cols-[1.2fr_1fr]">
-          <div className="border-b border-bone/15 lg:border-b-0 lg:border-r">
+          <div className="relative border-b border-bone/15 lg:border-b-0 lg:border-r">
             <img src={PLACEHOLDER} alt="" className="aspect-[16/10] w-full object-cover grayscale" />
+            <Brackets />
           </div>
           <div className="p-8">
             <div className="font-sans text-xs uppercase tracking-[0.18em] text-brass">
@@ -610,11 +547,12 @@ export default function App() {
         <h2 className="font-serif text-4xl font-semibold text-bone sm:text-5xl">{t(RECEIPTS.title)}</h2>
         <div className="mt-12 grid grid-cols-2 gap-px border border-bone/15 bg-bone/15 lg:grid-cols-4">
           {RECEIPTS.stats.map((s) => (
-            <div key={s.id} className="bg-onyx px-6 py-10">
+            <div key={s.id} className="group relative bg-onyx px-6 py-10">
               <div className="font-serif text-5xl font-semibold text-brass sm:text-6xl">{s.value}</div>
               <div className="mt-3 font-sans text-xs uppercase tracking-[0.14em] text-bone/55">
                 {t(s.label)}
               </div>
+              <Brackets hover />
             </div>
           ))}
         </div>
