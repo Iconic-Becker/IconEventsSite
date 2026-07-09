@@ -43,10 +43,10 @@ export default function Position() {
           particles rising up */}
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
         <div
-          className="absolute left-1/2 top-[36%] h-[34%] w-[88%] -translate-x-1/2"
+          className="absolute left-1/2 top-[24%] h-[38%] w-[92%] -translate-x-1/2"
           style={{
             background:
-              "radial-gradient(ellipse 55% 60% at 50% 50%, rgba(184,153,104,0.28) 0%, rgba(184,153,104,0.09) 42%, transparent 72%)",
+              "radial-gradient(ellipse 55% 60% at 50% 50%, rgba(184,153,104,0.42) 0%, rgba(184,153,104,0.14) 44%, transparent 74%)",
             filter: "blur(50px)",
           }}
         />

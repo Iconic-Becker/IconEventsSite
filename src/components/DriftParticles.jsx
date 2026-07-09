@@ -27,7 +27,10 @@ export default function DriftParticles() {
             width: `${p.size}px`,
             height: `${p.size}px`,
             "--pop": p.pop,
-            animation: `particle-drift ${p.dur}s linear ${p.delay}s infinite`,
+            // `backwards` fill-mode: during the start delay the particle sits at
+            // the 0% keyframe (off-screen left, opacity 0) instead of parking
+            // visible on the left border.
+            animation: `particle-drift ${p.dur}s linear ${p.delay}s infinite backwards`,
           }}
         />
       ))}

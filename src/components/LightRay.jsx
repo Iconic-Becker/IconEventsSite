@@ -1,7 +1,8 @@
 // Foggy brass light ray — a glowing source + soft beam + outer fog, feathered
 // by radial masks. Fills a `relative` parent. Emanates from top-centre by
 // default, or from the bottom rising up with `up`.
-export default function LightRay({ className = "", up = false }) {
+export default function LightRay({ className = "", up = false, scale = 1 }) {
+  const s = (n) => `${n * scale}%`
   const edge = up ? "bottom-0" : "top-0"
   const dir = up ? "to top" : "to bottom"
   const hot = up ? "50% 100%" : "50% 0%"
@@ -17,8 +18,8 @@ export default function LightRay({ className = "", up = false }) {
       <div
         className={`absolute left-1/2 ${edge} -translate-x-1/2`}
         style={{
-          width: "34%",
-          height: "55%",
+          width: s(34),
+          height: s(55),
           background: `radial-gradient(ellipse 55% 60% at ${hot}, rgba(184,153,104,0.30), rgba(184,153,104,0.07) 45%, transparent 70%)`,
           filter: "blur(22px)",
         }}
@@ -27,8 +28,8 @@ export default function LightRay({ className = "", up = false }) {
       <div
         className={`absolute left-1/2 ${edge} -translate-x-1/2`}
         style={{
-          width: "40%",
-          height: "100%",
+          width: s(40),
+          height: s(100),
           background: `linear-gradient(${dir}, rgba(184,153,104,0.17) 0%, rgba(184,153,104,0.06) 45%, transparent 80%)`,
           WebkitMaskImage: beamMask,
           maskImage: beamMask,
@@ -39,8 +40,8 @@ export default function LightRay({ className = "", up = false }) {
       <div
         className={`absolute left-1/2 ${edge} -translate-x-1/2`}
         style={{
-          width: "54%",
-          height: "96%",
+          width: s(54),
+          height: s(96),
           background: `linear-gradient(${dir}, rgba(184,153,104,0.09), transparent 78%)`,
           WebkitMaskImage: fogMask,
           maskImage: fogMask,

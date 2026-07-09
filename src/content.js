@@ -28,8 +28,11 @@ const g = (n) => `/images/gallery/g${n}.webp`
 const cl = (s) => `/images/clients/${s}.webp`
 export const GALLERY = {
   band: [g(8), g(3), g(35), g(23), g(30), g(13), g(19)],
+  // Widest, highest-resolution frames — used where an image bleeds full-width
+  // behind a section (e.g. the Capability ledger flood).
+  capability: [g(33), g(6), g(35), g(2), g(23)],
   detail: [g(6), g(2), g(19)],
-  nicheBg: g(33),
+  nicheBg: "/images/gallery/uncontested-room.webp",
   ctaImg: g(22),
   positionRoom: "/images/gallery/position-room.webp",
   motionWall: [g(8), g(9), g(28), g(31), g(3), g(35), g(23), g(30), g(13), g(19)],
@@ -194,6 +197,7 @@ export const WORK = {
   featured: {
     label: "Featured · Case 001",
     meta: "Ben Newman · Palms Casino Resort · 2023",
+    img: "/images/gallery/g9.webp",
     headline: V("Casino Royale, built to sell from the stage.", "Casino Royale — built to sell from the stage."),
     challengeLabel: V("Challenge", "Challenge"),
     challenge: V(
@@ -214,11 +218,11 @@ export const WORK = {
   },
   archiveLabel: V("More from the archive", "More from the archive"),
   archive: [
-    { id: "a1", name: "Bad After Dark", result: V("$146K sponsorships", "$146K sponsorships") },
-    { id: "a2", name: "The CEO Lawyer Summit", result: V("$25K+ average ticket", "$25K+ avg ticket") },
-    { id: "a3", name: "Scaling With Systems LIVE", result: V("Parking-garage summit", "Parking-garage summit") },
-    { id: "a4", name: "Viral Ecom Adz", result: V("Six-figure sponsorship", "6-figure sponsorship") },
-    { id: "a5", name: "Chase Hughes — London", result: V("HMS Belfast build", "HMS Belfast build") },
+    { id: "a1", img: "/images/gallery/g28.webp", name: "Bad After Dark", result: V("$146K sponsorships", "$146K sponsorships") },
+    { id: "a2", img: "/images/gallery/g13.webp", name: "The CEO Lawyer Summit", result: V("$25K+ average ticket", "$25K+ avg ticket") },
+    { id: "a3", img: "/images/gallery/g26.webp", name: "Scaling With Systems LIVE", result: V("Parking-garage summit", "Parking-garage summit") },
+    { id: "a4", img: "/images/gallery/g3.webp", name: "Viral Ecom Adz", result: V("Six-figure sponsorship", "6-figure sponsorship") },
+    { id: "a5", img: "/images/gallery/g30.webp", name: "Chase Hughes — London", result: V("HMS Belfast build", "HMS Belfast build") },
   ],
 }
 
@@ -240,6 +244,10 @@ export const SERVICES = {
         "The room's intent, mapped before a single decision is made.",
         "We map the room's intent before a single decision gets made.",
       ),
+      process: V(
+        "We begin at the outcome and reverse-engineer the room — audience psychology, offer economics, and the physics of the space.",
+        "We start from the number you need and design the room backwards — psychology, offer, and space, all pointed at the close.",
+      ),
     },
     {
       id: "s2",
@@ -249,6 +257,10 @@ export const SERVICES = {
       body: V(
         "Stage, light, sound, and scenic, directed as one instrument.",
         "Stage, light, sound, and scenic — directed as one machine.",
+      ),
+      process: V(
+        "Every technical layer is designed, built, and show-called in-house, so each cue lands on the beat it was written for.",
+        "We design, build, and show-call every technical layer in-house — so every cue lands exactly on the beat.",
       ),
     },
     {
@@ -260,6 +272,10 @@ export const SERVICES = {
         "One night, captured and cut into a quarter of content.",
         "One night becomes a quarter of content that keeps selling.",
       ),
+      process: V(
+        "We capture the night in full and cut it into months of content that keeps working long after the doors close.",
+        "We film the whole night and cut it into months of content that keeps selling long after everyone goes home.",
+      ),
     },
     {
       id: "s4",
@@ -269,6 +285,10 @@ export const SERVICES = {
       body: V(
         "The logistics run to the minute, and out of sight.",
         "Logistics run to the minute so you never see the seams.",
+      ),
+      process: V(
+        "Crew, vendors, and timeline run under a single command — to the minute, and out of the audience's sight.",
+        "Crew, vendors, and timeline run under one command — to the minute, so you never see the seams.",
       ),
     },
     {
@@ -280,6 +300,10 @@ export const SERVICES = {
         "Tiers, offers, and the sell-from-stage moment, engineered.",
         "Tiers, offers, and the sell-from-stage moment — engineered to convert.",
       ),
+      process: V(
+        "Tiers, offers, and the sell-from-stage moment are engineered into the run of show, so the close feels inevitable.",
+        "We build the tiers, offers, and the sell-from-stage moment straight into the run of show, so the close feels inevitable.",
+      ),
     },
   ],
 }
@@ -288,21 +312,93 @@ export const SERVICES = {
 export const SCOPE = {
   eyebrow: "04 · Scope of Service",
   title: V("Everything we do. Everything we don't.", "Everything we do. Everything we don't."),
-  doLabel: V("What we do — 6 disciplines · 35+ deliverables", "What we do — 6 disciplines · 35+ deliverables"),
+  // Exact client copy — voice-neutral, verbatim in both voices.
+  doHead: "What we do",
+  doMeta: "6 disciplines · 35+ deliverables",
   doGroups: [
-    { id: "g1", group: "Strategy", items: "Event Vision Brief · journey mapping · revenue & tier strategy · sponsorship architecture" },
-    { id: "g2", group: "Creative", items: "Stage & set · lighting psychology · LED · scenic fabrication · show-flow direction" },
-    { id: "g3", group: "Production", items: "Technical direction · audio · live show-calling · crew & vendor command" },
+    {
+      id: "g1",
+      group: "Strategy",
+      items: [
+        "Event Vision Brief",
+        "Audience journey mapping",
+        "Revenue & ticket-tier strategy",
+        "Sponsorship architecture",
+      ],
+    },
+    {
+      id: "g2",
+      group: "Creative",
+      items: [
+        "Stage & set design",
+        "Lighting psychology",
+        "LED environment design",
+        "Scenic fabrication",
+        "Show flow direction",
+      ],
+    },
+    {
+      id: "g3",
+      group: "Production",
+      items: [
+        "Technical direction",
+        "Audio engineering",
+        "Live video & broadcast",
+        "Projection mapping",
+        "Crew & vendor management",
+      ],
+    },
+    {
+      id: "g4",
+      group: "Content",
+      items: [
+        "Live content capture",
+        "Multi-cam reel production",
+        "Social cutdowns & distribution",
+        "Speaker reel production",
+        "Post-event content packages",
+      ],
+    },
+    {
+      id: "g5",
+      group: "Operations",
+      items: [
+        "Venue sourcing & negotiation",
+        "Logistics & timeline management",
+        "Vendor coordination",
+        "Speaker management",
+        "On-site execution",
+      ],
+    },
+    {
+      id: "g6",
+      group: "Revenue",
+      items: [
+        "Sell-from-stage coaching",
+        "Offer suite design",
+        "Sponsorship package design",
+        "Conversion environment engineering",
+      ],
+    },
   ],
-  dontLabel: V(
-    "What we don't — if you need these, we are not your studio.",
-    "What we don't — if you need these, we're not your studio."
-  ),
-  dont: ["Weddings & socials", "Corporate AV rental", "Trade-show booths", "Generic conferences"],
-  referral: V(
-    "A private list of trusted studios for weddings, corporate, and trade-show work. Ask on the call.",
-    "We keep a private list of trusted studios for weddings, corporate, and trade-show work. Ask on the call."
-  ),
+  dontHead: "What we don't",
+  dontLine: "If you need any of these, we are not your studio.",
+  dont: [
+    "Weddings, galas, or social events",
+    "Trade-show booths or expo activations",
+    "Corporate town halls or all-hands",
+    "One-off fireside chats or single-day panels",
+    "Events under 75 attendees",
+    "Events without a sell-from-stage or revenue moment",
+    "White-label work for other agencies",
+    "Day-of-event coordination without strategy ownership",
+  ],
+  referralHead: "A note on referrals",
+  referral:
+    "If your project lives outside our scope, we keep a private list of trusted studios for weddings, corporate, and trade-show work. Ask on the call.",
+  // Short, punchy words for the manifesto headline strike-through (the columns
+  // carry the full, exact disqualifier list).
+  headlineDont: ["weddings", "trade-shows", "town halls", "single-day panels"],
 }
 
 /* ── 08 · METHODOLOGY ─────────────────────────────────────────────────── */
@@ -314,11 +410,46 @@ export const METHOD = {
     "Five phases, one operating system, run on every room."
   ),
   phases: [
-    { id: "m1", num: "I", name: V("Insight", "Insight"), body: V("Audience psychology, offer economics, room physics.", "Audience psychology, offer economics, room physics.") },
-    { id: "m2", num: "II", name: V("Strategy", "Strategy"), body: V("A revenue-first blueprint; every sell-from-stage moment mapped.", "A revenue-first blueprint; every sell-from-stage moment mapped.") },
-    { id: "m3", num: "III", name: V("Creative", "Creative"), body: V("Story, room, rhythm — the world the audience lives in.", "Story, room, rhythm — the world your audience lives in.") },
-    { id: "m4", num: "IV", name: V("Production", "Production"), body: V("Stage, light, sound, scenic in-house. No vendor seams.", "Stage, light, sound, scenic in-house. No vendor seams.") },
-    { id: "m5", num: "V", name: V("Amplification", "Amplification"), body: V("Capture, edit, distribute — a quarter of content from one night.", "Capture, edit, distribute — a quarter of content from one night.") },
+    {
+      id: "m1", num: "I", name: V("Insight", "Insight"), img: "/images/gallery/insight.webp",
+      body: V("Audience psychology, offer economics, room physics.", "Audience psychology, offer economics, room physics."),
+      detail: V(
+        "Before a single element is designed, we study who is in the room and why they came — their beliefs, their objections, the economics of the offer, and the physics of the space itself. Every decision that follows traces back to what we learn here.",
+        "Before we design a single element, we study who's in your room and why they showed up — their beliefs, their objections, the math of your offer, and the space itself. Every decision that follows is built on it.",
+      ),
+    },
+    {
+      id: "m2", num: "II", name: V("Strategy", "Strategy"), img: "/images/gallery/strategy.webp",
+      body: V("A revenue-first blueprint; every sell-from-stage moment mapped.", "A revenue-first blueprint; every sell-from-stage moment mapped."),
+      detail: V(
+        "The insight becomes a revenue-first blueprint: the arc of the day, the tier structure, and the exact moments the room is asked to decide. Nothing on stage is left to improvisation.",
+        "That insight becomes a revenue-first blueprint — the arc of the day, your tier structure, and the exact moments you ask the room to buy. Nothing on stage is left to chance.",
+      ),
+    },
+    {
+      id: "m3", num: "III", name: V("Creative", "Creative"), img: "/images/gallery/creative.webp",
+      body: V("Story, room, rhythm — the world the audience lives in.", "Story, room, rhythm — the world your audience lives in."),
+      detail: V(
+        "Story, set, light, and pacing are composed into a single world the audience steps inside. The creative is never decoration — it is built to carry the message and hold attention all the way to the close.",
+        "Story, set, light, and pacing come together into one world your audience steps into. The creative isn't decoration — it's engineered to carry your message and hold the room to the close.",
+      ),
+    },
+    {
+      id: "m4", num: "IV", name: V("Production", "Production"), img: "/images/gallery/production.webp",
+      body: V("Stage, light, sound, scenic in-house. No vendor seams.", "Stage, light, sound, scenic in-house. No vendor seams."),
+      detail: V(
+        "Stage, light, sound, and scenic are engineered and operated by one team, in-house. The room runs to the second, and there are no vendor seams for the audience to feel.",
+        "Stage, light, sound, and scenic are built and run by one in-house team. The room runs to the second, with no vendor seams for your audience to feel.",
+      ),
+    },
+    {
+      id: "m5", num: "V", name: V("Amplification", "Amplification"), img: "/images/gallery/amplification.webp",
+      body: V("Capture, edit, distribute — a quarter of content from one night.", "Capture, edit, distribute — a quarter of content from one night."),
+      detail: V(
+        "The night is captured in full and cut into a quarter of content — keynotes, reels, and social edits that keep working long after the doors close. One room becomes months of reach.",
+        "We capture the whole night and cut it into a quarter of content — keynotes, reels, and social edits that keep selling long after the doors close. One room becomes months of reach.",
+      ),
+    },
   ],
 }
 
@@ -327,10 +458,10 @@ export const RECEIPTS = {
   eyebrow: "06 · Receipts",
   title: V("The only numbers that matter.", "The only numbers that matter."),
   stats: [
-    { id: "n1", value: "$1.8M", label: V("membership, from 150 seats", "membership from 150 seats") },
-    { id: "n2", value: "$146K", label: V("sponsorship, in six days", "sponsorship in 6 days") },
-    { id: "n3", value: "40+", label: V("rooms engineered", "rooms engineered") },
-    { id: "n4", value: "100%", label: V("2024 events sold out", "2024 events sold out") },
+    { id: "n1", value: "$1.8M", img: "/images/gallery/g32.webp", label: V("membership, from 150 seats", "membership from 150 seats") },
+    { id: "n2", value: "$146K", img: "/images/gallery/g34.webp", label: V("sponsorship, in six days", "sponsorship in 6 days") },
+    { id: "n3", value: "40+", img: "/images/gallery/g25.webp", label: V("rooms engineered", "rooms engineered") },
+    { id: "n4", value: "100%", img: "/images/gallery/g24.webp", imgPos: "center 18%", label: V("2024 events sold out", "2024 events sold out") },
   ],
 }
 
@@ -360,6 +491,10 @@ export const NICHE = {
 export const CTA = {
   eyebrow: "09 · Start a Conversation",
   title: V("Tell us about the room you want to build.", "Tell us about the room you want to build."),
+  formLead: V(
+    "Answer the three questions below and a senior director will take it from there.",
+    "Answer the three questions below and a senior director will take it from there — no pitch decks, just the conversation."
+  ),
   stats: [
     { id: "c1", value: "30", label: V("minutes with a senior director", "minutes with a senior director") },
     { id: "c2", value: "48", label: V("hours to respond, every time", "hours to respond, every time") },

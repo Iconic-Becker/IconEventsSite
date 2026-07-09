@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import {
   NAV,
   HERO,
@@ -28,8 +28,15 @@ import { CtaBrackets } from "./components/CtaButtons.jsx"
 import InTheRoom from "./components/InTheRoom.jsx"
 import Brackets from "./components/Brackets.jsx"
 import Position from "./components/Position.jsx"
-import { MotionA, MotionB, MotionC, MotionD, MotionE } from "./components/MotionVariants.jsx"
-import VariantSwitcher from "./components/VariantSwitcher.jsx"
+import Motion from "./components/Motion.jsx"
+import Work from "./components/Work.jsx"
+import Services from "./components/Services.jsx"
+import Scope from "./components/Scope.jsx"
+import Method from "./components/Method.jsx"
+import Receipts from "./components/Receipts.jsx"
+import Testimonials from "./components/Testimonials.jsx"
+import Niche from "./components/Niche.jsx"
+import Cta from "./components/Cta.jsx"
 
 /* ── Identity ───────────────────────────────────────────────────────── */
 function Logo({ tone = "black", className = "" }) {
@@ -159,18 +166,9 @@ function Eyebrow({ children, dark = false }) {
 /* ── Page ───────────────────────────────────────────────────────────── */
 export default function App() {
   const { t } = useVoice()
-  const [motionVariant, setMotionVariant] = useState("E")
-  const MotionSection = { A: MotionA, B: MotionB, C: MotionC, D: MotionD, E: MotionE }[motionVariant]
-
   return (
     <div className="min-h-screen bg-onyx text-bone">
       <VoiceToggle />
-      <VariantSwitcher
-        label="In Motion"
-        options={["A", "B", "C", "D", "E"]}
-        value={motionVariant}
-        onChange={setMotionVariant}
-      />
 
       {/* NAV — its own solid-black section. Centered logo, menus split L/R,
           no CTA. Sticky so it persists on scroll. */}
@@ -356,310 +354,41 @@ export default function App() {
       {/* ── 04 · POSITIONING — Immersive Annotated Room ──────────────────── */}
       <Position />
 
-      {/* ── The Room, In Motion — variation A / B / C via switcher ───────── */}
-      <MotionSection />
+      {/* ── The Room, In Motion ──────────────────────────────────────────── */}
+      <Motion />
 
-      {/* ── 05 · SELECTED WORK ────────────────────────────────────────── */}
-      <Section className="py-20">
-        <div className="flex items-end justify-between">
-          <div className="flex-1">
-            <Eyebrow dark>{WORK.eyebrow}</Eyebrow>
-          </div>
-        </div>
-        <div className="flex flex-wrap items-baseline justify-between gap-4">
-          <h2 className="font-serif text-4xl font-semibold text-bone sm:text-5xl">{t(WORK.title)}</h2>
-          <a href="#contact" className="font-sans text-xs uppercase tracking-[0.15em] text-brass hover:text-bone">
-            {t(WORK.index)}
-          </a>
-        </div>
+      {/* ── 05 · SELECTED WORK — Poster Grid ─────────────────────────────── */}
+      <Work />
 
-        {/* Featured case */}
-        <div className="mt-10 grid border border-bone/15 lg:grid-cols-[1.2fr_1fr]">
-          <div className="relative border-b border-bone/15 lg:border-b-0 lg:border-r">
-            <img src={PLACEHOLDER} alt="" className="aspect-[16/10] w-full object-cover grayscale" />
-            <Brackets />
-          </div>
-          <div className="p-8">
-            <div className="font-sans text-xs uppercase tracking-[0.18em] text-brass">
-              {WORK.featured.label}
-            </div>
-            <div className="mt-2 font-sans text-xs uppercase tracking-[0.12em] text-bone/45">
-              {WORK.featured.meta}
-            </div>
-            <h3 className="mt-4 font-serif text-3xl font-semibold text-bone">
-              {t(WORK.featured.headline)}
-            </h3>
-            <dl className="mt-5 space-y-3 font-sans text-sm">
-              <div>
-                <dt className="text-xs font-bold uppercase tracking-[0.14em] text-brass">
-                  {t(WORK.featured.challengeLabel)}
-                </dt>
-                <dd className="mt-1 text-bone/65">{t(WORK.featured.challenge)}</dd>
-              </div>
-              <div>
-                <dt className="text-xs font-bold uppercase tracking-[0.14em] text-brass">
-                  {t(WORK.featured.approachLabel)}
-                </dt>
-                <dd className="mt-1 text-bone/65">{t(WORK.featured.approach)}</dd>
-              </div>
-            </dl>
-            <div className="mt-6 grid grid-cols-3 border-t border-bone/15 pt-5">
-              {WORK.featured.stats.map((s, i) => (
-                <div key={i}>
-                  <div className="font-serif text-2xl font-semibold text-brass">{s.value}</div>
-                  <div className="mt-1 font-sans text-[11px] uppercase tracking-[0.1em] text-bone/50">
-                    {t(s.label)}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <a href="#contact" className="mt-6 inline-block font-sans text-xs uppercase tracking-[0.15em] text-brass hover:text-bone">
-              {t(WORK.featured.cta)}
-            </a>
-          </div>
-        </div>
+      {/* ── 06 · CAPABILITY — Kinetic Ledger ─────────────────────────────── */}
+      <Services />
 
-        {/* Archive strip */}
-        <div className="mt-8 font-sans text-xs uppercase tracking-[0.18em] text-bone/45">
-          {t(WORK.archiveLabel)}
-        </div>
-        <div className="mt-3 border-t border-bone/15">
-          {WORK.archive.map((a) => (
-            <a
-              key={a.id}
-              href="#contact"
-              className="group flex items-center justify-between gap-4 border-b border-bone/15 py-4 transition hover:bg-tidepool/20"
-            >
-              <span className="font-serif text-xl text-bone">{a.name}</span>
-              <span className="flex items-center gap-4">
-                <span className="font-sans text-xs uppercase tracking-[0.12em] text-brass">{t(a.result)}</span>
-                <Icon name="arrow" className="h-4 w-4 text-bone/40 transition group-hover:translate-x-1 group-hover:text-brass" />
-              </span>
-            </a>
-          ))}
-        </div>
-      </Section>
+      {/* ── 07 · SCOPE OF SERVICE — manifesto headline + included/excluded diptych ── */}
+      <Scope />
 
-      {/* ── 06 · SERVICES (full-bleed Tide Pool) ──────────────────────── */}
-      <div id="services" className="bg-tidepool py-24">
-        <Section>
-          <Eyebrow dark>{SERVICES.eyebrow}</Eyebrow>
-          <h2 className="max-w-3xl font-serif text-4xl font-semibold leading-[1.05] text-bone sm:text-5xl">
-            {t(SERVICES.title)}
-          </h2>
-          <p className="mt-5 max-w-2xl font-sans text-bone/70">{t(SERVICES.intro)}</p>
-          {/* Craft detail strip. */}
-          <div className="mt-10 grid grid-cols-3 gap-3">
-            {GALLERY.detail.map((src) => (
-              <Photo
-                key={src}
-                src={src}
-                overlay="from-tidepool/40 via-transparent to-transparent"
-                className="aspect-[5/3]"
-              />
-            ))}
-          </div>
-          <div className="mt-12 border-t border-brass/25">
-            {SERVICES.items.map((s) => (
-              <div
-                key={s.id}
-                className="grid grid-cols-[auto_1fr] gap-x-6 border-b border-brass/25 py-6 sm:grid-cols-[4rem_1fr_1.2fr] sm:items-baseline"
-              >
-                <span className="font-serif text-2xl text-brass">{s.num}</span>
-                <h3 className="font-serif text-2xl font-semibold text-bone">{t(s.title)}</h3>
-                <div className="col-span-2 mt-2 sm:col-span-1 sm:mt-0">
-                  <p className="font-sans text-sm text-bone/70">{t(s.body)}</p>
-                  <p className="mt-1 font-sans text-xs uppercase tracking-[0.12em] text-brass">
-                    {t(s.replaces)}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Section>
+      {/* ── 08 · METHODOLOGY — Phase Selector (locked in) ──────────────── */}
+      <Method />
+
+      {/* ── 09 · RECEIPTS — Oversized Rows (locked in) ─────────────────── */}
+      <Receipts />
+
+      {/* ── 10 · FROM THE HOST — Cinematic Quote Cards (locked in) ─────── */}
+      <Testimonials />
+
+      {/* ── 11 · THE UNCONTESTED ROOM — full-height black close ────────── */}
+      {/* Sticky so the next (Contact) section scrolls up and stacks over it. */}
+      <div className="sticky top-0">
+        <Niche />
       </div>
+      {/* Transparent dwell — keeps 08 pinned for a couple of scrolls before 09
+          slides up over it. */}
+      <div className="h-[130vh]" aria-hidden="true" />
 
-      {/* ── 07 · SCOPE OF SERVICE ─────────────────────────────────────── */}
-      <Section className="py-20">
-        <Eyebrow dark>{SCOPE.eyebrow}</Eyebrow>
-        <h2 className="max-w-3xl font-serif text-4xl font-semibold leading-[1.05] text-bone sm:text-5xl">
-          {t(SCOPE.title)}
-        </h2>
-        <div className="mt-10 grid gap-8 lg:grid-cols-[1.4fr_1fr]">
-          {/* Do */}
-          <div className="border border-bone/15 p-8">
-            <div className="font-sans text-xs font-bold uppercase tracking-[0.16em] text-brass">
-              {t(SCOPE.doLabel)}
-            </div>
-            <dl className="mt-6 space-y-5">
-              {SCOPE.doGroups.map((g) => (
-                <div key={g.id}>
-                  <dt className="font-serif text-xl text-bone">{g.group}</dt>
-                  <dd className="mt-1 font-sans text-sm leading-relaxed text-bone/60">{g.items}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-          {/* Don't */}
-          <div className="border border-bone/15 bg-onyx p-8">
-            <div className="font-sans text-xs font-bold uppercase tracking-[0.16em] text-bone/45">
-              {t(SCOPE.dontLabel)}
-            </div>
-            <ul className="mt-6 space-y-3">
-              {SCOPE.dont.map((d) => (
-                <li key={d} className="flex items-center gap-3 font-sans text-sm text-bone/60">
-                  <span className="font-serif text-brass">×</span>
-                  {d}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-6 border-t border-bone/15 pt-5 font-sans text-xs leading-relaxed text-bone/45">
-              {t(SCOPE.referral)}
-            </p>
-          </div>
-        </div>
-      </Section>
-
-      {/* ── 08 · METHODOLOGY ──────────────────────────────────────────── */}
-      <Section id="method" className="py-20">
-        <Eyebrow dark>{METHOD.eyebrow}</Eyebrow>
-        <h2 className="font-serif text-4xl font-semibold text-bone sm:text-5xl">{t(METHOD.title)}</h2>
-        <p className="mt-4 max-w-2xl font-sans text-bone/65">{t(METHOD.sub)}</p>
-        <div className="mt-12 border-t border-bone/15">
-          {METHOD.phases.map((p) => (
-            <div
-              key={p.id}
-              className="grid grid-cols-[auto_1fr] gap-x-6 border-b border-bone/15 py-6 sm:grid-cols-[4rem_10rem_1fr] sm:items-baseline"
-            >
-              <span className="font-serif text-2xl italic text-brass">{p.num}</span>
-              <h3 className="font-serif text-2xl font-semibold text-bone">{t(p.name)}</h3>
-              <p className="col-span-2 mt-1 font-sans text-sm text-bone/65 sm:col-span-1 sm:mt-0">
-                {t(p.body)}
-              </p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* ── 09 · RECEIPTS ─────────────────────────────────────────────── */}
-      <Section id="receipts" className="py-20">
-        <Eyebrow dark>{RECEIPTS.eyebrow}</Eyebrow>
-        <h2 className="font-serif text-4xl font-semibold text-bone sm:text-5xl">{t(RECEIPTS.title)}</h2>
-        <div className="mt-12 grid grid-cols-2 gap-px border border-bone/15 bg-bone/15 lg:grid-cols-4">
-          {RECEIPTS.stats.map((s) => (
-            <div key={s.id} className="group relative bg-onyx px-6 py-10">
-              <div className="font-serif text-5xl font-semibold text-brass sm:text-6xl">{s.value}</div>
-              <div className="mt-3 font-sans text-xs uppercase tracking-[0.14em] text-bone/55">
-                {t(s.label)}
-              </div>
-              <Brackets hover />
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* ── 10 · VIDEO TESTIMONIALS ───────────────────────────────────── */}
-      <Section id="testimonials" className="py-20">
-        <Eyebrow dark>{TESTIMONIALS.eyebrow}</Eyebrow>
-        <h2 className="max-w-3xl font-serif text-4xl font-semibold text-bone sm:text-5xl">
-          {t(TESTIMONIALS.title)}
-        </h2>
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {TESTIMONIALS.items.map((v) => (
-            <div key={v.id} className="group border border-bone/15">
-              <div className="relative aspect-video overflow-hidden">
-                <img
-                  src={v.img}
-                  alt={v.name}
-                  loading="lazy"
-                  className="h-full w-full object-cover grayscale [object-position:50%_28%] transition duration-700 group-hover:grayscale-0"
-                />
-                <div className="absolute inset-0 flex items-center justify-center bg-onyx/40 transition group-hover:bg-onyx/25">
-                  <span className="flex h-14 w-14 items-center justify-center border border-brass text-brass transition group-hover:bg-brass group-hover:text-onyx">
-                    ▶
-                  </span>
-                </div>
-                <span className="absolute bottom-3 right-3 bg-onyx/80 px-2 py-1 font-sans text-[10px] tracking-wide text-bone">
-                  {v.duration}
-                </span>
-              </div>
-              <div className="p-6">
-                <p className="font-serif text-lg italic text-bone">{t(v.quote)}</p>
-                <div className="mt-4 font-serif text-base text-bone">{v.name}</div>
-                <div className="font-sans text-xs uppercase tracking-[0.12em] text-brass">{t(v.role)}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* ── 11 · NICHE (full-bleed Tide Pool close) ───────────────────── */}
-      <div className="relative overflow-hidden bg-tidepool py-28">
-        {/* Crowd atmosphere. Radial Tide Pool scrim keeps the centred copy
-            legible while the image reads at the edges. */}
-        <div className="pointer-events-none absolute inset-0">
-          <img
-            src={GALLERY.nicheBg}
-            alt=""
-            className="h-full w-full object-cover opacity-55 [filter:saturate(1.05)_contrast(1.05)]"
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(ellipse 80% 75% at center, rgba(17,46,46,0.92) 0%, rgba(17,46,46,0.72) 55%, rgba(17,46,46,0.5) 100%)",
-            }}
-          />
-        </div>
-        <div className="pointer-events-none absolute inset-8 z-10 border border-brass/15" />
-        <Section className="relative z-10 text-center">
-          <div className="font-sans text-xs font-bold uppercase tracking-[0.28em] text-brass">
-            {NICHE.eyebrow}
-          </div>
-          <h2 className="mx-auto mt-6 max-w-3xl font-serif text-5xl font-semibold leading-[1.02] text-bone sm:text-6xl">
-            {t(NICHE.title)}
-          </h2>
-          <p className="mx-auto mt-8 max-w-2xl font-sans text-lg leading-relaxed text-bone/75">
-            {t(NICHE.body)}
-          </p>
-          <div className="mt-10 font-sans text-xs uppercase tracking-[0.35em] text-brass">
-            {NICHE.seal}
-          </div>
-        </Section>
-      </div>
-
-      {/* ── 12 · CTA FORM ─────────────────────────────────────────────── */}
-      <Section id="contact" className="py-24">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
-          <div>
-            <Eyebrow dark>{CTA.eyebrow}</Eyebrow>
-            <h2 className="max-w-md font-serif text-4xl font-semibold leading-[1.05] text-bone sm:text-5xl">
-              {t(CTA.title)}
-            </h2>
-            <div className="mt-10 space-y-5 border-t border-bone/15 pt-8">
-              {CTA.stats.map((s) => (
-                <div key={s.id} className="flex items-baseline gap-5">
-                  <span className="w-12 shrink-0 font-serif text-4xl font-semibold text-brass">
-                    {s.value}
-                  </span>
-                  <span className="font-sans text-sm text-bone/65">{t(s.label)}</span>
-                </div>
-              ))}
-            </div>
-            <Photo
-              src={GALLERY.ctaImg}
-              overlay="from-onyx/70 via-onyx/10 to-transparent"
-              className="mt-10 hidden aspect-[16/9] lg:block"
-            />
-          </div>
-          <div className="border border-bone/15 bg-onyx p-8 sm:p-10">
-            <QualifierForm />
-          </div>
-        </div>
-      </Section>
+      {/* ── 12 · START A CONVERSATION — The Brief (locked in) ──────────── */}
+      <Cta />
 
       {/* ── FOOTER ────────────────────────────────────────────────────── */}
-      <footer className="rule-tidepool border-t border-bone/10 bg-onyx">
+      <footer className="rule-tidepool relative border-t border-bone/10 bg-onyx">
         <Section className="py-14">
           <div className="grid gap-10 border-b border-bone/10 pb-10 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
             <div>
