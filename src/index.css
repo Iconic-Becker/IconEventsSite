@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+/* ── Iconic Events — Self-hosted brand typefaces ───────────────────────
+   Cormorant Garamond (display serif) · Helvetica (body sans) ·
+   Causten Bold (reserved: all-caps poster moments only). */
+
+/* Cormorant Garamond */
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("/fonts/CormorantGaramond-Regular.ttf") format("truetype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("/fonts/CormorantGaramond-Italic.ttf") format("truetype");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("/fonts/CormorantGaramond-Medium.ttf") format("truetype");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("/fonts/CormorantGaramond-MediumItalic.ttf") format("truetype");
+  font-weight: 500; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("/fonts/CormorantGaramond-SemiBold.ttf") format("truetype");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("/fonts/CormorantGaramond-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("/fonts/CormorantGaramond-Bold.ttf") format("truetype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* Helvetica */
+@font-face {
+  font-family: "Helvetica";
+  src: url("/fonts/Helvetica.ttf") format("truetype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Helvetica";
+  src: url("/fonts/Helvetica-Oblique.ttf") format("truetype");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Helvetica";
+  src: url("/fonts/Helvetica-Bold.ttf") format("truetype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* Causten — reserved for all-caps poster moments (never body copy). */
+@font-face {
+  font-family: "Causten";
+  src: url("/fonts/Causten-Bold.otf") format("opentype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* ── Iconic Events — Editorial surface tokens ──────────────────────────
+   Onyx carries every word. Tide Pool is the only green. Brass is a
+   flourish, never a fill. Bone is warm paper. Sharp corners always. */
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: "Helvetica", Helvetica, Arial, sans-serif;
+  --font-display: "Causten", "Helvetica", Arial, sans-serif;
+
+  --color-onyx: #0E1312;
+  --color-tidepool: #112E2E;
+  --color-tidepool-tint: #DDE5E4;
+  --color-brass: #B89968;
+  --color-bone: #F4F0E8;
+  --color-bone-dim: #E7E1D4;
+  --color-footer-grey: #888888;
+
+  /* Sharp corners are the brand. Neutralize Tailwind's default radii. */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-full: 0px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bone);
+  color: var(--color-onyx);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Section header rule — 14pt Helvetica bold caps, Tide Pool, 4pt rule below. */
+.rule-tidepool {
+  border-bottom: 4px solid var(--color-tidepool);
+}
+
+/* Brass hairline — the single deliberate flourish. */
+.hairline-brass {
+  border-color: var(--color-brass);
+}
+
+@keyframes fade-rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-rise {
+  animation: fade-rise 0.8s ease-out both;
+}
+
+/* Nav border beam — a faint brass highlight travelling left→right along the
+   bottom edge. Deliberately subtle: 1px, low opacity, slow. */
+@keyframes nav-beam {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(333%); }
+}
+.nav-beam {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  overflow: hidden;
+  pointer-events: none;
+}
+.nav-beam::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 30%;
+  background: linear-gradient(90deg, transparent, var(--color-brass) 50%, transparent);
+  opacity: 0.55;
+  transform: translateX(-100%);
+  animation: nav-beam 7s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-beam::before { animation: none; opacity: 0; }
+}
+
+/* Hero image walls — vertical marquee columns that fade in/out at the edges.
+   Left columns drift up, right columns drift down. */
+@keyframes hero-up {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+@keyframes hero-down {
+  from { transform: translateY(-50%); }
+  to { transform: translateY(0); }
+}
+.marquee-track {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.anim-up { animation: hero-up linear infinite; }
+.anim-down { animation: hero-down linear infinite; }
+.hero-fade {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .anim-up, .anim-down { animation: none; }
+}
+
+/* Hero light particles — drift down from top-centre, fading before the headline. */
+@keyframes particle-fall {
+  0% { transform: translateY(0); opacity: 0; }
+  14% { opacity: 0.85; }
+  100% { transform: translateY(var(--fall, 220px)); opacity: 0; }
+}
+.hero-particle {
+  position: absolute;
+  border-radius: 9999px;
+  background-color: var(--color-brass);
+  box-shadow: 0 0 4px 1px rgba(184, 153, 104, 0.5);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-particle { animation: none !important; opacity: 0; }
+}
+
+/* Easter egg — a circular spotlight reveals the big wordmark as the cursor
+   sweeps left/right. The mask centre follows the cursor (--mx/--my); off-screen
+   defaults keep it hidden until hovered. */
+.spotlight-img {
+  opacity: 0.5;
+  /* Larger radius with a very wide feather = a soft, heavily-blurred edge. */
+  -webkit-mask-image: radial-gradient(
+    circle 160px at var(--mx, -999px) var(--my, -999px),
+    #000 0%, #000 26%, transparent 94%
+  );
+  mask-image: radial-gradient(
+    circle 160px at var(--mx, -999px) var(--my, -999px),
+    #000 0%, #000 26%, transparent 94%
+  );
+}
