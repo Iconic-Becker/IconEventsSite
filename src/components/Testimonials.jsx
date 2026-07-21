@@ -101,8 +101,8 @@ function CtaRow({ t }) {
 export default function Testimonials() {
   const { t } = useVoice()
   return (
-    <div id="testimonials" className="bg-onyx py-24">
-      <div className="mx-auto max-w-6xl px-6">
+    <div id="testimonials" className="bg-onyx py-16 sm:py-24">
+      <div className="mx-auto max-w-6xl px-5 sm:px-6">
         <Head t={t} />
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {TESTIMONIALS.items.map((v) => (

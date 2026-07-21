@@ -38,7 +38,7 @@ export default function Position() {
   const ki = title.indexOf(key)
 
   return (
-    <section id="work" className="relative overflow-hidden py-20">
+    <section id="work" className="relative overflow-hidden py-16 sm:py-20">
       {/* atmosphere — a wide blurred glow behind the top of the image +
           particles rising up */}
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
@@ -54,7 +54,7 @@ export default function Position() {
       </div>
 
       {/* headline */}
-      <div className="relative z-10 mx-auto max-w-6xl px-6 pt-10 text-center">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-6 pt-10 text-center">
         <div className="mb-8 inline-block border-b border-brass/40 pb-3">
           <span className="font-sans text-xs font-bold uppercase tracking-[0.28em] text-brass">
             {POSITION.eyebrow}
@@ -86,7 +86,7 @@ export default function Position() {
           <img
             src={GALLERY.positionRoom}
             alt=""
-            className="aspect-[21/9] w-full object-cover grayscale contrast-[1.08]"
+            className="aspect-[4/5] w-full object-cover grayscale contrast-[1.08] sm:aspect-[21/9]"
           />
           {/* legibility scrim (beneath the colour reveal) */}
           <div className="pointer-events-none absolute inset-0 bg-onyx/45" />
@@ -105,6 +105,25 @@ export default function Position() {
             className="spotlight-img pointer-events-none absolute inset-0 h-full w-full object-contain px-[27%] py-[8%]"
           />
 
+          {/* Mobile: a feathered full-colour reveal follows the selected marker. */}
+          <img
+            key={`mobile-reveal-${active}`}
+            src={GALLERY.positionRoom}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover saturate-[1.12] md:hidden"
+            style={{
+              WebkitMaskImage: `radial-gradient(circle 82px at ${POINTS[active].x} ${POINTS[active].y}, #000 0%, rgba(0,0,0,0.9) 48%, rgba(0,0,0,0.35) 72%, transparent 100%)`,
+              maskImage: `radial-gradient(circle 82px at ${POINTS[active].x} ${POINTS[active].y}, #000 0%, rgba(0,0,0,0.9) 48%, rgba(0,0,0,0.35) 72%, transparent 100%)`,
+              filter: "drop-shadow(0 0 18px rgba(184,153,104,0.5))",
+            }}
+          />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute z-[5] h-28 w-28 -translate-x-1/2 -translate-y-1/2 bg-brass/20 blur-2xl md:hidden"
+            style={{ left: POINTS[active].x, top: POINTS[active].y }}
+          />
+
           {/* reticles + explanatory cards */}
           {POSITION.rows.map((r, i) => {
             const on = active === i
@@ -112,13 +131,14 @@ export default function Position() {
               <div key={i} className="absolute z-10" style={{ left: POINTS[i].x, top: POINTS[i].y }}>
                 <button
                   onMouseEnter={() => setActive(i)}
+                  onClick={() => setActive(i)}
                   onFocus={() => setActive(i)}
                   aria-label={t(r.engineer)}
                   className="relative block -translate-x-1/2 -translate-y-1/2"
                 >
                   <span className={`absolute inset-0 border border-brass ${on ? "" : "reticle-ping"}`} />
                   <span
-                    className={`relative flex h-9 w-9 items-center justify-center border-2 shadow-[0_0_14px_rgba(184,153,104,0.45)] transition-all duration-300 ${
+                    className={`relative flex h-11 w-11 items-center justify-center border-2 md:h-9 md:w-9 shadow-[0_0_14px_rgba(184,153,104,0.45)] transition-all duration-300 ${
                       on ? "scale-125 border-brass bg-brass/25" : "border-brass bg-onyx/50"
                     }`}
                   >
@@ -127,7 +147,7 @@ export default function Position() {
                 </button>
 
                 <div
-                  className={`pointer-events-none absolute left-0 top-0 z-20 transition-opacity duration-300 ${
+                  className={`pointer-events-none absolute left-0 top-0 z-20 hidden transition-opacity duration-300 md:block ${
                     on ? "opacity-100" : "opacity-0"
                   }`}
                   style={{
@@ -153,11 +173,26 @@ export default function Position() {
               </div>
             )
           })}
-        </div>
+
+          {/* Mobile: one stable balloon updated by whichever marker is tapped. */}
+          <div className="absolute inset-x-4 bottom-0 z-20 border border-brass/60 bg-onyx/95 p-4 text-left shadow-[0_12px_35px_rgba(0,0,0,0.45)] backdrop-blur md:hidden">
+            <div className="font-sans text-[10px] font-bold uppercase tracking-[0.16em] text-brass">
+              {t(POSITION.colEngineer)}
+            </div>
+            <div className="mt-1 font-serif text-2xl leading-tight text-bone">
+              {t(POSITION.rows[active].engineer)}
+            </div>
+            <div className="mt-3 flex items-baseline gap-2 border-t border-bone/15 pt-3 font-sans text-xs">
+              <span className="uppercase tracking-wide text-bone/35">Not</span>
+              <span className="text-bone/50 line-through decoration-bone/30">
+                {POSITION.rows[active].planner}
+              </span>
+            </div>
+          </div>        </div>
       </div>
 
       {/* legend row — full image width, primary-button bracket + sheen treatment */}
-      <div className="relative z-10 mt-4 px-4">
+      <div className="relative z-10 mt-4 hidden px-4 md:block">
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
           {POSITION.rows.map((r, i) => {
             const on = active === i
@@ -167,6 +202,7 @@ export default function Position() {
               <button
                 key={i}
                 onMouseEnter={() => setActive(i)}
+                onClick={() => setActive(i)}
                 className={`group relative overflow-hidden border p-5 text-left transition-colors duration-300 ${
                   on ? "border-brass/50" : "border-bone/15 hover:border-brass/40"
                 }`}

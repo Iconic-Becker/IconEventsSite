@@ -147,9 +147,9 @@ export default function Receipts() {
     backgroundRepeat: "repeat",
   }
   return (
-    <div id="receipts" className="relative overflow-hidden bg-onyx py-24">
+    <div id="receipts" className="relative overflow-hidden bg-onyx py-16 sm:py-24">
       <div className="pointer-events-none absolute inset-0 opacity-[0.04]" style={pattern} aria-hidden="true" />
-      <div className="relative z-10 mx-auto max-w-6xl px-6">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-6">
         <Head t={t} />
         <div ref={ref} className="mt-12 border-t border-bone/12">
           {RECEIPTS.stats.map((s, idx) => (

@@ -23,7 +23,6 @@ import { useVoice } from "./voice.jsx"
 import Icon from "./components/Icon.jsx"
 import Photo from "./components/Photo.jsx"
 import QualifierForm from "./components/QualifierForm.jsx"
-import VoiceToggle from "./components/VoiceToggle.jsx"
 import { CtaBrackets } from "./components/CtaButtons.jsx"
 import InTheRoom from "./components/InTheRoom.jsx"
 import Brackets from "./components/Brackets.jsx"
@@ -70,7 +69,7 @@ function MarqueeTrack({ images, dir, duration }) {
 }
 
 // Hero light particles — static config (left % is relative to the container),
-// so positions stay put across re-renders (e.g. voice toggle).
+// so positions stay put across re-renders.
 const HERO_PARTICLES = [
   { left: "50%", size: "2px", fall: "210px", dur: 7.5, delay: 0 },
   { left: "43%", size: "1px", fall: "230px", dur: 9, delay: 1.2 },
@@ -95,6 +94,20 @@ function highlight(text, phrase, cls = "text-brass") {
       {text.slice(0, i)}
       <span className={cls}>{phrase}</span>
       {text.slice(i + phrase.length)}
+    </>
+  )
+}
+// Keep desktop copy inline while allowing an intentional mobile-only break.
+function mobileBreakAfter(text, phrase) {
+  const i = text.indexOf(phrase)
+  if (i === -1) return text
+  const end = i + phrase.length
+  return (
+    <>
+      {text.slice(0, end)}
+      <br className="md:hidden" />
+      <span className="hidden md:inline"> </span>
+      {text.slice(end).trimStart()}
     </>
   )
 }
@@ -123,7 +136,7 @@ function EasterEggReveal() {
       onMouseLeave={hide}
       src="/logos/IE_logo_white.png"
       alt=""
-      className="spotlight-img absolute left-1/2 top-[54px] z-30 h-[168px] w-[85vw] max-w-3xl -translate-x-1/2 object-contain"
+      className="spotlight-img absolute left-1/2 hidden md:block top-[54px] z-30 h-[168px] w-[85vw] max-w-3xl -translate-x-1/2 object-contain"
     />
   )
 }
@@ -146,7 +159,7 @@ function NavLink({ href, children }) {
 /* ── Layout primitives ──────────────────────────────────────────────── */
 function Section({ id, className = "", children }) {
   return (
-    <section id={id} className={`mx-auto max-w-6xl px-6 ${className}`}>
+    <section id={id} className={`mx-auto max-w-6xl px-5 sm:px-6 ${className}`}>
       {children}
     </section>
   )
@@ -168,13 +181,12 @@ export default function App() {
   const { t } = useVoice()
   return (
     <div className="min-h-screen bg-onyx text-bone">
-      <VoiceToggle />
 
       {/* NAV — its own solid-black section. Centered logo, menus split L/R,
           no CTA. Sticky so it persists on scroll. */}
-      <header className="sticky top-0 z-40 border-b border-bone/10 bg-onyx relative">
+      <header className="relative z-40 border-b border-bone/10 bg-onyx md:sticky md:top-0">
         <div className="nav-beam" aria-hidden="true" />
-        <nav className="mx-auto grid max-w-6xl grid-cols-3 items-center px-6 py-4">
+        <nav aria-label="Primary navigation" className="mx-auto grid max-w-6xl grid-cols-3 items-center px-5 py-3 sm:px-5 sm:px-6 sm:py-4">
           <div className="hidden items-center gap-6 font-sans text-xs font-medium uppercase tracking-[0.16em] text-bone/70 md:flex">
             {NAV.left.map((n) => (
               <NavLink key={n.href} href={n.href}>
@@ -183,7 +195,8 @@ export default function App() {
             ))}
           </div>
           <a href="#top" aria-label="Iconic Events — home" className="flex justify-center">
-            <Logo tone="white" className="h-8 w-auto" />
+            <Logo tone="white" className="hidden h-8 w-auto md:block" />
+            <img src="/logos/IE_sigil_white.png" alt="" aria-hidden="true" className="h-9 w-auto md:hidden" />
           </a>
           <div className="hidden items-center justify-end gap-6 font-sans text-xs font-medium uppercase tracking-[0.16em] text-bone/70 md:flex">
             {NAV.right.map((n) => (
@@ -194,7 +207,15 @@ export default function App() {
           </div>
         </nav>
       </header>
-
+      <nav aria-label="Mobile navigation" className="mobile-nav sticky top-0 z-40 max-w-full overflow-x-auto border-y border-bone/10 bg-onyx/95 px-3 backdrop-blur md:hidden">
+        <div className="flex min-w-max items-center">
+          {[...NAV.left, ...NAV.right].map((n) => (
+            <a key={n.href} href={n.href} className="flex min-h-11 items-center px-3 font-sans text-[11px] font-bold uppercase tracking-[0.12em] text-bone/70">
+              {n.label}
+            </a>
+          ))}
+        </div>
+      </nav>
       {/* ── 01 · HERO ─────────────────────────────────────────────────── */}
       <div id="top" />
       <div className="relative grid min-h-screen grid-cols-1 overflow-hidden bg-onyx md:grid-cols-[22vw_1fr_22vw] xl:grid-cols-[28vw_1fr_28vw]">
@@ -285,7 +306,7 @@ export default function App() {
         {/* Centre content. */}
         <div
           key={t({ iconic: "i", genflow: "g" })}
-          className="fade-rise relative z-10 flex min-h-screen flex-col items-center justify-center px-6 py-28 text-center"
+          className="fade-rise relative z-10 flex min-h-screen flex-col items-center justify-center px-5 sm:px-6 py-28 text-center"
         >
           <p className="font-sans text-xs uppercase tracking-[0.25em] text-brass">
             {t(HERO.audience)} <span className="text-bone/45">· {HERO.est}</span>
@@ -307,7 +328,7 @@ export default function App() {
             </a>
           </div>
           <p className="mx-auto mt-8 max-w-md font-serif text-xl italic text-brass">
-            {t(HERO.outcome)}
+            {mobileBreakAfter(t(HERO.outcome), "room of 150.")}
           </p>
         </div>
 
@@ -377,12 +398,12 @@ export default function App() {
 
       {/* ── 11 · THE UNCONTESTED ROOM — full-height black close ────────── */}
       {/* Sticky so the next (Contact) section scrolls up and stacks over it. */}
-      <div className="sticky top-0">
+      <div className="niche-sticky sticky top-0">
         <Niche />
       </div>
       {/* Transparent dwell — keeps 08 pinned for a couple of scrolls before 09
           slides up over it. */}
-      <div className="h-[130vh]" aria-hidden="true" />
+      <div className="niche-dwell h-[130vh]" aria-hidden="true" />
 
       {/* ── 12 · START A CONVERSATION — The Brief (locked in) ──────────── */}
       <Cta />
@@ -390,17 +411,17 @@ export default function App() {
       {/* ── FOOTER ────────────────────────────────────────────────────── */}
       <footer className="rule-tidepool relative border-t border-bone/10 bg-onyx">
         <Section className="py-14">
-          <div className="grid gap-10 border-b border-bone/10 pb-10 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
-            <div>
-              <Logo tone="white" className="h-9 w-auto" />
-              <p className="mt-4 max-w-xs font-sans text-sm text-bone/55">{t(FOOTER.line)}</p>
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 border-b border-bone/10 pb-10 md:grid-cols-[1.5fr_1fr_1fr_1fr] md:gap-10">
+            <div className="col-span-2 text-center md:col-span-1 md:text-left">
+              <Logo tone="white" className="mx-auto h-14 w-auto md:mx-0 md:h-9" />
+              <p className="mx-auto mt-4 max-w-xs font-sans text-sm text-bone/55 md:mx-0">{t(FOOTER.line)}</p>
             </div>
             {FOOTER.columns.map((c) => (
-              <div key={c.id}>
+              <div key={c.id} className="min-w-0">
                 <div className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-brass">
                   {c.head}
                 </div>
-                <ul className="mt-4 space-y-2 font-sans text-sm text-bone/60">
+                <ul className="mt-4 space-y-2 break-words font-sans text-sm leading-relaxed text-bone/60">
                   {c.items.map((it) => (
                     <li key={it}>{it}</li>
                   ))}
@@ -408,11 +429,11 @@ export default function App() {
               </div>
             ))}
           </div>
-          <div className="mt-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-            <p className="font-sans text-xs uppercase tracking-[0.2em] text-bone/50">
+          <div className="mt-8 grid grid-cols-2 items-start gap-4 md:flex md:items-center md:justify-between">
+            <p className="font-sans text-[10px] uppercase leading-relaxed tracking-[0.14em] text-bone/50 md:text-xs md:tracking-[0.2em]">
               {FOOTER.legal} · {FOOTER.tagStrip}
             </p>
-            <p className="font-sans text-[11px] uppercase tracking-[0.15em] text-footer-grey">
+            <p className="text-right font-sans text-[10px] uppercase leading-relaxed tracking-[0.12em] text-footer-grey md:text-left md:text-[11px] md:tracking-[0.15em]">
               Privacy · Terms
             </p>
           </div>

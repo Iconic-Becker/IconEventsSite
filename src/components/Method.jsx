@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { METHOD } from "../content.js"
 import { useVoice } from "../voice.jsx"
 import DriftParticles from "./DriftParticles.jsx"
@@ -84,6 +84,30 @@ export default function Method() {
   const [active, setActive] = useState(0)
   const cur = METHOD.phases[active]
   const secRef = useRef(null)
+  const tabsAnchorRef = useRef(null)
+  const [tabsPinned, setTabsPinned] = useState(false)
+
+  useEffect(() => {
+    const updatePin = () => {
+      if (!window.matchMedia("(max-width: 767px)").matches) {
+        setTabsPinned(false)
+        return
+      }
+      const anchor = tabsAnchorRef.current
+      const receipts = document.getElementById("receipts")
+      if (!anchor || !receipts) return
+      const reachedTop = anchor.getBoundingClientRect().top <= 44
+      const nextSectionAtMidpoint = receipts.getBoundingClientRect().top <= window.innerHeight * 0.5
+      setTabsPinned(reachedTop && !nextSectionAtMidpoint)
+    }
+    updatePin()
+    window.addEventListener("scroll", updatePin, { passive: true })
+    window.addEventListener("resize", updatePin)
+    return () => {
+      window.removeEventListener("scroll", updatePin)
+      window.removeEventListener("resize", updatePin)
+    }
+  }, [])
   const patternBg = {
     backgroundImage: "url(/images/patterns/pattern-white.webp)",
     backgroundSize: "440px auto",
@@ -101,15 +125,19 @@ export default function Method() {
       id="method"
       ref={secRef}
       onMouseMove={onMove}
-      className="relative overflow-hidden bg-onyx py-24"
+      className="relative overflow-hidden bg-onyx py-16 sm:py-24"
     >
       {/* brand pattern — a soft circle under the cursor reveals more of it */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.04]" style={patternBg} aria-hidden="true" />
       <div className="pattern-reveal pointer-events-none absolute inset-0 opacity-[0.16]" style={patternBg} aria-hidden="true" />
-      <div className="relative z-10 mx-auto max-w-6xl px-6">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-6">
         <Head t={t} />
         <div className="mt-14">
-          <div className="flex flex-wrap gap-x-2 border-b border-bone/12">
+          <div ref={tabsAnchorRef} className={tabsPinned ? "h-12" : ""}>
+            <div
+              className={`${tabsPinned ? "fixed inset-x-0 top-11 z-40 border-y border-bone/12 bg-onyx/95 px-5 shadow-[0_12px_30px_rgba(0,0,0,0.35)] backdrop-blur" : ""}`}
+            >
+              <div className="mx-auto grid max-w-6xl grid-cols-5 border-b border-bone/12">
             {METHOD.phases.map((p, i) => {
               const on = active === i
               return (
@@ -117,7 +145,7 @@ export default function Method() {
                   key={p.id}
                   onMouseEnter={() => setActive(i)}
                   onClick={() => setActive(i)}
-                  className={`-mb-px flex items-center gap-3 border-b-2 px-5 py-4 transition-colors ${on ? "border-brass text-bone" : "border-transparent text-bone/50 hover:text-bone"}`}
+                  className={`-mb-px flex min-h-12 items-center justify-center gap-2 border-b-2 px-2 py-3 transition-colors sm:gap-3 sm:px-5 sm:py-4 ${on ? "border-brass text-bone" : "border-transparent text-bone/50 hover:text-bone"}`}
                 >
                   <span className="font-serif text-lg italic text-brass">{p.num}</span>
                   <span className="hidden font-sans text-xs uppercase tracking-[0.14em] sm:inline">
@@ -126,6 +154,8 @@ export default function Method() {
                 </button>
               )
             })}
+              </div>
+            </div>
           </div>
           <div
             key={active}

@@ -120,11 +120,11 @@ export default function Niche() {
       <div className="pointer-events-none absolute inset-8 z-10 border border-brass/15" />
 
       {/* centred copy */}
-      <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
+      <div className="relative z-10 mx-auto max-w-3xl px-5 sm:px-6 text-center">
         <div className="font-sans text-xs font-bold uppercase tracking-[0.28em] text-brass">
           {NICHE.eyebrow}
         </div>
-        <h2 className="mx-auto mt-6 max-w-4xl font-serif text-6xl font-semibold leading-[1.0] text-bone sm:text-7xl lg:text-8xl">
+        <h2 className="mx-auto mt-6 max-w-4xl font-serif text-4xl font-semibold leading-[1.0] text-bone sm:text-7xl lg:text-8xl">
           {accent(t(NICHE.title), "for founders")}
         </h2>
         <p className="mx-auto mt-8 max-w-2xl font-sans text-lg leading-relaxed text-bone/75">

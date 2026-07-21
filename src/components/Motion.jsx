@@ -50,7 +50,7 @@ export default function Motion() {
       <DriftParticles />
 
       {/* headline — full-length gold gradient over the panning footage */}
-      <div className="relative z-10 mx-auto max-w-6xl px-6 text-center">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-6 text-center">
         <div className="font-sans text-xs font-bold uppercase tracking-[0.28em] text-brass">
           {t(MONTAGE.kicker)}
         </div>
@@ -79,7 +79,7 @@ export default function Motion() {
           <Brackets hover />
         </button>
 
-        <div className="mx-16 flex h-[52vh] min-h-[360px] gap-2">
+        <div className="motion-gallery mx-12 flex h-[52vh] min-h-[360px] gap-2 sm:mx-16">
           {imgs.map((src, i) => {
             const on = active === i
             return (
@@ -87,7 +87,7 @@ export default function Motion() {
                 key={i}
                 onClick={() => setActive(i)}
                 aria-label={`View ${i + 1}`}
-                className={`group relative min-w-0 basis-0 overflow-hidden border border-brass/15 transition-[flex-grow] duration-700 ease-[cubic-bezier(0.65,0,0.35,1)] ${
+                className={`motion-panel motion-stack-${(i - active + imgs.length) % imgs.length} ${(i - active + imgs.length) % imgs.length === imgs.length - 1 ? "motion-stack-prev" : ""} ${on ? "motion-panel-active" : ""} group relative min-w-0 basis-0 overflow-hidden border border-brass/15 transition-[flex-grow] duration-700 ease-[cubic-bezier(0.65,0,0.35,1)] ${
                   on ? "grow-[7]" : "grow hover:grow-[2.6]"
                 }`}
               >

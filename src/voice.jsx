@@ -1,20 +1,17 @@
-import { createContext, useContext, useState } from "react"
-import { DEFAULT_VOICE } from "./content.js"
+import { createContext, useContext } from "react"
 
-// Holds the active brand voice and resolves V() pairs to the live string.
+// Resolves dual-voice content to the Iconic Events copy.
 const VoiceContext = createContext(null)
 
 export function VoiceProvider({ children }) {
-  const [voice, setVoice] = useState(DEFAULT_VOICE)
-  const toggle = () => setVoice((v) => (v === "iconic" ? "genflow" : "iconic"))
 
-  // t(pair) → the string for the active voice. Passes plain strings through,
+  // t(pair) → the Iconic Events string. Passes plain strings through,
   // so constant copy (event name, legal text) needs no V() wrapper.
   const t = (pair) =>
-    pair && typeof pair === "object" && "iconic" in pair ? pair[voice] : pair
+    pair && typeof pair === "object" && "iconic" in pair ? pair.iconic : pair
 
   return (
-    <VoiceContext.Provider value={{ voice, setVoice, toggle, t }}>
+    <VoiceContext.Provider value={{ t }}>
       {children}
     </VoiceContext.Provider>
   )

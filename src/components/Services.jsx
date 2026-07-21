@@ -23,7 +23,7 @@ function Headline({ title }) {
   const line2 = at === -1 ? "" : title.slice(at + 2)
   const phrase = line2.includes("authored room") ? "authored room" : "room"
   return (
-    <h2 className="max-w-4xl font-serif text-5xl font-semibold leading-[1.02] text-bone sm:text-6xl lg:text-7xl">
+    <h2 className="max-w-4xl font-serif text-4xl font-semibold leading-[1.02] text-bone sm:text-6xl lg:text-7xl">
       {line1}
       <br />
       {accent(line2, phrase)}
@@ -36,7 +36,7 @@ function Headline({ title }) {
    alternating rows drift opposite directions. Hovering a row freezes every
    row, dims the rest, grows the hovered one open with its full explanation,
    and floods the section background with that discipline's image. */
-function LedgerRow({ s, i, t, active, dimmed, onEnter }) {
+function LedgerRow({ s, i, t, active, dimmed, onEnter, onToggle }) {
   const half = (
     <div className="flex items-center gap-8 pr-8">
       {Array.from({ length: 4 }).map((_, j) => (
@@ -57,17 +57,25 @@ function LedgerRow({ s, i, t, active, dimmed, onEnter }) {
   return (
     <div
       onMouseEnter={onEnter}
-      className={`border-b border-brass/12 transition-opacity duration-300 last:border-0 ${dimmed ? "opacity-20" : "opacity-100"}`}
+      className={`border-b border-brass/12 transition-[opacity,background-color] duration-700 last:border-0 ${active ? "md:bg-onyx/30" : "bg-transparent"} ${dimmed ? "md:opacity-20" : "opacity-100"}`}
     >
-      <div className="overflow-hidden py-5">
+      <div className="overflow-hidden py-8 md:py-5">
         <div className={`motion-row ${i % 2 ? "motion-right" : "motion-left"}`}>
           {half}
           {half}
         </div>
       </div>
-      <div className={`grid transition-all duration-500 ease-out ${active ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+
+      {/* Full detail opens only when the mobile row is tapped. */}
+      <div
+        className={`grid max-h-[800px] grid-rows-[1fr] overflow-hidden bg-onyx/40 opacity-100 backdrop-blur-sm transition-[grid-template-rows,max-height,opacity,background-color] duration-[1000ms] ease-[cubic-bezier(.16,1,.3,1)] md:bg-transparent md:backdrop-blur-none ${
+          active
+            ? "md:max-h-[800px] md:grid-rows-[1fr] md:opacity-100"
+            : "md:max-h-0 md:grid-rows-[0fr] md:opacity-0"
+        }`}
+      >
         <div className="min-h-0 overflow-hidden">
-          <div className="mx-auto grid max-w-6xl gap-6 px-6 pb-16 pt-4 md:grid-cols-[16rem_1fr] md:items-start">
+          <div className="mx-auto grid max-w-6xl gap-6 px-5 pb-20 pt-8 sm:px-6 md:pb-16 md:pt-4 md:grid-cols-[16rem_1fr] md:items-start">
             <div className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-brass">
               {s.num} · {t(s.replaces)}
             </div>
@@ -89,7 +97,7 @@ export default function Services() {
   const [active, setActive] = useState(null)
   const imgs = GALLERY.capability
   return (
-    <div id="services" className="relative overflow-hidden bg-onyx py-24">
+    <div id="services" className="relative overflow-hidden bg-onyx py-16 sm:py-24">
       {/* flooding background — the hovered discipline's image bleeds through */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         {SERVICES.items.map((it, i) => (
@@ -97,13 +105,13 @@ export default function Services() {
             key={it.id}
             src={imgs[i % imgs.length]}
             alt=""
-            className={`absolute inset-0 h-full w-full object-cover grayscale transition-opacity duration-[900ms] ease-out ${active === i ? "opacity-[0.22]" : "opacity-0"}`}
+            className={`absolute inset-0 h-full w-full object-cover grayscale transition-opacity duration-[1200ms] ease-[cubic-bezier(.16,1,.3,1)] ${active === i ? "opacity-[0.22]" : "opacity-0"}`}
           />
         ))}
         <div className="absolute inset-0 bg-gradient-to-b from-onyx via-onyx/70 to-onyx" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-6xl px-6">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-6">
         <div className="mb-8 border-b border-brass/40 pb-3">
           <span className="font-sans text-xs font-bold uppercase tracking-[0.28em] text-brass">
             {SERVICES.eyebrow}
@@ -125,6 +133,8 @@ export default function Services() {
             active={active === i}
             dimmed={active !== null && active !== i}
             onEnter={() => setActive(i)}
+          onToggle={() => setActive(active === i ? null : i)}
+          onViewportExit={() => setActive((current) => current === i ? null : current)}
           />
         ))}
       </div>

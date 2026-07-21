@@ -232,7 +232,7 @@ body {
 .motion-left:hover, .motion-right:hover { animation-play-state: paused; }
 /* Capability · Kinetic Ledger — slower drift, and hovering any row freezes
    every row so the reader can settle on the one that's grown open. */
-.ledger .motion-left, .ledger .motion-right { animation-duration: 88s; }
+.ledger .motion-left, .ledger .motion-right { animation-duration: 140s; }
 .ledger-paused .motion-row { animation-play-state: paused; }
 @keyframes kenburns { from { transform: scale(1.02); } to { transform: scale(1.16); } }
 .kenburns { animation: kenburns 7.5s ease-out both; }
@@ -393,4 +393,109 @@ body {
   .scope-line { transform: scaleX(1); }
   .scope-line.in { animation: none; }
   .scope-strike-anim::after { transform: scaleX(1); transition: none; }
+}
+
+/* Mobile experience: compact rhythm, touch-first interactions, and safe reflow. */
+:focus-visible { outline: 2px solid var(--color-brass); outline-offset: 3px; }
+.mobile-nav { scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.mobile-nav::-webkit-scrollbar { display: none; }
+.mobile-card-scroll { scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-inline: contain; }
+.mobile-card-scroll::-webkit-scrollbar { display: none; }
+
+@media (max-width: 767px) {
+  html { scroll-padding-top: 3.5rem; }
+  body { overflow-x: hidden; }
+  h1, h2, h3 { overflow-wrap: anywhere; text-wrap: balance; }
+  p { text-wrap: pretty; }
+  button, a, input, textarea { touch-action: manipulation; }
+
+  /* Consistent phone gutters and vertical rhythm. */
+  section, #services > div, #scope > div, #method > div, #receipts > div,
+  #testimonials > div, #contact > div, footer section { max-width: 100%; }
+  #services, #scope, #method, #receipts, #testimonials { padding-top: 4rem; padding-bottom: 4rem; }
+
+  /* Hero: use the visible mobile viewport and leave room for the two-row header. */
+  #top + div { min-height: calc(100svh - 6.75rem); }
+  #top + div > div[class*="min-h-screen"] { min-height: calc(100svh - 6.75rem); padding: 4.5rem 1.25rem 5.5rem; }
+  #top + div h1 { font-size: clamp(2.75rem, 13vw, 4rem); line-height: .96; }
+  #top + div p { max-width: 34rem; }
+
+  /* Touch-first content selectors. */
+  .motion-gallery {
+    position: relative;
+    height: min(68svh, 520px);
+    min-height: 420px;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    isolation: isolate;
+    overflow: visible;
+  }
+  .motion-gallery .motion-panel {
+    display: none;
+    position: absolute;
+    inset: 0;
+    width: auto;
+    flex-basis: 100%;
+    transform-origin: center bottom;
+    box-shadow: 0 18px 38px rgba(0,0,0,.5);
+    transition: transform 720ms cubic-bezier(.22,1,.36,1), filter 720ms ease, opacity 520ms ease !important;
+    will-change: transform, filter, opacity;
+  }
+  .motion-gallery .motion-stack-0 {
+    display: block;
+    z-index: 3;
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  .motion-gallery .motion-stack-1 {
+    display: block;
+    z-index: 1;
+    transform: translate(1.65rem, .8rem) scale(.91) rotate(1.4deg);
+    filter: brightness(.58) grayscale(.35);
+    opacity: .9;
+    pointer-events: none;
+  }
+  .motion-gallery .motion-stack-prev {
+    display: block;
+    z-index: 1;
+    transform: translate(-1.65rem, .8rem) scale(.91) rotate(-1.4deg);
+    filter: brightness(.58) grayscale(.35);
+    opacity: .9;
+    pointer-events: none;
+  }
+  .motion-gallery .motion-stack-1 > div,
+  .motion-gallery .motion-stack-prev > div { opacity: 0; }
+  .motion-gallery .motion-panel-active { flex-grow: 1; }  .ledger .motion-row { animation-duration: 180s; }
+  .ledger [role="button"] { cursor: pointer; }
+
+  /* Desktop scroll theatre becomes direct, predictable mobile reading. */
+  .niche-sticky { position: relative; top: auto; }
+  .niche-dwell { display: none; }
+
+  .scope-strike { white-space: normal; }
+  #method [class*="min-h-[520px]"] { min-height: 0; padding-bottom: 5rem; }
+
+  /* Forms stack instead of squeezing a joined desktop control. */
+  #contact { min-height: auto; padding-top: 4rem; padding-bottom: 4rem; }
+  #contact form { padding: 1.25rem; }
+  #contact form > p { font-size: 1.5rem; line-height: 1.7; }
+  #contact form > div.flex { flex-direction: column; gap: .75rem; }
+  #contact form > div.flex input { min-height: 3rem; border-right-width: 1px; }
+  #contact form > div.flex button { min-height: 3rem; justify-content: center; width: 100%; }
+}
+
+@media (max-width: 389px) {
+  #top + div h1 { font-size: 2.55rem; }
+  .motion-gallery { margin-left: 2.75rem; margin-right: 2.75rem; }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .color-reveal, .pattern-reveal, .logo-reveal, .receipts-reveal { display: none; }
+  .spotlight-img { -webkit-mask-image: none; mask-image: none; opacity: .18; }
+  .motion-left:hover, .motion-right:hover { animation-play-state: running; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }

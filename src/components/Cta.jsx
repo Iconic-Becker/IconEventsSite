@@ -28,20 +28,30 @@ function accent(text, phrase) {
 function Dropdown({ value, options, onChange }) {
   const [open, setOpen] = useState(false)
   return (
-    <span className="relative inline-block align-middle">
+    <span className="relative inline-block max-w-full align-middle">
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        aria-label="Select an option"
+        className="min-h-11 max-w-full border border-brass bg-bone px-3 py-2 font-sans text-base font-bold text-brass outline-none focus:border-onyx md:hidden"
+      >
+        {options.map((o) => (
+          <option key={o} value={o}>{o}</option>
+        ))}
+      </select>
       {open && (
-        <span className="fixed inset-0 z-10" onClick={() => setOpen(false)} aria-hidden="true" />
+        <span className="fixed inset-0 z-10 hidden md:block" onClick={() => setOpen(false)} aria-hidden="true" />
       )}
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="relative z-20 inline-flex items-center gap-2 border border-brass px-3 py-1 font-bold text-brass transition-colors hover:bg-brass hover:text-bone"
+        className="relative z-20 hidden items-center gap-2 md:inline-flex border border-brass px-3 py-1 font-bold text-brass transition-colors hover:bg-brass hover:text-bone"
       >
         {value}
         <Icon name="arrow" className={`h-4 w-4 transition-transform ${open ? "-rotate-90" : "rotate-90"}`} />
       </button>
       {open && (
-        <span className="absolute left-0 top-full z-20 mt-1 flex min-w-full flex-col border border-brass bg-bone shadow-2xl">
+        <span className="absolute left-0 top-full z-20 mt-1 hidden min-w-full flex-col md:flex border border-brass bg-bone shadow-2xl">
           {options.map((o) => (
             <button
               key={o}
@@ -112,10 +122,10 @@ export default function Cta() {
   }
 
   return (
-    <div id="contact" className="relative flex min-h-screen items-center overflow-hidden bg-onyx py-24">
+    <div id="contact" className="relative flex min-h-screen items-center overflow-hidden bg-onyx py-16 sm:py-24">
       {/* brand pattern across the whole background */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.05]" style={pattern} aria-hidden="true" />
-      <div className="relative z-10 mx-auto w-full max-w-4xl px-6">
+      <div className="relative z-10 mx-auto w-full max-w-4xl px-5 sm:px-6">
         <Eyebrow />
         <h2 className="mt-6 max-w-4xl font-serif text-5xl font-semibold leading-[1.02] text-bone sm:text-6xl lg:text-7xl">
           {accent(t(CTA.title), "about the room")}
@@ -133,15 +143,46 @@ export default function Cta() {
                 <Dropdown value={timing} options={f.timings} onChange={setTiming} />
                 . The outcome we need is:
               </p>
+              <label htmlFor="desired-outcome" className="mt-7 block font-sans text-[11px] font-bold uppercase tracking-[0.14em] text-brass md:hidden">
+                Type the result the room has to produce
+              </label>
               <input
+                id="desired-outcome"
                 value={outcome}
                 onChange={(e) => setOutcome(e.target.value)}
                 placeholder={t(f.outcomePlaceholder)}
-                className="mt-6 block w-full border-b-2 border-onyx/30 bg-transparent pb-3 font-serif text-2xl font-bold text-onyx placeholder-onyx/50 outline-none transition focus:border-brass sm:text-3xl"
+                className="mt-2 block w-full border border-onyx/25 bg-onyx/[0.04] px-3 py-3 font-serif text-2xl font-bold text-onyx placeholder-onyx/45 outline-none transition focus:border-brass md:mt-6 md:border-x-0 md:border-t-0 md:border-b-2 md:bg-transparent md:px-0 md:pb-3 sm:text-3xl"
               />
 
-              {/* email joined to the submit button, same height */}
-              <div className="mt-12 flex">
+              {/* Mobile: one connected process, split into two clear steps. */}
+              <div className="mt-10 space-y-3 border border-onyx/20 bg-onyx/[0.06] p-3 md:hidden">
+                <label className="block border border-onyx/15 bg-bone p-3">
+                  <span className="mb-2 block font-sans text-[10px] font-bold uppercase tracking-[0.15em] text-brass">Step 1 · Your work email</span>
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Work email"
+                    autoComplete="email"
+                    className="min-h-12 w-full border border-onyx/25 bg-transparent px-4 font-sans text-base text-onyx placeholder-onyx/45 outline-none transition focus:border-brass"
+                  />
+                </label>
+                <div className="border border-brass/40 bg-bone p-3">
+                  <span className="mb-2 block font-sans text-[10px] font-bold uppercase tracking-[0.15em] text-brass">Step 2 · Send your brief</span>
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="group flex min-h-12 w-full items-center justify-center gap-3 border border-brass bg-brass px-5 py-3 font-sans text-xs font-bold uppercase tracking-[0.18em] text-onyx transition disabled:opacity-60"
+                  >
+                    {status === "loading" ? t(f.sending) : t(f.submit)}
+                    {status !== "loading" && <Icon name="arrow" className="h-4 w-4" />}
+                  </button>
+                </div>
+              </div>
+
+              {/* Desktop: email joined to the submit button. */}
+              <div className="mt-12 hidden md:flex">
                 <input
                   type="email"
                   required
