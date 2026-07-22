@@ -61,7 +61,7 @@ export const MONTAGE = {
 export const NAV = {
   left: [
     { href: "#work", label: "Work" },
-    { href: "#services", label: "Services" },
+    { href: "#gallery", label: "Gallery" },
     { href: "#method", label: "Method" },
   ],
   right: [
@@ -94,7 +94,11 @@ export const HERO = {
 
 /* ── 02 · PRESS ───────────────────────────────────────────────────────── */
 export const PRESS = {
-  label: V("As featured in · As built at", "As featured in · As built at"),
+  label: V("As trusted by", "Trusted by"),
+  headline: V(
+    "More than $100M moves through the events we manage each year.",
+    "$100M+ in events under management. Every year."
+  ),
   logos: ["BizBash", "Event Marketer", "Forbes", "Entrepreneur", "Palms", "HMS Belfast", "T&C Las Vegas"],
 }
 

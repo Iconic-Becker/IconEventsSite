@@ -29,7 +29,7 @@ import Brackets from "./components/Brackets.jsx"
 import Position from "./components/Position.jsx"
 import Motion from "./components/Motion.jsx"
 import Work from "./components/Work.jsx"
-import Services from "./components/Services.jsx"
+import Gallery from "./components/Gallery.jsx"
 import Scope from "./components/Scope.jsx"
 import Method from "./components/Method.jsx"
 import Receipts from "./components/Receipts.jsx"
@@ -355,6 +355,9 @@ export default function App() {
         <p className="text-center font-sans text-xs uppercase tracking-[0.25em] text-bone/40">
           {t(PRESS.label)}
         </p>
+        <h2 className="mx-auto mt-5 max-w-4xl text-center font-serif text-3xl font-semibold leading-[1.05] text-bone sm:text-6xl">
+          {t(PRESS.headline)}
+        </h2>
         {/* TODO: swap these text placeholders for the official mono/white logo
             files once provided (drop them in /public/images/press). */}
         <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
@@ -369,20 +372,19 @@ export default function App() {
         </div>
       </Section>
 
+      {/* ── The Room, In Motion ──────────────────────────────────────────── */}
+      <Motion />
+
       {/* ── 03 · IN THE ROOM — roster index with project reveal ──────────── */}
       <InTheRoom />
 
       {/* ── 04 · POSITIONING — Immersive Annotated Room ──────────────────── */}
       <Position />
 
-      {/* ── The Room, In Motion ──────────────────────────────────────────── */}
-      <Motion />
-
       {/* ── 05 · SELECTED WORK — Poster Grid ─────────────────────────────── */}
       <Work />
 
-      {/* ── 06 · CAPABILITY — Kinetic Ledger ─────────────────────────────── */}
-      <Services />
+      <Gallery />
 
       {/* ── 07 · SCOPE OF SERVICE — manifesto headline + included/excluded diptych ── */}
       <Scope />
@@ -397,13 +399,7 @@ export default function App() {
       <Testimonials />
 
       {/* ── 11 · THE UNCONTESTED ROOM — full-height black close ────────── */}
-      {/* Sticky so the next (Contact) section scrolls up and stacks over it. */}
-      <div className="niche-sticky sticky top-0">
-        <Niche />
-      </div>
-      {/* Transparent dwell — keeps 08 pinned for a couple of scrolls before 09
-          slides up over it. */}
-      <div className="niche-dwell h-[130vh]" aria-hidden="true" />
+      <Niche />
 
       {/* ── 12 · START A CONVERSATION — The Brief (locked in) ──────────── */}
       <Cta />

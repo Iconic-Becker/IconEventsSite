@@ -230,6 +230,34 @@ body {
 .motion-left { animation: motion-left 55s linear infinite; }
 .motion-right { animation: motion-right 55s linear infinite; }
 .motion-left:hover, .motion-right:hover { animation-play-state: paused; }
+
+/* Inside the Room · independently draggable, continuously moving rails. */
+.gallery-row {
+  overflow-x: scroll;
+  cursor: grab;
+  scrollbar-width: none;
+  touch-action: pan-y;
+  user-select: none;
+}
+.gallery-row::-webkit-scrollbar { display: none; }
+.gallery-row.is-dragging { cursor: grabbing; }
+@keyframes gallery-scroll-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.gallery-track { animation: gallery-scroll-left 110s linear infinite; }
+.gallery-ltr { animation-direction: reverse; }
+.gallery-rtl { animation-direction: normal; }
+.gallery-row.is-paused .gallery-track { animation-play-state: paused; }
+@keyframes slot-shuffle {
+  0% { transform: translateY(0) scale(1); filter: blur(0); opacity: 1; }
+  42% { transform: translateY(18px) scale(.96); filter: blur(7px); opacity: .35; }
+  58% { transform: translateY(-18px) scale(.96); filter: blur(7px); opacity: .35; }
+  100% { transform: translateY(0) scale(1); filter: blur(0); opacity: 1; }
+}
+.slot-spinning figure { animation: slot-shuffle .76s cubic-bezier(.22, 1, .36, 1) both; }
+.slot-spinning figure:nth-child(3n + 2) { animation-delay: 55ms; }
+.slot-spinning figure:nth-child(3n) { animation-delay: 110ms; }
 /* Capability · Kinetic Ledger — slower drift, and hovering any row freezes
    every row so the reader can settle on the one that's grown open. */
 .ledger .motion-left, .ledger .motion-right { animation-duration: 140s; }
@@ -259,6 +287,8 @@ body {
 }
 @media (prefers-reduced-motion: reduce) {
   .motion-left, .motion-right, .kenburns, .bg-pan, .gold-sheen { animation: none; }
+  .gallery-track { animation: none; }
+  .slot-spinning figure { animation: none; }
   .drift-wrap .hero-particle { animation: none !important; opacity: 0; }
 }
 

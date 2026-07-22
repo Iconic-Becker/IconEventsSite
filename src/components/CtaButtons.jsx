@@ -3,12 +3,13 @@ import Icon from "./Icon.jsx"
 /* Primary CTA — "Brass Brackets": outlined, with corner ticks that snap outward
    to frame the label on hover, plus a faint sheen sweep. Editorial, heritage.
    One signature move, sharp corners, brass/onyx/bone. */
-export function CtaBrackets({ href = "#contact", children = "Start a Conversation" }) {
+export function CtaBrackets({ href = "#contact", children = "Start a Conversation", onClick }) {
   const bracket =
     "pointer-events-none absolute h-2.5 w-2.5 border-brass transition-all duration-300 ease-out"
   return (
     <a
       href={href}
+      onClick={onClick}
       className="group relative inline-flex items-center gap-3 overflow-hidden border border-bone/25 px-9 py-4 font-sans text-xs font-bold uppercase tracking-[0.2em] text-bone transition-colors duration-300 hover:border-brass/50 hover:text-brass"
     >
       {/* sheen */}
