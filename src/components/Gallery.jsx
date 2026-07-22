@@ -89,9 +89,10 @@ export default function Gallery() {
         </div>
       </div>
       <div className="pointer-events-none sticky top-[calc(100svh-4.5rem)] z-30 mx-auto h-0 max-w-6xl px-3 sm:top-[calc(100svh-6rem)] sm:px-6">
-        <button type="button" onClick={shuffle} disabled={spinning} className="group pointer-events-auto ml-auto flex h-12 items-center gap-3 bg-brass px-3 text-onyx shadow-[0_12px_36px_rgba(14,19,18,0.28)] transition-transform duration-300 hover:-translate-y-1 disabled:cursor-wait sm:h-16 sm:px-4" aria-label="Shuffle gallery images">
+        <button type="button" onClick={shuffle} disabled={spinning} className="group pointer-events-auto mx-auto flex h-12 min-w-[210px] items-center justify-center gap-3 bg-brass px-5 text-onyx shadow-[0_12px_36px_rgba(14,19,18,0.28)] transition-transform duration-300 hover:-translate-y-1 disabled:cursor-wait sm:h-16 sm:min-w-[260px] sm:px-7" aria-label="Shuffle gallery images">
           <img src="/logos/IE_sigil_black.png" alt="" className={`h-7 w-auto transition-transform duration-700 sm:h-9 ${spinning ? "rotate-[360deg] scale-75" : "group-hover:rotate-12"}`} />
-          <span className="hidden font-sans text-[10px] font-bold uppercase tracking-[0.18em] sm:inline">Turn the room</span>
+          <span className="font-sans text-[10px] font-bold uppercase tracking-[0.18em]">Turn the room</span>
+          <span className="font-sans text-base leading-none transition-transform duration-300 group-hover:-translate-y-1" aria-hidden="true">↑</span>
         </button>
       </div>
       <div className="gallery-rail mt-10 space-y-3 overflow-hidden" aria-label="Event production gallery">

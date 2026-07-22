@@ -76,8 +76,8 @@ export const HERO = {
   audience: V("For founder-led businesses past $1M", "For founders scaling past $1M"),
   est: "Est. 2017",
   headline: V(
-    "We engineer live events that sell from the stage.",
-    "We engineer live events that convert audiences into buyers."
+    "More than $100M moves through the events we manage each year.",
+    "More than $100M moves through the events we manage each year."
   ),
   subhead: V(
     "Through psychology-led stage design, production, and experience architecture.",
@@ -95,10 +95,6 @@ export const HERO = {
 /* ── 02 · PRESS ───────────────────────────────────────────────────────── */
 export const PRESS = {
   label: V("As trusted by", "Trusted by"),
-  headline: V(
-    "More than $100M moves through the events we manage each year.",
-    "$100M+ in events under management. Every year."
-  ),
   logos: ["BizBash", "Event Marketer", "Forbes", "Entrepreneur", "Palms", "HMS Belfast", "T&C Las Vegas"],
 }
 

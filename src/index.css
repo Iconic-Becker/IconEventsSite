@@ -147,6 +147,26 @@ body {
   transform: translateX(-100%);
   animation: nav-beam 7s linear infinite;
 }
+
+/* Navbar case-study tab: a thin rounded centre with two brass ramp wings. */
+.case-study-tab::before,
+.case-study-tab::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 2rem;
+  height: 100%;
+  background: var(--color-brass);
+  pointer-events: none;
+}
+.case-study-tab::before {
+  right: calc(100% - 1px);
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+}
+.case-study-tab::after {
+  left: calc(100% - 1px);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
 @media (prefers-reduced-motion: reduce) {
   .nav-beam::before { animation: none; opacity: 0; }
 }

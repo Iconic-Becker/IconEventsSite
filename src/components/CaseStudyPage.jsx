@@ -11,6 +11,68 @@ const FAQS = [
   { q: "How far in advance should we begin?", a: "Six to twelve months is the strongest working window. Shorter timelines are assessed against venue, production, and creative availability." },
 ]
 
+const CASE_GALLERY = [
+  "/images/gallery/g9.webp",
+  "/images/gallery/g31.webp",
+  "/images/gallery/g32.webp",
+  "/images/gallery/g24.webp",
+  "/images/gallery/g34.webp",
+  "/images/gallery/g25.webp",
+]
+
+function CaseStudyGallery({ images = CASE_GALLERY }) {
+  const [active, setActive] = useState(0)
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const move = (direction) => setActive((current) => (current + direction + images.length) % images.length)
+
+  useEffect(() => {
+    if (!lightboxOpen) return undefined
+    const onKey = (event) => {
+      if (event.key === "Escape") setLightboxOpen(false)
+      if (event.key === "ArrowLeft") move(-1)
+      if (event.key === "ArrowRight") move(1)
+    }
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  }, [lightboxOpen])
+
+  return (
+    <section className="bg-bone py-16 text-onyx sm:py-24">
+      <div className="mx-auto max-w-6xl px-5 sm:px-6">
+        <div className="flex flex-wrap items-end justify-between gap-5 border-b-4 border-tidepool pb-4">
+          <div><p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">Photo gallery</p><h2 className="mt-3 font-serif text-4xl font-semibold sm:text-6xl">Inside Casino Royale.</h2></div>
+          <p className="font-sans text-xs uppercase tracking-[0.16em] text-onyx/45">Select a frame · Open to enlarge</p>
+        </div>
+        <div className="mt-8 flex flex-wrap gap-3">
+          {images.map((src, index) => (
+            <button
+              key={`${src}-${index}`}
+              type="button"
+              onClick={() => { setActive(index); setLightboxOpen(true) }}
+              className="group relative aspect-[4/3] min-w-0 basis-full flex-grow overflow-hidden bg-onyx sm:basis-[240px]"
+              aria-label={`Open gallery image ${index + 1} of ${images.length}`}
+            >
+              <img src={src} alt={`Casino Royale gallery frame ${index + 1}`} loading="lazy" className="h-full w-full object-cover grayscale transition duration-700 group-hover:scale-[1.025] group-hover:grayscale-0" />
+              <div className="absolute inset-0 bg-gradient-to-t from-onyx/55 via-transparent to-transparent" />
+              <span className="absolute bottom-3 left-3 font-serif text-3xl font-semibold text-bone">{String(index + 1).padStart(2, "0")}</span>
+              <span className="absolute bottom-4 right-4 font-sans text-[9px] font-bold uppercase tracking-[0.14em] text-bone/70 opacity-0 transition group-hover:opacity-100">Open frame</span>
+            </button>
+          ))}
+        </div>
+      </div>
+      {lightboxOpen && (
+        <div className="fixed inset-0 z-[80] flex items-center justify-center bg-onyx/95 p-3 sm:p-8" role="dialog" aria-modal="true" aria-label="Case study photo gallery" onMouseDown={() => setLightboxOpen(false)}>
+          <button type="button" onClick={() => setLightboxOpen(false)} className="absolute right-4 top-4 z-20 grid h-11 w-11 place-items-center border border-bone/25 text-2xl text-bone hover:border-brass" aria-label="Close gallery">×</button>
+          <button type="button" onClick={(event) => { event.stopPropagation(); move(-1) }} className="absolute left-3 top-1/2 z-20 grid h-12 w-12 -translate-y-1/2 place-items-center border border-brass/60 bg-onyx/80 text-2xl text-brass sm:left-6" aria-label="Previous image">←</button>
+          <img src={images[active]} alt={`Casino Royale gallery frame ${active + 1}`} className="max-h-[88svh] max-w-full object-contain" onMouseDown={(event) => event.stopPropagation()} />
+          <button type="button" onClick={(event) => { event.stopPropagation(); move(1) }} className="absolute right-3 top-1/2 z-20 grid h-12 w-12 -translate-y-1/2 place-items-center border border-brass/60 bg-onyx/80 text-2xl text-brass sm:right-6" aria-label="Next image">→</button>
+          <span className="absolute bottom-4 font-sans text-[10px] uppercase tracking-[0.18em] text-bone/55">{String(active + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}</span>
+        </div>
+      )}
+    </section>
+  )
+}
+
 function Archive() {
   return (
     <section className="border-t border-bone/10 bg-onyx py-16 sm:py-24">
@@ -113,9 +175,9 @@ export default function CaseStudyPage() {
   return (
     <main className="min-h-screen bg-onyx text-bone">
       <header className="border-b border-bone/10 bg-onyx"><nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-6"><a href="/" aria-label="Iconic Events home"><img src="/logos/IE_logo_white.png" alt="Iconic Events" className="h-8 w-auto" /></a><a href="/#work" className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-bone/60 hover:text-brass">← All work</a></nav></header>
-      <section className="relative min-h-[78svh] overflow-hidden">
+      <section className="relative min-h-[58svh] overflow-hidden sm:min-h-[64svh]">
         <img src={f.img} alt="Casino Royale event at Palms Casino Resort" className="absolute inset-0 h-full w-full object-cover grayscale" /><div className="absolute inset-0 bg-gradient-to-t from-onyx via-onyx/55 to-onyx/15" />
-        <div className="relative mx-auto flex min-h-[72svh] max-w-6xl items-end px-5 pb-12 pt-24 sm:min-h-[78svh] sm:px-6 sm:pb-24 sm:pt-32"><div className="max-w-4xl"><p className="font-sans text-[10px] font-bold uppercase tracking-[0.18em] text-brass sm:text-xs sm:tracking-[0.24em]">Case 001 · Palms Casino Resort · 2023</p><h1 className="mt-5 font-serif text-4xl font-semibold leading-[0.95] sm:text-8xl">Casino Royale.<br />Built to sell from the stage.</h1></div></div>
+        <div className="relative mx-auto flex min-h-[58svh] max-w-6xl items-end px-5 pb-10 pt-20 sm:min-h-[64svh] sm:px-6 sm:pb-14 sm:pt-24"><div className="max-w-4xl"><p className="font-sans text-[10px] font-bold uppercase tracking-[0.18em] text-brass sm:text-xs sm:tracking-[0.24em]">Case 001 · Palms Casino Resort · 2023</p><h1 className="mt-5 font-serif text-4xl font-semibold leading-[0.95] sm:text-8xl">Casino Royale.<br />Built to sell from the stage.</h1></div></div>
       </section>
       <section className="mx-auto max-w-6xl px-5 py-16 sm:px-6 sm:py-24">
         <div className="grid gap-12 border-b border-bone/15 pb-16 md:grid-cols-[0.75fr_1.25fr]"><p className="font-sans text-xs font-bold uppercase tracking-[0.22em] text-brass">The brief</p><p className="font-serif text-3xl leading-tight text-bone sm:text-5xl">A five-year wait. A new membership tier. One room tasked with making the decision feel inevitable.</p></div>
@@ -124,6 +186,7 @@ export default function CaseStudyPage() {
       </section>
       <section className="grid min-h-[70svh] md:grid-cols-2"><img src="/images/gallery/g31.webp" alt="Casino Royale production detail" className="h-full min-h-[420px] w-full object-cover grayscale" /><div className="flex items-center bg-tidepool px-6 py-16 sm:px-14"><div><p className="font-sans text-xs font-bold uppercase tracking-[0.22em] text-brass">The result</p><h2 className="mt-6 font-serif text-5xl font-semibold leading-none sm:text-7xl">$1.8M from 150 seats.</h2><p className="mt-6 max-w-lg font-sans text-lg leading-relaxed text-bone/70">The new tier sold from the stage. The following year sold out. The room did the work it was built to do.</p><div className="mt-10"><CtaBrackets href="#conversation-form" onClick={(event) => { event.preventDefault(); setFormOpen(true) }}>Build the next room</CtaBrackets></div></div></div></section>
 
+      <CaseStudyGallery />
       <Archive />
       <CaseStudyMethodology />
       <FAQ />
