@@ -61,7 +61,7 @@ export const MONTAGE = {
 export const NAV = {
   left: [
     { href: "#work", label: "Work" },
-    { href: "#services", label: "Services" },
+    { href: "#gallery", label: "Gallery" },
     { href: "#method", label: "Method" },
   ],
   right: [
@@ -76,8 +76,8 @@ export const HERO = {
   audience: V("For founder-led businesses past $1M", "For founders scaling past $1M"),
   est: "Est. 2017",
   headline: V(
-    "We engineer live events that sell from the stage.",
-    "We engineer live events that convert audiences into buyers."
+    "More than $100M moves through the events we manage each year.",
+    "More than $100M moves through the events we manage each year."
   ),
   subhead: V(
     "Through psychology-led stage design, production, and experience architecture.",
@@ -94,7 +94,7 @@ export const HERO = {
 
 /* ── 02 · PRESS ───────────────────────────────────────────────────────── */
 export const PRESS = {
-  label: V("As featured in · As built at", "As featured in · As built at"),
+  label: V("As trusted by", "Trusted by"),
   logos: ["BizBash", "Event Marketer", "Forbes", "Entrepreneur", "Palms", "HMS Belfast", "T&C Las Vegas"],
 }
 
@@ -121,10 +121,10 @@ export const ROOM = {
       id: "r2",
       img: "/images/clients/ed-mylett.webp",
       name: "Ed Mylett",
-      result: V("Sold-out keynote", "Sold-out keynote"),
+      result: V("Live event production", "Live event production"),
       about: V(
-        "A keynote built to the minute for a room that was sold out before the doors opened. Every beat placed; nothing left to chance.",
-        "A keynote room so dialed in it sold out before doors — every beat built to move the audience."
+        "A live room shaped around attention, authority, and the moments that matter on stage.",
+        "A live room built to hold attention and give every moment on stage a clear job."
       ),
     },
     {
@@ -161,10 +161,10 @@ export const ROOM = {
       id: "r6",
       img: "/images/clients/ravi-abuvala.webp",
       name: "Ravi Abuvala",
-      result: V("Parking-garage summit", "Parking-garage summit"),
+      result: V("Scaling With Systems LIVE", "Scaling With Systems LIVE"),
       about: V(
-        "Scaling With Systems LIVE — a summit staged in a parking garage and made to feel inevitable. The unlikeliest room, fully authored.",
-        "Scaling With Systems LIVE — we turned a parking garage into a summit that looked like a seven-figure production."
+        "A founder-led live summit shaped as one continuous audience journey — from arrival through the final moment on stage.",
+        "A live summit built around the full audience journey, with every production decision working toward the moments that mattered on stage."
       ),
     },
   ],
@@ -220,7 +220,7 @@ export const WORK = {
   archive: [
     { id: "a1", img: "/images/gallery/g28.webp", name: "Bad After Dark", result: V("$146K sponsorships", "$146K sponsorships") },
     { id: "a2", img: "/images/gallery/g13.webp", name: "The CEO Lawyer Summit", result: V("$25K+ average ticket", "$25K+ avg ticket") },
-    { id: "a3", img: "/images/gallery/g26.webp", name: "Scaling With Systems LIVE", result: V("Parking-garage summit", "Parking-garage summit") },
+    { id: "a3", img: "/images/gallery/g26.webp", name: "Scaling With Systems LIVE", result: V("Founder-led live summit", "Founder-led live summit") },
     { id: "a4", img: "/images/gallery/g3.webp", name: "Viral Ecom Adz", result: V("Six-figure sponsorship", "6-figure sponsorship") },
     { id: "a5", img: "/images/gallery/g30.webp", name: "Chase Hughes — London", result: V("HMS Belfast build", "HMS Belfast build") },
   ],

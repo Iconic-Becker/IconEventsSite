@@ -14,7 +14,7 @@ export default function Work() {
     backgroundRepeat: "repeat",
   }
   return (
-    <section className="relative overflow-hidden py-16 sm:py-20">
+    <section id="work" className="relative overflow-hidden py-16 sm:py-20">
       {/* background — event image + colour overlay + brand pattern */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <img
@@ -36,14 +36,14 @@ export default function Work() {
       </div>
       <div className="flex flex-wrap items-baseline justify-between gap-4">
         <h2 className="font-serif text-4xl font-semibold text-bone sm:text-5xl">{t(WORK.title)}</h2>
-        <a href="#contact" className="font-sans text-xs uppercase tracking-[0.15em] text-brass hover:text-bone">
+        <a href="#gallery" className="font-sans text-xs uppercase tracking-[0.15em] text-brass hover:text-bone">
           {t(WORK.index)}
         </a>
       </div>
 
       <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {/* featured poster */}
-        <div className="group relative min-h-[100svh] overflow-hidden border border-brass/25 md:min-h-0 md:col-span-2 lg:row-span-2">
+        <div className="group relative min-h-[78svh] overflow-hidden border border-brass/25 md:min-h-0 md:col-span-2 lg:row-span-2">
           <img
             src={f.img}
             alt=""
@@ -68,7 +68,7 @@ export default function Work() {
                 </div>
               ))}
             </div>
-            <a href="#contact" className="mt-5 hidden font-sans text-xs uppercase tracking-[0.15em] text-brass hover:text-bone md:inline-block">
+            <a href="/case-studies/casino-royale" className="mt-5 inline-block font-sans text-xs uppercase tracking-[0.15em] text-brass hover:text-bone">
               {t(f.cta)}
             </a>
           </div>
@@ -78,8 +78,8 @@ export default function Work() {
         {WORK.archive.map((a) => (
           <a
             key={a.id}
-            href="#contact"
-            className="group relative flex min-h-[100svh] flex-col justify-end overflow-hidden border border-bone/15 md:min-h-[210px] transition-colors duration-300 hover:border-brass/40"
+            href="/case-studies/casino-royale"
+            className="group relative flex min-h-[72svh] flex-col justify-end overflow-hidden border border-bone/15 md:min-h-[210px] transition-colors duration-300 hover:border-brass/40"
           >
             <img
               src={a.img}

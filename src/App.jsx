@@ -29,7 +29,7 @@ import Brackets from "./components/Brackets.jsx"
 import Position from "./components/Position.jsx"
 import Motion from "./components/Motion.jsx"
 import Work from "./components/Work.jsx"
-import Services from "./components/Services.jsx"
+import Gallery from "./components/Gallery.jsx"
 import Scope from "./components/Scope.jsx"
 import Method from "./components/Method.jsx"
 import Receipts from "./components/Receipts.jsx"
@@ -112,6 +112,21 @@ function mobileBreakAfter(text, phrase) {
   )
 }
 
+function heroHeadline(text) {
+  const phrase = " through"
+  const i = text.indexOf(phrase)
+  if (i === -1) return text
+  const end = i + phrase.length
+  return (
+    <>
+      <span className="md:whitespace-nowrap">{text.slice(0, end)}</span>
+      <br className="hidden md:block" />
+      <span className="md:hidden"> </span>
+      <span className="md:whitespace-nowrap">{text.slice(end).trimStart()}</span>
+    </>
+  )
+}
+
 // Easter egg: a big wordmark hidden in the dark; a circular spotlight follows
 // the cursor and reveals it as you sweep left/right (CSS radial-gradient mask).
 function EasterEggReveal() {
@@ -152,6 +167,17 @@ function NavLink({ href, children }) {
       <span className={`${tick} right-1 top-0 border-r border-t group-hover:right-0`} />
       <span className={`${tick} bottom-0 left-1 border-b border-l group-hover:left-0`} />
       <span className={`${tick} bottom-0 right-1 border-b border-r group-hover:right-0`} />
+    </a>
+  )
+}
+
+function CaseStudyNavPreview() {
+  return (
+    <a
+      href="#work"
+      className="case-study-tab absolute left-1/2 top-full z-50 hidden h-9 min-w-[250px] -translate-x-1/2 items-center justify-center rounded-b-xl bg-brass px-10 font-display text-xs font-bold uppercase tracking-[0.18em] text-onyx shadow-[0_12px_28px_rgba(0,0,0,0.3)] transition hover:brightness-110 md:flex"
+    >
+      Our case studies
     </a>
   )
 }
@@ -206,6 +232,7 @@ export default function App() {
             ))}
           </div>
         </nav>
+        <CaseStudyNavPreview />
       </header>
       <nav aria-label="Mobile navigation" className="mobile-nav sticky top-0 z-40 max-w-full overflow-x-auto border-y border-bone/10 bg-onyx/95 px-3 backdrop-blur md:hidden">
         <div className="flex min-w-max items-center">
@@ -311,8 +338,8 @@ export default function App() {
           <p className="font-sans text-xs uppercase tracking-[0.25em] text-brass">
             {t(HERO.audience)} <span className="text-bone/45">· {HERO.est}</span>
           </p>
-          <h1 className="mt-6 max-w-4xl font-serif text-5xl font-semibold leading-[0.98] tracking-tight text-bone sm:text-7xl">
-            {highlight(t(HERO.headline), "live events")}
+          <h1 className="mt-6 max-w-4xl font-serif text-5xl font-semibold leading-[0.96] tracking-tight text-bone sm:text-[3.5rem]">
+            {heroHeadline(t(HERO.headline))}
           </h1>
           <p className="mx-auto mt-6 max-w-xl font-sans text-lg leading-relaxed text-bone/70">
             {t(HERO.subhead)}
@@ -369,20 +396,19 @@ export default function App() {
         </div>
       </Section>
 
+      {/* ── The Room, In Motion ──────────────────────────────────────────── */}
+      <Motion />
+
       {/* ── 03 · IN THE ROOM — roster index with project reveal ──────────── */}
       <InTheRoom />
 
       {/* ── 04 · POSITIONING — Immersive Annotated Room ──────────────────── */}
       <Position />
 
-      {/* ── The Room, In Motion ──────────────────────────────────────────── */}
-      <Motion />
-
       {/* ── 05 · SELECTED WORK — Poster Grid ─────────────────────────────── */}
       <Work />
 
-      {/* ── 06 · CAPABILITY — Kinetic Ledger ─────────────────────────────── */}
-      <Services />
+      <Gallery />
 
       {/* ── 07 · SCOPE OF SERVICE — manifesto headline + included/excluded diptych ── */}
       <Scope />
@@ -397,13 +423,7 @@ export default function App() {
       <Testimonials />
 
       {/* ── 11 · THE UNCONTESTED ROOM — full-height black close ────────── */}
-      {/* Sticky so the next (Contact) section scrolls up and stacks over it. */}
-      <div className="niche-sticky sticky top-0">
-        <Niche />
-      </div>
-      {/* Transparent dwell — keeps 08 pinned for a couple of scrolls before 09
-          slides up over it. */}
-      <div className="niche-dwell h-[130vh]" aria-hidden="true" />
+      <Niche />
 
       {/* ── 12 · START A CONVERSATION — The Brief (locked in) ──────────── */}
       <Cta />

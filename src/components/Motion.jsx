@@ -86,10 +86,9 @@ export default function Motion() {
               <button
                 key={i}
                 onClick={() => setActive(i)}
+                onMouseEnter={() => setActive(i)}
                 aria-label={`View ${i + 1}`}
-                className={`motion-panel motion-stack-${(i - active + imgs.length) % imgs.length} ${(i - active + imgs.length) % imgs.length === imgs.length - 1 ? "motion-stack-prev" : ""} ${on ? "motion-panel-active" : ""} group relative min-w-0 basis-0 overflow-hidden border border-brass/15 transition-[flex-grow] duration-700 ease-[cubic-bezier(0.65,0,0.35,1)] ${
-                  on ? "grow-[7]" : "grow hover:grow-[2.6]"
-                }`}
+                className={`motion-panel motion-stack-${(i - active + imgs.length) % imgs.length} ${(i - active + imgs.length) % imgs.length === imgs.length - 1 ? "motion-stack-prev" : ""} ${on ? "motion-panel-active" : ""} group relative min-w-0 basis-0 overflow-hidden border border-brass/15 transition-[flex-grow] duration-700 ease-[cubic-bezier(0.65,0,0.35,1)] ${on ? "grow-[3.4]" : "grow"}`}
               >
                 <img
                   src={src}
