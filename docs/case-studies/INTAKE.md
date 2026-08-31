@@ -33,12 +33,12 @@ Also needed for every event:
 
 ## B. Video (2 embeds per page)
 
-- [ ] **Client trailer.** The event film Iconic Events produced. 16:9 embed link
-      (Vimeo or YouTube), 60 to 90 seconds. Shows the room.
-- [ ] **Client testimonial.** The client on camera. 16:9 embed link, 30 to 60
-      seconds. Speaking to what they needed and what was delivered, not to spend.
-      If no testimonial exists, the row collapses and the written quote runs full
-      width. Do not substitute the written quote into the video slot.
+- [ ] **Event aftermovie.** The event film Iconic Events produced. YouTube or
+      Vimeo watch link. Renders full width under its own headline.
+- [ ] **Client testimonial video.** The client on camera. YouTube or Vimeo watch
+      link. Sits on the left of the row headed "What <client> had to say about
+      working with us", with the written quote as large type on the right.
+      Either half renders on its own if the other is missing.
 
 ## C. The three published metrics
 
@@ -65,7 +65,8 @@ Also needed for every event:
 
 - [ ] **Written quote**, verbatim, two sentences. Ask about what they needed
       going in and what one accountable team was like instead of a vendor list.
-      Steer away from figures.
+      Steer away from figures. In `src/case-studies.js` the quote renders only
+      when `testimonial.approved` is set to true, so unapproved copy cannot ship.
 - [ ] **Written permission to publish** the quote. Without this the Review
       schema cannot ship: marking up a review that does not exist is false
       structured data and a documented cause of Google penalties.
