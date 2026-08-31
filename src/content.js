@@ -195,6 +195,7 @@ export const WORK = {
   title: V("Rooms we've engineered.", "Rooms we've engineered."),
   index: V("Full Index →", "Full Index →"),
   featured: {
+    slug: "casino-royale",
     label: "Featured · Case 001",
     meta: "Ben Newman · Palms Casino Resort · 2023",
     img: "/images/gallery/g9.webp",
@@ -218,11 +219,11 @@ export const WORK = {
   },
   archiveLabel: V("More from the archive", "More from the archive"),
   archive: [
-    { id: "a1", img: "/images/gallery/g28.webp", name: "Bad After Dark", result: V("$146K sponsorships", "$146K sponsorships") },
-    { id: "a2", img: "/images/gallery/g13.webp", name: "The CEO Lawyer Summit", result: V("$25K+ average ticket", "$25K+ avg ticket") },
-    { id: "a3", img: "/images/gallery/g26.webp", name: "Scaling With Systems LIVE", result: V("Founder-led live summit", "Founder-led live summit") },
-    { id: "a4", img: "/images/gallery/g3.webp", name: "Viral Ecom Adz", result: V("Six-figure sponsorship", "6-figure sponsorship") },
-    { id: "a5", img: "/images/gallery/g30.webp", name: "Chase Hughes — London", result: V("HMS Belfast build", "HMS Belfast build") },
+    { id: "a1", img: "/images/gallery/g28.webp", name: "Bad After Dark", slug: "bad-after-dark", result: V("$146K sponsorships", "$146K sponsorships") },
+    { id: "a2", img: "/images/gallery/g13.webp", name: "The CEO Lawyer Summit", slug: "ceo-lawyer-summit", result: V("$25K+ average ticket", "$25K+ avg ticket") },
+    { id: "a3", img: "/images/gallery/g26.webp", name: "Scaling With Systems LIVE", slug: "scaling-with-systems-live", result: V("Founder-led live summit", "Founder-led live summit") },
+    { id: "a4", img: "/images/gallery/g3.webp", name: "Viral Ecom Adz", slug: "viral-ecom-adz", result: V("Six-figure sponsorship", "6-figure sponsorship") },
+    { id: "a5", img: "/images/gallery/g30.webp", name: "Chase Hughes — London", slug: "chase-hughes-london", result: V("HMS Belfast build", "HMS Belfast build") },
   ],
 }
 

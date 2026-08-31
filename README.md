@@ -46,6 +46,41 @@ the structure file.
 - [`src/components/VoiceToggle.jsx`](src/components/VoiceToggle.jsx) is the
   floating switch; the active voice is filled and named.
 
+## Case studies
+
+Every event gets its own dedicated page at `/case-studies/<slug>` and a tile
+under **02 · Selected Work** on the lander. Six are live: `casino-royale`,
+`bad-after-dark`, `ceo-lawyer-summit`, `scaling-with-systems-live`,
+`viral-ecom-adz`, `chase-hughes-london`.
+
+All case-study content lives in [`src/case-studies.js`](src/case-studies.js) —
+one object per event. [`CaseStudyPage.jsx`](src/components/CaseStudyPage.jsx) is
+a template that renders whichever study the URL resolves to; an unknown slug
+renders a not-found state rather than defaulting to another event.
+
+### Adding a new event
+
+1. **Add the study** — append an object to `CASE_STUDIES` in
+   `src/case-studies.js`. Copy an existing entry's shape; each field is
+   documented in the header comment. `slug` becomes the URL and should never
+   change once it is live and indexed.
+2. **List it on the lander** — add a tile to `WORK.archive` in
+   `src/content.js` with the **same `slug`**. Lander tiles keep their `V()`
+   dual-voice copy; case-study pages are Iconic voice only (matching how the
+   page already behaved).
+3. **Add the photography** — drop files in `public/images/gallery/` and
+   reference them from `heroImg`, `result.img`, and `gallery`.
+
+Routing, the "next room" strip on sibling pages, and the per-page `<title>`
+pick the new event up automatically. `npm run dev` warns in the console if a
+lander tile has no case study behind it, so a tile can never ship with a dead
+link.
+
+Studies with only partial detail on file carry `// TODO(copy):` markers where
+verified facts are still needed — search for them before launch. Stats are
+omitted rather than invented: an entry with an empty `stats` array simply
+hides the figures band.
+
 ## Brand assets
 
 Logo, fonts, color tokens, and layout rules are recorded in

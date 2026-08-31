@@ -68,7 +68,7 @@ export default function Work() {
                 </div>
               ))}
             </div>
-            <a href="/case-studies/casino-royale" className="mt-5 inline-block font-sans text-xs uppercase tracking-[0.15em] text-brass hover:text-bone">
+            <a href={`/case-studies/${f.slug}`} className="mt-5 inline-block font-sans text-xs uppercase tracking-[0.15em] text-brass hover:text-bone">
               {t(f.cta)}
             </a>
           </div>
@@ -78,7 +78,7 @@ export default function Work() {
         {WORK.archive.map((a) => (
           <a
             key={a.id}
-            href="/case-studies/casino-royale"
+            href={`/case-studies/${a.slug}`}
             className="group relative flex min-h-[72svh] flex-col justify-end overflow-hidden border border-bone/15 md:min-h-[210px] transition-colors duration-300 hover:border-brass/40"
           >
             <img
