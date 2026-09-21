@@ -11,7 +11,6 @@
 // RULE: change any line → change BOTH sides of its V() pair, each true to its
 // own voice guide. Plain strings (no V) are voice-neutral (names, numbers).
 
-import { CONTACT_EMAIL } from "./lib/contact.js"
 
 const V = (iconic, genflow) => ({ iconic, genflow })
 
@@ -532,7 +531,15 @@ export const FOOTER = {
   line: V("Experience engineers. Est. 2017.", "Experience engineers for the creator economy. Est. 2017."),
   columns: [
     { id: "col1", head: "Studio", items: ["Work", "Services", "Method", "Journal"] },
-    { id: "col2", head: "Contact", items: [CONTACT_EMAIL, "(305) 791-5290", "Miami · Las Vegas"] },
+    {
+      id: "col2",
+      head: "Contact",
+      // The address is deliberately not printed here: a mailto in the footer of
+      // every page is the easiest thing on the site to scrape. The form reaches
+      // the same inbox. CONTACT_EMAIL is still the fallback when a submission
+      // fails (see src/lib/enquiry.js).
+      items: [{ label: "Start a conversation", href: "#contact" }, "(305) 791-5290", "Miami · Las Vegas"],
+    },
     { id: "col3", head: "Follow", items: ["Instagram", "LinkedIn", "Vimeo"] },
   ],
   tagStrip: "ICONIC · EXPERIENCE · ENGINEERED",

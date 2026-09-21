@@ -463,9 +463,20 @@ export default function App() {
                   {c.head}
                 </div>
                 <ul className="mt-4 space-y-2 break-words font-sans text-sm leading-relaxed text-bone/60">
-                  {c.items.map((it) => (
-                    <li key={it}>{it}</li>
-                  ))}
+                  {c.items.map((it) => {
+                    const label = typeof it === "string" ? it : it.label
+                    return (
+                      <li key={label}>
+                        {typeof it === "string" ? (
+                          label
+                        ) : (
+                          <a href={it.href} className="transition hover:text-brass">
+                            {label}
+                          </a>
+                        )}
+                      </li>
+                    )
+                  })}
                 </ul>
               </div>
             ))}
