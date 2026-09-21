@@ -398,7 +398,7 @@ Consequences to handle on rebuild:
    Experience engineers for the creator economy. Est. 2017.
 
    Studio        Contact                 Follow
-   Work          icon@iconicevents.com   Instagram
+   Work          icon@iconic.events   Instagram
    Services      (305) 791-5290          LinkedIn
    Method        Miami · Las Vegas       Vimeo
    Journal

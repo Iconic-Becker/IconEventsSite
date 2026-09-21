@@ -530,7 +530,7 @@ export const FOOTER = {
   line: V("Experience engineers. Est. 2017.", "Experience engineers for the creator economy. Est. 2017."),
   columns: [
     { id: "col1", head: "Studio", items: ["Work", "Services", "Method", "Journal"] },
-    { id: "col2", head: "Contact", items: ["icon@iconicevents.com", "(305) 791-5290", "Miami · Las Vegas"] },
+    { id: "col2", head: "Contact", items: ["icon@iconic.events", "(305) 791-5290", "Miami · Las Vegas"] },
     { id: "col3", head: "Follow", items: ["Instagram", "LinkedIn", "Vimeo"] },
   ],
   tagStrip: "ICONIC · EXPERIENCE · ENGINEERED",
