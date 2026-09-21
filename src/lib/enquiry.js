@@ -7,11 +7,11 @@
    SETUP (one time)
    1. Create a form at a provider that posts JSON and emails a destination:
       - Web3Forms (web3forms.com): free, no account. Enter
-        icon@iconic.events, they email an access key. Endpoint is
+        contact@iconic.events, they email an access key. Endpoint is
         https://api.web3forms.com/submit and the key goes in
         VITE_FORM_ACCESS_KEY.
       - Formspree (formspree.io): create a form addressed to
-        icon@iconic.events. Endpoint is https://formspree.io/f/<id> and no
+        contact@iconic.events. Endpoint is https://formspree.io/f/<id> and no
         access key is needed.
    2. Put the values in .env.local (never commit it) and in the host's
       environment variables for the production build:
@@ -29,9 +29,9 @@
 const ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT
 const ACCESS_KEY = import.meta.env.VITE_FORM_ACCESS_KEY
 
-/* Where enquiries are meant to land. Shown in the error state so a visitor
-   always has a way to reach us even when the endpoint is down. */
-export const ENQUIRY_EMAIL = "icon@iconic.events"
+/* Shown in the error state so a visitor always has a way to reach us even
+   when the endpoint is down. Same role account as the footer. */
+export { CONTACT_EMAIL as ENQUIRY_EMAIL } from "./contact.js"
 
 export function isEnquiryConfigured() {
   return Boolean(ENDPOINT)
