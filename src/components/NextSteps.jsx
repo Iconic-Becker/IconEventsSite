@@ -1,6 +1,21 @@
 import { useEffect } from "react"
-import { TESTIMONIALS, GALLERY } from "../content.js"
+import { GALLERY } from "../content.js"
 import { CASE_STUDIES } from "../case-studies.js"
+
+/* The one testimonial this page carries. Set here rather than pulled from
+   TESTIMONIALS in src/content.js: it is a deliberate choice, not whatever
+   happens to be first in that list, and the heading claims it is the most
+   recent.
+
+   TODO(content): fill from Shelby Sapp's page. The section does not render
+   until quote and name are both set, so the page never shows an empty frame
+   or a stale stand-in. */
+const FEATURED_TESTIMONIAL = {
+  quote: "",
+  name: "",
+  role: "",
+  img: "",
+}
 
 /* The confirmation page a visitor reaches after a successful enquiry.
    Its job is to close the loop, then keep them on the site: proof from a
@@ -10,10 +25,8 @@ import { CASE_STUDIES } from "../case-studies.js"
    the host rewrite. A direct load or refresh of /nextsteps does, and that
    rewrite is still outstanding. */
 export default function NextSteps() {
-  /* Featured testimonial. The content file carries no dates, so "most
-     recent" cannot be derived: this takes the first item, and reordering
-     TESTIMONIALS.items in src/content.js changes which one appears. */
-  const testimonial = TESTIMONIALS.items[0]
+  const testimonial = FEATURED_TESTIMONIAL
+  const hasTestimonial = Boolean(testimonial.quote && testimonial.name)
   const studies = CASE_STUDIES.slice(0, 3)
   const frames = GALLERY.band.slice(0, 6)
 
@@ -72,6 +85,7 @@ export default function NextSteps() {
       </section>
 
       {/* testimonial */}
+      {hasTestimonial && (
       <section className="border-b border-bone/10 py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-5 sm:px-6">
           <p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">
@@ -85,18 +99,19 @@ export default function NextSteps() {
             />
             <div>
               <blockquote className="max-w-[24ch] font-serif text-3xl font-semibold leading-tight sm:text-5xl">
-                {testimonial.quote.iconic}
+                {testimonial.quote}
               </blockquote>
               <p className="mt-7 font-serif text-2xl">
                 {testimonial.name}
                 <span className="mt-2 block font-sans text-[10px] font-bold uppercase tracking-[0.16em] text-brass">
-                  {testimonial.role.iconic}
+                  {testimonial.role}
                 </span>
               </p>
             </div>
           </div>
         </div>
       </section>
+      )}
 
       {/* case studies */}
       <section className="border-b border-bone/10 py-16 sm:py-24">

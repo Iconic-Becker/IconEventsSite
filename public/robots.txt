@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
+Disallow: /nextsteps
 Sitemap: https://www.iconic.events/sitemap.xml

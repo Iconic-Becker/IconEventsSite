@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import CaseStudyPage, { CaseStudyNotFound } from './components/CaseStudyPage.jsx'
-import NextSteps from './components/NextSteps.jsx'
-import { caseStudyFromPath, assertLanderSlugsResolve } from './case-studies.js'
+import { routeFor } from './routes.jsx'
+import { assertLanderSlugsResolve } from './case-studies.js'
 import { WORK } from './content.js'
 import { VoiceProvider } from './voice.jsx'
 import './index.css'
 
 if (import.meta.env.DEV) assertLanderSlugsResolve(WORK)
 
-/* Routing. Held in state rather than read once at module load, so the form
-   can move a visitor to /nextsteps without a server round trip, and the
-   back button still works. */
+/* Routing is held in state rather than read once at module load, so the
+   enquiry form can move a visitor to /nextsteps without a server round trip
+   and the back button still works. The first render uses the path the page
+   was prerendered at, so hydration matches. */
 function Root() {
   const [path, setPath] = useState(window.location.pathname)
 
@@ -26,16 +25,7 @@ function Root() {
     }
   }, [])
 
-  const clean = path.replace(/\/+$/, '') || '/'
-
-  if (clean === '/nextsteps') return <NextSteps />
-
-  if (path.startsWith('/case-studies')) {
-    const study = caseStudyFromPath(path)
-    return study ? <CaseStudyPage study={study} /> : <CaseStudyNotFound />
-  }
-
-  return <App />
+  return routeFor(path)
 }
 
 const root = document.getElementById('root')
