@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import {
   NAV,
   HERO,
@@ -203,8 +203,30 @@ function Eyebrow({ children, dark = false }) {
 }
 
 /* ── Page ───────────────────────────────────────────────────────────── */
+/* A deep link like /#contact arrives before React has rendered, so the browser
+   finds no #contact to jump to and leaves the visitor at the top of a very long
+   page. Anything landing cold on an anchor (a Google Business Profile booking
+   link, an email, a QR code) depends on this running after mount. Re-tries
+   briefly because images above the target still change its offset. */
+function useHashLanding() {
+  useEffect(() => {
+    const id = window.location.hash.slice(1)
+    if (!id) return undefined
+    let frame = 0
+    const settle = () => {
+      const target = document.getElementById(id)
+      if (target) target.scrollIntoView({ block: "start" })
+      frame += 1
+      if (frame < 4) timer = window.setTimeout(settle, 220)
+    }
+    let timer = window.setTimeout(settle, 0)
+    return () => window.clearTimeout(timer)
+  }, [])
+}
+
 export default function App() {
   const { t } = useVoice()
+  useHashLanding()
   return (
     <div className="min-h-screen bg-onyx text-bone">
 
