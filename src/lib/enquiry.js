@@ -4,49 +4,41 @@
    The site is a static single page app with no server of its own, so the
    form posts to a hosted form endpoint which emails the submission on.
 
-   SETUP (one time)
-   1. Create a form at a provider that posts JSON and emails a destination:
-      - Web3Forms (web3forms.com): free, no account. Enter
-        contact@iconic.events, they email an access key. Endpoint is
-        https://api.web3forms.com/submit and the key goes in
-        VITE_FORM_ACCESS_KEY.
-      - Formspree (formspree.io): create a form addressed to
-        contact@iconic.events. Endpoint is https://formspree.io/f/<id> and no
-        access key is needed.
-   2. Put the values in .env.local (never commit it) and in the host's
-      environment variables for the production build:
-        VITE_FORM_ENDPOINT=...
-        VITE_FORM_ACCESS_KEY=...     # Web3Forms only
-   3. Submit the form once and confirm the mail arrives.
+   Live setup: Web3Forms, delivering to contact@iconic.events. The
+   destination address lives in the Web3Forms account rather than in this
+   code, so it is not scrapeable from the published bundle.
 
-   The destination address lives in the provider's settings, not in this
-   code, so it cannot be scraped from the published bundle.
-
-   Vite inlines VITE_ variables at build time, so a change needs a rebuild
-   and redeploy, not just a restart.
+   To point somewhere else, set VITE_FORM_ENDPOINT and VITE_FORM_ACCESS_KEY.
+   Formspree also works: its endpoint is https://formspree.io/f/<id> and it
+   ignores the access key. Vite inlines VITE_ variables at build time, so a
+   change needs a rebuild and redeploy, not just a restart.
    ═══════════════════════════════════════════════════════════════════════ */
 
-const ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT
-const ACCESS_KEY = import.meta.env.VITE_FORM_ACCESS_KEY
+/* Web3Forms, delivering to contact@iconic.events.
+
+   The access key is public by design: Vite inlines it into the bundle, so it
+   is readable in the published page source whatever we do here. It is not a
+   credential, and it only permits delivery to the address registered with it.
+   Keeping it in code means a deploy needs no host configuration to work.
+
+   Both values can still be overridden by environment variables, which is how
+   you would point a staging build at a different inbox. */
+const ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT || "https://api.web3forms.com/submit"
+const ACCESS_KEY =
+  import.meta.env.VITE_FORM_ACCESS_KEY || "0b889357-65be-468f-9d77-4980a85abfec"
 
 /* Shown in the error state so a visitor always has a way to reach us even
    when the endpoint is down. Same role account as the footer. */
 export { CONTACT_EMAIL as ENQUIRY_EMAIL } from "./contact.js"
 
 export function isEnquiryConfigured() {
-  return Boolean(ENDPOINT)
+  return Boolean(ENDPOINT && (ACCESS_KEY || !ENDPOINT.includes("web3forms")))
 }
 
 /* Resolves only when the enquiry has actually been accepted. Every other
    path throws, so the caller can never show a success state for a
    submission that went nowhere. */
 export async function sendEnquiry({ stage, timing, outcome, email }) {
-  if (!ENDPOINT) {
-    throw new Error(
-      "VITE_FORM_ENDPOINT is not set, so the enquiry was not sent. See src/lib/enquiry.js."
-    )
-  }
-
   const payload = {
     ...(ACCESS_KEY ? { access_key: ACCESS_KEY } : {}),
     subject: `New enquiry from ${email}`,
