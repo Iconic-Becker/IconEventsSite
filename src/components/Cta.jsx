@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { sendEnquiry, ENQUIRY_EMAIL } from "../lib/enquiry.js"
+import { navigate } from "../navigate.js"
 import { CTA } from "../content.js"
 import { useVoice } from "../voice.jsx"
 import Icon from "./Icon.jsx"
@@ -119,10 +121,13 @@ export default function Cta({ modal = false }) {
     if (!email) return
     setStatus("loading")
     try {
-      // TODO: wire to your inbox / CRM, keeping the 48h promise.
-      await new Promise((r) => setTimeout(r, 700))
+      await sendEnquiry({ stage, timing, outcome, email })
+      /* Only past a resolved send: the confirmation page is the receipt, so
+         it must never appear for an enquiry that did not reach us. */
       setStatus("done")
-    } catch {
+      navigate("/nextsteps")
+    } catch (error) {
+      console.error("Enquiry failed to send:", error)
       setStatus("error")
     }
   }
@@ -147,6 +152,20 @@ export default function Cta({ modal = false }) {
           <Done t={t} f={f} email={email} />
         ) : (
           <>
+            {status === "error" && (
+              <div role="alert" className="mt-8 border border-brass/60 bg-onyx/60 p-5 sm:p-6">
+                <p className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-brass">
+                  That didn&rsquo;t send
+                </p>
+                <p className="mt-3 max-w-xl font-sans text-base leading-relaxed text-bone/75">
+                  Something went wrong on our end and your details did not reach us. Please email{" "}
+                  <a href={`mailto:${ENQUIRY_EMAIL}`} className="text-brass underline underline-offset-4">
+                    {ENQUIRY_EMAIL}
+                  </a>{" "}
+                  and a director will pick it up, or try the form again.
+                </p>
+              </div>
+            )}
             <form onSubmit={submit} className={`border border-brass bg-bone text-onyx ${modal ? "mt-6 p-5 sm:p-7" : "mt-10 p-8 sm:p-12"}`}>
               <p className="font-serif text-2xl font-bold leading-[1.8] text-onyx sm:text-3xl sm:leading-[1.75]">
                 We&rsquo;re a founder-led business at{" "}

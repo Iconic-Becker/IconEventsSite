@@ -22,7 +22,6 @@ import {
 import { useVoice } from "./voice.jsx"
 import Icon from "./components/Icon.jsx"
 import Photo from "./components/Photo.jsx"
-import QualifierForm from "./components/QualifierForm.jsx"
 import { CtaBrackets } from "./components/CtaButtons.jsx"
 import InTheRoom from "./components/InTheRoom.jsx"
 import Brackets from "./components/Brackets.jsx"
