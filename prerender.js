@@ -20,6 +20,12 @@ const ROUTES = [
     description:
       'Iconic Events is a full-service event production company crafting corporate & experiential events across South Florida. Get a free quote today.',
   },
+  {
+    path: '/case-studies',
+    title: 'Case Studies | Iconic Events',
+    description:
+      'Every room Iconic Events has engineered: events for founders, agencies and creators across the US, UK, Spain and the UAE.',
+  },
   ...CASE_STUDIES.map((study) => ({
     path: `/case-studies/${study.slug}`,
     title: `${study.name} · Case Study · Iconic Events`,

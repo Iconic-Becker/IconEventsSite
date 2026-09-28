@@ -387,7 +387,7 @@ function Related({ study }) {
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
         <div className="flex flex-wrap items-end justify-between gap-5">
           <h2 className="font-serif text-4xl font-semibold sm:text-6xl">The next room.</h2>
-          <a href="/#work" className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-brass hover:text-bone">View all work →</a>
+          <a href="/case-studies" className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-brass hover:text-bone">View all work →</a>
         </div>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {siblings.map((item) => {

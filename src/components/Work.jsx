@@ -36,7 +36,7 @@ export default function Work() {
       </div>
       <div className="flex flex-wrap items-baseline justify-between gap-4">
         <h2 className="font-serif text-4xl font-semibold text-bone sm:text-5xl">{t(WORK.title)}</h2>
-        <a href="#gallery" className="font-sans text-xs uppercase tracking-[0.15em] text-brass hover:text-bone">
+        <a href="/case-studies" className="font-sans text-xs uppercase tracking-[0.15em] text-brass hover:text-bone">
           {t(WORK.index)}
         </a>
       </div>

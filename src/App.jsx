@@ -173,7 +173,7 @@ function NavLink({ href, children }) {
 function CaseStudyNavPreview() {
   return (
     <a
-      href="#work"
+      href="/case-studies"
       className="case-study-tab absolute left-1/2 top-full z-50 hidden h-9 min-w-[250px] -translate-x-1/2 items-center justify-center rounded-b-xl bg-brass px-10 font-display text-xs font-bold uppercase tracking-[0.18em] text-onyx shadow-[0_12px_28px_rgba(0,0,0,0.3)] transition hover:brightness-110 md:flex"
     >
       Our case studies
