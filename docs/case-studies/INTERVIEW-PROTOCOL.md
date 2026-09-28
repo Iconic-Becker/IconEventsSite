@@ -31,7 +31,7 @@ That gives three states:
 |---|---|---|
 | absent | false | Not started. Begin a new interview. |
 | present | false | Interviewed, page not built. **Resume here first.** |
-| — | true | Done. Skip. |
+| either | true | Done. Skip. |
 
 Always resume an unfinished event before starting a new one. Tell the user
 in one line where you are: *"Next up is Fast Start Forum 2024, event 10 of
