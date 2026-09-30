@@ -21,7 +21,6 @@ export const VOICES = {
 
 export const DEFAULT_VOICE = "iconic"
 
-export const PLACEHOLDER = "/images/placeholder.png"
 
 // Event-atmosphere photography (backgrounds & montages only — never labelled
 // as a specific client or case study).
@@ -517,11 +516,6 @@ export const CTA = {
     reassurance: V(
       "We respond within 48 hours. If we are not the right fit, we will tell you on the first call.",
       "We respond within 48 hours. If we're not the right fit, we'll tell you on the first call."
-    ),
-    successTitle: V("Received. A director will write within 48 hours.", "You're in. A director replies within 48 hours."),
-    successBody: V(
-      "Watch {email} for the reply. If we are not the right fit, we will say so first.",
-      "Watch {email} — that's where the reply lands. If we're not the fit, we'll say so first."
     ),
   },
 }

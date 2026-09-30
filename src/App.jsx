@@ -14,7 +14,6 @@ import {
   NICHE,
   CTA,
   FOOTER,
-  PLACEHOLDER,
   GALLERY,
   MONTAGE,
   HERO_WALL,

@@ -19,6 +19,17 @@ Nothing here can start without you.
 | 7 | **Casino Royale gaps** | Exact dates, verified venue address, weeks of planning, which vendors Iconic managed directly. |
 | 9 | **PimCon** | Dated "Oct 2026?" and may not have happened. Confirm before it is written up. |
 
+## GHL consolidation
+
+Agreed in principle, to do later. Everything routes through GoHighLevel,
+which Iconic already pays for, rather than adding tools alongside it.
+
+| # | Item | Note |
+|---|---|---|
+| A | **Enquiry form posts to GHL** | Today it goes to Web3Forms, which emails `contact@iconic.events` and nothing more. No contact record, no pipeline entry, no automated follow-up, and the qualifier answers are not stored anywhere searchable. `sendEnquiry` already posts JSON to a configurable endpoint, so this is a small change once there is a GHL form or webhook URL. Web3Forms then comes out entirely. |
+| B | **Booking calendar on `/nextsteps`** | Nobody can book a call on the site today. The calendar belongs after the qualifier, not before it, so only people who answered stage, timing and outcome ever see it. Needs the GHL calendar embed. |
+| C | **Conversion measurement** | `enquiry_submitted` already fires. A booking happens inside the GHL iframe, so a `call_booked` event may not reach the parent page; GHL's own reporting may have to cover it. Confirm when wiring. |
+
 ## Decisions
 
 Each one affects every case study, so settling them early avoids rework across 37 pages.
