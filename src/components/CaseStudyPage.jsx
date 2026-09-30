@@ -61,7 +61,11 @@ function StructuredData({ study, faqs }) {
     author: { "@type": "Organization", name: "Iconic Events" },
     publisher: { "@type": "Organization", name: "Iconic Events" },
     about: {
-      "@type": "Event",
+      /* BusinessEvent covers the masterminds, summits and conferences that
+         make up most of the work. A brand activation sets eventType to
+         SocialEvent. Both are subtypes of Event, so nothing is lost by being
+         specific. */
+      "@type": study.eventType ?? "BusinessEvent",
       name: study.name,
       ...(d.dates ? { startDate: d.dates } : {}),
       ...(d.venue

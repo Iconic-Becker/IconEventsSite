@@ -109,6 +109,7 @@ Fields, and which question feeds them:
 | `media` | hero, challenge, band, resultLeft, resultRight, gallery, aftermovieUrl, testimonialUrl |
 | `testimonial` | `{ quote, approved }`. See rule 4 below. |
 | `citation` | One sentence naming client, event, venue, city and scope |
+| `eventType` | `BusinessEvent` for a mastermind, summit or conference, which is most of them and the default. `SocialEvent` for a brand activation or party. Ask if it is not obvious. |
 
 **Q4 and Q5 have no home in the current template.** There is no "what
 nearly broke" section and no "who this is wrong for" block. Capture both in
