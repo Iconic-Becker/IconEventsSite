@@ -214,4 +214,5 @@ session.
 | Prerender | `prerender.js` |
 | Notes | `docs/case-studies/interviews/<slug>.md` |
 | Intake workbook | `docs/case-studies/Case-Study-Collection.xlsx` |
+| Old site extract | `docs/case-studies/LEGACY-SITE-EXTRACT.md`, check it before each interview |
 | Worked example | `docs/case-studies/casino-royale.md` |
