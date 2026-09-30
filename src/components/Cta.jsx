@@ -125,6 +125,11 @@ export default function Cta({ modal = false }) {
       /* Only past a resolved send: the confirmation page is the receipt, so
          it must never appear for an enquiry that did not reach us. */
       setStatus("done")
+      /* The conversion. Fires only after the endpoint confirms delivery, so it
+         counts enquiries that actually reached us. Trigger on this event name
+         in GTM. */
+      window.dataLayer = window.dataLayer || []
+      window.dataLayer.push({ event: "enquiry_submitted" })
       navigate("/nextsteps")
     } catch (error) {
       console.error("Enquiry failed to send:", error)

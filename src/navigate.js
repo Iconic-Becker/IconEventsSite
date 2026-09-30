@@ -9,4 +9,10 @@ export function navigate(to) {
   window.history.pushState({}, "", to)
   window.dispatchEvent(new Event("app:navigate"))
   window.scrollTo({ top: 0 })
+
+  /* GTM counts a pageview on load. A client side route change is not a load,
+     so without this the confirmation page never registers and the enquiry
+     conversion cannot be measured. */
+  window.dataLayer = window.dataLayer || []
+  window.dataLayer.push({ event: "spa_page_view", page_path: to })
 }
