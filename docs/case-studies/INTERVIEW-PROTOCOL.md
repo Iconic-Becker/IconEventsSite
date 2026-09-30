@@ -90,6 +90,24 @@ each question, with a short `## Facts` block underneath.
 
 Commit the notes file even when the page is not built yet.
 
+## 2b. Draft into the sheet, not the site
+
+Iconic's call, 2026-09-30: interviews fill
+`docs/case-studies/Case-Study-Interviews.xlsx`, one row per event, before
+anything touches the site.
+
+1. After each answer, capture it verbatim in the notes file (above).
+2. Draft the page copy it feeds (The Problem, What We Did, How It Went,
+   highlights, and so on) and show it in chat: "here is what I would
+   write, does it look right?"
+3. Write the draft into the event's row, yellow while waiting. When Iconic
+   says yes, turn the cell green.
+4. Pages get built from approved rows later, one event at a time, each
+   with its own preview and yes. Section 3 below is that later step.
+
+**Iconic's own events** (CreatorHub Live and Creator Fest) show no client
+line. The event itself is the client.
+
 ## 3. Write the page
 
 Add an entry to `CASE_STUDIES` in `src/case-studies.js`, copy the shape of
