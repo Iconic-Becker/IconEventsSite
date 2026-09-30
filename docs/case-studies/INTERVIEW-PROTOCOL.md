@@ -92,6 +92,10 @@ Commit the notes file even when the page is not built yet.
 
 ## 2b. Draft into the sheet, not the site
 
+Interview notes, the sheet and this protocol may be pushed to the working
+branch without asking each time (Iconic, 2026-09-30). Anything that
+changes the site still waits for a preview and a yes.
+
 Iconic's call, 2026-09-30: interviews fill
 `docs/case-studies/Case-Study-Interviews.xlsx`, one row per event, before
 anything touches the site.
@@ -136,11 +140,11 @@ Fields, and which question feeds them:
 | `cta` | Heading of the contact form closing the page, specific to this event: "Want to build a brand activation like Eddie's?" |
 | `format` | What kind of event it was in Iconic's terms: Mastermind, Summit, Conference, Brand activation. Shown in the hero meta line. Ask; do not infer it from the name. |
 
-**Q4 and Q5 have no home in the current template.** There is no "what
-nearly broke" section and no "who this is wrong for" block. Capture both in
-the notes file regardless. Before rendering them, ask the user whether to
-add the two sections; they are strong trust signals and rarely published,
-but it is their call and it changes every page.
+**Q4 gets its own section, "Challenges Overcome"** (Iconic's call,
+2026-09-30). Frame each one as the challenge and how it was overcome,
+never as a list of what went wrong. Not built into the page template yet.
+**Q5, right for / wrong for,** is captured in the sheet; whether it gets a
+page section is still Iconic's call.
 
 ## 4. House rules, enforced by the code
 
@@ -152,7 +156,9 @@ These are not style preferences. `src/case-studies.js` and
    dollars, revenue per seat, lead count or repeat booking.
 2. **No budget figure or range is ever published.** There is no field.
 3. **Nothing is estimated.** A null renders as nothing. Never fill a gap
-   with a plausible number.
+   with a plausible number. One exception (Iconic, 2026-09-30): counts of
+   speakers or sponsors Iconic managed may be given as an estimate from
+   Iconic, written "about 40 speakers".
 4. **A quote renders only when `approved: true`**, which requires the
    client's verbatim words *and* written permission. Review schema is
    emitted on the same condition. Unapproved or sample copy must never

@@ -144,6 +144,36 @@ number before publishing (rule 3).
 
 ## Q5. Who is this build right for, and wrong for?
 
+User, 2026-09-30, verbatim (also decides the new section and the
+estimate rule):
+
+> Yeah, I'm fine with adding the what nearly broke section. I think that
+> that is helpful as long as it's framed in a way of like, it's more here
+> was the challenges that we had and here's how we overcame them instead of
+> like, here's everything that didn't work. Um, for speaker count, it was
+> about 40 speakers in total. You're allowed to put an estimate of the
+> amount of speakers or sponsors that we are managing at an event. Who is
+> this kind of build right for and who is it wrong for? So for question
+> five, this event is best designed for some sort of company that wants to
+> take advantage of being in the creator economy, right? Having a frontline
+> view of what's going on in the creator economy and, and having that direct
+> connection to creators and wanting to focus on the creators that are
+> building real businesses and economic states, right? Like that's really
+> what would be... The, the type of company I want to benefit from something
+> of this sort, or a company that focuses on helping businesses build real
+> real estate media empires. I want to be clear with that. When I say real
+> estate media empires, I'm not talking about actual real estate. I'm
+> talking about real estate on the internet, like building a digital media
+> empire where they've got total coverage around the internet. That would be
+> the the type of companies that would want to get involved, and then you
+> can commit all the rest of the commitments, the pushes.
+
+Captured: add the What Nearly Broke section site wide, framed as
+challenges and how they were overcome. About 40 speakers. Estimates are
+allowed for speaker and sponsor counts. "Real estate media empires" means
+digital real estate: a media presence across the internet. Wrong for: not
+answered.
+
 ## Q6. Anything else about the night?
 
 ## Facts
