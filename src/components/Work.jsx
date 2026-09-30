@@ -37,7 +37,7 @@ export default function Work() {
       <div className="flex flex-wrap items-baseline justify-between gap-4">
         <h2 className="font-serif text-4xl font-semibold text-bone sm:text-5xl">{t(WORK.title)}</h2>
         <a href="/case-studies" className="font-sans text-xs uppercase tracking-[0.15em] text-brass hover:text-bone">
-          {t(WORK.index)}
+          All 37 case studies →
         </a>
       </div>
 
@@ -75,7 +75,9 @@ export default function Work() {
         </div>
 
         {/* archive poster cards */}
-        {WORK.archive.map((a) => (
+        {/* A teaser now that /case-studies carries all 37. Featured poster plus two,
+            rather than the full archive, which ran to nearly five phone screens. */}
+        {WORK.archive.slice(0, 2).map((a) => (
           <a
             key={a.id}
             href={`/case-studies/${a.slug}`}

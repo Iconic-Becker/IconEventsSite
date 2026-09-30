@@ -34,6 +34,7 @@ import Receipts from "./components/Receipts.jsx"
 import Testimonials from "./components/Testimonials.jsx"
 import Niche from "./components/Niche.jsx"
 import Cta from "./components/Cta.jsx"
+import CtaBand from "./components/CtaBand.jsx"
 
 /* ── Identity ───────────────────────────────────────────────────────── */
 function Logo({ tone = "black", className = "" }) {
@@ -180,6 +181,14 @@ function CaseStudyNavPreview() {
   )
 }
 
+/* ── Section switches ───────────────────────────────────────────────────
+   Hidden sections stay in the tree, copy and component intact, so bringing
+   one back is a one-word change. Nothing is deleted. */
+
+// The Uncontested Room. Hidden at Iconic's call: it read as a secondary
+// ribbon repeating the call to action that already sits below it.
+const SHOW_NICHE = false
+
 /* ── Layout primitives ──────────────────────────────────────────────── */
 function Section({ id, className = "", children }) {
   return (
@@ -254,10 +263,12 @@ export default function App() {
         </nav>
         <CaseStudyNavPreview />
       </header>
-      <nav aria-label="Mobile navigation" className="mobile-nav sticky top-0 z-40 max-w-full overflow-x-auto border-y border-bone/10 bg-onyx/95 px-3 backdrop-blur md:hidden">
-        <div className="flex min-w-max items-center">
+      {/* Six even columns rather than a scrolling row: at 390px the row pushed
+          Contact past the right edge, where nobody swipes to find it. */}
+      <nav aria-label="Mobile navigation" className="mobile-nav sticky top-0 z-40 border-y border-bone/10 bg-onyx/95 backdrop-blur md:hidden">
+        <div className="grid grid-cols-6 items-stretch">
           {[...NAV.left, ...NAV.right].map((n) => (
-            <a key={n.href} href={n.href} className="flex min-h-11 items-center px-3 font-sans text-[11px] font-bold uppercase tracking-[0.12em] text-bone/70">
+            <a key={n.href} href={n.href} className="flex min-h-11 items-center justify-center px-1 text-center font-sans text-[10px] font-bold uppercase tracking-[0.04em] text-bone/70">
               {n.label}
             </a>
           ))}
@@ -355,10 +366,7 @@ export default function App() {
           key={t({ iconic: "i", genflow: "g" })}
           className="fade-rise relative z-10 flex min-h-screen flex-col items-center justify-center px-5 sm:px-6 py-28 text-center"
         >
-          <p className="font-sans text-xs uppercase tracking-[0.25em] text-brass">
-            {t(HERO.audience)} <span className="text-bone/45">· {HERO.est}</span>
-          </p>
-          <h1 className="mt-6 max-w-4xl font-serif text-5xl font-semibold leading-[0.96] tracking-tight text-bone sm:text-[3.5rem]">
+          <h1 className="max-w-4xl font-serif text-5xl font-semibold leading-[0.96] tracking-tight text-bone sm:text-[3.5rem]">
             {heroHeadline(t(HERO.headline))}
           </h1>
           <p className="mx-auto mt-6 max-w-xl font-sans text-lg leading-relaxed text-bone/70">
@@ -419,33 +427,47 @@ export default function App() {
       {/* ── The Room, In Motion ──────────────────────────────────────────── */}
       <Motion />
 
-      {/* ── 03 · IN THE ROOM — roster index with project reveal ──────────── */}
-      <InTheRoom />
+      {/* Order below answers a prospect's questions in the order they ask
+          them: who you are, whether you are for them, what is and is not in
+          scope, how you do it, whether it works, and what it looked like.
+          Every component is unchanged; only the sequence and the calls to
+          action are new. */}
 
-      {/* ── 04 · POSITIONING — Immersive Annotated Room ──────────────────── */}
+      {/* ── WHO WE ARE ──────────────────────────────────────────────────── */}
       <Position />
 
-      {/* ── 05 · SELECTED WORK — Poster Grid ─────────────────────────────── */}
+      {/* ── WHO IT IS FOR — moved ahead of the offer: naming who we are not
+             for qualifies the reader before we explain anything. Currently
+             hidden; see SHOW_NICHE above. ──────────────────────────────── */}
+      {SHOW_NICHE && <Niche />}
+
+      {/* ── WHAT IS AND IS NOT INCLUDED ─────────────────────────────────── */}
+      <Scope />
+
+      <CtaBand
+        headline="Tell us about the room you want to build."
+        secondary={{ href: "/case-studies", label: "See all 37 case studies →" }}
+      />
+
+      {/* ── HOW WE DO IT ────────────────────────────────────────────────── */}
+      <Method />
+
+      {/* ── PROOF — the numbers, and only the numbers. The founder portraits
+             and the testimonial cards came out: with Selected Work and the
+             gallery below, the page was carrying five proof sections. The
+             client's own words now live on the case study pages, one per
+             event, where they belong to something ─────────────────────── */}
+      <Receipts />
+
+      <CtaBand headline="Six figures of production, one accountable team." />
+
+      {/* ── SELECTED WORK — a teaser now that /case-studies carries the
+             full index ────────────────────────────────────────────────── */}
       <Work />
 
       <Gallery />
 
-      {/* ── 07 · SCOPE OF SERVICE — manifesto headline + included/excluded diptych ── */}
-      <Scope />
-
-      {/* ── 08 · METHODOLOGY — Phase Selector (locked in) ──────────────── */}
-      <Method />
-
-      {/* ── 09 · RECEIPTS — Oversized Rows (locked in) ─────────────────── */}
-      <Receipts />
-
-      {/* ── 10 · FROM THE HOST — Cinematic Quote Cards (locked in) ─────── */}
-      <Testimonials />
-
-      {/* ── 11 · THE UNCONTESTED ROOM — full-height black close ────────── */}
-      <Niche />
-
-      {/* ── 12 · START A CONVERSATION — The Brief (locked in) ──────────── */}
+      {/* ── START A CONVERSATION — The Brief (locked in) ────────────────── */}
       <Cta />
 
       {/* ── FOOTER ────────────────────────────────────────────────────── */}
