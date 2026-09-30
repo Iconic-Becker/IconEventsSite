@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { caseStudyCards } from "../case-studies.js"
+import SiteHeader from "./SiteHeader.jsx"
 
 /* The grid of every event Iconic has produced.
 
@@ -24,16 +25,7 @@ export default function CaseStudiesIndex() {
 
   return (
     <main className="min-h-screen bg-onyx text-bone">
-      <header className="border-b border-bone/10 bg-onyx">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-6">
-          <a href="/" aria-label="Iconic Events home">
-            <img src="/logos/IE_logo_white.png" alt="Iconic Events" className="h-8 w-auto" />
-          </a>
-          <a href="/#contact" className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-bone/60 hover:text-brass">
-            Start a conversation
-          </a>
-        </nav>
-      </header>
+      <SiteHeader />
 
       <section className="border-b border-brass/25 py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-5 sm:px-6">

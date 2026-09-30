@@ -5,6 +5,7 @@ import {
   faqsFor,
 } from "../case-studies.js"
 import Cta from "./Cta.jsx"
+import SiteHeader from "./SiteHeader.jsx"
 
 /* ── helpers ───────────────────────────────────────────────────────────── */
 
@@ -436,12 +437,7 @@ export default function CaseStudyPage({ study }) {
     <main className="min-h-screen bg-onyx text-bone">
       <StructuredData study={study} faqs={faqs} />
 
-      <header className="border-b border-bone/10 bg-onyx">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-6">
-          <a href="/" aria-label="Iconic Events home"><img src="/logos/IE_logo_white.png" alt="Iconic Events" className="h-8 w-auto" /></a>
-          <a href="/#work" className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-bone/60 hover:text-brass">← All work</a>
-        </nav>
-      </header>
+      <SiteHeader contactHere />
 
       {/* hero: the title sits on the image */}
       <section className="relative flex min-h-[62svh] items-end overflow-hidden sm:min-h-[78svh]">

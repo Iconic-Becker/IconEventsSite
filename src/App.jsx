@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react"
 import {
-  NAV,
   HERO,
   PRESS,
   ROOM,
@@ -35,6 +34,7 @@ import Receipts from "./components/Receipts.jsx"
 import Testimonials from "./components/Testimonials.jsx"
 import Niche from "./components/Niche.jsx"
 import Cta from "./components/Cta.jsx"
+import SiteHeader from "./components/SiteHeader.jsx"
 
 /* ── Identity ───────────────────────────────────────────────────────── */
 function Logo({ tone = "black", className = "" }) {
@@ -155,32 +155,6 @@ function EasterEggReveal() {
   )
 }
 
-// Nav menu link — echoes the primary button: brass corner ticks snap in on hover.
-function NavLink({ href, children }) {
-  const tick =
-    "pointer-events-none absolute h-1.5 w-1.5 border-brass opacity-0 transition-all duration-300 ease-out group-hover:opacity-100"
-  return (
-    <a href={href} className="group relative px-2 py-1.5 transition-colors duration-300 hover:text-brass">
-      {children}
-      <span className={`${tick} left-1 top-0 border-l border-t group-hover:left-0`} />
-      <span className={`${tick} right-1 top-0 border-r border-t group-hover:right-0`} />
-      <span className={`${tick} bottom-0 left-1 border-b border-l group-hover:left-0`} />
-      <span className={`${tick} bottom-0 right-1 border-b border-r group-hover:right-0`} />
-    </a>
-  )
-}
-
-function CaseStudyNavPreview() {
-  return (
-    <a
-      href="/case-studies"
-      className="case-study-tab absolute left-1/2 top-full z-50 hidden h-9 min-w-[250px] -translate-x-1/2 items-center justify-center rounded-b-xl bg-brass px-10 font-display text-xs font-bold uppercase tracking-[0.18em] text-onyx shadow-[0_12px_28px_rgba(0,0,0,0.3)] transition hover:brightness-110 md:flex"
-    >
-      Our case studies
-    </a>
-  )
-}
-
 /* ── Layout primitives ──────────────────────────────────────────────── */
 function Section({ id, className = "", children }) {
   return (
@@ -229,41 +203,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-onyx text-bone">
 
-      {/* NAV — its own solid-black section. Centered logo, menus split L/R,
-          no CTA. Sticky so it persists on scroll. */}
-      <header className="relative z-40 border-b border-bone/10 bg-onyx md:sticky md:top-0">
-        <div className="nav-beam" aria-hidden="true" />
-        <nav aria-label="Primary navigation" className="mx-auto grid max-w-6xl grid-cols-3 items-center px-5 py-3 sm:px-5 sm:px-6 sm:py-4">
-          <div className="hidden items-center gap-6 font-sans text-xs font-medium uppercase tracking-[0.16em] text-bone/70 md:flex">
-            {NAV.left.map((n) => (
-              <NavLink key={n.href} href={n.href}>
-                {n.label}
-              </NavLink>
-            ))}
-          </div>
-          <a href="#top" aria-label="Iconic Events — home" className="flex justify-center">
-            <Logo tone="white" className="hidden h-8 w-auto md:block" />
-            <img src="/logos/IE_sigil_white.png" alt="" aria-hidden="true" className="h-9 w-auto md:hidden" />
-          </a>
-          <div className="hidden items-center justify-end gap-6 font-sans text-xs font-medium uppercase tracking-[0.16em] text-bone/70 md:flex">
-            {NAV.right.map((n) => (
-              <NavLink key={n.href} href={n.href}>
-                {n.label}
-              </NavLink>
-            ))}
-          </div>
-        </nav>
-        <CaseStudyNavPreview />
-      </header>
-      <nav aria-label="Mobile navigation" className="mobile-nav sticky top-0 z-40 max-w-full overflow-x-auto border-y border-bone/10 bg-onyx/95 px-3 backdrop-blur md:hidden">
-        <div className="flex min-w-max items-center">
-          {[...NAV.left, ...NAV.right].map((n) => (
-            <a key={n.href} href={n.href} className="flex min-h-11 items-center px-3 font-sans text-[11px] font-bold uppercase tracking-[0.12em] text-bone/70">
-              {n.label}
-            </a>
-          ))}
-        </div>
-      </nav>
+      <SiteHeader home />
       {/* ── 01 · HERO ─────────────────────────────────────────────────── */}
       <div id="top" />
       <div className="relative grid min-h-screen grid-cols-1 overflow-hidden bg-onyx md:grid-cols-[22vw_1fr_22vw] xl:grid-cols-[28vw_1fr_28vw]">
