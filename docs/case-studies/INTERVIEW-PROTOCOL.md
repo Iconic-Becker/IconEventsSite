@@ -224,8 +224,7 @@ session.
 - **Missing names.** Viral Ecom Adz has no client on file, DealCon 2025 is
   "Tom, surname needed", and Freedom Queen Live is undated so it cannot be
   told apart from the 2025 edition.
-- **PimCon** is dated Oct 2026 and may not have happened yet. Confirm
-  before writing it up.
+- **PimCon** is two events, 2024 and 2025 (`pimcon-2024`, `pimcon-2025`).
 
 ## 8. Reference
 

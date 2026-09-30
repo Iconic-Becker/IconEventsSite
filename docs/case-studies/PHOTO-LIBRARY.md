@@ -35,9 +35,10 @@ credit and written usage rights, per event (interview protocol, section 5).
 
 Not received yet: 19 Takeover Live 2.
 
-`the-behavior-panel-live` and `the-ceo-lawyer-summit-2021` have no event in
-`EVENT_INDEX` yet. The first may be the same event as `behavior-pilot`;
-the second may be the edition the live `ceo-lawyer-summit` page covers.
+`the-ceo-lawyer-summit-2021` has no event in `EVENT_INDEX` yet; it may be
+the edition the live `ceo-lawyer-summit` page covers. `epic-growth-conference/`
+belongs to Epic Growth Conference 2021, a separate event from EGC 2022.
+The Behavior Panel Live and Behavior Pilot are separate events.
 
 ## 01 Bad After Dark
 
