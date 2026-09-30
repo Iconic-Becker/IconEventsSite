@@ -1,4 +1,4 @@
-# CreatorHub Live (2025)
+# CreatorHub Live (August 2025)
 
 Slug: `creatorhub-live` (not built). EVENT_INDEX: client listed as Iconic
 Becker, 2025, FTL Downtown Event Center, Fort Lauderdale, 917 attendees.
@@ -53,6 +53,51 @@ Captured: co-owner Xtend Creators (Patrick Israel). Client line is left
 off the page for this event (and "Creator Fest").
 
 ## Q2. What made this one hard?
+
+User, 2026-09-30, verbatim (also answers the Q1 follow ups, and covers
+some of Q3):
+
+> So I would say the current largest event for this capacity is ran and
+> owned. by Mr. Beast. Um, I think naming him is okay. Um, when you say our
+> reputation, I don't want this to be first person, even though we did run
+> the event. We can use terms such as a multi-six-figure investment instead
+> of the hundreds of thousands of dollars. Creator Fest is a separate event.
+> It's the first version of this event we did. It was took place back in
+> August 2024, whereas Creator Hub Live took place in August 2025. Now, what
+> made this event difficult? Man, you know, what really made this event
+> difficult was that there was just... A lot of resistance in the creator
+> economy from both sponsors and involvement a lot of sponsors did not want
+> to get involved in a brand new event that had no previous history and so
+> you know the challenge that we faced was trying to get major players such
+> as YouTube TikTok and Snapchat involved we had to change the strategy we
+> had to we had to think about new and unique ways to get bodies in the room
+> such as conducting in-person meetings we leveraged other after-party brand
+> activations we got more creative with how sponsorship could be integrated
+> organically into the post there was a lot that we ended up having to
+> figure out and then we had to move from our standardized sponsorship
+> packages such as you know gold platinum silver to creating more like a la
+> carte options so that sponsors could find other ways to naturally
+> integrate themselves into the event getting bodies in the room was also
+> incredibly difficult, which is why we introduced the hub model. The hub
+> model was essentially a methodology where other events could contract one
+> of the stages at our event and essentially run their own mini event inside
+> of Creator Hub, which is where the name hub actually comes from. And what
+> that allowed us to do is get multiple attendees from different events all
+> under one roof with the same purpose. So this was a massive success
+> because this is what essentially allowed us to get the attendance numbers
+> we were looking for. From a logistics and coordination standpoint, there
+> was a big drawing factor because we had this giant Lamborghini that was
+> meant to be painted during the networking mixer. However, we ended up
+> having to work with the Marriott to build a 50-foot enclosure to make sure
+> that not a drop of paint was anywhere inside of the venue or on the floor
+> to protect an almost six-figure deposit. Something like this has never
+> been attempted before in a Marriott, and even getting the car inside
+> required us to physically remove the frame of the hotel. So that was a big
+> element.
+
+Captured: MrBeast may be named. No first person on this page. Say "a
+multi six figure investment". Creator Fest is a separate, earlier event
+(August 2024); CreatorHub Live was August 2025.
 
 ## Q3. Three to five decisions, and why
 
