@@ -101,7 +101,22 @@ export const HERO = {
 /* ── 02 · PRESS ───────────────────────────────────────────────────────── */
 export const PRESS = {
   label: V("As trusted by", "Trusted by"),
-  logos: ["BizBash", "Event Marketer", "Forbes", "Entrepreneur", "Palms", "HMS Belfast", "T&C Las Vegas"],
+  // An entry with `src` renders as a logo; one without stays as text until its
+  // official mono or white file arrives. Drop new files in
+  // /public/images/press as white on transparent, and record the intrinsic
+  // size here so the browser reserves the space before the image loads.
+  logos: [
+    { name: "7th Level", src: "/images/press/7th-level.webp", w: 421, h: 120 },
+    { name: "Commas", src: "/images/press/commas.webp", w: 581, h: 120 },
+    { name: "Scaling With Systems", src: "/images/press/scaling-with-systems.webp", w: 514, h: 120 },
+    { name: "BizBash" },
+    { name: "Event Marketer" },
+    { name: "Forbes" },
+    { name: "Entrepreneur" },
+    { name: "Palms" },
+    { name: "HMS Belfast" },
+    { name: "T&C Las Vegas" },
+  ],
 }
 
 /* ── 03 · PORTRAIT CAROUSEL — In the Room ─────────────────────────────── */

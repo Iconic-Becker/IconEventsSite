@@ -348,17 +348,29 @@ export default function App() {
         <p className="text-center font-sans text-xs uppercase tracking-[0.25em] text-bone/40">
           {t(PRESS.label)}
         </p>
-        {/* TODO: swap these text placeholders for the official mono/white logo
-            files once provided (drop them in /public/images/press). */}
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-          {PRESS.logos.map((l) => (
-            <span
-              key={l}
-              className="font-serif text-lg text-bone/25 transition-colors duration-300 hover:text-bone/50"
-            >
-              {l}
-            </span>
-          ))}
+        {/* Entries with a file render as a logo; the rest stay as text until
+            their official mono or white file arrives. See PRESS in content.js. */}
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
+          {PRESS.logos.map((l) =>
+            l.src ? (
+              <img
+                key={l.name}
+                src={l.src}
+                alt={l.name}
+                width={l.w}
+                height={l.h}
+                loading="lazy"
+                className="h-6 w-auto opacity-40 transition-opacity duration-300 hover:opacity-75 sm:h-7"
+              />
+            ) : (
+              <span
+                key={l.name}
+                className="font-serif text-lg text-bone/25 transition-colors duration-300 hover:text-bone/50"
+              >
+                {l.name}
+              </span>
+            )
+          )}
         </div>
       </Section>
 
