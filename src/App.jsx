@@ -168,7 +168,7 @@ const SHOW_NICHE = false
    a lesser client. Sizing to a constant area instead makes a 1.5:1 mark and a
    7.2:1 mark carry the same weight. The bounds stop an extreme shape running
    away with the row. */
-const PRESS_AREA = { phone: 3300, wide: 4300 }
+const PRESS_AREA = { phone: 3300, wide: 3900 }
 function pressHeight({ w, h }) {
   const aspect = w / h
   const at = (area) => Math.round(Math.min(56, Math.max(20, Math.sqrt(area / aspect))))
@@ -359,7 +359,7 @@ export default function App() {
         <p className="text-center font-sans text-xs uppercase tracking-[0.25em] text-bone/40">
           {t(PRESS.label)}
         </p>
-        <div className="mt-7 flex flex-wrap items-center justify-center gap-x-12 gap-y-6 sm:gap-x-16">
+        <div className="mt-7 flex flex-wrap items-center justify-center gap-x-10 gap-y-7 sm:gap-x-8 xl:gap-x-12">
           {PRESS.logos.map((l) => {
             const h = pressHeight(l)
             return (

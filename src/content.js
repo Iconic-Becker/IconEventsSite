@@ -116,6 +116,11 @@ export const PRESS = {
     { name: "Scaling With Systems", src: "/images/press/scaling-with-systems.webp", w: 514, h: 120 },
     { name: "Shelby Sapp's Women & Wealth", src: "/images/press/women-and-wealth.webp", w: 360, h: 240 },
     { name: "NetRevenue", src: "/images/press/netrevenue.webp", w: 1295, h: 180 },
+    // Supplied in the dark brand colour, which is all but the site background.
+    // Reversed to white here; the red half disc in the O went muddy at the
+    // row's opacity, so it is white too. Worth asking them for the official
+    // reversed file.
+    { name: "Closers.io", src: "/images/press/closers-io.webp", w: 1328, h: 180 },
   ],
   // Kept, not rendered. The row ran on these names before the logo files
   // arrived. They are press mentions and venues rather than clients, so if
