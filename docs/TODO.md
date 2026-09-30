@@ -18,6 +18,7 @@ Nothing here can start without you.
 | 6 | **Which video is which** | One link was sent as "a link for us" and placed as the testimonial; the other was named as the aftermovie. Confirm, or they swap. |
 | 7 | **Casino Royale gaps** | Exact dates, verified venue address, weeks of planning, which vendors Iconic managed directly. |
 | 9 | **PimCon** | Dated "Oct 2026?" and may not have happened. Confirm before it is written up. |
+| 27 | **Two trusted-by logos are stand-ins** | Live now, but neither is the real artwork. **Closers.io** was supplied in its dark brand colour, `#041116`, within a few values of the section background; it is reversed to bone here, red half disc included, because the red went muddy at the row's opacity. **Women & Wealth** was not in the batch of five, so it is re-canvassed onto 1400x400 at 24% fill. Both files were sent more than once and never arrived, so try another route: commit them to the repo directly, or rename before sending. Keep new logos on the 1400x400 canvas and **do not trim them**. |
 
 ## GHL consolidation
 
@@ -55,17 +56,11 @@ Each one affects every case study, so settling them early avoids rework across 3
 Findings from an audit on 30 September, passed over rather than actioned.
 Measured in a real browser at 390px wide, on the current build.
 
-**Layout shift on the homepage.** It loads 175 images and **none of them
-carry `width` or `height` attributes**. The browser cannot reserve space
-before an image arrives, so content moves as they load. That is cumulative
-layout shift, which Google measures directly as a Core Web Vital, and it is
-worst on phones, which is where Google Business Profile traffic lands.
-The fix is mechanical: read each file's real dimensions and set them.
-
-**Images loading eagerly.** 102 of the 175 are lazy loaded, so **73 are
-requested immediately**, including ones below the fold. Worth checking how
-many are actually needed for first paint. This may cost more than the
-missing dimensions do.
+**Layout shift: withdrawn, and it was my error.** An earlier note here said
+the missing `width` and `height` attributes were causing cumulative layout
+shift. PageSpeed measures **CLS of 0**. 152 of 158 images still carry no
+dimensions, but they sit in fixed aspect ratio containers that already
+reserve the space, so nothing moves. Do not spend time on this.
 
 **Already fixed, do not redo.** Three items from the team's own list were
 resolved once the deploy pipeline was unstuck on 28 September:
@@ -82,6 +77,74 @@ resolved once the deploy pipeline was unstuck on 28 September:
 **Clean at the time of the audit.** One `h1` per page, `lang` set, no
 missing `alt` attributes, no unlabelled buttons, no console errors,
 no horizontal overflow at 390px.
+
+## Load times
+
+PageSpeed Insights, 30 September: Performance **64**. Accessibility 93,
+Best Practices 100, SEO 100.
+
+The report splits cleanly. Total Blocking Time 70ms and CLS 0 are both
+green, so JavaScript is not jamming the main thread and nothing is
+shifting. First Contentful Paint **3.5s** and Largest Contentful Paint
+**6.4s** are both red. The page is waiting on bytes before it can paint.
+
+Measured on the built site at 390px: the homepage pulls **2,894 KB over 45
+requests**. Fonts 621 KB, images 1,770 KB, JS 263 KB, HTML 157 KB, CSS
+82 KB.
+
+The number that decides the approach: **2,391 KB of that is fonts and
+images**, formats that are already compressed, so gzip and Brotli cannot
+touch them. The text assets already compress well (JS 264K to 76K, HTML
+160K to 17K). Server compression will not rescue this. Only shipping
+fewer bytes will.
+
+Ranked by measured saving, not by guesswork.
+
+| # | Step | Saving | Effort | Risk |
+|---|---|---|---|---|
+| 22 | **Subset the fonts** | **937 KB (89%)** | one build step | near zero |
+| 23 | **Responsive image sizes** | **425 KB** on four files alone | moderate | low |
+| 24 | **Fetch less on load** | several hundred KB | moderate | low, needs eyes |
+| 25 | **Split the bundle** | 30 to 40 KB gzipped | moderate | low |
+
+**22 / Subset the fonts.** Not subset at all: Cormorant carries about 975
+glyphs per weight, Helvetica about 2,010. The site uses **145 characters**.
+Subsetting was run and measured, not estimated: 1,054 KB to 118 KB across
+11 files, every file down 84 to 94%. On the homepage that is 621 KB down to
+roughly 70 KB. Rendering is identical, there is no design decision in it,
+and `font-display: swap` and the preloads are already correct. Do this one
+first and alone: it is the largest single saving, it is risk free, and it
+gives a clean read on what the fonts were costing before anything visual
+moves.
+
+**23 / Responsive image sizes.** There is no `srcset` anywhere, so a phone
+downloads desktop artwork. Every one of the 101 rendered images exceeds
+twice the pixels it needs. `position-room.webp` is 1900x1259 shown at
+356x445, 5.3x oversized, 263 KB, and eager. `IE_logo_white.png` is a
+2400px PNG shown at 145px, 16.6x oversized; as a 300w WebP it is 3 KB
+instead of 43 KB. Generating two or three widths for the four heaviest
+files took them from 628 KB to 203 KB on a phone. Needs a build script
+and `srcset` plus `sizes` on the components.
+
+**24 / Fetch less on load.** 35 image requests fire immediately, 1,770 KB.
+The hero wall and the montage are decorative and a phone shows few of
+them. Audit what is genuinely above the fold and defer the rest. Defer the
+wrong one and the hero pops in, so this wants a pair of eyes rather than a
+rule.
+
+**25 / Split the bundle.** Every case study's prose sits in the homepage
+chunk: "parking garage", "Casino Royale" and "Broward County" are all in
+the built JS. Someone who never leaves the homepage downloads all 37
+events. Worth doing, but it is 30 to 40 KB gzipped against roughly 1 MB
+from 22 and 23. Last.
+
+**26 / Confirm Railway serves gzip or Brotli.** Not checkable from the
+build container. If it is off, that is another 310 KB on the text assets
+and it is a config toggle, not code.
+
+No score is predicted here. PageSpeed's number depends on their throttling
+model. Do 22 and 23, re-run the test, and compare the real before and
+after.
 
 ## Ready to build
 
