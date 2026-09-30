@@ -50,6 +50,39 @@ Each one affects every case study, so settling them early avoids rework across 3
 | 16 | **GBP booking URL** | `https://www.iconic.events/#contact`. The form is live and delivering, so this is unblocked. Status unconfirmed. |
 | 17 | **GBP services and products sheet** | I can draft it from the existing services copy so the GBP entries match the site language. |
 
+## Flagged for the SEO team
+
+Findings from an audit on 30 September, passed over rather than actioned.
+Measured in a real browser at 390px wide, on the current build.
+
+**Layout shift on the homepage.** It loads 175 images and **none of them
+carry `width` or `height` attributes**. The browser cannot reserve space
+before an image arrives, so content moves as they load. That is cumulative
+layout shift, which Google measures directly as a Core Web Vital, and it is
+worst on phones, which is where Google Business Profile traffic lands.
+The fix is mechanical: read each file's real dimensions and set them.
+
+**Images loading eagerly.** 102 of the 175 are lazy loaded, so **73 are
+requested immediately**, including ones below the fold. Worth checking how
+many are actually needed for first paint. This may cost more than the
+missing dimensions do.
+
+**Already fixed, do not redo.** Three items from the team's own list were
+resolved once the deploy pipeline was unstuck on 28 September:
+
+- Homepage title. It still read "The Iconic Table, An Invitation-Only
+  Evening" while the description described event production. Now
+  "Event Production in South Florida | Iconic Events".
+- Missing canonical tags. All pages now carry a self-referencing canonical,
+  generated per route.
+- JS-only rendering. Pages are prerendered to static HTML. The homepage
+  serves about 1,480 words before any JavaScript runs; a case study serves
+  about 800.
+
+**Clean at the time of the audit.** One `h1` per page, `lang` set, no
+missing `alt` attributes, no unlabelled buttons, no console errors,
+no horizontal overflow at 390px.
+
 ## Ready to build
 
 | # | Item | Note |
