@@ -308,7 +308,7 @@ export const CASE_STUDIES = [
     ],
     metrics: { attendance: null, productionDays: null, costSaved: null },
     details: {
-      client: null, // TODO(confirm): host name.
+      client: "Noah Brewer",
       clientTitle: null,
       venue: null,
       city: null,
@@ -398,7 +398,7 @@ export const CASE_STUDIES = [
 export const EVENT_INDEX = [
   { slug: "creatorhub-live", name: "CreatorHub Live", client: "Iconic Becker", date: "2025", location: "Fort Lauderdale, FL", venue: "FTL Downtown Event Center", size: "917", full: false },
   { slug: "creator-hub-madrid", name: "Creator Hub Madrid", client: "Universal Music Group", date: "2025", location: "Madrid, Spain", venue: null, size: null, full: false },
-  { slug: "freedom-queen-live", name: "Freedom Queen Live", client: "Bridget James Ling", date: null, location: null, venue: null, size: null, full: false },
+  { slug: "freedom-queen-live-2024", name: "Freedom Queen Live 2024", client: "Bridget James Ling", date: "2024", location: null, venue: null, size: null, full: false },
   { slug: "freedom-queen-live-2025", name: "Freedom Queen Live 2025", client: "Bridget James Ling", date: "2025", location: null, venue: null, size: null, full: false },
   { slug: "pmuw-2023", name: "PMUW 2023", client: "Danny Tran", date: "2023", location: null, venue: null, size: null, full: false },
   { slug: "pmuw-2024", name: "PMUW 2024", client: "Danny Tran", date: "2024", location: null, venue: null, size: null, full: false },
@@ -430,9 +430,9 @@ export const EVENT_INDEX = [
   { slug: "scaling-with-systems-live-2023", name: "Scaling With Systems LIVE 2023", client: "Ravi Abuvala", date: "2023", location: null, venue: null, size: null, full: false },
   { slug: "scaling-with-systems-live", name: "Scaling With Systems LIVE", client: "Ravi Abuvala", date: null, location: null, venue: null, size: null, full: true },
   { slug: "egc-2022", name: "EGC 2022", client: "Austin Zelan", date: "2022", location: null, venue: null, size: null, full: false },
-  { slug: "dealcon-2025", name: "DealCon 2025", client: null, date: "2025", location: null, venue: null, size: null, full: false },
+  { slug: "dealcon-2025", name: "DealCon 2025", client: "Tom Shipley", date: "2025", location: null, venue: null, size: null, full: false },
   { slug: "casino-royale", name: "Casino Royale", client: "Ben Newman", date: "2023", location: "Las Vegas, NV", venue: "Palms Casino Resort", size: "150", full: true },
-  { slug: "viral-ecom-adz", name: "Viral Ecom Adz", client: null, date: null, location: null, venue: null, size: null, full: true },
+  { slug: "viral-ecom-adz", name: "Viral Ecom Adz", client: "Noah Brewer", date: null, location: null, venue: null, size: null, full: true },
 ]
 
 export const CASE_STUDY_BY_SLUG = Object.fromEntries(

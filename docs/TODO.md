@@ -11,14 +11,12 @@ Nothing here can start without you.
 
 | # | Item | Why it matters |
 |---|---|---|
-| 1 | **GTM container ID** | The site has no analytics at all. The container lived in the old `k-aido` repo and was lost when Railway repointed. GBP traffic is arriving unmeasured. Five minute job once you send the ID. |
 | 2 | **The five new pages** | About, FAQ, Recaps, and two more I cannot read from the screenshot. Tell me what each holds. Note "Recaps" may be the same thing as the case studies grid; worth deciding before both get built. |
 | 3 | **Shelby Sapp testimonial** | Quote, name, role, image. The section on `/nextsteps` stays hidden until it is filled. Her event is Women and Wealth. |
 | 4 | **Casino Royale photos** | Position 01, hero of the room at capacity, 16:9. Position 05, a wide shot that reads 150 seats. Plus photographer credit and written usage rights for all eight frames. |
 | 5 | **Ben Newman quote** | Verbatim words, written permission, and his exact job title. The quote on file is sample copy with `approved: false`, so nothing renders and Review schema is withheld. |
 | 6 | **Which video is which** | One link was sent as "a link for us" and placed as the testimonial; the other was named as the aftermovie. Confirm, or they swap. |
 | 7 | **Casino Royale gaps** | Exact dates, verified venue address, weeks of planning, which vendors Iconic managed directly. |
-| 8 | **Three missing client names** | Viral Ecom Adz has no client on file. DealCon 2025 is "Tom, surname needed". Freedom Queen Live is undated, so it cannot be told apart from the 2025 edition. |
 | 9 | **PimCon** | Dated "Oct 2026?" and may not have happened. Confirm before it is written up. |
 
 ## Decisions
@@ -66,3 +64,6 @@ For context on what is already done, so it does not get re-raised.
 - Favicon set from the gold sigil, transparent.
 - Fonts converted to woff2: 4.91MB down to 1.03MB, 79% smaller, no visual change.
 - Open Graph and Twitter card tags with a per page 1200x630 share image. The site previously had none, so every shared link rendered as a bare URL.
+- Google Tag Manager container GTM-PS4743JW, plus the second Search Console verification tag. The site had no analytics at all since the container was lost in the repository switch.
+- `enquiry_submitted` and `spa_page_view` pushed to dataLayer, so the confirmation page and the enquiry conversion are measurable in a single page app. Kevin needs to create triggers on those two event names.
+- Client names resolved for all 37 events. The undated Freedom Queen Live is the 2024 edition and is now named and slugged as such.
