@@ -13,10 +13,10 @@ const OUTCOME_OPTIONS = [
   "Create months of authority content",
 ]
 
-function Eyebrow() {
+function Eyebrow({ text }) {
   return (
     <div className="font-sans text-xs font-bold uppercase tracking-[0.28em] text-brass">
-      {CTA.eyebrow}
+      {text ?? CTA.eyebrow}
     </div>
   )
 }
@@ -103,7 +103,9 @@ function Done({ t, f, email }) {
    Full-height, patterned close. The qualifier is a bold statement in a
    gold-bordered paper card: stage/timing are dropdowns, the outcome an
    inline field, email joined to the submit button. */
-export default function Cta({ modal = false }) {
+/* eyebrow and title override the homepage copy, so a case study can close
+   on its own line above the same form. */
+export default function Cta({ modal = false, eyebrow, title }) {
   const { t } = useVoice()
   const f = CTA.form
   const [stage, setStage] = useState(f.stages[0])
@@ -143,9 +145,9 @@ export default function Cta({ modal = false }) {
       {/* brand pattern across the whole background */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.05]" style={pattern} aria-hidden="true" />
       <div className="relative z-10 mx-auto w-full max-w-4xl px-5 sm:px-6">
-        <Eyebrow />
+        <Eyebrow text={eyebrow} />
         <h2 className={`mt-6 max-w-4xl font-serif font-semibold leading-[1.02] text-bone ${modal ? "text-4xl sm:text-5xl" : "text-5xl sm:text-6xl lg:text-7xl"}`}>
-          {accent(t(CTA.title), "about the room")}
+          {title ?? accent(t(CTA.title), "about the room")}
         </h2>
         <p className="mt-5 max-w-xl font-sans text-lg text-bone/65">{t(CTA.formLead)}</p>
         {status === "done" ? (

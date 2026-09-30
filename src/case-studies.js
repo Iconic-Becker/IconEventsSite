@@ -36,8 +36,8 @@
    name         Event name.
    headline     Results first: "How <client> <result> at <event>".
    cta          The closing ask, specific to this event and in our voice,
-                e.g. "Want to build a brand activation like Eddie's?" Shown on
-                the CTA band and the scroll prompt with a "Let's talk" button.
+                e.g. "Want to build a brand activation like Eddie's?" Heads
+                the contact form at the bottom of the page.
    summary      50 to 100 words. The block answer engines lift verbatim.
    challenge    2 to 4 sentences, plainly stated.
    approach     { pre, onsite, post } arrays of strings. Rendered as one

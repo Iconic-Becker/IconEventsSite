@@ -4,7 +4,6 @@ import {
   publishedMetrics,
   faqsFor,
 } from "../case-studies.js"
-import { CtaBrackets } from "./CtaButtons.jsx"
 import Cta from "./Cta.jsx"
 
 /* ── helpers ───────────────────────────────────────────────────────────── */
@@ -423,12 +422,8 @@ export function CaseStudyNotFound() {
 }
 
 export default function CaseStudyPage({ study }) {
-  const [showPrompt, setShowPrompt] = useState(false)
-  const [dismissed, setDismissed] = useState(false)
-  const [formOpen, setFormOpen] = useState(false)
   const faqs = faqsFor(study)
   const d = study.details
-  const cta = study.cta ?? "Want to build a room like this one?"
   const heroMeta = [d.client, d.venue, d.year].filter(Boolean).join(" · ")
 
   useEffect(() => {
@@ -436,30 +431,6 @@ export default function CaseStudyPage({ study }) {
     const description = document.querySelector('meta[name="description"]')
     if (description) description.setAttribute("content", study.summary)
   }, [study])
-
-  useEffect(() => {
-    if (dismissed) return undefined
-    const reveal = () => setShowPrompt(true)
-    const onScroll = () => {
-      const progress = window.scrollY / Math.max(document.documentElement.scrollHeight - window.innerHeight, 1)
-      if (progress > 0.35) reveal()
-    }
-    const timer = window.setTimeout(reveal, 4500)
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => { window.clearTimeout(timer); window.removeEventListener("scroll", onScroll) }
-  }, [dismissed])
-
-  useEffect(() => {
-    if (!formOpen) return undefined
-    const close = (event) => { if (event.key === "Escape") setFormOpen(false) }
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = "hidden"
-    window.addEventListener("keydown", close)
-    return () => {
-      document.body.style.overflow = previousOverflow
-      window.removeEventListener("keydown", close)
-    }
-  }, [formOpen])
 
   return (
     <main className="min-h-screen bg-onyx text-bone">
@@ -518,18 +489,6 @@ export default function CaseStudyPage({ study }) {
 
       <Results study={study} />
 
-      {/* the one commercial ask on the page */}
-      <section className="bg-tidepool py-16 sm:py-20">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-8 px-5 sm:px-6">
-          <h2 className="max-w-[24ch] font-serif text-3xl font-semibold leading-tight sm:text-5xl">
-            {cta}
-          </h2>
-          <CtaBrackets href="#conversation-form" onClick={(event) => { event.preventDefault(); setFormOpen(true) }}>
-            Let's talk
-          </CtaBrackets>
-        </div>
-      </section>
-
       <Aftermovie study={study} />
       <Testimonial study={study} />
       <Gallery study={study} />
@@ -544,22 +503,8 @@ export default function CaseStudyPage({ study }) {
 
       <Related study={study} />
 
-      {showPrompt && !dismissed && (
-        <aside className="fixed inset-x-2 bottom-2 z-50 mx-auto flex max-w-4xl items-center gap-2 border border-brass/50 bg-tidepool px-2 py-2 shadow-[0_18px_60px_rgba(0,0,0,0.5)] sm:inset-x-3 sm:bottom-5 sm:gap-5 sm:px-5 sm:py-3" aria-label="Start a conversation">
-          <img src="/logos/IE_sigil_gold.png" alt="" className="hidden h-11 w-auto shrink-0 sm:block" />
-          <p className="min-w-0 flex-1 font-serif text-sm font-semibold leading-tight text-bone sm:text-2xl"><strong>{cta}</strong></p>
-          <button type="button" onClick={() => setFormOpen(true)} className="shrink-0 bg-brass px-2.5 py-2.5 font-sans text-[8px] font-bold uppercase tracking-[0.1em] text-onyx sm:px-5 sm:py-3 sm:text-[10px] sm:tracking-[0.14em]">Let's talk</button>
-          <button type="button" onClick={() => { setDismissed(true); setShowPrompt(false) }} className="shrink-0 px-1 font-sans text-xl text-bone/50 hover:text-bone" aria-label="Close inquiry prompt">×</button>
-        </aside>
-      )}
-      {formOpen && (
-        <div className="fixed inset-0 z-[70] flex items-center justify-center bg-onyx/85 p-1.5 backdrop-blur-sm sm:p-6" onMouseDown={() => setFormOpen(false)} role="dialog" aria-modal="true" aria-label="Start a conversation form">
-          <div id="conversation-form" className="relative max-h-[97svh] w-full max-w-5xl overflow-y-auto border border-brass/50 bg-onyx shadow-[0_28px_90px_rgba(0,0,0,0.7)] sm:max-h-[92svh]" onMouseDown={(event) => event.stopPropagation()}>
-            <button type="button" onClick={() => setFormOpen(false)} className="sticky right-4 top-3 z-20 ml-auto mr-3 mt-3 grid h-10 w-10 place-items-center border border-bone/20 bg-onyx font-sans text-2xl text-bone/60 hover:border-brass hover:text-bone" aria-label="Close form">×</button>
-            <Cta modal />
-          </div>
-        </div>
-      )}
+      {/* the one ask on the page: the site's contact form, closing on this event's line */}
+      <Cta eyebrow="Start a Conversation" title={study.cta} />
     </main>
   )
 }

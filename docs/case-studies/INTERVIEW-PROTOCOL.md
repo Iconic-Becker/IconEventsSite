@@ -109,7 +109,7 @@ Fields, and which question feeds them:
 | `media` | hero, challenge, band, resultLeft, resultRight, gallery, aftermovieUrl, testimonialUrl |
 | `testimonial` | `{ quote, approved }`. See rule 4 below. |
 | `citation` | One sentence naming client, event, venue, city and scope |
-| `cta` | The closing ask, specific to this event: "Want to build a brand activation like Eddie's?" Button reads "Let's talk". |
+| `cta` | Heading of the contact form closing the page, specific to this event: "Want to build a brand activation like Eddie's?" |
 
 **Q4 and Q5 have no home in the current template.** There is no "what
 nearly broke" section and no "who this is wrong for" block. Capture both in
@@ -141,8 +141,10 @@ These are not style preferences. `src/case-studies.js` and
    Events did". The exceptions are `summary` and `citation`, which name
    Iconic Events in the third person on purpose so answer engines can
    lift them whole.
-9. **A CTA per event.** Every case study gets its own `cta` line tied to
-   what was built, never a generic "tell us about the room".
+9. **One ask, at the bottom.** Case study pages are the one exception to
+   the site's CTA ribbon every other section: no mid page band, no scroll
+   pop up, just the site's contact form closing the page. Its heading is
+   the event's own `cta` line, tied to what was built.
 
 If the user asks for something that breaks 1 or 2, say so once, and follow
 their decision if they confirm. Both rules were deliberate, and there is an
