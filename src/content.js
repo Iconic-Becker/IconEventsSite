@@ -77,6 +77,8 @@ export const NAV = {
 
 /* ── 01 · HERO ────────────────────────────────────────────────────────── */
 export const HERO = {
+  // Kept, not rendered. The audience line and the est. mark came out of the
+  // hero at Iconic's call; the copy stays here in case either returns.
   audience: V("For founder-led businesses past $1M", "For founders scaling past $1M"),
   est: "Est. 2017",
   headline: V(
@@ -84,8 +86,8 @@ export const HERO = {
     "More than $100M moves through the events we manage each year."
   ),
   subhead: V(
-    "Through psychology-led stage design, production, and experience architecture.",
-    "Through psychology-driven stage design, production, and experience architecture."
+    "Through psychology-led stage design, production, and experience architecture for live in person events.",
+    "Through psychology-led stage design, production, and experience architecture for live in person events."
   ),
   outcome: V(
     "$1.8M from a single room of 150. That is the room we build.",
