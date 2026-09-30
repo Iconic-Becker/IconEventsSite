@@ -109,6 +109,7 @@ Fields, and which question feeds them:
 | `media` | hero, challenge, band, resultLeft, resultRight, gallery, aftermovieUrl, testimonialUrl |
 | `testimonial` | `{ quote, approved }`. See rule 4 below. |
 | `citation` | One sentence naming client, event, venue, city and scope |
+| `cta` | The closing ask, specific to this event: "Want to build a brand activation like Eddie's?" Button reads "Let's talk". |
 
 **Q4 and Q5 have no home in the current template.** There is no "what
 nearly broke" section and no "who this is wrong for" block. Capture both in
@@ -133,6 +134,15 @@ These are not style preferences. `src/case-studies.js` and
    reach the page.
 5. **No em dashes in published copy.**
 6. **Never change a slug that is already live.** It is indexed.
+7. **No case numbers.** Pages, cards and the grid never show "Case 001"
+   style labels.
+8. **Our voice.** The page tells one story: the problem the client had,
+   what we did, and how it went. Section copy says "we", never "Iconic
+   Events did". The exceptions are `summary` and `citation`, which name
+   Iconic Events in the third person on purpose so answer engines can
+   lift them whole.
+9. **A CTA per event.** Every case study gets its own `cta` line tied to
+   what was built, never a generic "tell us about the room".
 
 If the user asks for something that breaks 1 or 2, say so once, and follow
 their decision if they confirm. Both rules were deliberate, and there is an
@@ -140,6 +150,11 @@ open question about whether rule 1 should extend to the homepage, which
 still publishes client revenue in three places.
 
 ## 5. Photography
+
+**Color.** The hero and the full bleed band are the wow moments and render
+in full color. The gallery is all color. The challenge photo, the two
+results photos and the related cards stay black and white with color on
+hover.
 
 Eight positions per page. The user supplies files; put them in
 `public/images/gallery/` and reference them from `media`.

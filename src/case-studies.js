@@ -33,9 +33,11 @@
 
    FIELDS
    slug         URL segment, lowercase and hyphenated.
-   caseNumber   "Case 001". Ordering label only.
    name         Event name.
    headline     Results first: "How <client> <result> at <event>".
+   cta          The closing ask, specific to this event and in our voice,
+                e.g. "Want to build a brand activation like Eddie's?" Shown on
+                the CTA band and the scroll prompt with a "Let's talk" button.
    summary      50 to 100 words. The block answer engines lift verbatim.
    challenge    2 to 4 sentences, plainly stated.
    approach     { pre, onsite, post } arrays of strings. Rendered as one
@@ -54,10 +56,10 @@
 export const CASE_STUDIES = [
   {
     slug: "casino-royale",
-    caseNumber: "Case 001",
     name: "Casino Royale",
     headline:
       "How Ben Newman Filled 150 Seats at Casino Royale and Saved $100K in Production",
+    cta: "Want to bring your community back into one room like Ben did?",
     summary:
       "Ben Newman returned to live events after a five year gap and needed a room built around a single decision. Iconic Events, a Florida based event production and coordination company, held strategy, creative direction, production, show flow and on site execution as one scope, converting Palms Casino Resort in Las Vegas into a projection mapped Casino Royale build for 150 guests across three days of production. Consolidating the work under one accountable team saved the client $100,000 against a multi vendor build.",
     challenge:
@@ -126,9 +128,9 @@ export const CASE_STUDIES = [
 
   {
     slug: "bad-after-dark",
-    caseNumber: "Case 002",
     name: "Bad After Dark",
     headline: "How Eddie Maalouf Built Bad After Dark With One Accountable Team",
+    cta: "Want to build a brand activation like Eddie's?",
     summary:
       "Eddie Maalouf needed an evening that looked effortless and still did commercial work for its partners. Iconic Events, a Florida based event production and coordination company, held strategy, creative direction, production, show flow and on site execution as one scope, designing a tightly held room where partner presence was built into the architecture of the night rather than bolted onto it.",
     challenge:
@@ -183,9 +185,9 @@ export const CASE_STUDIES = [
 
   {
     slug: "ceo-lawyer-summit",
-    caseNumber: "Case 003",
     name: "The CEO Lawyer Summit",
     headline: "How Ali Awad Sold a $25K Offer Without Pressure at The CEO Lawyer Summit",
+    cta: "Want a summit that sells from the stage like Ali's?",
     summary:
       "Ali Awad needed to present a high value offer to an audience of professionals who negotiate for a living. Iconic Events, a Florida based event production and coordination company, held strategy, creative direction, production, show flow and on site execution as one scope, writing the close into the choreography of the room rather than into the script.",
     challenge:
@@ -236,9 +238,9 @@ export const CASE_STUDIES = [
 
   {
     slug: "scaling-with-systems-live",
-    caseNumber: "Case 004",
     name: "Scaling With Systems LIVE",
     headline: "How Ravi Abuvala Held a Room Across a Full Multi Session Summit",
+    cta: "Want a multi day summit that holds the room like Ravi's?",
     summary:
       "Ravi Abuvala needed a multi session summit to hold attention across its full run. Iconic Events, a Florida based event production and coordination company, held strategy, creative direction, production, show flow and on site execution as one scope, shaping the event as one continuous audience journey from arrival through the final moment on stage.",
     challenge:
@@ -290,11 +292,11 @@ export const CASE_STUDIES = [
 
   {
     slug: "viral-ecom-adz",
-    caseNumber: "Case 005",
     name: "Viral Ecom Adz",
     // TODO(copy): least detail on file of the six. Replace headline, summary,
     // challenge and approach with the real account before publication.
     headline: "How Viral Ecom Adz Carried Partner Revenue Without Feeling Sponsored",
+    cta: "Want a retreat your partners pay to be part of?",
     summary:
       "Viral Ecom Adz needed a room that carried significant partner revenue while keeping an audience that came for the content. Iconic Events, a Florida based event production and coordination company, held creative direction, production and on site execution as one scope, building partner presence into the architecture of the evening.",
     challenge:
@@ -338,9 +340,9 @@ export const CASE_STUDIES = [
 
   {
     slug: "chase-hughes-london",
-    caseNumber: "Case 006",
     name: "Chase Hughes, London",
     headline: "How Chase Hughes Staged a Room Aboard HMS Belfast in London",
+    cta: "Want to take your people somewhere nobody expects, like Chase did?",
     summary:
       "Chase Hughes needed a room on a heritage warship moored on the Thames. Iconic Events, a Florida based event production and coordination company, held creative direction, production, show flow and on site execution as one scope, building the event into the geometry of HMS Belfast rather than over it.",
     challenge:
@@ -552,7 +554,6 @@ export function caseStudyCards() {
       size: entry.size,
       href: built ? `/case-studies/${entry.slug}` : null,
       cover: built ? built.media.hero ?? built.media.band ?? built.media.resultLeft : null,
-      caseNumber: built?.caseNumber ?? null,
     }
   })
 }

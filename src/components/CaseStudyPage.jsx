@@ -143,10 +143,9 @@ function Approach({ study }) {
     <section className="border-t border-bone/10 py-16 sm:py-24">
       <div className="mx-auto grid max-w-6xl gap-11 px-5 sm:px-6 md:grid-cols-[0.4fr_1fr] md:gap-14">
         <div>
-          <p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">The Approach</p>
+          <p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">What We Did</p>
           <p className="mt-5 font-sans text-sm leading-relaxed text-bone/55">
-            What Iconic Events did, grouped by stage. Strategy, creative direction, production, show flow
-            and on site execution were held by one team.
+            Here is how we built it, from the first plan to the last guest out. One team held all of it.
           </p>
         </div>
         <div>
@@ -180,7 +179,7 @@ function Scope({ study }) {
         <div>
           <p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">Scope of Services</p>
           <p className="mt-5 font-sans text-sm leading-relaxed text-bone/55">
-            What Iconic Events was accountable for.
+            Everything we were accountable for.
           </p>
         </div>
         <div>
@@ -209,7 +208,7 @@ function Results({ study }) {
     <section className="bg-bone py-16 text-onyx sm:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
         <div className="border-b-4 border-tidepool pb-4">
-          <h2 className="font-serif text-4xl font-semibold sm:text-6xl">The Results</h2>
+          <h2 className="font-serif text-4xl font-semibold sm:text-6xl">How It Went</h2>
         </div>
         {metrics.length > 0 && (
           <div className="mt-10 grid border-y border-tidepool/25 sm:grid-cols-3">
@@ -337,7 +336,7 @@ function Gallery({ study }) {
               className="group relative aspect-[4/3] overflow-hidden bg-onyx"
               aria-label={`Open gallery image ${index + 1} of ${images.length}`}
             >
-              <img src={image.src} alt={image.alt} loading="lazy" className="h-full w-full object-cover grayscale transition duration-700 group-hover:scale-[1.025] group-hover:grayscale-0" />
+              <img src={image.src} alt={image.alt} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]" />
               <div className="absolute inset-0 bg-gradient-to-t from-onyx/55 via-transparent to-transparent" />
               <span className="absolute bottom-3 left-3 font-serif text-3xl font-semibold text-bone">{String(index + 1).padStart(2, "0")}</span>
             </button>
@@ -398,7 +397,7 @@ function Related({ study }) {
                 <div className="absolute inset-0 bg-gradient-to-t from-onyx via-onyx/25 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-5">
                   <h3 className="font-serif text-2xl font-semibold">{item.name}</h3>
-                  <p className="mt-2 font-sans text-[11px] font-bold uppercase tracking-[0.14em] text-brass">{item.caseNumber}</p>
+                  <p className="mt-2 font-sans text-[11px] font-bold uppercase tracking-[0.14em] text-brass">{item.details.client}</p>
                 </div>
               </a>
             )
@@ -429,7 +428,8 @@ export default function CaseStudyPage({ study }) {
   const [formOpen, setFormOpen] = useState(false)
   const faqs = faqsFor(study)
   const d = study.details
-  const heroMeta = [study.caseNumber, d.client, d.venue, d.year].filter(Boolean).join(" · ")
+  const cta = study.cta ?? "Want to build a room like this one?"
+  const heroMeta = [d.client, d.venue, d.year].filter(Boolean).join(" · ")
 
   useEffect(() => {
     document.title = `${study.name} · Case Study · Iconic Events`
@@ -475,7 +475,7 @@ export default function CaseStudyPage({ study }) {
       {/* hero: the title sits on the image */}
       <section className="relative flex min-h-[62svh] items-end overflow-hidden sm:min-h-[78svh]">
         {study.media.hero && (
-          <img src={study.media.hero.src} alt={study.media.hero.alt} className="absolute inset-0 h-full w-full object-cover grayscale" />
+          <img src={study.media.hero.src} alt={study.media.hero.alt} className="absolute inset-0 h-full w-full object-cover" />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-onyx via-onyx/60 to-onyx/20" />
         <div className="relative mx-auto w-full max-w-6xl px-5 pb-12 pt-24 sm:px-6 sm:pb-16">
@@ -500,7 +500,7 @@ export default function CaseStudyPage({ study }) {
       <section className="py-16 sm:py-24">
         <div className="mx-auto grid max-w-6xl items-center gap-11 px-5 sm:px-6 md:grid-cols-[1fr_0.62fr] md:gap-14">
           <div>
-            <p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">The Challenge</p>
+            <p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">The Problem</p>
             <p className="mt-5 max-w-[65ch] font-sans text-lg leading-relaxed text-bone/70">{study.challenge}</p>
           </div>
           <Photo asset={study.media.challenge} ratio="aspect-[4/5]" />
@@ -512,7 +512,7 @@ export default function CaseStudyPage({ study }) {
 
       {study.media.band && (
         <div className="w-full">
-          <img src={study.media.band.src} alt={study.media.band.alt} loading="lazy" className="aspect-[21/9] w-full object-cover grayscale" />
+          <img src={study.media.band.src} alt={study.media.band.alt} loading="lazy" className="aspect-[21/9] w-full object-cover" />
         </div>
       )}
 
@@ -522,10 +522,10 @@ export default function CaseStudyPage({ study }) {
       <section className="bg-tidepool py-16 sm:py-20">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-8 px-5 sm:px-6">
           <h2 className="max-w-[24ch] font-serif text-3xl font-semibold leading-tight sm:text-5xl">
-            Tell us about the room you want to build.
+            {cta}
           </h2>
           <CtaBrackets href="#conversation-form" onClick={(event) => { event.preventDefault(); setFormOpen(true) }}>
-            Build the next room
+            Let's talk
           </CtaBrackets>
         </div>
       </section>
@@ -547,8 +547,8 @@ export default function CaseStudyPage({ study }) {
       {showPrompt && !dismissed && (
         <aside className="fixed inset-x-2 bottom-2 z-50 mx-auto flex max-w-4xl items-center gap-2 border border-brass/50 bg-tidepool px-2 py-2 shadow-[0_18px_60px_rgba(0,0,0,0.5)] sm:inset-x-3 sm:bottom-5 sm:gap-5 sm:px-5 sm:py-3" aria-label="Start a conversation">
           <img src="/logos/IE_sigil_gold.png" alt="" className="hidden h-11 w-auto shrink-0 sm:block" />
-          <p className="min-w-0 flex-1 font-serif text-sm font-semibold leading-tight text-bone sm:text-2xl"><strong>Tell us about the room you want to build.</strong></p>
-          <button type="button" onClick={() => setFormOpen(true)} className="shrink-0 bg-brass px-2.5 py-2.5 font-sans text-[8px] font-bold uppercase tracking-[0.1em] text-onyx sm:px-5 sm:py-3 sm:text-[10px] sm:tracking-[0.14em]"><span className="sm:hidden">Start</span><span className="hidden sm:inline">Start a conversation</span></button>
+          <p className="min-w-0 flex-1 font-serif text-sm font-semibold leading-tight text-bone sm:text-2xl"><strong>{cta}</strong></p>
+          <button type="button" onClick={() => setFormOpen(true)} className="shrink-0 bg-brass px-2.5 py-2.5 font-sans text-[8px] font-bold uppercase tracking-[0.1em] text-onyx sm:px-5 sm:py-3 sm:text-[10px] sm:tracking-[0.14em]">Let's talk</button>
           <button type="button" onClick={() => { setDismissed(true); setShowPrompt(false) }} className="shrink-0 px-1 font-sans text-xl text-bone/50 hover:text-bone" aria-label="Close inquiry prompt">×</button>
         </aside>
       )}

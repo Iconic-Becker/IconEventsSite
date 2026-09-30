@@ -197,7 +197,7 @@ export const WORK = {
   index: V("Full Index →", "Full Index →"),
   featured: {
     slug: "casino-royale",
-    label: "Featured · Case 001",
+    label: "Featured",
     meta: "Ben Newman · Palms Casino Resort · 2023",
     img: "/images/gallery/g9.webp",
     headline: V("Casino Royale, built to sell from the stage.", "Casino Royale — built to sell from the stage."),
