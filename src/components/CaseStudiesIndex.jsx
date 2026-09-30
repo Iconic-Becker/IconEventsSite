@@ -64,9 +64,6 @@ export default function CaseStudiesIndex() {
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-onyx via-onyx/55 to-transparent" />
                   <div className="relative p-5">
-                    {card.when && (
-                      <p className="mb-3 font-sans text-xs font-bold uppercase tracking-[0.18em] text-bone">{card.when}</p>
-                    )}
                     {card.format && (
                       <span className="font-sans text-[10px] font-bold uppercase tracking-[0.16em] text-brass">
                         {card.format}

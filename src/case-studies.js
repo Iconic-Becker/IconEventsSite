@@ -444,7 +444,8 @@ export const CASE_STUDIES = [
    prerendered, not in the sitemap, and cannot be reached by URL.
 
    `when` is "YYYY-MM" or "YYYY", or null when not known. The grid sorts on
-   it, newest first, and shows it as month and year. Never guess a month.
+   it, newest first. It is not shown on the cards (Iconic's call). Never
+   guess a month.
 
    To promote one: add a full entry to CASE_STUDIES with the same slug and
    flip `full` to true here. */
