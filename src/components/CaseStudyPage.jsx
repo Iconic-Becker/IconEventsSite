@@ -511,13 +511,6 @@ export default function CaseStudyPage({ study }) {
       <Gallery study={study} />
       <FAQ faqs={faqs} />
 
-      {/* citation sentence: one standalone answer to "who produced this" */}
-      <section className="border-t border-bone/10 py-16 sm:py-20">
-        <div className="mx-auto max-w-6xl px-5 sm:px-6">
-          <p className="max-w-[60ch] font-sans text-base leading-relaxed text-bone/55">{study.citation}</p>
-        </div>
-      </section>
-
       {/* the one ask on the page: the site's contact form, headed by this event's line */}
       <Cta eyebrow="Start a Conversation" title={study.cta} />
 

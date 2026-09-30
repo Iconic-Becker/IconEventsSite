@@ -3,12 +3,13 @@
 
    THE FORMULA (settled; don't drift from it without a decision)
 
-   Page order:  hero (title over image) · summary · challenge + photo
-                · approach in three stages · scope of services
-                · full bleed photo · results (3 metrics) + event details
-                · two photos · Event Aftermovie · "What <client> had to
-                say about working with us" · gallery · FAQ · citation
-                · related cases
+   Page order:  site header · hero (title over image) · summary
+                · the problem + photo · what we did, in three stages
+                · scope of services · full bleed photo · how it went
+                (story, details and highlights) + two photos · Event
+                Aftermovie · "What <client> had to say about working with
+                us" · gallery · FAQ (the citation answers the first
+                question) · contact form · related cases
 
    House rules, enforced by this file and CaseStudyPage.jsx:
    1. Only three metrics are ever published: attendance, days of
@@ -57,6 +58,7 @@
    testimonial  { quote, approved }. Renders only when approved is true.
    faqExtra     Optional [[q, a]] beyond the generated set.
    citation     One sentence naming client, event, venue, city and scope.
+                The answer to the first FAQ, "Who produced ...?"
    ═══════════════════════════════════════════════════════════════════════ */
 
 export const CASE_STUDIES = [
@@ -521,11 +523,11 @@ export function faqsFor(study) {
   const where = [d.venue, d.city].filter(Boolean).join(" in ")
   const faqs = []
 
+  /* The citation sentence is the answer: one standalone line naming who
+     produced the event, where, and what was delivered. */
   faqs.push([
     `Who produced ${d.client ? `${d.client}'s ` : ""}${study.name}?`,
-    `Iconic Events, a Florida based event production and coordination company, produced ${study.name}` +
-      `${d.client ? ` for ${d.client}` : ""}${where ? ` at ${where}` : ""}${d.year ? ` in ${d.year}` : ""}. ` +
-      `Iconic Events held ${study.scope.map(([label]) => label.toLowerCase()).join(", ")} as one scope.`,
+    study.citation,
   ])
 
   faqs.push([
