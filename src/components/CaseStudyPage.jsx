@@ -81,8 +81,14 @@ function StructuredData({ study, faqs }) {
             },
           }
         : {}),
-      organizer: { "@type": "Organization", name: "Iconic Events" },
-      ...(d.client ? { performer: { "@type": "Person", name: d.client } } : {}),
+      /* Iconic produces the event; the client hosts it under their own brand.
+         Both are organizers. `performer` is for someone performing at an
+         event, a musician or an act, and is wrong for a mastermind or a
+         summit. */
+      organizer: [
+        { "@type": "Organization", name: "Iconic Events" },
+        ...(d.client ? [{ "@type": "Person", name: d.client }] : []),
+      ],
     },
   }
 
