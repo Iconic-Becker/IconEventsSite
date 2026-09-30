@@ -29,14 +29,13 @@ credit and written usage rights, per event (interview protocol, section 5).
 | 16 Behavioral Selling | `behavioral-selling/` | 40 |
 | 17 Takeover Live 3 | `takeover-live-3/` | 20 |
 | 18 Group Convert Live | `group-convert-live/` | 19 |
+| 19 Takeover Live 2 | `takeover-live-2/` | 22 |
 | 20 Scaling with Systems LIVE 2021 | `scaling-with-systems-live-2021/` | 14 of 16 |
 | 21 7-Figure Agency | `7-figure-agency/` | 16 |
 | 22 Takeover Live 1 | `takeover-live-1/` | 35 |
 
-Not received yet: 19 Takeover Live 2.
-
-`the-ceo-lawyer-summit-2021` has no event in `EVENT_INDEX` yet; it may be
-the edition the live `ceo-lawyer-summit` page covers. `epic-growth-conference/`
+`the-ceo-lawyer-summit-2021/` belongs to the live `ceo-lawyer-summit` page,
+which is the 2021 edition; the 2022 edition is a separate event. `epic-growth-conference/`
 belongs to Epic Growth Conference 2021, a separate event from EGC 2022.
 The Behavior Panel Live and Behavior Pilot are separate events.
 
@@ -556,6 +555,33 @@ The Behavior Panel Live and Behavior Pilot are separate events.
 - `17.webp` 17 DEV00501.jpg (1550x1034 original)
 - `18.webp` 18 DEV01674.jpg (1550x1034 original)
 - `19.webp` 19 DEV00572.jpg (1550x1034 original)
+
+## 19 Takeover Live 2
+
+`public/images/gallery/takeover-live-2/`
+
+- `01.webp` 01 F2643EEF-0721-4B5C-9BF4-636E9251C61A_1_105_c.jpeg (1086x725 original)
+- `02.webp` 02 E4440FBC-51C7-4AE5-9B6B-CC1905BB8808_1_105_c.jpeg (1086x724 original)
+- `03.webp` 03 E3304B26-2081-414A-BEB1-33F7C1A87968_1_105_c.jpeg (1086x724 original)
+- `04.webp` 04 E38A340E-6B94-4E1C-9A25-EF5363C9F315_1_105_c.jpeg (1086x725 original)
+- `05.webp` 05 C8EEFD85-176E-4B53-B52F-041F652D2FCB_1_105_c.jpeg (1086x725 original)
+- `06.webp` 06 8403DA66-ECCB-4460-B1B6-F092D2589BB3_1_105_c.jpeg (1086x724 original)
+- `07.webp` 07 725737A1-7771-4007-9F57-2C436E68AD9B_1_105_c.jpeg (1086x724 original)
+- `08.webp` 08 A1BAA4A4-EEE2-4ACC-A149-3F1ED2598781_1_105_c.jpeg (1086x725 original)
+- `09.webp` 09 AA12D959-C451-4B67-B320-6BBC4B8BC67C_1_105_c.jpeg (1086x725 original)
+- `10.webp` 10 B70A62C5-136B-4733-8E2F-F92621052972_1_105_c.jpeg (1086x725 original)
+- `11.webp` 11 98A99D19-312C-46E3-8F11-7AB547894A03_1_105_c.jpeg (1086x725 original)
+- `12.webp` 12 48B57263-295B-4D1F-8F66-13CCB163E70F_1_105_c.jpeg (1086x724 original)
+- `13.webp` 13 9F87D9A7-75B0-454E-8CDB-4850EF0BDDB4_1_105_c.jpeg (1086x725 original)
+- `14.webp` 14 9AC80332-7E22-4A4A-B254-C65A13BD8E7F_1_105_c.jpeg (1086x725 original)
+- `15.webp` 15 7C2F4414-A0CC-42AE-B2F1-5BCBE4A9216B_1_105_c.jpeg (1086x725 original)
+- `16.webp` 16 3B405C95-A519-43D8-92FF-F2F92934B8F8_1_105_c.jpeg (1086x725 original)
+- `17.webp` 17 2DBC10CD-9E55-4383-BA8F-881C53D133A2_1_105_c.jpeg (1086x725 original)
+- `18.webp` 18 4A3E5240-E2C0-409B-A0C3-D88811DA72E0_1_105_c.jpeg (1086x725 original)
+- `19.webp` 19 5FAB35A2-31C4-4501-B94A-A3A1BB3E275D_1_105_c.jpeg (1086x724 original)
+- `20.webp` 20 7B90B7E1-48CE-4EE5-A597-D451A42D579F_1_105_c.jpeg (1086x724 original)
+- `21.webp` 21 0A968AAF-905E-48DB-869F-6ABC5618C2CE_1_105_c.jpeg (1086x725 original)
+- `22.webp` 22 0E9265B6-8C07-42AA-B514-2A619D1E8EED_1_105_c.jpeg (1086x725 original)
 
 ## 20 Scaling with Systems LIVE 2021
 

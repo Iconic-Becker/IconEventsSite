@@ -204,7 +204,7 @@ export const CASE_STUDIES = [
 
   {
     slug: "ceo-lawyer-summit",
-    name: "The CEO Lawyer Summit",
+    name: "The CEO Lawyer Summit 2021",
     headline: "How Ali Awad Sold a $25K Offer Without Pressure at The CEO Lawyer Summit",
     cta: "Want a summit that sells from the stage like Ali's?",
     summary:
@@ -235,7 +235,7 @@ export const CASE_STUDIES = [
       venue: null,
       city: null,
       region: null,
-      year: null,
+      year: "2021",
       dates: null,
     },
     media: {
@@ -481,7 +481,7 @@ export const EVENT_INDEX = [
   { slug: "powerhouse", name: "Powerhouse", client: "Los Silva", when: "2022", location: null, venue: null, size: null, full: false },
   { slug: "founder-os", name: "Founder OS", client: "Matt Gray", when: "2023", location: null, venue: null, size: null, full: false },
   { slug: "the-ceo-lawyer-summit-2022", name: "The CEO Lawyer Summit 2022", client: "Ali Awad", when: "2022-12", location: null, venue: null, size: null, full: false },
-  { slug: "ceo-lawyer-summit", name: "The CEO Lawyer Summit", client: "Ali Awad", when: null, location: null, venue: null, size: null, full: true },
+  { slug: "ceo-lawyer-summit", name: "The CEO Lawyer Summit 2021", client: "Ali Awad", when: "2021-12", location: null, venue: null, size: null, full: true },
   { slug: "scaling-with-systems-live-2023", name: "Scaling With Systems LIVE 2023", client: "Ravi Abuvala", when: "2023", location: null, venue: null, size: null, full: false },
   { slug: "scaling-with-systems-live", name: "Scaling With Systems LIVE 2021", client: "Ravi Abuvala", when: "2021-04", location: null, venue: null, size: null, full: true },
   { slug: "egc-2022", name: "EGC 2022", client: "Austin Zelan", when: "2022", location: null, venue: null, size: null, full: false },
@@ -603,8 +603,7 @@ export function assertLanderSlugsResolve(work) {
 
 /* Hand selected photos per event, in public/images/gallery/<folder>/ as
    01.webp, 02.webp and so on, in the order Iconic picked them. An event not
-   yet written up uses its 01 as the cover on the grid. One folder has no
-   event here yet: the-ceo-lawyer-summit-2021.
+   yet written up uses its 01 as the cover on the grid.
    See docs/case-studies/PHOTO-LIBRARY.md. */
 export const PHOTO_LIBRARY = {
   "bad-after-dark": { folder: "bad-after-dark", count: 8 },
@@ -626,6 +625,8 @@ export const PHOTO_LIBRARY = {
   "group-convert-live": { folder: "group-convert-live", count: 19 },
   "7-figure-agency": { folder: "7-figure-agency", count: 16 },
   "takeover-live-1": { folder: "takeover-live-1", count: 35 },
+  "takeover-live-2": { folder: "takeover-live-2", count: 22 },
+  "ceo-lawyer-summit": { folder: "the-ceo-lawyer-summit-2021", count: 23 },
   "the-ceo-lawyer-summit-2022": { folder: "the-ceo-lawyer-summit-2022", count: 50 },
 }
 
