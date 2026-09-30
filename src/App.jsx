@@ -181,6 +181,14 @@ function CaseStudyNavPreview() {
   )
 }
 
+/* ── Section switches ───────────────────────────────────────────────────
+   Hidden sections stay in the tree, copy and component intact, so bringing
+   one back is a one-word change. Nothing is deleted. */
+
+// The Uncontested Room. Hidden at Iconic's call: it read as a secondary
+// ribbon repeating the call to action that already sits below it.
+const SHOW_NICHE = false
+
 /* ── Layout primitives ──────────────────────────────────────────────── */
 function Section({ id, className = "", children }) {
   return (
@@ -430,8 +438,9 @@ export default function App() {
       <Position />
 
       {/* ── WHO IT IS FOR — moved ahead of the offer: naming who we are not
-             for qualifies the reader before we explain anything ─────────── */}
-      <Niche />
+             for qualifies the reader before we explain anything. Currently
+             hidden; see SHOW_NICHE above. ──────────────────────────────── */}
+      {SHOW_NICHE && <Niche />}
 
       {/* ── WHAT IS AND IS NOT INCLUDED ─────────────────────────────────── */}
       <Scope />
