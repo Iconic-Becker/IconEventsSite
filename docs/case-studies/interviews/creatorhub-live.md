@@ -103,6 +103,45 @@ multi six figure investment". Creator Fest is a separate, earlier event
 
 ## Q4. What nearly broke?
 
+User, 2026-09-30, verbatim (also answers the venue and heading questions,
+and adds Q3 decisions and results):
+
+> So we actually use the Marriott Bonnet Creek in in Orlando for Creator Hub
+> Live and Creator Fest. I don't actually know what I meant by integrated
+> organically into the posts. How it was built is fine. So what, what went
+> wrong is, you know, opening up, we didn't have the hubs available at the
+> launch of the ticket sales. So the first couple months was a kind of rocky
+> road and very uncertain for the state of tickets. Uh, another thing that
+> went wrong, or what nearly broke, is getting the car inside. Like building
+> this glass enclosure for a, a car was not easy and it required that, you
+> know, we only had about a couple millimeters of clearance on both sides
+> because the car actually was a sports performance version so the car was
+> actually even wider than we originally had anticipated and required us to
+> physically remove a door off the Marriott if we weren't able to get this
+> car inside we would have had nothing at the mixer which would have had
+> Lamborghini as a sponsor pretty disappointed and on top of that it would
+> have also cost hundreds of thousands of dollars and insurance that we
+> would have had to claim in the event that the closure wasn't built
+> properly to make sure that the paint remained inside of the venue. What
+> else nearly broke was really, really trying to get, trying to get three
+> stages to all run at the same time is no easy task. And so what we ended
+> up doing was we had dedicated stage managers per stage treating this
+> instead of one event, this was actually treated as three separate events
+> that happened to all be in the same building. Uh, in doing so, we were
+> able to have a pretty successful run of show. Another thing that also went
+> incredibly well was the round tables. So the round tables featured
+> fireside chats at tables from speakers. There was about 40 to 60 speakers
+> in total. And ultimately, the round tables were supposed to be only 45
+> minutes. However, everyone loved them so much they ended up staying for
+> about 3.5 hours.
+
+Captured: venue for both CreatorHub Live and Creator Fest is the Marriott
+Bonnet Creek, Orlando (the index says FTL Downtown Event Center, Fort
+Lauderdale; fix with the next site change). Drop "into the post". Use
+"How It Was Built" as the section heading. The door, not the frame, came
+off for the car. Speaker count is "about 40 to 60": ask for the exact
+number before publishing (rule 3).
+
 ## Q5. Who is this build right for, and wrong for?
 
 ## Q6. Anything else about the night?
