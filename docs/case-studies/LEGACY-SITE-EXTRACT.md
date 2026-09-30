@@ -4,12 +4,21 @@
 old klevr.events site: listing and page dates, key metrics, challenge,
 solution, services and a notes column flagging errors on the live pages.
 
-**Treat it as a lead, not a source.** The old copy is marketing prose with
-known errors (dates copied between pages, metrics that contradict their own
-text, one page whose header belongs to another event). Every fact taken
-from it gets confirmed with the user during the interview before it reaches
-a page. It is most useful for asking sharper questions, and for Q3 and Q4
-material the user may have forgotten.
+**This is the base for the page.** Where an event has a row here, its
+challenge, solution and results copy is the user's own writing and goes on
+the page: challenge into `challenge`, solution into `approach`, the outcome
+into `results`. Rewrite it into our voice ("we", never KLEVR) and fix the
+typos, but keep the substance, the specifics and the stories. Never replace
+it with generic copy.
+
+Three things still get filtered or checked:
+
+- Client revenue, sponsorship dollars and budgets stay off the page (house
+  rules 1 and 2). Tell the user once when a story leans on one.
+- Where the row contradicts itself (the notes column flags most of these),
+  ask which number is right before it becomes a metric.
+- The interview adds what the old copy never had: what nearly broke, who
+  the build is right for, and the numbers we publish.
 
 ## How the rows map to EVENT_INDEX
 

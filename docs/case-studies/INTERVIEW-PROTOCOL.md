@@ -95,14 +95,20 @@ Commit the notes file even when the page is not built yet.
 Add an entry to `CASE_STUDIES` in `src/case-studies.js`, copy the shape of
 an existing one, then set `full: true` on that slug in `EVENT_INDEX`.
 
+**Start from the user's own writing.** If the event has a row in
+`LEGACY-SITE-EXTRACT.md`, that challenge, solution and results copy is the
+base of the page, rewritten into our voice. Never replace it with generic
+copy.
+
 Fields, and which question feeds them:
 
 | Field | Source |
 |---|---|
 | `headline` | Results first: "How <client> <result> at <event>" |
 | `summary` | 50 to 100 words, in our voice ("we"). Client, challenge, solution, result, in that order. Also the meta description. |
-| `challenge` | Q1 and Q2, 2 to 4 sentences, plainly stated |
+| `challenge` | The old site's challenge copy where it exists, then Q1 and Q2. One string or an array of paragraphs. |
 | `approach` | Q3, split into `pre` / `onsite` / `post` arrays. Rendered as one continuously numbered list. |
+| `results` | How it went, in prose: the old site's outcome copy plus the interview. No client revenue. |
 | `scope` | `[[label, description]]` for the Scope of Services block |
 | `metrics` | `attendance`, `productionDays`, `costSaved`. Nulls render as nothing. |
 | `details` | client, clientTitle, venue, city, region, year, dates |

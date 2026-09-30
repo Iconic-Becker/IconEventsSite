@@ -195,6 +195,12 @@ function Scope({ study }) {
   )
 }
 
+// Copy fields take one string or an array of paragraphs.
+function paragraphs(value) {
+  if (!value) return []
+  return Array.isArray(value) ? value : [value]
+}
+
 function Results({ study }) {
   const metrics = publishedMetrics(study)
   const d = study.details
@@ -210,6 +216,11 @@ function Results({ study }) {
         <div className="border-b-4 border-tidepool pb-4">
           <h2 className="font-serif text-4xl font-semibold sm:text-6xl">How It Went</h2>
         </div>
+        {paragraphs(study.results).length > 0 && (
+          <div className="mt-9 grid max-w-[66ch] gap-5 font-serif text-xl leading-snug sm:text-2xl">
+            {paragraphs(study.results).map((text) => <p key={text}>{text}</p>)}
+          </div>
+        )}
         {metrics.length > 0 && (
           <div className="mt-10 grid border-y border-tidepool/25 sm:grid-cols-3">
             {metrics.map(([label, value]) => (
@@ -468,7 +479,9 @@ export default function CaseStudyPage({ study }) {
         <div className="mx-auto grid max-w-6xl items-center gap-11 px-5 sm:px-6 md:grid-cols-[1fr_0.62fr] md:gap-14">
           <div>
             <p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">The Problem</p>
-            <p className="mt-5 max-w-[65ch] font-sans text-lg leading-relaxed text-bone/70">{study.challenge}</p>
+            <div className="mt-5 grid max-w-[65ch] gap-5 font-sans text-lg leading-relaxed text-bone/70">
+              {paragraphs(study.challenge).map((text) => <p key={text}>{text}</p>)}
+            </div>
           </div>
           <Photo asset={study.media.challenge} ratio="aspect-[4/5]" />
         </div>

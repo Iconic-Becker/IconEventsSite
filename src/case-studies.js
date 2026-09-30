@@ -40,7 +40,10 @@
                 the contact form above "The next room".
    summary      50 to 100 words, in our voice ("we"). Client, challenge,
                 solution, result. Also the meta description.
-   challenge    2 to 4 sentences, plainly stated.
+   challenge    The client's problem, from the client's own case study copy
+                where it exists. A string or an array of paragraphs.
+   results      How it went, in prose, above the metrics. A string or an
+                array of paragraphs. No client revenue (house rule 1).
    approach     { pre, onsite, post } arrays of strings. Rendered as one
                 continuously numbered list across the three stages.
    scope        [[label, description]] for the Scope of Services block.
@@ -239,40 +242,50 @@ export const CASE_STUDIES = [
 
   {
     slug: "scaling-with-systems-live",
-    name: "Scaling With Systems LIVE",
-    headline: "How Ravi Abuvala Held a Room Across a Full Multi Session Summit",
-    cta: "Want a multi day summit that holds the room like Ravi's?",
+    name: "Scaling With Systems LIVE 2021",
+    // Source: the client's own case study, old site row 20. See
+    // docs/case-studies/interviews/scaling-with-systems-live.md.
+    headline: "How Ravi Abuvala Launched Scaling With Systems LIVE in a Miami Parking Garage Mid Pandemic",
+    cta: "Want to launch a live event people said couldn't happen, like Ravi did?",
     summary:
-      "Ravi Abuvala needed a multi session summit that held attention from start to finish. We took the whole job: strategy, creative direction, production, show flow and on site execution. We shaped the event as one continuous journey for the audience, from arrival through the final moment on stage.",
-    challenge:
-      "A multi session summit risks becoming a schedule rather than an experience. Attention had to carry across the full run without a flat stretch.",
+      "In April 2021, with rooms capped at 75 people and most live events canceled, Ravi Abuvala wanted to debut Scaling With Systems LIVE in person anyway. We moved it into an open air parking garage in Miami, which cut the risk of infection and raised in person capacity to 200. In 90 days we combed through more than 94 vendors and turned the garage into a venue with supercars, drones, open bars, VIP lounges and custom stages. Every attendee returned home safely.",
+    challenge: [
+      "In April 2021 the pandemic had reached an all time high. Most live events had been canceled, and many leaders in the industry were switching to virtual events as a fallback. A national mandate said no more than 75 people could be in a room together, and this is where most other companies gave up.",
+      "Scaling With Systems was adamant about letting attendees make their own choice on masks, so finding a venue open to both sides would be critical. On top of keeping 300 people safely together during a pandemic, this was the debut of Scaling With Systems LIVE, and it had to be a massive success both as an experience and as a business.",
+    ],
     approach: {
       pre: [
-        "Shaped the event as one journey rather than a programme of sessions.",
-        "Set arrival, pacing and session order against where attention would drop.",
+        "Moved the venue to an open concept parking garage. Yes, a parking garage. Open air meant a significantly lower risk of infection, and it raised our in person capacity to 200. We brought the idea to Ravi, he approved it, and we officially partnered on the first ever Scaling With Systems LIVE.",
+        "Gave ourselves 90 days and combed through more than 94 vendors to turn a traditional parking garage into an experience that had never been done before.",
+        "Walked Ravi through our ascension model, an internal strategy we designed to move a community into a partner's high ticket offer without it feeling salesy or like a pitch fest. We designed the event offer, how it was deployed, the tactics to convert members on site and the entire sales process.",
       ],
       onsite: [
-        "Ran production decisions toward the moments that mattered on stage.",
-        "Ran show calling and on site execution with the same team that designed the room.",
+        "Built the garage out with supercars, drones, open bars, VIP lounges and custom stages. The venue became a hallmark of the Scaling With Systems legacy.",
       ],
       post: [],
     },
     scope: [
-      ["Strategy", "Audience journey and session order set against attention."],
-      ["Creative", "Creative direction across the full run."],
-      ["Production", "Staging, lighting and technical build."],
-      ["Show flow", "Run of show and pacing across multiple sessions."],
-      ["On site", "Show calling and execution by the design team."],
+      ["Venue", "Sourced the open air parking garage and made the case for it to Ravi."],
+      ["Vendors", "More than 94 vendors combed through and coordinated in 90 days."],
+      ["Build", "Supercars, drones, open bars, VIP lounges and custom stages."],
+      ["Offer", "Event offer design and how it was deployed."],
+      ["Sales", "Tactics to convert on site and the entire sales process."],
+      ["Content", "Event content."],
     ],
+    // TODO(confirm): attendance. The old page says 300 attendees and also
+    // that the garage raised in person capacity to 200.
     metrics: { attendance: null, productionDays: null, costSaved: null },
+    results: [
+      "We created a massively successful event at a time when most people said it would be impossible. It was the first 200 person event hosted in South Beach that month, and every attendee returned home safely.",
+    ],
     details: {
       client: "Ravi Abuvala",
       clientTitle: null,
-      venue: null,
-      city: null,
-      region: null,
-      year: null,
-      dates: null,
+      venue: "Open air parking garage",
+      city: "Miami",
+      region: "FL",
+      year: "2021",
+      dates: null, // TODO(confirm): old site lists April 8, 2021.
     },
     media: {
       // TODO(confirm): which edition this page is, venue, photographer credit, usage rights.
@@ -297,7 +310,7 @@ export const CASE_STUDIES = [
     },
     testimonial: { quote: null, approved: false },
     citation:
-      "Iconic Events, a Florida based event production and coordination company, produced Scaling With Systems LIVE for Ravi Abuvala, delivering strategy, creative direction, production, show flow and on site execution as a single scope.",
+      "Iconic Events, a Florida based event production and coordination company, produced the first Scaling With Systems LIVE for Ravi Abuvala in April 2021, converting an open air parking garage in Miami, Florida into a live event venue during the pandemic and delivering venue sourcing, vendor coordination, the build, offer design and the on site sales process.",
   },
 
   {
@@ -443,7 +456,7 @@ export const EVENT_INDEX = [
   { slug: "the-ceo-lawyer-summit-2022", name: "The CEO Lawyer Summit 2022", client: "Ali Awad", date: "2022", location: null, venue: null, size: null, full: false },
   { slug: "ceo-lawyer-summit", name: "The CEO Lawyer Summit", client: "Ali Awad", date: null, location: null, venue: null, size: null, full: true },
   { slug: "scaling-with-systems-live-2023", name: "Scaling With Systems LIVE 2023", client: "Ravi Abuvala", date: "2023", location: null, venue: null, size: null, full: false },
-  { slug: "scaling-with-systems-live", name: "Scaling With Systems LIVE", client: "Ravi Abuvala", date: null, location: null, venue: null, size: null, full: true },
+  { slug: "scaling-with-systems-live", name: "Scaling With Systems LIVE 2021", client: "Ravi Abuvala", date: "2021", location: null, venue: null, size: null, full: true },
   { slug: "egc-2022", name: "EGC 2022", client: "Austin Zelan", date: "2022", location: null, venue: null, size: null, full: false },
   { slug: "dealcon-2025", name: "DealCon 2025", client: null, date: "2025", location: null, venue: null, size: null, full: false },
   { slug: "casino-royale", name: "Casino Royale", client: "Ben Newman", date: "2023", location: "Las Vegas, NV", venue: "Palms Casino Resort", size: "150", full: true },
@@ -503,7 +516,7 @@ export function faqsFor(study) {
     `Who produced ${d.client ? `${d.client}'s ` : ""}${study.name}?`,
     `Iconic Events, a Florida based event production and coordination company, produced ${study.name}` +
       `${d.client ? ` for ${d.client}` : ""}${where ? ` at ${where}` : ""}${d.year ? ` in ${d.year}` : ""}. ` +
-      `Iconic Events held strategy, creative direction, production, show flow and on site execution as one scope.`,
+      `Iconic Events held ${study.scope.map(([label]) => label.toLowerCase()).join(", ")} as one scope.`,
   ])
 
   faqs.push([
