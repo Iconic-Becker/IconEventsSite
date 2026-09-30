@@ -444,12 +444,12 @@ export default function App() {
       {/* ── HOW WE DO IT ────────────────────────────────────────────────── */}
       <Method />
 
-      {/* ── PROOF, in three tiers: the numbers, the faces, the words.
-             Previously these sat in three places up to eleven screens
-             apart ─────────────────────────────────────────────────────── */}
+      {/* ── PROOF — the numbers, and only the numbers. The founder portraits
+             and the testimonial cards came out: with Selected Work and the
+             gallery below, the page was carrying five proof sections. The
+             client's own words now live on the case study pages, one per
+             event, where they belong to something ─────────────────────── */}
       <Receipts />
-      <InTheRoom />
-      <Testimonials />
 
       <CtaBand headline="Six figures of production, one accountable team." />
 
