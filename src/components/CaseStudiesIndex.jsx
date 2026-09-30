@@ -67,13 +67,9 @@ export default function CaseStudiesIndex() {
                     {card.when && (
                       <p className="mb-3 font-sans text-xs font-bold uppercase tracking-[0.18em] text-bone">{card.when}</p>
                     )}
-                    {card.href ? (
+                    {card.format && (
                       <span className="font-sans text-[10px] font-bold uppercase tracking-[0.16em] text-brass">
-                        {card.format ?? "Read the case study"}
-                      </span>
-                    ) : (
-                      <span className="font-sans text-[10px] font-bold uppercase tracking-[0.16em] text-bone/35">
-                        Write-up in progress
+                        {card.format}
                       </span>
                     )}
                     <h2 className="mt-2 font-serif text-2xl font-semibold leading-tight">{card.name}</h2>
