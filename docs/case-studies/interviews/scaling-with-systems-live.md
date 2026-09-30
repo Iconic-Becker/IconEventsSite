@@ -41,6 +41,11 @@ On 300 attendees versus 200 capacity:
 
 > 300 attendees
 
+> and use the word 300 attendees at all functions on that page
+
+So the old copy's "capacity to 200" and "first 200 person event" now read
+300 attendees.
+
 On the revenue timing:
 
 > us the less then 24 hours for the revenue

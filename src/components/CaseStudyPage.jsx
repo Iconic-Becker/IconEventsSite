@@ -241,12 +241,12 @@ function Results({ study }) {
             )}
           </div>
           {stats.length > 0 && (
-            <dl className="grid content-start border-t-4 border-tidepool">
+            <dl className="grid content-start grid-cols-3 border-y border-tidepool/25">
               {stats.map(([value, label]) => (
-                <div key={label} className="border-b border-tidepool/25 py-6">
+                <div key={label} className="min-w-0 border-r border-tidepool/25 px-3 py-6 last:border-r-0 sm:px-5">
                   <dt className="sr-only">{label}</dt>
-                  <dd className="font-serif text-5xl font-semibold leading-none text-tidepool sm:text-6xl">{value}</dd>
-                  <dd className="mt-2 font-sans text-xs uppercase tracking-[0.16em] text-onyx/60">{label}</dd>
+                  <dd className="font-serif text-3xl font-semibold leading-none text-tidepool sm:text-5xl">{value}</dd>
+                  <dd className="mt-3 font-sans text-[10px] uppercase leading-snug tracking-[0.14em] text-onyx/60 sm:text-xs">{label}</dd>
                 </div>
               ))}
             </dl>

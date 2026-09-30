@@ -250,14 +250,14 @@ export const CASE_STUDIES = [
     headline: "How Ravi Abuvala Launched Scaling With Systems LIVE in a Miami Parking Garage Mid Pandemic",
     cta: "Want to launch a live event people said couldn't happen, like Ravi did?",
     summary:
-      "In April 2021, with rooms capped at 75 people and most live events canceled, Ravi Abuvala wanted to debut Scaling With Systems LIVE in person anyway. We moved it into 1111 Miami, an open air parking garage, which cut the risk of infection and raised in person capacity to 200. In 90 days we combed through more than 94 vendors and turned the garage into a venue with supercars, drones, open bars, VIP lounges and custom stages. Every attendee returned home safely.",
+      "In April 2021, with rooms capped at 75 people and most live events canceled, Ravi Abuvala wanted to debut Scaling With Systems LIVE in person anyway. We moved it into 1111 Miami, an open air parking garage, which cut the risk of infection and made room for 300 attendees. In 90 days we combed through more than 94 vendors and turned the garage into a venue with supercars, drones, open bars, VIP lounges and custom stages. All 300 attendees returned home safely.",
     challenge: [
       "In April 2021 the pandemic had reached an all time high. Most live events had been canceled, and many leaders in the industry were switching to virtual events as a fallback. A national mandate said no more than 75 people could be in a room together, and this is where most other companies gave up.",
-      "Scaling With Systems was adamant about letting attendees make their own choice on masks, so finding a venue open to both sides would be critical. On top of keeping 300 people safely together during a pandemic, this was the debut of Scaling With Systems LIVE, and it had to be a massive success both as an experience and as a business.",
+      "Scaling With Systems was adamant about letting attendees make their own choice on masks, so finding a venue open to both sides would be critical. On top of keeping 300 attendees safely together during a pandemic, this was the debut of Scaling With Systems LIVE, and it had to be a massive success both as an experience and as a business.",
     ],
     approach: {
       pre: [
-        "Moved the venue to an open concept parking garage. Yes, a parking garage. Open air meant a significantly lower risk of infection, and it raised our in person capacity to 200. We brought the idea to Ravi, he approved it, and we officially partnered on the first ever Scaling With Systems LIVE.",
+        "Moved the venue to an open concept parking garage. Yes, a parking garage. Open air meant a significantly lower risk of infection, and it gave us room for 300 attendees. We brought the idea to Ravi, he approved it, and we officially partnered on the first ever Scaling With Systems LIVE.",
         "Gave ourselves 90 days and combed through more than 94 vendors to turn a traditional parking garage into an experience that had never been done before.",
         "Walked Ravi through our ascension model, an internal strategy we designed to move a community into a partner's high ticket offer without it feeling salesy or like a pitch fest. We designed the event offer, how it was deployed, the tactics to convert members on site and the entire sales process.",
       ],
@@ -283,7 +283,7 @@ export const CASE_STUDIES = [
       ["2022", "Ravi booked us again"],
     ],
     results: [
-      "We created a massively successful event at a time when most people said it would be impossible. It was the first 200 person event hosted in South Beach that month, and all 300 attendees returned home safely.",
+      "We created a massively successful event at a time when most people said it would be impossible. It was the first 300 attendee event hosted in South Beach that month, and all 300 attendees returned home safely.",
       "The offer and sales process we built with Ravi brought in $1,200,000 in less than 24 hours, a 12X return on the event budget.",
       "Ravi brought us back to produce Scaling With Systems LIVE again in 2022.",
     ],
@@ -550,7 +550,7 @@ export function faqsFor(study) {
   if (study.metrics.attendance) {
     faqs.push([
       `How many people attended ${study.name}?`,
-      `${study.metrics.attendance} guests. The room was sized against the commercial objective rather than a headcount target.`,
+      `${study.metrics.attendance} attendees. The room was sized against the commercial objective rather than a headcount target.`,
     ])
   }
 
