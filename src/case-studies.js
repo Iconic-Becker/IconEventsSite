@@ -162,13 +162,16 @@ export const CASE_STUDIES = [
       dates: null,
     },
     media: {
-      hero: null,
-      challenge: null,
-      band: { src: "/images/gallery/g28.webp", alt: "Bad After Dark room at capacity" },
-      resultLeft: { src: "/images/gallery/g33.webp", alt: "Lighting detail at Bad After Dark" },
-      resultRight: null,
+      // TODO(confirm): venue for alt text, photographer credit, usage rights.
+      hero: { src: "/images/gallery/bad-after-dark/03.webp", alt: "Full room at Bad After Dark in Las Vegas, guests on the floor under wall to wall projection of the event and partner logos" },
+      challenge: { src: "/images/gallery/bad-after-dark/01.webp", alt: "Host speaking on stage with a microphone at Bad After Dark in Las Vegas, partner logos projected behind him" },
+      band: { src: "/images/gallery/bad-after-dark/02.webp", alt: "Guests in evening wear talking at the neon lit bar at Bad After Dark in Las Vegas" },
+      resultLeft: { src: "/images/gallery/bad-after-dark/07.webp", alt: "Five guests in black tie posing in front of the projected backdrop at Bad After Dark in Las Vegas" },
+      resultRight: { src: "/images/gallery/bad-after-dark/08.webp", alt: "DJ booth at Bad After Dark in Las Vegas, the DJ talking with a guest in black tie" },
       gallery: [
-        { src: "/images/gallery/g35.webp", alt: "Guests through the evening at Bad After Dark" },
+        { src: "/images/gallery/bad-after-dark/06.webp", alt: "Guests crowded around a branded casino table at Bad After Dark in Las Vegas" },
+        { src: "/images/gallery/bad-after-dark/04.webp", alt: "Guests playing at a custom branded table at the Bad After Dark casino after party in Las Vegas" },
+        { src: "/images/gallery/bad-after-dark/05.webp", alt: "Close up of cards and chips on a branded table felt at Bad After Dark in Las Vegas" },
       ],
       aftermovieUrl: null,
       testimonialUrl: null,
