@@ -25,6 +25,21 @@ Captured: the first Freedom Queen Live. No stakes on the page.
 
 ## Q2. What made this one hard?
 
+User, 2026-09-30, verbatim:
+
+> I don't think this one necessarily was actually hard at all. It was more
+> just along the lines of, we really wanted to make sure that we nailed
+> Bridget's vision for this. And the attendees that were coming to the
+> event, they really didn't know what to expect. And so finding the venue, I
+> think, probably presented the biggest challenge. Mainly because, you know,
+> the only other option, we knew it had to be in Tampa for British request,
+> but we still wanted something that felt as elegant and timeless as her
+> brand did. And so that's what ended up with us landing on the Vinoy
+
+Captured: "British request" is Bridget's request (transcription). Venue:
+the Vinoy. The Vinoy is in St. Petersburg, in the Tampa Bay area: confirm
+the city for the page.
+
 ## Q3. Three to five decisions, and why
 
 ## Q4. Challenges overcome
