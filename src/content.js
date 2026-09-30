@@ -58,15 +58,19 @@ export const MONTAGE = {
 
 /* ── NAV ──────────────────────────────────────────────────────────────── */
 // Centered-logo navigation: a few menus on each side, no CTA.
+/* Follows the page in scroll order, left to right. Labels say what the
+   section is rather than naming it: "Proof" and "Voices" told a prospect
+   nothing, and "Voices" pointed at the testimonial section that no longer
+   exists. Every href below resolves to a real id on the page. */
 export const NAV = {
   left: [
-    { href: "#work", label: "Work" },
-    { href: "#gallery", label: "Gallery" },
+    { href: "#scope", label: "Services" },
     { href: "#method", label: "Method" },
+    { href: "#receipts", label: "Results" },
   ],
   right: [
-    { href: "#receipts", label: "Proof" },
-    { href: "#testimonials", label: "Voices" },
+    { href: "#work", label: "Work" },
+    { href: "#gallery", label: "Gallery" },
     { href: "#contact", label: "Contact" },
   ],
 }
