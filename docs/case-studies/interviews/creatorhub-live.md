@@ -194,6 +194,18 @@ Attendance "north of about 1,500". Three and a half days in total. Brain
 leads not to be confirmed or used. Renewing, preparing a 2027 expansion
 to 3,000 people, built on the organic content from this edition.
 
+## Added later (Q3)
+
+User, 2026-09-30, verbatim:
+
+> Oh, I forgot. One of the things that we also did was thinking about the
+> content planning strategy. We actually set up live podcast studios that
+> were consistent throughout the event. And so what this allowed us to do
+> was to get dozens of testimonials and content, which event hosts can
+> borrow this idea for their own event. But having an in-person podcast
+> studio allowed us to get so much podcast content that we were able to get
+> hundreds of clips that will fuel the growth for the 2027 event.
+
 ## Facts
 
 - Seats sold: north of about 1,500 (the index's 917 is wrong)
