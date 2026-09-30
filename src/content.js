@@ -172,7 +172,7 @@ export const ROOM = {
 
 /* ── 04 · POSITIONING ─────────────────────────────────────────────────── */
 export const POSITION = {
-  eyebrow: "01 · Position",
+  eyebrow: "Position",
   title: V("Not event planners. Experience engineers.", "Not event planners. Experience engineers."),
   body: V(
     "Every element of a room is a lever — stage, light, cadence, the physics of the space. We move an audience from seated to decided.",
@@ -191,7 +191,7 @@ export const POSITION = {
 
 /* ── 05 · SELECTED WORK ───────────────────────────────────────────────── */
 export const WORK = {
-  eyebrow: "02 · Selected Work",
+  eyebrow: "Selected Work",
   title: V("Rooms we've engineered.", "Rooms we've engineered."),
   index: V("Full Index →", "Full Index →"),
   featured: {
@@ -229,7 +229,7 @@ export const WORK = {
 
 /* ── 06 · SERVICES (green full-bleed) ─────────────────────────────────── */
 export const SERVICES = {
-  eyebrow: "03 · Capability",
+  eyebrow: "Capability",
   title: V("Five disciplines. One authored room.", "Five disciplines. One room, fully built."),
   intro: V(
     "Every service directed in-house. We hold creative authority end to end.",
@@ -311,7 +311,7 @@ export const SERVICES = {
 
 /* ── 07 · SCOPE OF SERVICE ────────────────────────────────────────────── */
 export const SCOPE = {
-  eyebrow: "04 · Scope of Service",
+  eyebrow: "Scope of Service",
   title: V("Everything we do. Everything we don't.", "Everything we do. Everything we don't."),
   // Exact client copy — voice-neutral, verbatim in both voices.
   doHead: "What we do",
@@ -404,7 +404,7 @@ export const SCOPE = {
 
 /* ── 08 · METHODOLOGY ─────────────────────────────────────────────────── */
 export const METHOD = {
-  eyebrow: "05 · Methodology",
+  eyebrow: "Methodology",
   title: V("The Iconic Standard.", "The Iconic Standard."),
   sub: V(
     "Five phases, one operating system, applied to every room.",
@@ -456,7 +456,7 @@ export const METHOD = {
 
 /* ── 09 · RECEIPTS ────────────────────────────────────────────────────── */
 export const RECEIPTS = {
-  eyebrow: "06 · Receipts",
+  eyebrow: "Receipts",
   title: V("The only numbers that matter.", "The only numbers that matter."),
   stats: [
     { id: "n1", value: "$1.8M", img: "/images/gallery/g32.webp", label: V("membership, from 150 seats", "membership from 150 seats") },
@@ -468,7 +468,7 @@ export const RECEIPTS = {
 
 /* ── 10 · VIDEO TESTIMONIALS ──────────────────────────────────────────── */
 export const TESTIMONIALS = {
-  eyebrow: "07 · From the Host",
+  eyebrow: "From the Host",
   title: V("They sold from our rooms. Hear them say so.", "They sold from our rooms. Hear it from them."),
   items: [
     { id: "t1", img: "/images/clients/ben-newman.webp", duration: "00:42", name: "Ben Newman", role: V("Palms Casino Resort", "Palms Casino Resort"), quote: V("“The room did what a year of marketing couldn't.”", "“The room did what a year of marketing couldn't.”") },
@@ -479,7 +479,7 @@ export const TESTIMONIALS = {
 
 /* ── 11 · NICHE (green full-bleed close) ──────────────────────────────── */
 export const NICHE = {
-  eyebrow: "08 · The Uncontested Room",
+  eyebrow: "The Uncontested Room",
   title: V("Built for founders. Not for brands.", "Built for founders. Not for brands."),
   body: V(
     "Every major experience agency chases Fortune 500 budgets. We do not. We engineer live events for coaches, creators, and founder-led businesses — operators who need the room to produce revenue, not applause. No one else builds for it. It is the only room we build.",
@@ -490,7 +490,7 @@ export const NICHE = {
 
 /* ── 12 · CTA FORM ────────────────────────────────────────────────────── */
 export const CTA = {
-  eyebrow: "09 · Start a Conversation",
+  eyebrow: "Start a Conversation",
   title: V("Tell us about the room you want to build.", "Tell us about the room you want to build."),
   formLead: V(
     "Answer the three questions below and a senior director will take it from there.",

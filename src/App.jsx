@@ -34,6 +34,8 @@ import Receipts from "./components/Receipts.jsx"
 import Testimonials from "./components/Testimonials.jsx"
 import Niche from "./components/Niche.jsx"
 import Cta from "./components/Cta.jsx"
+import CtaBand from "./components/CtaBand.jsx"
+import Services from "./components/Services.jsx"
 
 /* ── Identity ───────────────────────────────────────────────────────── */
 function Logo({ tone = "black", className = "" }) {
@@ -419,33 +421,48 @@ export default function App() {
       {/* ── The Room, In Motion ──────────────────────────────────────────── */}
       <Motion />
 
-      {/* ── 03 · IN THE ROOM — roster index with project reveal ──────────── */}
-      <InTheRoom />
+      {/* Order below answers a prospect's questions in the order they ask
+          them: who you are, whether you are for them, what you do, how you
+          do it, whether it works, and what it looked like. Every component
+          is unchanged; only the sequence and the calls to action are new. */}
 
-      {/* ── 04 · POSITIONING — Immersive Annotated Room ──────────────────── */}
+      {/* ── WHO WE ARE ──────────────────────────────────────────────────── */}
       <Position />
 
-      {/* ── 05 · SELECTED WORK — Poster Grid ─────────────────────────────── */}
+      {/* ── WHO IT IS FOR — moved ahead of the offer: naming who we are not
+             for qualifies the reader before we explain anything ─────────── */}
+      <Niche />
+
+      {/* ── WHAT WE DO — never rendered before this ─────────────────────── */}
+      <Services />
+
+      {/* ── WHAT IS AND IS NOT INCLUDED ─────────────────────────────────── */}
+      <Scope />
+
+      <CtaBand
+        headline="Tell us about the room you want to build."
+        secondary={{ href: "/case-studies", label: "See all 37 case studies →" }}
+      />
+
+      {/* ── HOW WE DO IT ────────────────────────────────────────────────── */}
+      <Method />
+
+      {/* ── PROOF, in three tiers: the numbers, the faces, the words.
+             Previously these sat in three places up to eleven screens
+             apart ─────────────────────────────────────────────────────── */}
+      <Receipts />
+      <InTheRoom />
+      <Testimonials />
+
+      <CtaBand headline="Six figures of production, one accountable team." />
+
+      {/* ── SELECTED WORK — a teaser now that /case-studies carries the
+             full index ────────────────────────────────────────────────── */}
       <Work />
 
       <Gallery />
 
-      {/* ── 07 · SCOPE OF SERVICE — manifesto headline + included/excluded diptych ── */}
-      <Scope />
-
-      {/* ── 08 · METHODOLOGY — Phase Selector (locked in) ──────────────── */}
-      <Method />
-
-      {/* ── 09 · RECEIPTS — Oversized Rows (locked in) ─────────────────── */}
-      <Receipts />
-
-      {/* ── 10 · FROM THE HOST — Cinematic Quote Cards (locked in) ─────── */}
-      <Testimonials />
-
-      {/* ── 11 · THE UNCONTESTED ROOM — full-height black close ────────── */}
-      <Niche />
-
-      {/* ── 12 · START A CONVERSATION — The Brief (locked in) ──────────── */}
+      {/* ── START A CONVERSATION — The Brief (locked in) ────────────────── */}
       <Cta />
 
       {/* ── FOOTER ────────────────────────────────────────────────────── */}
