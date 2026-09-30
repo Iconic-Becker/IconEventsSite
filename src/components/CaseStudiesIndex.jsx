@@ -74,7 +74,7 @@ export default function CaseStudiesIndex() {
                   <div className="relative p-5">
                     {card.href ? (
                       <span className="font-sans text-[10px] font-bold uppercase tracking-[0.16em] text-brass">
-                        {card.caseNumber ?? "Case study"} · Read
+                        {card.format ?? "Read the case study"}
                       </span>
                     ) : (
                       <span className="font-sans text-[10px] font-bold uppercase tracking-[0.16em] text-bone/35">

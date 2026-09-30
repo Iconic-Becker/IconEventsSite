@@ -33,7 +33,6 @@
 
    FIELDS
    slug         URL segment, lowercase and hyphenated.
-   caseNumber   "Case 001". Ordering label only.
    name         Event name.
    headline     Results first: "How <client> <result> at <event>".
    summary      50 to 100 words. The block answer engines lift verbatim.
@@ -64,7 +63,6 @@
 export const CASE_STUDIES = [
   {
     slug: "casino-royale",
-    caseNumber: "Case 001",
     name: "Casino Royale",
     headline:
       "How Ben Newman Filled 150 Seats at Casino Royale and Saved $100K in Production",
@@ -136,7 +134,6 @@ export const CASE_STUDIES = [
 
   {
     slug: "bad-after-dark",
-    caseNumber: "Case 002",
     name: "Bad After Dark",
     format: "Brand activation",
     headline: "How Eddie Maalouf Built Bad After Dark With One Accountable Team",
@@ -191,7 +188,6 @@ export const CASE_STUDIES = [
 
   {
     slug: "ceo-lawyer-summit",
-    caseNumber: "Case 003",
     name: "The CEO Lawyer Summit",
     headline: "How Ali Awad Sold a $25K Offer Without Pressure at The CEO Lawyer Summit",
     summary:
@@ -244,7 +240,6 @@ export const CASE_STUDIES = [
 
   {
     slug: "scaling-with-systems-live",
-    caseNumber: "Case 004",
     name: "Scaling With Systems LIVE",
     headline: "How Ravi Abuvala Held a Room Across a Full Multi Session Summit",
     summary:
@@ -298,7 +293,6 @@ export const CASE_STUDIES = [
 
   {
     slug: "viral-ecom-adz",
-    caseNumber: "Case 005",
     name: "Viral Ecom Adz",
     // TODO(copy): least detail on file of the six. Replace headline, summary,
     // challenge and approach with the real account before publication.
@@ -346,7 +340,6 @@ export const CASE_STUDIES = [
 
   {
     slug: "chase-hughes-london",
-    caseNumber: "Case 006",
     name: "Chase Hughes, London",
     headline: "How Chase Hughes Staged a Room Aboard HMS Belfast in London",
     summary:
@@ -560,7 +553,7 @@ export function caseStudyCards() {
       size: entry.size,
       href: built ? `/case-studies/${entry.slug}` : null,
       cover: built ? built.media.hero ?? built.media.band ?? built.media.resultLeft : null,
-      caseNumber: built?.caseNumber ?? null,
+      format: built?.format ?? null,
     }
   })
 }
