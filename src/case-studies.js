@@ -272,11 +272,13 @@ export const CASE_STUDIES = [
       ["Sales", "Tactics to convert on site and the entire sales process."],
       ["Content", "Event content."],
     ],
-    // TODO(confirm): attendance. The old page says 300 attendees and also
-    // that the garage raised in person capacity to 200.
-    metrics: { attendance: null, productionDays: null, costSaved: null },
+    metrics: { attendance: "300", productionDays: null, costSaved: null },
+    // Revenue published by the client's explicit exception to house rules 1
+    // and 2, for this event only.
     results: [
-      "We created a massively successful event at a time when most people said it would be impossible. It was the first 200 person event hosted in South Beach that month, and every attendee returned home safely.",
+      "We created a massively successful event at a time when most people said it would be impossible. It was the first 200 person event hosted in South Beach that month, and all 300 attendees returned home safely.",
+      "The offer and sales process we built with Ravi brought in $1,200,000 in less than 24 hours, a 12X return on the event budget.",
+      "Ravi brought us back to produce Scaling With Systems LIVE again in 2022.",
     ],
     details: {
       client: "Ravi Abuvala",

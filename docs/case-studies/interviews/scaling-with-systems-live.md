@@ -26,6 +26,24 @@ back at 2021.
 - 2022 page: "learning from our mistake last year" the VIP lounge was built
   4x larger. Possible Q4 material for 2021.
 
+## Decisions (user, 2026-09-30)
+
+On publishing "$1,200,000 in under two hours" and "12X return on event
+budget" despite house rules 1 and 2:
+
+> we can let it slide this time
+
+On the repeat partnership:
+
+> we did repeat for the 2022 event
+
+On 300 attendees versus 200 capacity:
+
+> 300 attendees
+
+Open: the old page says both "less than 24 hours" (metric) and "less than
+two hours" (text) for the revenue. The page uses 24 hours until confirmed.
+
 ## Q1. What did they come to you with?
 
 ## Q2. What made this one hard?
