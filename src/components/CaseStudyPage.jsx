@@ -439,7 +439,9 @@ export default function CaseStudyPage({ study }) {
   const [formOpen, setFormOpen] = useState(false)
   const faqs = faqsFor(study)
   const d = study.details
-  const heroMeta = [study.caseNumber, d.client, d.venue, d.year].filter(Boolean).join(" · ")
+  const heroMeta = [study.caseNumber, study.format, d.client, d.venue, d.year]
+    .filter(Boolean)
+    .join(" · ")
 
   useEffect(() => {
     document.title = `${study.name} · Case Study · Iconic Events`

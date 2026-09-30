@@ -49,11 +49,16 @@
    testimonial  { quote, approved }. Renders only when approved is true.
    faqExtra     Optional [[q, a]] beyond the generated set.
    citation     One sentence naming client, event, venue, city and scope.
-   eventType    schema.org type for this event. Defaults to "BusinessEvent",
-                which covers masterminds, summits and conferences. Use
-                "SocialEvent" for a brand activation or party. Getting this
-                right helps search engines classify the page; a wrong type is
-                worse than a generic one.
+   format       What kind of event this was, in Iconic's own terms:
+                "Mastermind", "Summit", "Conference", "Brand activation".
+                Shown in the hero meta line. This is a business
+                categorisation, not a schema one.
+   eventType    schema.org type. Leave it unset. Every event Iconic runs is
+                commercial, so BusinessEvent is correct for all of them,
+                brand activations included; schema.org has no activation
+                type, and SocialEvent means a social gathering, which these
+                are not. The field exists only in case a genuinely
+                non-commercial event ever turns up.
    ═══════════════════════════════════════════════════════════════════════ */
 
 export const CASE_STUDIES = [
@@ -133,7 +138,7 @@ export const CASE_STUDIES = [
     slug: "bad-after-dark",
     caseNumber: "Case 002",
     name: "Bad After Dark",
-    eventType: "SocialEvent", // brand activation rather than a summit
+    format: "Brand activation",
     headline: "How Eddie Maalouf Built Bad After Dark With One Accountable Team",
     summary:
       "Eddie Maalouf needed an evening that looked effortless and still did commercial work for its partners. Iconic Events, a Florida based event production and coordination company, held strategy, creative direction, production, show flow and on site execution as one scope, designing a tightly held room where partner presence was built into the architecture of the night rather than bolted onto it.",
