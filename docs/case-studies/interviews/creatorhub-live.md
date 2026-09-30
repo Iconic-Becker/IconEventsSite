@@ -176,14 +176,32 @@ answered.
 
 ## Q6. Anything else about the night?
 
+User, 2026-09-30, verbatim (also closes Q5 and the facts):
+
+> I don't think we need a wrong for  ,2. My personal favorite moment was
+> during the mixer the painting was awesome but we thought it would be fun
+> at an extra level of spice by bringing in an auto tune microphone and we
+> went around the audience singing auto-tune to each other which The final
+> attendance was north of about 1,500 people. We, the event was three and a
+> half days in total. And you don't need to confirm the three leads from the
+> brain, but there is another renewal of the event, and it's preparing for
+> its 2027 expansion. That's a big element, is that this event was prepared
+> in a way to where the organic content from it allowed us to focus on
+> building the event to have 3,000 people later in the 2027 version.
+
+Captured: no wrong for. The auto tune sentence trails off after "which".
+Attendance "north of about 1,500". Three and a half days in total. Brain
+leads not to be confirmed or used. Renewing, preparing a 2027 expansion
+to 3,000 people, built on the organic content from this edition.
+
 ## Facts
 
-- Seats sold: 917 (index, confirm)
-- Days of production on site:
+- Seats sold: north of about 1,500 (the index's 917 is wrong)
+- Days of production on site: three and a half days in total
 - Cost saved for the client:
-- Venue, city, month, year: FTL Downtown Event Center, Fort Lauderdale, 2025 (confirm month)
+- Venue, city, month, year: Marriott Bonnet Creek, Orlando, FL, August 2025
 - Scope:
-- Client name, title, company:
+- Client name, title, company: none shown. Iconic's own event, co-owned with Xtend Creators (Patrick Israel)
 - Aftermovie:
 - Testimonial video:
 - Photo folder / photographer / usage rights:
