@@ -100,7 +100,7 @@ Fields, and which question feeds them:
 | Field | Source |
 |---|---|
 | `headline` | Results first: "How <client> <result> at <event>" |
-| `summary` | 50 to 100 words. Client, challenge, solution, result, in that order. This is the block answer engines lift. |
+| `summary` | 50 to 100 words, in our voice ("we"). Client, challenge, solution, result, in that order. Also the meta description. |
 | `challenge` | Q1 and Q2, 2 to 4 sentences, plainly stated |
 | `approach` | Q3, split into `pre` / `onsite` / `post` arrays. Rendered as one continuously numbered list. |
 | `scope` | `[[label, description]]` for the Scope of Services block |
@@ -138,10 +138,10 @@ These are not style preferences. `src/case-studies.js` and
    style labels.
 8. **Our voice.** The page tells one story: the problem the client had,
    what we did, and how it went. Section copy says "we", never "Iconic
-   Events did". The exceptions are `summary` and `citation`, which name
-   Iconic Events in the third person on purpose so answer engines can
-   lift them whole.
-9. **One ask, at the bottom.** Case study pages are the one exception to
+   Events did", and that includes the `summary`. The exceptions are the
+   FAQ answers and `citation`, which name Iconic Events in the third
+   person on purpose so answer engines can lift them whole and credit us.
+9. **One ask, above The next room.** Case study pages are the one exception to
    the site's CTA ribbon every other section: no mid page band, no scroll
    pop up, just the site's contact form, placed directly above "The next
    room" on every case study. Its heading is the event's own `cta` line,

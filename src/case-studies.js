@@ -38,7 +38,8 @@
    cta          The closing ask, specific to this event and in our voice,
                 e.g. "Want to build a brand activation like Eddie's?" Heads
                 the contact form above "The next room".
-   summary      50 to 100 words. The block answer engines lift verbatim.
+   summary      50 to 100 words, in our voice ("we"). Client, challenge,
+                solution, result. Also the meta description.
    challenge    2 to 4 sentences, plainly stated.
    approach     { pre, onsite, post } arrays of strings. Rendered as one
                 continuously numbered list across the three stages.
@@ -61,7 +62,7 @@ export const CASE_STUDIES = [
       "How Ben Newman Filled 150 Seats at Casino Royale and Saved $100K in Production",
     cta: "Want to bring your community back into one room like Ben did?",
     summary:
-      "Ben Newman returned to live events after a five year gap and needed a room built around a single decision. Iconic Events, a Florida based event production and coordination company, held strategy, creative direction, production, show flow and on site execution as one scope, converting Palms Casino Resort in Las Vegas into a projection mapped Casino Royale build for 150 guests across three days of production. Consolidating the work under one accountable team saved the client $100,000 against a multi vendor build.",
+      "Ben Newman was coming back to live events after five years away, and he needed a room built around a single decision. We took the whole job: strategy, creative direction, production, show flow and the night itself. We turned Palms Casino Resort in Las Vegas into a projection mapped Casino Royale for 150 guests across three days of production. Because one team held all of it, Ben saved $100,000 against a multi vendor build.",
     challenge:
       "Ben Newman had not held a live event in five years, and he was bringing a new membership tier to an audience that already knew both him and his offer. Familiarity was the problem: the room had to renew attention rather than introduce anything. The new tier also needed a setting that made a high value commitment feel proportionate to the decision being asked for.",
     approach: {
@@ -132,7 +133,7 @@ export const CASE_STUDIES = [
     headline: "How Eddie Maalouf Built Bad After Dark With One Accountable Team",
     cta: "Want to build a brand activation like Eddie's?",
     summary:
-      "Eddie Maalouf needed an evening that looked effortless and still did commercial work for its partners. Iconic Events, a Florida based event production and coordination company, held strategy, creative direction, production, show flow and on site execution as one scope, designing a tightly held room where partner presence was built into the architecture of the night rather than bolted onto it.",
+      "Eddie Maalouf needed an evening that looked effortless and still did commercial work for his partners. We took the whole job: strategy, creative direction, production, show flow and on site execution. We designed a tightly held room where partner presence was built into the architecture of the night, not bolted onto it.",
     challenge:
       "Sponsorship had to be earned rather than sold. The room needed to feel like an invitation, not an activation, while still giving partners a return they could measure.",
     approach: {
@@ -189,7 +190,7 @@ export const CASE_STUDIES = [
     headline: "How Ali Awad Sold a $25K Offer Without Pressure at The CEO Lawyer Summit",
     cta: "Want a summit that sells from the stage like Ali's?",
     summary:
-      "Ali Awad needed to present a high value offer to an audience of professionals who negotiate for a living. Iconic Events, a Florida based event production and coordination company, held strategy, creative direction, production, show flow and on site execution as one scope, writing the close into the choreography of the room rather than into the script.",
+      "Ali Awad needed to present a high value offer to a room of professionals who negotiate for a living. We took the whole job: strategy, creative direction, production, show flow and on site execution. We wrote the close into the choreography of the room instead of the script.",
     challenge:
       "A high ticket offer to a room of lawyers. Any pressure in the room would read instantly, and cost the close.",
     approach: {
@@ -242,7 +243,7 @@ export const CASE_STUDIES = [
     headline: "How Ravi Abuvala Held a Room Across a Full Multi Session Summit",
     cta: "Want a multi day summit that holds the room like Ravi's?",
     summary:
-      "Ravi Abuvala needed a multi session summit to hold attention across its full run. Iconic Events, a Florida based event production and coordination company, held strategy, creative direction, production, show flow and on site execution as one scope, shaping the event as one continuous audience journey from arrival through the final moment on stage.",
+      "Ravi Abuvala needed a multi session summit that held attention from start to finish. We took the whole job: strategy, creative direction, production, show flow and on site execution. We shaped the event as one continuous journey for the audience, from arrival through the final moment on stage.",
     challenge:
       "A multi session summit risks becoming a schedule rather than an experience. Attention had to carry across the full run without a flat stretch.",
     approach: {
@@ -298,7 +299,7 @@ export const CASE_STUDIES = [
     headline: "How Viral Ecom Adz Carried Partner Revenue Without Feeling Sponsored",
     cta: "Want a retreat your partners pay to be part of?",
     summary:
-      "Viral Ecom Adz needed a room that carried significant partner revenue while keeping an audience that came for the content. Iconic Events, a Florida based event production and coordination company, held creative direction, production and on site execution as one scope, building partner presence into the architecture of the evening.",
+      "Viral Ecom Adz needed a room that carried real partner revenue without losing an audience that came for the content. We took creative direction, production and on site execution as one job, and built partner presence into the architecture of the evening.",
     challenge:
       "Partner revenue in a room whose audience came for the content rather than the brands.",
     approach: {
@@ -344,7 +345,7 @@ export const CASE_STUDIES = [
     headline: "How Chase Hughes Staged a Room Aboard HMS Belfast in London",
     cta: "Want to take your people somewhere nobody expects, like Chase did?",
     summary:
-      "Chase Hughes needed a room on a heritage warship moored on the Thames. Iconic Events, a Florida based event production and coordination company, held creative direction, production, show flow and on site execution as one scope, building the event into the geometry of HMS Belfast rather than over it.",
+      "Chase Hughes wanted his room on a heritage warship moored on the Thames. We took creative direction, production, show flow and on site execution as one job, and built the event into the geometry of HMS Belfast instead of over it.",
     challenge:
       "A heritage warship is not a venue. Every sightline, power run and load in path had to be engineered around a structure that could not be altered.",
     approach: {
