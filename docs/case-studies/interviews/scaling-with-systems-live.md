@@ -41,8 +41,13 @@ On 300 attendees versus 200 capacity:
 
 > 300 attendees
 
-Open: the old page says both "less than 24 hours" (metric) and "less than
-two hours" (text) for the revenue. The page uses 24 hours until confirmed.
+On the revenue timing:
+
+> us the less then 24 hours for the revenue
+
+On the venue:
+
+> the venue is 1111 miami
 
 ## Q1. What did they come to you with?
 

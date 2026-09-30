@@ -42,6 +42,8 @@
                 solution, result. Also the meta description.
    challenge    The client's problem, from the client's own case study copy
                 where it exists. A string or an array of paragraphs.
+   highlights   Optional [[value, label]] shown large beside the results,
+                e.g. ["300", "Attendees"]. Falls back to the metrics.
    results      How it went, in prose, above the metrics. A string or an
                 array of paragraphs. No client revenue (house rule 1).
    approach     { pre, onsite, post } arrays of strings. Rendered as one
@@ -248,7 +250,7 @@ export const CASE_STUDIES = [
     headline: "How Ravi Abuvala Launched Scaling With Systems LIVE in a Miami Parking Garage Mid Pandemic",
     cta: "Want to launch a live event people said couldn't happen, like Ravi did?",
     summary:
-      "In April 2021, with rooms capped at 75 people and most live events canceled, Ravi Abuvala wanted to debut Scaling With Systems LIVE in person anyway. We moved it into an open air parking garage in Miami, which cut the risk of infection and raised in person capacity to 200. In 90 days we combed through more than 94 vendors and turned the garage into a venue with supercars, drones, open bars, VIP lounges and custom stages. Every attendee returned home safely.",
+      "In April 2021, with rooms capped at 75 people and most live events canceled, Ravi Abuvala wanted to debut Scaling With Systems LIVE in person anyway. We moved it into 1111 Miami, an open air parking garage, which cut the risk of infection and raised in person capacity to 200. In 90 days we combed through more than 94 vendors and turned the garage into a venue with supercars, drones, open bars, VIP lounges and custom stages. Every attendee returned home safely.",
     challenge: [
       "In April 2021 the pandemic had reached an all time high. Most live events had been canceled, and many leaders in the industry were switching to virtual events as a fallback. A national mandate said no more than 75 people could be in a room together, and this is where most other companies gave up.",
       "Scaling With Systems was adamant about letting attendees make their own choice on masks, so finding a venue open to both sides would be critical. On top of keeping 300 people safely together during a pandemic, this was the debut of Scaling With Systems LIVE, and it had to be a massive success both as an experience and as a business.",
@@ -265,7 +267,7 @@ export const CASE_STUDIES = [
       post: [],
     },
     scope: [
-      ["Venue", "Sourced the open air parking garage and made the case for it to Ravi."],
+      ["Venue", "Sourced 1111 Miami, an open air parking garage, and made the case for it to Ravi."],
       ["Vendors", "More than 94 vendors combed through and coordinated in 90 days."],
       ["Build", "Supercars, drones, open bars, VIP lounges and custom stages."],
       ["Offer", "Event offer design and how it was deployed."],
@@ -275,6 +277,11 @@ export const CASE_STUDIES = [
     metrics: { attendance: "300", productionDays: null, costSaved: null },
     // Revenue published by the client's explicit exception to house rules 1
     // and 2, for this event only.
+    highlights: [
+      ["$1.2M", "Generated in less than 24 hours"],
+      ["300", "Attendees, all home safely"],
+      ["2022", "Ravi booked us again"],
+    ],
     results: [
       "We created a massively successful event at a time when most people said it would be impossible. It was the first 200 person event hosted in South Beach that month, and all 300 attendees returned home safely.",
       "The offer and sales process we built with Ravi brought in $1,200,000 in less than 24 hours, a 12X return on the event budget.",
@@ -283,7 +290,7 @@ export const CASE_STUDIES = [
     details: {
       client: "Ravi Abuvala",
       clientTitle: null,
-      venue: "Open air parking garage",
+      venue: "1111 Miami",
       city: "Miami",
       region: "FL",
       year: "2021",
@@ -312,7 +319,7 @@ export const CASE_STUDIES = [
     },
     testimonial: { quote: null, approved: false },
     citation:
-      "Iconic Events, a Florida based event production and coordination company, produced the first Scaling With Systems LIVE for Ravi Abuvala in April 2021, converting an open air parking garage in Miami, Florida into a live event venue during the pandemic and delivering venue sourcing, vendor coordination, the build, offer design and the on site sales process.",
+      "Iconic Events, a Florida based event production and coordination company, produced the first Scaling With Systems LIVE for Ravi Abuvala in April 2021, converting 1111 Miami, an open air parking garage in Miami, Florida, into a live event venue during the pandemic and delivering venue sourcing, vendor coordination, the build, offer design and the on site sales process.",
   },
 
   {

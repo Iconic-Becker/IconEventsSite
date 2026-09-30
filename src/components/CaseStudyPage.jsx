@@ -202,13 +202,19 @@ function paragraphs(value) {
 }
 
 function Results({ study }) {
-  const metrics = publishedMetrics(study)
   const d = study.details
+  /* The right hand column: the event's own highlights where it has them,
+     otherwise the published metrics. Value first, label under it. */
+  const stats = study.highlights?.length
+    ? study.highlights
+    : publishedMetrics(study).map(([label, value]) => [value, label])
+  const place = d.venue && d.city && d.venue.includes(d.city) ? d.venue : [d.venue, d.city].filter(Boolean).join(", ")
   const details = [
     ["Client", d.client],
-    ["Venue", [d.venue, d.city].filter(Boolean).join(", ")],
+    ["Venue", place],
     ["Year", d.year],
   ].filter(([, value]) => Boolean(value))
+  const story = paragraphs(study.results)
 
   return (
     <section className="bg-bone py-16 text-onyx sm:py-24">
@@ -216,34 +222,36 @@ function Results({ study }) {
         <div className="border-b-4 border-tidepool pb-4">
           <h2 className="font-serif text-4xl font-semibold sm:text-6xl">How It Went</h2>
         </div>
-        {paragraphs(study.results).length > 0 && (
-          <div className="mt-9 grid max-w-[66ch] gap-5 font-serif text-xl leading-snug sm:text-2xl">
-            {paragraphs(study.results).map((text) => <p key={text}>{text}</p>)}
-          </div>
-        )}
-        {metrics.length > 0 && (
-          <div className="mt-10 grid border-y border-tidepool/25 sm:grid-cols-3">
-            {metrics.map(([label, value]) => (
-              <div
-                key={label}
-                className="border-b border-tidepool/25 px-4 py-9 text-center last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0"
-              >
-                <div className="font-serif text-5xl font-semibold text-tidepool sm:text-6xl">{value}</div>
-                <div className="mt-2 font-sans text-xs uppercase tracking-[0.16em] text-onyx/55">{label}</div>
+        <div className={`mt-10 grid gap-12 ${stats.length ? "lg:grid-cols-[1fr_0.72fr] lg:gap-16" : ""}`}>
+          <div className="min-w-0">
+            {story.length > 0 && (
+              <div className="grid max-w-[60ch] gap-5 font-serif text-xl leading-snug sm:text-2xl">
+                {story.map((text) => <p key={text}>{text}</p>)}
               </div>
-            ))}
+            )}
+            {details.length > 0 && (
+              <dl className={`grid gap-x-10 gap-y-4 sm:grid-cols-3 ${story.length ? "mt-10" : ""}`}>
+                {details.map(([label, value]) => (
+                  <div key={label} className="min-w-0">
+                    <dt className="font-sans text-[10px] font-bold uppercase tracking-[0.16em] text-brass">{label}</dt>
+                    <dd className="mt-1 font-serif text-xl">{value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
           </div>
-        )}
-        {details.length > 0 && (
-          <dl className="mt-12 grid gap-x-10 gap-y-4 sm:grid-cols-3">
-            {details.map(([label, value]) => (
-              <div key={label}>
-                <dt className="font-sans text-[10px] font-bold uppercase tracking-[0.16em] text-brass">{label}</dt>
-                <dd className="mt-1 font-serif text-xl">{value}</dd>
-              </div>
-            ))}
-          </dl>
-        )}
+          {stats.length > 0 && (
+            <dl className="grid content-start border-t-4 border-tidepool">
+              {stats.map(([value, label]) => (
+                <div key={label} className="border-b border-tidepool/25 py-6">
+                  <dt className="sr-only">{label}</dt>
+                  <dd className="font-serif text-5xl font-semibold leading-none text-tidepool sm:text-6xl">{value}</dd>
+                  <dd className="mt-2 font-sans text-xs uppercase tracking-[0.16em] text-onyx/60">{label}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
+        </div>
         {(study.media.resultLeft || study.media.resultRight) && (
           <div className="mt-12 grid gap-3 sm:grid-cols-2">
             <Photo asset={study.media.resultLeft} ratio="aspect-[4/3]" />
