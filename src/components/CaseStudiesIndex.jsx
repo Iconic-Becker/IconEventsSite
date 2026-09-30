@@ -44,7 +44,7 @@ export default function CaseStudiesIndex() {
         <div className="mx-auto max-w-6xl px-5 sm:px-6">
           <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {cards.map((card) => {
-              const meta = [card.client, card.date].filter(Boolean).join(" · ")
+              const meta = card.client
               const place = card.location ?? card.venue
 
               const body = (
@@ -64,6 +64,9 @@ export default function CaseStudiesIndex() {
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-onyx via-onyx/55 to-transparent" />
                   <div className="relative p-5">
+                    {card.when && (
+                      <p className="mb-3 font-sans text-xs font-bold uppercase tracking-[0.18em] text-bone">{card.when}</p>
+                    )}
                     {card.href ? (
                       <span className="font-sans text-[10px] font-bold uppercase tracking-[0.16em] text-brass">
                         {card.format ?? "Read the case study"}

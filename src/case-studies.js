@@ -443,46 +443,60 @@ export const CASE_STUDIES = [
    are listed but not linked: they have no page yet, so they are not
    prerendered, not in the sitemap, and cannot be reached by URL.
 
+   `when` is "YYYY-MM" or "YYYY", or null when not known. The grid sorts on
+   it, newest first, and shows it as month and year. Never guess a month.
+
    To promote one: add a full entry to CASE_STUDIES with the same slug and
    flip `full` to true here. */
 export const EVENT_INDEX = [
-  { slug: "creatorhub-live", name: "CreatorHub Live", client: "Iconic Becker", date: "2025", location: "Fort Lauderdale, FL", venue: "FTL Downtown Event Center", size: "917", full: false },
-  { slug: "creator-hub-madrid", name: "Creator Hub Madrid", client: "Universal Music Group", date: "2025", location: "Madrid, Spain", venue: null, size: null, full: false },
-  { slug: "freedom-queen-live-2024", name: "Freedom Queen Live 2024", client: "Bridget James Ling", date: "2024", location: null, venue: null, size: null, full: false },
-  { slug: "freedom-queen-live-2025", name: "Freedom Queen Live 2025", client: "Bridget James Ling", date: "2025", location: null, venue: null, size: null, full: false },
-  { slug: "pmuw-2023", name: "PMUW 2023", client: "Danny Tran", date: "2023", location: null, venue: null, size: null, full: false },
-  { slug: "pmuw-2024", name: "PMUW 2024", client: "Danny Tran", date: "2024", location: null, venue: null, size: null, full: false },
-  { slug: "pmuw-2025", name: "PMUW 2025", client: "Danny Tran", date: "2025", location: null, venue: null, size: null, full: false },
-  { slug: "net-rev-summit-2026", name: "Net Rev Summit 2026", client: "Ambro Dipilato", date: "8–11 May 2026", location: "Marana, AZ", venue: "Ritz-Carlton Dove Mountain", size: null, full: false },
-  { slug: "decentralized-masters-live", name: "Decentralized Masters Live", client: "Tan and Salim", date: null, location: null, venue: null, size: null, full: false },
-  { slug: "fast-start-forum-2024", name: "Fast Start Forum 2024", client: "Tom Wall", date: "2024", location: null, venue: null, size: null, full: false },
-  { slug: "fast-start-forum-2025", name: "Fast Start Forum 2025", client: "Tom Wall", date: "2025", location: null, venue: null, size: null, full: false },
-  { slug: "the-sales-summit", name: "The Sales Summit", client: "Jeremy Miner", date: null, location: null, venue: null, size: null, full: false },
-  { slug: "hell-yes-live", name: "Hell Yes Live", client: "Becca Pike", date: null, location: null, venue: null, size: null, full: false },
-  { slug: "limitless-live", name: "Limitless Live", client: "Gil Valerio", date: null, location: null, venue: null, size: null, full: false },
-  { slug: "women-and-wealth", name: "Women and Wealth", client: "Shelby Sapp", date: "31 Jul – 2 Aug 2026", location: "Fort Lauderdale, FL", venue: "Broward County Convention Center", size: null, full: false },
-  { slug: "closers-io-retreat", name: "Closers.io Retreat", client: "Cole Gordon", date: null, location: null, venue: null, size: null, full: false },
-  { slug: "bad-after-dark", name: "Bad After Dark", client: "Eddie Maalouf", date: null, location: null, venue: null, size: null, full: true },
-  { slug: "agency-founders-dubai", name: "Agency Founders Dubai", client: "Eddie Maalouf", date: null, location: "Dubai, UAE", venue: null, size: null, full: false },
-  { slug: "maxxed-out-summit", name: "Maxxed Out Summit", client: "Max Willett", date: null, location: null, venue: null, size: null, full: false },
-  { slug: "her-last-call", name: "Her Last Call", client: "Alexis Mai", date: null, location: null, venue: null, size: null, full: false },
-  { slug: "pimcon", name: "PimCon", client: "Rankings.io", date: "Oct 2026?", location: null, venue: null, size: null, full: false },
-  { slug: "the-black-course", name: "The Black Course", client: "Chase Hughes", date: null, location: null, venue: null, size: null, full: false },
-  { slug: "behavior-pilot", name: "Behavior Pilot", client: "Chase Hughes", date: null, location: null, venue: null, size: null, full: false },
-  { slug: "chase-hughes-london", name: "HMS Belfast, London", client: "Chase Hughes", date: null, location: "London, UK", venue: "HMS Belfast", size: null, full: true },
-  { slug: "sales-momentum-live", name: "Sales Momentum Live", client: "Aaron Platt", date: null, location: null, venue: null, size: null, full: false },
-  { slug: "the-guardians-annual", name: "The Guardians Annual", client: "Gary Vaynerchuk", date: null, location: null, venue: null, size: null, full: false },
-  { slug: "e-p-i-c", name: "E.P.I.C", client: "Kaaba Luum", date: null, location: null, venue: null, size: null, full: false },
-  { slug: "powerhouse", name: "Powerhouse", client: "Los Silva", date: null, location: null, venue: null, size: null, full: false },
-  { slug: "founder-os", name: "Founder OS", client: "Matt Gray", date: null, location: null, venue: null, size: null, full: false },
-  { slug: "the-ceo-lawyer-summit-2022", name: "The CEO Lawyer Summit 2022", client: "Ali Awad", date: "2022", location: null, venue: null, size: null, full: false },
-  { slug: "ceo-lawyer-summit", name: "The CEO Lawyer Summit", client: "Ali Awad", date: null, location: null, venue: null, size: null, full: true },
-  { slug: "scaling-with-systems-live-2023", name: "Scaling With Systems LIVE 2023", client: "Ravi Abuvala", date: "2023", location: null, venue: null, size: null, full: false },
-  { slug: "scaling-with-systems-live", name: "Scaling With Systems LIVE 2021", client: "Ravi Abuvala", date: "2021", location: null, venue: null, size: null, full: true },
-  { slug: "egc-2022", name: "EGC 2022", client: "Austin Zelan", date: "2022", location: null, venue: null, size: null, full: false },
-  { slug: "dealcon-2025", name: "DealCon 2025", client: "Tom Shipley", date: "2025", location: null, venue: null, size: null, full: false },
-  { slug: "casino-royale", name: "Casino Royale", client: "Ben Newman", date: "2023", location: "Las Vegas, NV", venue: "Palms Casino Resort", size: "150", full: true },
-  { slug: "viral-ecom-adz", name: "Viral Ecom Adz", client: "Noah Brewer", date: null, location: null, venue: null, size: null, full: true },
+  { slug: "creatorhub-live", name: "CreatorHub Live", client: "Iconic Becker", when: "2025", location: "Fort Lauderdale, FL", venue: "FTL Downtown Event Center", size: "917", full: false },
+  { slug: "creator-hub-madrid", name: "Creator Hub Madrid", client: "Universal Music Group", when: "2025", location: "Madrid, Spain", venue: null, size: null, full: false },
+  { slug: "freedom-queen-live-2024", name: "Freedom Queen Live 2024", client: "Bridget James Ling", when: "2024", location: null, venue: null, size: null, full: false },
+  { slug: "freedom-queen-live-2025", name: "Freedom Queen Live 2025", client: "Bridget James Ling", when: "2025", location: null, venue: null, size: null, full: false },
+  { slug: "pmuw-2023", name: "PMUW 2023", client: "Danny Tran", when: "2023-04", location: null, venue: null, size: null, full: false },
+  { slug: "pmuw-2024", name: "PMUW 2024", client: "Danny Tran", when: "2024", location: null, venue: null, size: null, full: false },
+  { slug: "pmuw-2025", name: "PMUW 2025", client: "Danny Tran", when: "2025", location: null, venue: null, size: null, full: false },
+  { slug: "net-rev-summit-2026", name: "Net Rev Summit 2026", client: "Ambro Dipilato", when: "2026-05", location: "Marana, AZ", venue: "Ritz-Carlton Dove Mountain", size: null, full: false },
+  { slug: "decentralized-masters-live", name: "Decentralized Masters Live", client: "Tan and Salim", when: null, location: null, venue: null, size: null, full: false },
+  { slug: "fast-start-forum-2024", name: "Fast Start Forum 2024", client: "Tom Wall", when: "2024", location: null, venue: null, size: null, full: false },
+  { slug: "fast-start-forum-2025", name: "Fast Start Forum 2025", client: "Tom Wall", when: "2025", location: null, venue: null, size: null, full: false },
+  { slug: "the-sales-summit", name: "The Sales Summit", client: "Jeremy Miner", when: null, location: null, venue: null, size: null, full: false },
+  { slug: "hell-yes-live", name: "Hell Yes Live", client: "Becca Pike", when: null, location: null, venue: null, size: null, full: false },
+  { slug: "limitless-live", name: "Limitless Live", client: "Gil Valerio", when: null, location: null, venue: null, size: null, full: false },
+  { slug: "women-and-wealth", name: "Women and Wealth", client: "Shelby Sapp", when: "2026-07", location: "Fort Lauderdale, FL", venue: "Broward County Convention Center", size: null, full: false },
+  { slug: "closers-io-retreat", name: "Closers.io Retreat", client: "Cole Gordon", when: null, location: null, venue: null, size: null, full: false },
+  { slug: "bad-after-dark", name: "Bad After Dark", client: "Eddie Maalouf", when: "2024-01", location: null, venue: null, size: null, full: true },
+  { slug: "agency-founders-dubai", name: "Agency Founders Dubai", client: "Eddie Maalouf", when: null, location: "Dubai, UAE", venue: null, size: null, full: false },
+  { slug: "maxxed-out-summit", name: "Maxxed Out Summit", client: "Max Willett", when: null, location: null, venue: null, size: null, full: false },
+  { slug: "her-last-call", name: "Her Last Call", client: "Alexis Mai", when: null, location: null, venue: null, size: null, full: false },
+  { slug: "pimcon", name: "PimCon", client: "Rankings.io", when: null, location: null, venue: null, size: null, full: false },
+  { slug: "the-black-course", name: "The Black Course", client: "Chase Hughes", when: "2023-06", location: null, venue: null, size: null, full: false },
+  { slug: "behavior-pilot", name: "Behavior Pilot", client: "Chase Hughes", when: null, location: null, venue: null, size: null, full: false },
+  { slug: "chase-hughes-london", name: "HMS Belfast, London", client: "Chase Hughes", when: "2023-02", location: "London, UK", venue: "HMS Belfast", size: null, full: true },
+  { slug: "sales-momentum-live", name: "Sales Momentum Live", client: "Aaron Platt", when: null, location: null, venue: null, size: null, full: false },
+  { slug: "the-guardians-annual", name: "The Guardians Annual", client: "Gary Vaynerchuk", when: "2022-04", location: null, venue: null, size: null, full: false },
+  { slug: "e-p-i-c", name: "E.P.I.C", client: "Kaaba Luum", when: null, location: null, venue: null, size: null, full: false },
+  { slug: "powerhouse", name: "Powerhouse", client: "Los Silva", when: null, location: null, venue: null, size: null, full: false },
+  { slug: "founder-os", name: "Founder OS", client: "Matt Gray", when: null, location: null, venue: null, size: null, full: false },
+  { slug: "the-ceo-lawyer-summit-2022", name: "The CEO Lawyer Summit 2022", client: "Ali Awad", when: "2022-12", location: null, venue: null, size: null, full: false },
+  { slug: "ceo-lawyer-summit", name: "The CEO Lawyer Summit", client: "Ali Awad", when: null, location: null, venue: null, size: null, full: true },
+  { slug: "scaling-with-systems-live-2023", name: "Scaling With Systems LIVE 2023", client: "Ravi Abuvala", when: "2023", location: null, venue: null, size: null, full: false },
+  { slug: "scaling-with-systems-live", name: "Scaling With Systems LIVE 2021", client: "Ravi Abuvala", when: "2021-04", location: null, venue: null, size: null, full: true },
+  { slug: "egc-2022", name: "EGC 2022", client: "Austin Zelan", when: "2022", location: null, venue: null, size: null, full: false },
+  { slug: "dealcon-2025", name: "DealCon 2025", client: "Tom Shipley", when: "2025", location: null, venue: null, size: null, full: false },
+  { slug: "casino-royale", name: "Casino Royale", client: "Ben Newman", when: "2023-10", location: "Las Vegas, NV", venue: "Palms Casino Resort", size: "150", full: true },
+  { slug: "viral-ecom-adz", name: "Viral Ecom Adz", client: "Noah Brewer", when: "2023-06", location: null, venue: null, size: null, full: true },
+  // From the old klevr.events site (docs/case-studies/LEGACY-SITE-EXTRACT.md).
+  { slug: "scaling-with-systems-live-2022", name: "Scaling With Systems LIVE 2022", client: "Ravi Abuvala", when: "2022", location: "Miami, FL", venue: "1111 Miami", size: null, full: false },
+  { slug: "rise-x", name: "Rise X", client: null, when: "2022-04", location: "Costa Rica", venue: null, size: null, full: false },
+  { slug: "bulletproof-financial-accelerator", name: "Bulletproof Financial Accelerator", client: "John Whiting", when: "2022-03", location: "Orlando, FL", venue: null, size: null, full: false },
+  { slug: "ace-interstellar", name: "Ace Interstellar", client: "Michael Sheridan", when: "2022-01", location: "Mexico", venue: "OZEN Rajneesh Resort", size: null, full: false },
+  { slug: "behavioral-selling", name: "Behavioral Selling", client: "Chase Hughes", when: "2021-10", location: "Miami, FL", venue: null, size: null, full: false },
+  { slug: "takeover-live-3", name: "Takeover Live 3", client: null, when: "2021-08", location: "Sundance, UT", venue: null, size: null, full: false },
+  { slug: "group-convert-live", name: "Group Convert Live", client: "Kim Dang", when: "2021-08", location: "Las Vegas, NV", venue: null, size: null, full: false },
+  { slug: "takeover-live-2", name: "Takeover Live 2", client: null, when: "2021-05", location: "Las Vegas, NV", venue: null, size: null, full: false },
+  { slug: "7-figure-agency", name: "7-Figure Agency", client: "Joel Kaplan", when: "2021-01", location: "Playa del Carmen, Mexico", venue: null, size: null, full: false },
+  { slug: "takeover-live-1", name: "Takeover Live 1", client: null, when: "2021-01", location: "Las Vegas, NV", venue: null, size: null, full: false },
 ]
 
 export const CASE_STUDY_BY_SLUG = Object.fromEntries(
@@ -583,23 +597,67 @@ export function assertLanderSlugsResolve(work) {
   }
 }
 
-/* Cards for the /case-studies grid, in EVENT_INDEX order. A built event
-   takes its name and client from CASE_STUDIES, so the grid and the page
-   always agree. */
+/* Hand selected photos per event, in public/images/gallery/<folder>/ as
+   01.webp, 02.webp and so on, in the order Iconic picked them. An event not
+   yet written up uses its 01 as the cover on the grid. Two folders have no
+   event here yet: the-behavior-panel-live and the-ceo-lawyer-summit-2021.
+   See docs/case-studies/PHOTO-LIBRARY.md. */
+export const PHOTO_LIBRARY = {
+  "bad-after-dark": { folder: "bad-after-dark", count: 8 },
+  "casino-royale": { folder: "casino-royale", count: 13 },
+  "viral-ecom-adz": { folder: "viral-ecom-adz", count: 49 },
+  "chase-hughes-london": { folder: "chase-hughes-london", count: 19 },
+  "the-black-course": { folder: "the-black-course", count: 43 },
+  "pmuw-2023": { folder: "pmuw-2023", count: 20 },
+  "the-guardians-annual": { folder: "the-guardians-annual", count: 16 },
+  "rise-x": { folder: "rise-x", count: 26 },
+  "scaling-with-systems-live": { folder: "scaling-with-systems-live-2021", count: 14 },
+  "scaling-with-systems-live-2022": { folder: "scaling-with-systems-live-2022", count: 16 },
+  "bulletproof-financial-accelerator": { folder: "bulletproof-financial-accelerator", count: 16 },
+  "ace-interstellar": { folder: "ace-interstellar", count: 17 },
+  "egc-2022": { folder: "epic-growth-conference", count: 16 },
+  "behavioral-selling": { folder: "behavioral-selling", count: 40 },
+  "takeover-live-3": { folder: "takeover-live-3", count: 20 },
+  "group-convert-live": { folder: "group-convert-live", count: 19 },
+  "7-figure-agency": { folder: "7-figure-agency", count: 16 },
+  "takeover-live-1": { folder: "takeover-live-1", count: 35 },
+  "the-ceo-lawyer-summit-2022": { folder: "the-ceo-lawyer-summit-2022", count: 50 },
+}
+
+const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+// "2023-10" reads "October 2023"; "2025" reads "2025".
+export function whenLabel(when) {
+  if (!when) return null
+  const [year, month] = when.split("-")
+  return month ? `${MONTHS[Number(month) - 1]} ${year}` : year
+}
+
+/* Cards for the /case-studies grid, newest first. Year-only events sort
+   after the dated months of their year, undated events last, and ties keep
+   EVENT_INDEX order. A built event takes its name and client from
+   CASE_STUDIES, so the grid and the page always agree. */
 export function caseStudyCards() {
-  return EVENT_INDEX.map((entry) => {
-    const built = entry.full ? CASE_STUDY_BY_SLUG[entry.slug] : null
-    return {
-      slug: entry.slug,
-      name: built?.name ?? entry.name,
-      client: built?.details.client ?? entry.client,
-      date: built?.details.year ?? entry.date,
-      location: entry.location,
-      venue: built?.details.venue ?? entry.venue,
-      size: entry.size,
-      href: built ? `/case-studies/${entry.slug}` : null,
-      cover: built ? built.media.hero ?? built.media.band ?? built.media.resultLeft : null,
-      format: built?.format ?? null,
-    }
-  })
+  const key = (when) => (when ? (when.length === 4 ? `${when}-00` : when) : "")
+  return EVENT_INDEX.map((entry, order) => ({ entry, order }))
+    .sort((a, b) => key(b.entry.when).localeCompare(key(a.entry.when)) || a.order - b.order)
+    .map(({ entry }) => {
+      const built = entry.full ? CASE_STUDY_BY_SLUG[entry.slug] : null
+      return {
+        slug: entry.slug,
+        name: built?.name ?? entry.name,
+        client: built?.details.client ?? entry.client,
+        when: whenLabel(entry.when),
+        location: entry.location,
+        venue: built?.details.venue ?? entry.venue,
+        size: entry.size,
+        href: built ? `/case-studies/${entry.slug}` : null,
+        cover: built
+          ? built.media.hero ?? built.media.band ?? built.media.resultLeft
+          : PHOTO_LIBRARY[entry.slug]
+            ? { src: `/images/gallery/${PHOTO_LIBRARY[entry.slug].folder}/01.webp` }
+            : null,
+        format: built?.format ?? null,
+      }
+    })
 }
