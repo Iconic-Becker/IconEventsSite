@@ -102,18 +102,20 @@ export const HERO = {
 export const PRESS = {
   label: V("As trusted by", "Trusted by"),
   // Logos only. Drop new files in /public/images/press as white on
-  // transparent, and record the intrinsic size here so the browser reserves
-  // the space before the image loads.
+  // transparent and record the intrinsic size here. Two things depend on it:
+  // the browser reserves the right space before the file loads, and the row
+  // sizes each logo to equal visual area rather than equal height.
   //
-  // `stacked` marks a logo that is taller than it is wide relative to a
-  // wordmark. Matching every logo on height would make a stacked one read
-  // half the size, so those render taller and the row balances on area
-  // instead.
+  // Equal height would be wrong. These marks run from 1.5:1 to 7.2:1, so a
+  // square one set to the same height as a long wordmark reads at a third of
+  // its weight. Nothing to set per logo: give the real width and height and
+  // the row works it out.
   logos: [
     { name: "7th Level", src: "/images/press/7th-level.webp", w: 421, h: 120 },
     { name: "Commas", src: "/images/press/commas.webp", w: 581, h: 120 },
     { name: "Scaling With Systems", src: "/images/press/scaling-with-systems.webp", w: 514, h: 120 },
-    { name: "Shelby Sapp's Women & Wealth", src: "/images/press/women-and-wealth.webp", w: 360, h: 240, stacked: true },
+    { name: "Shelby Sapp's Women & Wealth", src: "/images/press/women-and-wealth.webp", w: 360, h: 240 },
+    { name: "NetRevenue", src: "/images/press/netrevenue.webp", w: 1295, h: 180 },
   ],
   // Kept, not rendered. The row ran on these names before the logo files
   // arrived. They are press mentions and venues rather than clients, so if

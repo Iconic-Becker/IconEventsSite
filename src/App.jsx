@@ -163,6 +163,17 @@ function EasterEggReveal() {
 // ribbon repeating the call to action that already sits below it.
 const SHOW_NICHE = false
 
+/* Logo rows read wrong when every mark is set to the same height: a square
+   one then covers a third of the ground a long wordmark does, and looks like
+   a lesser client. Sizing to a constant area instead makes a 1.5:1 mark and a
+   7.2:1 mark carry the same weight. The bounds stop an extreme shape running
+   away with the row. */
+const PRESS_AREA = { phone: 3300, wide: 4300 }
+function pressHeight({ w, h }) {
+  const aspect = w / h
+  const at = (area) => Math.round(Math.min(56, Math.max(20, Math.sqrt(area / aspect))))
+  return { phone: at(PRESS_AREA.phone), wide: at(PRESS_AREA.wide) }
+}
 /* ── Layout primitives ──────────────────────────────────────────────── */
 function Section({ id, className = "", children }) {
   return (
@@ -349,19 +360,21 @@ export default function App() {
           {t(PRESS.label)}
         </p>
         <div className="mt-7 flex flex-wrap items-center justify-center gap-x-12 gap-y-6 sm:gap-x-16">
-          {PRESS.logos.map((l) => (
-            <img
-              key={l.name}
-              src={l.src}
-              alt={l.name}
-              width={l.w}
-              height={l.h}
-              loading="lazy"
-              className={`w-auto opacity-40 transition-opacity duration-300 hover:opacity-75 ${
-                l.stacked ? "h-12 sm:h-[52px]" : "h-7 sm:h-8"
-              }`}
-            />
-          ))}
+          {PRESS.logos.map((l) => {
+            const h = pressHeight(l)
+            return (
+              <img
+                key={l.name}
+                src={l.src}
+                alt={l.name}
+                width={l.w}
+                height={l.h}
+                loading="lazy"
+                style={{ "--h": `${h.phone}px`, "--hs": `${h.wide}px` }}
+                className="h-[var(--h)] w-auto opacity-40 transition-opacity duration-300 hover:opacity-75 sm:h-[var(--hs)]"
+              />
+            )
+          })}
         </div>
       </Section>
 
