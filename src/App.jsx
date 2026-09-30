@@ -35,7 +35,6 @@ import Testimonials from "./components/Testimonials.jsx"
 import Niche from "./components/Niche.jsx"
 import Cta from "./components/Cta.jsx"
 import CtaBand from "./components/CtaBand.jsx"
-import Services from "./components/Services.jsx"
 
 /* ── Identity ───────────────────────────────────────────────────────── */
 function Logo({ tone = "black", className = "" }) {
@@ -422,9 +421,10 @@ export default function App() {
       <Motion />
 
       {/* Order below answers a prospect's questions in the order they ask
-          them: who you are, whether you are for them, what you do, how you
-          do it, whether it works, and what it looked like. Every component
-          is unchanged; only the sequence and the calls to action are new. */}
+          them: who you are, whether you are for them, what is and is not in
+          scope, how you do it, whether it works, and what it looked like.
+          Every component is unchanged; only the sequence and the calls to
+          action are new. */}
 
       {/* ── WHO WE ARE ──────────────────────────────────────────────────── */}
       <Position />
@@ -432,9 +432,6 @@ export default function App() {
       {/* ── WHO IT IS FOR — moved ahead of the offer: naming who we are not
              for qualifies the reader before we explain anything ─────────── */}
       <Niche />
-
-      {/* ── WHAT WE DO — never rendered before this ─────────────────────── */}
-      <Services />
 
       {/* ── WHAT IS AND IS NOT INCLUDED ─────────────────────────────────── */}
       <Scope />
