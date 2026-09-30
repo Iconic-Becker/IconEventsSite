@@ -13,6 +13,16 @@ the old site extract.
 
 ## Q1. What did they come to you with?
 
+User, 2026-09-30, verbatim:
+
+> had never ran a live event before, but she's already established a pretty
+> devoted community of freedom queens. So she wanted to make sure that this
+> first event not only met the expectations of her audience, but also really
+> lived up to the legacy and class of Freedom Queen Live. I don't think we
+> need to put on this element what was writing on it if the event flopped.
+
+Captured: the first Freedom Queen Live. No stakes on the page.
+
 ## Q2. What made this one hard?
 
 ## Q3. Three to five decisions, and why
