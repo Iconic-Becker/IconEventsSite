@@ -101,21 +101,22 @@ export const HERO = {
 /* ── 02 · PRESS ───────────────────────────────────────────────────────── */
 export const PRESS = {
   label: V("As trusted by", "Trusted by"),
-  // Logos only. Drop new files in /public/images/press as white on
-  // transparent and record the intrinsic size here. Two things depend on it:
-  // the browser reserves the right space before the file loads, and the row
-  // sizes each logo to equal visual area rather than equal height.
+  // Every file ships on the same 1400x400 canvas, bone on transparent, the
+  // logo optically balanced inside it: a long wordmark set smaller, a stacked
+  // mark larger. That padding is the balancing, so the row sets one height for
+  // all of them and the files decide their own weight.
   //
-  // Equal height would be wrong. These marks run from 1.5:1 to 7.2:1, so a
-  // square one set to the same height as a long wordmark reads at a third of
-  // its weight. Nothing to set per logo: give the real width and height and
-  // the row works it out.
+  // Keep new logos on the same canvas, and do not trim them. Trimming would
+  // throw the balancing away and put a long wordmark back to the same height
+  // as a square mark, which reads wrong.
   logos: [
-    { name: "7th Level", src: "/images/press/7th-level.webp", w: 421, h: 120 },
-    { name: "Commas", src: "/images/press/commas.webp", w: 581, h: 120 },
-    { name: "Scaling With Systems", src: "/images/press/scaling-with-systems.webp", w: 514, h: 120 },
-    { name: "Shelby Sapp's Women & Wealth", src: "/images/press/women-and-wealth.webp", w: 360, h: 240 },
-    { name: "NetRevenue", src: "/images/press/netrevenue.webp", w: 1295, h: 180 },
+    { name: "7th Level", src: "/images/press/7th-level.webp", w: 1400, h: 400 },
+    { name: "Commas", src: "/images/press/commas.webp", w: 1400, h: 400 },
+    { name: "Scaling With Systems", src: "/images/press/scaling-with-systems.webp", w: 1400, h: 400 },
+    // Re-canvassed here to match the set, pending a supplied version.
+    { name: "Shelby Sapp's Women & Wealth", src: "/images/press/women-and-wealth.webp", w: 1400, h: 400 },
+    { name: "NetRevenue", src: "/images/press/netrevenue.webp", w: 1400, h: 400 },
+    { name: "Closers.io", src: "/images/press/closers-io.webp", w: 1400, h: 400 },
   ],
   // Kept, not rendered. The row ran on these names before the logo files
   // arrived. They are press mentions and venues rather than clients, so if

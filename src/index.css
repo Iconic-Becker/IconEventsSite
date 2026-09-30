@@ -121,6 +121,23 @@ body {
   animation: fade-rise 0.8s ease-out both;
 }
 
+/* Trusted-by logos: each one rises out of focus as the row comes into view,
+   a tenth of a second behind the last. Same family as fade-rise, slower, with
+   the focus pull. The animation runs on a wrapper, not the image, so it does
+   not fight the resting opacity. */
+@keyframes logo-rise {
+  from { opacity: 0; transform: translateY(20px); filter: blur(12px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+}
+
+.logo-rise {
+  animation: logo-rise 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-rise { animation: none; opacity: 1; }
+}
+
 /* Nav border beam — a faint brass highlight travelling left→right along the
    bottom edge. Deliberately subtle: 1px, low opacity, slow. */
 @keyframes nav-beam {
