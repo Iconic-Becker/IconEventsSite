@@ -60,7 +60,18 @@ event. Do not mention the sales team.
 
 ## Q4. Challenges overcome
 
+User, 2026-09-30, verbatim (with Q5):
+
+> thats fine, no challenges overcome.   For question five, this is built for
+> a founder with a loyal community who wants to have a more reserved,
+> timeless experience. Less focused on the mixers and parties and more
+> focused on the education.
+
+Captured: keep step 3 (offer design). No Challenges Overcome section.
+
 ## Q5. Who is this build right for?
+
+See Q4 above.
 
 ## Q6. Anything else about the event?
 
