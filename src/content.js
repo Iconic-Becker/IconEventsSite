@@ -104,10 +104,16 @@ export const PRESS = {
   // Logos only. Drop new files in /public/images/press as white on
   // transparent, and record the intrinsic size here so the browser reserves
   // the space before the image loads.
+  //
+  // `stacked` marks a logo that is taller than it is wide relative to a
+  // wordmark. Matching every logo on height would make a stacked one read
+  // half the size, so those render taller and the row balances on area
+  // instead.
   logos: [
     { name: "7th Level", src: "/images/press/7th-level.webp", w: 421, h: 120 },
     { name: "Commas", src: "/images/press/commas.webp", w: 581, h: 120 },
     { name: "Scaling With Systems", src: "/images/press/scaling-with-systems.webp", w: 514, h: 120 },
+    { name: "Shelby Sapp's Women & Wealth", src: "/images/press/women-and-wealth.webp", w: 360, h: 240, stacked: true },
   ],
   // Kept, not rendered. The row ran on these names before the logo files
   // arrived. They are press mentions and venues rather than clients, so if

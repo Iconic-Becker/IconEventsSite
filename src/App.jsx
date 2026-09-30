@@ -357,7 +357,9 @@ export default function App() {
               width={l.w}
               height={l.h}
               loading="lazy"
-              className="h-7 w-auto opacity-40 transition-opacity duration-300 hover:opacity-75 sm:h-8"
+              className={`w-auto opacity-40 transition-opacity duration-300 hover:opacity-75 ${
+                l.stacked ? "h-12 sm:h-[52px]" : "h-7 sm:h-8"
+              }`}
             />
           ))}
         </div>
