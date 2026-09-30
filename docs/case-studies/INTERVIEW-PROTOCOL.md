@@ -143,7 +143,9 @@ Fields, and which question feeds them:
 **Q4 gets its own section, "Challenges Overcome"** (Iconic's call,
 2026-09-30). Frame each one as the challenge and how it was overcome,
 never as a list of what went wrong. Not built into the page template yet.
-**Q5, right for / wrong for,** is captured in the sheet; whether it gets a
+**Steal This** (Iconic, 2026-09-30): where the interview surfaces an idea
+other event hosts could borrow, add a short "Steal This" block. It shows
+generosity and expertise. **Q5, right for / wrong for,** is captured in the sheet; whether it gets a
 page section is still Iconic's call.
 
 ## 4. House rules, enforced by the code
