@@ -19,17 +19,20 @@ const ROUTES = [
     title: 'Event Production in South Florida | Iconic Events',
     description:
       'Iconic Events is a full-service event production company crafting corporate & experiential events across South Florida. Get a free quote today.',
+    image: '/og/default.jpg',
   },
   {
     path: '/case-studies',
     title: 'Case Studies | Iconic Events',
     description:
       'Every room Iconic Events has engineered: events for founders, agencies and creators across the US, UK, Spain and the UAE.',
+    image: '/og/case-studies.jpg',
   },
   ...CASE_STUDIES.map((study) => ({
     path: `/case-studies/${study.slug}`,
     title: `${study.name} · Case Study · Iconic Events`,
     description: study.summary,
+    image: `/og/${study.slug}.jpg`,
   })),
 ]
 
@@ -41,6 +44,7 @@ ROUTES.push({
   title: 'Request confirmed · Iconic Events',
   description:
     'Your request has been received. A director from Iconic Events will be in touch within 48 hours.',
+  image: '/og/default.jpg',
   sitemap: false,
 })
 
@@ -49,6 +53,28 @@ const template = fs.readFileSync('dist/index.html', 'utf-8')
 const escape = (value) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
+// Without these, a link shared to Slack, WhatsApp or LinkedIn renders as a
+// bare URL: no image, no title, no description.
+function socialTags(route) {
+  const url = `${SITE}${route.path}`
+  const image = `${SITE}${route.image ?? '/og/default.jpg'}`
+  return [
+    `<meta property="og:type" content="website" />`,
+    `<meta property="og:site_name" content="Iconic Events" />`,
+    `<meta property="og:title" content="${escape(route.title)}" />`,
+    `<meta property="og:description" content="${escape(route.description)}" />`,
+    `<meta property="og:url" content="${url}" />`,
+    `<meta property="og:image" content="${image}" />`,
+    `<meta property="og:image:width" content="1200" />`,
+    `<meta property="og:image:height" content="630" />`,
+    `<meta property="og:image:alt" content="${escape(route.title)}" />`,
+    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="twitter:title" content="${escape(route.title)}" />`,
+    `<meta name="twitter:description" content="${escape(route.description)}" />`,
+    `<meta name="twitter:image" content="${image}" />`,
+  ].map((tag) => `  ${tag}`).join('\n')
+}
+
 for (const route of ROUTES) {
   const html = template
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${escape(route.title)}</title>`)
@@ -56,7 +82,10 @@ for (const route of ROUTES) {
       /<meta\s+name="description"[\s\S]*?\/>/,
       `<meta name="description" content="${escape(route.description)}" />`
     )
-    .replace('</head>', `  <link rel="canonical" href="${SITE}${route.path}" />\n  </head>`)
+    .replace(
+      '</head>',
+      `  <link rel="canonical" href="${SITE}${route.path}" />\n${socialTags(route)}\n  </head>`
+    )
     .replace('<div id="root"></div>', `<div id="root">${render(route.path)}</div>`)
 
   // Write both route/index.html and route.html so the extensionless URL
