@@ -42,6 +42,22 @@ the city for the page.
 
 ## Q3. Three to five decisions, and why
 
+User, 2026-09-30, verbatim:
+
+> eh alright st peter it is   Other unique things that we brought into the
+> venue to elevate the experience. Was focusing on installations that added
+> to the experience of the event such as like our wishing tree where
+> attendees can actually make a physical prayer and then put it on the tree
+> we also had to support her designing the offer so bridget was launching
+> her first large live sales from stage events and we needed to provide a
+> sales team that would be able to support and reinforce those sales
+> decisions. Now, candidly, I don't think I really want to mention the sales
+> team in here, so I think two main decisions is fine.
+
+Captured: venue city St. Petersburg, FL. Installations such as the
+wishing tree. Offer design support for her first large sales from stage
+event. Do not mention the sales team.
+
 ## Q4. Challenges overcome
 
 ## Q5. Who is this build right for?
@@ -55,7 +71,7 @@ the city for the page.
 - Attendance:
 - Days of production on site:
 - Cost saved for the client:
-- Venue, city, month, year: November 2024
+- Venue, city, month, year: the Vinoy, St. Petersburg, FL, November 2024
 - Scope:
 - Client name, title, company: Bridget James Ling
 - Aftermovie:
