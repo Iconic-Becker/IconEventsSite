@@ -69,10 +69,12 @@ export default function SiteHeader({ home = false, contactHere = false }) {
         </nav>
         <CaseStudyTab />
       </header>
-      <nav aria-label="Mobile navigation" className="mobile-nav sticky top-0 z-40 max-w-full overflow-x-auto border-y border-bone/10 bg-onyx/95 px-3 backdrop-blur md:hidden">
-        <div className="flex min-w-max items-center">
+      {/* Six even columns rather than a scrolling row: at 390px the row pushed
+          Contact past the right edge, where nobody swipes to find it. */}
+      <nav aria-label="Mobile navigation" className="mobile-nav sticky top-0 z-40 border-y border-bone/10 bg-onyx/95 backdrop-blur md:hidden">
+        <div className="grid grid-cols-6 items-stretch">
           {[...left, ...right].map((n) => (
-            <a key={n.href} href={n.href} className="flex min-h-11 items-center px-3 font-sans text-[11px] font-bold uppercase tracking-[0.12em] text-bone/70">
+            <a key={n.href} href={n.href} className="flex min-h-11 items-center justify-center px-1 text-center font-sans text-[10px] font-bold uppercase tracking-[0.04em] text-bone/70">
               {n.label}
             </a>
           ))}

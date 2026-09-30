@@ -116,6 +116,7 @@ Fields, and which question feeds them:
 | `testimonial` | `{ quote, approved }`. See rule 4 below. |
 | `citation` | One sentence naming client, event, venue, city and scope |
 | `cta` | Heading of the contact form closing the page, specific to this event: "Want to build a brand activation like Eddie's?" |
+| `format` | What kind of event it was in Iconic's terms: Mastermind, Summit, Conference, Brand activation. Shown in the hero meta line. Ask; do not infer it from the name. |
 
 **Q4 and Q5 have no home in the current template.** There is no "what
 nearly broke" section and no "who this is wrong for" block. Capture both in

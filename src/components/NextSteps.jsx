@@ -149,7 +149,7 @@ export default function NextSteps() {
                   <div className="absolute inset-0 bg-gradient-to-t from-onyx via-onyx/30 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-5">
                     <p className="font-sans text-[10px] font-bold uppercase tracking-[0.16em] text-brass">
-                      {study.details.client}
+                      {study.format ?? study.details.client}
                     </p>
                     <h3 className="mt-2 font-serif text-2xl font-semibold">{study.name}</h3>
                   </div>

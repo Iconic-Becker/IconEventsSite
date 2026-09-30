@@ -82,22 +82,6 @@ function Dropdown({ value, options, onChange }) {
 }
 
 // Success block shown after submit.
-function Done({ t, f, email }) {
-  const [before, after] = t(f.successBody).split("{email}")
-  return (
-    <div className="mt-10 border border-brass bg-bone p-8 text-onyx sm:p-12">
-      <div className="mb-4 flex h-11 w-11 items-center justify-center border border-brass text-brass">
-        <Icon name="seal" className="h-6 w-6" />
-      </div>
-      <h3 className="font-serif text-2xl font-semibold text-onyx">{t(f.successTitle)}</h3>
-      <p className="mt-2 max-w-sm font-sans text-sm leading-relaxed text-onyx/65">
-        {before}
-        <span className="font-semibold text-onyx">{email || "your inbox"}</span>
-        {after}
-      </p>
-    </div>
-  )
-}
 
 /* ── Start a Conversation · The Brief ─────────────────────────────────
    Full-height, patterned close. The qualifier is a bold statement in a
@@ -127,6 +111,11 @@ export default function Cta({ modal = false, eyebrow, title }) {
       /* Only past a resolved send: the confirmation page is the receipt, so
          it must never appear for an enquiry that did not reach us. */
       setStatus("done")
+      /* The conversion. Fires only after the endpoint confirms delivery, so it
+         counts enquiries that actually reached us. Trigger on this event name
+         in GTM. */
+      window.dataLayer = window.dataLayer || []
+      window.dataLayer.push({ event: "enquiry_submitted" })
       navigate("/nextsteps")
     } catch (error) {
       console.error("Enquiry failed to send:", error)
@@ -150,9 +139,7 @@ export default function Cta({ modal = false, eyebrow, title }) {
           {title ?? accent(t(CTA.title), "about the room")}
         </h2>
         <p className="mt-5 max-w-xl font-sans text-lg text-bone/65">{t(CTA.formLead)}</p>
-        {status === "done" ? (
-          <Done t={t} f={f} email={email} />
-        ) : (
+        {status !== "done" && (
           <>
             {status === "error" && (
               <div role="alert" className="mt-8 border border-brass/60 bg-onyx/60 p-5 sm:p-6">

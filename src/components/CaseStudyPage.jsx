@@ -61,7 +61,11 @@ function StructuredData({ study, faqs }) {
     author: { "@type": "Organization", name: "Iconic Events" },
     publisher: { "@type": "Organization", name: "Iconic Events" },
     about: {
-      "@type": "Event",
+      /* BusinessEvent covers the masterminds, summits and conferences that
+         make up most of the work. A brand activation sets eventType to
+         SocialEvent. Both are subtypes of Event, so nothing is lost by being
+         specific. */
+      "@type": study.eventType ?? "BusinessEvent",
       name: study.name,
       ...(d.dates ? { startDate: d.dates } : {}),
       ...(d.venue
@@ -81,8 +85,14 @@ function StructuredData({ study, faqs }) {
             },
           }
         : {}),
-      organizer: { "@type": "Organization", name: "Iconic Events" },
-      ...(d.client ? { performer: { "@type": "Person", name: d.client } } : {}),
+      /* Iconic produces the event; the client hosts it under their own brand.
+         Both are organizers. `performer` is for someone performing at an
+         event, a musician or an act, and is wrong for a mastermind or a
+         summit. */
+      organizer: [
+        { "@type": "Organization", name: "Iconic Events" },
+        ...(d.client ? [{ "@type": "Person", name: d.client }] : []),
+      ],
     },
   }
 
@@ -416,7 +426,7 @@ function Related({ study }) {
                 <div className="absolute inset-0 bg-gradient-to-t from-onyx via-onyx/25 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-5">
                   <h3 className="font-serif text-2xl font-semibold">{item.name}</h3>
-                  <p className="mt-2 font-sans text-[11px] font-bold uppercase tracking-[0.14em] text-brass">{item.details.client}</p>
+                  <p className="mt-2 font-sans text-[11px] font-bold uppercase tracking-[0.14em] text-brass">{item.format ?? item.details.client}</p>
                 </div>
               </a>
             )
@@ -444,7 +454,9 @@ export function CaseStudyNotFound() {
 export default function CaseStudyPage({ study }) {
   const faqs = faqsFor(study)
   const d = study.details
-  const heroMeta = [d.client, d.venue, d.year].filter(Boolean).join(" · ")
+  const heroMeta = [study.format, d.client, d.venue, d.year]
+    .filter(Boolean)
+    .join(" · ")
 
   useEffect(() => {
     document.title = `${study.name} · Case Study · Iconic Events`

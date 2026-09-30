@@ -7,61 +7,61 @@
 /* Cormorant Garamond */
 @font-face {
   font-family: "Cormorant Garamond";
-  src: url("/fonts/CormorantGaramond-Regular.ttf") format("truetype");
+  src: url("/fonts/CormorantGaramond-Regular.woff2") format("woff2");
   font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Cormorant Garamond";
-  src: url("/fonts/CormorantGaramond-Italic.ttf") format("truetype");
+  src: url("/fonts/CormorantGaramond-Italic.woff2") format("woff2");
   font-weight: 400; font-style: italic; font-display: swap;
 }
 @font-face {
   font-family: "Cormorant Garamond";
-  src: url("/fonts/CormorantGaramond-Medium.ttf") format("truetype");
+  src: url("/fonts/CormorantGaramond-Medium.woff2") format("woff2");
   font-weight: 500; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Cormorant Garamond";
-  src: url("/fonts/CormorantGaramond-MediumItalic.ttf") format("truetype");
+  src: url("/fonts/CormorantGaramond-MediumItalic.woff2") format("woff2");
   font-weight: 500; font-style: italic; font-display: swap;
 }
 @font-face {
   font-family: "Cormorant Garamond";
-  src: url("/fonts/CormorantGaramond-SemiBold.ttf") format("truetype");
+  src: url("/fonts/CormorantGaramond-SemiBold.woff2") format("woff2");
   font-weight: 600; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Cormorant Garamond";
-  src: url("/fonts/CormorantGaramond-SemiBoldItalic.ttf") format("truetype");
+  src: url("/fonts/CormorantGaramond-SemiBoldItalic.woff2") format("woff2");
   font-weight: 600; font-style: italic; font-display: swap;
 }
 @font-face {
   font-family: "Cormorant Garamond";
-  src: url("/fonts/CormorantGaramond-Bold.ttf") format("truetype");
+  src: url("/fonts/CormorantGaramond-Bold.woff2") format("woff2");
   font-weight: 700; font-style: normal; font-display: swap;
 }
 
 /* Helvetica */
 @font-face {
   font-family: "Helvetica";
-  src: url("/fonts/Helvetica.ttf") format("truetype");
+  src: url("/fonts/Helvetica.woff2") format("woff2");
   font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Helvetica";
-  src: url("/fonts/Helvetica-Oblique.ttf") format("truetype");
+  src: url("/fonts/Helvetica-Oblique.woff2") format("woff2");
   font-weight: 400; font-style: italic; font-display: swap;
 }
 @font-face {
   font-family: "Helvetica";
-  src: url("/fonts/Helvetica-Bold.ttf") format("truetype");
+  src: url("/fonts/Helvetica-Bold.woff2") format("woff2");
   font-weight: 700; font-style: normal; font-display: swap;
 }
 
 /* Causten — reserved for all-caps poster moments (never body copy). */
 @font-face {
   font-family: "Causten";
-  src: url("/fonts/Causten-Bold.otf") format("opentype");
+  src: url("/fonts/Causten-Bold.woff2") format("woff2");
   font-weight: 700; font-style: normal; font-display: swap;
 }
 

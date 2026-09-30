@@ -38,7 +38,7 @@ export default function Position() {
   const ki = title.indexOf(key)
 
   return (
-    <section id="work" className="relative overflow-hidden py-16 sm:py-20">
+    <section id="position" className="relative overflow-hidden py-16 sm:py-20">
       {/* atmosphere — a wide blurred glow behind the top of the image +
           particles rising up */}
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
