@@ -90,16 +90,22 @@ Captured: offer launched; inner circle community launched. Wishing tree
 as Steal This. About 400 attendees (estimate: confirm how to publish).
 Aftermovie exists, link needed. No testimonial video.
 
+## Facts, final
+
+User, 2026-09-30, verbatim:
+
+> We had 3.5 days on site, mark the photos to come in later, and 451 attendees on site
+
 ## Steal This
 
 ## Facts
 
-- Attendance: about 400 on site
-- Days of production on site:
+- Attendance: 451 on site
+- Days of production on site: 3.5
 - Cost saved for the client:
 - Venue, city, month, year: the Vinoy, St. Petersburg, FL, November 2024
 - Scope:
 - Client name, title, company: Bridget James Ling
 - Aftermovie: exists, link needed
 - Testimonial video: none
-- Photo folder / photographer / usage rights:
+- Photo folder / photographer / usage rights: to come in later
