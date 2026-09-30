@@ -163,6 +163,17 @@ function EasterEggReveal() {
 // ribbon repeating the call to action that already sits below it.
 const SHOW_NICHE = false
 
+/* Logo rows read wrong when every mark is set to the same height: a square
+   one then covers a third of the ground a long wordmark does, and looks like
+   a lesser client. Sizing to a constant area instead makes a 1.5:1 mark and a
+   7.2:1 mark carry the same weight. The bounds stop an extreme shape running
+   away with the row. */
+const PRESS_AREA = { phone: 3300, wide: 4300 }
+function pressHeight({ w, h }) {
+  const aspect = w / h
+  const at = (area) => Math.round(Math.min(56, Math.max(20, Math.sqrt(area / aspect))))
+  return { phone: at(PRESS_AREA.phone), wide: at(PRESS_AREA.wide) }
+}
 /* ── Layout primitives ──────────────────────────────────────────────── */
 function Section({ id, className = "", children }) {
   return (
@@ -348,17 +359,22 @@ export default function App() {
         <p className="text-center font-sans text-xs uppercase tracking-[0.25em] text-bone/40">
           {t(PRESS.label)}
         </p>
-        {/* TODO: swap these text placeholders for the official mono/white logo
-            files once provided (drop them in /public/images/press). */}
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-          {PRESS.logos.map((l) => (
-            <span
-              key={l}
-              className="font-serif text-lg text-bone/25 transition-colors duration-300 hover:text-bone/50"
-            >
-              {l}
-            </span>
-          ))}
+        <div className="mt-7 flex flex-wrap items-center justify-center gap-x-12 gap-y-6 sm:gap-x-16">
+          {PRESS.logos.map((l) => {
+            const h = pressHeight(l)
+            return (
+              <img
+                key={l.name}
+                src={l.src}
+                alt={l.name}
+                width={l.w}
+                height={l.h}
+                loading="lazy"
+                style={{ "--h": `${h.phone}px`, "--hs": `${h.wide}px` }}
+                className="h-[var(--h)] w-auto opacity-40 transition-opacity duration-300 hover:opacity-75 sm:h-[var(--hs)]"
+              />
+            )
+          })}
         </div>
       </Section>
 
