@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import {
   HERO,
   PRESS,
@@ -163,16 +163,31 @@ function EasterEggReveal() {
 // ribbon repeating the call to action that already sits below it.
 const SHOW_NICHE = false
 
-/* Logo rows read wrong when every mark is set to the same height: a square
-   one then covers a third of the ground a long wordmark does, and looks like
-   a lesser client. Sizing to a constant area instead makes a 1.5:1 mark and a
-   7.2:1 mark carry the same weight. The bounds stop an extreme shape running
-   away with the row. */
-const PRESS_AREA = { phone: 3300, wide: 3900 }
-function pressHeight({ w, h }) {
-  const aspect = w / h
-  const at = (area) => Math.round(Math.min(56, Math.max(20, Math.sqrt(area / aspect))))
-  return { phone: at(PRESS_AREA.phone), wide: at(PRESS_AREA.wide) }
+/* Every press logo ships on one 1400x400 canvas with the mark balanced inside
+   it, so the row sets a single height and lets the files carry their own
+   weight. See PRESS in content.js before touching these images. */
+
+// Fires once, when the row first scrolls into view. Same idiom as Scope and
+// Receipts, kept local rather than shared, as they are.
+function useSeen(threshold = 0.25) {
+  const ref = useRef(null)
+  const [seen, setSeen] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el || seen) return
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setSeen(true)
+          io.disconnect()
+        }
+      },
+      { threshold }
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [seen, threshold])
+  return [ref, seen]
 }
 /* ── Layout primitives ──────────────────────────────────────────────── */
 function Section({ id, className = "", children }) {
@@ -218,6 +233,7 @@ function useHashLanding() {
 
 export default function App() {
   const { t } = useVoice()
+  const [pressRef, pressSeen] = useSeen()
   useHashLanding()
   return (
     <div className="min-h-screen bg-onyx text-bone">
@@ -359,22 +375,26 @@ export default function App() {
         <p className="text-center font-sans text-xs uppercase tracking-[0.25em] text-bone/40">
           {t(PRESS.label)}
         </p>
-        <div className="mt-7 flex flex-wrap items-center justify-center gap-x-10 gap-y-7 sm:gap-x-8 xl:gap-x-12">
-          {PRESS.logos.map((l) => {
-            const h = pressHeight(l)
-            return (
+        <div
+          ref={pressRef}
+          className="mt-5 flex flex-wrap items-center justify-center gap-x-1 gap-y-1 sm:gap-x-2"
+        >
+          {PRESS.logos.map((l, i) => (
+            <span
+              key={l.name}
+              className={`inline-flex ${pressSeen ? "logo-rise" : "opacity-0"}`}
+              style={pressSeen ? { animationDelay: `${i * 100}ms` } : undefined}
+            >
               <img
-                key={l.name}
                 src={l.src}
                 alt={l.name}
                 width={l.w}
                 height={l.h}
                 loading="lazy"
-                style={{ "--h": `${h.phone}px`, "--hs": `${h.wide}px` }}
-                className="h-[var(--h)] w-auto opacity-40 transition-opacity duration-300 hover:opacity-75 sm:h-[var(--hs)]"
+                className="h-10 w-auto opacity-50 transition-opacity duration-300 hover:opacity-90 sm:h-12"
               />
-            )
-          })}
+            </span>
+          ))}
         </div>
       </Section>
 
