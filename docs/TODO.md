@@ -1,7 +1,7 @@
 # Website to-do
 
 Running list. Update it as things move; do not let it go stale.
-Last updated: 2026-09-30.
+Last updated: 2026-09-30, after the homepage resequence shipped.
 
 ---
 
@@ -88,14 +88,22 @@ no horizontal overflow at 390px.
 | # | Item | Note |
 |---|---|---|
 | 18 | **Case study interviews** | 31 of 37 events still to write up. Protocol is ready: `docs/case-studies/INTERVIEW-PROTOCOL.md`. Start whenever. |
-| 19 | **Remove dead success-state code** | The `Done` component and `successTitle` / `successBody` in `content.js` are unreachable since the form goes to `/nextsteps`. Harmless, but it will confuse whoever edits that copy next. |
-| 20 | **Remove the unused placeholder image** | `public/images/placeholder.png` is 630KB, imported in `App.jsx`, and never rendered. |
+| 21 | **Event formats are unset** | You said every event is a mastermind, summit, conference, or brand activation. Only Bad After Dark has `format` filled in, so every other card falls back to the client name instead of naming the kind of event. Six built studies need it now; the rest come with their interviews. |
 
 ---
 
 ## Recently shipped
 
 For context on what is already done, so it does not get re-raised.
+
+- Homepage resequenced so the page answers who we are, who it is for, what we do, how, proof, then work. Section numbering removed. Calls to action added through the middle: the longest stretch with no CTA went from 17.6 phone screens to 5.3, and the page from 22.0 screens to 16.0.
+- Three homepage sections taken out. Capability, and the In the room and From the host pair that put three showcase sections back to back. The Uncontested Room is **hidden, not deleted**: it sits behind `SHOW_NICHE` in `App.jsx`, component and copy intact, so it is a one-word change to bring back.
+- Navigation rebuilt to match the new order: Services, Method, Results, Work, Gallery, Contact. It had been pointing at the old sequence and carried a dead `#testimonials` link.
+- Navigation shared across pages as `SiteHeader`. On the homepage the links are in-page anchors; elsewhere they return to the homepage sections, except Contact on a case study page, which carries its own form.
+- Mobile nav fixed. Six labels measured 513px against a 390px screen, so Contact sat off the right edge where nobody swipes. Six even columns now, all visible down to 320px, tap targets still 44px.
+- `Position` was carrying `id="work"`, a copy-paste leftover, so every "see the work" link landed on it instead of Selected Work. Now `id="position"`.
+- Hero trimmed. The audience line and est. mark above the headline are out; the copy stays in `content.js` unrendered. New subhead names the work and says "live in person events".
+- Dead success-state code and the unused 630KB placeholder image removed.
 
 - Deploy pipeline fixed. Railway was watching `k-aido/IconEventsSite`; it had been serving a build from a month earlier, so neither the team's prerender work nor anything since had gone live.
 - Six case study pages, prerendered, each with its own title, description and canonical.
