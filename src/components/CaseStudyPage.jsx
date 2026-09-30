@@ -501,10 +501,11 @@ export default function CaseStudyPage({ study }) {
         </div>
       </section>
 
+      {/* the one ask on the page: the site's contact form, headed by this event's line */}
+      <Cta eyebrow="Start a Conversation" title={study.cta} />
+
       <Related study={study} />
 
-      {/* the one ask on the page: the site's contact form, closing on this event's line */}
-      <Cta eyebrow="Start a Conversation" title={study.cta} />
     </main>
   )
 }

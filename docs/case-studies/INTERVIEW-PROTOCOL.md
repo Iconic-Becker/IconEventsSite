@@ -143,8 +143,9 @@ These are not style preferences. `src/case-studies.js` and
    lift them whole.
 9. **One ask, at the bottom.** Case study pages are the one exception to
    the site's CTA ribbon every other section: no mid page band, no scroll
-   pop up, just the site's contact form closing the page. Its heading is
-   the event's own `cta` line, tied to what was built.
+   pop up, just the site's contact form, placed directly above "The next
+   room" on every case study. Its heading is the event's own `cta` line,
+   tied to what was built.
 
 If the user asks for something that breaks 1 or 2, say so once, and follow
 their decision if they confirm. Both rules were deliberate, and there is an

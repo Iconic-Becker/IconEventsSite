@@ -37,7 +37,7 @@
    headline     Results first: "How <client> <result> at <event>".
    cta          The closing ask, specific to this event and in our voice,
                 e.g. "Want to build a brand activation like Eddie's?" Heads
-                the contact form at the bottom of the page.
+                the contact form above "The next room".
    summary      50 to 100 words. The block answer engines lift verbatim.
    challenge    2 to 4 sentences, plainly stated.
    approach     { pre, onsite, post } arrays of strings. Rendered as one
