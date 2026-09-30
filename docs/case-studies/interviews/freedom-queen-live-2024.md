@@ -75,16 +75,31 @@ See Q4 above.
 
 ## Q6. Anything else about the event?
 
+User, 2026-09-30, verbatim (how it went, Steal This, facts):
+
+> so the event went phenomenal. Bridget ended up successfully launching her
+> offer, and the attendees were thrilled. Overall, they felt bonded,
+> connected, and Bridget was able to launch her inner circle community. I
+> think that the wishing tree could work as an idea that other hosts can
+> borrow where attendees are able to write a prayer and intention for the
+> next event. And then in terms of attendance, I believe we had about 400
+> attendees on site. We do have an after movie. We don't have a testimonial
+> video link.
+
+Captured: offer launched; inner circle community launched. Wishing tree
+as Steal This. About 400 attendees (estimate: confirm how to publish).
+Aftermovie exists, link needed. No testimonial video.
+
 ## Steal This
 
 ## Facts
 
-- Attendance:
+- Attendance: about 400 on site
 - Days of production on site:
 - Cost saved for the client:
 - Venue, city, month, year: the Vinoy, St. Petersburg, FL, November 2024
 - Scope:
 - Client name, title, company: Bridget James Ling
-- Aftermovie:
-- Testimonial video:
+- Aftermovie: exists, link needed
+- Testimonial video: none
 - Photo folder / photographer / usage rights:
