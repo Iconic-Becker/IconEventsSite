@@ -70,16 +70,32 @@ User, 2026-10-01, verbatim (how it went, right for, facts):
 Captured: no right for section. Attendance grew to about 500 (exact count
 to confirm). Aftermovie exists, link needed. Days on site not answered.
 
+## Facts, final
+
+User, 2026-10-01, verbatim:
+
+> I think we could have done a little bit better on that title, though, just
+> to make it more enticing. Something like how Freedom Queen changed the
+> standard format of business events to create a Broadway-style conference
+> that attracted over 500 attendees, like something like that. Um, let's
+> assume it's 530 attendees for year two. Days on site, it was 3.5 days. And
+> I'm just going to need you to put a note that the after movie and
+> testimonial links will come later.
+
+Captured: 530 attendees (figure supplied by Iconic). 3.5 days on site.
+Aftermovie and testimonial links to come later. Headline should be more
+enticing, along the lines given.
+
 ## Steal This
 
 ## Facts
 
-- Attendance: about 500 (exact to confirm)
-- Days of production on site:
+- Attendance: 530 (supplied by Iconic)
+- Days of production on site: 3.5
 - Cost saved for the client:
 - Venue, city, month, year: the Vinoy, St. Petersburg, FL, November 2025
 - Scope:
 - Client name, title, company: Bridget James Ling
-- Aftermovie: exists, link needed
-- Testimonial video:
+- Aftermovie: exists, link to come later
+- Testimonial video: link to come later
 - Photo folder / photographer / usage rights:

@@ -126,7 +126,7 @@ Fields, and which question feeds them:
 
 | Field | Source |
 |---|---|
-| `headline` | Results first: "How <client> <result> at <event>" |
+| `headline` | Results first and enticing: what changed, and a number. Iconic's example: "How Freedom Queen Live Rewrote the Business Event Format and Drew 530 Attendees to a Broadway Style Show" |
 | `summary` | 50 to 100 words, in our voice ("we"). Client, challenge, solution, result, in that order. Also the meta description. |
 | `challenge` | The old site's challenge copy where it exists, then Q1 and Q2. One string or an array of paragraphs. |
 | `approach` | Q3, split into `pre` / `onsite` / `post` arrays. Rendered as one continuously numbered list. |
