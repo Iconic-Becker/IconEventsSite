@@ -45,6 +45,11 @@
                 where it exists. A string or an array of paragraphs.
    highlights   Optional [[value, label]] shown large beside the results,
                 e.g. ["300", "Attendees"]. Falls back to the metrics.
+   challengesOvercome  Optional. Each challenge and how it was overcome,
+                never a list of what went wrong.
+   rightFor     Optional. Who a build like this is right for.
+   stealThis    Optional. An idea other hosts can borrow.
+   thirdPerson  Optional. Iconic's own events: no first person, no client.
    results      How it went, in prose, above the metrics. A string or an
                 array of paragraphs. No client revenue (house rule 1).
    approach     { pre, onsite, post } arrays of strings. Rendered as one
@@ -433,6 +438,212 @@ export const CASE_STUDIES = [
     citation:
       "Iconic Events, a Florida based event production and coordination company, produced Chase Hughes London aboard HMS Belfast on the River Thames, delivering creative direction, production, show flow and on site execution as a single scope.",
   },
+
+  // Source: docs/case-studies/Case-Study-Interviews.xlsx, approved by Iconic.
+  {
+    slug: "creatorhub-live",
+    name: "CreatorHub Live",
+    headline: "How CreatorHub Live Brought 1,500+ Creators and Entrepreneurs Under One Roof",
+    cta: "Want to bring your community under one roof?",
+    thirdPerson: true, // Iconic's own event: no first person, no client line.
+    summary:
+      "CreatorHub Live set out to fill a gap: no event brought entrepreneurs and creators together to learn business and media production, and the biggest event at this capacity belonged to MrBeast. Sponsors and attendees were wary of a brand new event. The answer was a hub model, where other events ran their own stages inside CreatorHub, plus a la carte sponsorships and a Lamborghini painted live at the mixer. More than 1,500 people attended over three and a half days at the Marriott Bonnet Creek in Orlando, and the event is now building toward 3,000 in 2027.",
+    challenge: [
+      "There was no event where entrepreneurs and creators could come together to learn business and media production. The largest event at this capacity was run and owned by MrBeast, the biggest media entity on the planet, so building something people would trust enough to pay for meant pushing through heavy resistance.",
+      "A brand new event with no history is a hard sell in the creator economy. Sponsors did not want to be first in, the platforms that mattered most, YouTube, TikTok and Snapchat, had to be won over, and getting bodies in the room was just as hard.",
+      "The stakes were a multi six figure investment, the reputation of everyone involved, and the trust of the speakers and creators brought in by co-owner Xtend Creators. If it flopped, Patrick Israel and Xtend would lose relational capital with every sponsor and creator they had brought to the table.",
+    ],
+    approach: [
+      "Rebuilt the sponsorship strategy around in person meetings, and used after party brand activations to give partners a way in.",
+      "Replaced the standard gold, platinum and silver packages with a la carte options, so each sponsor could find a natural way into the event.",
+      "Built the hub model: other events contract one of the stages and run their own mini event inside CreatorHub, which is where the name comes from. It put attendees from several communities under one roof with the same purpose, and it is what delivered the attendance.",
+      "Ran three stages at once as three separate events that happened to share a building, each with its own dedicated stage manager.",
+      "Brought a Lamborghini into the Marriott Bonnet Creek to be painted live during the networking mixer, inside a 50 foot glass enclosure built with the Marriott so not a drop of paint touched the venue.",
+      "Planned the content strategy around live podcast studios that ran throughout the event, so every hour on site doubled as content production.",
+    ],
+    challengesOvercome: [
+      "Ticket sales opened before the hubs were ready, and the first couple of months were uncertain. The answer was the hub model itself: once other events could contract a stage and bring their own communities, attendance followed.",
+      "The Lamborghini turned out to be the performance version, wider than planned. Getting it inside took removing a door from the Marriott and threading it through with a couple of millimeters to spare on each side, then sealing it in a 50 foot glass enclosure so not a drop of paint reached the venue. The mixer went ahead with its centerpiece, Lamborghini got the moment it signed up for, and the venue stayed spotless.",
+    ],
+    scope: [
+      ["Strategy", "Event strategy and positioning in the creator economy."],
+      ["Sponsorship", "A la carte packages and after party brand activations in place of tiered packages."],
+      ["Hub model", "Stages contracted to other events, each running its own mini event inside CreatorHub."],
+      ["Content", "Content strategy and live podcast studios running throughout the event."],
+      ["Venue", "Coordination with the Marriott Bonnet Creek, including the Lamborghini enclosure."],
+      ["Production", "Three stage production and show flow, with a stage manager per stage."],
+      ["On site", "On site execution across three and a half days."],
+    ],
+    metrics: { attendance: "1,500+", productionDays: "3.5", costSaved: null },
+    highlights: [
+      ["1,500+", "Attendees"],
+      ["3", "Stages running at once"],
+      ["3.5 hrs", "Round tables, planned for 45 minutes"],
+    ],
+    results: [
+      "The hub model delivered the attendance the event needed: more than 1,500 people over three and a half days. Three stages ran at once on a clean run of show, with about 40 speakers across them.",
+      "The round tables, fireside chats with a speaker at each table, were planned for 45 minutes. Attendees loved them so much they stayed for about three and a half hours.",
+      "The standout moment came at the mixer. The live Lamborghini painting was the draw, and an auto tune microphone passed around the room took it up a level, with attendees singing to each other.",
+      "The live podcast studios captured dozens of testimonials and hundreds of clips. That organic content is what the event is renewing on: it fuels the 2027 edition, which is aiming for 3,000 people.",
+    ],
+    rightFor: "Companies that want a front row seat in the creator economy and a direct line to creators who are building real businesses, and companies that help brands build digital media empires, with total coverage across the internet.",
+    stealThis: [
+      "Two ideas any event host can take:",
+      "Run a live podcast studio the whole time. Attendees and speakers step in between sessions, and the event walks away with dozens of testimonials and hundreds of clips to market the next edition.",
+      "Borrow the hub model. Let other events contract a stage and run their own mini event inside yours. Each one brings its own community, so the room fills from several audiences at once, all there for the same reason.",
+    ],
+    details: {
+      client: null,
+      clientTitle: null,
+      venue: "Marriott Bonnet Creek",
+      city: "Orlando",
+      region: "FL",
+      year: "2025",
+      dates: null,
+    },
+    media: {
+      // TODO(collect): photos, aftermovie and testimonial links to come from Iconic.
+      hero: null,
+      challenge: null,
+      band: null,
+      resultLeft: null,
+      resultRight: null,
+      gallery: [],
+      aftermovieUrl: null,
+      testimonialUrl: null,
+    },
+    testimonial: { quote: null, approved: false },
+    citation:
+      "Iconic Events, a Florida based event production and coordination company, produced CreatorHub Live, its own event co-owned with Xtend Creators, at the Marriott Bonnet Creek in Orlando, Florida in August 2025 for more than 1,500 attendees, delivering event strategy, sponsorship design, the hub model, live podcast studios, three stage production and on site execution.",
+  },
+
+  // Source: docs/case-studies/Case-Study-Interviews.xlsx, approved by Iconic.
+  {
+    slug: "freedom-queen-live-2024",
+    name: "Freedom Queen Live 2024",
+    headline: "How Bridget James Ling Launched Her First Live Event and Her Inner Circle at Freedom Queen Live",
+    cta: "Want your community's first live event to feel like it has always existed?",
+    summary:
+      "Bridget James Ling had built a devoted community of Freedom Queens but had never run a live event. Her first had to meet their expectations and live up to the elegance of her brand. We chose the Vinoy in St. Petersburg for its timeless feel, built installations like a wishing tree where attendees hung a written prayer, and helped her design the offer for her first sales from stage event. 451 attendees left bonded and connected, Bridget launched her offer, and she opened her inner circle community.",
+    challenge: [
+      "Bridget James Ling had never run a live event, but she had already built a devoted community of Freedom Queens. Her first event had to meet their expectations and live up to the legacy and class of the Freedom Queen name.",
+      "Attendees did not know what to expect, so the room had to answer that question the moment they walked in. It had to be in the Tampa area at Bridget's request, and it had to feel as elegant and timeless as her brand.",
+    ],
+    approach: [
+      "Chose the Vinoy in St. Petersburg: in the Tampa Bay area as Bridget asked, and as elegant and timeless as the Freedom Queen brand.",
+      "Built installations that added to the experience instead of decorating it, like a wishing tree where attendees wrote a physical prayer and hung it on the branches.",
+      "Helped Bridget design the offer for her first large sales from stage event.",
+    ],
+    challengesOvercome: null,
+    scope: [
+      ["Venue", "Sourcing and selecting the Vinoy in St. Petersburg."],
+      ["Installations", "Installation design, including the wishing tree."],
+      ["Offer", "Offer design support for Bridget's first sales from stage event."],
+      ["Production", "Event production and on site execution."],
+    ],
+    metrics: { attendance: "451", productionDays: "3.5", costSaved: null },
+    highlights: [
+      ["451", "Freedom Queens on site"],
+      ["1st", "Live event, and her first offer launched from stage"],
+    ],
+    results: [
+      "The event went phenomenally, with 451 attendees on site over three and a half days. Bridget launched her offer from the stage, and her Freedom Queens left thrilled, bonded and connected to each other. That connection became the foundation of her next step: she launched her inner circle community.",
+    ],
+    rightFor: "A founder with a loyal community who wants a more reserved, timeless experience. Less about mixers and parties, more about the education.",
+    stealThis: [
+      "Build a wishing tree. Give attendees a physical place to write a prayer or intention for the next event and hang it on the branches. It turns a moment of reflection into a shared installation, and it gives your community a reason to come back and see what came true.",
+    ],
+    details: {
+      client: "Bridget James Ling",
+      clientTitle: null,
+      venue: "The Vinoy",
+      city: "St. Petersburg",
+      region: "FL",
+      year: "2024",
+      dates: null,
+    },
+    media: {
+      // TODO(collect): photos, aftermovie and testimonial links to come from Iconic.
+      hero: null,
+      challenge: null,
+      band: null,
+      resultLeft: null,
+      resultRight: null,
+      gallery: [],
+      aftermovieUrl: null,
+      testimonialUrl: null,
+    },
+    testimonial: { quote: null, approved: false },
+    citation:
+      "Iconic Events, a Florida based event production and coordination company, produced the first Freedom Queen Live for Bridget James Ling at the Vinoy in St. Petersburg, Florida in November 2024, delivering venue selection, installation design, offer design support, production and on site execution for 451 attendees.",
+  },
+
+  // Source: docs/case-studies/Case-Study-Interviews.xlsx, approved by Iconic.
+  {
+    slug: "freedom-queen-live-2025",
+    name: "Freedom Queen Live 2025",
+    headline: "How Freedom Queen Live Rewrote the Business Event Format and Drew 530 Attendees to a Broadway Style Show",
+    cta: "Want your next event to feel like opening night?",
+    summary:
+      "For year two of Freedom Queen Live, Bridget James Ling wanted a show, not a business conference: Broadway style, with performers and rehearsed dance numbers. We sourced the dancers, fitted their rehearsals around the speakers', and cued every performance to the AV and stage while keeping it all a surprise. A flash mob opened the event, dance numbers ran through the day, and even the butler service became part of the performance. Attendance grew to 530 over three and a half days, and the media from the show set the event apart.",
+    challenge: [
+      "For year two, Bridget James Ling wanted to move away from the idea of a business conference and lean into her theatrical roots. She wanted a show: Broadway style, with performers, rehearsed dance numbers and a room that felt less like a conference and more like a theatrical performance.",
+      "A show needs a cast, rehearsals and split second timing, and all of it had to stay a surprise for the attendees.",
+    ],
+    approach: [
+      "Returned to the Vinoy in St. Petersburg, the venue Bridget's community already knew from year one.",
+      "Sourced the dance performers and built the program around rehearsed musical sets and dance numbers.",
+      "Opened with a flash mob, then ran rehearsed dance performances through the day, every cue timed and synced with the AV and stage elements.",
+      "Turned the butler service into part of the performance, staged at the front of the stage.",
+    ],
+    challengesOvercome: [
+      "Fitting dance rehearsals around speaker rehearsals was the hard part. Both had to happen in the same rooms on the same days, and the performances had to stay a secret from the attendees until the flash mob opened the event. The schedule held, every cue landed with the AV and stage, and the surprises arrived intact.",
+    ],
+    scope: [
+      ["Show", "Show concept and program design."],
+      ["Talent", "Sourcing the dance performers."],
+      ["Rehearsals", "Dance rehearsals scheduled around speaker rehearsals."],
+      ["Cueing", "Every performance cued with the AV and stage."],
+      ["Staging", "The butler service staged as part of the performance."],
+      ["Production", "Venue, production and on site execution."],
+    ],
+    metrics: { attendance: "530", productionDays: "3.5", costSaved: null },
+    highlights: [
+      ["530", "Attendees, up from 451 in year one"],
+      ["1", "Flash mob to open the show"],
+    ],
+    results: [
+      "Attendees loved it. The opening was a wild, show stopping moment that woke the room up and told everyone this was not another business conference.",
+      "The show also made the event's media. The content that came out of it set the expectation that Freedom Queen Live is meant to be different from every other event, and attendance grew to 530 in its second year.",
+    ],
+    rightFor: null,
+    stealThis: [
+      "Open with a surprise. A flash mob or rehearsed performance in the first minutes tells attendees this is not another conference, and it hands your social team the clip that sells the next edition.",
+    ],
+    details: {
+      client: "Bridget James Ling",
+      clientTitle: null,
+      venue: "The Vinoy",
+      city: "St. Petersburg",
+      region: "FL",
+      year: "2025",
+      dates: null,
+    },
+    media: {
+      // TODO(collect): photos, aftermovie and testimonial links to come from Iconic.
+      hero: null,
+      challenge: null,
+      band: null,
+      resultLeft: null,
+      resultRight: null,
+      gallery: [],
+      aftermovieUrl: null,
+      testimonialUrl: null,
+    },
+    testimonial: { quote: null, approved: false },
+    citation:
+      "Iconic Events, a Florida based event production and coordination company, produced Freedom Queen Live 2025 for Bridget James Ling at the Vinoy in St. Petersburg, Florida in November 2025, delivering a Broadway style show with rehearsed dance performances, a flash mob opening and staged butler service for 530 attendees.",
+  },
 ]
 
 /* Every event, in the order Iconic keeps them. This drives the grid at
@@ -450,10 +661,11 @@ export const CASE_STUDIES = [
    To promote one: add a full entry to CASE_STUDIES with the same slug and
    flip `full` to true here. */
 export const EVENT_INDEX = [
-  { slug: "creatorhub-live", name: "CreatorHub Live", client: "Iconic Becker", when: "2025", location: "Fort Lauderdale, FL", venue: "FTL Downtown Event Center", size: "917", full: false },
+  { slug: "creatorhub-live", name: "CreatorHub Live", client: null, when: "2025-08", location: "Orlando, FL", venue: "Marriott Bonnet Creek", size: "1,500+", full: true },
+  { slug: "creator-fest", name: "Creator Fest", client: null, when: "2024-08", location: "Orlando, FL", venue: "Marriott Bonnet Creek", size: null, full: false },
   { slug: "creator-hub-madrid", name: "Creator Hub Madrid", client: "Universal Music Group", when: "2025", location: "Madrid, Spain", venue: null, size: null, full: false },
-  { slug: "freedom-queen-live-2024", name: "Freedom Queen Live 2024", client: "Bridget James Ling", when: "2024-11", location: null, venue: null, size: null, full: false },
-  { slug: "freedom-queen-live-2025", name: "Freedom Queen Live 2025", client: "Bridget James Ling", when: "2025-11", location: null, venue: null, size: null, full: false },
+  { slug: "freedom-queen-live-2024", name: "Freedom Queen Live 2024", client: "Bridget James Ling", when: "2024-11", location: "St. Petersburg, FL", venue: "The Vinoy", size: "451", full: true },
+  { slug: "freedom-queen-live-2025", name: "Freedom Queen Live 2025", client: "Bridget James Ling", when: "2025-11", location: "St. Petersburg, FL", venue: "The Vinoy", size: "530", full: true },
   { slug: "pmuw-2023", name: "PMUW 2023", client: "Danny Tran", when: "2023-04", location: null, venue: null, size: null, full: false },
   { slug: "pmuw-2024", name: "PMUW 2024", client: "Danny Tran", when: "2024", location: null, venue: null, size: null, full: false },
   { slug: "pmuw-2025", name: "PMUW 2025", client: "Danny Tran", when: "2025", location: null, venue: null, size: null, full: false },

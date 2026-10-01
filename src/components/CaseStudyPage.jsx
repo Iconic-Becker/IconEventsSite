@@ -141,28 +141,35 @@ function StructuredData({ study, faqs }) {
 
 /* ── sections ──────────────────────────────────────────────────────────── */
 
+/* The approach is either one flat list of steps or { pre, onsite, post }
+   stages. Either way it renders as one continuously numbered list. */
 function Approach({ study }) {
-  const { pre, onsite, post } = study.approach
-  const stages = [
-    ["Pre production", pre],
-    ["On site production", onsite],
-    ["Post event", post],
-  ].filter(([, steps]) => steps && steps.length)
+  const stages = Array.isArray(study.approach)
+    ? [[null, study.approach]]
+    : [
+        ["Pre production", study.approach.pre],
+        ["On site production", study.approach.onsite],
+        ["Post event", study.approach.post],
+      ].filter(([, steps]) => steps && steps.length)
   let counter = 0
   return (
     <section className="border-t border-bone/10 py-16 sm:py-24">
       <div className="mx-auto grid max-w-6xl gap-11 px-5 sm:px-6 md:grid-cols-[0.4fr_1fr] md:gap-14">
         <div>
-          <p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">What We Did</p>
+          <p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">
+            {study.thirdPerson ? "How It Was Built" : "What We Did"}
+          </p>
           <p className="mt-5 font-sans text-sm leading-relaxed text-bone/55">
-            Here is how we built it, from the first plan to the last guest out. One team held all of it.
+            {study.thirdPerson
+              ? "How the event came together, from the first plan to the last guest out."
+              : "Here is how we built it, from the first plan to the last guest out. One team held all of it."}
           </p>
         </div>
         <div>
           {stages.map(([label, steps], stageIndex) => (
-            <div key={label} className={stageIndex ? "border-t border-bone/10 py-8" : "pb-8"}>
-              <h3 className="font-serif text-2xl font-semibold">{label}</h3>
-              <ol className="mt-4">
+            <div key={label ?? "steps"} className={stageIndex ? "border-t border-bone/10 py-8" : "pb-8"}>
+              {label && <h3 className="font-serif text-2xl font-semibold">{label}</h3>}
+              <ol className={label ? "mt-4" : ""}>
                 {steps.map((step) => {
                   counter += 1
                   return (
@@ -181,6 +188,44 @@ function Approach({ study }) {
   )
 }
 
+/* A labelled block of prose in the page's two column rhythm: Challenges
+   Overcome and Right For. Renders nothing when the field is empty. */
+function ProseSection({ label, lead, value }) {
+  const text = paragraphs(value)
+  if (!text.length) return null
+  return (
+    <section className="border-t border-bone/10 py-16 sm:py-24">
+      <div className="mx-auto grid max-w-6xl gap-11 px-5 sm:px-6 md:grid-cols-[0.4fr_1fr] md:gap-14">
+        <div>
+          <p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">{label}</p>
+          {lead && <p className="mt-5 font-sans text-sm leading-relaxed text-bone/55">{lead}</p>}
+        </div>
+        <div className="grid max-w-[65ch] gap-5 font-sans text-[15.5px] leading-relaxed text-bone/70 sm:text-lg">
+          {text.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* An idea other hosts can take. The one boxed element on the page. */
+function StealThis({ study }) {
+  const text = paragraphs(study.stealThis)
+  if (!text.length) return null
+  return (
+    <section className="py-16 sm:py-24">
+      <div className="mx-auto max-w-6xl px-5 sm:px-6">
+        <div className="border border-brass/60 p-7 sm:p-12">
+          <p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">Steal This</p>
+          <div className="mt-6 grid max-w-[65ch] gap-5 font-serif text-xl leading-snug sm:text-2xl">
+            {text.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function Scope({ study }) {
   if (!study.scope.length) return null
   return (
@@ -189,7 +234,7 @@ function Scope({ study }) {
         <div>
           <p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">Scope of Services</p>
           <p className="mt-5 font-sans text-sm leading-relaxed text-bone/55">
-            Everything we were accountable for.
+            {study.thirdPerson ? "Everything the production covered." : "Everything we were accountable for."}
           </p>
         </div>
         <div>
@@ -255,7 +300,7 @@ function Results({ study }) {
               {stats.map(([value, label]) => (
                 <div key={label} className="min-w-0 border-r border-tidepool/25 px-3 py-6 last:border-r-0 sm:px-5">
                   <dt className="sr-only">{label}</dt>
-                  <dd className="font-serif text-3xl font-semibold leading-none text-tidepool sm:text-5xl">{value}</dd>
+                  <dd className="whitespace-nowrap font-serif text-3xl font-semibold leading-none text-tidepool sm:text-4xl xl:text-5xl">{value}</dd>
                   <dd className="mt-3 font-sans text-[10px] uppercase leading-snug tracking-[0.14em] text-onyx/60 sm:text-xs">{label}</dd>
                 </div>
               ))}
@@ -508,6 +553,11 @@ export default function CaseStudyPage({ study }) {
       </section>
 
       <Approach study={study} />
+      <ProseSection
+        label="Challenges Overcome"
+        lead="What stood in the way, and how it was handled."
+        value={study.challengesOvercome}
+      />
       <Scope study={study} />
 
       {study.media.band && (
@@ -517,10 +567,12 @@ export default function CaseStudyPage({ study }) {
       )}
 
       <Results study={study} />
+      <ProseSection label="Right For" value={study.rightFor} />
 
       <Aftermovie study={study} />
       <Testimonial study={study} />
       <Gallery study={study} />
+      <StealThis study={study} />
       <FAQ faqs={faqs} />
 
       {/* the one ask on the page: the site's contact form, headed by this event's line */}
