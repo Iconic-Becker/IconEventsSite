@@ -1,4 +1,5 @@
 import { WORK } from "../content.js"
+import { responsive } from "../lib/img.js"
 import { useVoice } from "../voice.jsx"
 import Brackets from "./Brackets.jsx"
 import SpreadParticles from "./SpreadParticles.jsx"
@@ -18,7 +19,7 @@ export default function Work() {
       {/* background — event image + colour overlay + brand pattern */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <img
-          src="/images/gallery/position-room.webp"
+          {...responsive("/images/gallery/position-room.webp", "100vw")}
           alt=""
           className="h-full w-full object-cover opacity-[0.12] grayscale"
         />
@@ -45,7 +46,7 @@ export default function Work() {
         {/* featured poster */}
         <div className="group relative min-h-[78svh] overflow-hidden border border-brass/25 md:min-h-0 md:col-span-2 lg:row-span-2">
           <img
-            src={f.img}
+            {...responsive(f.img, "(min-width: 768px) 60vw, 100vw")}
             alt=""
             className="absolute inset-0 h-full min-h-[340px] w-full object-cover grayscale md:relative transition-all duration-700 ease-out group-hover:scale-[1.03] group-hover:grayscale-0"
           />
@@ -84,7 +85,7 @@ export default function Work() {
             className="group relative flex min-h-[72svh] flex-col justify-end overflow-hidden border border-bone/15 md:min-h-[210px] transition-colors duration-300 hover:border-brass/40"
           >
             <img
-              src={a.img}
+              {...responsive(a.img, "(min-width: 768px) 30vw, 50vw")}
               alt=""
               loading="lazy"
               className="absolute inset-0 h-full w-full object-cover grayscale transition-all duration-700 ease-out group-hover:scale-105 group-hover:grayscale-0"

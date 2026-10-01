@@ -1,4 +1,5 @@
 import { useState, useRef } from "react"
+import { responsive } from "../lib/img.js"
 import { MONTAGE, GALLERY } from "../content.js"
 import { useVoice } from "../voice.jsx"
 import Icon from "./Icon.jsx"
@@ -57,7 +58,7 @@ export default function Motion() {
         <h3
           className="gold-sheen mx-auto mt-4 max-w-5xl bg-clip-text font-serif text-6xl font-semibold uppercase leading-[0.95] tracking-tight text-transparent sm:text-8xl"
           style={{
-            backgroundImage: `linear-gradient(100deg, rgba(184,153,104,0.55) 0%, rgba(232,206,150,0.72) 20%, rgba(184,153,104,0.5) 40%, rgba(232,206,150,0.72) 60%, rgba(184,153,104,0.5) 80%, rgba(232,206,150,0.72) 100%), linear-gradient(rgba(14,19,18,0.26), rgba(14,19,18,0.26)), url(${GALLERY.positionRoom})`,
+            backgroundImage: `linear-gradient(100deg, rgba(184,153,104,0.55) 0%, rgba(232,206,150,0.72) 20%, rgba(184,153,104,0.5) 40%, rgba(232,206,150,0.72) 60%, rgba(184,153,104,0.5) 80%, rgba(232,206,150,0.72) 100%), linear-gradient(rgba(14,19,18,0.26), rgba(14,19,18,0.26)), url(${GALLERY.positionRoomWide})`,
             backgroundSize: "200% 100%, cover, 150% auto",
             backgroundRepeat: "no-repeat",
             WebkitBackgroundClip: "text",
@@ -91,7 +92,7 @@ export default function Motion() {
                 className={`motion-panel motion-stack-${(i - active + imgs.length) % imgs.length} ${(i - active + imgs.length) % imgs.length === imgs.length - 1 ? "motion-stack-prev" : ""} ${on ? "motion-panel-active" : ""} group relative min-w-0 basis-0 overflow-hidden border border-brass/15 transition-[flex-grow] duration-700 ease-[cubic-bezier(0.65,0,0.35,1)] ${on ? "grow-[3.4]" : "grow"}`}
               >
                 <img
-                  src={src}
+                  {...responsive(src, "(min-width: 768px) 25vw, 60vw")}
                   alt=""
                   loading="lazy"
                   className={`h-full w-full object-cover transition-all duration-700 ${

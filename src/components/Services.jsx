@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { responsive } from "../lib/img.js"
 import { SERVICES, GALLERY } from "../content.js"
 import { useVoice } from "../voice.jsx"
 
@@ -103,7 +104,7 @@ export default function Services() {
         {SERVICES.items.map((it, i) => (
           <img
             key={it.id}
-            src={imgs[i % imgs.length]}
+            {...responsive(imgs[i % imgs.length], "(min-width: 768px) 33vw, 80vw")}
             alt=""
             className={`absolute inset-0 h-full w-full object-cover grayscale transition-opacity duration-[1200ms] ease-[cubic-bezier(.16,1,.3,1)] ${active === i ? "opacity-[0.22]" : "opacity-0"}`}
           />

@@ -18,6 +18,7 @@ import {
   HERO_WALL,
 } from "./content.js"
 import { useVoice } from "./voice.jsx"
+import { responsive } from "./lib/img.js"
 import Icon from "./components/Icon.jsx"
 import Photo from "./components/Photo.jsx"
 import { CtaBrackets } from "./components/CtaButtons.jsx"
@@ -39,7 +40,7 @@ import CtaBand from "./components/CtaBand.jsx"
 /* ── Identity ───────────────────────────────────────────────────────── */
 function Logo({ tone = "black", className = "" }) {
   const src = tone === "white" ? "/logos/IE_logo_white.png" : "/logos/IE_logo_black.png"
-  return <img src={src} alt="Iconic Events — Est. 2017" className={className} />
+  return <img {...responsive(src, "180px")} alt="Iconic Events — Est. 2017" className={className} />
 }
 
 // One vertical marquee column for the hero walls. Content is duplicated so the
@@ -56,8 +57,9 @@ function MarqueeTrack({ images, dir, duration }) {
       {doubled.map((src, i) => (
         <div key={i} className="relative overflow-hidden border border-brass/15">
           <img
-            src={src}
+            {...responsive(src, "(min-width: 1280px) 14vw, 22vw")}
             alt=""
+            loading="lazy"
             className="aspect-[3/4] w-full object-cover [filter:grayscale(1)_contrast(1.05)_brightness(0.85)]"
           />
           <div className="pointer-events-none absolute inset-0 bg-onyx/25" />
@@ -386,10 +388,10 @@ export default function App() {
               style={pressSeen ? { animationDelay: `${i * 100}ms` } : undefined}
             >
               <img
-                src={l.src}
-                alt={l.name}
                 width={l.w}
                 height={l.h}
+                {...responsive(l.src, "200px")}
+                alt={l.name}
                 loading="lazy"
                 className="h-10 w-auto opacity-50 transition-opacity duration-300 hover:opacity-90 sm:h-12"
               />

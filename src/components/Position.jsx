@@ -1,4 +1,5 @@
 import { useState, useRef } from "react"
+import { responsive } from "../lib/img.js"
 import { POSITION, GALLERY } from "../content.js"
 import { useVoice } from "../voice.jsx"
 import Particles from "./Particles.jsx"
@@ -84,7 +85,7 @@ export default function Position() {
         >
           {/* greyscale base */}
           <img
-            src={GALLERY.positionRoom}
+            {...responsive(GALLERY.positionRoom, "(min-width: 768px) 50vw, 100vw")}
             alt=""
             className="aspect-[4/5] w-full object-cover grayscale contrast-[1.08] sm:aspect-[21/9]"
           />
@@ -92,14 +93,14 @@ export default function Position() {
           <div className="pointer-events-none absolute inset-0 bg-onyx/45" />
           {/* colour reveal — big soft circle following the cursor */}
           <img
-            src={GALLERY.positionRoom}
+            {...responsive(GALLERY.positionRoom, "(min-width: 768px) 50vw, 100vw")}
             alt=""
             aria-hidden="true"
             className="color-reveal pointer-events-none absolute inset-0 h-full w-full object-cover contrast-[1.05] saturate-[1.06]"
           />
           {/* logo reveal — centred wordmark, revealed by the cursor spotlight */}
           <img
-            src="/logos/IE_logo_white.png"
+            {...responsive("/logos/IE_logo_white.png", "180px")}
             alt=""
             aria-hidden="true"
             className="spotlight-img pointer-events-none absolute inset-0 h-full w-full object-contain px-[27%] py-[8%]"
@@ -108,7 +109,7 @@ export default function Position() {
           {/* Mobile: a feathered full-colour reveal follows the selected marker. */}
           <img
             key={`mobile-reveal-${active}`}
-            src={GALLERY.positionRoom}
+            {...responsive(GALLERY.positionRoom, "(min-width: 768px) 50vw, 100vw")}
             alt=""
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 h-full w-full object-cover saturate-[1.12] md:hidden"

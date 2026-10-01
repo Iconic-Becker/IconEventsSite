@@ -1,4 +1,5 @@
 import { useRef, useState } from "react"
+import { responsive } from "../lib/img.js"
 import { GALLERY } from "../content.js"
 
 const IMAGES = [
@@ -55,7 +56,7 @@ function GalleryRow({ images, rowIndex, direction, spinning }) {
               aria-hidden={i >= images.length}
                   className={`group relative h-[190px] shrink-0 overflow-hidden bg-onyx sm:h-[300px] ${originalIndex % 4 === 0 ? "w-[78vw] sm:w-[500px]" : "w-[64vw] sm:w-[340px]"}`}
             >
-              <img src={src} alt={i < images.length ? `Iconic Events production detail ${rowIndex * images.length + originalIndex + 1}` : ""} loading="lazy" draggable="false" className="h-full w-full select-none object-cover grayscale transition duration-700 group-hover:scale-[1.03] group-hover:grayscale-0" />
+              <img {...responsive(src, "(min-width: 768px) 25vw, 60vw")} alt={i < images.length ? `Iconic Events production detail ${rowIndex * images.length + originalIndex + 1}` : ""} loading="lazy" draggable="false" className="h-full w-full select-none object-cover grayscale transition duration-700 group-hover:scale-[1.03] group-hover:grayscale-0" />
               <span className="absolute bottom-3 left-3 font-sans text-[10px] uppercase tracking-[0.22em] text-bone/70">{String(rowIndex * images.length + originalIndex + 1).padStart(2, "0")}</span>
             </figure>
           )

@@ -100,51 +100,91 @@ fewer bytes will.
 
 Ranked by measured saving, not by guesswork.
 
-| # | Step | Saving | Effort | Risk |
-|---|---|---|---|---|
-| 22 | **Subset the fonts** | **937 KB (89%)** | one build step | near zero |
-| 23 | **Responsive image sizes** | **425 KB** on four files alone | moderate | low |
-| 24 | **Fetch less on load** | several hundred KB | moderate | low, needs eyes |
-| 25 | **Split the bundle** | 30 to 40 KB gzipped | moderate | low |
+**Done on 1 October.** Measured on the built site, same method before and
+after. Phone is a 390px viewport at 2x, desktop is 1440px.
 
-**22 / Subset the fonts.** Not subset at all: Cormorant carries about 975
-glyphs per weight, Helvetica about 2,010. The site uses **145 characters**.
-Subsetting was run and measured, not estimated: 1,054 KB to 118 KB across
-11 files, every file down 84 to 94%. On the homepage that is 621 KB down to
-roughly 70 KB. Rendering is identical, there is no design decision in it,
-and `font-display: swap` and the preloads are already correct. Do this one
-first and alone: it is the largest single saving, it is risk free, and it
-gives a clean read on what the fonts were costing before anything visual
-moves.
+| | before | after | |
+|---|---|---|---|
+| **Phone total** | 2,893 KB | **1,372 KB** | **-53%** |
+| **Desktop total** | 2,916 KB | **1,892 KB** | **-35%** |
+| Fonts | 621 KB | 89 KB | -86% |
+| Images, phone | 1,770 KB | 752 KB | -58% |
+| Images, desktop | 1,770 KB | 1,263 KB | -29% |
 
-**23 / Responsive image sizes.** There is no `srcset` anywhere, so a phone
-downloads desktop artwork. Every one of the 101 rendered images exceeds
-twice the pixels it needs. `position-room.webp` is 1900x1259 shown at
-356x445, 5.3x oversized, 263 KB, and eager. `IE_logo_white.png` is a
-2400px PNG shown at 145px, 16.6x oversized; as a 300w WebP it is 3 KB
-instead of 43 KB. Generating two or three widths for the four heaviest
-files took them from 628 KB to 203 KB on a phone. Needs a build script
-and `srcset` plus `sizes` on the components.
+Two things went the other way and are worth knowing. The prerendered HTML
+grew 157 KB to 182 KB, because the srcset attributes now live in the
+markup; that is about 2.5 KB once gzipped, against 1,521 KB saved. The JS
+grew 5 KB for the helper and its manifest.
 
-**24 / Fetch less on load.** 35 image requests fire immediately, 1,770 KB.
-The hero wall and the montage are decorative and a phone shows few of
-them. Audit what is genuinely above the fold and defer the rest. Defer the
-wrong one and the hero pops in, so this wants a pair of eyes rather than a
-rule.
+| # | Step | Status |
+|---|---|---|
+| 22 | Subset the fonts | **done** |
+| 23 | Responsive image sizes | **done** |
+| 24 | Fetch less on load | **done** |
+| 25 | Split the bundle | **not done, see below** |
+| 26 | Confirm Railway serves gzip or Brotli | still open, needs the live site |
 
-**25 / Split the bundle.** Every case study's prose sits in the homepage
-chunk: "parking garage", "Casino Royale" and "Broward County" are all in
-the built JS. Someone who never leaves the homepage downloads all 37
-events. Worth doing, but it is 30 to 40 KB gzipped against roughly 1 MB
-from 22 and 23. Last.
+**22 / Fonts, done.** `fonts-src/` holds the originals and is not published.
+`scripts/subset-fonts.mjs` writes the subsets into `public/fonts/`; the output
+is committed so a deploy needs no Python. 1,054 KB to 162 KB across 11 files.
+
+The charset is wider than what the site uses today: all of basic Latin,
+Latin-1 and common typography, about 214 characters against the 145 actually
+in use. That costs 44 KB and means an accent or a curly quote in new copy
+cannot silently fall back to a system font. If copy ever needs something
+outside it, widen the range in the script and re-run.
+
+Verified: identical font family, size and text bounding boxes, and with
+animation frozen the rendered page differs by 0.0098% of pixels, which is
+antialiasing. Every character the site renders is present in every subset,
+with one exception that predates this: the arrows in the three Helvetica
+faces were never in the originals either, so those five glyphs fall back to
+a system font exactly as before.
+
+**23 / Responsive images, done.** `scripts/make-image-variants.mjs` writes
+480w and 960w variants for the images fetched before first paint, listed in
+`scripts/eager-images.json`, and a manifest at `src/image-variants.json`.
+`src/lib/img.js` turns that into srcset; anything not in the manifest falls
+through to a plain src, so it is safe to spread onto any image.
+
+Scoped deliberately. Largest Contentful Paint is decided above the fold, so
+variants for lazily loaded gallery photos would add tens of megabytes to the
+repo and move the metric by nothing. 56 files, 1.5 MB.
+
+Three things that srcset could not reach were fixed at source. The pattern
+tiles are CSS backgrounds drawn between 300px and 640px wide and were up to
+8000px: now 880w, 746 KB to 285 KB. The logo masters were 2400px for a mark
+shown at 180px: now 1200w. The one gallery frame used as a CSS background
+now points at its own 960w variant, so the same file serves the `<img>` too
+and the browser fetches it once instead of twice.
+
+**24 / Fetch less on load, done.** The hero wall is `hidden md:block`, but
+Chromium fetches `display:none` images anyway, so a phone was pulling all 24
+and showing none of them. They are lazy now: on a phone they never intersect
+so they never load, and on desktop they are on screen so they load at once.
+Watched for 14 seconds while the marquee rotated and no image in the
+viewport was ever unpainted.
+
+**25 / Splitting the bundle: measured, and not worth it.** The earlier
+estimate of 30 to 40 KB gzipped was wrong. `case-studies.js` is 43 KB of
+source, of which 15 KB is prose, so the real prize is about 12 KB gzipped
+off a 77 KB chunk.
+
+`routes.jsx` imports it to resolve a slug, which is what pulls it into the
+main chunk. Getting it out means lazy loading the case study route, and
+these pages are prerendered: a lazy route renders its Suspense fallback into
+the static HTML instead of the prose, which is the whole AEO case for those
+pages. Twelve kilobytes is not worth trading the prerendered content for,
+and Total Blocking Time is green at 70ms, so the JS is not delaying
+anything. Left alone on purpose.
 
 **26 / Confirm Railway serves gzip or Brotli.** Not checkable from the
 build container. If it is off, that is another 310 KB on the text assets
 and it is a config toggle, not code.
 
-No score is predicted here. PageSpeed's number depends on their throttling
-model. Do 22 and 23, re-run the test, and compare the real before and
-after.
+No score is predicted. PageSpeed's number depends on their throttling model,
+and the honest test is a fresh run against the live site once this is
+deployed.
 
 ## Ready to build
 
