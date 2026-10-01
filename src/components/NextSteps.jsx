@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import { responsive } from "../lib/img.js"
 import { GALLERY } from "../content.js"
 import { CASE_STUDIES } from "../case-studies.js"
 
@@ -140,7 +141,7 @@ export default function NextSteps() {
                 >
                   {cover && (
                     <img
-                      src={cover.src}
+                      {...responsive(cover.src, "(min-width: 768px) 33vw, 90vw")}
                       alt=""
                       loading="lazy"
                       className="absolute inset-0 h-full w-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"
@@ -173,7 +174,7 @@ export default function NextSteps() {
             {frames.map((src, index) => (
               <img
                 key={src}
-                src={src}
+                {...responsive(src, "(min-width: 768px) 25vw, 60vw")}
                 alt={`Iconic Events production frame ${index + 1}`}
                 loading="lazy"
                 className="aspect-[4/3] w-full object-cover grayscale transition duration-700 hover:grayscale-0"

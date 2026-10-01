@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { responsive } from "../lib/img.js"
 import { ROOM } from "../content.js"
 import { useVoice } from "../voice.jsx"
 import Brackets from "./Brackets.jsx"
@@ -36,7 +37,7 @@ export default function InTheRoom() {
             >
               <div className="relative aspect-[4/5] overflow-hidden">
                 <img
-                  src={p.img}
+                  {...responsive(p.img, "(min-width: 768px) 33vw, 80vw")}
                   alt={p.name}
                   loading="lazy"
                   className="h-full w-full object-cover grayscale"
@@ -120,7 +121,7 @@ export default function InTheRoom() {
           {ROOM.people.map((p, i) => (
             <img
               key={p.id}
-              src={p.img}
+              {...responsive(p.img, "(min-width: 768px) 33vw, 80vw")}
               alt={p.name}
               loading="lazy"
               className={`absolute inset-0 h-full w-full object-cover grayscale transition-opacity duration-500 ${

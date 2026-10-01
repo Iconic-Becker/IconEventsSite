@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react"
+import { responsive } from "../lib/img.js"
 import { RECEIPTS } from "../content.js"
 import { useVoice } from "../voice.jsx"
 
@@ -113,7 +114,7 @@ function StatRow({ s, idx, run, t }) {
       {/* cursor-revealed image on the right */}
       <img
         ref={imgRef}
-        src={s.img}
+        {...responsive(s.img, "(min-width: 768px) 50vw, 100vw")}
         alt=""
         aria-hidden="true"
         style={{ objectPosition: s.imgPos || "center" }}
