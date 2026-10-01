@@ -1,4 +1,5 @@
 import { NAV } from "../content.js"
+import { responsive } from "../lib/img.js"
 
 /* The site's primary navigation, shared by the homepage and the pages off it.
 
@@ -7,7 +8,7 @@ import { NAV } from "../content.js"
    its own contact form (case studies), which stays on the page. */
 
 function Logo({ className = "" }) {
-  return <img src="/logos/IE_logo_white.png" alt="Iconic Events, Est. 2017" className={className} />
+  return <img {...responsive("/logos/IE_logo_white.png", "180px")} alt="Iconic Events, Est. 2017" className={className} />
 }
 
 // Nav menu link, echoing the primary button: brass corner ticks snap in on hover.

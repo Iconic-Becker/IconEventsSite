@@ -18,6 +18,7 @@ Nothing here can start without you.
 | 6 | **Which video is which** | One link was sent as "a link for us" and placed as the testimonial; the other was named as the aftermovie. Confirm, or they swap. |
 | 7 | **Casino Royale gaps** | Exact dates, verified venue address, weeks of planning, which vendors Iconic managed directly. |
 | 9 | **PimCon** | Dated "Oct 2026?" and may not have happened. Confirm before it is written up. |
+| 27 | **Two trusted-by logos are stand-ins** | Live now, but neither is the real artwork. **Closers.io** was supplied in its dark brand colour, `#041116`, within a few values of the section background; it is reversed to bone here, red half disc included, because the red went muddy at the row's opacity. **Women & Wealth** was not in the batch of five, so it is re-canvassed onto 1400x400 at 24% fill. Both files were sent more than once and never arrived, so try another route: commit them to the repo directly, or rename before sending. Keep new logos on the 1400x400 canvas and **do not trim them**. |
 
 ## GHL consolidation
 
@@ -55,17 +56,11 @@ Each one affects every case study, so settling them early avoids rework across 3
 Findings from an audit on 30 September, passed over rather than actioned.
 Measured in a real browser at 390px wide, on the current build.
 
-**Layout shift on the homepage.** It loads 175 images and **none of them
-carry `width` or `height` attributes**. The browser cannot reserve space
-before an image arrives, so content moves as they load. That is cumulative
-layout shift, which Google measures directly as a Core Web Vital, and it is
-worst on phones, which is where Google Business Profile traffic lands.
-The fix is mechanical: read each file's real dimensions and set them.
-
-**Images loading eagerly.** 102 of the 175 are lazy loaded, so **73 are
-requested immediately**, including ones below the fold. Worth checking how
-many are actually needed for first paint. This may cost more than the
-missing dimensions do.
+**Layout shift: withdrawn, and it was my error.** An earlier note here said
+the missing `width` and `height` attributes were causing cumulative layout
+shift. PageSpeed measures **CLS of 0**. 152 of 158 images still carry no
+dimensions, but they sit in fixed aspect ratio containers that already
+reserve the space, so nothing moves. Do not spend time on this.
 
 **Already fixed, do not redo.** Three items from the team's own list were
 resolved once the deploy pipeline was unstuck on 28 September:
@@ -82,6 +77,114 @@ resolved once the deploy pipeline was unstuck on 28 September:
 **Clean at the time of the audit.** One `h1` per page, `lang` set, no
 missing `alt` attributes, no unlabelled buttons, no console errors,
 no horizontal overflow at 390px.
+
+## Load times
+
+PageSpeed Insights, 30 September: Performance **64**. Accessibility 93,
+Best Practices 100, SEO 100.
+
+The report splits cleanly. Total Blocking Time 70ms and CLS 0 are both
+green, so JavaScript is not jamming the main thread and nothing is
+shifting. First Contentful Paint **3.5s** and Largest Contentful Paint
+**6.4s** are both red. The page is waiting on bytes before it can paint.
+
+Measured on the built site at 390px: the homepage pulls **2,894 KB over 45
+requests**. Fonts 621 KB, images 1,770 KB, JS 263 KB, HTML 157 KB, CSS
+82 KB.
+
+The number that decides the approach: **2,391 KB of that is fonts and
+images**, formats that are already compressed, so gzip and Brotli cannot
+touch them. The text assets already compress well (JS 264K to 76K, HTML
+160K to 17K). Server compression will not rescue this. Only shipping
+fewer bytes will.
+
+Ranked by measured saving, not by guesswork.
+
+**Done on 1 October.** Measured on the built site, same method before and
+after. Phone is a 390px viewport at 2x, desktop is 1440px.
+
+| | before | after | |
+|---|---|---|---|
+| **Phone total** | 2,893 KB | **1,372 KB** | **-53%** |
+| **Desktop total** | 2,916 KB | **1,892 KB** | **-35%** |
+| Fonts | 621 KB | 89 KB | -86% |
+| Images, phone | 1,770 KB | 752 KB | -58% |
+| Images, desktop | 1,770 KB | 1,263 KB | -29% |
+
+Two things went the other way and are worth knowing. The prerendered HTML
+grew 157 KB to 182 KB, because the srcset attributes now live in the
+markup; that is about 2.5 KB once gzipped, against 1,521 KB saved. The JS
+grew 5 KB for the helper and its manifest.
+
+| # | Step | Status |
+|---|---|---|
+| 22 | Subset the fonts | **done** |
+| 23 | Responsive image sizes | **done** |
+| 24 | Fetch less on load | **done** |
+| 25 | Split the bundle | **not done, see below** |
+| 26 | Confirm Railway serves gzip or Brotli | still open, needs the live site |
+
+**22 / Fonts, done.** `fonts-src/` holds the originals and is not published.
+`scripts/subset-fonts.mjs` writes the subsets into `public/fonts/`; the output
+is committed so a deploy needs no Python. 1,054 KB to 162 KB across 11 files.
+
+The charset is wider than what the site uses today: all of basic Latin,
+Latin-1 and common typography, about 214 characters against the 145 actually
+in use. That costs 44 KB and means an accent or a curly quote in new copy
+cannot silently fall back to a system font. If copy ever needs something
+outside it, widen the range in the script and re-run.
+
+Verified: identical font family, size and text bounding boxes, and with
+animation frozen the rendered page differs by 0.0098% of pixels, which is
+antialiasing. Every character the site renders is present in every subset,
+with one exception that predates this: the arrows in the three Helvetica
+faces were never in the originals either, so those five glyphs fall back to
+a system font exactly as before.
+
+**23 / Responsive images, done.** `scripts/make-image-variants.mjs` writes
+480w and 960w variants for the images fetched before first paint, listed in
+`scripts/eager-images.json`, and a manifest at `src/image-variants.json`.
+`src/lib/img.js` turns that into srcset; anything not in the manifest falls
+through to a plain src, so it is safe to spread onto any image.
+
+Scoped deliberately. Largest Contentful Paint is decided above the fold, so
+variants for lazily loaded gallery photos would add tens of megabytes to the
+repo and move the metric by nothing. 56 files, 1.5 MB.
+
+Three things that srcset could not reach were fixed at source. The pattern
+tiles are CSS backgrounds drawn between 300px and 640px wide and were up to
+8000px: now 880w, 746 KB to 285 KB. The logo masters were 2400px for a mark
+shown at 180px: now 1200w. The one gallery frame used as a CSS background
+now points at its own 960w variant, so the same file serves the `<img>` too
+and the browser fetches it once instead of twice.
+
+**24 / Fetch less on load, done.** The hero wall is `hidden md:block`, but
+Chromium fetches `display:none` images anyway, so a phone was pulling all 24
+and showing none of them. They are lazy now: on a phone they never intersect
+so they never load, and on desktop they are on screen so they load at once.
+Watched for 14 seconds while the marquee rotated and no image in the
+viewport was ever unpainted.
+
+**25 / Splitting the bundle: measured, and not worth it.** The earlier
+estimate of 30 to 40 KB gzipped was wrong. `case-studies.js` is 43 KB of
+source, of which 15 KB is prose, so the real prize is about 12 KB gzipped
+off a 77 KB chunk.
+
+`routes.jsx` imports it to resolve a slug, which is what pulls it into the
+main chunk. Getting it out means lazy loading the case study route, and
+these pages are prerendered: a lazy route renders its Suspense fallback into
+the static HTML instead of the prose, which is the whole AEO case for those
+pages. Twelve kilobytes is not worth trading the prerendered content for,
+and Total Blocking Time is green at 70ms, so the JS is not delaying
+anything. Left alone on purpose.
+
+**26 / Confirm Railway serves gzip or Brotli.** Not checkable from the
+build container. If it is off, that is another 310 KB on the text assets
+and it is a config toggle, not code.
+
+No score is predicted. PageSpeed's number depends on their throttling model,
+and the honest test is a fresh run against the live site once this is
+deployed.
 
 ## Ready to build
 

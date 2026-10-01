@@ -35,6 +35,11 @@ export const GALLERY = {
   nicheBg: "/images/gallery/uncontested-room.webp",
   ctaImg: g(22),
   positionRoom: "/images/gallery/position-room.webp",
+  // The same frame at 960w. Used where it is a CSS background, which cannot
+  // take a srcset, and where it sits under two gradient overlays so the
+  // detail is invisible anyway. Sharing the file with the <img> variants
+  // means the browser fetches it once rather than twice.
+  positionRoomWide: "/images/gallery/position-room-960.webp",
   motionWall: [g(8), g(9), g(28), g(31), g(3), g(35), g(23), g(30), g(13), g(19)],
 }
 

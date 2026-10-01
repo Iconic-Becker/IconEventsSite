@@ -1,4 +1,5 @@
 import { useRef } from "react"
+import { responsive } from "../lib/img.js"
 
 // Cursor-follow spotlight that reveals a logo through a circular mask (same
 // technique as the hero easter egg). Place absolutely over a `relative` block;
@@ -23,7 +24,7 @@ export default function SpotlightReveal({ src = "/logos/IE_logo_white.png", clas
       ref={ref}
       onMouseMove={move}
       onMouseLeave={leave}
-      src={src}
+      {...responsive(src, "(min-width: 768px) 720px, 90vw")}
       alt=""
       className={`spotlight-img ${className}`}
     />

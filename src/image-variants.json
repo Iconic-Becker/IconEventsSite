@@ -1,0 +1,404 @@
+{
+ "/images/gallery/position-room.webp": {
+  "w": 1900,
+  "h": 1259,
+  "set": [
+   [
+    "/images/gallery/position-room-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/position-room-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/insight.webp": {
+  "w": 1600,
+  "h": 900,
+  "set": [
+   [
+    "/images/gallery/insight-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/insight-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/g32.webp": {
+  "w": 1209,
+  "h": 877,
+  "set": [
+   [
+    "/images/gallery/g32-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/g32-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/g34.webp": {
+  "w": 1209,
+  "h": 836,
+  "set": [
+   [
+    "/images/gallery/g34-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/g34-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/clients/eddie-maalouf.webp": {
+  "w": 640,
+  "h": 800,
+  "set": [
+   [
+    "/images/clients/eddie-maalouf-480.webp",
+    480
+   ]
+  ]
+ },
+ "/images/gallery/g9.webp": {
+  "w": 933,
+  "h": 1284,
+  "set": [
+   [
+    "/images/gallery/g9-480.webp",
+    480
+   ]
+  ]
+ },
+ "/images/gallery/g8.webp": {
+  "w": 953,
+  "h": 1278,
+  "set": [
+   [
+    "/images/gallery/g8-480.webp",
+    480
+   ]
+  ]
+ },
+ "/images/gallery/g19.webp": {
+  "w": 999,
+  "h": 1273,
+  "set": [
+   [
+    "/images/gallery/g19-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/g19-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/g25.webp": {
+  "w": 1243,
+  "h": 805,
+  "set": [
+   [
+    "/images/gallery/g25-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/g25-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/g31.webp": {
+  "w": 1000,
+  "h": 1072,
+  "set": [
+   [
+    "/images/gallery/g31-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/g31-960.webp",
+    960
+   ]
+  ]
+ },
+ "/logos/IE_logo_white.png": {
+  "w": 1200,
+  "h": 462,
+  "set": [
+   [
+    "/logos/IE_logo_white-480.webp",
+    480
+   ],
+   [
+    "/logos/IE_logo_white-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/g28.webp": {
+  "w": 1000,
+  "h": 1067,
+  "set": [
+   [
+    "/images/gallery/g28-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/g28-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/press/women-and-wealth.webp": {
+  "w": 1400,
+  "h": 400,
+  "set": [
+   [
+    "/images/press/women-and-wealth-480.webp",
+    480
+   ],
+   [
+    "/images/press/women-and-wealth-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/g3.webp": {
+  "w": 1000,
+  "h": 1013,
+  "set": [
+   [
+    "/images/gallery/g3-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/g3-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/g30.webp": {
+  "w": 1000,
+  "h": 1059,
+  "set": [
+   [
+    "/images/gallery/g30-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/g30-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/clients/ali-awad.webp": {
+  "w": 640,
+  "h": 800,
+  "set": [
+   [
+    "/images/clients/ali-awad-480.webp",
+    480
+   ]
+  ]
+ },
+ "/images/clients/ravi-abuvala.webp": {
+  "w": 640,
+  "h": 800,
+  "set": [
+   [
+    "/images/clients/ravi-abuvala-480.webp",
+    480
+   ]
+  ]
+ },
+ "/images/gallery/g13.webp": {
+  "w": 999,
+  "h": 1280,
+  "set": [
+   [
+    "/images/gallery/g13-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/g13-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/press/scaling-with-systems.webp": {
+  "w": 1400,
+  "h": 400,
+  "set": [
+   [
+    "/images/press/scaling-with-systems-480.webp",
+    480
+   ],
+   [
+    "/images/press/scaling-with-systems-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/g24.webp": {
+  "w": 1210,
+  "h": 817,
+  "set": [
+   [
+    "/images/gallery/g24-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/g24-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/clients/ben-newman.webp": {
+  "w": 640,
+  "h": 800,
+  "set": [
+   [
+    "/images/clients/ben-newman-480.webp",
+    480
+   ]
+  ]
+ },
+ "/images/clients/ed-mylett.webp": {
+  "w": 640,
+  "h": 800,
+  "set": [
+   [
+    "/images/clients/ed-mylett-480.webp",
+    480
+   ]
+  ]
+ },
+ "/images/gallery/g26.webp": {
+  "w": 1257,
+  "h": 1249,
+  "set": [
+   [
+    "/images/gallery/g26-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/g26-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/press/commas.webp": {
+  "w": 1400,
+  "h": 400,
+  "set": [
+   [
+    "/images/press/commas-480.webp",
+    480
+   ],
+   [
+    "/images/press/commas-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/clients/chase-hughes.webp": {
+  "w": 640,
+  "h": 800,
+  "set": [
+   [
+    "/images/clients/chase-hughes-480.webp",
+    480
+   ]
+  ]
+ },
+ "/images/press/closers-io.webp": {
+  "w": 1400,
+  "h": 400,
+  "set": [
+   [
+    "/images/press/closers-io-480.webp",
+    480
+   ],
+   [
+    "/images/press/closers-io-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/press/netrevenue.webp": {
+  "w": 1400,
+  "h": 400,
+  "set": [
+   [
+    "/images/press/netrevenue-480.webp",
+    480
+   ],
+   [
+    "/images/press/netrevenue-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/g23.webp": {
+  "w": 1000,
+  "h": 710,
+  "set": [
+   [
+    "/images/gallery/g23-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/g23-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/g35.webp": {
+  "w": 1000,
+  "h": 698,
+  "set": [
+   [
+    "/images/gallery/g35-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/g35-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/g22.webp": {
+  "w": 1000,
+  "h": 884,
+  "set": [
+   [
+    "/images/gallery/g22-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/g22-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/press/7th-level.webp": {
+  "w": 1400,
+  "h": 400,
+  "set": [
+   [
+    "/images/press/7th-level-480.webp",
+    480
+   ],
+   [
+    "/images/press/7th-level-960.webp",
+    960
+   ]
+  ]
+ }
+}

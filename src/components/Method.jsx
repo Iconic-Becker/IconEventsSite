@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react"
+import { responsive } from "../lib/img.js"
 import { METHOD } from "../content.js"
 import { useVoice } from "../voice.jsx"
 import DriftParticles from "./DriftParticles.jsx"
@@ -163,7 +164,7 @@ export default function Method() {
           >
             {/* per-phase image — softly blurred so it reads as atmosphere */}
             <img
-              src={cur.img}
+              {...responsive(cur.img, "(min-width: 768px) 55vw, 100vw")}
               alt=""
               className="absolute inset-0 h-full w-full scale-110 object-cover blur-[3px]"
             />
