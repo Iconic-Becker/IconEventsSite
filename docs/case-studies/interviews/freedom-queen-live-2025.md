@@ -32,6 +32,23 @@ answered yet.
 
 ## Q2. What made this one hard?
 
+User, 2026-10-01, verbatim:
+
+> Yeah, so year two was back at the Vinoy. I don't know what the, I think it
+> was still a bit annoying portion is all about. Ultimately, what made this
+> one hard was really the rehearsal elements, right? Like we had to source
+> and find the dance performers, and then we had to make sure that the times
+> were perfectly cued and then synced with the AV and the stage elements as
+> well, all while keeping this a surprise from the attendees. So, you know,
+> we had like a flash mob in the first moment, rehearsed dance performance
+> throughout the day. Trying to fit in the dance rehearsals on top of the
+> speaker rehearsals was challenging, but it came out well. And yes, it was
+> at the vinoy
+
+Captured: back at the Vinoy, St. Petersburg. Drop the "annoying" line.
+Flash mob at the opening; dance performances through the day; all kept a
+surprise; dance rehearsals fitted around speaker rehearsals.
+
 ## Q3. Three to five decisions, and why
 
 ## Q4. Challenges overcome
@@ -47,7 +64,7 @@ answered yet.
 - Attendance:
 - Days of production on site:
 - Cost saved for the client:
-- Venue, city, month, year: November 2025
+- Venue, city, month, year: the Vinoy, St. Petersburg, FL, November 2025
 - Scope:
 - Client name, title, company: Bridget James Ling
 - Aftermovie:
