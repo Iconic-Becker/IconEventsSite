@@ -57,16 +57,29 @@ surprise; dance rehearsals fitted around speaker rehearsals.
 
 ## Q6. Anything else about the event?
 
+User, 2026-10-01, verbatim (how it went, right for, facts):
+
+> Well, the attendees certainly loved it. Um, it was a wild show-stopping
+> moment that really woke them up and let them know that they were not at
+> another normal business conference. It was also a great item for the
+> socials, like the media that came out of this event surely really set the
+> expectation that this event is meant to be different than others. I don't
+> think we need the right for portion on this one. Um, attendance this year
+> grew to about 500 people, and there is an after movie.
+
+Captured: no right for section. Attendance grew to about 500 (exact count
+to confirm). Aftermovie exists, link needed. Days on site not answered.
+
 ## Steal This
 
 ## Facts
 
-- Attendance:
+- Attendance: about 500 (exact to confirm)
 - Days of production on site:
 - Cost saved for the client:
 - Venue, city, month, year: the Vinoy, St. Petersburg, FL, November 2025
 - Scope:
 - Client name, title, company: Bridget James Ling
-- Aftermovie:
+- Aftermovie: exists, link needed
 - Testimonial video:
 - Photo folder / photographer / usage rights:
