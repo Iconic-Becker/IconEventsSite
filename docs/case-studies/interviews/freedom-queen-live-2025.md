@@ -12,6 +12,24 @@ photos on file.
 
 ## Q1. What did they come to you with?
 
+User, 2026-10-01, verbatim:
+
+> Yeah, so the thing that was different about Bridges event year two was
+> that she wanted to lean away from the idea of this business conference.
+> She wanted to lean into her theatrical roots and create a sort of show.
+> And when we say show, she wanted very, like, performance, very Broadway-
+> esque. And that boiled down to having performers that were going to do
+> things. She wanted to rehearse dance numbers. She wanted this to feel...
+> less like a conference and more like a theatrical performance. It was
+> still a bit annoying, but the biggest difference that we had was we had
+> these rehearsed musical sets and we even had like butler service that
+> ended up becoming part of the performance at the front of the stage. Yeah,
+> it was very cool.
+
+Captured: "Bridges" is Bridget's (transcription). "It was still a bit
+annoying" is unclear: likely "still a business event"; ask. Venue not
+answered yet.
+
 ## Q2. What made this one hard?
 
 ## Q3. Three to five decisions, and why
