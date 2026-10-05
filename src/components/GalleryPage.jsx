@@ -155,6 +155,23 @@ const ORDER = arrange(POOL, neighbours(LAYOUTS))
 // How many frames the page opens on, and how many each "show more" adds.
 const PAGE = 120
 
+// Where each column count starts, matching the grid's breakpoints.
+const MIN_WIDTH = { 2: 0, 3: 640, 4: 1024, 5: 1280, 6: 1536 }
+
+/* How wide a tile renders at each column count, as an <img sizes> value, so
+   the browser fetches the 480w thumbnail for a small tile and the 960w only
+   where it is needed. Slightly under a straight share of the screen, to
+   allow for the margins and gaps. `spans` is [[cols, columns spanned]]. */
+function sizesFor(spans) {
+  return [...spans]
+    .reverse()
+    .map(([cols, w]) => {
+      const vw = Math.round((96 / cols) * w)
+      return MIN_WIDTH[cols] ? `(min-width: ${MIN_WIDTH[cols]}px) ${vw}vw` : `${vw}vw`
+    })
+    .join(", ")
+}
+
 /* The span classes for the first `count` frames. Worked out for that count,
    so the grid finishes flush however many are showing. */
 function itemsFor(count) {
@@ -164,7 +181,8 @@ function itemsFor(count) {
     title: frame.event,
     desc: frame.alt,
     url: frame.src,
-    thumb: frame.thumb,
+    thumbs: frame.thumbs,
+    sizes: sizesFor(layouts.map(([cols, kinds]) => [cols, SIZE[kinds[index]][0]])),
     href: frame.href,
     span: layouts.map(([cols, kinds]) => SPAN[cols][kinds[index]]).join(" "),
   }))

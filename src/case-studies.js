@@ -950,9 +950,8 @@ const REPEATS = new Set([
    written case studies plus the whole photo library, one entry per file.
 
    Each carries its event. `href` is the case study page when one is written,
-   and null when the event is listed but not yet written up. `thumb` is the
-   960w file made by scripts/make-gallery-thumbs.mjs for library photos, and
-   null for case study frames, which carry their own srcset. Alt text is the
+   and null when the event is listed but not yet written up. `thumbs` lists
+   the smaller files the grid loads instead of the full one. Alt text is the
    case study's own where a frame has one; library photos get a plain line
    naming the event, client and place, never a guess at what is in shot. */
 export function galleryFrames() {
@@ -965,7 +964,7 @@ export function galleryFrames() {
   }
 
   for (const frame of galleryPool()) {
-    add({ src: frame.src, thumb: null, alt: frame.alt, slug: frame.slug, event: frame.study, href: frame.href })
+    add({ src: frame.src, alt: frame.alt, slug: frame.slug, event: frame.study, href: frame.href })
   }
 
   for (const [slug, entry] of Object.entries(PHOTO_LIBRARY)) {
@@ -974,16 +973,20 @@ export function galleryFrames() {
     const event = built?.name ?? listed?.name ?? slug
     const client = built?.details.client ?? listed?.client
     const place = listed?.location ?? (built ? [built.details.city, built.details.region].filter(Boolean).join(", ") : null)
-    libraryPhotos(entry).forEach((src, i) => {
+    libraryPhotos(entry).forEach((src) => {
       add({
         src,
-        thumb: src.replace(/\.webp$/, "-960.webp"),
-        alt: `${event}${client ? ` for ${client}` : ""}${place ? ` in ${place}` : ""}, produced by Iconic Events, photo ${i + 1}`,
+        alt: `${event}${client ? ` for ${client}` : ""}${place ? ` in ${place}` : ""}, produced by Iconic Events`,
         slug,
         event,
         href: built ? `/case-studies/${slug}` : null,
       })
     })
   }
-  return frames
+  // Every frame has 480w and 960w thumbnails beside it, made by
+  // scripts/make-gallery-thumbs.mjs.
+  return frames.map((frame) => ({
+    ...frame,
+    thumbs: [480, 960].map((w) => [frame.src.replace(/\.webp$/, `-${w}.webp`), w]),
+  }))
 }
