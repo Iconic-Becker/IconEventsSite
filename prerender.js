@@ -8,6 +8,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { render, preloadRoute } from './dist-ssr/entry-server.js'
 import { CASE_STUDIES } from './src/case-studies.js'
+import { PRIVACY, TERMS } from './src/legal.js'
 
 const SITE = 'https://www.iconic.events'
 
@@ -48,6 +49,12 @@ ROUTES.push({
     'Tell Iconic Events about the room you want to build. Event production, stage design and experience architecture for live in person events.',
   image: '/og/default.jpg',
 })
+
+// The privacy policy and terms. Indexed: ad platforms and visitors look for
+// them, and Meta checks the privacy policy URL on lead forms.
+for (const doc of [PRIVACY, TERMS]) {
+  ROUTES.push({ path: doc.path, title: `${doc.title} | Iconic Events`, description: doc.description, image: '/og/default.jpg' })
+}
 
 // Every case study photograph on one page, each linked to its event.
 ROUTES.push({

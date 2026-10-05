@@ -5,6 +5,8 @@ import CaseStudiesIndex from "./components/CaseStudiesIndex.jsx"
 import NextSteps from "./components/NextSteps.jsx"
 import Vendors from "./components/Vendors.jsx"
 import Contact from "./components/Contact.jsx"
+import LegalPage from "./components/LegalPage.jsx"
+import { PRIVACY, TERMS } from "./legal.js"
 import { caseStudyFromPath } from "./case-studies.js"
 import { splitPage } from "./lib/split-page.jsx"
 
@@ -39,6 +41,9 @@ export function routeFor(pathname) {
   if (path === "/vendors" || path === "/partners") return <Vendors />
 
   if (path === "/contact") return <Contact />
+
+  if (path === "/privacy") return <LegalPage doc={PRIVACY} />
+  if (path === "/terms") return <LegalPage doc={TERMS} />
 
   if (path === "/gallery") {
     return (
