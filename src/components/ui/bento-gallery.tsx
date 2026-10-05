@@ -213,8 +213,14 @@ const InteractiveImageBentoGallery: React.FC<InteractiveImageBentoGalleryProps> 
             <p className="mt-5 font-sans text-lg leading-relaxed text-bone/70">{description}</p>
           </div>
           {children}
+        </div>
 
-          <div className="mt-10 grid grid-flow-row-dense auto-rows-[10rem] grid-cols-2 gap-2 sm:mt-14 sm:auto-rows-[12rem] sm:grid-cols-3 sm:gap-3 lg:auto-rows-[14rem] lg:grid-cols-4">
+        {/* The grid runs wider than the text column, nearly edge to edge,
+            and gains columns as the screen widens (2 up to 6). Capped at
+            1920px so frames do not balloon on very large monitors. The
+            column counts must match COLUMNS in GalleryPage.jsx. */}
+        <div className="mx-auto max-w-[1920px] px-5 sm:px-6 lg:px-8">
+          <div className="mt-10 grid grid-flow-row-dense auto-rows-[10rem] grid-cols-2 gap-2 sm:mt-14 sm:auto-rows-[12rem] sm:grid-cols-3 sm:gap-3 lg:auto-rows-[14rem] lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
             {imageItems.map((item, index) => (
               <div
                 key={item.id}
@@ -236,7 +242,7 @@ const InteractiveImageBentoGallery: React.FC<InteractiveImageBentoGalleryProps> 
                 <img
                   {...(item.thumb
                     ? { src: item.thumb }
-                    : responsive(item.url, "(min-width: 1024px) 36rem, (min-width: 640px) 50vw, 100vw"))}
+                    : responsive(item.url, "(min-width: 1024px) 34vw, (min-width: 640px) 67vw, 100vw"))}
                   alt={item.desc}
                   loading="lazy"
                   className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-700 [filter:saturate(1.08)_contrast(1.06)] group-hover:scale-105"
@@ -249,6 +255,8 @@ const InteractiveImageBentoGallery: React.FC<InteractiveImageBentoGalleryProps> 
               </div>
             ))}
           </div>
+        </div>
+        <div className="mx-auto max-w-6xl px-5 sm:px-6">
           <p className="mt-6 text-center font-sans text-[10px] uppercase tracking-[0.2em] text-bone/40">
             Select a photo to enlarge it and see the event
           </p>
