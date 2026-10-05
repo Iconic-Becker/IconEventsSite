@@ -4,6 +4,7 @@ import CaseStudiesIndex from "./components/CaseStudiesIndex.jsx"
 import NextSteps from "./components/NextSteps.jsx"
 import Vendors from "./components/Vendors.jsx"
 import Contact from "./components/Contact.jsx"
+import GalleryPage from "./components/GalleryPage.jsx"
 import { caseStudyFromPath } from "./case-studies.js"
 
 /* The one place a URL becomes a page.
@@ -23,6 +24,8 @@ export function routeFor(pathname) {
   if (clean === "/vendors" || clean === "/partners") return <Vendors />
 
   if (clean === "/contact") return <Contact />
+
+  if (clean === "/gallery") return <GalleryPage />
 
   if (clean === "/case-studies") return <CaseStudiesIndex />
 

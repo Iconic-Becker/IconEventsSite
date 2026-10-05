@@ -49,6 +49,15 @@ ROUTES.push({
   image: '/og/default.jpg',
 })
 
+// Every case study photograph on one page, each linked to its event.
+ROUTES.push({
+  path: '/gallery',
+  title: 'Gallery | Iconic Events',
+  description:
+    'Photographs from the rooms Iconic Events has produced. Stage, light, detail and audience, each linked to its case study.',
+  image: '/og/default.jpg',
+})
+
 // The vendor sign-up. Indexed: vendors searching for production companies to
 // work with should be able to find it.
 ROUTES.push({
