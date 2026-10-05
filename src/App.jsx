@@ -491,7 +491,9 @@ export default function App() {
               {FOOTER.legal} · {FOOTER.tagStrip}
             </p>
             <p className="text-right font-sans text-[10px] uppercase leading-relaxed tracking-[0.12em] text-footer-grey md:text-left md:text-[11px] md:tracking-[0.15em]">
-              Privacy · Terms
+              <a href="/privacy" className="transition hover:text-brass">Privacy</a>
+              {" · "}
+              <a href="/terms" className="transition hover:text-brass">Terms</a>
             </p>
           </div>
           <p className="mt-6 max-w-3xl font-sans text-[11px] leading-relaxed text-footer-grey">

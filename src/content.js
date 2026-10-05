@@ -609,15 +609,15 @@ export const FOOTER = {
         "Miami · Las Vegas",
       ],
     },
-    // The same profiles as sameAs in index.html, plus YouTube. Vimeo was
+    // Iconic's company profiles, the same as sameAs in index.html. Vimeo was
     // listed here with no link and no account found, so it came out.
     {
       id: "col3",
       head: "Follow",
       items: [
         { label: "Instagram", href: "https://www.instagram.com/iconicbecker", external: true },
-        { label: "LinkedIn", href: "https://www.linkedin.com/in/iconicbecker/", external: true },
-        { label: "YouTube", href: "https://www.youtube.com/@IconicBecker", external: true },
+        { label: "LinkedIn", href: "https://www.linkedin.com/company/iconiceventsusa", external: true },
+        { label: "YouTube", href: "https://www.youtube.com/@iconiceventsUSA", external: true },
       ],
     },
   ],
