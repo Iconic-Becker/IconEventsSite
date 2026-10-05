@@ -34,6 +34,13 @@ credit and written usage rights, per event (interview protocol, section 5).
 | 21 7-Figure Agency | `7-figure-agency/` | 16 |
 | 22 Takeover Live 1 | `takeover-live-1/` | 35 |
 
+**On `/gallery`.** Every photo here appears on the gallery page, each
+labelled with its event. The grid loads a 960px thumbnail, `NN-960.webp`
+beside each `NN.webp`, made by `node scripts/make-gallery-thumbs.mjs`; run it
+again after adding a folder. Nine photos turned out to be repeats of another
+in the same folder and are left off the gallery (`REPEATS` in
+`src/case-studies.js`).
+
 `the-ceo-lawyer-summit-2021/` belongs to the live `ceo-lawyer-summit` page,
 which is the 2021 edition; the 2022 edition is a separate event. `epic-growth-conference/`
 belongs to Epic Growth Conference 2021, a separate event from EGC 2022.
