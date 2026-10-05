@@ -48,6 +48,17 @@ ROUTES.push({
   sitemap: false,
 })
 
+// /partners is the door for vendors, signposted from the client brief. It is
+// prerendered so the link resolves on a full load, and kept out of the sitemap
+// and search: it is not a page anyone should land on cold.
+ROUTES.push({
+  path: '/partners',
+  title: 'Partners and vendors · Iconic Events',
+  description: 'Venues, suppliers and agencies: how to introduce your services to the Iconic Events production team.',
+  image: '/og/default.jpg',
+  sitemap: false,
+})
+
 const template = fs.readFileSync('dist/index.html', 'utf-8')
 
 const escape = (value) =>
@@ -84,7 +95,9 @@ for (const route of ROUTES) {
     )
     .replace(
       '</head>',
-      `  <link rel="canonical" href="${SITE}${route.path}" />\n${socialTags(route)}\n  </head>`
+      `  <link rel="canonical" href="${SITE}${route.path}" />\n${socialTags(route)}\n${
+        route.sitemap === false ? '  <meta name="robots" content="noindex, nofollow" />\n' : ''
+      }  </head>`
     )
     .replace('<div id="root"></div>', `<div id="root">${render(route.path)}</div>`)
 

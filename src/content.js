@@ -524,8 +524,8 @@ export const CTA = {
   eyebrow: "Start a Conversation",
   title: V("Tell us about the room you want to build.", "Tell us about the room you want to build."),
   formLead: V(
-    "Answer the three questions below and a senior director will take it from there.",
-    "Answer the three questions below and a senior director will take it from there — no pitch decks, just the conversation."
+    "A minute of answers, and a senior director will take it from there.",
+    "A minute of answers, and a senior director will take it from there. No pitch decks, just the conversation."
   ),
   stats: [
     { id: "c1", value: "30", label: V("minutes with a senior director", "minutes with a senior director") },
@@ -533,14 +533,26 @@ export const CTA = {
     { id: "c3", value: "0", label: V("pitch decks — just the conversation", "pitch decks — just the conversation") },
   ],
   form: {
-    stageLabel: V("Your business stage", "Your business stage"),
-    stages: ["Under $1M", "$1M–$5M", "$5M–$25M", "$25M+"],
-    timingLabel: V("When is the room?", "When is the room?"),
-    timings: ["Next 3 months", "3–6 months", "6–12 months", "Exploring"],
-    outcomeLabel: V("What outcome are you engineering?", "What outcome are you engineering?"),
-    outcomePlaceholder: V(
-      "The result the room has to produce.",
-      "The result you need the room to drive.",
+    /* Every choice is required and none is pre-selected, so an answer in the
+       inbox is always one the visitor actually picked. */
+    eventLabel: "What's the event?",
+    events: [
+      "Client summit or conference",
+      "Launch",
+      "Retreat or mastermind",
+      "Customer or VIP event",
+      "Not sure yet",
+    ],
+    guestsLabel: "How many guests?",
+    guests: ["Under 50", "50 to 150", "150 to 500", "500+"],
+    budgetLabel: "Event budget",
+    budgets: ["Under $50k", "$50k to $150k", "$150k to $500k", "$500k+", "I don't know yet"],
+    timingLabel: "When is the room?",
+    timings: ["Within 3 months", "3 to 6 months", "6 to 12 months", "Just exploring"],
+    notesLabel: "Anything else we should know?",
+    notesPlaceholder: V(
+      "What the room has to achieve, where you need support, what is already in place.",
+      "What the room needs to do, where you need a hand, what's already sorted."
     ),
     submit: V("Start a conversation", "Book the call"),
     sending: V("Sending…", "Locking it in…"),
