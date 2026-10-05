@@ -22,22 +22,24 @@ const DESCRIPTION =
 
    A repeating rhythm of large, tall and wide frames, laid out so the grid
    finishes flush, with no hole beside a big frame on the last row. The
-   column count changes with the screen (2, 3, then 4), so the layout is
+   column count changes with the screen (2 on a phone, up to 6), so the layout is
    worked out once per column count, by running the same dense placement the
    browser will and flattening frames nearest the end until nothing is left
    open. Deterministic, so the prerender and the browser agree. */
 const RHYTHM = ["big", "one", "one", "tall", "one", "wide", "one"]
 const SIZE = { one: [1, 1], wide: [2, 1], tall: [1, 2], big: [2, 2] }
-const COLUMNS = [2, 3, 4]
+const COLUMNS = [2, 3, 4, 5, 6]
 /* One photo order has to serve all three column counts, and the 3 column
    layout is the hardest to spread, so it counts double when arranging. */
-const SPREAD_WEIGHT = { 2: 1, 3: 2, 4: 1 }
+const SPREAD_WEIGHT = { 2: 1, 3: 2, 4: 1, 5: 1, 6: 1 }
 
 // Literal class names, so Tailwind finds them in the source.
 const SPAN = {
   2: { one: "col-span-1 row-span-1", wide: "col-span-2 row-span-1", tall: "col-span-1 row-span-2", big: "col-span-2 row-span-2" },
   3: { one: "sm:col-span-1 sm:row-span-1", wide: "sm:col-span-2 sm:row-span-1", tall: "sm:col-span-1 sm:row-span-2", big: "sm:col-span-2 sm:row-span-2" },
   4: { one: "lg:col-span-1 lg:row-span-1", wide: "lg:col-span-2 lg:row-span-1", tall: "lg:col-span-1 lg:row-span-2", big: "lg:col-span-2 lg:row-span-2" },
+  5: { one: "xl:col-span-1 xl:row-span-1", wide: "xl:col-span-2 xl:row-span-1", tall: "xl:col-span-1 xl:row-span-2", big: "xl:col-span-2 xl:row-span-2" },
+  6: { one: "2xl:col-span-1 2xl:row-span-1", wide: "2xl:col-span-2 2xl:row-span-1", tall: "2xl:col-span-1 2xl:row-span-2", big: "2xl:col-span-2 2xl:row-span-2" },
 }
 
 /* CSS grid's dense auto-placement: each frame takes the first slot it fits.
