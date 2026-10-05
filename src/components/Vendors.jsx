@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import SiteHeader from "./SiteHeader.jsx"
 import Icon from "./Icon.jsx"
 import { sendPartner, ENQUIRY_EMAIL } from "../lib/enquiry.js"
+import SiteFooter from "./SiteFooter.jsx"
 
 /* Everything Iconic buys in, from crew and kit through to the agencies and
    platforms that work alongside a build. One list covers vendors, venues and
@@ -265,19 +266,18 @@ export default function Vendors() {
                   {status === "loading" ? "Sending" : "Join the partner list"}
                   {status !== "loading" && <Icon name="arrow" className="h-4 w-4" />}
                 </button>
+                <p className="mt-4 max-w-md font-sans text-xs leading-relaxed text-onyx/55">
+                  By sending this, you agree to our{" "}
+                  <a href="/privacy" className="underline underline-offset-2 transition hover:text-onyx">Privacy Policy</a> and{" "}
+                  <a href="/terms" className="underline underline-offset-2 transition hover:text-onyx">Terms and Conditions</a>.
+                </p>
               </form>
             )}
           </div>
         </div>
       </section>
 
-      <footer className="border-t border-bone/10 py-12">
-        <div className="mx-auto max-w-6xl px-5 sm:px-6">
-          <a href="/" className="inline-block bg-brass px-6 py-3 font-sans text-[10px] font-bold uppercase tracking-[0.14em] text-onyx">
-            Back to Iconic Events
-          </a>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   )
 }

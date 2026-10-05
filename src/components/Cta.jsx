@@ -232,6 +232,11 @@ export default function Cta({ modal = false, split = false, eyebrow, title, asid
                 {status === "loading" ? t(f.sending) : t(f.submit)}
                 {status !== "loading" && <Icon name="arrow" className="h-4 w-4 transition group-hover:translate-x-1" />}
               </button>
+              <p className="mt-4 max-w-md font-sans text-xs leading-relaxed text-onyx/55">
+                By sending this, you agree to our{" "}
+                <a href="/privacy" className="underline underline-offset-2 transition hover:text-onyx">Privacy Policy</a> and{" "}
+                <a href="/terms" className="underline underline-offset-2 transition hover:text-onyx">Terms and Conditions</a>.
+              </p>
             </form>
             <p className="mt-5 max-w-xl font-sans text-xs leading-relaxed text-bone/45">
               {t(f.reassurance)}

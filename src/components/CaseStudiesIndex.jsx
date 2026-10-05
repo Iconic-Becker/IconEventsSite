@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { caseStudyCards } from "../case-studies.js"
 import SiteHeader from "./SiteHeader.jsx"
+import SiteFooter from "./SiteFooter.jsx"
 
 /* The grid of every event Iconic has produced.
 
@@ -114,6 +115,7 @@ export default function CaseStudiesIndex() {
           </a>
         </div>
       </section>
+      <SiteFooter />
     </main>
   )
 }

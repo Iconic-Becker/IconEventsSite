@@ -12,7 +12,6 @@ import {
   TESTIMONIALS,
   NICHE,
   CTA,
-  FOOTER,
   GALLERY,
   MONTAGE,
   HERO_WALL,
@@ -36,12 +35,7 @@ import Niche from "./components/Niche.jsx"
 import Cta from "./components/Cta.jsx"
 import SiteHeader from "./components/SiteHeader.jsx"
 import CtaBand from "./components/CtaBand.jsx"
-
-/* ── Identity ───────────────────────────────────────────────────────── */
-function Logo({ tone = "black", className = "" }) {
-  const src = tone === "white" ? "/logos/IE_logo_white.png" : "/logos/IE_logo_black.png"
-  return <img {...responsive(src, "180px")} alt="Iconic Events — Est. 2017" className={className} />
-}
+import SiteFooter from "./components/SiteFooter.jsx"
 
 // One vertical marquee column for the hero walls. Content is duplicated so the
 // translate loops seamlessly; grayscale keeps the mixed sources cohesive.
@@ -446,61 +440,7 @@ export default function App() {
       {/* ── START A CONVERSATION — The Brief (locked in) ────────────────── */}
       <Cta />
 
-      {/* ── FOOTER ────────────────────────────────────────────────────── */}
-      <footer className="rule-tidepool relative border-t border-bone/10 bg-onyx">
-        <Section className="py-14">
-          <div className="grid grid-cols-2 gap-x-6 gap-y-10 border-b border-bone/10 pb-10 md:grid-cols-[1.5fr_1fr_1fr_1fr] md:gap-10">
-            {/* Logo and line stacked as one centred unit, which sits at the
-                start of its column from md up. */}
-            <div className="col-span-2 flex justify-center md:col-span-1 md:justify-start">
-              <div className="flex flex-col items-center text-center">
-                <Logo tone="white" className="h-14 w-auto md:h-12" />
-                <p className="mt-4 max-w-[16rem] font-sans text-sm text-bone/55">{t(FOOTER.line)}</p>
-              </div>
-            </div>
-            {FOOTER.columns.map((c) => (
-              <div key={c.id} className="min-w-0">
-                <div className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-brass">
-                  {c.head}
-                </div>
-                <ul className="mt-4 space-y-2 break-words font-sans text-sm leading-relaxed text-bone/60">
-                  {c.items.map((it) => {
-                    const label = typeof it === "string" ? it : it.label
-                    return (
-                      <li key={label}>
-                        {typeof it === "string" ? (
-                          label
-                        ) : (
-                          <a
-                            href={it.href}
-                            {...(it.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                            className="transition hover:text-brass"
-                          >
-                            {label}
-                          </a>
-                        )}
-                      </li>
-                    )
-                  })}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 grid grid-cols-2 items-start gap-4 md:flex md:items-center md:justify-between">
-            <p className="font-sans text-[10px] uppercase leading-relaxed tracking-[0.14em] text-bone/50 md:text-xs md:tracking-[0.2em]">
-              {FOOTER.legal} · {FOOTER.tagStrip}
-            </p>
-            <p className="text-right font-sans text-[10px] uppercase leading-relaxed tracking-[0.12em] text-footer-grey md:text-left md:text-[11px] md:tracking-[0.15em]">
-              <a href="/privacy" className="transition hover:text-brass">Privacy</a>
-              {" · "}
-              <a href="/terms" className="transition hover:text-brass">Terms</a>
-            </p>
-          </div>
-          <p className="mt-6 max-w-3xl font-sans text-[11px] leading-relaxed text-footer-grey">
-            {FOOTER.ip}
-          </p>
-        </Section>
-      </footer>
+      <SiteFooter home />
     </div>
   )
 }
