@@ -78,7 +78,7 @@ export const MIN_FILL_MS = 3000
    four required single choices, one optional note, then send. */
 /* eyebrow and title override the homepage copy, so a case study can close
    on its own line above the same form. */
-export default function Cta({ modal = false, eyebrow, title }) {
+export default function Cta({ modal = false, split = false, eyebrow, title, aside }) {
   const { t } = useVoice()
   const f = CTA.form
   const [name, setName] = useState("")
@@ -138,12 +138,21 @@ export default function Cta({ modal = false, eyebrow, title }) {
     <div id="contact" className={`relative flex items-center overflow-hidden bg-onyx ${modal ? "py-6 sm:py-8" : "min-h-screen py-16 sm:py-24"}`}>
       {/* brand pattern across the whole background */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.05]" style={pattern} aria-hidden="true" />
-      <div className="relative z-10 mx-auto w-full max-w-4xl px-5 sm:px-6">
+      {/* `split` puts the pitch on the left and the form on the right, for the
+          page that is nothing but this. Below lg it stacks, which is the same
+          order the single column already uses. */}
+      <div className={`relative z-10 mx-auto w-full px-5 sm:px-6 ${split ? "max-w-6xl lg:grid lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-16" : "max-w-4xl"}`}>
+        <div className={split ? "lg:sticky lg:top-28" : ""}>
         <Eyebrow text={eyebrow} />
         <h2 className={`mt-6 max-w-4xl font-serif font-semibold leading-[1.02] text-bone ${modal ? "text-4xl sm:text-5xl" : "text-5xl sm:text-6xl lg:text-7xl"}`}>
           {title ?? accent(t(CTA.title), "about the room")}
         </h2>
         <p className="mt-5 max-w-xl font-sans text-lg text-bone/65">{t(CTA.formLead)}</p>
+        {/* Only the split page passes this: the left column is tall enough to
+            need more than a heading next to a long form. */}
+        {aside}
+        </div>
+        <div className={split ? "lg:mt-0" : ""}>
         {status !== "done" && (
           <>
             {status === "error" && (
@@ -242,6 +251,7 @@ export default function Cta({ modal = false, eyebrow, title }) {
             )}
           </>
         )}
+        </div>
       </div>
     </div>
   )

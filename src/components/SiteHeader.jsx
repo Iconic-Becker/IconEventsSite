@@ -28,14 +28,17 @@ function NavLink({ href, children }) {
 }
 
 
-/* A nav item that opens a menu instead of jumping somewhere.
+/* A nav item that is a link and also reveals a menu.
 
-   Click and keyboard only, deliberately. Opening on hover as well reads fine
-   until you click: the pointer has already opened the menu, so the click
-   toggles it shut again and the item appears to do nothing. Hover would also
-   strand anyone on a keyboard or a touchscreen. So the button owns the state:
-   click or Enter opens, Escape closes and hands focus back, and a click
-   anywhere outside closes. */
+   The trigger stays an anchor, so clicking Contact goes to the contact form
+   exactly as it always did. The menu appears on hover and on keyboard focus
+   anywhere inside, which is what makes it reachable without a pointer: tab to
+   Contact and the menu is open, tab again and you are in it.
+
+   An earlier version made the trigger a button that toggled on click. That
+   fought itself: the pointer had already opened the menu, so the click closed
+   it and Contact appeared to do nothing. Escape still closes and hands focus
+   back, for anyone who opens it and changes their mind. */
 function NavMenu({ item }) {
   const [open, setOpen] = useState(false)
   const wrap = useRef(null)
@@ -43,31 +46,39 @@ function NavMenu({ item }) {
 
   useEffect(() => {
     if (!open) return
-    const onDown = (e) => { if (!wrap.current?.contains(e.target)) setOpen(false) }
     const onKey = (e) => {
-      if (e.key === "Escape") { setOpen(false); trigger.current?.focus() }
+      if (e.key === "Escape") {
+        setOpen(false)
+        trigger.current?.blur()
+      }
     }
-    document.addEventListener("pointerdown", onDown)
     document.addEventListener("keydown", onKey)
-    return () => {
-      document.removeEventListener("pointerdown", onDown)
-      document.removeEventListener("keydown", onKey)
-    }
+    return () => document.removeEventListener("keydown", onKey)
   }, [open])
 
   return (
-    <div ref={wrap} className="relative">
-      <button
+    <div
+      ref={wrap}
+      className="relative"
+      onPointerEnter={() => setOpen(true)}
+      onPointerLeave={() => setOpen(false)}
+      onFocus={() => setOpen(true)}
+      onBlur={(e) => {
+        if (!wrap.current?.contains(e.relatedTarget)) setOpen(false)
+      }}
+    >
+      <a
         ref={trigger}
-        type="button"
+        href={item.href}
         aria-expanded={open}
         aria-haspopup="true"
-        onClick={() => setOpen((v) => !v)}
         className="group relative flex items-center gap-1.5 px-2 py-1.5 uppercase tracking-[0.16em] transition-colors duration-300 hover:text-brass"
       >
         {item.label}
         <span aria-hidden="true" className={`text-[8px] leading-none transition-transform duration-300 ${open ? "rotate-180" : ""}`}>▼</span>
-      </button>
+      </a>
+      {/* No gap between the link and the panel: a dead strip between them
+          would fire pointerleave and shut the menu on the way to it. */}
       <div
         className={`absolute right-0 top-full z-50 w-[270px] border border-brass/40 bg-onyx shadow-[0_18px_60px_rgba(0,0,0,0.5)] transition duration-200 ${open ? "visible opacity-100" : "pointer-events-none invisible opacity-0"}`}
       >
@@ -80,7 +91,7 @@ function NavMenu({ item }) {
           >
             <span className="block font-sans text-[11px] font-bold uppercase tracking-[0.16em]">{child.label}</span>
             {child.note && (
-              <span className="mt-1 block font-sans text-[11px] normal-case tracking-normal text-bone/50 transition group-hover:text-onyx/70">
+              <span className="mt-1 block font-sans text-[11px] normal-case tracking-normal text-bone/50">
                 {child.note}
               </span>
             )}

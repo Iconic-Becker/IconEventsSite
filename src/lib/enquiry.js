@@ -79,6 +79,34 @@ function miamiTime(date) {
   })
 }
 
+/* The one place anything leaves this file.
+
+   Resolves only when the endpoint has accepted the submission. A network
+   failure, an HTTP error and a JSON body carrying success:false all throw,
+   so no caller can show a confirmation for something that went nowhere.
+
+   Both forms were sending their own copy of this. sendEnquiry's copy went
+   missing in a rewrite and the client form threw ReferenceError on every
+   submit, which is why there is now exactly one. */
+async function post(payload) {
+  const response = await fetch(ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(payload),
+  })
+
+  if (!response.ok) {
+    throw new Error(`Form endpoint returned ${response.status}`)
+  }
+
+  const result = await response.json().catch(() => null)
+  if (result && result.success === false) {
+    throw new Error(result.message || "The endpoint rejected the submission.")
+  }
+
+  return true
+}
+
 /* Resolves only when the enquiry has actually been accepted. Every other
    path throws, so the caller can never show a success state for a
    submission that went nowhere. */
@@ -137,20 +165,5 @@ export async function sendPartner({ name, email, company, phone, website, covera
     submitted_at: new Date().toISOString(),
   }
 
-  const response = await fetch(ENDPOINT, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify(payload),
-  })
-
-  if (!response.ok) {
-    throw new Error(`Partner endpoint returned ${response.status}`)
-  }
-
-  const result = await response.json().catch(() => null)
-  if (result && result.success === false) {
-    throw new Error(result.message || "The endpoint rejected the sign-up.")
-  }
-
-  return true
+  return post(payload)
 }

@@ -39,6 +39,16 @@ const ROUTES = [
 // /nextsteps is prerendered so a refresh or a bookmark resolves, but kept out
 // of the sitemap: it is a post-submission confirmation page, marked noindex in
 // the page itself and disallowed in robots.txt.
+// The contact form as its own page, for linking to directly from anywhere
+// that is not the homepage.
+ROUTES.push({
+  path: '/contact',
+  title: 'Contact | Iconic Events',
+  description:
+    'Tell Iconic Events about the room you want to build. Event production, stage design and experience architecture for live in person events.',
+  image: '/og/default.jpg',
+})
+
 // The vendor sign-up. Indexed: vendors searching for production companies to
 // work with should be able to find it.
 ROUTES.push({
