@@ -2,6 +2,7 @@ import App from "./App.jsx"
 import CaseStudyPage, { CaseStudyNotFound } from "./components/CaseStudyPage.jsx"
 import CaseStudiesIndex from "./components/CaseStudiesIndex.jsx"
 import NextSteps from "./components/NextSteps.jsx"
+import Vendors from "./components/Vendors.jsx"
 import { caseStudyFromPath } from "./case-studies.js"
 
 /* The one place a URL becomes a page.
@@ -14,6 +15,8 @@ export function routeFor(pathname) {
   const clean = pathname.replace(/\/+$/, "") || "/"
 
   if (clean === "/nextsteps") return <NextSteps />
+
+  if (clean === "/vendors") return <Vendors />
 
   if (clean === "/case-studies") return <CaseStudiesIndex />
 

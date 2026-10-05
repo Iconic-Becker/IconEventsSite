@@ -236,6 +236,19 @@ export default function Cta({ modal = false, eyebrow, title }) {
             <p className="mt-5 max-w-xl font-sans text-xs leading-relaxed text-bone/45">
               {t(f.reassurance)}
             </p>
+            {/* Vendors land on this section too, and the form above is written
+                for clients. Send them somewhere that fits. */}
+            {!modal && (
+              <p className="mt-6 font-sans text-xs text-bone/45">
+                Supplying rather than booking?{" "}
+                <a
+                  href="/vendors"
+                  className="font-bold uppercase tracking-[0.14em] text-brass underline underline-offset-4 transition hover:text-bone"
+                >
+                  Join the vendor list
+                </a>
+              </p>
+            )}
           </>
         )}
       </div>

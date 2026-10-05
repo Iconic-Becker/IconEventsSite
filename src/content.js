@@ -567,7 +567,12 @@ export const FOOTER = {
       // every page is the easiest thing on the site to scrape. The form reaches
       // the same inbox. CONTACT_EMAIL is still the fallback when a submission
       // fails (see src/lib/enquiry.js).
-      items: [{ label: "Start a conversation", href: "#contact" }, "(305) 791-5290", "Miami · Las Vegas"],
+      items: [
+        { label: "Start a conversation", href: "#contact" },
+        { label: "Vendor sign-up", href: "/vendors" },
+        "(305) 791-5290",
+        "Miami · Las Vegas",
+      ],
     },
     { id: "col3", head: "Follow", items: ["Instagram", "LinkedIn", "Vimeo"] },
   ],

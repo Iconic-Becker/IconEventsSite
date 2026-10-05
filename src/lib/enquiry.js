@@ -70,3 +70,44 @@ export async function sendEnquiry({ stage, timing, outcome, email }) {
 
   return true
 }
+
+/* Vendor sign-ups go to the same inbox through the same endpoint, with a
+   subject that makes them sortable away from client enquiries. Same contract
+   as sendEnquiry: it resolves only once the endpoint has accepted, so the
+   caller can never show a confirmation for something that went nowhere. */
+export async function sendVendorApplication(vendor) {
+  const payload = {
+    ...(ACCESS_KEY ? { access_key: ACCESS_KEY } : {}),
+    subject: `Vendor sign-up: ${vendor.company || vendor.name}`,
+    from_name: "Iconic Events vendor sign-up",
+    email: vendor.email,
+    replyto: vendor.email,
+    company: vendor.company,
+    contact_name: vendor.name,
+    phone: vendor.phone || "Not given",
+    website: vendor.website || "Not given",
+    disciplines: vendor.disciplines.length ? vendor.disciplines.join(", ") : "Not specified",
+    coverage: vendor.coverage || "Not given",
+    insured: vendor.insured ? "Yes" : "Not stated",
+    notes: vendor.notes || "",
+    page: typeof window === "undefined" ? "" : window.location.href,
+    submitted_at: new Date().toISOString(),
+  }
+
+  const response = await fetch(ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(payload),
+  })
+
+  if (!response.ok) {
+    throw new Error(`Vendor endpoint returned ${response.status}`)
+  }
+
+  const result = await response.json().catch(() => null)
+  if (result && result.success === false) {
+    throw new Error(result.message || "The endpoint rejected the sign-up.")
+  }
+
+  return true
+}
