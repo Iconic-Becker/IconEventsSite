@@ -855,6 +855,37 @@ export function whenLabel(when) {
    after the dated months of their year, undated events last, and ties keep
    EVENT_INDEX order. A built event takes its name and client from
    CASE_STUDIES, so the grid and the page always agree. */
+/* Every photograph across every written case study, interleaved so that
+   consecutive frames come from different events rather than three in a row
+   from one night.
+
+   Deliberately not random. These pages are prerendered, so a Math.random()
+   order would differ between the server and the browser and React would
+   throw away the markup it was given. Round robin gives the spread without
+   that cost, and it widens on its own as case studies are added.
+
+   Returns {src, alt}: the alt text is the one written for the case study,
+   which is better than anything a gallery could invent. */
+export function galleryPool() {
+  const perStudy = CASE_STUDIES.map((study) => {
+    const m = study.media
+    return [m.hero, m.challenge, m.band, m.resultLeft, m.resultRight, ...(m.gallery ?? [])]
+      .filter((frame) => frame && frame.src)
+  })
+  const out = []
+  const seen = new Set()
+  const longest = Math.max(0, ...perStudy.map((list) => list.length))
+  for (let i = 0; i < longest; i++) {
+    for (const list of perStudy) {
+      const frame = list[i]
+      if (!frame || seen.has(frame.src)) continue
+      seen.add(frame.src)
+      out.push(frame)
+    }
+  }
+  return out
+}
+
 export function caseStudyCards() {
   const key = (when) => (when ? (when.length === 4 ? `${when}-00` : when) : "")
   return EVENT_INDEX.map((entry, order) => ({ entry, order }))

@@ -71,7 +71,11 @@ export const NAV = {
   left: [
     { href: "#scope", label: "Services" },
     { href: "#method", label: "Method" },
-    { href: "#receipts", label: "Results" },
+    // A real page, not an anchor, and the only one marked smallOnly: the
+    // brass tab above the header covers this from md up, so showing it in
+    // the bar too would be the same destination twice. Below md the tab is
+    // hidden, and this takes over.
+    { href: "/case-studies", label: "Case Studies", smallOnly: true },
   ],
   right: [
     { href: "#work", label: "Work" },
