@@ -7,8 +7,25 @@ import { galleryPool } from "../case-studies.js"
    added, rather than being a fixed dozen that has to be edited by hand. */
 const IMAGES = galleryPool()
 
+const ROW_COUNT = 3
+
+/* Deal the pool into one list per row.
+
+   Every row used to receive the whole array, rotated by a few places, so the
+   same photograph sat in all three rows at once. Dealing round robin gives
+   each row its own frames, and because the pool already alternates between
+   events, each row still spans most of them. */
+function dealRows(items, rowCount) {
+  const rows = Array.from({ length: rowCount }, () => [])
+  items.forEach((item, i) => rows[i % rowCount].push(item))
+  return rows.filter((row) => row.length > 0)
+}
+
+const DEALT = dealRows(IMAGES, ROW_COUNT)
+
 function rotate(items, offset) {
-  const n = offset % items.length
+  if (items.length === 0) return items
+  const n = ((offset % items.length) + items.length) % items.length
   return [...items.slice(n), ...items.slice(0, n)]
 }
 
@@ -66,15 +83,19 @@ function GalleryRow({ images, rowIndex, direction, spinning }) {
 }
 
 export default function Gallery() {
-  const [offsets, setOffsets] = useState([0, 4, 8])
+  const [offsets, setOffsets] = useState([0, 1, 2])
   const [spinning, setSpinning] = useState(false)
-  const rows = offsets.map((offset) => rotate(IMAGES, offset))
+  // Turning the room moves each row along its own frames, so no photograph
+  // can cross into another row.
+  const rows = DEALT.map((row, i) => rotate(row, offsets[i] ?? 0))
 
   const shuffle = () => {
     if (spinning) return
     setSpinning(true)
     window.setTimeout(() => {
-      setOffsets((current) => current.map((value, index) => (value + 3 + index * 2) % IMAGES.length))
+      setOffsets((current) =>
+        current.map((value, index) => value + 3 + index * 2)
+      )
     }, 260)
     window.setTimeout(() => setSpinning(false), 760)
   }
