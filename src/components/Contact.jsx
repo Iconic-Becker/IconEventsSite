@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import SiteFooter from "./SiteFooter.jsx"
 import SiteHeader from "./SiteHeader.jsx"
 import Cta from "./Cta.jsx"
 import { CONTACT_EMAIL } from "../lib/contact.js"
@@ -73,16 +74,7 @@ export default function Contact() {
         }
         aside={<Aside />}
       />
-      <footer className="border-t border-bone/10 py-12">
-        <div className="mx-auto max-w-6xl px-5 sm:px-6">
-          <a
-            href="/"
-            className="inline-block bg-brass px-6 py-3 font-sans text-[10px] font-bold uppercase tracking-[0.14em] text-onyx"
-          >
-            Back to Iconic Events
-          </a>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   )
 }

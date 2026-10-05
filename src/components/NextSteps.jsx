@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { responsive } from "../lib/img.js"
 import { GALLERY } from "../content.js"
 import { CASE_STUDIES } from "../case-studies.js"
+import SiteFooter from "./SiteFooter.jsx"
 
 /* The one testimonial this page carries. Set here rather than pulled from
    TESTIMONIALS in src/content.js: it is a deliberate choice, not whatever
@@ -184,16 +185,7 @@ export default function NextSteps() {
         </div>
       </section>
 
-      <footer className="border-t border-bone/10 py-12">
-        <div className="mx-auto max-w-6xl px-5 sm:px-6">
-          <a
-            href="/"
-            className="inline-block bg-brass px-6 py-3 font-sans text-[10px] font-bold uppercase tracking-[0.14em] text-onyx"
-          >
-            Back to Iconic Events
-          </a>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   )
 }

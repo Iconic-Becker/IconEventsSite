@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react"
 import SiteHeader from "./SiteHeader.jsx"
 import InteractiveImageBentoGallery from "@/components/ui/bento-gallery"
 import { galleryFrames } from "../case-studies.js"
+import SiteFooter from "./SiteFooter.jsx"
 
 /* /gallery: every event photograph on the site, on one page.
 
@@ -238,6 +239,7 @@ export default function GalleryPage() {
           </div>
         </div>
       </section>
+      <SiteFooter />
     </main>
   )
 }

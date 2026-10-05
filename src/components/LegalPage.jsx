@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import SiteHeader from "./SiteHeader.jsx"
+import SiteFooter from "./SiteFooter.jsx"
 
 /* /privacy and /terms. The text lives in src/legal.js; this only lays it
    out: a short header, a contents list, then the sections in one readable
@@ -82,13 +83,8 @@ export default function LegalPage({ doc }) {
           </section>
         ))}
 
-        <a
-          href="/"
-          className="mt-12 inline-block bg-brass px-6 py-3 font-sans text-[10px] font-bold uppercase tracking-[0.14em] text-onyx"
-        >
-          Back to Iconic Events
-        </a>
       </article>
+      <SiteFooter />
     </main>
   )
 }
