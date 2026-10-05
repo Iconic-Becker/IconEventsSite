@@ -582,7 +582,19 @@ export const CTA = {
 export const FOOTER = {
   line: V("Experience engineers. Est. 2017.", "Experience engineers for the creator economy. Est. 2017."),
   columns: [
-    { id: "col1", head: "Studio", items: ["Work", "Services", "Method", "Journal"] },
+    // Every item that names a page or section links to it. Sections are
+    // anchors on the homepage, the only page this footer appears on.
+    {
+      id: "col1",
+      head: "Studio",
+      items: [
+        { label: "Work", href: "#work" },
+        { label: "Services", href: "#scope" },
+        { label: "Method", href: "#method" },
+        { label: "Case Studies", href: "/case-studies" },
+        { label: "Gallery", href: "/gallery" },
+      ],
+    },
     {
       id: "col2",
       head: "Contact",
@@ -593,11 +605,21 @@ export const FOOTER = {
       items: [
         { label: "Start a conversation", href: "#contact" },
         { label: "Vendor sign-up", href: "/vendors" },
-        "(305) 791-5290",
+        { label: "(305) 791-5290", href: "tel:+13057915290" },
         "Miami · Las Vegas",
       ],
     },
-    { id: "col3", head: "Follow", items: ["Instagram", "LinkedIn", "Vimeo"] },
+    // The same profiles as sameAs in index.html, plus YouTube. Vimeo was
+    // listed here with no link and no account found, so it came out.
+    {
+      id: "col3",
+      head: "Follow",
+      items: [
+        { label: "Instagram", href: "https://www.instagram.com/iconicbecker", external: true },
+        { label: "LinkedIn", href: "https://www.linkedin.com/in/iconicbecker/", external: true },
+        { label: "YouTube", href: "https://www.youtube.com/@IconicBecker", external: true },
+      ],
+    },
   ],
   tagStrip: "ICONIC · EXPERIENCE · ENGINEERED",
   legal: "© 2026 Iconic Events LLC",

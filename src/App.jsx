@@ -450,9 +450,13 @@ export default function App() {
       <footer className="rule-tidepool relative border-t border-bone/10 bg-onyx">
         <Section className="py-14">
           <div className="grid grid-cols-2 gap-x-6 gap-y-10 border-b border-bone/10 pb-10 md:grid-cols-[1.5fr_1fr_1fr_1fr] md:gap-10">
-            <div className="col-span-2 text-center md:col-span-1 md:text-left">
-              <Logo tone="white" className="mx-auto h-14 w-auto md:mx-0 md:h-9" />
-              <p className="mx-auto mt-4 max-w-xs font-sans text-sm text-bone/55 md:mx-0">{t(FOOTER.line)}</p>
+            {/* Logo and line stacked as one centred unit, which sits at the
+                start of its column from md up. */}
+            <div className="col-span-2 flex justify-center md:col-span-1 md:justify-start">
+              <div className="flex flex-col items-center text-center">
+                <Logo tone="white" className="h-14 w-auto md:h-12" />
+                <p className="mt-4 max-w-[16rem] font-sans text-sm text-bone/55">{t(FOOTER.line)}</p>
+              </div>
             </div>
             {FOOTER.columns.map((c) => (
               <div key={c.id} className="min-w-0">
@@ -467,7 +471,11 @@ export default function App() {
                         {typeof it === "string" ? (
                           label
                         ) : (
-                          <a href={it.href} className="transition hover:text-brass">
+                          <a
+                            href={it.href}
+                            {...(it.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                            className="transition hover:text-brass"
+                          >
                             {label}
                           </a>
                         )}
