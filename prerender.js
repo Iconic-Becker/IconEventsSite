@@ -6,7 +6,7 @@
 // without touching this file.
 import fs from 'node:fs'
 import path from 'node:path'
-import { render } from './dist-ssr/entry-server.js'
+import { render, preloadRoute } from './dist-ssr/entry-server.js'
 import { CASE_STUDIES } from './src/case-studies.js'
 
 const SITE = 'https://www.iconic.events'
@@ -80,6 +80,12 @@ ROUTES.push({
 
 const template = fs.readFileSync('dist/index.html', 'utf-8')
 
+// A page split into its own chunk (see src/lib/split-page.jsx) has to be
+// fetched before the browser can hydrate it. Naming the chunk in that page's
+// head lets the browser fetch it alongside the main bundle rather than after.
+const chunk = (name) => fs.readdirSync('dist/assets').find((f) => f.startsWith(`${name}-`) && f.endsWith('.js'))
+const SPLIT_CHUNKS = { '/gallery': chunk('GalleryPage') }
+
 const escape = (value) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
@@ -106,6 +112,8 @@ function socialTags(route) {
 }
 
 for (const route of ROUTES) {
+  // A split page's code has to be loaded before it can render to a string.
+  await preloadRoute(route.path)
   const html = template
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${escape(route.title)}</title>`)
     .replace(
@@ -114,7 +122,9 @@ for (const route of ROUTES) {
     )
     .replace(
       '</head>',
-      `  <link rel="canonical" href="${SITE}${route.path}" />\n${socialTags(route)}\n${
+      `  <link rel="canonical" href="${SITE}${route.path}" />\n${
+        SPLIT_CHUNKS[route.path] ? `  <link rel="modulepreload" crossorigin href="/assets/${SPLIT_CHUNKS[route.path]}" />\n` : ''
+      }${socialTags(route)}\n${
         route.sitemap === false ? '  <meta name="robots" content="noindex, nofollow" />\n' : ''
       }  </head>`
     )

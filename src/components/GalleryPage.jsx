@@ -14,15 +14,92 @@ const TITLE = "Gallery | Iconic Events"
 const DESCRIPTION =
   "Photographs from the rooms Iconic Events has produced. Stage, light, detail and audience, each linked to its case study."
 
-// The bento rhythm: a large frame, a tall one and a wide one in every seven,
-// fixed by position rather than chance so the prerender and the browser agree.
-function spanFor(index) {
-  switch (index % 7) {
-    case 0: return "col-span-2 row-span-2"
-    case 3: return "row-span-2"
-    case 5: return "col-span-2"
-    default: return ""
+/* The bento layout.
+
+   A repeating rhythm of large, tall and wide frames, laid out so the grid
+   finishes flush: no hole beside a big frame on the last row, whichever
+   filter is picked. The column count changes with the screen (2, 3, then
+   4), so the layout is worked out once per column count, by running the
+   same dense placement the browser will, and adjusting the frames nearest
+   the end until nothing is left open. Deterministic, so the prerender and
+   the browser agree. */
+const RHYTHM = ["big", "one", "one", "tall", "one", "wide", "one"]
+const SIZE = { one: [1, 1], wide: [2, 1], tall: [1, 2], big: [2, 2] }
+
+// Literal class names, so Tailwind finds them in the source.
+const SPAN = {
+  base: { one: "col-span-1 row-span-1", wide: "col-span-2 row-span-1", tall: "col-span-1 row-span-2", big: "col-span-2 row-span-2" },
+  sm: { one: "sm:col-span-1 sm:row-span-1", wide: "sm:col-span-2 sm:row-span-1", tall: "sm:col-span-1 sm:row-span-2", big: "sm:col-span-2 sm:row-span-2" },
+  lg: { one: "lg:col-span-1 lg:row-span-1", wide: "lg:col-span-2 lg:row-span-1", tall: "lg:col-span-1 lg:row-span-2", big: "lg:col-span-2 lg:row-span-2" },
+}
+
+// CSS grid's dense auto-placement: each frame takes the first slot it fits.
+// Returns how many cells are left empty inside the rows the frames use.
+function holes(kinds, cols) {
+  const filled = []
+  const free = (r, c) => !filled[r]?.[c]
+  let rows = 0
+  for (const kind of kinds) {
+    const [w, h] = SIZE[kind]
+    if (w > cols) return Infinity
+    for (let r = 0; ; r++) {
+      const c = [...Array(cols - w + 1).keys()].find((c0) => {
+        for (let dr = 0; dr < h; dr++) for (let dc = 0; dc < w; dc++) if (!free(r + dr, c0 + dc)) return false
+        return true
+      })
+      if (c === undefined) continue
+      for (let dr = 0; dr < h; dr++) for (let dc = 0; dc < w; dc++) (filled[r + dr] ??= [])[c + dc] = true
+      rows = Math.max(rows, r + h)
+      break
+    }
   }
+  let empty = 0
+  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) if (free(r, c)) empty++
+  return empty
+}
+
+function bestSmall(rhythm, cols) {
+  const options = Object.keys(SIZE)
+  let best = null
+  const total = options.length ** rhythm.length
+  for (let n = 0; n < total; n++) {
+    const kinds = rhythm.map((_, i) => options[Math.floor(n / options.length ** i) % options.length])
+    const score = [holes(kinds, cols), -kinds.filter((k, i) => k === rhythm[i]).length]
+    if (!best || score[0] < best.score[0] || (score[0] === best.score[0] && score[1] < best.score[1])) {
+      best = { kinds, score }
+    }
+  }
+  return best.kinds
+}
+
+function layoutFor(count, cols) {
+  const kinds = Array.from({ length: count }, (_, i) => RHYTHM[i % RHYTHM.length])
+  // A handful of frames (one event's): few enough to try every layout and
+  // keep the one that closes flush and stays nearest the rhythm.
+  if (count <= 7) return bestSmall(kinds, cols)
+  // Flatten frames from the end until the grid closes, then, if it still
+  // does not, try growing one plain frame near the end to fill the gap.
+  for (let i = count - 1; i >= 0 && holes(kinds, cols) > 0; i--) {
+    if (kinds[i] !== "one") kinds[i] = "one"
+  }
+  if (holes(kinds, cols) > 0) {
+    for (let i = count - 1; i >= Math.max(0, count - 12); i--) {
+      if (kinds[i] !== "one") continue
+      for (const grow of ["wide", "tall"]) {
+        kinds[i] = grow
+        if (holes(kinds, cols) === 0) return kinds
+      }
+      kinds[i] = "one"
+    }
+  }
+  return kinds
+}
+
+function spansFor(count) {
+  const base = layoutFor(count, 2)
+  const sm = layoutFor(count, 3)
+  const lg = layoutFor(count, 4)
+  return base.map((_, i) => `${SPAN.base[base[i]]} ${SPAN.sm[sm[i]]} ${SPAN.lg[lg[i]]}`)
 }
 
 const POOL = galleryPool()
@@ -44,18 +121,18 @@ export default function GalleryPage() {
     if (meta) meta.setAttribute("content", DESCRIPTION)
   }, [])
 
-  const items = useMemo(
-    () =>
-      POOL.filter((frame) => filter === "all" || frame.slug === filter).map((frame, index) => ({
-        id: frame.src,
-        title: frame.study,
-        desc: frame.alt,
-        url: frame.src,
-        href: frame.href,
-        span: spanFor(index),
-      })),
-    [filter]
-  )
+  const items = useMemo(() => {
+    const frames = POOL.filter((frame) => filter === "all" || frame.slug === filter)
+    const spans = spansFor(frames.length)
+    return frames.map((frame, index) => ({
+      id: frame.src,
+      title: frame.study,
+      desc: frame.alt,
+      url: frame.src,
+      href: frame.href,
+      span: spans[index],
+    }))
+  }, [filter])
 
   const chip = (active) =>
     `shrink-0 border px-3.5 py-2 font-sans text-[10px] font-bold uppercase tracking-[0.14em] transition ${

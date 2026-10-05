@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom/client'
-import { routeFor } from './routes.jsx'
+import { routeFor, preloadRoute } from './routes.jsx'
 import { assertLanderSlugsResolve } from './case-studies.js'
 import { WORK } from './content.js'
 import { VoiceProvider } from './voice.jsx'
@@ -38,8 +38,12 @@ const app = (
 )
 
 // Production HTML is prerendered (see prerender.js); dev serves an empty root.
-if (root.hasChildNodes()) {
-  ReactDOM.hydrateRoot(root, app)
-} else {
-  ReactDOM.createRoot(root).render(app)
-}
+// A page split into its own chunk is fetched before hydrating, so the first
+// render matches the prerendered markup instead of a loading placeholder.
+preloadRoute(window.location.pathname).then(() => {
+  if (root.hasChildNodes()) {
+    ReactDOM.hydrateRoot(root, app)
+  } else {
+    ReactDOM.createRoot(root).render(app)
+  }
+})
