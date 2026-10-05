@@ -16,7 +16,10 @@ export function routeFor(pathname) {
 
   if (clean === "/nextsteps") return <NextSteps />
 
-  if (clean === "/vendors") return <Vendors />
+  // One page for everyone selling to us. /partners was the earlier URL and
+  // is redirected to this one by the server, so links already shared still
+  // land somewhere.
+  if (clean === "/vendors" || clean === "/partners") return <Vendors />
 
   if (clean === "/case-studies") return <CaseStudiesIndex />
 

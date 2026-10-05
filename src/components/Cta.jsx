@@ -1,17 +1,9 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { sendEnquiry, ENQUIRY_EMAIL } from "../lib/enquiry.js"
 import { navigate } from "../navigate.js"
 import { CTA } from "../content.js"
 import { useVoice } from "../voice.jsx"
 import Icon from "./Icon.jsx"
-
-const OUTCOME_OPTIONS = [
-  "Sell a premium offer from the stage",
-  "Launch a new offer or membership",
-  "Move clients into a higher tier",
-  "Deepen customer loyalty and retention",
-  "Create months of authority content",
-]
 
 function Eyebrow({ text }) {
   return (
@@ -34,80 +26,93 @@ function accent(text, phrase) {
   )
 }
 
-// An inline dropdown: a gold-bordered field that opens a menu of options.
-function Dropdown({ value, options, onChange }) {
-  const [open, setOpen] = useState(false)
+/* A required single choice, shown as a row of chips. Nothing is pre-selected,
+   so every answer that reaches the inbox is one the visitor picked. */
+export function ChoiceGroup({ label, options, value, onChange, missing }) {
   return (
-    <span className="relative inline-block max-w-full align-middle">
-      <select
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        aria-label="Select an option"
-        className="min-h-11 max-w-full border border-brass bg-bone px-3 py-2 font-sans text-base font-bold text-brass outline-none focus:border-onyx md:hidden"
-      >
-        {options.map((o) => (
-          <option key={o} value={o}>{o}</option>
-        ))}
-      </select>
-      {open && (
-        <span className="fixed inset-0 z-10 hidden md:block" onClick={() => setOpen(false)} aria-hidden="true" />
-      )}
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        className="relative z-20 hidden items-center gap-2 md:inline-flex border border-brass px-3 py-1 font-bold text-brass transition-colors hover:bg-brass hover:text-bone"
-      >
-        {value}
-        <Icon name="arrow" className={`h-4 w-4 transition-transform ${open ? "-rotate-90" : "rotate-90"}`} />
-      </button>
-      {open && (
-        <span className="absolute left-0 top-full z-20 mt-1 hidden min-w-full flex-col md:flex border border-brass bg-bone shadow-2xl">
-          {options.map((o) => (
+    <fieldset>
+      <legend className="flex flex-wrap items-baseline gap-x-3 font-sans text-[11px] font-bold uppercase tracking-[0.14em] text-brass">
+        {label}
+        {missing && (
+          <span role="alert" className="normal-case tracking-normal text-[#a3271f]">Pick one</span>
+        )}
+      </legend>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {options.map((option) => {
+          const selected = value === option
+          return (
             <button
-              key={o}
+              key={option}
               type="button"
-              onClick={() => {
-                onChange(o)
-                setOpen(false)
-              }}
-              className={`whitespace-nowrap px-4 py-2.5 text-left font-sans text-sm transition-colors hover:bg-brass hover:text-bone ${o === value ? "text-brass" : "text-onyx"}`}
+              aria-pressed={selected}
+              onClick={() => onChange(option)}
+              className={`min-h-11 border px-3.5 py-2 text-left font-sans text-sm leading-snug transition ${selected ? "border-brass bg-brass text-onyx" : missing ? "border-[#a3271f]/50 bg-onyx/[0.04] text-onyx/75 hover:border-brass" : "border-onyx/25 bg-onyx/[0.04] text-onyx/75 hover:border-brass"}`}
             >
-              {o}
+              {option}
             </button>
-          ))}
-        </span>
-      )}
-    </span>
+          )
+        })}
+      </div>
+    </fieldset>
   )
 }
 
-// Success block shown after submit.
+export function TextField({ label, ...props }) {
+  return (
+    <label className="block">
+      <span className="block font-sans text-[11px] font-bold uppercase tracking-[0.14em] text-brass">{label}</span>
+      <input
+        {...props}
+        className="mt-2 min-h-12 w-full border border-onyx/25 bg-transparent px-4 font-sans text-base text-onyx placeholder-onyx/40 outline-none transition focus:border-brass"
+      />
+    </label>
+  )
+}
+
+/* Anything sent sooner than this after the form appeared is a script: nobody
+   reads and answers seven questions in three seconds. */
+export const MIN_FILL_MS = 3000
 
 /* ── Start a Conversation · The Brief ─────────────────────────────────
-   Full-height, patterned close. The qualifier is a bold statement in a
-   gold-bordered paper card: stage/timing are dropdowns, the outcome an
-   inline field, email joined to the submit button. */
+   Full-height, patterned close. A gold-bordered paper card: who you are,
+   four required single choices, one optional note, then send. */
 /* eyebrow and title override the homepage copy, so a case study can close
    on its own line above the same form. */
 export default function Cta({ modal = false, eyebrow, title }) {
   const { t } = useVoice()
   const f = CTA.form
-  const [stage, setStage] = useState(f.stages[0])
-  const [timing, setTiming] = useState(f.timings[0])
-  const [outcome, setOutcome] = useState([])
+  const [name, setName] = useState("")
   const [email, setEmail] = useState("")
+  const [company, setCompany] = useState("")
+  const [event, setEvent] = useState("")
+  const [guests, setGuests] = useState("")
+  const [budget, setBudget] = useState("")
+  const [timing, setTiming] = useState("")
+  const [notes, setNotes] = useState("")
+  const [botcheck, setBotcheck] = useState("")
+  const [tried, setTried] = useState(false)
   const [status, setStatus] = useState("idle")
+  const shownAt = useRef(0)
+  useEffect(() => {
+    shownAt.current = Date.now()
+  }, [])
 
-  const toggleOutcome = (option) => {
-    setOutcome((current) => current.includes(option) ? current.filter((item) => item !== option) : [...current, option])
-  }
+  const choicesMade = event && guests && budget && timing
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
 
   async function submit(e) {
     e.preventDefault()
-    if (!email) return
+    setTried(true)
+    if (!name.trim() || !emailOk || !company.trim() || !choicesMade) return
+    /* Bots: the hidden field is filled, or the form went back too fast.
+       Show them the same receipt a person gets, send nothing, count nothing. */
+    if (botcheck || Date.now() - shownAt.current < MIN_FILL_MS) {
+      navigate("/nextsteps")
+      return
+    }
     setStatus("loading")
     try {
-      await sendEnquiry({ stage, timing, outcome, email })
+      await sendEnquiry({ name, email, company, event, guests, budget, timing, notes })
       /* Only past a resolved send: the confirmation page is the receipt, so
          it must never appear for an enquiry that did not reach us. */
       setStatus("done")
@@ -155,83 +160,69 @@ export default function Cta({ modal = false, eyebrow, title }) {
                 </p>
               </div>
             )}
-            <form onSubmit={submit} className={`border border-brass bg-bone text-onyx ${modal ? "mt-6 p-5 sm:p-7" : "mt-10 p-8 sm:p-12"}`}>
-              <p className="font-serif text-2xl font-bold leading-[1.8] text-onyx sm:text-3xl sm:leading-[1.75]">
-                We&rsquo;re a founder-led business at{" "}
-                <Dropdown value={stage} options={f.stages} onChange={setStage} />
-                . The room is{" "}
-                <Dropdown value={timing} options={f.timings} onChange={setTiming} />
-                . The outcome we need is:
+            <form onSubmit={submit} noValidate className={`border border-brass bg-bone text-onyx ${modal ? "mt-6 p-5 sm:p-7" : "mt-10 p-6 sm:p-12"}`}>
+              {/* Signpost for vendors, so a pitch never has to come through
+                  the client brief. */}
+              <p className="mb-8 border-b border-onyx/15 pb-5 font-sans text-sm leading-relaxed text-onyx/65">
+                Planning an event with us? You&rsquo;re in the right place. Venue, vendor or agency
+                offering a service?{" "}
+                <a href="/vendors" className="font-bold text-brass underline underline-offset-4 hover:text-onyx">
+                  Use the partner form
+                </a>
+                .
               </p>
-              <fieldset className="mt-7">
-                <legend className="font-sans text-[11px] font-bold uppercase tracking-[0.14em] text-brass">
-                  Select every result the room has to produce
-                </legend>
-                <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                  {OUTCOME_OPTIONS.map((option) => {
-                    const selected = outcome.includes(option)
-                    return (
-                      <button
-                        key={option}
-                        type="button"
-                        aria-pressed={selected}
-                        onClick={() => toggleOutcome(option)}
-                        className={`flex min-h-12 items-center justify-between gap-3 border px-3 py-2.5 text-left font-sans text-xs leading-snug transition last:sm:col-span-2 sm:min-h-14 sm:px-4 sm:py-3 sm:text-sm ${selected ? "border-brass bg-brass text-onyx" : "border-onyx/25 bg-onyx/[0.04] text-onyx/70 hover:border-brass"}`}
-                      >
-                        <span>{option}</span><span className="text-lg" aria-hidden="true">{selected ? "×" : "+"}</span>
-                      </button>
-                    )
-                  })}
+              <div className="grid gap-5 sm:grid-cols-2">
+                <TextField label="Your name" required value={name} onChange={(e) => setName(e.target.value)} placeholder="First and last" autoComplete="name" />
+                <TextField label="Work email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@company.com" autoComplete="email" />
+                <div className="sm:col-span-2">
+                  <TextField label="Company or website" required value={company} onChange={(e) => setCompany(e.target.value)} placeholder="company.com" autoComplete="organization" />
                 </div>
-              </fieldset>
+              </div>
+              {tried && (!name.trim() || !emailOk || !company.trim()) && (
+                <p role="alert" className="mt-3 font-sans text-sm text-[#a3271f]">Name, email and company help us come back to you properly.</p>
+              )}
 
-              {/* Mobile: one connected process, split into two clear steps. */}
-              <div className="mt-10 space-y-3 border border-onyx/20 bg-onyx/[0.06] p-3 md:hidden">
-                <label className="block border border-onyx/15 bg-bone p-3">
-                  <span className="mb-2 block font-sans text-[10px] font-bold uppercase tracking-[0.15em] text-brass">Step 1 · Your work email</span>
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Work email"
-                    autoComplete="email"
-                    className="min-h-12 w-full border border-onyx/25 bg-transparent px-4 font-sans text-base text-onyx placeholder-onyx/45 outline-none transition focus:border-brass"
+              {/* Honeypot. Hidden from people and screen readers; bots fill it. */}
+              <input
+                type="checkbox"
+                name="botcheck"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                checked={Boolean(botcheck)}
+                onChange={(e) => setBotcheck(e.target.checked ? "on" : "")}
+                className="hidden"
+              />
+
+              <div className="mt-9 space-y-8">
+                <ChoiceGroup label={f.eventLabel} options={f.events} value={event} onChange={setEvent} missing={tried && !event} />
+                <ChoiceGroup label={f.guestsLabel} options={f.guests} value={guests} onChange={setGuests} missing={tried && !guests} />
+                <ChoiceGroup label={f.budgetLabel} options={f.budgets} value={budget} onChange={setBudget} missing={tried && !budget} />
+                <ChoiceGroup label={f.timingLabel} options={f.timings} value={timing} onChange={setTiming} missing={tried && !timing} />
+                <label className="block">
+                  <span className="flex flex-wrap items-baseline gap-x-3 font-sans text-[11px] font-bold uppercase tracking-[0.14em] text-brass">
+                    {f.notesLabel}
+                    <span className="normal-case tracking-normal text-onyx/45">Optional</span>
+                  </span>
+                  <textarea
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    rows={3}
+                    maxLength={2000}
+                    placeholder={t(f.notesPlaceholder)}
+                    className="mt-3 w-full resize-y border border-onyx/25 bg-transparent px-4 py-3 font-sans text-base text-onyx placeholder-onyx/40 outline-none transition focus:border-brass"
                   />
                 </label>
-                <div className="border border-brass/40 bg-bone p-3">
-                  <span className="mb-2 block font-sans text-[10px] font-bold uppercase tracking-[0.15em] text-brass">Step 2 · Send your brief</span>
-                  <button
-                    type="submit"
-                    disabled={status === "loading"}
-                    className="group flex min-h-12 w-full items-center justify-center gap-3 border border-brass bg-brass px-5 py-3 font-sans text-xs font-bold uppercase tracking-[0.18em] text-onyx transition disabled:opacity-60"
-                  >
-                    {status === "loading" ? t(f.sending) : t(f.submit)}
-                    {status !== "loading" && <Icon name="arrow" className="h-4 w-4" />}
-                  </button>
-                </div>
               </div>
 
-              {/* Desktop: email joined to the submit button. */}
-              <div className="mt-12 hidden md:flex">
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Work email"
-                  autoComplete="email"
-                  className="min-w-0 flex-1 border border-r-0 border-onyx/30 bg-transparent px-5 py-4 font-sans text-sm text-onyx placeholder-onyx/45 outline-none transition focus:border-brass"
-                />
-                <button
-                  type="submit"
-                  disabled={status === "loading"}
-                  className="group inline-flex shrink-0 items-center gap-3 border border-brass bg-brass px-8 py-4 font-sans text-xs font-bold uppercase tracking-[0.18em] text-onyx transition hover:border-onyx hover:bg-onyx hover:text-bone disabled:opacity-60"
-                >
-                  {status === "loading" ? t(f.sending) : t(f.submit)}
-                  {status !== "loading" && <Icon name="arrow" className="h-4 w-4 transition group-hover:translate-x-1" />}
-                </button>
-              </div>
+              <button
+                type="submit"
+                disabled={status === "loading"}
+                className="group mt-9 flex min-h-12 w-full items-center justify-center gap-3 border border-brass bg-brass px-8 py-4 font-sans text-xs font-bold uppercase tracking-[0.18em] text-onyx transition hover:border-onyx hover:bg-onyx hover:text-bone disabled:opacity-60 sm:w-auto"
+              >
+                {status === "loading" ? t(f.sending) : t(f.submit)}
+                {status !== "loading" && <Icon name="arrow" className="h-4 w-4 transition group-hover:translate-x-1" />}
+              </button>
             </form>
             <p className="mt-5 max-w-xl font-sans text-xs leading-relaxed text-bone/45">
               {t(f.reassurance)}

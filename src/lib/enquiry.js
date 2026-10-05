@@ -35,61 +35,104 @@ export function isEnquiryConfigured() {
   return Boolean(ENDPOINT && (ACCESS_KEY || !ENDPOINT.includes("web3forms")))
 }
 
+/* Addresses that say nothing about the company behind them. Flagged in the
+   email, never blocked: plenty of founders run on gmail. */
+const FREE_MAIL = /@(gmail|googlemail|yahoo|hotmail|outlook|live|icloud|me|mac|aol|proton|protonmail|gmx|msn)\./i
+
+/* Phrases that read like someone selling to us rather than buying. A flag
+   in the email for a person to judge, never a reason to drop the enquiry. */
+const SALES_PITCH = /\b(our (services|agency|team|platform|solution)|we (help|offer|provide|specialize|specialise)|partner(ship)? opportunit|lead gen|appointment setting|seo|outsourc|white.?label|book (a|your) (call|demo)|quick call)\b/i
+
+function flags(freeMail, pitch) {
+  return [
+    freeMail && "Personal email address, not a company domain",
+    pitch && "Reads like a sales pitch. They skipped the partner form",
+  ].filter(Boolean).join(". ")
+}
+
+/* Where the visitor came from: the utm_source if the link carried one,
+   else the referring site, else direct. */
+function trafficSource() {
+  if (typeof window === "undefined") return ""
+  const utm = new URLSearchParams(window.location.search).get("utm_source")
+  if (utm) return utm
+  try {
+    const ref = document.referrer && new URL(document.referrer).hostname
+    if (ref && ref !== window.location.hostname) return ref
+  } catch {
+    /* an unparseable referrer is no source at all */
+  }
+  return "Direct"
+}
+
+/* The studio works on Miami time, so the inbox reads in it. */
+function miamiTime(date) {
+  return date.toLocaleString("en-US", {
+    timeZone: "America/New_York",
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    timeZoneName: "short",
+  })
+}
+
 /* Resolves only when the enquiry has actually been accepted. Every other
    path throws, so the caller can never show a success state for a
    submission that went nowhere. */
-export async function sendEnquiry({ stage, timing, outcome, email }) {
+export async function sendEnquiry({ name, email, company, event, guests, budget, timing, notes }) {
+  const budgetLine = budget === "I don't know yet" ? "Budget not set" : budget
+  const flagged = flags(FREE_MAIL.test(email), SALES_PITCH.test(notes))
+  /* The subject carries the triage, so leads can be sorted from the inbox
+     list without opening one. */
   const payload = {
     ...(ACCESS_KEY ? { access_key: ACCESS_KEY } : {}),
-    subject: `New enquiry from ${email}`,
+    subject: `${flagged ? "[Check] " : ""}${budgetLine} · ${guests} guests · ${timing} · ${name}, ${company}`,
     from_name: "Iconic Events website",
+    name,
     email,
+    ...(flagged ? { flags: flagged } : {}),
     replyto: email,
-    business_stage: stage,
+    company,
+    event,
+    guests,
+    budget,
     timing,
-    outcome: outcome.length ? outcome.join(", ") : "Not specified",
+    anything_else: notes.trim() || "Nothing added",
+    source: trafficSource(),
     page: typeof window === "undefined" ? "" : window.location.href,
-    submitted_at: new Date().toISOString(),
+    submitted: miamiTime(new Date()),
   }
 
-  const response = await fetch(ENDPOINT, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify(payload),
-  })
-
-  if (!response.ok) {
-    throw new Error(`Enquiry endpoint returned ${response.status}`)
-  }
-
-  /* Some providers report a soft failure in a 200 body. */
-  const result = await response.json().catch(() => null)
-  if (result && result.success === false) {
-    throw new Error(result.message || "The enquiry endpoint rejected the submission.")
-  }
-
-  return true
+  return post(payload)
 }
 
-/* Vendor sign-ups go to the same inbox through the same endpoint, with a
-   subject that makes them sortable away from client enquiries. Same contract
-   as sendEnquiry: it resolves only once the endpoint has accepted, so the
-   caller can never show a confirmation for something that went nowhere. */
-export async function sendVendorApplication(vendor) {
+/* A vendor, venue or agency offering a service. Same inbox, but its own
+   sender name and a [Partner] subject, so one mail rule files it away from
+   client enquiries. */
+/* Everyone selling to us comes through here: vendors, venues, agencies,
+   speakers, software. Same inbox as a client enquiry, with a [Partner]
+   subject so these sort away from briefs.
+
+   Same contract as sendEnquiry: it resolves only once the endpoint has
+   accepted, so a sign-up that went nowhere can never show a confirmation. */
+export async function sendPartner({ name, email, company, phone, website, coverage, categories, insured, notes }) {
   const payload = {
     ...(ACCESS_KEY ? { access_key: ACCESS_KEY } : {}),
-    subject: `Vendor sign-up: ${vendor.company || vendor.name}`,
-    from_name: "Iconic Events vendor sign-up",
-    email: vendor.email,
-    replyto: vendor.email,
-    company: vendor.company,
-    contact_name: vendor.name,
-    phone: vendor.phone || "Not given",
-    website: vendor.website || "Not given",
-    disciplines: vendor.disciplines.length ? vendor.disciplines.join(", ") : "Not specified",
-    coverage: vendor.coverage || "Not given",
-    insured: vendor.insured ? "Yes" : "Not stated",
-    notes: vendor.notes || "",
+    subject: `[Partner] ${categories?.length ? categories[0] : "General"} · ${company || name}`,
+    from_name: "Iconic Events partner sign-up",
+    email,
+    replyto: email,
+    contact_name: name,
+    company: company || "Not given",
+    phone: phone || "Not given",
+    website: website || "Not given",
+    offers: categories?.length ? categories.join(", ") : "Not specified",
+    coverage: coverage || "Not given",
+    insured: insured ? "Yes" : "Not stated",
+    notes: notes || "",
     page: typeof window === "undefined" ? "" : window.location.href,
     submitted_at: new Date().toISOString(),
   }
@@ -101,7 +144,7 @@ export async function sendVendorApplication(vendor) {
   })
 
   if (!response.ok) {
-    throw new Error(`Vendor endpoint returned ${response.status}`)
+    throw new Error(`Partner endpoint returned ${response.status}`)
   }
 
   const result = await response.json().catch(() => null)

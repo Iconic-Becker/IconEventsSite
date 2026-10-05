@@ -542,13 +542,9 @@ body {
   .scope-strike { white-space: normal; }
   #method [class*="min-h-[520px]"] { min-height: 0; padding-bottom: 5rem; }
 
-  /* Forms stack instead of squeezing a joined desktop control. */
+  /* The brief tightens up on small screens. */
   #contact { min-height: auto; padding-top: 4rem; padding-bottom: 4rem; }
   #contact form { padding: 1.25rem; }
-  #contact form > p { font-size: 1.5rem; line-height: 1.7; }
-  #contact form > div.flex { flex-direction: column; gap: .75rem; }
-  #contact form > div.flex input { min-height: 3rem; border-right-width: 1px; }
-  #contact form > div.flex button { min-height: 3rem; justify-content: center; width: 100%; }
 }
 
 @media (max-width: 389px) {

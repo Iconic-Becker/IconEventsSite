@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react"
 import SiteHeader from "./SiteHeader.jsx"
 import Icon from "./Icon.jsx"
-import { sendVendorApplication, ENQUIRY_EMAIL } from "../lib/enquiry.js"
+import { sendPartner, ENQUIRY_EMAIL } from "../lib/enquiry.js"
 
-/* What Iconic buys in. Edit this list rather than the markup: the form, the
-   submitted email and the count below all read from it. Keep "Something else"
-   last, it is the escape hatch and the layout gives it the full row. */
-const DISCIPLINES = [
+/* Everything Iconic buys in, from crew and kit through to the agencies and
+   platforms that work alongside a build. One list covers vendors, venues and
+   partners because they all arrive through the same door.
+
+   Edit this array rather than the markup: the form, the submitted email and
+   the layout all read from it. Keep "Something else" last, it is the escape
+   hatch and the layout gives it the full row. */
+const CATEGORIES = [
+  "Venue",
   "Audio visual and staging",
   "Lighting design",
   "Sound and audio",
@@ -15,19 +20,20 @@ const DISCIPLINES = [
   "Set build and scenic",
   "Furniture, decor and rentals",
   "Florals and styling",
-  "Catering and bar",
-  "Talent and entertainment",
-  "Venue",
+  "Catering and hospitality",
+  "Talent, speakers and entertainment",
   "Staffing and crew",
   "Security",
   "Transport and logistics",
   "Print and signage",
+  "Software or platform",
+  "Marketing or agency services",
   "Something else",
 ]
 
-const TITLE = "Vendor sign-up · Iconic Events"
+const TITLE = "Vendors and partners · Iconic Events"
 const DESCRIPTION =
-  "Join the vendor list at Iconic Events. We work with audio visual, lighting, staging, catering, photography and production partners across South Florida and beyond."
+  "Join the partner list at Iconic Events. We work with venues, audio visual, lighting, staging, catering, talent, agencies and production suppliers across South Florida and beyond."
 
 function Field({ label, hint, children }) {
   return (
@@ -51,7 +57,7 @@ export default function Vendors() {
   const [phone, setPhone] = useState("")
   const [website, setWebsite] = useState("")
   const [coverage, setCoverage] = useState("")
-  const [disciplines, setDisciplines] = useState([])
+  const [categories, setCategories] = useState([])
   const [insured, setInsured] = useState(false)
   const [notes, setNotes] = useState("")
   const [status, setStatus] = useState("idle")
@@ -63,7 +69,7 @@ export default function Vendors() {
   }, [])
 
   const toggle = (option) =>
-    setDisciplines((current) =>
+    setCategories((current) =>
       current.includes(option) ? current.filter((item) => item !== option) : [...current, option]
     )
 
@@ -72,15 +78,15 @@ export default function Vendors() {
     if (!company || !name || !email) return
     setStatus("loading")
     try {
-      await sendVendorApplication({ company, name, email, phone, website, coverage, disciplines, insured, notes })
+      await sendPartner({ company, name, email, phone, website, coverage, categories, insured, notes })
       /* Only past a resolved send. A sign-up that did not reach us must never
          show a confirmation. */
       setStatus("done")
       window.dataLayer = window.dataLayer || []
-      window.dataLayer.push({ event: "vendor_signup" })
+      window.dataLayer.push({ event: "partner_signup" })
       window.scrollTo({ top: 0, behavior: "smooth" })
     } catch (error) {
-      console.error("Vendor sign-up failed to send:", error)
+      console.error("Partner sign-up failed to send:", error)
       setStatus("error")
     }
   }
@@ -105,9 +111,10 @@ export default function Vendors() {
             Work the rooms we build.
           </h1>
           <p className="mt-6 max-w-2xl font-sans text-lg leading-relaxed text-bone/70">
-            We produce masterminds, summits, conferences and brand activations, and we buy in the
-            crews and kit that make them run. Tell us what you do and where you do it, and we will
-            keep you on the list we work from.
+            Venues, suppliers, agencies and speakers: this is your door. We produce masterminds,
+            summits, conferences and brand activations, and we buy in almost everything that makes
+            them run. Tell us what you do and where you do it, and we will keep you on the list our
+            producers work from.
           </p>
         </div>
       </section>
@@ -168,11 +175,11 @@ export default function Vendors() {
 
               <fieldset className="mt-9">
                 <legend className="font-sans text-[11px] font-bold uppercase tracking-[0.14em] text-brass">
-                  What you do. Select everything that applies.
+                  What you offer. Select everything that applies.
                 </legend>
                 <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                  {DISCIPLINES.map((option) => {
-                    const selected = disciplines.includes(option)
+                  {CATEGORIES.map((option) => {
+                    const selected = categories.includes(option)
                     return (
                       <button
                         key={option}
@@ -207,7 +214,7 @@ export default function Vendors() {
                 disabled={status === "loading"}
                 className="group mt-9 flex min-h-12 w-full items-center justify-center gap-3 border border-brass bg-brass px-5 py-3 font-sans text-xs font-bold uppercase tracking-[0.18em] text-onyx transition disabled:opacity-60 sm:min-h-14"
               >
-                {status === "loading" ? "Sending" : "Join the vendor list"}
+                {status === "loading" ? "Sending" : "Join the partner list"}
                 {status !== "loading" && <Icon name="arrow" className="h-4 w-4" />}
               </button>
             </form>

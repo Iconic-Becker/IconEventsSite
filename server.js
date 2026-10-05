@@ -86,6 +86,11 @@ function resolveFile(urlPath) {
   return null
 }
 
+/* URLs that have moved. /partners was the first home for the vendor form and
+   may already have been shared, so it is a permanent redirect rather than a
+   404. */
+const MOVED = { "/partners": "/vendors" }
+
 createServer((req, res) => {
   const method = req.method || "GET"
   if (method !== "GET" && method !== "HEAD") {
@@ -93,9 +98,15 @@ createServer((req, res) => {
     return res.end()
   }
 
+  const served = (req.url || "/").split("?")[0]
+  const moved = MOVED[served.replace(/\/+$/, "") || "/"]
+  if (moved) {
+    res.writeHead(301, { Location: moved, "Cache-Control": "public, max-age=3600" })
+    return res.end()
+  }
+
   let file = resolveFile(req.url || "/")
   let status = 200
-  const served = (req.url || "/").split("?")[0]
   if (!file) {
     file = join(ROOT, "404.html")
     status = 404

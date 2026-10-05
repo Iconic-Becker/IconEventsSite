@@ -58,6 +58,7 @@ ROUTES.push({
   sitemap: false,
 })
 
+
 const template = fs.readFileSync('dist/index.html', 'utf-8')
 
 const escape = (value) =>
@@ -94,7 +95,9 @@ for (const route of ROUTES) {
     )
     .replace(
       '</head>',
-      `  <link rel="canonical" href="${SITE}${route.path}" />\n${socialTags(route)}\n  </head>`
+      `  <link rel="canonical" href="${SITE}${route.path}" />\n${socialTags(route)}\n${
+        route.sitemap === false ? '  <meta name="robots" content="noindex, nofollow" />\n' : ''
+      }  </head>`
     )
     .replace('<div id="root"></div>', `<div id="root">${render(route.path)}</div>`)
 
