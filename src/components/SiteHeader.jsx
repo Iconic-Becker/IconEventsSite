@@ -49,6 +49,8 @@ export default function SiteHeader({ home = false, contactHere = false }) {
   }
   const left = NAV.left.map((n) => ({ ...n, href: resolve(n.href) }))
   const right = NAV.right.map((n) => ({ ...n, href: resolve(n.href) }))
+  // The wide bar leaves out anything the brass tab already covers.
+  const wide = (items) => items.filter((n) => !n.smallOnly)
 
   return (
     <>
@@ -58,7 +60,7 @@ export default function SiteHeader({ home = false, contactHere = false }) {
         <div className="nav-beam" aria-hidden="true" />
         <nav aria-label="Primary navigation" className="mx-auto grid max-w-6xl grid-cols-3 items-center px-5 py-3 sm:px-6 sm:py-4">
           <div className="hidden items-center gap-6 font-sans text-xs font-medium uppercase tracking-[0.16em] text-bone/70 md:flex">
-            {left.map((n) => (
+            {wide(left).map((n) => (
               <NavLink key={n.href} href={n.href}>{n.label}</NavLink>
             ))}
           </div>
@@ -67,7 +69,7 @@ export default function SiteHeader({ home = false, contactHere = false }) {
             <img src="/logos/IE_sigil_white.png" alt="" aria-hidden="true" className="h-9 w-auto md:hidden" />
           </a>
           <div className="hidden items-center justify-end gap-6 font-sans text-xs font-medium uppercase tracking-[0.16em] text-bone/70 md:flex">
-            {right.map((n) => (
+            {wide(right).map((n) => (
               <NavLink key={n.href} href={n.href}>{n.label}</NavLink>
             ))}
           </div>
