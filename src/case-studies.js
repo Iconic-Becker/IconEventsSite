@@ -864,13 +864,21 @@ export function whenLabel(when) {
    throw away the markup it was given. Round robin gives the spread without
    that cost, and it widens on its own as case studies are added.
 
-   Returns {src, alt}: the alt text is the one written for the case study,
-   which is better than anything a gallery could invent. */
+   Returns {src, alt, slug, study, href}: the alt text is the one written
+   for the case study, which is better than anything a gallery could invent,
+   and every frame remembers the case study it came from so the /gallery
+   page can send a visitor on to that event. */
 export function galleryPool() {
   const perStudy = CASE_STUDIES.map((study) => {
     const m = study.media
     return [m.hero, m.challenge, m.band, m.resultLeft, m.resultRight, ...(m.gallery ?? [])]
       .filter((frame) => frame && frame.src)
+      .map((frame) => ({
+        ...frame,
+        slug: study.slug,
+        study: study.name,
+        href: `/case-studies/${study.slug}`,
+      }))
   })
   const out = []
   const seen = new Set()

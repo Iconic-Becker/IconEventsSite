@@ -79,7 +79,9 @@ export const NAV = {
   ],
   right: [
     { href: "#work", label: "Work" },
-    { href: "#gallery", label: "Gallery" },
+    // Its own page now. The homepage keeps its gallery section, but the nav
+    // goes to the full set, where every photo links to its case study.
+    { href: "/gallery", label: "Gallery" },
     {
       href: "#contact",
       label: "Contact",
