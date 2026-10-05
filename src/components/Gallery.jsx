@@ -1,12 +1,11 @@
 import { useRef, useState } from "react"
 import { responsive } from "../lib/img.js"
-import { GALLERY } from "../content.js"
+import { galleryPool } from "../case-studies.js"
 
-const IMAGES = [
-  ...GALLERY.motionWall,
-  "/images/gallery/g32.webp",
-  "/images/gallery/g34.webp",
-]
+/* Every photograph from every written case study, interleaved so consecutive
+   frames come from different events. It widens on its own as case studies are
+   added, rather than being a fixed dozen that has to be edited by hand. */
+const IMAGES = galleryPool()
 
 function rotate(items, offset) {
   const n = offset % items.length
@@ -48,15 +47,15 @@ function GalleryRow({ images, rowIndex, direction, spinning }) {
       aria-label={`Draggable gallery row ${rowIndex + 1}`}
     >
       <div className={`gallery-track flex w-max gap-3 px-3 ${direction < 0 ? "gallery-ltr" : "gallery-rtl"}`} style={{ animationDuration: `${110 + rowIndex * 18}s` }}>
-        {[...images, ...images].map((src, i) => {
+        {[...images, ...images].map((frame, i) => {
           const originalIndex = i % images.length
           return (
             <figure
-              key={`${rowIndex}-${src}-${i}`}
+              key={`${rowIndex}-${frame.src}-${i}`}
               aria-hidden={i >= images.length}
                   className={`group relative h-[190px] shrink-0 overflow-hidden bg-onyx sm:h-[300px] ${originalIndex % 4 === 0 ? "w-[78vw] sm:w-[500px]" : "w-[64vw] sm:w-[340px]"}`}
             >
-              <img {...responsive(src, "(min-width: 768px) 25vw, 60vw")} alt={i < images.length ? `Iconic Events production detail ${rowIndex * images.length + originalIndex + 1}` : ""} loading="lazy" draggable="false" className="h-full w-full select-none object-cover grayscale transition duration-700 group-hover:scale-[1.03] group-hover:grayscale-0" />
+              <img {...responsive(frame.src, "(min-width: 768px) 25vw, 60vw")} alt={i < images.length ? frame.alt : ""} loading="lazy" draggable="false" className="h-full w-full select-none object-cover grayscale transition duration-700 group-hover:scale-[1.03] group-hover:grayscale-0" />
               <span className="absolute bottom-3 left-3 font-sans text-[10px] uppercase tracking-[0.22em] text-bone/70">{String(rowIndex * images.length + originalIndex + 1).padStart(2, "0")}</span>
             </figure>
           )
