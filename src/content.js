@@ -71,7 +71,10 @@ export const NAV = {
   left: [
     { href: "#scope", label: "Services" },
     { href: "#method", label: "Method" },
-    { href: "#receipts", label: "Results" },
+    // A real page, not an anchor. Case studies are the thing people come to
+    // look at, so this stays in the bar at every width; the brass tab above
+    // only appears from md up.
+    { href: "/case-studies", label: "Case Studies" },
   ],
   right: [
     { href: "#work", label: "Work" },

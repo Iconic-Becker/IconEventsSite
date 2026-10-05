@@ -39,6 +39,10 @@ function CaseStudyTab() {
 
 export default function SiteHeader({ home = false, contactHere = false }) {
   const resolve = (href) => {
+    // An absolute path is a page in its own right, so it is the same link
+    // wherever the header is rendered. Without this it would become
+    // "//case-studies" off the homepage.
+    if (href.startsWith("/")) return href
     if (home) return href
     if (href === "#contact" && contactHere) return href
     return `/${href}`
