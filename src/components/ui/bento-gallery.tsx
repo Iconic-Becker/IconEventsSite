@@ -10,7 +10,11 @@ import { responsive } from "@/lib/img.js"
    - It scrolls with the page, top to bottom, rather than as one long strip
      dragged sideways (Iconic's call). The bento rhythm stays: large, tall
      and wide frames packed densely into a column grid.
-   - Every item carries the case study it came from (`href`, `title`), and
+   - Every item carries the event it came from (`title`), and the enlarged
+     view links to that event's case study (`href`), or to the list of case
+     studies for an event not yet written up (`href` null).
+   - Library photos load a 960w thumbnail in the grid (`thumb`) and the full
+     file only when enlarged.
      the enlarged view links straight to it. That is the point of the page.
    - shadcn's theme tokens (bg-background, bg-card, ring) do not exist here,
      so it is drawn in the house palette: onyx, bone, brass, sharp corners.
@@ -22,10 +26,11 @@ import { responsive } from "@/lib/img.js"
 
 export type ImageItem = {
   id: number | string
-  title: string // the case study's name, shown on the frame
-  desc: string // the photo's alt text, written for its case study
-  url: string
-  href: string // the case study page the photo belongs to
+  title: string // the event's name, shown on the frame
+  desc: string // the photo's alt text
+  url: string // the full size file, for the enlarged view
+  thumb?: string | null // a smaller file for the grid, when there is one
+  href: string | null // the event's case study page, or null if not written up
   span: string // Tailwind grid span classes, e.g. "col-span-2 row-span-2"
 }
 
@@ -34,8 +39,10 @@ interface InteractiveImageBentoGalleryProps {
   eyebrow?: string
   title: string
   description: string
-  // Rendered between the header and the strip, e.g. filters.
+  // Rendered between the header and the grid.
   children?: React.ReactNode
+  // Rendered under the grid, e.g. a button to show more.
+  footer?: React.ReactNode
 }
 
 const pad = (n: number) => String(n).padStart(2, "0")
@@ -105,7 +112,7 @@ const ImageModal = ({
         <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
           <div className="min-w-0">
             <p className="font-sans text-[10px] font-bold uppercase tracking-[0.22em] text-brass">
-              From the case study · {pad(index + 1)} / {pad(items.length)}
+              {item.href ? "From the case study" : "From the event"} · {pad(index + 1)} / {pad(items.length)}
             </p>
             <h3 className="mt-1.5 font-serif text-2xl font-semibold leading-tight text-bone sm:text-3xl">
               {item.title}
@@ -114,13 +121,25 @@ const ImageModal = ({
               {item.desc}
             </p>
           </div>
-          <a
-            href={item.href}
-            className="group inline-flex shrink-0 items-center justify-center gap-3 bg-brass px-6 py-3.5 font-sans text-[11px] font-bold uppercase tracking-[0.16em] text-onyx transition hover:brightness-110"
-          >
-            View the case study
-            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-          </a>
+          {item.href ? (
+            <a
+              href={item.href}
+              className="group inline-flex shrink-0 items-center justify-center gap-3 bg-brass px-6 py-3.5 font-sans text-[11px] font-bold uppercase tracking-[0.16em] text-onyx transition hover:brightness-110"
+            >
+              View the case study
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </a>
+          ) : (
+            // Not written up yet, so there is no page to send them to; the
+            // list of case studies is the nearest thing.
+            <a
+              href="/case-studies"
+              className="group inline-flex shrink-0 items-center justify-center gap-3 border border-brass/60 px-6 py-3.5 font-sans text-[11px] font-bold uppercase tracking-[0.16em] text-brass transition hover:bg-brass hover:text-onyx"
+            >
+              See our case studies
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </a>
+          )}
         </div>
         <div className="mt-4 flex gap-3 sm:hidden">
           <button type="button" onClick={() => onStep(-1)} className="grid h-11 flex-1 place-items-center border border-brass/60 text-brass" aria-label="Previous photo">
@@ -166,6 +185,7 @@ const InteractiveImageBentoGallery: React.FC<InteractiveImageBentoGalleryProps> 
   title,
   description,
   children,
+  footer,
 }) => {
   const [selected, setSelected] = useState<number | null>(null)
 
@@ -214,22 +234,25 @@ const InteractiveImageBentoGallery: React.FC<InteractiveImageBentoGalleryProps> 
                 aria-label={`Enlarge photo from ${item.title}`}
               >
                 <img
-                  {...responsive(item.url, "(min-width: 1024px) 36rem, (min-width: 640px) 50vw, 100vw")}
+                  {...(item.thumb
+                    ? { src: item.thumb }
+                    : responsive(item.url, "(min-width: 1024px) 36rem, (min-width: 640px) 50vw, 100vw"))}
                   alt={item.desc}
                   loading="lazy"
                   className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-700 [filter:saturate(1.08)_contrast(1.06)] group-hover:scale-105"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-onyx/85 via-onyx/30 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100" />
                 <div className="relative z-10 translate-y-3 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
-                  <p className="font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-brass">Case study</p>
+                  <p className="font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-brass">{item.href ? "Case study" : "Event"}</p>
                   <h3 className="mt-1 font-serif text-xl font-semibold leading-tight text-bone">{item.title}</h3>
                 </div>
               </div>
             ))}
           </div>
           <p className="mt-6 text-center font-sans text-[10px] uppercase tracking-[0.2em] text-bone/40">
-            Select a photo to enlarge it and open its case study
+            Select a photo to enlarge it and see the event
           </p>
+          {footer}
         </div>
 
         <AnimatePresence>

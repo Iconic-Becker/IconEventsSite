@@ -826,7 +826,9 @@ export const PHOTO_LIBRARY = {
   "pmuw-2023": { folder: "pmuw-2023", count: 20 },
   "the-guardians-annual": { folder: "the-guardians-annual", count: 16 },
   "rise-x": { folder: "rise-x", count: 26 },
-  "scaling-with-systems-live": { folder: "scaling-with-systems-live-2021", count: 14 },
+  // 14 of the 16 in Iconic's folder; 06 and 07 were left out, so the
+  // numbering skips them.
+  "scaling-with-systems-live": { folder: "scaling-with-systems-live-2021", count: 14, missing: [6, 7] },
   "scaling-with-systems-live-2022": { folder: "scaling-with-systems-live-2022", count: 16 },
   "bulletproof-financial-accelerator": { folder: "bulletproof-financial-accelerator", count: 16 },
   "ace-interstellar": { folder: "ace-interstellar", count: 17 },
@@ -840,6 +842,16 @@ export const PHOTO_LIBRARY = {
   "takeover-live-2": { folder: "takeover-live-2", count: 22 },
   "ceo-lawyer-summit": { folder: "the-ceo-lawyer-summit-2021", count: 23 },
   "the-ceo-lawyer-summit-2022": { folder: "the-ceo-lawyer-summit-2022", count: 50 },
+}
+
+/* Every file in a PHOTO_LIBRARY folder, in Iconic's order. Numbering is
+   01, 02 and so on, less any numbers listed as missing. */
+export function libraryPhotos({ folder, count, missing = [] }) {
+  const out = []
+  for (let n = 1; out.length < count; n++) {
+    if (!missing.includes(n)) out.push(`/images/gallery/${folder}/${String(n).padStart(2, "0")}.webp`)
+  }
+  return out
 }
 
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -917,4 +929,61 @@ export function caseStudyCards() {
         format: built?.format ?? null,
       }
     })
+}
+
+/* Frames on case study pages that turned out to be from other events (see
+   docs/TODO.md, Casino Royale photos). Kept off /gallery, where every photo
+   names its event, until they are replaced. */
+const MISFILED = new Set(["/images/gallery/g34.webp", "/images/gallery/g24.webp", "/images/gallery/g32.webp"])
+
+/* Photos Iconic's folders hold twice (the same shot, or two frames a moment
+   apart), found by comparing every library photo. The first copy is kept on
+   /gallery and the repeat left out, so the page never shows one shot twice. */
+const REPEATS = new Set([
+  "behavioral-selling/13", "behavioral-selling/12", "group-convert-live/05",
+  "the-behavior-panel-live/16", "the-ceo-lawyer-summit-2021/04",
+  "the-ceo-lawyer-summit-2022/13", "the-ceo-lawyer-summit-2022/32",
+  "takeover-live-1/30", "chase-hughes-london/17",
+].map((name) => `/images/gallery/${name}.webp`))
+
+/* Every event photograph on the site, for /gallery: the frames placed on the
+   written case studies plus the whole photo library, one entry per file.
+
+   Each carries its event. `href` is the case study page when one is written,
+   and null when the event is listed but not yet written up. `thumb` is the
+   960w file made by scripts/make-gallery-thumbs.mjs for library photos, and
+   null for case study frames, which carry their own srcset. Alt text is the
+   case study's own where a frame has one; library photos get a plain line
+   naming the event, client and place, never a guess at what is in shot. */
+export function galleryFrames() {
+  const frames = []
+  const seen = new Set()
+  const add = (frame) => {
+    if (seen.has(frame.src) || MISFILED.has(frame.src) || REPEATS.has(frame.src)) return
+    seen.add(frame.src)
+    frames.push(frame)
+  }
+
+  for (const frame of galleryPool()) {
+    add({ src: frame.src, thumb: null, alt: frame.alt, slug: frame.slug, event: frame.study, href: frame.href })
+  }
+
+  for (const [slug, entry] of Object.entries(PHOTO_LIBRARY)) {
+    const built = CASE_STUDY_BY_SLUG[slug]
+    const listed = EVENT_INDEX.find((e) => e.slug === slug)
+    const event = built?.name ?? listed?.name ?? slug
+    const client = built?.details.client ?? listed?.client
+    const place = listed?.location ?? (built ? [built.details.city, built.details.region].filter(Boolean).join(", ") : null)
+    libraryPhotos(entry).forEach((src, i) => {
+      add({
+        src,
+        thumb: src.replace(/\.webp$/, "-960.webp"),
+        alt: `${event}${client ? ` for ${client}` : ""}${place ? ` in ${place}` : ""}, produced by Iconic Events, photo ${i + 1}`,
+        slug,
+        event,
+        href: built ? `/case-studies/${slug}` : null,
+      })
+    })
+  }
+  return frames
 }

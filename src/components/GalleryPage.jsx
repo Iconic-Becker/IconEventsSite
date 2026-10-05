@@ -1,13 +1,14 @@
-import { useEffect } from "react"
+import { useEffect, useMemo, useState } from "react"
 import SiteHeader from "./SiteHeader.jsx"
 import InteractiveImageBentoGallery from "@/components/ui/bento-gallery"
-import { galleryPool } from "../case-studies.js"
+import { galleryFrames } from "../case-studies.js"
 
-/* /gallery: every photograph used across the case studies, on one page.
+/* /gallery: every event photograph on the site, on one page.
 
    The homepage keeps its own gallery section; this is the standalone page the
-   nav points at. Each frame remembers the case study it came from, so the
-   enlarged view always offers a way on to that event's page.
+   nav points at. Each frame remembers the event it came from, so the enlarged
+   view offers a way on to that event's case study. Over five hundred frames,
+   so it opens on the first PAGE of them and shows more on request.
 
    The photos are arranged for spread, not grouped by event: a visitor should
    see one or two frames from an event surrounded by others, never a clump of
@@ -29,9 +30,7 @@ const RHYTHM = ["big", "one", "one", "tall", "one", "wide", "one"]
 const SIZE = { one: [1, 1], wide: [2, 1], tall: [1, 2], big: [2, 2] }
 const COLUMNS = [2, 3, 4]
 /* One photo order has to serve all three column counts, and the 3 column
-   layout is the hardest to spread, so it counts double when arranging.
-   Measured: with equal weights it kept a clump of 3 from one event; at
-   double, no width has more than 2 frames from one event touching. */
+   layout is the hardest to spread, so it counts double when arranging. */
 const SPREAD_WEIGHT = { 2: 1, 3: 2, 4: 1 }
 
 // Literal class names, so Tailwind finds them in the source.
@@ -45,16 +44,21 @@ const SPAN = {
    Returns the grid as rows of frame indexes (undefined for an empty cell). */
 function place(kinds, cols) {
   const grid = []
+  const taken = (r, c) => grid[r]?.[c] !== undefined
+  // Dense placement starts every search at the top, but rows above the
+  // first one with a free cell can never take anything, so skip them.
+  let top = 0
   kinds.forEach((kind, index) => {
     const [w, h] = SIZE[kind]
-    for (let r = 0; ; r++) {
-      const c = [...Array(cols - w + 1).keys()].find((c0) => {
-        for (let dr = 0; dr < h; dr++) for (let dc = 0; dc < w; dc++) if (grid[r + dr]?.[c0 + dc] !== undefined) return false
-        return true
-      })
-      if (c === undefined) continue
-      for (let dr = 0; dr < h; dr++) for (let dc = 0; dc < w; dc++) (grid[r + dr] ??= [])[c + dc] = index
-      return
+    for (let r = top; ; r++) {
+      for (let c = 0; c + w <= cols; c++) {
+        let fits = true
+        for (let dr = 0; dr < h && fits; dr++) for (let dc = 0; dc < w && fits; dc++) if (taken(r + dr, c + dc)) fits = false
+        if (!fits) continue
+        for (let dr = 0; dr < h; dr++) for (let dc = 0; dc < w; dc++) (grid[r + dr] ??= [])[c + dc] = index
+        while (grid[top] && grid[top].length === cols && !grid[top].includes(undefined)) top++
+        return
+      }
     }
   })
   return grid
@@ -78,12 +82,8 @@ function layoutFor(count, cols) {
    full; touching at a corner counts for less, since it reads as nearby but
    not side by side. */
 function neighbours(layouts) {
+  const N = 1 << 16 // pair key: smaller index * N + larger index
   const weight = new Map()
-  const add = (a, b, w) => {
-    if (a === undefined || b === undefined || a === b) return
-    const key = a < b ? `${a},${b}` : `${b},${a}`
-    weight.set(key, (weight.get(key) ?? 0) + w)
-  }
   for (const [cols, kinds] of layouts) {
     const seen = new Map()
     const grid = place(kinds, cols)
@@ -92,102 +92,115 @@ function neighbours(layouts) {
         const here = row[c]
         for (const [dr, dc, w] of [[0, 1, 1], [1, 0, 1], [1, 1, 0.4], [1, -1, 0.4]]) {
           const there = grid[r + dr]?.[c + dc]
-          if (there === undefined || there === here) continue
+          if (here === undefined || there === undefined || there === here) continue
           // A long shared edge is still one neighbour, not several.
-          const key = here < there ? `${here},${there}` : `${there},${here}`
+          const key = here < there ? here * N + there : there * N + here
           seen.set(key, Math.max(seen.get(key) ?? 0, w))
         }
       }
     })
-    for (const [key, w] of seen) {
-      const [a, b] = key.split(",").map(Number)
-      add(a, b, w * SPREAD_WEIGHT[cols])
-    }
+    for (const [key, w] of seen) weight.set(key, (weight.get(key) ?? 0) + w * SPREAD_WEIGHT[cols])
   }
-  return [...weight].map(([key, w]) => [...key.split(",").map(Number), w])
+  return [...weight].map(([key, w]) => [Math.floor(key / N), key % N, w])
 }
 
 /* Put the photos in an order that spreads every event across the page.
 
-   Start by spacing each event's frames evenly through the whole set, in
-   proportion to how many it has, so an event with 14 frames recurs about
-   every two or three and one with 2 appears once in each half. Then swap
-   frames between slots, keeping any swap that leaves fewer frames from the
-   same event touching, at every column count, until no swap helps. The
-   slots and their shapes never move, only which photo sits in them. */
+   Fill the slots in page order. For each slot, pick the event that has no
+   photo already touching that slot (at any column count), and among those
+   the one furthest behind its fair share so far, so an event with fifty
+   frames recurs steadily and one with eight is spaced through the whole
+   set. Each event's own photos go in Iconic's order, so their favourites
+   come first. One pass, so it stays quick at hundreds of frames, and
+   deterministic, so the prerender and the browser agree. */
 function arrange(frames, pairs) {
-  const counts = {}
-  const seen = {}
-  frames.forEach((f) => (counts[f.slug] = (counts[f.slug] ?? 0) + 1))
-  const spaced = frames
-    .map((f, i) => {
-      const j = (seen[f.slug] = (seen[f.slug] ?? -1) + 1)
-      return { f, key: (j + 0.5) / counts[f.slug], i }
-    })
-    .sort((a, b) => a.key - b.key || a.i - b.i)
-    .map(({ f }) => f)
+  const byEvent = new Map()
+  for (const f of frames) {
+    if (!byEvent.has(f.slug)) byEvent.set(f.slug, [])
+    byEvent.get(f.slug).push(f)
+  }
+  const events = [...byEvent.keys()]
+  const share = Object.fromEntries(events.map((e) => [e, byEvent.get(e).length / frames.length]))
+  const used = Object.fromEntries(events.map((e) => [e, 0]))
 
-  const cost = (order) => pairs.reduce((sum, [a, b, w]) => sum + (order[a].slug === order[b].slug ? w : 0), 0)
+  const touching = frames.map(() => [])
+  for (const [a, b, w] of pairs) {
+    touching[a].push([b, w])
+    touching[b].push([a, w])
+  }
 
-  function settle(order) {
-    let best = cost(order)
-    for (let improved = true; improved; ) {
-      improved = false
-      for (let i = 0; i < order.length; i++) {
-        for (let j = i + 1; j < order.length; j++) {
-          if (order[i].slug === order[j].slug) continue
-          ;[order[i], order[j]] = [order[j], order[i]]
-          const next = cost(order)
-          if (next < best - 1e-9) {
-            best = next
-            improved = true
-          } else {
-            ;[order[i], order[j]] = [order[j], order[i]]
-          }
-        }
+  const order = []
+  for (let slot = 0; slot < frames.length; slot++) {
+    let pick = null
+    for (const e of events) {
+      if (used[e] === byEvent.get(e).length) continue
+      let clash = 0
+      for (const [other, w] of touching[slot]) if (other < slot && order[other].slug === e) clash += w
+      const behind = (slot + 1) * share[e] - used[e]
+      if (!pick || clash < pick.clash - 1e-9 || (Math.abs(clash - pick.clash) < 1e-9 && behind > pick.behind + 1e-9)) {
+        pick = { e, clash, behind }
       }
     }
-    return { order, best }
+    order.push(byEvent.get(pick.e)[used[pick.e]++])
   }
-
-  // Swapping one pair at a time can settle short of the best spread, so try
-  // a few starting points (the even spacing, rotated) and keep the winner.
-  // Still deterministic: the same photos always give the same page.
-  let winner = null
-  for (let start = 0; start < 12; start++) {
-    const shift = Math.round((start * spaced.length) / 12)
-    const result = settle([...spaced.slice(shift), ...spaced.slice(0, shift)])
-    if (!winner || result.best < winner.best - 1e-9) winner = result
-  }
-  return winner.order
+  return order
 }
 
-const POOL = galleryPool()
+const POOL = galleryFrames()
 const LAYOUTS = COLUMNS.map((cols) => [cols, layoutFor(POOL.length, cols)])
+const ORDER = arrange(POOL, neighbours(LAYOUTS))
 
-const ITEMS = arrange(POOL, neighbours(LAYOUTS)).map((frame, index) => ({
-  id: frame.src,
-  title: frame.study,
-  desc: frame.alt,
-  url: frame.src,
-  href: frame.href,
-  span: LAYOUTS.map(([cols, kinds]) => SPAN[cols][kinds[index]]).join(" "),
-}))
+// How many frames the page opens on, and how many each "show more" adds.
+const PAGE = 120
+
+/* The span classes for the first `count` frames. Worked out for that count,
+   so the grid finishes flush however many are showing. */
+function itemsFor(count) {
+  const layouts = COLUMNS.map((cols) => [cols, layoutFor(count, cols)])
+  return ORDER.slice(0, count).map((frame, index) => ({
+    id: frame.src,
+    title: frame.event,
+    desc: frame.alt,
+    url: frame.src,
+    thumb: frame.thumb,
+    href: frame.href,
+    span: layouts.map(([cols, kinds]) => SPAN[cols][kinds[index]]).join(" "),
+  }))
+}
 
 export default function GalleryPage() {
+  const [showing, setShowing] = useState(Math.min(PAGE, POOL.length))
+  const items = useMemo(() => itemsFor(showing), [showing])
+
   useEffect(() => {
     document.title = TITLE
     const meta = document.querySelector('meta[name="description"]')
     if (meta) meta.setAttribute("content", DESCRIPTION)
   }, [])
 
+  const more = showing < POOL.length && (
+    <div className="mt-10 flex flex-col items-center gap-3">
+      <button
+        type="button"
+        onClick={() => setShowing((n) => Math.min(n + PAGE, POOL.length))}
+        className="border border-brass/60 px-8 py-3.5 font-sans text-[11px] font-bold uppercase tracking-[0.16em] text-brass transition hover:bg-brass hover:text-onyx"
+      >
+        Show more photos
+      </button>
+      <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-bone/40">
+        Showing {showing} of {POOL.length}
+      </p>
+    </div>
+  )
+
   return (
     <main className="min-h-screen bg-onyx text-bone">
       <SiteHeader />
       <InteractiveImageBentoGallery
-        imageItems={ITEMS}
+        imageItems={items}
         title="Gallery"
         description="Take a peek behind the scenes at some of our events."
+        footer={more}
       />
 
       <section className="border-t border-bone/10 py-16 sm:py-20">
