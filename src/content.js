@@ -586,7 +586,7 @@ export const FOOTER = {
     // anchors on the homepage, the only page this footer appears on.
     {
       id: "col1",
-      head: "Studio",
+      head: "Explore",
       items: [
         { label: "Work", href: "#work" },
         { label: "Services", href: "#scope" },
