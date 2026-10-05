@@ -185,14 +185,16 @@ const InteractiveImageBentoGallery: React.FC<InteractiveImageBentoGalleryProps> 
     <MotionConfig reducedMotion="user">
       <section className="relative w-full bg-onyx pb-16 pt-12 text-bone sm:pb-24 sm:pt-20">
         <div className="mx-auto max-w-6xl px-5 sm:px-6">
-          {eyebrow && (
-            <p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">{eyebrow}</p>
-          )}
-          <h1 className="mt-5 max-w-[18ch] font-serif text-4xl font-semibold leading-[0.98] sm:text-7xl">{title}</h1>
-          <p className="mt-6 max-w-[58ch] font-sans text-lg leading-relaxed text-bone/70">{description}</p>
+          <div className="mx-auto max-w-2xl text-center">
+            {eyebrow && (
+              <p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">{eyebrow}</p>
+            )}
+            <h1 className={cn("font-serif text-5xl font-semibold leading-none sm:text-7xl", eyebrow && "mt-5")}>{title}</h1>
+            <p className="mt-5 font-sans text-lg leading-relaxed text-bone/70">{description}</p>
+          </div>
           {children}
 
-          <div className="mt-8 grid grid-flow-row-dense auto-rows-[10rem] grid-cols-2 gap-2 sm:mt-10 sm:auto-rows-[12rem] sm:grid-cols-3 sm:gap-3 lg:auto-rows-[14rem] lg:grid-cols-4">
+          <div className="mt-10 grid grid-flow-row-dense auto-rows-[10rem] grid-cols-2 gap-2 sm:mt-14 sm:auto-rows-[12rem] sm:grid-cols-3 sm:gap-3 lg:auto-rows-[14rem] lg:grid-cols-4">
             {imageItems.map((item, index) => (
               <div
                 key={item.id}
@@ -225,7 +227,7 @@ const InteractiveImageBentoGallery: React.FC<InteractiveImageBentoGalleryProps> 
               </div>
             ))}
           </div>
-          <p className="mt-5 font-sans text-[10px] uppercase tracking-[0.2em] text-bone/40">
+          <p className="mt-6 text-center font-sans text-[10px] uppercase tracking-[0.2em] text-bone/40">
             Select a photo to enlarge it and open its case study
           </p>
         </div>
