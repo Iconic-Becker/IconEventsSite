@@ -39,6 +39,16 @@ const ROUTES = [
 // /nextsteps is prerendered so a refresh or a bookmark resolves, but kept out
 // of the sitemap: it is a post-submission confirmation page, marked noindex in
 // the page itself and disallowed in robots.txt.
+// The vendor sign-up. Indexed: vendors searching for production companies to
+// work with should be able to find it.
+ROUTES.push({
+  path: '/vendors',
+  title: 'Vendor sign-up | Iconic Events',
+  description:
+    'Join the vendor list at Iconic Events. We work with audio visual, lighting, staging, catering, photography and production partners across South Florida and beyond.',
+  image: '/og/default.jpg',
+})
+
 ROUTES.push({
   path: '/nextsteps',
   title: 'Request confirmed · Iconic Events',
@@ -48,16 +58,6 @@ ROUTES.push({
   sitemap: false,
 })
 
-// /partners is the door for vendors, signposted from the client brief. It is
-// prerendered so the link resolves on a full load, and kept out of the sitemap
-// and search: it is not a page anyone should land on cold.
-ROUTES.push({
-  path: '/partners',
-  title: 'Partners and vendors · Iconic Events',
-  description: 'Venues, suppliers and agencies: how to introduce your services to the Iconic Events production team.',
-  image: '/og/default.jpg',
-  sitemap: false,
-})
 
 const template = fs.readFileSync('dist/index.html', 'utf-8')
 

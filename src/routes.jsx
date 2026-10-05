@@ -2,7 +2,7 @@ import App from "./App.jsx"
 import CaseStudyPage, { CaseStudyNotFound } from "./components/CaseStudyPage.jsx"
 import CaseStudiesIndex from "./components/CaseStudiesIndex.jsx"
 import NextSteps from "./components/NextSteps.jsx"
-import Partners from "./components/Partners.jsx"
+import Vendors from "./components/Vendors.jsx"
 import { caseStudyFromPath } from "./case-studies.js"
 
 /* The one place a URL becomes a page.
@@ -16,7 +16,10 @@ export function routeFor(pathname) {
 
   if (clean === "/nextsteps") return <NextSteps />
 
-  if (clean === "/partners") return <Partners />
+  // One page for everyone selling to us. /partners was the earlier URL and
+  // is redirected to this one by the server, so links already shared still
+  // land somewhere.
+  if (clean === "/vendors" || clean === "/partners") return <Vendors />
 
   if (clean === "/case-studies") return <CaseStudiesIndex />
 

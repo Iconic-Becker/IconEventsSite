@@ -112,23 +112,31 @@ export async function sendEnquiry({ name, email, company, event, guests, budget,
 /* A vendor, venue or agency offering a service. Same inbox, but its own
    sender name and a [Partner] subject, so one mail rule files it away from
    client enquiries. */
-export async function sendPartner({ name, email, company, category, notes }) {
-  return post({
+/* Everyone selling to us comes through here: vendors, venues, agencies,
+   speakers, software. Same inbox as a client enquiry, with a [Partner]
+   subject so these sort away from briefs.
+
+   Same contract as sendEnquiry: it resolves only once the endpoint has
+   accepted, so a sign-up that went nowhere can never show a confirmation. */
+export async function sendPartner({ name, email, company, phone, website, coverage, categories, insured, notes }) {
+  const payload = {
     ...(ACCESS_KEY ? { access_key: ACCESS_KEY } : {}),
-    subject: `[Partner] ${category} · ${company}`,
-    from_name: "Iconic Events partner form",
-    name,
+    subject: `[Partner] ${categories?.length ? categories[0] : "General"} · ${company || name}`,
+    from_name: "Iconic Events partner sign-up",
     email,
     replyto: email,
-    company,
-    category,
-    offer: notes.trim() || "Nothing added",
-    source: trafficSource(),
-    submitted: miamiTime(new Date()),
-  })
-}
+    contact_name: name,
+    company: company || "Not given",
+    phone: phone || "Not given",
+    website: website || "Not given",
+    offers: categories?.length ? categories.join(", ") : "Not specified",
+    coverage: coverage || "Not given",
+    insured: insured ? "Yes" : "Not stated",
+    notes: notes || "",
+    page: typeof window === "undefined" ? "" : window.location.href,
+    submitted_at: new Date().toISOString(),
+  }
 
-async function post(payload) {
   const response = await fetch(ENDPOINT, {
     method: "POST",
     headers: { "Content-Type": "application/json", Accept: "application/json" },
@@ -136,13 +144,12 @@ async function post(payload) {
   })
 
   if (!response.ok) {
-    throw new Error(`Enquiry endpoint returned ${response.status}`)
+    throw new Error(`Partner endpoint returned ${response.status}`)
   }
 
-  /* Some providers report a soft failure in a 200 body. */
   const result = await response.json().catch(() => null)
   if (result && result.success === false) {
-    throw new Error(result.message || "The enquiry endpoint rejected the submission.")
+    throw new Error(result.message || "The endpoint rejected the sign-up.")
   }
 
   return true

@@ -80,7 +80,16 @@ export const NAV = {
   right: [
     { href: "#work", label: "Work" },
     { href: "#gallery", label: "Gallery" },
-    { href: "#contact", label: "Contact" },
+    {
+      href: "#contact",
+      label: "Contact",
+      // Opens a menu rather than jumping straight to the form, because there
+      // are two ways in now and they are for different people.
+      children: [
+        { href: "#contact", label: "Start a conversation", note: "Tell us about the room you want to build." },
+        { href: "/vendors", label: "Vendor sign-up", note: "Crew, kit and suppliers. Join the list we work from." },
+      ],
+    },
   ],
 }
 
@@ -579,7 +588,12 @@ export const FOOTER = {
       // every page is the easiest thing on the site to scrape. The form reaches
       // the same inbox. CONTACT_EMAIL is still the fallback when a submission
       // fails (see src/lib/enquiry.js).
-      items: [{ label: "Start a conversation", href: "#contact" }, "(305) 791-5290", "Miami · Las Vegas"],
+      items: [
+        { label: "Start a conversation", href: "#contact" },
+        { label: "Vendor sign-up", href: "/vendors" },
+        "(305) 791-5290",
+        "Miami · Las Vegas",
+      ],
     },
     { id: "col3", head: "Follow", items: ["Instagram", "LinkedIn", "Vimeo"] },
   ],

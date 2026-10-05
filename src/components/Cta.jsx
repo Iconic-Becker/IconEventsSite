@@ -166,7 +166,7 @@ export default function Cta({ modal = false, eyebrow, title }) {
               <p className="mb-8 border-b border-onyx/15 pb-5 font-sans text-sm leading-relaxed text-onyx/65">
                 Planning an event with us? You&rsquo;re in the right place. Venue, vendor or agency
                 offering a service?{" "}
-                <a href="/partners" className="font-bold text-brass underline underline-offset-4 hover:text-onyx">
+                <a href="/vendors" className="font-bold text-brass underline underline-offset-4 hover:text-onyx">
                   Use the partner form
                 </a>
                 .
@@ -227,6 +227,19 @@ export default function Cta({ modal = false, eyebrow, title }) {
             <p className="mt-5 max-w-xl font-sans text-xs leading-relaxed text-bone/45">
               {t(f.reassurance)}
             </p>
+            {/* Vendors land on this section too, and the form above is written
+                for clients. Send them somewhere that fits. */}
+            {!modal && (
+              <p className="mt-6 font-sans text-xs text-bone/45">
+                Supplying rather than booking?{" "}
+                <a
+                  href="/vendors"
+                  className="font-bold uppercase tracking-[0.14em] text-brass underline underline-offset-4 transition hover:text-bone"
+                >
+                  Join the vendor list
+                </a>
+              </p>
+            )}
           </>
         )}
       </div>
