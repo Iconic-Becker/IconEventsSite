@@ -6,8 +6,8 @@ the long edge, and numbered in the order of the original folder. The
 originals stay with Iconic; this file maps each web file back to its
 original name.
 
-**Still needed before any photo is published on a page:** photographer
-credit and written usage rights, per event (interview protocol, section 5).
+**Usage rights:** Iconic holds usage rights for every photo in the library
+(confirmed 2026-10-05).
 
 | Zip | Folder in `public/images/gallery/` | Photos |
 |---|---|---|
@@ -35,9 +35,9 @@ credit and written usage rights, per event (interview protocol, section 5).
 | 22 Takeover Live 1 | `takeover-live-1/` | 35 |
 
 **On `/gallery`.** Every photo here appears on the gallery page, each
-labelled with its event. The grid loads a 960px thumbnail, `NN-960.webp`
-beside each `NN.webp`, made by `node scripts/make-gallery-thumbs.mjs`; run it
-again after adding a folder. Nine photos turned out to be repeats of another
+labelled with its event. The grid loads thumbnails, `NN-480.webp` and
+`NN-960.webp` beside each `NN.webp`, made by
+`node scripts/make-gallery-thumbs.mjs`; run it again after adding a folder. Nine photos turned out to be repeats of another
 in the same folder and are left off the gallery (`REPEATS` in
 `src/case-studies.js`).
 
