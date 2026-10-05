@@ -3,6 +3,7 @@ import CaseStudyPage, { CaseStudyNotFound } from "./components/CaseStudyPage.jsx
 import CaseStudiesIndex from "./components/CaseStudiesIndex.jsx"
 import NextSteps from "./components/NextSteps.jsx"
 import Vendors from "./components/Vendors.jsx"
+import Contact from "./components/Contact.jsx"
 import { caseStudyFromPath } from "./case-studies.js"
 
 /* The one place a URL becomes a page.
@@ -20,6 +21,8 @@ export function routeFor(pathname) {
   // is redirected to this one by the server, so links already shared still
   // land somewhere.
   if (clean === "/vendors" || clean === "/partners") return <Vendors />
+
+  if (clean === "/contact") return <Contact />
 
   if (clean === "/case-studies") return <CaseStudiesIndex />
 
