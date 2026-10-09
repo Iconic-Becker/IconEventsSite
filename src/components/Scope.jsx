@@ -40,11 +40,11 @@ export default function Scope() {
     <div id="scope" className="bg-onyx py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
         {/* eyebrow */}
-        <div className="mb-8 border-b border-brass/40 pb-3">
+        <h2 className="mb-8 border-b border-brass/40 pb-3">
           <span className="font-sans text-xs font-bold uppercase tracking-[0.28em] text-brass">
             {SCOPE.eyebrow}
           </span>
-        </div>
+        </h2>
 
         {/* ── Manifesto headline — disciplines gilded, refusals struck ──────── */}
         <p
