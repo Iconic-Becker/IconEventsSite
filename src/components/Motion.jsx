@@ -55,7 +55,7 @@ export default function Motion() {
         <div className="font-sans text-xs font-bold uppercase tracking-[0.28em] text-brass">
           {t(MONTAGE.kicker)}
         </div>
-        <h3
+        <h2
           className="gold-sheen mx-auto mt-4 max-w-5xl bg-clip-text font-serif text-6xl font-semibold uppercase leading-[0.95] tracking-tight text-transparent sm:text-8xl"
           style={{
             backgroundImage: `linear-gradient(100deg, rgba(184,153,104,0.55) 0%, rgba(232,206,150,0.72) 20%, rgba(184,153,104,0.5) 40%, rgba(232,206,150,0.72) 60%, rgba(184,153,104,0.5) 80%, rgba(232,206,150,0.72) 100%), linear-gradient(rgba(14,19,18,0.26), rgba(14,19,18,0.26)), url(${GALLERY.positionRoomWide})`,
@@ -67,7 +67,7 @@ export default function Motion() {
           }}
         >
           {t(MONTAGE.kicker)}
-        </h3>
+        </h2>
         <p className="mx-auto mt-6 max-w-2xl font-serif text-2xl italic text-bone/80">
           {t(MONTAGE.line)}
         </p>
