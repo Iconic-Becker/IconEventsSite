@@ -29,7 +29,10 @@ function walk(v) {
 const gallery = await (await fetch(`${base}/api/g/${slug}`)).json()
 if (gallery.locked) throw new Error("gallery is locked")
 const albums = {}
-for (const a of gallery.albums) albums[a.slug] = await (await fetch(`${base}/api/g/${slug}/albums/${a.slug}`)).json()
+for (const a of gallery.albums) {
+  const d = await (await fetch(`${base}/api/g/${slug}/albums/${a.slug}?limit=500`)).json()
+  albums[a.slug] = { ...d, nextOffset: null }
+}
 const data = walk({ gallery, albums })
 writeFileSync(join(outDir, "data.json"), JSON.stringify(data))
 console.log(`snapshot: ${gallery.albums.length} albums, ${copied.size} media files -> ${outDir}`)

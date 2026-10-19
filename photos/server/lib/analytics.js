@@ -25,11 +25,12 @@ export function visitorHash(req) {
 
 export async function record(req, { galleryId, mediaId = null, reelId = null, type }) {
   if (!EVENT_TYPES.has(type)) return
-  await query("insert into events(gallery_id, media_id, reel_id, type, visitor) values ($1, $2, $3, $4, $5)", [
+  await query("insert into events(gallery_id, media_id, reel_id, type, visitor, link_id) values ($1, $2, $3, $4, $5, $6)", [
     galleryId,
     mediaId,
     reelId,
     type,
     visitorHash(req),
+    req.link?.id || null,
   ])
 }

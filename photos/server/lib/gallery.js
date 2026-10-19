@@ -14,17 +14,37 @@ export async function loadGallery(slug) {
   return one("select * from galleries where slug = $1 and trashed_at is null", [slug])
 }
 
-export function unlockCookieName(g) {
-  return `g_${g.id}`
+// A slug is either a gallery's main link or one of its extra links. The
+// result carries the link (null for the main one) so callers can filter
+// albums and apply the link's own password.
+export async function loadBySlug(slug) {
+  const g = await loadGallery(slug)
+  if (g) return { gallery: g, link: null }
+  const link = await one("select * from links where slug = $1", [slug])
+  if (!link) return null
+  const gallery = await one("select * from galleries where id = $1 and trashed_at is null", [link.gallery_id])
+  if (!gallery || !link.visible) return null
+  return { gallery, link }
 }
 
-export function unlockToken(g) {
-  return hmac("unlock", String(g.id), String(g.password_version))
+export function unlockCookieName(g, link) {
+  return link ? `g_${g.id}_l${link.id}` : `g_${g.id}`
 }
 
-export function isUnlocked(req, g) {
-  if (!g.password_hash) return true
-  return safeEqual(req.cookies?.[unlockCookieName(g)], unlockToken(g))
+export function unlockToken(g, link) {
+  return link ? hmac("unlock-link", String(link.id), String(link.password_version)) : hmac("unlock", String(g.id), String(g.password_version))
+}
+
+// A link has its own password (or none). The main link uses the gallery's.
+export function isUnlocked(req, g, link) {
+  const hash = link ? link.password_hash : g.password_hash
+  if (!hash) return true
+  return safeEqual(req.cookies?.[unlockCookieName(g, link)], unlockToken(g, link))
+}
+
+// Which album ids a link may show; null means all.
+export function linkAlbumIds(link) {
+  return link?.album_ids?.length ? link.album_ids.map(Number) : null
 }
 
 // Hidden galleries are reachable only by signed-in admins (for preview).
@@ -51,15 +71,15 @@ export function settingsOf(g) {
   return s
 }
 
-export async function albumsOf(galleryId) {
+export async function albumsOf(galleryId, albumIds = null) {
   const rows = await many(
     `select a.*, 
        (select count(*) from media m where m.album_id = a.id and m.trashed_at is null and m.status in ('ready','attention')) as count,
        cm.derivatives as cover_derivatives,
        (select derivatives from media m where m.album_id = a.id and m.trashed_at is null and m.status in ('ready','attention') order by m.sort, m.captured_at nulls last, m.filename, m.id limit 1) as first_derivatives
      from albums a left join media cm on cm.id = a.cover_media_id and cm.trashed_at is null
-     where a.gallery_id = $1 order by a.sort, a.id`,
-    [galleryId],
+     where a.gallery_id = $1 and ($2::bigint[] is null or a.id = any($2::bigint[])) order by a.sort, a.id`,
+    [galleryId, albumIds],
   )
   const out = []
   for (const a of rows) {
@@ -77,12 +97,12 @@ export async function albumsOf(galleryId) {
   return out
 }
 
-export async function highlightsAlbum(galleryId) {
+export async function highlightsAlbum(galleryId, albumIds = null) {
   const row = await one(
     `select count(*) as count,
-       (select derivatives from media where gallery_id = $1 and highlighted and trashed_at is null and status in ('ready','attention') order by sort, captured_at nulls last, filename, id limit 1) as d
-     from media where gallery_id = $1 and highlighted and trashed_at is null and status in ('ready','attention')`,
-    [galleryId],
+       (select derivatives from media where gallery_id = $1 and highlighted and trashed_at is null and status in ('ready','attention') and ($2::bigint[] is null or album_id = any($2::bigint[])) order by sort, captured_at nulls last, filename, id limit 1) as d
+     from media where gallery_id = $1 and highlighted and trashed_at is null and status in ('ready','attention') and ($2::bigint[] is null or album_id = any($2::bigint[]))`,
+    [galleryId, albumIds],
   )
   if (!row || !row.count) return null
   const d = row.d || {}
@@ -121,10 +141,11 @@ export async function reelsOf(galleryId, { includePrivate = true } = {}) {
   return out
 }
 
-export async function serializeGallery(g, { admin = false } = {}) {
+export async function serializeGallery(g, { admin = false, link = null } = {}) {
   const s = settingsOf(g)
-  const albums = await albumsOf(g.id)
-  const highlights = await highlightsAlbum(g.id)
+  const ids = linkAlbumIds(link)
+  const albums = await albumsOf(g.id, ids)
+  const highlights = await highlightsAlbum(g.id, ids)
   // No cover chosen: the first photo stands in, so a gallery with no
   // customization still opens on an image.
   let cover = g.cover_media_id ? await one("select * from media where id = $1 and trashed_at is null", [g.cover_media_id]) : null
@@ -135,20 +156,21 @@ export async function serializeGallery(g, { admin = false } = {}) {
   const mosaic = s.mosaicIds.map((id) => mosaicRows.find((m) => m.id === id)).filter(Boolean)
   const counts = await one(
     `select count(*) filter (where kind = 'photo') as photos, count(*) filter (where kind = 'video') as videos
-     from media where gallery_id = $1 and trashed_at is null and status in ('ready','attention') and album_id is not null`,
-    [g.id],
+     from media where gallery_id = $1 and trashed_at is null and status in ('ready','attention') and album_id is not null and ($2::bigint[] is null or album_id = any($2::bigint[]))`,
+    [g.id, ids],
   )
-  const reels = await reelsOf(g.id)
+  const reels = link && !link.include_reels ? [] : await reelsOf(g.id)
   const coverVideo = s.coverVideoId ? reels.find((r) => r.id === s.coverVideoId) || reels[0] : reels[0]
   return {
     id: g.id,
-    slug: g.slug,
+    slug: link ? link.slug : g.slug,
+    link: link ? { id: link.id, name: link.name } : null,
     title: g.title,
     subtitle: g.subtitle,
     eventDate: g.event_date ? toDateString(g.event_date) : null,
     location: g.location,
     intro: g.intro,
-    hasPassword: Boolean(g.password_hash),
+    hasPassword: Boolean(link ? link.password_hash : g.password_hash),
     visible: g.visible,
     settings: s,
     cover: cover ? await serializeMedia(cover) : null,
@@ -164,10 +186,10 @@ export async function serializeGallery(g, { admin = false } = {}) {
   }
 }
 
-export function lockedGallery(g) {
+export function lockedGallery(g, link = null) {
   const s = settingsOf(g)
   return {
-    slug: g.slug,
+    slug: link ? link.slug : g.slug,
     title: g.title,
     subtitle: g.subtitle,
     eventDate: g.event_date ? toDateString(g.event_date) : null,

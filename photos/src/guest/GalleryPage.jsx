@@ -82,13 +82,31 @@ function GalleryView({ albumSlug }) {
 
   // Load album media on demand; favorites needs every album.
   const need = favoritesView ? albums.map((a) => a.slug).filter((s) => s !== "highlights") : current ? [current.slug] : []
+  // The first page paints at once; later pages stream in behind it so a
+  // 3,000 photo album is scrollable within a second on a phone.
   useEffect(() => {
+    let cancelled = false
     for (const s of need) {
       if (cache[s]) continue
-      setCache((c) => ({ ...c, [s]: { loading: true } }))
-      get(`/api/g/${slug}/albums/${s}`)
-        .then((d) => setCache((c) => ({ ...c, [s]: { media: d.media } })))
-        .catch(() => setCache((c) => ({ ...c, [s]: { media: [] } })))
+      setCache((c) => ({ ...c, [s]: { loading: true, media: [] } }))
+      ;(async () => {
+        let offset = 0
+        let first = true
+        try {
+          while (offset !== null && !cancelled) {
+            const d = await get(`/api/g/${slug}/albums/${s}?offset=${offset}`)
+            if (cancelled) return
+            setCache((c) => ({ ...c, [s]: { media: first ? d.media : [...(c[s]?.media || []), ...d.media], total: d.total, loading: false, more: d.nextOffset !== null } }))
+            first = false
+            offset = d.nextOffset
+          }
+        } catch {
+          if (!cancelled) setCache((c) => ({ ...c, [s]: { media: c[s]?.media || [], loading: false, more: false } }))
+        }
+      })()
+    }
+    return () => {
+      cancelled = true
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [need.join("|"), slug])
@@ -105,7 +123,8 @@ function GalleryView({ albumSlug }) {
     }
     return current ? cache[current.slug]?.media || [] : []
   }, [favoritesView, current, cache, favorites, need])
-  const loading = favoritesView ? need.some((s) => !cache[s] || cache[s].loading) : current && (!cache[current.slug] || cache[current.slug].loading)
+  const loading = favoritesView ? need.some((s) => !cache[s] || cache[s].loading || cache[s].more) : current && (!cache[current.slug] || cache[current.slug].loading)
+  const loadingMore = !favoritesView && current && cache[current.slug]?.more
 
   // Lightbox state lives in the URL (?p=id) so Back closes it.
   const openId = Number(params.get("p")) || null
@@ -207,7 +226,7 @@ function GalleryView({ albumSlug }) {
                 <Download size={14} /> Download album
               </button>
             )}
-            <span className="text-xs u-muted">{plural(media.length, "item")}</span>
+            <span className="text-xs u-muted">{loadingMore ? `${media.length} of ${cache[current.slug]?.total}` : plural(media.length, "item")}</span>
           </div>
         </div>
       )}

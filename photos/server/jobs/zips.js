@@ -6,36 +6,38 @@ import { storage, keys } from "../storage/index.js"
 import { register } from "./queue.js"
 import { zipEntries, zipStream, splitParts } from "../lib/zip.js"
 
-export async function mediaForZip(galleryId, albumId) {
+export async function mediaForZip(galleryId, albumId, albumIds = null) {
   const rows = await many(
     `select m.*, a.name as album_name from media m left join albums a on a.id = m.album_id
      where m.gallery_id = $1 and m.trashed_at is null and m.status in ('ready', 'attention') and m.album_id is not null
        and ($2::bigint is null or m.album_id = $2)
+       and ($3::bigint[] is null or m.album_id = any($3::bigint[]))
      order by a.sort, a.id, m.sort, m.captured_at nulls last, m.filename, m.id`,
-    [galleryId, albumId],
+    [galleryId, albumId, albumIds],
   )
   return rows.map((r) => ({ media: r, albumName: albumId ? null : r.album_name }))
 }
 
-register("build_zip", async ({ galleryId, albumId, size, version }) => {
-  const items = await mediaForZip(galleryId, albumId)
+register("build_zip", async ({ galleryId, albumId, size, version, linkId = null, albumIds = null }) => {
+  const items = await mediaForZip(galleryId, albumId, albumId ? null : albumIds)
   const parts = splitParts(zipEntries(items, size), config.zipPartBytes)
+  const lid = albumId ? null : linkId
   // Rows for every part up front so the client can show "part 2 of 3".
   for (let i = 0; i < parts.length; i++) {
     await query(
-      `insert into zips(gallery_id, album_id, size, content_version, part, parts)
-       values ($1, $2, $3, $4, $5, $6)
-       on conflict (gallery_id, coalesce(album_id, 0), size, content_version, part) do update set parts = excluded.parts`,
-      [galleryId, albumId, size, version, i + 1, parts.length],
+      `insert into zips(gallery_id, album_id, link_id, size, content_version, part, parts)
+       values ($1, $2, $7, $3, $4, $5, $6)
+       on conflict (gallery_id, coalesce(album_id, 0), coalesce(link_id, 0), size, content_version, part) do update set parts = excluded.parts`,
+      [galleryId, albumId, size, version, i + 1, parts.length, lid],
     )
   }
   for (let i = 0; i < parts.length; i++) {
     const row = await one(
-      "select * from zips where gallery_id = $1 and coalesce(album_id, 0) = coalesce($2::bigint, 0) and size = $3 and content_version = $4 and part = $5",
-      [galleryId, albumId, size, version, i + 1],
+      "select * from zips where gallery_id = $1 and coalesce(album_id, 0) = coalesce($2::bigint, 0) and coalesce(link_id, 0) = coalesce($6::bigint, 0) and size = $3 and content_version = $4 and part = $5",
+      [galleryId, albumId, size, version, i + 1, lid],
     )
     if (row.status === "ready") continue
-    const key = keys.zip(galleryId, albumId, size, version, i + 1)
+    const key = keys.zip(galleryId, albumId ? albumId : lid ? `link${lid}` : null, size, version, i + 1)
     try {
       await storage.putObject(key, zipStream(parts[i]), "application/zip")
       const head = await storage.head(key)

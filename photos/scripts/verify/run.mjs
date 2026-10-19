@@ -175,7 +175,7 @@ await check("Guest at 390px: cover, bar, grid, lightbox, swipe, no overflow/erro
   const scrollBefore = await page.evaluate(() => window.scrollY)
   // A tile that is on screen at this scroll position, so the click itself
   // does not scroll the page.
-  const tiles = await page.$$(".tile button")
+  const tiles = await page.$$(".tile > button:first-child")
   let target = null
   for (const t of tiles) {
     const b = await t.boundingBox()

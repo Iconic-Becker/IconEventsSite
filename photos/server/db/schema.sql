@@ -166,3 +166,25 @@ create table if not exists jobs (
   created_at timestamptz not null default now()
 );
 create index if not exists jobs_queue_idx on jobs(status, run_after);
+
+-- migration: 002 links
+-- Extra share links per gallery. Each shows a chosen set of albums, with
+-- its own optional password. The gallery's own slug stays the main link.
+create table if not exists links (
+  id bigserial primary key,
+  gallery_id bigint not null references galleries(id) on delete cascade,
+  slug text not null unique,
+  name text not null default '',
+  album_ids bigint[],
+  include_reels boolean not null default true,
+  password_hash text,
+  password_version integer not null default 0,
+  visible boolean not null default true,
+  created_at timestamptz not null default now()
+);
+create index if not exists links_gallery_idx on links(gallery_id);
+alter table zips add column if not exists link_id bigint references links(id) on delete cascade;
+drop index if exists zips_unique_idx;
+create unique index if not exists zips_unique_idx
+  on zips(gallery_id, coalesce(album_id, 0), coalesce(link_id, 0), size, content_version, part);
+alter table events add column if not exists link_id bigint references links(id) on delete set null;

@@ -36,7 +36,7 @@ export async function demoApi(path, { method = "GET", body } = {}) {
   }
   if (parts[1] !== "g") fail(404, "Not available in the demo")
   if (rest.length === 0) return gallery
-  if (rest[0] === "albums") return albums[rest[1]] || fail(404, "Album not found")
+  if (rest[0] === "albums") return albums[rest[1]] ? { ...albums[rest[1]], nextOffset: null } : fail(404, "Album not found")
   if (rest[0] === "me") return { guest: s.guest || null, favorites: s.favorites || [] }
   if (rest[0] === "guest" && method === "POST") {
     s.guest = { email: body.email, name: body.name || "" }

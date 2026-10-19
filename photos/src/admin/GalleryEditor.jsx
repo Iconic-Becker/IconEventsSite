@@ -10,6 +10,7 @@ import { ReelsTab } from "./ReelsAdmin.jsx"
 import { FavoritesTab } from "./FavoritesAdmin.jsx"
 import { AnalyticsTab } from "./AnalyticsAdmin.jsx"
 import { SettingsTab } from "./SettingsTab.jsx"
+import { LinksTab } from "./LinksTab.jsx"
 import { ErrorBoundary } from "../shared/ErrorBoundary.jsx"
 
 const Ctx = createContext(null)
@@ -75,6 +76,7 @@ export function GalleryEditor() {
             <NavLink to={`/admin/galleries/${gallery.id}`} end className={tab}>Photos</NavLink>
             <NavLink to={`/admin/galleries/${gallery.id}/design`} className={tab}>Design</NavLink>
             <NavLink to={`/admin/galleries/${gallery.id}/reels`} className={tab}>Reels</NavLink>
+            <NavLink to={`/admin/galleries/${gallery.id}/links`} className={tab}>Links{gallery.links?.length ? ` ${gallery.links.length + 1}` : ""}</NavLink>
             <NavLink to={`/admin/galleries/${gallery.id}/favorites`} className={tab}>Favorites</NavLink>
             <NavLink to={`/admin/galleries/${gallery.id}/analytics`} className={tab}>Analytics</NavLink>
             <NavLink to={`/admin/galleries/${gallery.id}/settings`} className={tab}>Settings</NavLink>
@@ -87,6 +89,7 @@ export function GalleryEditor() {
             <Route index element={<PhotosTab />} />
             <Route path="design" element={<DesignTab />} />
             <Route path="reels" element={<ReelsTab />} />
+            <Route path="links" element={<LinksTab />} />
             <Route path="favorites" element={<FavoritesTab />} />
             <Route path="analytics" element={<AnalyticsTab />} />
             <Route path="settings" element={<SettingsTab />} />

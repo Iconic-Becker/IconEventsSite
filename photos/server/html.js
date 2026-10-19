@@ -4,7 +4,7 @@
 import { readFileSync, existsSync } from "node:fs"
 import { join, resolve } from "node:path"
 import { config } from "./config.js"
-import { loadGallery, isUnlocked, canSee, reelsOf, settingsOf } from "./lib/gallery.js"
+import { loadBySlug, isUnlocked, canSee, reelsOf, settingsOf } from "./lib/gallery.js"
 import { storage } from "./storage/index.js"
 
 const DIST = resolve("dist")
@@ -61,9 +61,10 @@ function formatDate(d) {
 }
 
 export async function galleryHtml(req, slug, albumSlug) {
-  const g = await loadGallery(slug)
-  if (!g || !(await canSee(req, g))) return render({ title: "Gallery not found | Iconic Photos", description: "This gallery does not exist or is no longer available." })
-  const unlocked = isUnlocked(req, g)
+  const found = await loadBySlug(slug)
+  if (!found || !(await canSee(req, found.gallery))) return render({ title: "Gallery not found | Iconic Photos", description: "This gallery does not exist or is no longer available." })
+  const { gallery: g, link } = found
+  const unlocked = isUnlocked(req, g, link)
   const s = settingsOf(g)
   const themeColor = s.theme === "light" ? "#F4F0E8" : "#0E1312"
   const subtitle = [g.subtitle, formatDate(g.event_date), g.location].filter(Boolean).join(" · ")
@@ -76,19 +77,20 @@ export async function galleryHtml(req, slug, albumSlug) {
     if (key) image = await storage.signGetUrl(key)
   }
   const title = `${g.title} | Iconic Events`
-  return render({ title, description, image, url: `${config.publicUrl}/${g.slug}${albumSlug ? `/${albumSlug}` : ""}`, themeColor })
+  return render({ title, description, image, url: `${config.publicUrl}/${slug}${albumSlug ? `/${albumSlug}` : ""}`, themeColor })
 }
 
 export async function reelHtml(req, slug, reelId) {
-  const g = await loadGallery(slug)
-  if (!g || !(await canSee(req, g))) return render({ title: "Video not found | Iconic Photos", description: "This video is not available." })
-  const reels = await reelsOf(g.id)
+  const found = await loadBySlug(slug)
+  if (!found || !(await canSee(req, found.gallery))) return render({ title: "Video not found | Iconic Photos", description: "This video is not available." })
+  const { gallery: g, link } = found
+  const reels = link && !link.include_reels ? [] : await reelsOf(g.id)
   const reel = reels.find((r) => r.id === Number(reelId))
-  const unlocked = isUnlocked(req, g)
+  const unlocked = isUnlocked(req, g, link)
   const s = settingsOf(g)
   const themeColor = s.theme === "light" ? "#F4F0E8" : "#0E1312"
   if (!reel || (!reel.isPublic && !unlocked)) {
-    return render({ title: `${g.title} | Iconic Events`, description: "This video is in a password protected gallery.", url: `${config.publicUrl}/${g.slug}/reel/${reelId}`, themeColor })
+    return render({ title: `${g.title} | Iconic Events`, description: "This video is in a password protected gallery.", url: `${config.publicUrl}/${slug}/reel/${reelId}`, themeColor })
   }
   const title = `${reel.title || "Video"} | ${g.title}`
   const description = reel.description || [formatDate(g.event_date), g.location].filter(Boolean).join(" · ") || "A video by Iconic Events"
@@ -99,7 +101,7 @@ export async function reelHtml(req, slug, reelId) {
     video: reel.media.web,
     videoWidth: reel.media.width,
     videoHeight: reel.media.height,
-    url: `${config.publicUrl}/${g.slug}/reel/${reel.id}`,
+    url: `${config.publicUrl}/${slug}/reel/${reel.id}`,
     type: "video.other",
     themeColor,
   })

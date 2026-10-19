@@ -129,7 +129,8 @@ admin.get(
         (select count(distinct visitor) from events e where e.gallery_id = g.id and e.type = 'view') as views,
         (select count(*) from events e where e.gallery_id = g.id and e.type like 'download%') as downloads,
         (select count(*) from favorites f join guests gu on gu.id = f.guest_id where gu.gallery_id = g.id) as favorites,
-        (select count(*) from guests gu where gu.gallery_id = g.id) as guests
+        (select count(*) from guests gu where gu.gallery_id = g.id) as guests,
+        (select count(*) from links l where l.gallery_id = g.id) as links
       from galleries g order by g.trashed_at nulls first, g.event_date desc nulls last, g.created_at desc`)
     res.json({
       galleries: rows.map((g) => ({
@@ -148,6 +149,7 @@ admin.get(
         downloads: g.downloads,
         favorites: g.favorites,
         guests: g.guests,
+        links: g.links,
         trashedAt: g.trashed_at,
         createdAt: g.created_at,
         url: `${config.publicUrl}/${g.slug}`,
@@ -185,6 +187,7 @@ async function fullGallery(id) {
   out.albumRows = await many("select id, name, slug, sort, cover_media_id as \"coverMediaId\" from albums where gallery_id = $1 order by sort, id", [g.id])
   out.url = `${config.publicUrl}/${g.slug}`
   out.trash = await serializeAll(await many("select * from media where gallery_id = $1 and trashed_at is not null order by trashed_at desc", [g.id]), { admin: true })
+  out.links = await linksOf(g.id)
   return out
 }
 
@@ -665,6 +668,105 @@ admin.delete(
     await query("update media set trashed_at = now() where id = $1", [r.media_id])
     await query("delete from reels where id = $1", [r.id])
     res.json({ gallery: await fullGallery(r.gallery_id) })
+  }),
+)
+
+// ---- Links -----------------------------------------------------------------
+//
+// Extra share links per gallery: each shows chosen albums and has its own
+// optional password. The gallery's main slug stays the link to everything.
+
+async function linksOf(galleryId) {
+  const rows = await many("select * from links where gallery_id = $1 order by created_at, id", [galleryId])
+  return rows.map((l) => ({
+    id: l.id,
+    slug: l.slug,
+    name: l.name,
+    albumIds: l.album_ids ? l.album_ids.map(Number) : null,
+    includeReels: l.include_reels,
+    hasPassword: Boolean(l.password_hash),
+    visible: l.visible,
+    createdAt: l.created_at,
+    url: `${config.publicUrl}/${l.slug}`,
+  }))
+}
+
+admin.get(
+  "/galleries/:id/links",
+  route(async (req, res) => {
+    const g = await loadAdminGallery(req.params.id)
+    res.json({ links: await linksOf(g.id) })
+  }),
+)
+
+async function linkFields(g, b, current = {}) {
+  const name = b.name !== undefined ? str(b.name, 80) : current.name || ""
+  let albumIds = current.album_ids || null
+  if (b.albumIds !== undefined) {
+    if (b.albumIds === null) albumIds = null
+    else {
+      const ids = (Array.isArray(b.albumIds) ? b.albumIds : []).map((v) => int(v)).filter(Boolean)
+      if (!ids.length) throw bad("Pick at least one album, or choose all albums")
+      const rows = await many("select id from albums where gallery_id = $1 and id = any($2::bigint[])", [g.id, ids])
+      if (rows.length !== ids.length) throw bad("Albums must belong to this gallery")
+      albumIds = ids
+    }
+  }
+  const includeReels = b.includeReels !== undefined ? Boolean(b.includeReels) : current.include_reels ?? true
+  const visible = b.visible !== undefined ? Boolean(b.visible) : current.visible ?? true
+  let passwordHash = current.password_hash || null
+  let passwordVersion = current.password_version || 0
+  if (b.password !== undefined) {
+    if (b.password === null || b.password === "") passwordHash = null
+    else {
+      const pw = str(b.password, 200)
+      if (pw.length < 4) throw bad("Link password must be at least 4 characters")
+      passwordHash = await hashPassword(pw)
+    }
+    passwordVersion++
+  }
+  return { name, albumIds, includeReels, visible, passwordHash, passwordVersion }
+}
+
+admin.post(
+  "/galleries/:id/links",
+  route(async (req, res) => {
+    const g = await loadAdminGallery(req.params.id)
+    const f = await linkFields(g, req.body || {})
+    let slug = gallerySlug(f.name ? `${g.title} ${f.name}` : g.title)
+    while ((await one("select 1 from galleries where slug = $1", [slug])) || (await one("select 1 from links where slug = $1", [slug]))) slug = gallerySlug(g.title)
+    await query(
+      "insert into links(gallery_id, slug, name, album_ids, include_reels, password_hash, password_version, visible) values ($1, $2, $3, $4, $5, $6, $7, $8)",
+      [g.id, slug, f.name, f.albumIds, f.includeReels, f.passwordHash, f.passwordVersion, f.visible],
+    )
+    res.json({ links: await linksOf(g.id) })
+  }),
+)
+
+admin.patch(
+  "/links/:id",
+  route(async (req, res) => {
+    const l = await one("select * from links where id = $1", [int(req.params.id)])
+    if (!l) throw notFound("Link not found")
+    const g = await loadAdminGallery(l.gallery_id)
+    const f = await linkFields(g, req.body || {}, l)
+    await query(
+      "update links set name = $2, album_ids = $3, include_reels = $4, password_hash = $5, password_version = $6, visible = $7 where id = $1",
+      [l.id, f.name, f.albumIds, f.includeReels, f.passwordHash, f.passwordVersion, f.visible],
+    )
+    // Album changes make the link's cached zip stale.
+    await query("delete from zips where link_id = $1", [l.id])
+    res.json({ links: await linksOf(g.id) })
+  }),
+)
+
+admin.delete(
+  "/links/:id",
+  route(async (req, res) => {
+    const l = await one("select * from links where id = $1", [int(req.params.id)])
+    if (!l) throw notFound("Link not found")
+    await query("delete from links where id = $1", [l.id])
+    res.json({ links: await linksOf(l.gallery_id) })
   }),
 )
 

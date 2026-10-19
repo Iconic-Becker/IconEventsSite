@@ -1,5 +1,6 @@
 import express from "express"
 import cookieParser from "cookie-parser"
+import compression from "compression"
 import { existsSync } from "node:fs"
 import { resolve, join } from "node:path"
 import { config } from "./config.js"
@@ -29,6 +30,9 @@ app.use((req, res, next) => {
   res.set("X-Frame-Options", "SAMEORIGIN")
   next()
 })
+
+// JSON and HTML compress well; images and zips never pass through here.
+app.use(compression({ threshold: 1024 }))
 
 app.get("/robots.txt", (req, res) => {
   res.type("text/plain").send("User-agent: *\nDisallow: /\n")
