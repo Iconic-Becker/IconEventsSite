@@ -87,16 +87,18 @@ service in the same Railway project.
   backed queue in the same service is fine) reads the original from R2 and
   writes the derivatives back to R2. Use `sharp` for images and `ffmpeg`
   for video poster frames.
-- **Serving media:** first check whether `iconic.events` DNS is on
-  Cloudflare.
-  - If it is, serve derivatives from an R2 custom domain such as
-    `media.iconic.events`.
-  - If it is not, **do not move the DNS.** The domain carries email and
-    the move is the owner's call. Serve through presigned GET URLs
-    instead, with expiry rounded to a fixed window so URLs stay stable
-    enough to cache.
+- **Serving media:** the owner has a Cloudflare account, but it is
+  empty and `iconic.events` DNS is **not** on Cloudflare (checked
+  2026-10-19).
+  - **Do not move the DNS.** The domain carries email and the move is the
+    owner's call.
+  - Serve media through presigned GET URLs, with expiry rounded to a
+    fixed window so URLs stay stable enough to cache.
   - Media for password protected galleries must never be reachable
-    before unlock, whichever option applies.
+    before unlock.
+  - The bucket needs a CORS rule allowing PUT and GET from
+    `https://photos.iconic.events` (and localhost in development) so
+    browser uploads work. Set it up and document it.
 - **DNS:** `photos.iconic.events` is a CNAME to the Railway service, added
   at whichever DNS provider holds the zone. Change nothing else in that
   zone.
@@ -346,9 +348,10 @@ Pull from `Iconic-Becker/IconEventsSite`:
 
 The agent cannot create accounts. Give the owner a numbered checklist:
 
-1. **Cloudflare.** The owner thinks they have an account. Check by logging
-   in at dash.cloudflare.com. Then create the R2 bucket and a token
-   scoped to it, and set a billing notification.
+1. **Cloudflare.** The account exists and is empty. The owner enables R2,
+   creates the bucket and a token scoped to it, and sets a billing
+   notification. The steps they were given are in the chat; confirm the
+   bucket name and that the keys are in Railway, never pasted in chat.
 2. **GitHub.** Create the new repo or approve the agent creating it.
 3. **Railway.** Add the new service and a Postgres database, and set the
    env vars.
