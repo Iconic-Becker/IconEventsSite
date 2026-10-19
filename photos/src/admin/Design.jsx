@@ -46,23 +46,27 @@ export function DesignTab() {
   const timer = useRef()
   const first = useRef(true)
 
-  // Debounced autosave.
+  // Saves on demand from the button, and on its own a moment after each
+  // change so nothing is lost if the tab is closed.
+  const persist = async (d) => {
+    clearTimeout(timer.current)
+    setSaved("saving")
+    try {
+      const { gallery: g } = await patch(`/api/admin/galleries/${gallery.id}`, { ...d, eventDate: d.eventDate || null })
+      setGallery(g)
+      setSaved("saved")
+    } catch (err) {
+      setSaved(err.message)
+    }
+  }
   useEffect(() => {
     if (first.current) {
       first.current = false
       return
     }
-    setSaved("saving")
+    setSaved("dirty")
     clearTimeout(timer.current)
-    timer.current = setTimeout(async () => {
-      try {
-        const { gallery: g } = await patch(`/api/admin/galleries/${gallery.id}`, { ...draft, eventDate: draft.eventDate || null })
-        setGallery(g)
-        setSaved("saved")
-      } catch (err) {
-        setSaved(err.message)
-      }
-    }, 600)
+    timer.current = setTimeout(() => persist(draft), 1500)
     return () => clearTimeout(timer.current)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [draft])
@@ -102,9 +106,16 @@ export function DesignTab() {
   return (
     <div className="grid gap-8 xl:grid-cols-[420px_1fr]">
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="sticky top-0 z-20 -mx-1 flex items-center justify-between gap-3 px-1 py-2" style={{ background: "var(--bg)" }}>
           <h2 className="font-title-serif text-2xl">Design</h2>
-          <span className="text-xs u-muted">{saved === "saving" ? "Saving" : saved === "saved" ? <span className="flex items-center gap-1"><Check size={12} /> Saved</span> : <span className="text-red-700">{saved}</span>}</span>
+          <div className="flex items-center gap-3">
+            <span className="text-xs u-muted">
+              {saved === "saving" ? "Saving" : saved === "saved" ? <span className="flex items-center gap-1"><Check size={12} /> Saved</span> : saved === "dirty" ? "Unsaved changes" : <span className="text-red-700">{saved}</span>}
+            </span>
+            <button type="button" className="btn btn-solid btn-sm" onClick={() => persist(draft)} disabled={saved === "saving" || saved === "saved"}>
+              {saved === "saved" ? "Saved" : "Save changes"}
+            </button>
+          </div>
         </div>
 
         <div>
