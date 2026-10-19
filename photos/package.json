@@ -1,0 +1,45 @@
+{
+  "name": "iconic-photos",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Iconic Photos: client photo galleries for Iconic Events, served at photos.iconic.events.",
+  "scripts": {
+    "dev": "concurrently -k \"node server/index.js\" \"vite\"",
+    "build": "vite build",
+    "start": "node server/index.js",
+    "migrate": "node server/db/migrate.js",
+    "setup-owner": "node server/cli/setup-owner.js",
+    "test": "node --test test/*.test.js",
+    "verify": "node scripts/verify/run.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1152.0",
+    "@aws-sdk/lib-storage": "^3.1152.0",
+    "@aws-sdk/s3-request-presigner": "^3.1152.0",
+    "archiver": "^8.0.0",
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "exif-reader": "^2.0.3",
+    "express": "^5.3.0",
+    "file-type": "^22.2.0",
+    "pg": "^8.23.1",
+    "sharp": "^0.35.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.0.0",
+    "lucide-react": "^1.52.0",
+    "playwright": "^1.56.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.18.4",
+    "tailwindcss": "^4.0.0",
+    "vite": "^6.0.7",
+    "yet-another-react-lightbox": "^3.32.2"
+  }
+}
