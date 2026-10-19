@@ -352,6 +352,10 @@ admin.post(
     const g = await loadAdminGallery(req.params.id)
     const files = Array.isArray(req.body?.files) ? req.body.files.slice(0, 5000) : []
     const target = req.body?.target === "reel" ? "reel" : "album"
+    // What to do with files that already exist in the album:
+    // ask (report them, plan nothing), skip, replace, or replace-changed
+    // (replace only when the size differs).
+    const onConflict = ["ask", "skip", "replace", "replace-changed"].includes(req.body?.onConflict) ? req.body.onConflict : "ask"
     if (!files.length) throw bad("No files")
     const cache = new Map()
     const out = []
@@ -369,36 +373,45 @@ admin.post(
         continue
       }
       const album = target === "reel" ? null : await albumForPath(g.id, relPath, cache)
-      // Same path and size already in this gallery: finished → skip,
-      // unfinished → resume.
+      // An unfinished upload of the same file resumes. A finished one with
+      // the same name in the same album is a conflict.
       const existing = await one(
-        "select * from media where gallery_id = $1 and rel_path = $2 and size_bytes = $3 and trashed_at is null and coalesce(album_id, 0) = coalesce($4::bigint, 0) order by id desc limit 1",
-        [g.id, relPath, size, album?.id || null],
+        "select * from media where gallery_id = $1 and filename = $2 and trashed_at is null and coalesce(album_id, 0) = coalesce($3::bigint, 0) order by (status = 'uploading') desc, id desc limit 1",
+        [g.id, filename, album?.id || null],
       )
-      if (existing && existing.status !== "uploading") {
-        out.push({ path: relPath, mediaId: existing.id, skipped: true, reason: "Already uploaded" })
-        continue
+      let m = existing && existing.status === "uploading" && Number(existing.size_bytes) === size ? existing : null
+      let replaces = null
+      if (!m && existing && existing.status !== "uploading") {
+        const changed = Number(existing.size_bytes) !== size
+        if (onConflict === "ask") {
+          out.push({ path: relPath, conflict: true, mediaId: existing.id, changed })
+          continue
+        }
+        if (onConflict === "skip" || (onConflict === "replace-changed" && !changed)) {
+          out.push({ path: relPath, mediaId: existing.id, skipped: true, reason: changed ? "Skipped, a different version exists" : "Already uploaded" })
+          continue
+        }
+        replaces = existing
       }
-      let m = existing
       if (!m) {
         const contentType = contentTypeFor(filename, str(f.type, 100))
-        // New items share the highest sort value so they land at the end,
-        // ordered among themselves by capture time then filename.
-        const sort = await one("select coalesce(max(sort), 0) as next from media where gallery_id = $1 and coalesce(album_id, 0) = coalesce($2::bigint, 0)", [g.id, album?.id || null])
+        const sort = replaces
+          ? { next: replaces.sort }
+          : await one("select coalesce(max(sort), 0) as next from media where gallery_id = $1 and coalesce(album_id, 0) = coalesce($2::bigint, 0)", [g.id, album?.id || null])
         m = await one(
-          `insert into media(gallery_id, album_id, kind, filename, rel_path, size_bytes, content_type, original_key, sort, captured_at)
-           values ($1, $2, $3, $4, $5, $6, $7, '', $8, $9) returning *`,
-          [g.id, album?.id || null, kind, filename, relPath, size, contentType, sort.next, f.lastModified ? new Date(Number(f.lastModified)) : null],
+          `insert into media(gallery_id, album_id, kind, filename, rel_path, size_bytes, content_type, original_key, sort, captured_at, highlighted, replaces_media_id)
+           values ($1, $2, $3, $4, $5, $6, $7, '', $8, $9, $10, $11) returning *`,
+          [g.id, album?.id || null, kind, filename, relPath, size, contentType, sort.next, f.lastModified ? new Date(Number(f.lastModified)) : null, replaces?.highlighted || false, replaces?.id || null],
         )
         const key = keys.original(g.id, m.id, filename)
         let uploadId = null
         if (size > config.partSizeBytes) uploadId = await storage.createMultipart(key, contentType)
         m = await one("update media set original_key = $2, upload_id = $3 where id = $1 returning *", [m.id, key, uploadId])
-        if (target === "reel") {
+        if (target === "reel" && !replaces) {
           await query("insert into reels(gallery_id, media_id, title, sort) values ($1, $2, $3, (select coalesce(max(sort), -1) + 1 from reels where gallery_id = $1))", [g.id, m.id, filename.replace(/\.[^.]+$/, "")])
         }
       }
-      const entry = { path: relPath, mediaId: m.id, albumId: m.album_id, partSize: config.partSizeBytes }
+      const entry = { path: relPath, mediaId: m.id, albumId: m.album_id, partSize: config.partSizeBytes, replaces: m.replaces_media_id || null }
       if (m.upload_id) {
         entry.multipart = true
         entry.parts = await storage.listParts(m.original_key, m.upload_id)
@@ -411,6 +424,28 @@ admin.post(
     res.json({ files: out })
   }),
 )
+
+// When a replacement lands, the new item takes over everything that
+// pointed at the old one, and the old one goes to the trash.
+async function takeOver(m) {
+  if (!m.replaces_media_id) return
+  const old = await one("select * from media where id = $1", [m.replaces_media_id])
+  if (!old) return
+  await withTransaction(async (c) => {
+    await c.query("update media set sort = $2, highlighted = $3 where id = $1", [m.id, old.sort, old.highlighted])
+    await c.query("update galleries set cover_media_id = $2 where cover_media_id = $1", [old.id, m.id])
+    await c.query("update albums set cover_media_id = $2 where cover_media_id = $1", [old.id, m.id])
+    await c.query(
+      `update galleries set settings = jsonb_set(settings, '{mosaicIds}', (select coalesce(jsonb_agg(case when v = $1::text::jsonb then $2::text::jsonb else v end), '[]'::jsonb) from jsonb_array_elements(coalesce(settings->'mosaicIds', '[]'::jsonb)) v))
+       where id = $3 and settings->'mosaicIds' @> $1::text::jsonb`,
+      [String(old.id), String(m.id), m.gallery_id],
+    )
+    await c.query("update reels set media_id = $2 where media_id = $1", [old.id, m.id])
+    await c.query("insert into favorites(guest_id, media_id, created_at) select guest_id, $2, created_at from favorites where media_id = $1 on conflict do nothing", [old.id, m.id])
+    await c.query("update media set trashed_at = now() where id = $1", [old.id])
+    await c.query("update media set replaces_media_id = null where id = $1", [m.id])
+  })
+}
 
 async function loadUploading(id) {
   const m = await one("select * from media where id = $1 and status = 'uploading' and trashed_at is null", [int(id)])
@@ -452,6 +487,7 @@ admin.post(
       throw bad(`Stored size ${head.size} does not match the file size ${m.size_bytes}; upload it again`)
     }
     await query("update media set status = 'uploaded', upload_id = null where id = $1", [m.id])
+    await takeOver(await loadMedia(m.id))
     await enqueue("process_media", { mediaId: m.id })
     poke()
     res.json({ ok: true, mediaId: m.id })

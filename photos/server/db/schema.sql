@@ -193,3 +193,8 @@ alter table events add column if not exists link_id bigint references links(id) 
 -- Contributors upload and arrange but never delete.
 alter table users drop constraint if exists users_role_check;
 alter table users add constraint users_role_check check (role in ('owner', 'editor', 'contributor'));
+
+-- migration: 004 replace on upload
+-- A replacement upload remembers which item it stands in for; the old one
+-- is trashed when the new file lands.
+alter table media add column if not exists replaces_media_id bigint references media(id) on delete set null;

@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react"
 import { UploadCloud, FolderOpen, AlertTriangle, CheckCircle2, X } from "lucide-react"
 import { Uploader, collectFiles } from "./uploader.js"
+import { Sheet } from "../shared/ui.jsx"
 import { formatBytes } from "../shared/format.js"
 
 export function UploadZone({ galleryId, target = "album", onProgress, compact, hint }) {
   const [state, setState] = useState(null)
   const [over, setOver] = useState(false)
+  const [conflict, setConflict] = useState(null) // { files, resolve }
   const uploader = useRef()
   const folderInput = useRef()
   const fileInput = useRef()
@@ -30,6 +32,7 @@ export function UploadZone({ galleryId, target = "album", onProgress, compact, h
           setState({ ...s })
           onProgress?.(s)
         },
+        onConflict: (files) => new Promise((resolve) => setConflict({ files, resolve })),
       })
     }
     return uploader.current
@@ -47,11 +50,44 @@ export function UploadZone({ galleryId, target = "album", onProgress, compact, h
   }
 
   const pct = state?.total ? Math.round((state.sent / state.total) * 100) : 0
+  const decide = (policy) => {
+    conflict?.resolve(policy)
+    setConflict(null)
+  }
+  const changedCount = conflict?.files.filter((f) => f.changed).length || 0
   const problems = (state?.files || []).filter((f) => f.status === "failed")
   const skipped = (state?.files || []).filter((f) => f.status === "skipped")
 
   return (
     <div>
+      {conflict && (
+        <Sheet open onClose={() => decide("skip")} title="Files already in this gallery">
+          <p className="text-sm">
+            {conflict.files.length === 1 ? "1 file is" : `${conflict.files.length} files are`} already in this gallery
+            {changedCount ? `, ${changedCount} of them with a different size, so probably re-edited` : ""}.
+          </p>
+          <ul className="mt-2 max-h-32 overflow-y-auto text-xs u-muted">
+            {conflict.files.slice(0, 40).map((f) => (
+              <li key={f.path} className="truncate">{f.path}{f.changed ? " (changed)" : ""}</li>
+            ))}
+            {conflict.files.length > 40 && <li>and {conflict.files.length - 40} more</li>}
+          </ul>
+          <div className="mt-4 space-y-2">
+            <button className="btn btn-solid w-full justify-between" onClick={() => decide("skip")}>
+              <span>Skip them</span><span className="normal-case tracking-normal opacity-70">keep what is here</span>
+            </button>
+            {changedCount > 0 && changedCount < conflict.files.length && (
+              <button className="btn w-full justify-between" onClick={() => decide("replace-changed")}>
+                <span>Replace the {changedCount} changed</span><span className="u-muted normal-case tracking-normal">skip identical ones</span>
+              </button>
+            )}
+            <button className="btn w-full justify-between" onClick={() => decide("replace")}>
+              <span>Replace all {conflict.files.length}</span><span className="u-muted normal-case tracking-normal">keeps order, stars and favorites</span>
+            </button>
+          </div>
+          <p className="mt-3 text-xs u-muted">Replaced photos go to the trash for 30 days. Your choice applies to the rest of this upload.</p>
+        </Sheet>
+      )}
       <div
         onDragOver={(e) => {
           e.preventDefault()
@@ -63,7 +99,7 @@ export function UploadZone({ galleryId, target = "album", onProgress, compact, h
       >
         <UploadCloud className="u-accent mb-3" size={compact ? 24 : 32} />
         <div className={compact ? "text-sm" : "text-base"}>{target === "reel" ? "Drop a video to feature it" : "Drop a folder of photos here"}</div>
-        <div className="mt-1 max-w-md text-xs u-muted">{hint || (target === "reel" ? "MP4 or MOV. It becomes a featured reel with its own share page." : "Subfolders become albums. Loose files go to the Photos album. JPEG and video only, no RAW. Re-drop the same folder any time to resume or add files.")}</div>
+        <div className="mt-1 max-w-md text-xs u-muted">{hint || (target === "reel" ? "MP4 or MOV. It becomes a featured reel with its own share page." : "Subfolders become albums. Loose files go to the Photos album. JPEG and video only, no RAW. Re-drop the same folder any time to resume, add files, or replace re-edited ones.")}</div>
         <div className="mt-4 flex flex-wrap justify-center gap-2">
           {target !== "reel" && (
             <button className="btn btn-sm" onClick={() => folderInput.current.click()}>
@@ -82,7 +118,7 @@ export function UploadZone({ galleryId, target = "album", onProgress, compact, h
         <div className="mt-4 border u-line p-4 text-sm">
           <div className="flex items-center justify-between gap-3">
             <div>
-              {state.running ? <span>Uploading {state.done} of {state.files.length} files</span> : state.failed ? <span className="flex items-center gap-2"><AlertTriangle size={16} className="text-amber-600" /> {state.failed} file{state.failed === 1 ? "" : "s"} did not upload</span> : <span className="flex items-center gap-2"><CheckCircle2 size={16} className="text-emerald-600" /> Uploaded {state.done} files. Processing continues in the background.</span>}
+              {state.running ? <span>Uploading {state.done} of {state.files.length} files</span> : state.failed ? <span className="flex items-center gap-2"><AlertTriangle size={16} className="text-amber-600" /> {state.failed} file{state.failed === 1 ? "" : "s"} did not upload</span> : <span className="flex items-center gap-2"><CheckCircle2 size={16} className="text-emerald-600" /> Uploaded {state.done} files{state.replaced ? `, ${state.replaced} replaced` : ""}. Processing continues in the background.</span>}
               <div className="text-xs u-muted">{formatBytes(state.sent)} of {formatBytes(state.total)} · {pct}%</div>
             </div>
             {state.running && (

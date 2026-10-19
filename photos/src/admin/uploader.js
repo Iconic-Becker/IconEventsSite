@@ -112,10 +112,14 @@ async function retry(fn, { attempts = 8, signal } = {}) {
 }
 
 export class Uploader {
-  constructor({ galleryId, target = "album", onChange }) {
+  constructor({ galleryId, target = "album", onChange, onConflict }) {
     this.galleryId = galleryId
     this.target = target
     this.onChange = onChange
+    // Called with the files that already exist; resolves to a policy:
+    // "skip", "replace" or "replace-changed". Asked once per session.
+    this.onConflict = onConflict
+    this.policy = null
     this.files = [] // { id, path, size, file, status, sent, error, mediaId }
     this.abort = new AbortController()
     this.running = false
@@ -138,7 +142,8 @@ export class Uploader {
     const sent = this.files.reduce((a, f) => a + (f.status === "done" || f.status === "skipped" ? f.size : f.sent), 0)
     const done = this.files.filter((f) => f.status === "done" || f.status === "skipped").length
     const failed = this.files.filter((f) => f.status === "failed").length
-    this.onChange?.({ files: this.files, total, sent, done, failed, running: this.running })
+    const replaced = this.files.filter((f) => f.status === "done" && f.replaced).length
+    this.onChange?.({ files: this.files, total, sent, done, failed, replaced, running: this.running })
   }
 
   async start() {
@@ -152,7 +157,15 @@ export class Uploader {
         for (const f of batch) f.status = "planning"
         let plan
         try {
-          plan = await retry(() => post(`/api/admin/galleries/${this.galleryId}/uploads`, { target: this.target, files: batch.map((f) => ({ path: f.path, size: f.size, type: f.file.type, lastModified: f.file.lastModified })) }), { signal: this.abort.signal })
+          const ask = (files, onConflict) => retry(() => post(`/api/admin/galleries/${this.galleryId}/uploads`, { target: this.target, onConflict, files: files.map((f) => ({ path: f.path, size: f.size, type: f.file.type, lastModified: f.file.lastModified })) }), { signal: this.abort.signal })
+          plan = await ask(batch, this.policy || "ask")
+          const conflicts = plan.files.filter((p) => p.conflict)
+          if (conflicts.length) {
+            if (!this.policy) this.policy = (await this.onConflict?.(conflicts)) || "skip"
+            const again = batch.filter((f) => conflicts.some((c) => c.path === f.path))
+            const second = await ask(again, this.policy)
+            plan = { files: [...plan.files.filter((p) => !p.conflict), ...second.files] }
+          }
         } catch (err) {
           for (const f of batch) {
             f.status = "failed"
@@ -178,6 +191,7 @@ export class Uploader {
           }
           f.plan = p
           f.mediaId = p.mediaId
+          f.replaced = Boolean(p.replaces)
           f.status = "ready"
           work.push(f)
         }

@@ -6,6 +6,8 @@ import { join, relative, basename } from "node:path"
 
 const [base, email, password, galleryId, folder] = process.argv.slice(2)
 const reelFile = process.argv.includes("--reel") ? process.argv[process.argv.indexOf("--reel") + 1] : null
+// Files already in the gallery are skipped unless --replace is given.
+const onConflict = process.argv.includes("--replace") ? "replace" : "skip"
 if (!folder) {
   console.error("Usage: node scripts/api-upload.mjs <base> <email> <password> <galleryId> <folder>")
   process.exit(1)
@@ -48,7 +50,7 @@ async function putRange(url, abs, start, end) {
 }
 
 async function uploadSet(files, target) {
-  const { files: plan } = await api(`/api/admin/galleries/${galleryId}/uploads`, { method: "POST", body: JSON.stringify({ target, files: files.map((f) => ({ path: f.path, size: f.size })) }) })
+  const { files: plan } = await api(`/api/admin/galleries/${galleryId}/uploads`, { method: "POST", body: JSON.stringify({ target, onConflict, files: files.map((f) => ({ path: f.path, size: f.size })) }) })
   for (const entry of plan) {
     const f = files.find((x) => x.path === entry.path)
     if (entry.skipped) {
