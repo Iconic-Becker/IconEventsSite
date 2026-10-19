@@ -8,7 +8,7 @@ import { gallerySlug, slugify, randomSuffix } from "../lib/slug.js"
 import { storage, keys, safeName } from "../storage/index.js"
 import { kindFromName, contentTypeFor, serializeAll, serializeMedia } from "../lib/media.js"
 import { serializeGallery, DEFAULT_SETTINGS, RESERVED_ALBUM_SLUGS, toDateString } from "../lib/gallery.js"
-import { enqueue, poke } from "../jobs/queue.js"
+import { enqueue, poke, recoverStale } from "../jobs/queue.js"
 
 export const admin = Router()
 
@@ -892,6 +892,15 @@ admin.get(
   route(async (req, res) => {
     const rows = await many("select id, type, payload, status, attempts, error, created_at, finished_at from jobs where status in ('queued','running','failed') order by id desc limit 100")
     res.json({ jobs: rows })
+  }),
+)
+
+// Kicks anything that looks stuck: jobs without a heartbeat, uploaded
+// files with no job, failed jobs for files still waiting.
+admin.post(
+  "/jobs/recover",
+  route(async (req, res) => {
+    res.json(await recoverStale())
   }),
 )
 

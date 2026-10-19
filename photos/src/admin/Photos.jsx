@@ -25,7 +25,19 @@ export function PhotosTab() {
     for (const m of gallery.media) if (m.albumId) c[m.albumId] = (c[m.albumId] || 0) + 1
     return c
   }, [gallery.media])
-  const pendingCount = gallery.media.filter((m) => ["uploaded", "processing", "uploading"].includes(m.status)).length
+  const waitingUpload = gallery.media.filter((m) => m.status === "uploading").length
+  const processingCount = gallery.media.filter((m) => ["uploaded", "processing"].includes(m.status)).length
+  const pendingCount = waitingUpload + processingCount
+  const [recovering, setRecovering] = useState(false)
+  const recover = async () => {
+    setRecovering(true)
+    try {
+      await post("/api/admin/jobs/recover")
+      await reload()
+    } finally {
+      setRecovering(false)
+    }
+  }
 
   const toggle = (id) =>
     setSelected((s) => {
@@ -105,8 +117,18 @@ export function PhotosTab() {
 
       <section>
         {pendingCount > 0 && (
-          <div className="mb-4 flex items-center gap-2 border u-line px-4 py-2 text-sm">
-            <Loader2 size={14} className="animate-spin" /> {pendingCount} {pendingCount === 1 ? "file is" : "files are"} being processed. Thumbnails appear as they finish.
+          <div className="mb-4 flex flex-wrap items-center gap-3 border u-line px-4 py-2 text-sm">
+            <Loader2 size={14} className="animate-spin" />
+            <span>
+              {processingCount > 0 && `${processingCount} ${processingCount === 1 ? "file is" : "files are"} being processed. `}
+              {waitingUpload > 0 && `${waitingUpload} ${waitingUpload === 1 ? "file never finished" : "files never finished"} uploading: drop the same folder again to resume. `}
+              {processingCount > 0 && "Thumbnails appear as they finish."}
+            </span>
+            {processingCount > 0 && (
+              <button className="btn btn-sm ml-auto" onClick={recover} disabled={recovering} title="Re-queue anything that stopped moving">
+                <RefreshCw size={12} /> {recovering ? "Checking" : "Nothing moving? Retry"}
+              </button>
+            )}
           </div>
         )}
         <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
@@ -243,7 +265,7 @@ export function MediaTile({ m, selected, onToggle, isCover, isAlbumCover, draggi
   const busy = ["uploading", "uploaded", "processing"].includes(m.status)
   return (
     <div {...drag} className={`relative aspect-square cursor-pointer overflow-hidden select-none ${selected ? "ring-2 ring-[var(--accent)]" : ""} ${dragging ? "opacity-40" : ""}`} style={{ background: "var(--bg-3)" }} onClick={onToggle} title={`${m.filename}${m.sizeBytes ? ` · ${formatBytes(m.sizeBytes)}` : ""}${m.error ? `\n${m.error}` : ""}`}>
-      {m.thumb ? <img src={m.thumb} alt="" className="h-full w-full object-cover" loading="lazy" draggable={false} /> : <div className="flex h-full items-center justify-center text-xs u-muted">{busy ? <Loader2 className="animate-spin" size={18} /> : m.filename}</div>}
+      {m.thumb ? <img src={m.thumb} alt="" className="h-full w-full object-cover" loading="lazy" draggable={false} /> : <div className="flex h-full flex-col items-center justify-center gap-1 px-1 text-center text-[10px] u-muted">{m.status === "uploading" ? <><Clock size={16} /> waiting for upload</> : busy ? <><Loader2 className="animate-spin" size={16} /> processing</> : m.filename}</div>}
       {m.kind === "video" && <span className="absolute bottom-1 left-1 flex items-center gap-1 bg-black/60 px-1.5 py-0.5 text-[10px] text-white"><Play size={10} fill="currentColor" /> {formatDuration(m.duration)}</span>}
       {m.highlighted && <Star size={14} className="absolute top-1 left-1 text-[#B89968] drop-shadow" fill="#B89968" />}
       {isCover && <span className="absolute top-1 right-1 bg-[#B89968] px-1 text-[9px] uppercase text-[#0E1312]">Cover</span>}

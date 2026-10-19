@@ -14,7 +14,7 @@ import { admin } from "./routes/admin.js"
 import { guest } from "./routes/guest.js"
 import { localStorageRoutes } from "./routes/local-storage.js"
 import { galleryHtml, reelHtml, plainHtml, loadTemplate } from "./html.js"
-import { startWorker } from "./jobs/queue.js"
+import { startWorker, releaseInFlight } from "./jobs/queue.js"
 import "./jobs/process-media.js"
 import "./jobs/zips.js"
 
@@ -120,3 +120,12 @@ main().catch((err) => {
 process.on("unhandledRejection", (err) => {
   console.error("[unhandled rejection]", err)
 })
+
+// Railway sends SIGTERM on every deploy. Give running jobs back and exit.
+for (const sig of ["SIGTERM", "SIGINT"]) {
+  process.on(sig, async () => {
+    console.log(`[boot] ${sig}: shutting down`)
+    await releaseInFlight()
+    process.exit(0)
+  })
+}
