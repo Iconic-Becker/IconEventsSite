@@ -20,6 +20,7 @@ const CHOICES = {
   grid: [["justified", "Justified"], ["masonry", "Masonry"], ["square", "Square"]],
   density: [["comfortable", "Comfortable"], ["compact", "Compact"]],
   animation: [["fade", "Fade"], ["zoom", "Slow zoom"], ["none", "None"]],
+  align: [["center", "Centered"], ["left", "Left"]],
 }
 
 function Choice({ label, value, options, onChange }) {
@@ -165,6 +166,7 @@ export function DesignTab() {
           </div>
         )}
 
+        <Choice label="Text alignment" value={draft.settings.align || "center"} options={CHOICES.align} onChange={(v) => setS("align", v)} />
         <Choice label="Theme" value={draft.settings.theme} options={CHOICES.theme} onChange={(v) => setS("theme", v)} />
         <Choice label="Title type" value={draft.settings.font} options={CHOICES.font} onChange={(v) => setS("font", v)} />
         <Choice label="Grid" value={draft.settings.grid} options={CHOICES.grid} onChange={(v) => setS("grid", v)} />

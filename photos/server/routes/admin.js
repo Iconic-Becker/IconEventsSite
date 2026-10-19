@@ -205,6 +205,7 @@ const SETTING_OPTIONS = {
   grid: ["justified", "masonry", "square"],
   density: ["comfortable", "compact"],
   animation: ["fade", "zoom", "none"],
+  align: ["center", "left"],
 }
 
 admin.patch(

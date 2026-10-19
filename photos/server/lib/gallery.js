@@ -60,6 +60,7 @@ export const DEFAULT_SETTINGS = {
   grid: "justified", // justified | masonry | square
   density: "comfortable", // comfortable | compact
   animation: "fade", // fade | zoom | none
+  align: "center", // center | left: logo and text on the cover
   focal: { x: 0.5, y: 0.5 },
   mosaicIds: [],
   coverVideoId: null,

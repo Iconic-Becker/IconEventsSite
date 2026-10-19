@@ -79,16 +79,19 @@ function CoverImage({ media, focal, className = "", sizesHint }) {
 // Light text over imagery regardless of theme: the scrim is always dark.
 const overImage = { "--fg": "#F4F0E8", "--fg-2": "#d9d2c2", "--fg-muted": "#b7b2a6", "--accent": "#B89968", "--line": "rgba(244,240,232,.25)" }
 
+const alignOf = (gallery) => (gallery.settings.align === "left" ? "left" : "center")
+
 function FullBleed({ gallery, onEnter }) {
+  const align = alignOf(gallery)
   return (
     <div className="relative h-full w-full overflow-hidden" style={overImage}>
       <CoverImage media={gallery.cover} focal={gallery.settings.focal} />
       <Scrim />
       <div className="absolute inset-x-0 top-0 p-5 @3xl:p-8">
-        <CoverLogos gallery={{ ...gallery, settings: { ...gallery.settings, theme: "dark" } }} />
+        <CoverLogos gallery={{ ...gallery, settings: { ...gallery.settings, theme: "dark" } }} center={align === "center"} />
       </div>
       <div className="absolute inset-x-0 bottom-0 p-5 pb-8 @3xl:p-12 @3xl:pb-14">
-        <Text gallery={gallery} onEnter={onEnter} big />
+        <Text gallery={gallery} onEnter={onEnter} big align={align} />
       </div>
     </div>
   )
@@ -117,10 +120,10 @@ function Video({ gallery, onEnter }) {
       )}
       <Scrim />
       <div className="absolute inset-x-0 top-0 p-5 @3xl:p-8">
-        <CoverLogos gallery={{ ...gallery, settings: { ...gallery.settings, theme: "dark" } }} />
+        <CoverLogos gallery={{ ...gallery, settings: { ...gallery.settings, theme: "dark" } }} center={alignOf(gallery) === "center"} />
       </div>
       <div className="absolute inset-x-0 bottom-0 p-5 pb-8 @3xl:p-12 @3xl:pb-14">
-        <Text gallery={gallery} onEnter={onEnter} big />
+        <Text gallery={gallery} onEnter={onEnter} big align={alignOf(gallery)} />
       </div>
     </div>
   )
@@ -133,9 +136,9 @@ function Split({ gallery, onEnter }) {
         <CoverImage media={gallery.cover} focal={gallery.settings.focal} />
       </div>
       <div className="u-bg2 relative flex flex-col justify-between p-5 @3xl:p-12">
-        <CoverLogos gallery={gallery} />
+        <CoverLogos gallery={gallery} center={alignOf(gallery) === "center"} />
         <div className="py-6 @3xl:py-10">
-          <Text gallery={gallery} onEnter={onEnter} />
+          <Text gallery={gallery} onEnter={onEnter} align={alignOf(gallery)} />
         </div>
         <div className="rule" />
       </div>
@@ -172,10 +175,10 @@ function Mosaic({ gallery, onEnter }) {
       <style>{`@container (min-width: 48rem) { .mosaic { grid-template-areas: ${template} !important; grid-template-columns: repeat(4, 1fr) !important; } }`}</style>
       <Scrim strong />
       <div className="absolute inset-x-0 top-0 p-5 @3xl:p-8">
-        <CoverLogos gallery={{ ...gallery, settings: { ...gallery.settings, theme: "dark" } }} />
+        <CoverLogos gallery={{ ...gallery, settings: { ...gallery.settings, theme: "dark" } }} center={alignOf(gallery) === "center"} />
       </div>
       <div className="absolute inset-x-0 bottom-0 p-5 pb-8 @3xl:p-12 @3xl:pb-14">
-        <Text gallery={gallery} onEnter={onEnter} />
+        <Text gallery={gallery} onEnter={onEnter} align={alignOf(gallery)} />
       </div>
     </div>
   )
