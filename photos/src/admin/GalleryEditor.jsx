@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react"
-import { Link, NavLink, Route, Routes, useParams } from "react-router-dom"
+import { Link, NavLink, Route, Routes, useLocation, useParams } from "react-router-dom"
 import { ExternalLink, Copy, Lock, EyeOff } from "lucide-react"
 import { get } from "../shared/api.js"
 import { Spinner } from "../shared/ui.jsx"
@@ -10,12 +10,14 @@ import { ReelsTab } from "./ReelsAdmin.jsx"
 import { FavoritesTab } from "./FavoritesAdmin.jsx"
 import { AnalyticsTab } from "./AnalyticsAdmin.jsx"
 import { SettingsTab } from "./SettingsTab.jsx"
+import { ErrorBoundary } from "../shared/ErrorBoundary.jsx"
 
 const Ctx = createContext(null)
 export const useEditor = () => useContext(Ctx)
 
 export function GalleryEditor() {
   const { id } = useParams()
+  const location = useLocation()
   const [gallery, setGallery] = useState(null)
   const [err, setErr] = useState(null)
   const reload = useCallback(() => get(`/api/admin/galleries/${id}`).then((d) => setGallery(d.gallery)).catch(setErr), [id])
@@ -68,24 +70,28 @@ export function GalleryEditor() {
             </div>
           </div>
           <nav className="no-scrollbar mt-3 flex gap-1 overflow-x-auto">
-            <NavLink to="" end className={tab}>Photos</NavLink>
-            <NavLink to="design" className={tab}>Design</NavLink>
-            <NavLink to="reels" className={tab}>Reels</NavLink>
-            <NavLink to="favorites" className={tab}>Favorites</NavLink>
-            <NavLink to="analytics" className={tab}>Analytics</NavLink>
-            <NavLink to="settings" className={tab}>Settings</NavLink>
+            {/* Absolute links: relative ones resolve from the current tab
+                inside this wildcard route and stop matching. */}
+            <NavLink to={`/admin/galleries/${gallery.id}`} end className={tab}>Photos</NavLink>
+            <NavLink to={`/admin/galleries/${gallery.id}/design`} className={tab}>Design</NavLink>
+            <NavLink to={`/admin/galleries/${gallery.id}/reels`} className={tab}>Reels</NavLink>
+            <NavLink to={`/admin/galleries/${gallery.id}/favorites`} className={tab}>Favorites</NavLink>
+            <NavLink to={`/admin/galleries/${gallery.id}/analytics`} className={tab}>Analytics</NavLink>
+            <NavLink to={`/admin/galleries/${gallery.id}/settings`} className={tab}>Settings</NavLink>
           </nav>
         </div>
       </div>
       <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
-        <Routes>
-          <Route index element={<PhotosTab />} />
-          <Route path="design" element={<DesignTab />} />
-          <Route path="reels" element={<ReelsTab />} />
-          <Route path="favorites" element={<FavoritesTab />} />
-          <Route path="analytics" element={<AnalyticsTab />} />
-          <Route path="settings" element={<SettingsTab />} />
-        </Routes>
+        <ErrorBoundary resetKey={location.pathname}>
+          <Routes>
+            <Route index element={<PhotosTab />} />
+            <Route path="design" element={<DesignTab />} />
+            <Route path="reels" element={<ReelsTab />} />
+            <Route path="favorites" element={<FavoritesTab />} />
+            <Route path="analytics" element={<AnalyticsTab />} />
+            <Route path="settings" element={<SettingsTab />} />
+          </Routes>
+        </ErrorBoundary>
       </main>
     </Ctx.Provider>
   )

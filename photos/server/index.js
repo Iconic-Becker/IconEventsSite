@@ -104,7 +104,7 @@ async function main() {
     }
   }
   if (config.worker) await startWorker()
-  app.listen(config.port, "::", () => console.log(`[boot] Iconic Photos on ${config.publicUrl} (port ${config.port}, storage ${storage.name})`))
+  app.listen(config.port, () => console.log(`[boot] Iconic Photos on ${config.publicUrl} (port ${config.port}, storage ${storage.name})`))
 }
 
 main().catch((err) => {

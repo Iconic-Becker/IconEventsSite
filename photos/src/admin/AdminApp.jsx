@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useState } from "react"
-import { Link, NavLink, Navigate, Route, Routes, useNavigate } from "react-router-dom"
+import { Link, NavLink, Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom"
 import { LogOut } from "lucide-react"
 import { get, post } from "../shared/api.js"
 import { Spinner } from "../shared/ui.jsx"
@@ -7,11 +7,13 @@ import { Login } from "./Login.jsx"
 import { GalleriesList } from "./GalleriesList.jsx"
 import { GalleryEditor } from "./GalleryEditor.jsx"
 import { Users } from "./Users.jsx"
+import { ErrorBoundary } from "../shared/ErrorBoundary.jsx"
 
 const Me = createContext(null)
 export const useMe = () => useContext(Me)
 
 export default function AdminApp() {
+  const location = useLocation()
   const [me, setMe] = useState(undefined)
   const [needsSetup, setNeedsSetup] = useState(false)
   const refresh = useCallback(() => get("/api/admin/me").then((d) => { setMe(d.user); setNeedsSetup(d.needsSetup) }).catch(() => setMe(null)), [])
@@ -34,12 +36,14 @@ export default function AdminApp() {
     <Me.Provider value={{ me, refresh }}>
       <div className="theme-light u-bg u-fg min-h-svh">
         <Nav />
-        <Routes>
-          <Route index element={<GalleriesList />} />
-          <Route path="galleries/:id/*" element={<GalleryEditor />} />
-          <Route path="users" element={me.role === "owner" ? <Users /> : <Navigate to="/admin" replace />} />
-          <Route path="*" element={<Navigate to="/admin" replace />} />
-        </Routes>
+        <ErrorBoundary resetKey={location.pathname}>
+          <Routes>
+            <Route index element={<GalleriesList />} />
+            <Route path="galleries/:id/*" element={<GalleryEditor />} />
+            <Route path="users" element={me.role === "owner" ? <Users /> : <Navigate to="/admin" replace />} />
+            <Route path="*" element={<Navigate to="/admin" replace />} />
+          </Routes>
+        </ErrorBoundary>
       </div>
     </Me.Provider>
   )
