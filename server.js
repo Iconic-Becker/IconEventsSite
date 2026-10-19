@@ -88,8 +88,25 @@ function resolveFile(urlPath) {
 
 /* URLs that have moved. /partners was the first home for the vendor form and
    may already have been shared, so it is a permanent redirect rather than a
-   404. */
-const MOVED = { "/partners": "/vendors" }
+   404.
+
+   The rest are pages from the old klevr.events site, from the redirect table
+   in the SEO team's 14 Oct redirect instructions. With these served here, the
+   registrar only has to forward klevr.events to www.iconic.events with the
+   path kept; no rules engine is needed in front of it. Events with no case
+   study here go to the index, and the old calculator to the contact form. */
+const MOVED = {
+  "/partners": "/vendors",
+  "/case-studies/the-ceo-lawyer-summit-2021": "/case-studies/ceo-lawyer-summit",
+  "/case-studies/the-ceo-lawyer-summit-2022": "/case-studies/ceo-lawyer-summit",
+  "/case-studies/scaling-with-systems-2021": "/case-studies/scaling-with-systems-live",
+  "/case-studies/chase-hughes-london-warship": "/case-studies/chase-hughes-london",
+  "/case-studies/pmu-world-live-2023": "/case-studies",
+  "/case-studies/7-figure-agency": "/case-studies",
+  "/case-studies/group-convert-live-1": "/case-studies",
+  "/case-studies/epic-growth-conference": "/case-studies",
+  "/calculator": "/contact",
+}
 
 createServer((req, res) => {
   const method = req.method || "GET"
