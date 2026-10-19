@@ -126,14 +126,20 @@ await check("Upload resumes after network cut mid-file", async () => {
   page.on("requestfinished", (r) => r.method() === "PUT" && r.url().includes("/_local/") && puts.push(new URL(r.url()).searchParams.get("partNumber")))
   const failed = []
   page.on("requestfailed", (r) => r.method() === "PUT" && failed.push(r.url()))
+  // Drop the connection in the middle of part 2: the request is aborted
+  // and the browser is taken offline for a few seconds.
+  let cut = false
+  await page.route((url) => url.pathname.startsWith("/_local/"), async (route) => {
+    const req = route.request()
+    if (req.method() === "PUT" && new URL(req.url()).searchParams.get("partNumber") === "2" && !cut) {
+      cut = true
+      await ctx.setOffline(true)
+      setTimeout(() => ctx.setOffline(false), 4000)
+      return route.abort("connectionreset")
+    }
+    return route.continue()
+  })
   await page.setInputFiles('input[type="file"]:not([webkitdirectory])', resolve("data/fixtures/big/big-trailer.mp4"))
-  // Cut the network as soon as the first part has landed.
-  await page.waitForFunction(() => /\d+%/.test(document.body.innerText) && !/\b0%/.test(document.body.innerText))
-  const until = Date.now() + 30000
-  while (puts.length < 1 && Date.now() < until) await sleep(100)
-  await ctx.setOffline(true)
-  await sleep(4000)
-  await ctx.setOffline(false)
   await page.waitForSelector("text=/Uploaded \\d+ files/", { timeout: 120000 })
   await page.close()
   await ctx.close()
@@ -142,7 +148,9 @@ await check("Upload resumes after network cut mid-file", async () => {
   assert(m && ["uploaded", "processing", "ready"].includes(m.status), `status ${m?.status}`)
   assert(Number(m.sizeBytes) === 29353181 || m.status !== "ready", `size ${m.sizeBytes}`)
   const parts = [...new Set(puts.filter(Boolean))].sort()
-  return `parts completed ${parts.join(",")}; ${failed.length} PUT(s) failed and were retried; final status ${m.status}`
+  assert(cut && failed.length >= 1, "the connection cut did not interrupt a part upload")
+  assert(parts.join(",") === "1,2", `parts completed ${parts}`)
+  return `part 2 PUT aborted and browser offline 4 s; ${failed.length} failed PUT(s) retried; parts completed ${parts.join(",")}; final status ${m.status}`
 })
 
 // Give the big file time to process while we do guest checks.

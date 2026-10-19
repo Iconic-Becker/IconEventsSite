@@ -27,10 +27,24 @@ and the private bucket `iconic-photos` exists.
 
 ## 2. GitHub
 
-The code is in `Iconic-Becker/IconEventsSite` under `photos/` on the build
-branch, and in `Iconic-Becker/iconic-photos` if that repository was created
-(the final report says which). Merge the branch or use the new repository;
-Railway deploys from whichever you choose.
+The code is in `Iconic-Becker/IconEventsSite` under `photos/` on the
+branch `claude/gracious-hopper-i0xg1p`. The build could not create
+`Iconic-Becker/iconic-photos` itself (the GitHub integration may not create
+repositories). Pick one:
+
+- **Same repository.** Merge the branch. In step 3 set the Railway
+  service's Root Directory to `photos`.
+- **Own repository** (as the build prompt intended). Create an empty
+  private repository `iconic-photos` on GitHub, then on your computer:
+
+  ```bash
+  git clone git@github.com:Iconic-Becker/IconEventsSite.git
+  cd IconEventsSite && git checkout claude/gracious-hopper-i0xg1p
+  git subtree split --prefix=photos -b iconic-photos
+  git push git@github.com:Iconic-Becker/iconic-photos.git iconic-photos:main
+  ```
+
+  Railway then deploys that repository with no root directory.
 
 ## 3. Railway
 

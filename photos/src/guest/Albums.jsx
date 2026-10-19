@@ -84,7 +84,7 @@ export function AlbumBar({ gallery, albums, current, favoritesCount, favoritesOn
             <ChevronLeft size={18} />
           </button>
         )}
-        <div ref={scroller} className="no-scrollbar flex min-w-0 flex-1 items-center gap-1 overflow-x-auto scroll-smooth" style={{ scrollSnapType: "x proximity" }}>
+        <div ref={scroller} className="no-scrollbar relative flex min-w-0 flex-1 items-center gap-1 overflow-x-auto scroll-smooth" style={{ scrollSnapType: "x proximity" }}>
           {albums.map((a) => {
             const active = current?.slug === a.slug && !favoritesOn
             return (

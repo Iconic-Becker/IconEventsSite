@@ -262,13 +262,22 @@ gallery, name and first seen date.
 
 The prompt left these to the builder; here is what was chosen and why.
 
-- **Location of the code.** The build happened in a session whose GitHub
-  access covered only `Iconic-Becker/IconEventsSite`, so the app was built
-  as the self-contained `photos/` directory of that repository on a branch,
-  with its own `package.json`, Dockerfile and `railway.json`, and the
-  marketing site untouched. It deploys as a separate Railway service with
-  Root Directory `photos`, or from its own repository
-  `Iconic-Becker/iconic-photos` (see the final report for which happened).
+- **Location of the code.** The prompt asked for a new repository
+  `Iconic-Becker/iconic-photos`. The build session's GitHub access covered
+  only `Iconic-Becker/IconEventsSite`, and its attempt to create the new
+  repository was refused (`403 Resource not accessible by integration`), so
+  the app was built as the self-contained `photos/` directory of that
+  repository, with its own `package.json`, Dockerfile and `railway.json`,
+  and the marketing site untouched. Two ways to deploy it:
+  1. As is: a second Railway service on the same repository with **Root
+     Directory** set to `photos`.
+  2. In its own repository, which keeps the prompt's layout: create the
+     empty repository on GitHub, then from a checkout of this branch run
+     ```bash
+     git subtree split --prefix=photos -b iconic-photos
+     git push git@github.com:Iconic-Becker/iconic-photos.git iconic-photos:main
+     ```
+     and point the Railway service at it with no root directory.
 - **Default album.** Files dropped at the root of the folder land in an
   album named "Photos". Empty albums are hidden from guests.
 - **Default order.** Capture time then filename. New uploads append after
@@ -332,9 +341,9 @@ month**. Operations at 1 to 2 galleries a month are cents.
 
 **Railway.** Hobby plan $5 a month including $5 of usage. Usage is about
 $10 per GB-month of memory and $20 per vCPU-month, billed by the second.
-Measured in this build: the server held about 320 MB RSS while processing
-a gallery and transcoding video, less when idle; Postgres needs 200 to
-300 MB. Expect roughly 0.5 to 0.6 GB-month of memory and a small CPU bill
+Measured in this build: the Node process sat at about 300 MB RSS idle
+after processing a gallery (libvips keeps its caches) and about 320 MB
+while transcoding; Postgres needs 200 to 300 MB. Expect roughly 0.5 to 0.6 GB-month of memory and a small CPU bill
 (the worker is idle between uploads): **about $6 to $8 a month**, of which
 $5 is the plan.
 
