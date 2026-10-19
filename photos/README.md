@@ -78,6 +78,20 @@ server (stored, not deflated). "Download all" per album or gallery is built
 once by the worker per content version and size, written to R2 in parts of
 at most 2 GB, and reused until the gallery changes.
 
+**Share links.** A gallery's own slug shows every album. The Links tab adds
+more links to the same upload, each with a chosen set of albums, its own
+optional password, and a switch for the featured reels. A public link can
+carry the public albums while the client link carries everything. Every
+guest route resolves the slug to either the gallery or a link and filters
+albums, downloads and zips accordingly; album pages and photos outside the
+link answer 404.
+
+**Large albums.** Album media is paged: the first 150 items return at once
+and the page streams the rest in behind them, so a 3,000 photo album starts
+painting in well under a second on a phone. API and HTML responses are
+gzip compressed. Measured locally with a 2,502 photo album: first tiles at
+315 ms, all tiles by 1.2 s, 14 KB for the first page.
+
 **Routing.** `/:slug` and `/:slug/:album` serve the app with gallery meta
 tags filled in server side. `/:slug/reel/:id` adds Open Graph video tags so
 pasted links unfurl with the poster. `/admin` is the team app. Everything
@@ -237,6 +251,11 @@ grid style and density, and the cover animation. The live preview switches
 between phone and desktop and is the real cover component. Changes save as
 you go. A gallery with none of this set still opens on its first photo.
 
+**Links.** The main link and any extra links, each with a copy button.
+"New link" picks albums (or all, including albums added later), whether
+reels show, and an optional password. Edit or delete a link at any time;
+deleting one stops that link working while the main link and others stay.
+
 **Reels.** Drop a video on the Reels tab to feature it. Give it a title and
 description (they become the link preview), choose where the 8 second
 cover clip starts, and copy the share link. In a password protected gallery
@@ -254,8 +273,11 @@ shares and downloads.
 attention (failed processing, over-long videos) with retry, and delete
 (30 days in the trash, restorable from the gallery list).
 
-**Users** (owners only). Add editors and owners, reset passwords, disable
-or delete. **Guests CSV** in the top bar exports every guest email with
+**Users** (owners only). Add owners, editors and contributors, reset
+passwords, disable or delete. Editors manage galleries including deleting.
+Contributors upload and arrange (albums, order, stars, design, reels,
+links) but cannot delete photos, albums, reels, links or galleries; the
+delete controls are hidden for them and the API refuses the calls. **Guests CSV** in the top bar exports every guest email with
 gallery, name and first seen date.
 
 ## Decisions made during the build

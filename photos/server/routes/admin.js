@@ -2,7 +2,7 @@ import { Router } from "express"
 import { one, many, query, withTransaction } from "../db/pool.js"
 import { config } from "../config.js"
 import { route, bad, notFound, forbidden, str, int } from "../lib/http.js"
-import { hashPassword, checkPassword, startSession, endSession, requireUser, validPassword, normalizeEmail, validEmail } from "../lib/auth.js"
+import { hashPassword, checkPassword, startSession, endSession, requireUser, noContributor, ROLES, validPassword, normalizeEmail, validEmail } from "../lib/auth.js"
 import { rateLimit } from "../lib/ratelimit.js"
 import { gallerySlug, slugify, randomSuffix } from "../lib/slug.js"
 import { storage, keys, safeName } from "../storage/index.js"
@@ -71,7 +71,7 @@ admin.post(
   route(async (req, res) => {
     const email = normalizeEmail(req.body?.email)
     const name = str(req.body?.name, 120)
-    const role = req.body?.role === "owner" ? "owner" : "editor"
+    const role = ROLES.includes(req.body?.role) ? req.body.role : "editor"
     const password = req.body?.password
     if (!validEmail(email)) throw bad("Enter a valid email address")
     if (!validPassword(password)) throw bad("Password must be at least 10 characters")
@@ -89,7 +89,7 @@ admin.patch(
     if (!u) throw notFound()
     const b = req.body || {}
     const name = b.name !== undefined ? str(b.name, 120) : u.name
-    const role = b.role === "owner" || b.role === "editor" ? b.role : u.role
+    const role = ROLES.includes(b.role) ? b.role : u.role
     const disabled = b.disabled !== undefined ? Boolean(b.disabled) : u.disabled
     if (u.id === req.user.id && (role !== "owner" || disabled)) throw bad("You cannot demote or disable your own account")
     let hash = u.password_hash
@@ -275,6 +275,7 @@ admin.patch(
 
 admin.delete(
   "/galleries/:id",
+  noContributor,
   route(async (req, res) => {
     const g = await loadAdminGallery(req.params.id)
     await query("update galleries set trashed_at = now(), visible = false where id = $1", [g.id])
@@ -310,6 +311,7 @@ admin.put(
 
 admin.delete(
   "/galleries/:id/logo",
+  noContributor,
   route(async (req, res) => {
     const g = await loadAdminGallery(req.params.id)
     if (g.client_logo_key) await storage.deleteMany([g.client_logo_key])
@@ -536,6 +538,7 @@ admin.post(
 
 admin.delete(
   "/albums/:id",
+  noContributor,
   route(async (req, res) => {
     const a = await loadAlbum(req.params.id)
     const count = await one("select count(*) as n from albums where gallery_id = $1", [a.gallery_id])
@@ -583,6 +586,7 @@ admin.post(
     const rows = await many("select distinct gallery_id from media where id = any($1::bigint[])", [ids])
     if (rows.length !== 1) throw bad("Select photos from one gallery")
     const galleryId = rows[0].gallery_id
+    if (action === "trash" && req.user.role === "contributor") throw forbidden("Contributors can upload and arrange but not delete. Ask an owner or editor.")
     if (action === "trash") await query("update media set trashed_at = now() where id = any($1::bigint[])", [ids])
     else if (action === "restore") await query("update media set trashed_at = null where id = any($1::bigint[])", [ids])
     else if (action === "star") await query("update media set highlighted = true where id = any($1::bigint[])", [ids])
@@ -630,6 +634,7 @@ admin.post(
 
 admin.delete(
   "/media/:id",
+  noContributor,
   route(async (req, res) => {
     const m = await loadMedia(req.params.id)
     await query("update media set trashed_at = now() where id = $1", [m.id])
@@ -662,6 +667,7 @@ admin.patch(
 
 admin.delete(
   "/reels/:id",
+  noContributor,
   route(async (req, res) => {
     const r = await one("select * from reels where id = $1", [int(req.params.id)])
     if (!r) throw notFound("Reel not found")
@@ -762,6 +768,7 @@ admin.patch(
 
 admin.delete(
   "/links/:id",
+  noContributor,
   route(async (req, res) => {
     const l = await one("select * from links where id = $1", [int(req.params.id)])
     if (!l) throw notFound("Link not found")

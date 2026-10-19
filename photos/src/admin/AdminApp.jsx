@@ -11,6 +11,7 @@ import { ErrorBoundary } from "../shared/ErrorBoundary.jsx"
 
 const Me = createContext(null)
 export const useMe = () => useContext(Me)
+export const useCanDelete = () => useContext(Me)?.me?.role !== "contributor"
 
 export default function AdminApp() {
   const location = useLocation()

@@ -5,6 +5,7 @@ import { Field } from "../shared/ui.jsx"
 import { formatDuration, formatBytes } from "../shared/format.js"
 import { UploadZone } from "./Uploader.jsx"
 import { useEditor } from "./GalleryEditor.jsx"
+import { useCanDelete } from "./AdminApp.jsx"
 
 export function ReelsTab() {
   const { gallery, setGallery, reload, setUploading } = useEditor()
@@ -26,6 +27,7 @@ export function ReelsTab() {
 
 function ReelRow({ reel, first, last }) {
   const { gallery, setGallery } = useEditor()
+  const canDelete = useCanDelete()
   const [title, setTitle] = useState(reel.title)
   const [description, setDescription] = useState(reel.description)
   const [clipStart, setClipStart] = useState(reel.clipStart || 0)
@@ -81,7 +83,7 @@ function ReelRow({ reel, first, last }) {
           <span className="flex-1" />
           <button className="icon-btn !h-8 !w-8" disabled={first} onClick={() => move(-1)} aria-label="Move up"><ArrowUp size={14} /></button>
           <button className="icon-btn !h-8 !w-8" disabled={last} onClick={() => move(1)} aria-label="Move down"><ArrowDown size={14} /></button>
-          <button className="icon-btn !h-8 !w-8 hover:!text-red-700" onClick={() => confirm("Remove this reel? The video moves to the trash.") && del(`/api/admin/reels/${reel.id}`).then((d) => setGallery(d.gallery))} aria-label="Delete"><Trash2 size={14} /></button>
+          {canDelete && <button className="icon-btn !h-8 !w-8 hover:!text-red-700" onClick={() => confirm("Remove this reel? The video moves to the trash.") && del(`/api/admin/reels/${reel.id}`).then((d) => setGallery(d.gallery))} aria-label="Delete"><Trash2 size={14} /></button>}
         </div>
       </div>
     </div>

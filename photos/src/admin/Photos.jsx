@@ -5,9 +5,11 @@ import { Field, Sheet } from "../shared/ui.jsx"
 import { formatBytes, formatDuration, plural } from "../shared/format.js"
 import { UploadZone } from "./Uploader.jsx"
 import { useEditor } from "./GalleryEditor.jsx"
+import { useCanDelete } from "./AdminApp.jsx"
 
 export function PhotosTab() {
   const { gallery, setGallery, reload, setUploading } = useEditor()
+  const canDelete = useCanDelete()
   const albums = gallery.albumRows
   const [albumId, setAlbumId] = useState(albums[0]?.id)
   useEffect(() => {
@@ -133,7 +135,7 @@ export function PhotosTab() {
             {selected.size === 1 && <button className="btn btn-sm" onClick={() => setCover([...selected][0])}><ImageIcon size={14} /> Gallery cover</button>}
             {selected.size === 1 && <button className="btn btn-sm" onClick={() => setAlbumCover([...selected][0])}>Album cover</button>}
             <button className="btn btn-sm" onClick={() => bulk("reprocess")}><RefreshCw size={14} /> Reprocess</button>
-            <button className="btn btn-sm !border-red-300 !text-red-700" onClick={() => bulk("trash")}><Trash2 size={14} /> Delete</button>
+            {canDelete && <button className="btn btn-sm !border-red-300 !text-red-700" onClick={() => bulk("trash")}><Trash2 size={14} /> Delete</button>}
           </div>
         )}
 
@@ -189,6 +191,7 @@ export function PhotosTab() {
 
 function AlbumRow({ album, count, active, onSelect, first, last, albums }) {
   const { gallery, setGallery } = useEditor()
+  const canDelete = useCanDelete()
   const [editing, setEditing] = useState(false)
   const [name, setName] = useState(album.name)
   const save = async () => {
@@ -228,7 +231,7 @@ function AlbumRow({ album, count, active, onSelect, first, last, albums }) {
             <button className="icon-btn !h-8 !w-7" onClick={() => setEditing(true)} aria-label="Rename"><Pencil size={12} /></button>
             <button className="icon-btn !h-8 !w-7" onClick={() => move(-1)} disabled={first} aria-label="Move up"><ArrowUp size={12} /></button>
             <button className="icon-btn !h-8 !w-7" onClick={() => move(1)} disabled={last} aria-label="Move down"><ArrowDown size={12} /></button>
-            <button className="icon-btn !h-8 !w-7 hover:!text-red-700" onClick={remove} disabled={albums.length <= 1} aria-label="Delete album"><Trash2 size={12} /></button>
+            {canDelete && <button className="icon-btn !h-8 !w-7 hover:!text-red-700" onClick={remove} disabled={albums.length <= 1} aria-label="Delete album"><Trash2 size={12} /></button>}
           </div>
         </>
       )}

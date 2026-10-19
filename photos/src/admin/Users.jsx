@@ -40,7 +40,7 @@ export function Users() {
       <div className="mb-6">
         <div className="eyebrow mb-1">Team</div>
         <h1 className="font-title-serif text-4xl">Users</h1>
-        <p className="mt-2 text-sm u-muted">Owners manage users and galleries. Editors manage galleries only. There is no email sending: you set each password and pass it on yourself.</p>
+        <p className="mt-2 text-sm u-muted">Owners manage users and galleries. Editors manage galleries, including deleting. Contributors upload and arrange photos, reels and links but cannot delete anything. There is no email sending: you set each password and pass it on yourself.</p>
       </div>
       <table className="w-full border u-line text-sm">
         <thead><tr className="text-left text-[11px] uppercase u-muted" style={{ background: "var(--bg-2)" }}><th className="px-3 py-2">Name</th><th className="px-3 py-2">Email</th><th className="px-3 py-2">Role</th><th className="px-3 py-2">Status</th><th className="px-3 py-2"></th></tr></thead>
@@ -53,6 +53,7 @@ export function Users() {
                 <select className="field !w-auto !py-1" value={u.role} disabled={u.id === me.id} onChange={(e) => patch(`/api/admin/users/${u.id}`, { role: e.target.value }).then(load)}>
                   <option value="owner">owner</option>
                   <option value="editor">editor</option>
+                  <option value="contributor">contributor</option>
                 </select>
               </td>
               <td className="px-3 py-2">
@@ -70,7 +71,7 @@ export function Users() {
         <div className="eyebrow sm:col-span-2">Add a user</div>
         <Field label="Email"><input className="field" type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} /></Field>
         <Field label="Name"><input className="field" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></Field>
-        <Field label="Role"><select className="field" value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })}><option value="editor">Editor</option><option value="owner">Owner</option></select></Field>
+        <Field label="Role"><select className="field" value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })}><option value="editor">Editor</option><option value="contributor">Contributor</option><option value="owner">Owner</option></select></Field>
         <Field label="Password" hint="At least 10 characters."><input className="field" type="text" required minLength={10} value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} /></Field>
         {err && <div className="sm:col-span-2"><Notice kind="error">{err}</Notice></div>}
         <div className="sm:col-span-2"><button className="btn btn-solid"><Plus size={14} /> Add user</button></div>

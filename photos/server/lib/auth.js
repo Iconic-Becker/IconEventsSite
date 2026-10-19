@@ -50,6 +50,16 @@ export function requireUser(role) {
   }
 }
 
+// Roles: owner (everything), editor (galleries, including deleting), and
+// contributor (uploads and arranges, never deletes). Put this on every
+// route that removes something.
+export function noContributor(req, res, next) {
+  if (req.user?.role === "contributor") return next(forbidden("Contributors can upload and arrange but not delete. Ask an owner or editor."))
+  next()
+}
+
+export const ROLES = ["owner", "editor", "contributor"]
+
 export function validPassword(pw) {
   return typeof pw === "string" && pw.length >= 10 && pw.length <= 200
 }

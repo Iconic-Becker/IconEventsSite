@@ -16,7 +16,8 @@
 
 - The R2 bucket is private. No bucket URL or custom domain is attached.
 - Admin pages and `/api/admin/*` need a session cookie. There are no
-  public admin endpoints. Editors cannot manage users.
+  public admin endpoints. Editors cannot manage users. Contributors can
+  upload and arrange but every delete route refuses them server side.
 - Guests never see another guest's email or favorites. A guest's own
   identity is a random token in an httpOnly cookie.
 - Analytics store a daily salted hash of IP and user agent, never the IP.

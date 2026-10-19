@@ -4,6 +4,7 @@ import { Lock, Trash2, RefreshCw } from "lucide-react"
 import { patch, del, get, post } from "../shared/api.js"
 import { Field, Notice } from "../shared/ui.jsx"
 import { useEditor } from "./GalleryEditor.jsx"
+import { useCanDelete } from "./AdminApp.jsx"
 
 export function SettingsTab() {
   const { gallery, setGallery } = useEditor()
@@ -11,6 +12,7 @@ export function SettingsTab() {
   const [msg, setMsg] = useState(null)
   const [jobs, setJobs] = useState([])
   const navigate = useNavigate()
+  const canDelete = useCanDelete()
   useEffect(() => {
     get("/api/admin/jobs").then((d) => setJobs(d.jobs.filter((j) => j.status === "failed")))
   }, [])
@@ -59,11 +61,13 @@ export function SettingsTab() {
           </ul>
         </section>
       )}
+      {canDelete && (
       <section className="space-y-3 border-t u-line pt-6">
         <h2 className="font-title-serif text-2xl">Delete</h2>
         <p className="text-sm u-muted">Moves the gallery to the trash. The link stops working at once. Files are removed from storage after 30 days; until then it can be restored from the gallery list.</p>
         <button className="btn !border-red-300 !text-red-700" onClick={async () => { if (confirm(`Delete "${gallery.title}"?`)) { await del(`/api/admin/galleries/${gallery.id}`); navigate("/admin") } }}><Trash2 size={14} /> Delete gallery</button>
       </section>
+      )}
     </div>
   )
 }

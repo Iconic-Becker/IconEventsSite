@@ -7,9 +7,11 @@ import { post, patch, del } from "../shared/api.js"
 import { Field, Sheet, Notice } from "../shared/ui.jsx"
 import { plural } from "../shared/format.js"
 import { useEditor } from "./GalleryEditor.jsx"
+import { useCanDelete } from "./AdminApp.jsx"
 
 export function LinksTab() {
   const { gallery, setGallery } = useEditor()
+  const canDelete = useCanDelete()
   const [editing, setEditing] = useState(null) // null | "new" | link
   const [copied, setCopied] = useState(null)
   const albums = gallery.albumRows
@@ -56,7 +58,7 @@ export function LinksTab() {
             copied={copied === l.id}
             onCopy={() => copy(l.id, l.url)}
             onEdit={() => setEditing(l)}
-            onDelete={async () => {
+            onDelete={!canDelete ? null : async () => {
               if (!confirm(`Delete the link "${l.name || l.slug}"? Anyone holding it loses access.`)) return
               const d = await del(`/api/admin/links/${l.id}`)
               setLinks(d.links)

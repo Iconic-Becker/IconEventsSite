@@ -188,3 +188,8 @@ drop index if exists zips_unique_idx;
 create unique index if not exists zips_unique_idx
   on zips(gallery_id, coalesce(album_id, 0), coalesce(link_id, 0), size, content_version, part);
 alter table events add column if not exists link_id bigint references links(id) on delete set null;
+
+-- migration: 003 contributor role
+-- Contributors upload and arrange but never delete.
+alter table users drop constraint if exists users_role_check;
+alter table users add constraint users_role_check check (role in ('owner', 'editor', 'contributor'));
