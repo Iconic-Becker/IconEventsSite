@@ -1,0 +1,27 @@
+import { chromium } from "playwright"
+const base = "http://localhost:3000"
+const out = process.argv[2]
+const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" })
+const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } })
+const errors = []
+page.on("console", (m) => m.type() === "error" && errors.push(m.text()))
+page.on("pageerror", (e) => errors.push(String(e)))
+await page.goto(`${base}/admin`)
+await page.fill('input[type="email"]', "owner@iconic.events")
+await page.fill('input[type="password"]', "test-password-123")
+await page.click('button:has-text("Sign in")')
+await page.waitForSelector("h1:has-text('galler')")
+await page.screenshot({ path: `${out}/admin-list.png` })
+await page.click("text=Smith Gala")
+await page.waitForSelector("text=drag to reorder")
+await page.waitForTimeout(800)
+await page.screenshot({ path: `${out}/admin-photos.png`, fullPage: true })
+await page.click('nav a:has-text("Design")')
+await page.waitForSelector("text=Live preview")
+await page.waitForTimeout(1200)
+await page.screenshot({ path: `${out}/admin-design.png`, fullPage: true })
+await page.click('nav a:has-text("Reels")')
+await page.waitForTimeout(800)
+await page.screenshot({ path: `${out}/admin-reels.png`, fullPage: true })
+console.log(JSON.stringify({ errors }))
+await browser.close()
