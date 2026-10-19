@@ -7,7 +7,10 @@ export class ApiError extends Error {
   }
 }
 
+import { DEMO, demoApi } from "./demo.js"
+
 export async function api(path, { method = "GET", body, raw, headers } = {}) {
+  if (DEMO) return demoApi(path, { method, body })
   const res = await fetch(path, {
     method,
     credentials: "same-origin",

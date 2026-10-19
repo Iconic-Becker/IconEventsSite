@@ -54,6 +54,10 @@ export function DownloadSheet() {
       return close()
     }
     // album or gallery: lazy zip
+    if (import.meta.env.VITE_DEMO === "1") {
+      setState({ size, status: "demo" })
+      return
+    }
     setState({ size, status: "building" })
     const poll = async () => {
       try {
@@ -107,6 +111,11 @@ export function DownloadSheet() {
               <span className="u-muted normal-case tracking-normal">{formatBytes(p.bytes)}</span>
             </a>
           ))}
+        </div>
+      )}
+      {state?.status === "demo" && (
+        <div className="mt-5">
+          <Notice>This is a preview without a server. On the live site the zip is prepared here and the download starts on its own.</Notice>
         </div>
       )}
       {state?.status === "failed" && (

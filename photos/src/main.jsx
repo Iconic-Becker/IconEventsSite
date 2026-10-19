@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from "react"
 import { createRoot } from "react-dom/client"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, MemoryRouter, Routes, Route } from "react-router-dom"
+import { DEMO } from "./shared/demo.js"
 import "./index.css"
 import { GalleryPage } from "./guest/GalleryPage.jsx"
 import { ReelPage } from "./guest/ReelPage.jsx"
@@ -9,9 +10,13 @@ import { Spinner } from "./shared/ui.jsx"
 
 const AdminApp = lazy(() => import("./admin/AdminApp.jsx"))
 
+// The published demo has no server and no URL of its own, so it routes in
+// memory and opens on the demo gallery.
+const Router = DEMO ? ({ children }) => <MemoryRouter initialEntries={[`/${import.meta.env.VITE_DEMO_SLUG}`]}>{children}</MemoryRouter> : BrowserRouter
+
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route
@@ -31,7 +36,7 @@ function App() {
         <Route path="/:slug/reel/:reelId" element={<ReelPage />} />
         <Route path="/:slug/:album?" element={<GalleryPage />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   )
 }
 

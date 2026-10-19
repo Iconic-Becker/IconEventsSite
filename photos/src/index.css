@@ -131,8 +131,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .cover-media, .cover-text { animation: none !important; }
 }
 
-/* Lightbox: onyx canvas so photos read true. */
-.yarl__root { --yarl__color_backdrop: #0E1312; --yarl__color_button: #F4F0E8; --yarl__color_button_active: #B89968; --yarl__slide_captions_container_background: transparent; }
+/* Lightbox: onyx canvas so photos read true. It sits below the sheets
+   (z 1000) so the email gate and download chooser open above it. */
+.yarl__root { --yarl__portal_zindex: 900; --yarl__color_backdrop: #0E1312; --yarl__color_button: #F4F0E8; --yarl__color_button_active: #B89968; --yarl__slide_captions_container_background: transparent; }
 .yarl__button:focus:not(:focus-visible) { color: var(--yarl__color_button); }
 
 /* Grid items reveal as they load. */

@@ -3,6 +3,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react"
 import { get, post, put, del } from "../shared/api.js"
 import { isIOS } from "../shared/format.js"
+import { DEMO } from "../shared/demo.js"
 
 const Ctx = createContext(null)
 export const useGallery = () => useContext(Ctx)
@@ -88,6 +89,7 @@ export function GalleryProvider({ gallery, slug, children }) {
   // One file: redirect through the API so the download is counted.
   const downloadOne = useCallback(
     (media, size) => {
+      if (DEMO) return notify("Downloads work on the live site. This preview has no server.")
       const go = (s) => {
         const a = document.createElement("a")
         a.href = `/api/g/${slug}/dl/${media.id}?size=${s}`
@@ -104,11 +106,12 @@ export function GalleryProvider({ gallery, slug, children }) {
       }
       go(size)
     },
-    [slug],
+    [slug, notify],
   )
 
   const downloadZip = useCallback(
     (ids, size) => {
+      if (DEMO) return notify("Downloads work on the live site. This preview has no server.")
       window.location.assign(`/api/g/${slug}/zip?size=${size}&ids=${ids.join(",")}`)
     },
     [slug],
@@ -116,6 +119,7 @@ export function GalleryProvider({ gallery, slug, children }) {
 
   const downloadFavorites = useCallback(
     (size) => {
+      if (DEMO) return notify("Downloads work on the live site. This preview has no server.")
       window.location.assign(`/api/g/${slug}/favorites.zip?size=${size}`)
     },
     [slug],

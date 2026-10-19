@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import { createPortal } from "react-dom"
 import { X } from "lucide-react"
 
 export function Logo({ className = "h-5", light }) {
@@ -14,7 +15,9 @@ export function Spinner({ className = "h-5 w-5" }) {
   )
 }
 
-// A modal on desktop, a bottom sheet on phones.
+// A modal on desktop, a bottom sheet on phones. Rendered into its own
+// portal on body: the lightbox marks the rest of the page inert while it
+// is open, and the email gate and download chooser must work on top of it.
 export function Sheet({ open, onClose, title, children, wide }) {
   useEffect(() => {
     if (!open) return
@@ -28,7 +31,7 @@ export function Sheet({ open, onClose, title, children, wide }) {
     }
   }, [open, onClose])
   if (!open) return null
-  return (
+  return createPortal(
     <div className="fixed inset-0 z-[1000] flex items-end justify-center sm:items-center" role="dialog" aria-modal="true" aria-label={title}>
       <div className="absolute inset-0 bg-black/70" onClick={onClose} />
       <div className={`u-bg2 u-fg relative w-full ${wide ? "sm:max-w-3xl" : "sm:max-w-md"} max-h-[92svh] overflow-y-auto border u-line shadow-2xl`} style={{ paddingBottom: "env(safe-area-inset-bottom)" }}>
@@ -40,7 +43,8 @@ export function Sheet({ open, onClose, title, children, wide }) {
         </div>
         <div className="p-5">{children}</div>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }
 
