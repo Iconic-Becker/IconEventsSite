@@ -1,9 +1,9 @@
 # Build prompt: Iconic Photos (CloudSpot replacement)
 
 Hand this whole file to the building agent. Everything below was decided
-with the owner in an interview on 2026-10-18. Where a decision is marked
-**(default)**, the owner did not choose it explicitly; confirm before
-diverging, otherwise build it as written.
+with the owner in interviews on 2026-10-18 and 2026-10-19 and confirmed
+by them. Build it as written. If something proves impractical, say so and
+propose the nearest alternative rather than quietly diverging.
 
 ---
 
@@ -17,6 +17,22 @@ infrastructure they already use, for roughly $20 to $80 a year all in.
 Live at **`https://photos.iconic.events`**. Ship a working, verified
 product, then help migrate the archive so CloudSpot can be cancelled.
 
+**What the owner disliked about CloudSpot,** and what this build must fix:
+
+- Galleries were not very exciting to look at.
+- There were few customization options.
+
+**What to keep:** photos are easy to see and easy to find.
+
+**The three things to do better:**
+
+1. Cover pages with real options.
+2. Albums that are easy to move between, even when a gallery has many.
+3. A featured reel or trailer that attendees can watch and share.
+
+Making it easy to find photos still comes first. The design work exists to
+make that feel premium, never to get in its way.
+
 ## 2. Who uses it
 
 Galleries serve everyone at once: corporate event guests looking for
@@ -29,12 +45,14 @@ a phone who arrived from a shared link and has never seen the site.
 | Area | Decision |
 |---|---|
 | Address | `photos.iconic.events`, a separate service from the marketing site |
-| Look | Iconic Events branding (section 7) |
-| Sections | Each gallery splits into sections from upload subfolders, e.g. `Keynote/`, `Reception/`, `Headshots/`; each becomes a tab |
+| Look | Iconic Events branding (section 7), with per-gallery customization (section 5A) |
+| Cover pages | Several cover layouts to pick from per gallery, including a video cover (section 5A) |
+| Albums | Each gallery splits into albums from upload subfolders, e.g. `Keynote/`, `Reception/`, `Headshots/`. Navigation must stay easy with 20+ albums (section 5B) |
+| Reels and trailers | Owner can feature a reel or trailer per gallery. Attendees can play it, share it with a link that previews well, and download it (section 5C) |
 | Favorites | **Per person.** Each guest email has its own list |
 | Email gate | Asked **only on first favorite**. Browsing and downloading need no email |
 | Downloads | Per photo, guest picks **Social**, **Full resolution**, or **Both** |
-| Download all | Available to **everyone**, per section or whole gallery, with the same size choice |
+| Download all | Available to **everyone**, per album or whole gallery, with the same size choice |
 | Password | **Optional per gallery**, off by default |
 | Creating galleries | **Web admin page**: log in, drag a folder into the browser, get the link |
 | Admin users | **Owner plus a few team members**, each with their own login |
@@ -42,7 +60,7 @@ a phone who arrived from a shared link and has never seen the site.
 | Analytics | **View and download counts** |
 | GoHighLevel | **Later.** Store emails in our own database now; build an export so GHL can be connected afterwards |
 | Migration | **Move the full CloudSpot archive over**, then cancel |
-| Not wanted now | Watermarks, expiry dates, new-favorite email notifications, print store |
+| Not wanted now | Watermarks, expiry dates, new-favorite email notifications, print store, face recognition search |
 
 ## 4. Architecture
 
@@ -51,7 +69,7 @@ Existing ecosystem: the marketing site is `Iconic-Becker/IconEventsSite`
 put this product inside that app and do not touch its routes, sitemap or
 deploy. Read it only for brand assets (section 7).
 
-**(default)** New repo `Iconic-Becker/iconic-photos`, deployed as a new
+New repo `Iconic-Becker/iconic-photos`, deployed as a new
 service in the same Railway project.
 
 - **App:** Node 20+, React + Vite front end, one server process for the
@@ -96,14 +114,29 @@ Store pixel dimensions so the grid lays out without shifting.
 
 ### Video
 
-Store and serve the original. Generate a poster frame. Play inline with
-the native `<video>` element. Do not transcode. The admin uploader warns
-when a file is not an H.264 or HEVC MP4/MOV. Videos have no Social size;
-their download is the original.
+Store the original. For every video, generate:
+
+- a poster frame
+- the duration
+- a **web version**: H.264 MP4, 1080p max, `faststart`, sized to play
+  smoothly on a phone
+
+The background job does this with `ffmpeg`. At 1 to 2 galleries a month
+the CPU cost is small, but cap transcoding at about 15 minutes of video
+per file and flag anything longer.
+
+Playback always uses the web version, never the multi-GB original.
+Downloads offer **Social** (the web version) and **Full resolution** (the
+original), matching photos. Vertical 9:16 reels must display and play
+correctly, not letterboxed into a 16:9 box.
+
+The cover's looping background clip (section 5A) is a further muted,
+short (6 to 12 seconds), small file cut from a start point the owner
+picks.
 
 ### Download all
 
-Build zips lazily on first request: one per gallery or section and per
+Build zips lazily on first request: one per gallery or album and per
 size, written to R2 and cached until that gallery changes. Show a
 "Preparing your download" state while a zip builds. Split very large sets
 into parts of about 2 GB so phones cope. Favorites zips are small and can
@@ -120,15 +153,15 @@ must not be guessable or listed anywhere public.
 
 1. **Password page**, only if the gallery has a password. The unlock is
    remembered in a cookie.
-2. **Cover:** full-bleed cover photo, gallery title, event date, the
-   Iconic Events logo, and a "View gallery" control.
-3. **Section tabs** with a sticky header. Include an "All" tab when there
-   is more than one section.
-4. **Grid:** justified or masonry layout, lazy loaded, fast on mobile data.
+2. **Cover:** the layout chosen for this gallery (section 5A).
+3. **Featured reel,** if one is set (section 5C).
+4. **Albums:** the album navigation (section 5B).
+5. **Grid:** layout and density as set for this gallery, lazy loaded,
+   fast on mobile data. Videos in the grid show a play icon and duration.
    No horizontal overflow at 390px.
-5. **Lightbox:** swipe and keyboard navigation, pinch zoom on phones, and
+6. **Lightbox:** swipe and keyboard navigation, pinch zoom on phones, and
    on each item a heart, a download button and a share button.
-6. **Favorites:**
+7. **Favorites:**
    - The first heart opens a short modal: email (required), name
      (optional), and one line explaining the email is used to save their
      picks and that Iconic Events may contact them about this event.
@@ -137,12 +170,99 @@ must not be guessable or listed anywhere public.
      is by design, with no email verification step. Note it in the README
      as an accepted trade-off.
    - A "My favorites" filter and "Download my favorites" are available.
-7. **Download choice:** Social / Full resolution / Both. On iOS, where
+8. **Download choice:** Social / Full resolution / Both. On iOS, where
    several separate downloads get blocked, "Both" and multi-file
    downloads arrive as one zip.
-8. **Download all:** by section or whole gallery, same size choice.
-9. Every gallery response carries `X-Robots-Tag: noindex, nofollow`, and
+9. **Download all:** by album or whole gallery, same size choice.
+10. Every gallery response carries `X-Robots-Tag: noindex, nofollow`, and
    `robots.txt` disallows everything.
+
+## 5A. Cover pages and customization
+
+Each gallery gets its own look, set in the admin with a **live preview**
+that switches between phone and desktop. Ship these cover layouts:
+
+| Layout | What it is |
+|---|---|
+| **Full bleed** | One photo edge to edge, title over it |
+| **Split** | Photo on one side, title, date and details on a solid panel; stacks on phones |
+| **Video** | The looping muted trailer clip plays behind the title, with the poster frame shown until it loads and for reduced motion |
+| **Mosaic** | 3 to 5 chosen photos in an editorial collage |
+| **Title card** | Typography only on a brand colour, for galleries without a strong hero shot |
+
+Per-gallery settings:
+
+- **Cover media:** pick any photo or video from the gallery. Set a
+  **focal point** by clicking the image, so the crop works on both phone
+  and desktop.
+- **Text:**
+  - Title and optional subtitle.
+  - Event date, location, and a short intro line.
+  - A **client logo**, for co-branding next to the Iconic Events logo.
+- **Theme:** dark (onyx) or light (bone), with brass accents. Title type
+  in Cormorant Garamond or Causten.
+- **Grid:** justified, masonry or square, with comfortable or compact
+  density.
+- **Cover animation:** a subtle entrance (fade, slow zoom) or none. It
+  respects `prefers-reduced-motion`.
+
+Keep it to these brand-safe choices; do not add free colour pickers or
+arbitrary fonts. Each gallery should look distinct and every one should
+still read as Iconic. **Good defaults matter more than options:** a
+gallery created with no customization at all must already look finished.
+
+## 5B. Album navigation
+
+Albums must stay easy to move between whether a gallery has 2 or 40.
+
+- **Album overview:** below the cover, a grid of album tiles. Each tile
+  shows a cover image (owner-picked, else the first photo), the name and
+  the photo count. This is the main way in when there are many albums.
+- **Sticky album bar:** while browsing, a horizontally scrollable bar of
+  album chips stays pinned at the top.
+  - The current album is highlighted and auto-scrolled into view.
+  - On desktop it has arrow buttons; on phones it swipes.
+- **"All albums" button** in that bar: opens a sheet listing every album
+  with a thumbnail and count, filterable by typing when there are more
+  than about 8.
+- **Next album:** the end of each album shows a large "Next: Reception"
+  card, so guests can keep going without scrolling back up.
+- **Deep links:** each album has its own URL (`/<slug>/<album>`), which
+  can be shared directly. Back and forward buttons behave.
+- **Highlights:** an optional album the owner fills by starring photos
+  in the admin. It shows first and is the default view when set.
+- **Return to place:** coming back from the lightbox restores the scroll
+  position.
+
+## 5C. Featured reels and trailers
+
+The owner can attach one or more featured videos to a gallery, such as an
+event trailer, a recap reel, or a sponsor cut. These are separate from
+videos that sit inside albums.
+
+- **On the gallery page:** a featured reel section sits directly under
+  the cover with a large player and a clear play button. If there are
+  several, they show as a row with the first one large.
+- **Share page:** each featured video has its own page at
+  `/<slug>/reel/<id>`.
+  - The page plays the video on a branded backdrop, with a link into the
+    full gallery.
+  - It carries Open Graph and Twitter card tags (title, description,
+    poster image, `og:video`), so a pasted link shows a proper preview in
+    iMessage, WhatsApp, LinkedIn, Slack and email.
+  - Test the preview with real link-unfurling tools.
+- **Share button:** on phones, uses the native share sheet (Web Share
+  API) with the share page link. When the browser supports sharing files
+  and the web version is small enough, also offer "Share video file", so
+  attendees can post straight to Instagram or TikTok. On desktop, offer
+  copy link.
+- **Download:** Social (web version) or Full resolution (original).
+- **Password galleries:** reel share pages respect the password. The
+  owner can mark an individual reel **public**, so a trailer can be
+  shared widely while the photos stay private. When the gallery is
+  password protected, the toggle says so plainly.
+- **Analytics:** plays, completions (watched to 90%), shares and
+  downloads per reel.
 
 ## 6. Admin
 
@@ -160,10 +280,12 @@ Path: `photos.iconic.events/admin`.
 - **Create or edit a gallery:**
   - Title, event date, auto-generated slug, cover photo picker, optional
     password, and visible / hidden.
-  - Drag in a folder: subfolders become sections, loose files go to a
-    default section.
-  - Add more files later, rename and reorder sections, reorder photos
-    (default order: capture time, then filename).
+  - Drag in a folder: subfolders become albums, loose files go to a
+    default album.
+  - Add more files later.
+  - Rename and reorder albums, and pick album cover images.
+  - Star photos for Highlights.
+  - Reorder photos (default order: capture time, then filename).
   - Delete photos.
 - **Trash:** deleting a photo or gallery moves it to trash for 30 days
   before R2 objects are removed.
@@ -213,7 +335,7 @@ Pull from `Iconic-Becker/IconEventsSite`:
 
 1. The owner exports galleries from CloudSpot. Check CloudSpot's bulk
    download options and document the steps found. If the export loses
-   section structure, the owner recreates folders before upload.
+   album structure, the owner recreates folders before upload.
 2. Upload through the admin, keeping the original titles and dates.
 3. Existing CloudSpot links die when the subscription ends. Produce a
    mapping sheet (old gallery name to new link) so the owner can resend
@@ -253,7 +375,7 @@ exactly what was measured. Be plain about anything that could not be
 checked.
 
 - [ ] Admin: create a gallery by dropping a folder with 2 subfolders, 30+
-      JPEGs and 1 video. Sections appear and derivatives generate.
+      JPEGs and 1 video. Albums appear and derivatives generate.
 - [ ] Upload resumes after the network is cut mid-file.
 - [ ] Guest at 390px: cover, tabs, grid, lightbox, swipe all work. No
       horizontal overflow and no console errors.
@@ -261,9 +383,23 @@ checked.
       fresh browser restores the list.
 - [ ] Social, Full and Both downloads produce the right files (check the
       dimensions and that GPS is stripped from Social).
-- [ ] Download all works per section and for the whole gallery, at each
+- [ ] Download all works per album and for the whole gallery, at each
       size.
 - [ ] Password gallery: media URLs cannot be fetched before unlock.
+- [ ] Each of the 5 cover layouts renders correctly at 390px and 1440px,
+      and the focal point holds on both.
+- [ ] A gallery with no customization looks finished.
+- [ ] Album navigation with a 25-album test gallery:
+      - the overview tiles, sticky bar, "All albums" sheet with filter,
+        and next-album card all work
+      - deep links to an album load directly
+      - back and forward behave
+- [ ] A featured 9:16 reel and a 16:9 trailer both play on a phone
+      without letterboxing.
+- [ ] The reel share page link unfurls with poster and title.
+- [ ] Native share opens on mobile.
+- [ ] A public reel in a password gallery plays without the password,
+      while the gallery photos still require it.
 - [ ] Admin favorites view shows picks, and "Copy filenames" output
       pastes cleanly.
 - [ ] Counts increment for views and downloads.
