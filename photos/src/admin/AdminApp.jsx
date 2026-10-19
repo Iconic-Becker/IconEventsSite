@@ -18,6 +18,9 @@ export default function AdminApp() {
   useEffect(() => {
     refresh()
     document.title = "Iconic Photos admin"
+    // The admin is always light, down to the page edges.
+    document.documentElement.classList.add("theme-light")
+    return () => document.documentElement.classList.remove("theme-light")
   }, [refresh])
   if (me === undefined) {
     return (

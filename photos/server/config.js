@@ -9,7 +9,7 @@ const prod = env.NODE_ENV === "production"
 
 function required(name) {
   if (!env[name]) {
-    if (prod) throw new Error(`Missing required environment variable ${name}`)
+    if (prod) throw new Error(`Missing required environment variable ${name}. Set it in the Railway service's Variables tab.`)
     return undefined
   }
   return env[name]

@@ -5,12 +5,17 @@ const { Pool } = pg
 
 // Railway's Postgres needs TLS when reached over the public proxy and not
 // over the private network. Honour sslmode in the URL, otherwise leave it.
-const needsSsl = /sslmode=require/.test(config.databaseUrl) || /\.railway\.app/.test(config.databaseUrl)
+const needsSsl = /sslmode=require/.test(config.databaseUrl) || /\.railway\.app|\.rlwy\.net/.test(config.databaseUrl)
 
 export const pool = new Pool({
   connectionString: config.databaseUrl,
   max: 10,
   ssl: needsSsl ? { rejectUnauthorized: false } : undefined,
+})
+
+// An idle client dropped by the server must not take the process down.
+pool.on("error", (err) => {
+  console.error("[db] idle client error:", err.message)
 })
 
 // Timestamps come back as JS Dates. Bigints (count(*), bigserial) come back

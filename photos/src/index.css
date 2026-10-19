@@ -80,7 +80,10 @@ body {
 }
 #root { min-height: 100svh; }
 * { border-radius: 0 !important; }
-button, input, select, textarea { font: inherit; color: inherit; }
+@layer base {
+  /* Layered, so component classes like .btn-solid can set their own colour. */
+  button, input, select, textarea { font: inherit; color: inherit; }
+}
 ::selection { background: var(--color-brass); color: var(--color-onyx); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 

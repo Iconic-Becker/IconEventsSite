@@ -89,6 +89,7 @@ async function bootstrapOwner() {
 }
 
 async function main() {
+  console.log(`[boot] node ${process.version}, port ${config.port}, storage ${config.storageDriver}, database ${config.databaseUrl ? "set" : "MISSING"}`)
   await migrate()
   await bootstrapOwner()
   loadTemplate()
@@ -103,10 +104,15 @@ async function main() {
     }
   }
   if (config.worker) await startWorker()
-  app.listen(config.port, () => console.log(`[boot] Iconic Photos on ${config.publicUrl} (port ${config.port}, storage ${storage.name})`))
+  app.listen(config.port, "::", () => console.log(`[boot] Iconic Photos on ${config.publicUrl} (port ${config.port}, storage ${storage.name})`))
 }
 
 main().catch((err) => {
+  console.error("[boot] failed to start:", err.message)
   console.error(err)
   process.exit(1)
+})
+
+process.on("unhandledRejection", (err) => {
+  console.error("[unhandled rejection]", err)
 })
