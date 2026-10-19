@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+/* Brand fonts, subset and served from /public/fonts (copied from the
+   marketing site). */
+@font-face { font-family: "Cormorant Garamond"; src: url("/fonts/CormorantGaramond-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Cormorant Garamond"; src: url("/fonts/CormorantGaramond-Italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Cormorant Garamond"; src: url("/fonts/CormorantGaramond-Medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Cormorant Garamond"; src: url("/fonts/CormorantGaramond-MediumItalic.woff2") format("woff2"); font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: "Cormorant Garamond"; src: url("/fonts/CormorantGaramond-SemiBold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Cormorant Garamond"; src: url("/fonts/CormorantGaramond-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Causten"; src: url("/fonts/Causten-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Helvetica"; src: url("/fonts/Helvetica.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Helvetica"; src: url("/fonts/Helvetica-Oblique.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Helvetica"; src: url("/fonts/Helvetica-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: "Helvetica", Helvetica, Arial, sans-serif;
+  --font-display: "Causten", "Helvetica", Arial, sans-serif;
+
+  --color-onyx: #0E1312;
+  --color-onyx-2: #161c1b;
+  --color-onyx-3: #22292a;
+  --color-tidepool: #112E2E;
+  --color-tidepool-tint: #DDE5E4;
+  --color-brass: #B89968;
+  --color-brass-dim: #8f7650;
+  --color-bone: #F4F0E8;
+  --color-bone-dim: #E7E1D4;
+  --color-bone-2: #d9d2c2;
+  --color-grey: #888888;
+
+  /* Square corners everywhere. */
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
+  --radius-full: 0px;
+}
+
+/* Theme tokens. A gallery is either dark (onyx) or light (bone); the admin
+   is always light. Components use these variables, never raw colours. */
+:root, .theme-dark {
+  --bg: var(--color-onyx);
+  --bg-2: var(--color-onyx-2);
+  --bg-3: var(--color-onyx-3);
+  --fg: var(--color-bone);
+  --fg-2: var(--color-bone-2);
+  --fg-muted: #9a978f;
+  --line: rgba(244, 240, 232, 0.14);
+  --accent: var(--color-brass);
+  --logo: url("/brand/logo-white.png");
+  color-scheme: dark;
+}
+.theme-light {
+  --bg: var(--color-bone);
+  --bg-2: #ebe6db;
+  --bg-3: var(--color-bone-dim);
+  --fg: var(--color-onyx);
+  --fg-2: #3a403f;
+  --fg-muted: #6b6f6e;
+  --line: rgba(14, 19, 18, 0.14);
+  --accent: var(--color-brass-dim);
+  --logo: url("/brand/logo-black.png");
+  color-scheme: light;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+#root { min-height: 100svh; }
+* { border-radius: 0 !important; }
+button, input, select, textarea { font: inherit; color: inherit; }
+::selection { background: var(--color-brass); color: var(--color-onyx); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Utility classes shared by guest and admin. Layered below Tailwind
+   utilities so classes like sm:hidden still win. */
+@layer components {
+  .u-bg { background: var(--bg); }
+  .u-bg2 { background: var(--bg-2); }
+  .u-bg3 { background: var(--bg-3); }
+  .u-fg { color: var(--fg); }
+  .u-fg2 { color: var(--fg-2); }
+  .u-muted { color: var(--fg-muted); }
+  .u-line { border-color: var(--line); }
+  .u-accent { color: var(--accent); }
+  .u-accent-bg { background: var(--accent); }
+  .eyebrow { font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); }
+  .rule { height: 1px; background: linear-gradient(90deg, transparent, var(--accent) 50%, transparent); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.7rem 1.1rem; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; border: 1px solid var(--line); color: var(--fg); background: transparent; cursor: pointer; transition: border-color .15s, background .15s, color .15s; white-space: nowrap; }
+  .btn:hover { border-color: var(--accent); }
+  .btn:disabled { opacity: .5; cursor: default; }
+  .btn-primary { background: var(--accent); color: var(--color-onyx); border-color: var(--accent); }
+  .btn-primary:hover { background: var(--color-bone); border-color: var(--color-bone); }
+  .btn-solid { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .btn-solid:hover { background: var(--accent); border-color: var(--accent); color: var(--color-onyx); }
+  .btn-sm { padding: 0.45rem 0.8rem; font-size: 11px; }
+  .icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; color: inherit; background: transparent; border: 0; cursor: pointer; }
+  .icon-btn:hover { color: var(--accent); }
+  .field { width: 100%; padding: 0.75rem 0.9rem; background: var(--bg-2); border: 1px solid var(--line); color: var(--fg); }
+  .field:focus { border-color: var(--accent); outline: none; }
+  .label { display: block; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 0.4rem; }
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .serif { font-family: var(--font-serif); }
+  .display { font-family: var(--font-display); }
+  .font-title-serif { font-family: var(--font-serif); font-weight: 500; letter-spacing: -0.01em; }
+  .font-title-display { font-family: var(--font-display); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+
+}
+
+/* Cover entrance animations. Reduced motion turns them off. */
+@keyframes cover-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes cover-zoom { from { transform: scale(1.06); } to { transform: scale(1); } }
+@keyframes cover-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.anim-fade .cover-media { animation: cover-fade 1.2s ease-out both; }
+.anim-zoom .cover-media { animation: cover-fade 1.2s ease-out both, cover-zoom 7s ease-out both; }
+.anim-fade .cover-text, .anim-zoom .cover-text { animation: cover-rise 0.9s 0.3s ease-out both; }
+@media (prefers-reduced-motion: reduce) {
+  .cover-media, .cover-text { animation: none !important; }
+}
+
+/* Lightbox: onyx canvas so photos read true. */
+.yarl__root { --yarl__color_backdrop: #0E1312; --yarl__color_button: #F4F0E8; --yarl__color_button_active: #B89968; --yarl__slide_captions_container_background: transparent; }
+.yarl__button:focus:not(:focus-visible) { color: var(--yarl__color_button); }
+
+/* Grid items reveal as they load. */
+.tile img { transition: opacity .4s ease; }
+.tile img[data-loaded="false"] { opacity: 0; }
+@layer components {
+  .choice-on { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+}
