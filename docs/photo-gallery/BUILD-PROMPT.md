@@ -348,10 +348,13 @@ Pull from `Iconic-Becker/IconEventsSite`:
 
 The agent cannot create accounts. Give the owner a numbered checklist:
 
-1. **Cloudflare.** The account exists and is empty. The owner enables R2,
-   creates the bucket and a token scoped to it, and sets a billing
-   notification. The steps they were given are in the chat; confirm the
-   bucket name and that the keys are in Railway, never pasted in chat.
+1. **Cloudflare.** Done: R2 is enabled and the private bucket
+   `iconic-photos` exists (2026-10-19). The account login is
+   icon@klevr.events. The owner holds the R2 S3 credentials (Access Key ID,
+   Secret Access Key, endpoint) for a token scoped to that bucket. Tell
+   them exactly which Railway variables to paste them into. Never ask for
+   the credentials in chat. Remind them to set a billing notification if
+   they have not.
 2. **GitHub.** Create the new repo or approve the agent creating it.
 3. **Railway.** Add the new service and a Postgres database, and set the
    env vars.
