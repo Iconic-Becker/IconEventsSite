@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { Star, Trash2, FolderInput, Image as ImageIcon, RefreshCw, ArrowUp, ArrowDown, Pencil, Check, X, Plus, Clock, AlertTriangle, Loader2, Play, GripVertical } from "lucide-react"
 import { patch, post, del } from "../shared/api.js"
 import { Field, Sheet } from "../shared/ui.jsx"
@@ -39,13 +39,37 @@ export function PhotosTab() {
     }
   }
 
-  const toggle = (id) =>
+  // Click toggles one photo. Shift-click selects everything between the
+  // last photo clicked and this one. Escape clears.
+  const lastClicked = useRef(null)
+  const toggle = (id, e) => {
+    const ids = (order || media).map((m) => m.id)
+    if (e?.shiftKey && lastClicked.current != null && ids.includes(lastClicked.current)) {
+      const a = ids.indexOf(lastClicked.current)
+      const b = ids.indexOf(id)
+      const range = ids.slice(Math.min(a, b), Math.max(a, b) + 1)
+      setSelected((s) => new Set([...s, ...range]))
+      return
+    }
+    lastClicked.current = id
     setSelected((s) => {
       const n = new Set(s)
       n.has(id) ? n.delete(id) : n.add(id)
       return n
     })
+  }
   const clear = () => setSelected(new Set())
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "Escape") clear()
+      if ((e.metaKey || e.ctrlKey) && e.key === "a" && !/input|textarea/i.test(e.target.tagName)) {
+        e.preventDefault()
+        setSelected(new Set((order || media).map((m) => m.id)))
+      }
+    }
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  })
   const bulk = async (action, extra = {}) => {
     const { gallery: g } = await post("/api/admin/media/bulk", { ids: [...selected], action, ...extra })
     setGallery(g)
@@ -62,25 +86,34 @@ export function PhotosTab() {
     clear()
   }
 
-  // Drag to reorder within the album.
-  const [dragId, setDragId] = useState(null)
+  // Drag to reorder within the album. Dragging a selected photo moves the
+  // whole selection together, keeping its own order; the group lands before
+  // or after the tile under the pointer depending on which half it is over.
+  const [dragIds, setDragIds] = useState(null)
   const [order, setOrder] = useState(null)
   const list = order || media
   useEffect(() => setOrder(null), [media])
+  const onDragStart = (m) => {
+    const ids = selected.has(m.id) ? list.filter((x) => selected.has(x.id)).map((x) => x.id) : [m.id]
+    setDragIds(ids)
+  }
   const onDragOver = (e, overId) => {
     e.preventDefault()
-    if (dragId == null || dragId === overId) return
-    const cur = [...list]
-    const from = cur.findIndex((m) => m.id === dragId)
-    const to = cur.findIndex((m) => m.id === overId)
-    if (from < 0 || to < 0) return
-    cur.splice(to, 0, cur.splice(from, 1)[0])
-    setOrder(cur)
+    if (!dragIds || dragIds.includes(overId)) return
+    const rect = e.currentTarget.getBoundingClientRect()
+    const after = e.clientX > rect.left + rect.width / 2
+    const moving = list.filter((m) => dragIds.includes(m.id))
+    const rest = list.filter((m) => !dragIds.includes(m.id))
+    const at = rest.findIndex((m) => m.id === overId) + (after ? 1 : 0)
+    const next = [...rest.slice(0, at), ...moving, ...rest.slice(at)]
+    if (next.every((m, i) => m.id === list[i].id)) return
+    setOrder(next)
   }
   const onDrop = async () => {
-    if (!order) return
-    setDragId(null)
-    await post(`/api/admin/albums/${albumId}/reorder`, { ids: order.map((m) => m.id) })
+    const ids = order?.map((m) => m.id)
+    setDragIds(null)
+    if (!ids) return
+    await post(`/api/admin/albums/${albumId}/reorder`, { ids })
     reload()
   }
 
@@ -134,7 +167,7 @@ export function PhotosTab() {
         <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
           <div>
             <h2 className="font-title-serif text-2xl">{album?.name}</h2>
-            <div className="text-xs u-muted">{plural(media.length, "item")} · drag to reorder</div>
+            <div className="text-xs u-muted">{plural(media.length, "item")} · click to select, shift-click for a range, drag to reorder{dragIds?.length > 1 ? ` · moving ${dragIds.length}` : ""}</div>
           </div>
           <div className="flex items-center gap-2">
             <button className="btn btn-sm" onClick={() => post(`/api/admin/albums/${albumId}/sort-by-capture`).then((d) => setGallery(d.gallery))} title="Order by capture time, then filename">
@@ -168,15 +201,16 @@ export function PhotosTab() {
               key={m.id}
               m={m}
               selected={selected.has(m.id)}
-              onToggle={() => toggle(m.id)}
+              onToggle={(e) => toggle(m.id, e)}
               isCover={gallery.cover?.id === m.id}
               isAlbumCover={album?.coverMediaId === m.id}
               draggable
-              onDragStart={() => setDragId(m.id)}
+              onDragStart={() => onDragStart(m)}
               onDragOver={(e) => onDragOver(e, m.id)}
               onDrop={onDrop}
-              onDragEnd={() => setDragId(null)}
-              dragging={dragId === m.id}
+              onDragEnd={() => setDragIds(null)}
+              dragging={dragIds?.includes(m.id)}
+              dragCount={dragIds?.length > 1 && dragIds[0] === m.id ? dragIds.length : 0}
             />
           ))}
         </div>
@@ -261,10 +295,11 @@ function AlbumRow({ album, count, active, onSelect, first, last, albums }) {
   )
 }
 
-export function MediaTile({ m, selected, onToggle, isCover, isAlbumCover, dragging, ...drag }) {
+export function MediaTile({ m, selected, onToggle, isCover, isAlbumCover, dragging, dragCount = 0, ...drag }) {
   const busy = ["uploading", "uploaded", "processing"].includes(m.status)
   return (
-    <div {...drag} className={`relative aspect-square cursor-pointer overflow-hidden select-none ${selected ? "ring-2 ring-[var(--accent)]" : ""} ${dragging ? "opacity-40" : ""}`} style={{ background: "var(--bg-3)" }} onClick={onToggle} title={`${m.filename}${m.sizeBytes ? ` · ${formatBytes(m.sizeBytes)}` : ""}${m.error ? `\n${m.error}` : ""}`}>
+    <div {...drag} className={`relative aspect-square cursor-pointer overflow-hidden select-none ${selected ? "ring-2 ring-[var(--accent)]" : ""} ${dragging ? "opacity-40" : ""}`} style={{ background: "var(--bg-3)" }} onClick={(e) => onToggle(e)} title={`${m.filename}${m.sizeBytes ? ` · ${formatBytes(m.sizeBytes)}` : ""}${m.error ? `\n${m.error}` : ""}`}>
+      {dragCount > 0 && <span className="absolute top-1 left-1 z-10 bg-[#B89968] px-1.5 text-xs text-[#0E1312]">{dragCount}</span>}
       {m.thumb ? <img src={m.thumb} alt="" className="h-full w-full object-cover" loading="lazy" draggable={false} /> : <div className="flex h-full flex-col items-center justify-center gap-1 px-1 text-center text-[10px] u-muted">{m.status === "uploading" ? <><Clock size={16} /> waiting for upload</> : busy ? <><Loader2 className="animate-spin" size={16} /> processing</> : m.filename}</div>}
       {m.kind === "video" && <span className="absolute bottom-1 left-1 flex items-center gap-1 bg-black/60 px-1.5 py-0.5 text-[10px] text-white"><Play size={10} fill="currentColor" /> {formatDuration(m.duration)}</span>}
       {m.highlighted && <Star size={14} className="absolute top-1 left-1 text-[#B89968] drop-shadow" fill="#B89968" />}
