@@ -20,7 +20,19 @@ export function AlbumOverview({ gallery, albums }) {
       <div className={`grid gap-3 sm:gap-4 ${many ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5" : "grid-cols-2 lg:grid-cols-3"}`}>
         {albums.map((a) => (
           <Link key={a.slug} to={`/${gallery.slug}/${a.slug}`} className="group relative block overflow-hidden" style={{ aspectRatio: many ? "1 / 1" : "4 / 3", background: "var(--bg-3)" }}>
-            {a.cover ? <img src={a.cover} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" /> : <div className="absolute inset-0 flex items-center justify-center u-muted"><Images /></div>}
+            {a.cover ? (
+              <img
+                src={a.cover}
+                srcSet={a.coverLarge ? `${a.cover} 600w, ${a.coverLarge} 2048w` : undefined}
+                sizes={many ? "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw" : "(max-width: 1024px) 50vw, 33vw"}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+              />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center u-muted"><Images /></div>
+            )}
             <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(14,19,18,.85) 0%, rgba(14,19,18,.1) 55%)" }} />
             <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4" style={{ color: "#F4F0E8" }}>
               <div className={`font-title-serif ${many ? "text-lg sm:text-xl" : "text-2xl sm:text-3xl"} leading-tight`}>{a.name}</div>
@@ -172,7 +184,7 @@ export function NextAlbumCard({ gallery, next }) {
   }
   return (
     <Link to={`/${gallery.slug}/${next.slug}`} className="group relative mx-auto my-12 block max-w-3xl overflow-hidden" style={{ aspectRatio: "21 / 9", background: "var(--bg-3)" }}>
-      {next.cover && <img src={next.cover} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />}
+      {next.cover && <img src={next.cover} srcSet={next.coverLarge ? `${next.cover} 600w, ${next.coverLarge} 2048w` : undefined} sizes="(max-width: 800px) 100vw, 768px" alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />}
       <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(14,19,18,.9) 20%, rgba(14,19,18,.3) 100%)" }} />
       <div className="absolute inset-0 flex items-center justify-between p-6 sm:p-10" style={{ color: "#F4F0E8" }}>
         <div>

@@ -17,6 +17,7 @@ export function PhotosTab() {
   }, [albums, albumId])
   const [selected, setSelected] = useState(() => new Set())
   const [moveOpen, setMoveOpen] = useState(false)
+  const [moveNew, setMoveNew] = useState("")
   const [newAlbum, setNewAlbum] = useState("")
   const media = useMemo(() => gallery.media.filter((m) => m.albumId === albumId), [gallery.media, albumId])
   const album = albums.find((a) => a.id === albumId)
@@ -230,7 +231,7 @@ export function PhotosTab() {
         )}
       </section>
 
-      <Sheet open={moveOpen} onClose={() => setMoveOpen(false)} title="Move to album">
+      <Sheet open={moveOpen} onClose={() => setMoveOpen(false)} title={`Move ${plural(selected.size, "photo")} to`}>
         <ul className="space-y-1">
           {albums.filter((a) => a.id !== albumId).map((a) => (
             <li key={a.id}>
@@ -239,7 +240,27 @@ export function PhotosTab() {
               </button>
             </li>
           ))}
+          {albums.length <= 1 && <li className="py-2 text-sm u-muted">No other album yet.</li>}
         </ul>
+        <form
+          className="mt-4 flex gap-2 border-t u-line pt-4"
+          onSubmit={async (e) => {
+            e.preventDefault()
+            const name = moveNew.trim()
+            if (!name) return
+            const { gallery: g } = await post(`/api/admin/galleries/${gallery.id}/albums`, { name })
+            const created = g.albumRows.find((a) => a.name.toLowerCase() === name.toLowerCase())
+            setGallery(g)
+            setMoveNew("")
+            setMoveOpen(false)
+            if (created) bulk("move", { albumId: created.id })
+          }}
+        >
+          <input className="field" placeholder="New album name" value={moveNew} onChange={(e) => setMoveNew(e.target.value)} />
+          <button className="btn btn-solid btn-sm whitespace-nowrap" disabled={!moveNew.trim()}>
+            <Plus size={12} /> Create and move
+          </button>
+        </form>
       </Sheet>
     </div>
   )

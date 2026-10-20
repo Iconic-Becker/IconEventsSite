@@ -40,7 +40,7 @@ function justify(items, width, targetH, gap) {
   return rows
 }
 
-export function Tile({ media, width, height, onOpen, favorite, onFavorite, style }) {
+export function Tile({ media, width, height, sizesPx, onOpen, favorite, onFavorite, style }) {
   const [loaded, setLoaded] = useState(false)
   const imgRef = useRef()
   useEffect(() => {
@@ -49,7 +49,23 @@ export function Tile({ media, width, height, onOpen, favorite, onFavorite, style
   return (
     <div className="tile group relative overflow-hidden" style={{ width, height, background: "var(--bg-3)", ...style }}>
       <button type="button" onClick={() => onOpen(media)} className="block h-full w-full" aria-label={media.kind === "video" ? "Play video" : "Open photo"}>
-        <img ref={imgRef} src={media.thumb} alt="" width={media.width || undefined} height={media.height || undefined} loading="lazy" decoding="async" data-loaded={loaded} onLoad={() => setLoaded(true)} className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]" draggable={false} />
+        <img
+          ref={imgRef}
+          src={media.thumb}
+          // The browser picks the 2048 px version when the tile is wide or
+          // the screen is high density, so big tiles stay sharp.
+          srcSet={media.display && media.kind === "photo" ? `${media.thumb} 600w, ${media.display} 2048w` : undefined}
+          sizes={`${Math.round(typeof width === "number" ? width : sizesPx || 300)}px`}
+          alt=""
+          width={media.width || undefined}
+          height={media.height || undefined}
+          loading="lazy"
+          decoding="async"
+          data-loaded={loaded}
+          onLoad={() => setLoaded(true)}
+          className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+          draggable={false}
+        />
       </button>
       {media.kind === "video" && (
         <div className="pointer-events-none absolute bottom-2 left-2 flex items-center gap-1.5 bg-black/60 px-2 py-1 text-[11px] text-white">
@@ -123,7 +139,7 @@ export function Grid({ media, layout = "justified", density = "comfortable", onO
     return (
       <div className="grid" style={{ gap, gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
         {media.map((m) => (
-          <Tile key={m.id} media={m} width="100%" height={size} onOpen={onOpen} favorite={favorites?.has(m.id)} onFavorite={onFavorite} />
+          <Tile key={m.id} media={m} width="100%" height={size} sizesPx={size} onOpen={onOpen} favorite={favorites?.has(m.id)} onFavorite={onFavorite} />
         ))}
       </div>
     )

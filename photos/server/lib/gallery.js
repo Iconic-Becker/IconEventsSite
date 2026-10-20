@@ -92,6 +92,7 @@ export async function albumsOf(galleryId, albumIds = null) {
       name: a.name,
       count: a.count,
       cover: d.thumb?.key ? await storage.signGetUrl(d.thumb.key) : null,
+      coverLarge: d.display?.key ? await storage.signGetUrl(d.display.key) : d.poster?.key ? await storage.signGetUrl(d.poster.key) : null,
       coverRatio: d.thumb?.width && d.thumb?.height ? d.thumb.width / d.thumb.height : 1.5,
     })
   }
@@ -113,6 +114,7 @@ export async function highlightsAlbum(galleryId, albumIds = null) {
     name: "Highlights",
     count: row.count,
     cover: d.thumb?.key ? await storage.signGetUrl(d.thumb.key) : null,
+    coverLarge: d.display?.key ? await storage.signGetUrl(d.display.key) : null,
     coverRatio: d.thumb?.width && d.thumb?.height ? d.thumb.width / d.thumb.height : 1.5,
     isHighlights: true,
   }
