@@ -71,12 +71,27 @@ export const NAV = {
   left: [
     { href: "#scope", label: "Services" },
     { href: "#method", label: "Method" },
-    { href: "#receipts", label: "Results" },
+    // A real page, not an anchor, and the only one marked smallOnly: the
+    // brass tab above the header covers this from md up, so showing it in
+    // the bar too would be the same destination twice. Below md the tab is
+    // hidden, and this takes over.
+    { href: "/case-studies", label: "Case Studies", smallOnly: true },
   ],
   right: [
     { href: "#work", label: "Work" },
-    { href: "#gallery", label: "Gallery" },
-    { href: "#contact", label: "Contact" },
+    // Its own page now. The homepage keeps its gallery section, but the nav
+    // goes to the full set, where every photo links to its case study.
+    { href: "/gallery", label: "Gallery" },
+    {
+      href: "#contact",
+      label: "Contact",
+      // Opens a menu rather than jumping straight to the form, because there
+      // are two ways in now and they are for different people.
+      children: [
+        { href: "#contact", label: "Start a conversation", note: "Tell us about the room you want to build." },
+        { href: "/vendors", label: "Vendor sign-up", note: "Crew, kit and suppliers. Join the list we work from." },
+      ],
+    },
   ],
 }
 
@@ -524,8 +539,8 @@ export const CTA = {
   eyebrow: "Start a Conversation",
   title: V("Tell us about the room you want to build.", "Tell us about the room you want to build."),
   formLead: V(
-    "Answer the three questions below and a senior director will take it from there.",
-    "Answer the three questions below and a senior director will take it from there — no pitch decks, just the conversation."
+    "A minute of answers, and a senior director will take it from there.",
+    "A minute of answers, and a senior director will take it from there. No pitch decks, just the conversation."
   ),
   stats: [
     { id: "c1", value: "30", label: V("minutes with a senior director", "minutes with a senior director") },
@@ -533,14 +548,26 @@ export const CTA = {
     { id: "c3", value: "0", label: V("pitch decks — just the conversation", "pitch decks — just the conversation") },
   ],
   form: {
-    stageLabel: V("Your business stage", "Your business stage"),
-    stages: ["Under $1M", "$1M–$5M", "$5M–$25M", "$25M+"],
-    timingLabel: V("When is the room?", "When is the room?"),
-    timings: ["Next 3 months", "3–6 months", "6–12 months", "Exploring"],
-    outcomeLabel: V("What outcome are you engineering?", "What outcome are you engineering?"),
-    outcomePlaceholder: V(
-      "The result the room has to produce.",
-      "The result you need the room to drive.",
+    /* Every choice is required and none is pre-selected, so an answer in the
+       inbox is always one the visitor actually picked. */
+    eventLabel: "What's the event?",
+    events: [
+      "Client summit or conference",
+      "Launch",
+      "Retreat or mastermind",
+      "Customer or VIP event",
+      "Not sure yet",
+    ],
+    guestsLabel: "How many guests?",
+    guests: ["Under 50", "50 to 150", "150 to 500", "500+"],
+    budgetLabel: "Event budget",
+    budgets: ["Under $50k", "$50k to $150k", "$150k to $500k", "$500k+", "I don't know yet"],
+    timingLabel: "When is the room?",
+    timings: ["Within 3 months", "3 to 6 months", "6 to 12 months", "Just exploring"],
+    notesLabel: "Anything else we should know?",
+    notesPlaceholder: V(
+      "What the room has to achieve, where you need support, what is already in place.",
+      "What the room needs to do, where you need a hand, what's already sorted."
     ),
     submit: V("Start a conversation", "Book the call"),
     sending: V("Sending…", "Locking it in…"),
@@ -555,7 +582,19 @@ export const CTA = {
 export const FOOTER = {
   line: V("Experience engineers. Est. 2017.", "Experience engineers for the creator economy. Est. 2017."),
   columns: [
-    { id: "col1", head: "Studio", items: ["Work", "Services", "Method", "Journal"] },
+    // Every item that names a page or section links to it. Sections are
+    // anchors on the homepage, the only page this footer appears on.
+    {
+      id: "col1",
+      head: "Explore",
+      items: [
+        { label: "Work", href: "#work" },
+        { label: "Services", href: "#scope" },
+        { label: "Method", href: "#method" },
+        { label: "Case Studies", href: "/case-studies" },
+        { label: "Gallery", href: "/gallery" },
+      ],
+    },
     {
       id: "col2",
       head: "Contact",
@@ -563,9 +602,24 @@ export const FOOTER = {
       // every page is the easiest thing on the site to scrape. The form reaches
       // the same inbox. CONTACT_EMAIL is still the fallback when a submission
       // fails (see src/lib/enquiry.js).
-      items: [{ label: "Start a conversation", href: "#contact" }, "(305) 791-5290", "Miami · Las Vegas"],
+      items: [
+        { label: "Start a conversation", href: "#contact" },
+        { label: "Vendor sign-up", href: "/vendors" },
+        { label: "(305) 791-5290", href: "tel:+13057915290" },
+        "Miami · Las Vegas",
+      ],
     },
-    { id: "col3", head: "Follow", items: ["Instagram", "LinkedIn", "Vimeo"] },
+    // Iconic's company profiles, the same as sameAs in index.html. Vimeo was
+    // listed here with no link and no account found, so it came out.
+    {
+      id: "col3",
+      head: "Follow",
+      items: [
+        { label: "Instagram", href: "https://www.instagram.com/iconicbecker", external: true },
+        { label: "LinkedIn", href: "https://www.linkedin.com/company/iconiceventsusa", external: true },
+        { label: "YouTube", href: "https://www.youtube.com/@iconiceventsUSA", external: true },
+      ],
+    },
   ],
   tagStrip: "ICONIC · EXPERIENCE · ENGINEERED",
   legal: "© 2026 Iconic Events LLC",

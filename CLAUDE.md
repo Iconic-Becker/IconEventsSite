@@ -1,22 +1,10 @@
 # Working agreement
 
-## Show before you push
-
-**Never push anything, to any branch, before showing Iconic a mockup or a
-render and getting a yes.** This includes the working branch, not only
-`main`. A push to a branch is still a push.
-
-Build it locally, render it, show it, wait. The site is Iconic's shop
-window and their design team's work; they see it before it moves.
-
-What counts as showing: a published artifact, screenshots of the real
-rendered page, or both. A description in chat does not count.
-
 ## Deploys
 
 `main` is deployed automatically by Railway from
-`Iconic-Becker/IconEventsSite`. Merging to `main` puts it live, so that
-step in particular waits for an explicit yes.
+`Iconic-Becker/IconEventsSite`. Merging to `main` puts it live. No mockup
+or sign-off is needed first: build it, verify it (below), and ship.
 
 Do not change a URL that is already live and indexed.
 

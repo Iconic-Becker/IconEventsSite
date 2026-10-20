@@ -542,13 +542,9 @@ body {
   .scope-strike { white-space: normal; }
   #method [class*="min-h-[520px]"] { min-height: 0; padding-bottom: 5rem; }
 
-  /* Forms stack instead of squeezing a joined desktop control. */
+  /* The brief tightens up on small screens. */
   #contact { min-height: auto; padding-top: 4rem; padding-bottom: 4rem; }
   #contact form { padding: 1.25rem; }
-  #contact form > p { font-size: 1.5rem; line-height: 1.7; }
-  #contact form > div.flex { flex-direction: column; gap: .75rem; }
-  #contact form > div.flex input { min-height: 3rem; border-right-width: 1px; }
-  #contact form > div.flex button { min-height: 3rem; justify-content: center; width: 100%; }
 }
 
 @media (max-width: 389px) {
@@ -565,4 +561,22 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+/* /gallery: frames rise into place as they scroll into view. Driven by the
+   scroll position itself, so anything already on screen at load is simply
+   there, and a browser without scroll-driven animations shows the plain
+   grid. Nothing ever waits at opacity 0 for a script. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .bento-tile {
+      animation: bento-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 70%;
+    }
+  }
+}
+@keyframes bento-rise {
+  from { opacity: 0; transform: translateY(28px) scale(0.97); }
+  to { opacity: 1; transform: none; }
 }

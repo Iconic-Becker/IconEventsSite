@@ -826,7 +826,9 @@ export const PHOTO_LIBRARY = {
   "pmuw-2023": { folder: "pmuw-2023", count: 20 },
   "the-guardians-annual": { folder: "the-guardians-annual", count: 16 },
   "rise-x": { folder: "rise-x", count: 26 },
-  "scaling-with-systems-live": { folder: "scaling-with-systems-live-2021", count: 14 },
+  // 14 of the 16 in Iconic's folder; 06 and 07 were left out, so the
+  // numbering skips them.
+  "scaling-with-systems-live": { folder: "scaling-with-systems-live-2021", count: 14, missing: [6, 7] },
   "scaling-with-systems-live-2022": { folder: "scaling-with-systems-live-2022", count: 16 },
   "bulletproof-financial-accelerator": { folder: "bulletproof-financial-accelerator", count: 16 },
   "ace-interstellar": { folder: "ace-interstellar", count: 17 },
@@ -842,6 +844,16 @@ export const PHOTO_LIBRARY = {
   "the-ceo-lawyer-summit-2022": { folder: "the-ceo-lawyer-summit-2022", count: 50 },
 }
 
+/* Every file in a PHOTO_LIBRARY folder, in Iconic's order. Numbering is
+   01, 02 and so on, less any numbers listed as missing. */
+export function libraryPhotos({ folder, count, missing = [] }) {
+  const out = []
+  for (let n = 1; out.length < count; n++) {
+    if (!missing.includes(n)) out.push(`/images/gallery/${folder}/${String(n).padStart(2, "0")}.webp`)
+  }
+  return out
+}
+
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 // "2023-10" reads "October 2023"; "2025" reads "2025".
@@ -855,6 +867,45 @@ export function whenLabel(when) {
    after the dated months of their year, undated events last, and ties keep
    EVENT_INDEX order. A built event takes its name and client from
    CASE_STUDIES, so the grid and the page always agree. */
+/* Every photograph across every written case study, interleaved so that
+   consecutive frames come from different events rather than three in a row
+   from one night.
+
+   Deliberately not random. These pages are prerendered, so a Math.random()
+   order would differ between the server and the browser and React would
+   throw away the markup it was given. Round robin gives the spread without
+   that cost, and it widens on its own as case studies are added.
+
+   Returns {src, alt, slug, study, href}: the alt text is the one written
+   for the case study, which is better than anything a gallery could invent,
+   and every frame remembers the case study it came from so the /gallery
+   page can send a visitor on to that event. */
+export function galleryPool() {
+  const perStudy = CASE_STUDIES.map((study) => {
+    const m = study.media
+    return [m.hero, m.challenge, m.band, m.resultLeft, m.resultRight, ...(m.gallery ?? [])]
+      .filter((frame) => frame && frame.src)
+      .map((frame) => ({
+        ...frame,
+        slug: study.slug,
+        study: study.name,
+        href: `/case-studies/${study.slug}`,
+      }))
+  })
+  const out = []
+  const seen = new Set()
+  const longest = Math.max(0, ...perStudy.map((list) => list.length))
+  for (let i = 0; i < longest; i++) {
+    for (const list of perStudy) {
+      const frame = list[i]
+      if (!frame || seen.has(frame.src)) continue
+      seen.add(frame.src)
+      out.push(frame)
+    }
+  }
+  return out
+}
+
 export function caseStudyCards() {
   const key = (when) => (when ? (when.length === 4 ? `${when}-00` : when) : "")
   return EVENT_INDEX.map((entry, order) => ({ entry, order }))
@@ -878,4 +929,64 @@ export function caseStudyCards() {
         format: built?.format ?? null,
       }
     })
+}
+
+/* Frames on case study pages that turned out to be from other events (see
+   docs/TODO.md, Casino Royale photos). Kept off /gallery, where every photo
+   names its event, until they are replaced. */
+const MISFILED = new Set(["/images/gallery/g34.webp", "/images/gallery/g24.webp", "/images/gallery/g32.webp"])
+
+/* Photos Iconic's folders hold twice (the same shot, or two frames a moment
+   apart), found by comparing every library photo. The first copy is kept on
+   /gallery and the repeat left out, so the page never shows one shot twice. */
+const REPEATS = new Set([
+  "behavioral-selling/13", "behavioral-selling/12", "group-convert-live/05",
+  "the-behavior-panel-live/16", "the-ceo-lawyer-summit-2021/04",
+  "the-ceo-lawyer-summit-2022/13", "the-ceo-lawyer-summit-2022/32",
+  "takeover-live-1/30", "chase-hughes-london/17",
+].map((name) => `/images/gallery/${name}.webp`))
+
+/* Every event photograph on the site, for /gallery: the frames placed on the
+   written case studies plus the whole photo library, one entry per file.
+
+   Each carries its event. `href` is the case study page when one is written,
+   and null when the event is listed but not yet written up. `thumbs` lists
+   the smaller files the grid loads instead of the full one. Alt text is the
+   case study's own where a frame has one; library photos get a plain line
+   naming the event, client and place, never a guess at what is in shot. */
+export function galleryFrames() {
+  const frames = []
+  const seen = new Set()
+  const add = (frame) => {
+    if (seen.has(frame.src) || MISFILED.has(frame.src) || REPEATS.has(frame.src)) return
+    seen.add(frame.src)
+    frames.push(frame)
+  }
+
+  for (const frame of galleryPool()) {
+    add({ src: frame.src, alt: frame.alt, slug: frame.slug, event: frame.study, href: frame.href })
+  }
+
+  for (const [slug, entry] of Object.entries(PHOTO_LIBRARY)) {
+    const built = CASE_STUDY_BY_SLUG[slug]
+    const listed = EVENT_INDEX.find((e) => e.slug === slug)
+    const event = built?.name ?? listed?.name ?? slug
+    const client = built?.details.client ?? listed?.client
+    const place = listed?.location ?? (built ? [built.details.city, built.details.region].filter(Boolean).join(", ") : null)
+    libraryPhotos(entry).forEach((src) => {
+      add({
+        src,
+        alt: `${event}${client ? ` for ${client}` : ""}${place ? ` in ${place}` : ""}, produced by Iconic Events`,
+        slug,
+        event,
+        href: built ? `/case-studies/${slug}` : null,
+      })
+    })
+  }
+  // Every frame has 480w and 960w thumbnails beside it, made by
+  // scripts/make-gallery-thumbs.mjs.
+  return frames.map((frame) => ({
+    ...frame,
+    thumbs: [480, 960].map((w) => [frame.src.replace(/\.webp$/, `-${w}.webp`), w]),
+  }))
 }

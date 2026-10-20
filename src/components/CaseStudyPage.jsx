@@ -6,6 +6,7 @@ import {
 } from "../case-studies.js"
 import Cta from "./Cta.jsx"
 import SiteHeader from "./SiteHeader.jsx"
+import SiteFooter from "./SiteFooter.jsx"
 
 /* ── helpers ───────────────────────────────────────────────────────────── */
 
@@ -492,6 +493,7 @@ export function CaseStudyNotFound() {
         <p className="mt-6 font-sans text-lg leading-relaxed text-bone/65">The case study you're looking for may have moved. The full archive is on the main page.</p>
         <a href="/#work" className="mt-10 inline-block bg-brass px-6 py-3 font-sans text-[10px] font-bold uppercase tracking-[0.14em] text-onyx">View all work</a>
       </div>
+      <SiteFooter />
     </main>
   )
 }
@@ -580,6 +582,7 @@ export default function CaseStudyPage({ study }) {
 
       <Related study={study} />
 
+      <SiteFooter />
     </main>
   )
 }

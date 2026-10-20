@@ -1,15 +1,31 @@
 import { useRef, useState } from "react"
 import { responsive } from "../lib/img.js"
-import { GALLERY } from "../content.js"
+import { galleryPool } from "../case-studies.js"
 
-const IMAGES = [
-  ...GALLERY.motionWall,
-  "/images/gallery/g32.webp",
-  "/images/gallery/g34.webp",
-]
+/* Every photograph from every written case study, interleaved so consecutive
+   frames come from different events. It widens on its own as case studies are
+   added, rather than being a fixed dozen that has to be edited by hand. */
+const IMAGES = galleryPool()
+
+const ROW_COUNT = 3
+
+/* Deal the pool into one list per row.
+
+   Every row used to receive the whole array, rotated by a few places, so the
+   same photograph sat in all three rows at once. Dealing round robin gives
+   each row its own frames, and because the pool already alternates between
+   events, each row still spans most of them. */
+function dealRows(items, rowCount) {
+  const rows = Array.from({ length: rowCount }, () => [])
+  items.forEach((item, i) => rows[i % rowCount].push(item))
+  return rows.filter((row) => row.length > 0)
+}
+
+const DEALT = dealRows(IMAGES, ROW_COUNT)
 
 function rotate(items, offset) {
-  const n = offset % items.length
+  if (items.length === 0) return items
+  const n = ((offset % items.length) + items.length) % items.length
   return [...items.slice(n), ...items.slice(0, n)]
 }
 
@@ -48,15 +64,15 @@ function GalleryRow({ images, rowIndex, direction, spinning }) {
       aria-label={`Draggable gallery row ${rowIndex + 1}`}
     >
       <div className={`gallery-track flex w-max gap-3 px-3 ${direction < 0 ? "gallery-ltr" : "gallery-rtl"}`} style={{ animationDuration: `${110 + rowIndex * 18}s` }}>
-        {[...images, ...images].map((src, i) => {
+        {[...images, ...images].map((frame, i) => {
           const originalIndex = i % images.length
           return (
             <figure
-              key={`${rowIndex}-${src}-${i}`}
+              key={`${rowIndex}-${frame.src}-${i}`}
               aria-hidden={i >= images.length}
                   className={`group relative h-[190px] shrink-0 overflow-hidden bg-onyx sm:h-[300px] ${originalIndex % 4 === 0 ? "w-[78vw] sm:w-[500px]" : "w-[64vw] sm:w-[340px]"}`}
             >
-              <img {...responsive(src, "(min-width: 768px) 25vw, 60vw")} alt={i < images.length ? `Iconic Events production detail ${rowIndex * images.length + originalIndex + 1}` : ""} loading="lazy" draggable="false" className="h-full w-full select-none object-cover grayscale transition duration-700 group-hover:scale-[1.03] group-hover:grayscale-0" />
+              <img {...responsive(frame.src, "(min-width: 768px) 25vw, 60vw")} alt={i < images.length ? frame.alt : ""} loading="lazy" draggable="false" className="h-full w-full select-none object-cover grayscale transition duration-700 group-hover:scale-[1.03] group-hover:grayscale-0" />
               <span className="absolute bottom-3 left-3 font-sans text-[10px] uppercase tracking-[0.22em] text-bone/70">{String(rowIndex * images.length + originalIndex + 1).padStart(2, "0")}</span>
             </figure>
           )
@@ -67,15 +83,19 @@ function GalleryRow({ images, rowIndex, direction, spinning }) {
 }
 
 export default function Gallery() {
-  const [offsets, setOffsets] = useState([0, 4, 8])
+  const [offsets, setOffsets] = useState([0, 1, 2])
   const [spinning, setSpinning] = useState(false)
-  const rows = offsets.map((offset) => rotate(IMAGES, offset))
+  // Turning the room moves each row along its own frames, so no photograph
+  // can cross into another row.
+  const rows = DEALT.map((row, i) => rotate(row, offsets[i] ?? 0))
 
   const shuffle = () => {
     if (spinning) return
     setSpinning(true)
     window.setTimeout(() => {
-      setOffsets((current) => current.map((value, index) => (value + 3 + index * 2) % IMAGES.length))
+      setOffsets((current) =>
+        current.map((value, index) => value + 3 + index * 2)
+      )
     }, 260)
     window.setTimeout(() => setSpinning(false), 760)
   }

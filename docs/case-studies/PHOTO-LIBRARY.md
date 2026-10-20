@@ -6,8 +6,8 @@ the long edge, and numbered in the order of the original folder. The
 originals stay with Iconic; this file maps each web file back to its
 original name.
 
-**Still needed before any photo is published on a page:** photographer
-credit and written usage rights, per event (interview protocol, section 5).
+**Usage rights:** Iconic holds usage rights for every photo in the library
+(confirmed 2026-10-05).
 
 | Zip | Folder in `public/images/gallery/` | Photos |
 |---|---|---|
@@ -33,6 +33,13 @@ credit and written usage rights, per event (interview protocol, section 5).
 | 20 Scaling with Systems LIVE 2021 | `scaling-with-systems-live-2021/` | 14 of 16 |
 | 21 7-Figure Agency | `7-figure-agency/` | 16 |
 | 22 Takeover Live 1 | `takeover-live-1/` | 35 |
+
+**On `/gallery`.** Every photo here appears on the gallery page, each
+labelled with its event. The grid loads thumbnails, `NN-480.webp` and
+`NN-960.webp` beside each `NN.webp`, made by
+`node scripts/make-gallery-thumbs.mjs`; run it again after adding a folder. Nine photos turned out to be repeats of another
+in the same folder and are left off the gallery (`REPEATS` in
+`src/case-studies.js`).
 
 `the-ceo-lawyer-summit-2021/` belongs to the live `ceo-lawyer-summit` page,
 which is the 2021 edition; the 2022 edition is a separate event. `epic-growth-conference/`

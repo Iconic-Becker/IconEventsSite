@@ -6,8 +6,9 @@
 // without touching this file.
 import fs from 'node:fs'
 import path from 'node:path'
-import { render } from './dist-ssr/entry-server.js'
+import { render, preloadRoute } from './dist-ssr/entry-server.js'
 import { CASE_STUDIES } from './src/case-studies.js'
+import { PRIVACY, TERMS } from './src/legal.js'
 
 const SITE = 'https://www.iconic.events'
 
@@ -39,6 +40,41 @@ const ROUTES = [
 // /nextsteps is prerendered so a refresh or a bookmark resolves, but kept out
 // of the sitemap: it is a post-submission confirmation page, marked noindex in
 // the page itself and disallowed in robots.txt.
+// The contact form as its own page, for linking to directly from anywhere
+// that is not the homepage.
+ROUTES.push({
+  path: '/contact',
+  title: 'Contact | Iconic Events',
+  description:
+    'Tell Iconic Events about the room you want to build. Event production, stage design and experience architecture for live in person events.',
+  image: '/og/default.jpg',
+})
+
+// The privacy policy and terms. Indexed: ad platforms and visitors look for
+// them, and Meta checks the privacy policy URL on lead forms.
+for (const doc of [PRIVACY, TERMS]) {
+  ROUTES.push({ path: doc.path, title: `${doc.title} | Iconic Events`, description: doc.description, image: '/og/default.jpg' })
+}
+
+// Every case study photograph on one page, each linked to its event.
+ROUTES.push({
+  path: '/gallery',
+  title: 'Gallery | Iconic Events',
+  description:
+    'Photographs from the rooms Iconic Events has produced. Stage, light, detail and audience, each linked to its case study.',
+  image: '/og/default.jpg',
+})
+
+// The vendor sign-up. Indexed: vendors searching for production companies to
+// work with should be able to find it.
+ROUTES.push({
+  path: '/vendors',
+  title: 'Vendor sign-up | Iconic Events',
+  description:
+    'Join the vendor list at Iconic Events. We work with audio visual, lighting, staging, catering, photography and production partners across South Florida and beyond.',
+  image: '/og/default.jpg',
+})
+
 ROUTES.push({
   path: '/nextsteps',
   title: 'Request confirmed · Iconic Events',
@@ -48,7 +84,14 @@ ROUTES.push({
   sitemap: false,
 })
 
+
 const template = fs.readFileSync('dist/index.html', 'utf-8')
+
+// A page split into its own chunk (see src/lib/split-page.jsx) has to be
+// fetched before the browser can hydrate it. Naming the chunk in that page's
+// head lets the browser fetch it alongside the main bundle rather than after.
+const chunk = (name) => fs.readdirSync('dist/assets').find((f) => f.startsWith(`${name}-`) && f.endsWith('.js'))
+const SPLIT_CHUNKS = { '/gallery': chunk('GalleryPage') }
 
 const escape = (value) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
@@ -76,6 +119,8 @@ function socialTags(route) {
 }
 
 for (const route of ROUTES) {
+  // A split page's code has to be loaded before it can render to a string.
+  await preloadRoute(route.path)
   const html = template
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${escape(route.title)}</title>`)
     .replace(
@@ -84,7 +129,11 @@ for (const route of ROUTES) {
     )
     .replace(
       '</head>',
-      `  <link rel="canonical" href="${SITE}${route.path}" />\n${socialTags(route)}\n  </head>`
+      `  <link rel="canonical" href="${SITE}${route.path}" />\n${
+        SPLIT_CHUNKS[route.path] ? `  <link rel="modulepreload" crossorigin href="/assets/${SPLIT_CHUNKS[route.path]}" />\n` : ''
+      }${socialTags(route)}\n${
+        route.sitemap === false ? '  <meta name="robots" content="noindex, nofollow" />\n' : ''
+      }  </head>`
     )
     .replace('<div id="root"></div>', `<div id="root">${render(route.path)}</div>`)
 
