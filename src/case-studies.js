@@ -644,6 +644,225 @@ export const CASE_STUDIES = [
     citation:
       "Iconic Events, a Florida based event production and coordination company, produced Freedom Queen Live 2025 for Bridget James Ling at the Vinoy in St. Petersburg, Florida in November 2025, delivering a Broadway style show with rehearsed dance performances, a flash mob opening and staged butler service for 530 attendees.",
   },
+
+  // Source: docs/case-studies/Case-Study-Interviews.xlsx, approved by Iconic.
+  {
+    slug: "pmuw-2023",
+    name: "PMU World 2023",
+    headline: "How Danny Tran Defied the Odds and Built the Largest Permanent Makeup Event in North America on His First Try",
+    cta: "Want to build the biggest event in your industry?",
+    summary:
+      "The permanent makeup industry's largest live event drew about 300 people. Danny Tran, founder and CEO of Highstoke Media, wanted to build the biggest one in North America with a seven month old brand, no attendee list and an industry that doubted him. We ran teaser videos while the venue was still being secured, took the Seminole Hard Rock in Hollywood, Florida, ran two stages like a music festival and built more than 16 interactive installations ourselves. More than 800 attendees came, against a projection of 600.",
+    challenge: [
+      "The permanent makeup industry had been underserved for too long: its largest live event drew only about 300 people. Danny Tran wanted to blow that out of the water, and not with another boring PMU conference. He wanted workshops and business combined, and he wanted it to be the largest PMU event in the country.",
+      "This was the first PMU World. The brand was only seven months old, with no attendee list and no past footage to market with, and Danny had never run an event this size. We had five months to build it.",
+    ],
+    approach: [
+      "Ran teaser videos while the venue was still being secured, building curiosity before there was anything to buy. When they landed, ticket sales jumped from 100 to over 300 overnight.",
+      "Secured the Seminole Hard Rock Hotel & Casino Hollywood, the Guitar Hotel, on one of the most popular weekends of the year.",
+      "Ran two stages at once like a music festival: one for business, one for practice, so attendees could learn and do on site. Added a sponsor hall and a VIP area.",
+      "Built more than 16 interactive installations ourselves, made for selfies and content, after South Florida installation companies could not produce what we needed.",
+    ],
+    challengesOvercome: [
+      "Nobody believed in this event. Danny ran a marketing agency in an industry that is mostly women, and many doubted a man could pull it off. No permanent makeup event had ever been attempted at this size, and the brand was only seven months old, with no attendee list and no past footage to show.",
+      "So the event had to prove itself before anyone could see it. Teaser videos built the story while the venue was still being secured, and when they landed, ticket sales jumped from 100 to over 300 overnight. By the event, more than 800 people were on site, against a projection of 600.",
+    ],
+    scope: [
+      ["Coordination", "Planning and coordination from first concept to the last day."],
+      ["Production", "Two stages run at once, one for business and one for practice."],
+      ["Content", "Teaser videos and event content."],
+      ["Installations", "More than 16 interactive installations, built in house."],
+      ["Attendees", "Attendee management."],
+      ["Negotiations", "Venue and vendor negotiations, saving $148,000 off contracts."],
+      ["Sponsors", "Sponsorship management and the sponsor hall."],
+      ["Speakers", "Speaker management."],
+      ["Post", "Post production content."],
+    ],
+    metrics: { attendance: "800+", productionDays: null, costSaved: "$148,000" },
+    highlights: [
+      ["800+", "Attendees on site, against 600 projected"],
+      ["#1", "Largest PMU event in North America"],
+      ["$148K", "Saved off contracts"],
+    ],
+    results: [
+      "More than 800 attendees were on site, against a projection of 600, making it the largest PMU event in North America. Seven months earlier the brand did not exist.",
+      "Attendees loved the two stage format and left wanting to come back next year.",
+    ],
+    rightFor: "Female beauty entrepreneurs and salon owners in an underserved niche, and the founders who serve a niche like that and want to give it an event of its own.",
+    stealThis: [
+      "The riches are in the niches. PMU World could have been a beauty world or a beauty con, and it would have been too wide. Focusing on permanent makeup, a corner of the beauty industry many people do not even know exists, made a room built for one group of people, where they felt at home and every session and piece of content was made for them.",
+      "Sell the story before the venue is signed. Teaser videos that ran while the Hard Rock was still being secured took ticket sales from 100 to over 300 overnight.",
+    ],
+    details: {
+      client: "Danny Tran",
+      clientTitle: "Founder and CEO, Highstoke Media",
+      venue: "Seminole Hard Rock Hotel & Casino",
+      city: "Hollywood",
+      region: "FL",
+      year: "2023",
+      dates: null,
+    },
+    media: {
+      // TODO(confirm): photographer credit and usage rights. Aftermovie link to come.
+      hero: { src: "/images/gallery/pmuw-2023/02.webp", alt: "Organizers and speakers behind giant PMU WORLD letters in front of the full ballroom at PMU World 2023, the Seminole Hard Rock Hotel & Casino in Hollywood, Florida" },
+      challenge: { src: "/images/gallery/pmuw-2023/18.webp", alt: "An attendee asking a question into a microphone during a session at PMU World 2023, the Seminole Hard Rock Hotel & Casino in Hollywood, Florida" },
+      band: { src: "/images/gallery/pmuw-2023/03.webp", alt: "Two speakers on the main stage facing a packed, darkened ballroom at PMU World 2023, the Seminole Hard Rock Hotel & Casino in Hollywood, Florida" },
+      resultLeft: { src: "/images/gallery/pmuw-2023/19.webp", alt: "A hands on practice session, an artist working on a training mannequin at PMU World 2023, the Seminole Hard Rock Hotel & Casino in Hollywood, Florida" },
+      resultRight: { src: "/images/gallery/pmuw-2023/04.webp", alt: "Attendees dancing and celebrating on the ballroom floor at PMU World 2023, the Seminole Hard Rock Hotel & Casino in Hollywood, Florida" },
+      gallery: [
+        { src: "/images/gallery/pmuw-2023/05.webp", alt: "A crowd of attendees posing together at the evening party at PMU World 2023, the Seminole Hard Rock Hotel & Casino in Hollywood, Florida" },
+        { src: "/images/gallery/pmuw-2023/08.webp", alt: "Attendees filling the pool deck at sunset at PMU World 2023, the Seminole Hard Rock Hotel & Casino in Hollywood, Florida" },
+        { src: "/images/gallery/pmuw-2023/13.webp", alt: "An attendee listening under purple stage light at PMU World 2023, the Seminole Hard Rock Hotel & Casino in Hollywood, Florida" },
+        { src: "/images/gallery/pmuw-2023/16.webp", alt: "Attendees on their feet at their tables during the general session at PMU World 2023, the Seminole Hard Rock Hotel & Casino in Hollywood, Florida" },
+        { src: "/images/gallery/pmuw-2023/17.webp", alt: "Attendees taking notes at their tables at PMU World 2023, the Seminole Hard Rock Hotel & Casino in Hollywood, Florida" },
+        { src: "/images/gallery/pmuw-2023/20.webp", alt: "Attendees cheering a guest walking through the ballroom at PMU World 2023, the Seminole Hard Rock Hotel & Casino in Hollywood, Florida" },
+        { src: "/images/gallery/pmuw-2023/07.webp", alt: "Attendees dancing at the party at PMU World 2023, the Seminole Hard Rock Hotel & Casino in Hollywood, Florida" },
+        { src: "/images/gallery/pmuw-2023/12.webp", alt: "A group of attendees relaxing poolside at PMU World 2023, the Seminole Hard Rock Hotel & Casino in Hollywood, Florida" },
+        { src: "/images/gallery/pmuw-2023/15.webp", alt: "Attendees filming the stage from the floor at PMU World 2023, the Seminole Hard Rock Hotel & Casino in Hollywood, Florida" },
+      ],
+      aftermovieUrl: null,
+      testimonialUrl: null,
+    },
+    testimonial: { quote: null, approved: false },
+    citation:
+      "Iconic Events, a Florida based event production and coordination company, produced the first PMU World for Danny Tran of Highstoke Media at the Seminole Hard Rock Hotel & Casino in Hollywood, Florida in April 2023, delivering coordination, production, content, installation buildout and attendee, sponsorship and speaker management for more than 800 attendees.",
+  },
+
+  // Source: docs/case-studies/Case-Study-Interviews.xlsx, approved by Iconic.
+  {
+    slug: "pmuw-2024",
+    name: "PMU World 2024",
+    headline: "How PMU World Grew to 1,237 Attendees in Year Two by Making the Room Smaller",
+    cta: "Want year two to beat year one?",
+    summary:
+      "For year two of PMU World, Danny Tran wanted an elegant sponsor hall and a room where sponsors got real value. We halved the room, cut to one stage, opened a sponsor hall and a new expo floor sold in smaller packages, and turned the ballrooms into compliant stations for live tattoo workshops. When a tropical storm delayed shipments, backup vendors lined up a week earlier kept everything on schedule, down to badges reprinted at a local print shop. Attendance grew to 1,237 over three days in August 2024.",
+    challenge: [
+      "Year one proved PMU World could fill a room. Year two had to make that room work harder. Danny Tran wanted an elegant sponsor hall and an event where sponsors got real value, without losing what attendees loved.",
+      "The rules changed too. New Florida requirements meant an ASL interpreter request and registration rules for the live tattoo workshops, on top of a bigger crowd.",
+    ],
+    approach: [
+      "Halved the size of the room and went from two stages to one, with one major sponsor hall beside it.",
+      "Sold smaller sponsorship packages, so more brands could buy in, and used that room to open a new expo floor.",
+      "Covered the ballroom floors end to end in visqueen plastic, turning them into temporary, near medical grade stations for the live tattoo workshops.",
+      "Started sourcing backup local vendors a week out, the moment a tropical storm appeared on the forecast, and made the virtual options far more deliberate for attendees the storm might keep at home.",
+    ],
+    challengesOvercome: [
+      "An ASL interpreter request would have broken the budget. Instead we turned on a real time caption service on the event livestream, which the attendee could follow from the crowd. It met the accommodation and cost Danny nothing.",
+      "A tropical storm came out of nowhere. Because backup vendors were already lined up a week out, delayed shipments did not stop the event, and attendees held back by the storm still had a deliberate way to take part virtually. When the badges did not arrive, a local vinyl print shop printed them on a different cardstock, on time and still with the luxury feel.",
+    ],
+    scope: [
+      ["Floor plan", "The room halved, one stage, a sponsor hall and a new expo floor."],
+      ["Sponsorship", "Smaller sponsorship packages, so more brands could buy in."],
+      ["Compliance", "Visqueen floors and stations for the live tattoo workshops under new Florida rules."],
+      ["Access", "A real time caption service on the livestream for the ASL request."],
+      ["Contingency", "Backup local vendors and virtual options ahead of a tropical storm."],
+      ["Badges", "Badges reprinted at a local vinyl print shop when shipments were delayed."],
+      ["Production", "Production and on site execution."],
+    ],
+    metrics: { attendance: "1,237", productionDays: "3", costSaved: null },
+    highlights: [
+      ["1,237", "Attendees, up from 800+ in year one"],
+      ["1", "Stage, focused, with a full expo floor beside it"],
+    ],
+    results: [
+      "PMU World grew to 1,237 attendees in its second year, up from more than 800 in 2023. Attendees enjoyed the new expo floor more than the old format, sponsors got better value from a single, focused hall, and the event felt more dynamic for everyone in it.",
+    ],
+    rightFor: "Female beauty entrepreneurs and salon owners in an underserved niche, and the founders who serve a niche like that, along with any conference or expo that wants its sponsors and its attendees to both come out ahead.",
+    stealThis: [
+      "Sell year two with year one. A soft launch in December used a teaser cut from the 2023 footage, so the event sold on proof instead of promises.",
+      "Sell next year in the room. Pre-sale tickets for 2025 went on sale at the 2024 event itself, while attendees were at their most convinced.",
+    ],
+    details: {
+      client: "Danny Tran",
+      clientTitle: "Founder and CEO, Highstoke Media",
+      venue: "Seminole Hard Rock Hotel & Casino",
+      city: "Hollywood",
+      region: "FL",
+      year: "2024",
+      dates: null,
+    },
+    media: {
+      // TODO(collect): photos, aftermovie and testimonial links to come from Iconic.
+      hero: null,
+      challenge: null,
+      band: null,
+      resultLeft: null,
+      resultRight: null,
+      gallery: [],
+      aftermovieUrl: null,
+      testimonialUrl: null,
+    },
+    testimonial: { quote: null, approved: false },
+    citation:
+      "Iconic Events, a Florida based event production and coordination company, produced PMU World 2024 for Danny Tran of Highstoke Media at the Seminole Hard Rock Hotel & Casino in Hollywood, Florida in August 2024, delivering a single stage show with a sponsor hall and new expo floor, compliant live tattoo workshop stations and storm contingency planning for 1,237 attendees.",
+  },
+
+  // Source: docs/case-studies/Case-Study-Interviews.xlsx, approved by Iconic.
+  {
+    slug: "pmuw-2025",
+    name: "PMU World 2025",
+    headline: "How PMU World Reached 2,000 Attendees in Year Three by Building the Event for Social",
+    cta: "Want an event that keeps selling after it ends?",
+    summary:
+      "For year three of PMU World, Danny Tran wanted the event to live on social media as much as in the room. We hired red carpet hosts, built social first installations and put an editor on site for daily recaps and sponsor testimonial cuts, all recorded in 4K. Focusing the show on one main stage saved $140,000 on AV and made room for more sponsor booths. Over four days in September 2025, 1,500 people came in person and 500 joined virtually, and about 130 rooms for the 2026 cruise were booked within a week.",
+    challenge: [
+      "By year three, PMU World had the room and the sponsors. Danny Tran wanted the event to travel further than the room: less straight event footage, more social content that attendees and creators would actually post.",
+    ],
+    approach: [
+      "Returned to the Seminole Hard Rock Hotel & Casino Hollywood for a third year.",
+      "Hired red carpet hosts to turn arrivals into content.",
+      "Built more installations designed to be shared on social media.",
+      "Put an editor on site to cut daily recap videos, and gave sponsors testimonial cuts for their own decks. Every session was recorded in 4K.",
+      "Focused the show on one main stage, saving $140,000 on AV, and traded the VIP lounge for more sponsor booths.",
+      "Moved the closing party to the Hard Rock's own pool areas.",
+    ],
+    challengesOvercome: null,
+    scope: [
+      ["Social", "Social content strategy and red carpet hosts."],
+      ["Installations", "Installations designed to be shared on social media."],
+      ["Content", "An on site editor for daily recaps, sponsor testimonial cuts and 4K recording."],
+      ["Layout", "One main stage, saving $140,000 on AV, and more sponsor booths in place of the VIP lounge."],
+      ["Closing party", "The closing party on the Hard Rock's own pool areas."],
+      ["Production", "Production and on site execution."],
+    ],
+    metrics: { attendance: "1,500", productionDays: "4", costSaved: "$140,000" },
+    highlights: [
+      ["1,500", "Attendees in person"],
+      ["500", "Attendees virtual"],
+      ["$140K", "Saved on AV"],
+    ],
+    results: [
+      "PMU World reached 1,500 attendees in person and 500 more virtually in its third year. The daily recaps, sponsor testimonial cuts and 4K recordings gave the event a life well beyond the room.",
+      "Within a week of the show, about 130 rooms were already booked for the 2026 PMU World cruise.",
+    ],
+    rightFor: "Founders in permanent makeup and the neighboring corners of the beauty industry, who want an event that lives on social media as much as in the room.",
+    stealThis: [
+      "Hire red carpet hosts. Arrival becomes a moment worth posting, and the event's social content starts before the first session does.",
+    ],
+    details: {
+      client: "Danny Tran",
+      clientTitle: "Founder and CEO, Highstoke Media",
+      venue: "Seminole Hard Rock Hotel & Casino",
+      city: "Hollywood",
+      region: "FL",
+      year: "2025",
+      dates: null,
+    },
+    media: {
+      // TODO(collect): photos, aftermovie and testimonial links to come from Iconic.
+      hero: null,
+      challenge: null,
+      band: null,
+      resultLeft: null,
+      resultRight: null,
+      gallery: [],
+      aftermovieUrl: null,
+      testimonialUrl: null,
+    },
+    testimonial: { quote: null, approved: false },
+    citation:
+      "Iconic Events, a Florida based event production and coordination company, produced PMU World 2025 for Danny Tran of Highstoke Media at the Seminole Hard Rock Hotel & Casino in Hollywood, Florida in September 2025, delivering social content strategy, red carpet hosts, social first installations, on site editing and 4K recording for 1,500 attendees in person and 500 virtually.",
+  },
 ]
 
 /* Every event, in the order Iconic keeps them. This drives the grid at
@@ -666,9 +885,9 @@ export const EVENT_INDEX = [
   { slug: "creator-hub-madrid", name: "Creator Hub Madrid", client: "Universal Music Group", when: "2025", location: "Madrid, Spain", venue: null, size: null, full: false },
   { slug: "freedom-queen-live-2024", name: "Freedom Queen Live 2024", client: "Bridget James Ling", when: "2024-11", location: "St. Petersburg, FL", venue: "The Vinoy", size: "451", full: true },
   { slug: "freedom-queen-live-2025", name: "Freedom Queen Live 2025", client: "Bridget James Ling", when: "2025-11", location: "St. Petersburg, FL", venue: "The Vinoy", size: "530", full: true },
-  { slug: "pmuw-2023", name: "PMUW 2023", client: "Danny Tran", when: "2023-04", location: null, venue: null, size: null, full: false },
-  { slug: "pmuw-2024", name: "PMUW 2024", client: "Danny Tran", when: "2024", location: null, venue: null, size: null, full: false },
-  { slug: "pmuw-2025", name: "PMUW 2025", client: "Danny Tran", when: "2025", location: null, venue: null, size: null, full: false },
+  { slug: "pmuw-2023", name: "PMU World 2023", client: "Danny Tran", when: "2023-04", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "800+", full: true },
+  { slug: "pmuw-2024", name: "PMU World 2024", client: "Danny Tran", when: "2024-08", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "1,237", full: true },
+  { slug: "pmuw-2025", name: "PMU World 2025", client: "Danny Tran", when: "2025-09", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "1,500", full: true },
   { slug: "net-rev-summit-2026", name: "Net Rev Summit 2026", client: "Ambro Dipilato", when: "2026-05", location: "Marana, AZ", venue: "Ritz-Carlton Dove Mountain", size: null, full: false },
   { slug: "decentralized-masters-live", name: "Decentralized Masters Live", client: "Tan and Salim", when: "2026", location: null, venue: null, size: null, full: false },
   { slug: "fast-start-forum-2024", name: "Fast Start Forum 2024", client: "Tom Wall", when: "2024", location: null, venue: null, size: null, full: false },
