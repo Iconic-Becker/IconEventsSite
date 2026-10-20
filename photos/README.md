@@ -232,8 +232,11 @@ logo. Deleting a gallery after its 30 trash days deletes the prefix.
 the title plus a random six character suffix (`smith-gala-x7k2qd`), shown
 with a copy button. It is not guessable and nothing lists it.
 
-**Add photos.** On the Photos tab drop a folder. Subfolders become albums,
-loose files go to the Photos album, `.txt` and RAW files are skipped. Keep
+**Add photos.** On the Photos tab drop one or more folders. The folder a
+photo sits in becomes its album, so three folders dropped together make
+three albums, and an event folder with sub-folders makes one album per
+sub-folder. Files dropped without a folder go to the Photos album. `.txt`
+and RAW files are skipped. Keep
 the tab open until "Uploaded N files" appears; processing then continues on
 the server and thumbnails fill in. Drop the same folder again at any time
 to add files or finish an interrupted upload.
@@ -300,8 +303,9 @@ The prompt left these to the builder; here is what was chosen and why.
      git push git@github.com:Iconic-Becker/iconic-photos.git iconic-photos:main
      ```
      and point the Railway service at it with no root directory.
-- **Default album.** Files dropped at the root of the folder land in an
-  album named "Photos". Empty albums are hidden from guests.
+- **Albums from folders.** The folder a photo sits in is its album name,
+  whatever the depth. Files dropped with no folder land in "Photos". Empty
+  albums are hidden from guests.
 - **Default order.** Capture time then filename. New uploads append after
   anything you reordered by hand.
 - **Highlights** is virtual: starred photos stay in their albums and also

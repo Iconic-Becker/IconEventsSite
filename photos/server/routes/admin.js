@@ -330,9 +330,10 @@ admin.delete(
 
 async function albumForPath(galleryId, relPath, cache) {
   const parts = relPath.split("/").filter(Boolean)
-  // Browsers include the dropped folder itself as the first segment, so
-  // "Event/Keynote/x.jpg" is album Keynote and "Event/x.jpg" is loose.
-  const folder = parts.length >= 3 ? parts[1] : null
+  // The folder a photo sits in is its album: "Day 1/x.jpg" is album Day 1,
+  // "Event/Keynote/x.jpg" is album Keynote, and a loose file with no folder
+  // goes to Photos. Dropping several folders at once gives one album each.
+  const folder = parts.length >= 2 ? parts[parts.length - 2] : null
   const name = folder ? folder.trim().slice(0, 80) : "Photos"
   if (cache.has(name)) return cache.get(name)
   let slug = slugify(name) || "album"

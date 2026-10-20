@@ -99,7 +99,7 @@ export function UploadZone({ galleryId, target = "album", onProgress, compact, h
       >
         <UploadCloud className="u-accent mb-3" size={compact ? 24 : 32} />
         <div className={compact ? "text-sm" : "text-base"}>{target === "reel" ? "Drop a video to feature it" : "Drop a folder of photos here"}</div>
-        <div className="mt-1 max-w-md text-xs u-muted">{hint || (target === "reel" ? "MP4 or MOV. It becomes a featured reel with its own share page." : "Subfolders become albums. Loose files go to the Photos album. JPEG and video only, no RAW. Re-drop the same folder any time to resume, add files, or replace re-edited ones.")}</div>
+        <div className="mt-1 max-w-md text-xs u-muted">{hint || (target === "reel" ? "MP4 or MOV. It becomes a featured reel with its own share page." : "Each folder becomes an album with the folder's name, so drop one folder per album, or a whole event folder with sub-folders. Files not in a folder go to Photos. JPEG and video only, no RAW. Re-drop any time to resume, add files, or replace re-edited ones.")}</div>
         <div className="mt-4 flex flex-wrap justify-center gap-2">
           {target !== "reel" && (
             <button className="btn btn-sm" onClick={() => folderInput.current.click()}>
