@@ -230,3 +230,7 @@ create table if not exists website_exports (
   finished_at timestamptz
 );
 create index if not exists website_exports_gallery_idx on website_exports(gallery_id, id desc);
+
+-- migration: 008 photos sent to the website
+alter table media add column if not exists website_sent_at timestamptz;
+alter table media add column if not exists website_path text;

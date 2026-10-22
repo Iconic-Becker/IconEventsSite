@@ -58,6 +58,8 @@ export async function serializeMedia(m, { admin = false } = {}) {
       error: m.error,
       trashedAt: m.trashed_at,
       createdAt: m.created_at,
+      websiteSentAt: m.website_sent_at,
+      websitePath: m.website_path,
       derivativeSizes: Object.fromEntries(Object.entries(d).map(([k, v]) => [k, v.size || null])),
     })
   }

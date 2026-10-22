@@ -67,9 +67,11 @@ assert(ex2.status === "done" && ex2.files[0].number === "01", `second export ${e
 const idx2 = Buffer.from((await (await fetch(`${gh}/repos/Acme/site/contents/src/case-studies.js?ref=${ex2.branch}`, { headers: { Authorization: "Bearer test-token" } })).json()).content, "base64").toString()
 assert(/"pmu-world-at-sea": \{ folder: "pmu-world-at-sea", count: 1, name: "Scaling with Systems LIVE 2021" \},\n\}/.test(idx2), `new entry missing: ${idx2}`)
 
-// The gallery remembers the folder for next time.
+// The gallery remembers the folder for next time, and sent photos are marked.
 const g2 = (await (await api.get(`/api/admin/galleries/${galleryId}`)).json()).gallery
 assert(g2.settings.websiteFolder === "pmu-world-at-sea", "folder not remembered")
+const marked = g2.media.filter((m) => m.websiteSentAt)
+assert(marked.length === 3 && marked.every((m) => /^public\/images\/gallery\/.+\/\d\d\.webp$/.test(m.websitePath)), `marked ${marked.length} ${marked.map((m) => m.websitePath)}`)
 
 // Browser: the button, the sheet, the pull request link.
 const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" })
@@ -99,6 +101,18 @@ await page.waitForSelector('a:has-text("Open the pull request")', { timeout: 900
 await page.screenshot({ path: `${out}/site-done.png` })
 const href = await page.getAttribute('a:has-text("Open the pull request")', "href")
 assert(/\/pull\/3$/.test(href), `pr link ${href}`)
+// The admin-only "On the website" list shows every sent photo, newest first.
+await page.click('button:has-text("Close")')
+await page.click('button:has-text("On the website")')
+await page.waitForSelector("h2:has-text('On the website')")
+const shown = await page.locator(tile).count()
+assert(shown === 3, `on the website shows ${shown}`)
+const siteMarks = await page.locator(`${tile} span:has-text("Site")`).count()
+assert(siteMarks === 3, `site marks ${siteMarks}`)
+await page.screenshot({ path: `${out}/site-list.png` })
+// Attendees never see it: the guest album list has no such album.
+const guest = await (await api.get(`/api/g/${gallery.slug}`)).json()
+assert(!guest.albums.some((a) => /website/i.test(a.name)), "guest sees a website album")
 assert(!errors.length, `console errors: ${errors.join(" | ")}`)
 await browser.close()
 console.log("PASS  Send to website: validation, numbering after existing files, thumbs, index bumped and added, folder remembered, UI flow with PR link")

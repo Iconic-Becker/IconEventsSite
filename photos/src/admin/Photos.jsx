@@ -7,21 +7,30 @@ import { UploadZone } from "./Uploader.jsx"
 import { useEditor } from "./GalleryEditor.jsx"
 import { useCanDelete } from "./AdminApp.jsx"
 
+// A view, not an album: every photo sent to the website, newest first. Only
+// the admin sees it, so attendees' albums stay exactly as arranged.
+const WEBSITE = "website"
+
 export function PhotosTab() {
   const { gallery, setGallery, reload, setUploading } = useEditor()
   const canDelete = useCanDelete()
   const albums = gallery.albumRows
   const [albumId, setAlbumId] = useState(albums[0]?.id)
+  const sentMedia = useMemo(
+    () => gallery.media.filter((m) => m.websiteSentAt).sort((a, b) => (a.websiteSentAt < b.websiteSentAt ? 1 : a.websiteSentAt > b.websiteSentAt ? -1 : String(a.websitePath).localeCompare(String(b.websitePath)))),
+    [gallery.media],
+  )
+  const onWebsite = albumId === WEBSITE
   useEffect(() => {
-    if (!albums.find((a) => a.id === albumId)) setAlbumId(albums[0]?.id)
-  }, [albums, albumId])
+    if (albumId === WEBSITE ? !sentMedia.length : !albums.find((a) => a.id === albumId)) setAlbumId(albums[0]?.id)
+  }, [albums, albumId, sentMedia.length])
   const [selected, setSelected] = useState(() => new Set())
   const [moveOpen, setMoveOpen] = useState(false)
   const [moveNew, setMoveNew] = useState("")
   const [siteOpen, setSiteOpen] = useState(false)
   const [newAlbum, setNewAlbum] = useState("")
-  const media = useMemo(() => gallery.media.filter((m) => m.albumId === albumId), [gallery.media, albumId])
-  const album = albums.find((a) => a.id === albumId)
+  const media = useMemo(() => (albumId === WEBSITE ? sentMedia : gallery.media.filter((m) => m.albumId === albumId)), [gallery.media, albumId, sentMedia])
+  const album = albumId === WEBSITE ? { id: WEBSITE, name: "On the website" } : albums.find((a) => a.id === albumId)
   const counts = useMemo(() => {
     const c = {}
     for (const m of gallery.media) if (m.albumId) c[m.albumId] = (c[m.albumId] || 0) + 1
@@ -127,7 +136,7 @@ export function PhotosTab() {
   const onDrop = async () => {
     const ids = order?.map((m) => m.id)
     setDragIds(null)
-    if (!ids) return
+    if (!ids || onWebsite) return
     await post(`/api/admin/albums/${albumId}/reorder`, { ids })
     reload()
   }
@@ -153,6 +162,15 @@ export function PhotosTab() {
               <AlbumRow key={a.id} album={a} count={counts[a.id] || 0} active={a.id === albumId} onSelect={() => { setAlbumId(a.id); clear() }} first={i === 0} last={i === albums.length - 1} albums={albums} />
             ))}
           </ul>
+          {sentMedia.length > 0 && (
+            <ul className="mt-2 border u-line">
+              <li className={`flex items-center ${onWebsite ? "bg-[var(--bg-3)]" : ""}`}>
+                <button className="flex flex-1 items-center gap-2 px-3 py-2 text-left text-sm" onClick={() => { setAlbumId(WEBSITE); clear() }} title="Every photo sent to iconic.events. Only you see this list.">
+                  <Globe size={14} className="shrink-0" /> On the website <span className="ml-auto text-xs u-muted">{sentMedia.length}</span>
+                </button>
+              </li>
+            </ul>
+          )}
           <form onSubmit={addAlbum} className="mt-2 flex gap-2">
             <input className="field !py-2 text-sm" placeholder="New album" value={newAlbum} onChange={(e) => setNewAlbum(e.target.value)} />
             <button className="btn btn-sm" disabled={!newAlbum.trim()} aria-label="Add album">
@@ -189,12 +207,18 @@ export function PhotosTab() {
         <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
           <div>
             <h2 className="font-title-serif text-2xl">{album?.name}</h2>
-            <div className="text-xs u-muted">{plural(media.length, "item")} · click to select, shift-click for a range, drag to reorder{dragIds?.length > 1 ? ` · moving ${dragIds.length}` : ""}</div>
+            <div className="text-xs u-muted">
+              {onWebsite
+                ? `${plural(media.length, "photo")} sent to iconic.events, newest first. Only you see this list; each photo stays in its own album.`
+                : `${plural(media.length, "item")} · click to select, shift-click for a range, drag to reorder${dragIds?.length > 1 ? ` · moving ${dragIds.length}` : ""}`}
+            </div>
           </div>
           <div className="flex items-center gap-2">
-            <button className="btn btn-sm" onClick={() => post(`/api/admin/albums/${albumId}/sort-by-capture`).then((d) => setGallery(d.gallery))} title="Order by capture time, then filename">
-              <Clock size={14} /> Sort by time
-            </button>
+            {!onWebsite && (
+              <button className="btn btn-sm" onClick={() => post(`/api/admin/albums/${albumId}/sort-by-capture`).then((d) => setGallery(d.gallery))} title="Order by capture time, then filename">
+                <Clock size={14} /> Sort by time
+              </button>
+            )}
             {selected.size > 0 ? (
               <button className="btn btn-sm" onClick={clear}>Clear ({selected.size})</button>
             ) : (
@@ -217,7 +241,7 @@ export function PhotosTab() {
           </div>
         )}
 
-        {!media.length && <div className="border u-line p-16 text-center u-muted">This album is empty. Drop photos on the left, or move some here.</div>}
+        {!media.length && !onWebsite && <div className="border u-line p-16 text-center u-muted">This album is empty. Drop photos on the left, or move some here.</div>}
         <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6">
           {list.map((m) => (
             <MediaTile
@@ -227,7 +251,7 @@ export function PhotosTab() {
               onToggle={(e) => toggle(m.id, e)}
               isCover={gallery.cover?.id === m.id}
               isAlbumCover={album?.coverMediaId === m.id}
-              draggable
+              draggable={!onWebsite}
               onDragStart={() => onDragStart(m)}
               onDragOver={(e) => onDragOver(e, m.id)}
               onDrop={onDrop}
@@ -442,11 +466,12 @@ function AlbumRow({ album, count, active, onSelect, first, last, albums }) {
 export function MediaTile({ m, selected, onToggle, isCover, isAlbumCover, dragging, dragCount = 0, ...drag }) {
   const busy = ["uploading", "uploaded", "processing"].includes(m.status)
   return (
-    <div {...drag} className={`relative aspect-square cursor-pointer overflow-hidden select-none ${selected ? "ring-2 ring-[var(--accent)]" : ""} ${dragging ? "opacity-40" : ""}`} style={{ background: "var(--bg-3)" }} onClick={(e) => onToggle(e)} title={`${m.filename}${m.sizeBytes ? ` · ${formatBytes(m.sizeBytes)}` : ""}${m.error ? `\n${m.error}` : ""}`}>
+    <div {...drag} className={`relative aspect-square cursor-pointer overflow-hidden select-none ${selected ? "ring-2 ring-[var(--accent)]" : ""} ${dragging ? "opacity-40" : ""}`} style={{ background: "var(--bg-3)" }} onClick={(e) => onToggle(e)} title={`${m.filename}${m.sizeBytes ? ` · ${formatBytes(m.sizeBytes)}` : ""}${m.websitePath ? `\nOn the website: ${m.websitePath}` : ""}${m.error ? `\n${m.error}` : ""}`}>
       {dragCount > 0 && <span className="absolute top-1 left-1 z-10 bg-[#B89968] px-1.5 text-xs text-[#0E1312]">{dragCount}</span>}
       {m.thumb ? <img src={m.thumb} alt="" className="h-full w-full object-cover" loading="lazy" draggable={false} /> : <div className="flex h-full flex-col items-center justify-center gap-1 px-1 text-center text-[10px] u-muted">{m.status === "uploading" ? <><Clock size={16} /> waiting for upload</> : busy ? <><Loader2 className="animate-spin" size={16} /> processing</> : m.filename}</div>}
       {m.kind === "video" && <span className="absolute bottom-1 left-1 flex items-center gap-1 bg-black/60 px-1.5 py-0.5 text-[10px] text-white"><Play size={10} fill="currentColor" /> {formatDuration(m.duration)}</span>}
       {m.highlighted && <Star size={14} className="absolute top-1 left-1 text-[#B89968] drop-shadow" fill="#B89968" />}
+      {m.websiteSentAt && m.kind !== "video" && <span className="absolute bottom-1 left-1 flex items-center gap-1 bg-black/60 px-1.5 py-0.5 text-[10px] text-white" title="On the website"><Globe size={10} /> Site</span>}
       {isCover && <span className="absolute top-1 right-1 bg-[#B89968] px-1 text-[9px] uppercase text-[#0E1312]">Cover</span>}
       {isAlbumCover && !isCover && <span className="absolute top-1 right-1 bg-white/90 px-1 text-[9px] uppercase text-[#0E1312]">Album cover</span>}
       {(m.status === "failed" || m.status === "attention") && <span className={`absolute right-1 bottom-1 flex items-center gap-1 px-1 text-[9px] uppercase text-white ${m.status === "failed" ? "bg-red-700" : "bg-amber-600"}`}><AlertTriangle size={10} /> {m.status === "failed" ? "Failed" : "Check"}</span>}

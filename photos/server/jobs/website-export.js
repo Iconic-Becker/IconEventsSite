@@ -91,7 +91,7 @@ async function run(ex, dir) {
       const t = await image.clone().resize({ width: Math.min(w, full.info.width) }).webp({ quality: 82, effort: 5 }).toBuffer()
       files.push({ path: `${folderPath}/${num}-${w}.webp`, sha: await createBlob(t), bytes: t.length })
     }
-    summary.push({ number: num, filename: m.filename, mediaId: Number(m.id), width: full.info.width, height: full.info.height, bytes: full.data.length })
+    summary.push({ number: num, filename: m.filename, mediaId: Number(m.id), path: `${folderPath}/${num}.webp`, width: full.info.width, height: full.info.height, bytes: full.data.length })
   }
 
   // Register the folder in the site's photo library so /gallery and the
@@ -129,6 +129,8 @@ async function run(ex, dir) {
   ].join("\n")
   await commitFiles({ base, branch, message: `${title}\n\n${media.length} photo(s) into ${folderPath}/ with thumbnails.`, files: files.map((f) => ({ path: f.path, sha: f.sha })) })
   const pr = await openPull({ base, branch, title, body })
+  // Mark the photos so the admin's "On the website" view lists them.
+  for (const f of summary) await query("update media set website_sent_at = now(), website_path = $2 where id = $1", [f.mediaId, f.path])
   return { files: summary, pr, branch }
 }
 

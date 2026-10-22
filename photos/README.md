@@ -286,8 +286,11 @@ long edge, with 480 and 960 wide thumbnails) in
 `public/images/gallery/<folder>/` of the marketing site's repository,
 numbered after whatever the folder already holds, and the photo library
 index in `src/case-studies.js` is updated. It arrives as a pull request;
-nothing is live until it is merged. Needs `GITHUB_TOKEN` (see
-docs/OWNER-SETUP.md).
+nothing is live until it is merged. Sent photos get a small "Site" mark on
+their tile and are listed together under "On the website" below the album
+list, newest first. That list is a view for the admin only: the photos
+stay in their albums and attendees never see it. Needs `GITHUB_TOKEN`
+(see docs/OWNER-SETUP.md).
 
 **Favorites.** Each guest's picks with thumbnails, "Copy filenames" (comma
 separated, pastes into Lightroom's filter), and CSV.

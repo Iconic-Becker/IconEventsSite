@@ -461,7 +461,7 @@ async function takeOver(m) {
   const old = await one("select * from media where id = $1", [m.replaces_media_id])
   if (!old) return
   await withTransaction(async (c) => {
-    await c.query("update media set sort = $2, highlighted = $3 where id = $1", [m.id, old.sort, old.highlighted])
+    await c.query("update media set sort = $2, highlighted = $3, website_sent_at = $4, website_path = $5 where id = $1", [m.id, old.sort, old.highlighted, old.website_sent_at, old.website_path])
     await c.query("update galleries set cover_media_id = $2 where cover_media_id = $1", [old.id, m.id])
     await c.query("update albums set cover_media_id = $2 where cover_media_id = $1", [old.id, m.id])
     await c.query(
