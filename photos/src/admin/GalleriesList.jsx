@@ -43,7 +43,7 @@ export function GalleriesList() {
               <th className="px-4 py-3 text-right">Size</th>
               <th className="px-4 py-3 text-right">Views</th>
               <th className="px-4 py-3 text-right">Downloads</th>
-              <th className="px-4 py-3 text-right">Favorites</th>
+              <th className="px-4 py-3 text-right" title="Photos hearted, and how many guests left an email">Favorites / guests</th>
               <th className="px-4 py-3">Link</th>
             </tr>
           </thead>
