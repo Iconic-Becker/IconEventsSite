@@ -204,6 +204,7 @@ function GalleryView({ albumSlug }) {
       onToggleFavorites={() => navigate(favoritesView ? `/${slug}` : `/${slug}/favorites`)}
       onDownloadAll={() => setSheet("download")}
       onAllAlbums={() => setSheet("albums")}
+      banner={<SponsorBanner gallery={gallery} />}
     />
   )
 
@@ -261,7 +262,6 @@ function GalleryView({ albumSlug }) {
       {overview ? (
         <>
           <Cover gallery={gallery} onEnter={enter} style={{ height: "min(100svh, 1100px)", minHeight: 560 }} />
-          <SponsorBanner gallery={gallery} />
           <ReelsSection gallery={gallery} />
           <AlbumOverview gallery={gallery} albums={albums} />
           <div ref={contentRef} style={{ scrollMarginTop: 0 }}>
@@ -279,7 +279,6 @@ function GalleryView({ albumSlug }) {
             </Link>
             {gallery.clientLogo ? <img src={gallery.clientLogo} alt="" className="h-7 w-auto max-w-[120px] object-contain" /> : <img alt="Iconic Events" className="h-6 w-auto opacity-90" style={{ content: "var(--logo)" }} />}
           </header>
-          <SponsorBanner gallery={gallery} />
           <div ref={contentRef}>
             {bar}
             {gridSection}

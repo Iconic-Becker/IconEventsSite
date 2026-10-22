@@ -48,7 +48,7 @@ export function AlbumOverview({ gallery, albums }) {
 }
 
 // Pinned while browsing: scrollable chips, arrows on desktop, "All albums".
-export function AlbumBar({ gallery, albums, current, favoritesCount, favoritesOn, onToggleFavorites, onDownloadAll, onAllAlbums }) {
+export function AlbumBar({ gallery, albums, current, favoritesCount, favoritesOn, onToggleFavorites, onDownloadAll, onAllAlbums, banner }) {
   const scroller = useRef()
   const [canLeft, setCanLeft] = useState(false)
   const [canRight, setCanRight] = useState(false)
@@ -130,6 +130,7 @@ export function AlbumBar({ gallery, albums, current, favoritesCount, favoritesOn
           <Download size={18} />
         </button>
       </div>
+      {banner}
     </div>
   )
 }
@@ -197,7 +198,8 @@ export function NextAlbumCard({ gallery, next }) {
   )
 }
 
-// A sponsor strip: one line of text and a link that opens in a new tab.
+// A sponsor strip in brass, pinned under the album bar so it stays in
+// view while the guest scrolls. One line of text and a link in a new tab.
 export function SponsorBanner({ gallery }) {
   const { track } = useGallery()
   const b = gallery.settings?.banner
@@ -208,11 +210,11 @@ export function SponsorBanner({ gallery }) {
       target="_blank"
       rel="noopener sponsored"
       onClick={() => track("banner_click")}
-      className="group flex items-center justify-center gap-3 border-y px-4 py-3 text-center text-sm transition-colors hover:bg-[var(--bg-2)]"
-      style={{ borderColor: "var(--accent)" }}
+      className="flex flex-wrap items-center justify-center gap-x-3 gap-y-0.5 px-4 py-2 text-center text-sm transition-colors hover:brightness-110"
+      style={{ background: "var(--color-brass)", color: "var(--color-onyx)" }}
     >
-      <span className="u-fg2">{b.text}</span>
-      <span className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap text-[11px] tracking-[0.18em] uppercase u-accent">
+      <span>{b.text}</span>
+      <span className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap border-b border-[#0E1312]/60 text-[11px] font-bold tracking-[0.18em] uppercase">
         {b.cta || "Learn more"} <ExternalLink size={12} />
       </span>
     </a>

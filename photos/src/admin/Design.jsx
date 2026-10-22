@@ -183,7 +183,7 @@ export function DesignTab() {
           <Field label="Intro line"><textarea className="field" rows={2} value={draft.intro} onChange={(e) => set("intro", e.target.value)} /></Field>
           <div className="space-y-2 border-t u-line pt-4">
             <div className="label">Sponsor banner</div>
-            <p className="text-xs u-muted">A one-line strip under the cover and on every album page, linking out. Leave the text empty for no banner. Clicks are counted in Analytics.</p>
+            <p className="text-xs u-muted">A brass strip pinned under the album bar on every page, linking out. Leave the text empty for no banner. Clicks are counted in Analytics.</p>
             <input className="field" placeholder="From our main sponsor Highstoke: claim your free Growth Plan call" value={draft.settings.banner?.text || ""} onChange={(e) => setS("banner", { ...(draft.settings.banner || {}), text: e.target.value })} />
             <div className="grid grid-cols-[1fr_2fr] gap-2">
               <input className="field" placeholder="Link text (Learn more)" value={draft.settings.banner?.cta || ""} onChange={(e) => setS("banner", { ...(draft.settings.banner || {}), cta: e.target.value })} />
