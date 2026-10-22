@@ -23,14 +23,14 @@ export function LinksTab() {
     setTimeout(() => setCopied(null), 1500)
   }
   const setLinks = (links) => setGallery({ ...gallery, links })
-  const albumNames = (ids) => (ids ? albums.filter((a) => ids.includes(a.id)).map((a) => a.name).join(", ") : "All albums")
+  const albumNames = (ids) => (ids ? albums.filter((a) => ids.includes(a.id)).map((a) => a.name).join(", ") : albums.some((a) => a.isPrivate) ? "All public albums" : "All albums")
 
   return (
     <div className="max-w-4xl space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h2 className="font-title-serif text-2xl">Share links</h2>
-          <p className="mt-1 max-w-xl text-sm u-muted">The main link shows every album. Add a link to share only some albums, for example a public link without the private albums, or a sponsor link with just their session. Each link can have its own password.</p>
+          <p className="mt-1 max-w-xl text-sm u-muted">The main link shows every public album. Mark an album private on the Photos tab (the lock icon) to keep it off the main link; it then appears only on links that pick it, like a client or crew link. Each link can have its own password.</p>
         </div>
         <button className="btn btn-solid" onClick={() => setEditing("new")}>
           <Plus size={14} /> New link
@@ -40,7 +40,7 @@ export function LinksTab() {
       <div className="divide-y u-line border u-line">
         <Row
           name="Main link"
-          detail={`All albums${gallery.reels.length ? " and reels" : ""}`}
+          detail={`${albumNames(null)}${gallery.reels.length ? " and reels" : ""}`}
           url={gallery.url}
           locked={gallery.hasPassword}
           copied={copied === "main"}
@@ -146,7 +146,7 @@ function LinkSheet({ link, albums, counts, gallery, onClose, onSaved }) {
         <div>
           <div className="label">Albums</div>
           <label className="mb-2 flex items-center gap-2 text-sm">
-            <input type="checkbox" checked={all} onChange={(e) => setAll(e.target.checked)} /> All albums, including ones added later
+            <input type="checkbox" checked={all} onChange={(e) => setAll(e.target.checked)} /> All public albums, including ones added later
           </label>
           {!all && (
             <div className="max-h-56 space-y-1 overflow-y-auto border u-line p-2">
@@ -154,6 +154,7 @@ function LinkSheet({ link, albums, counts, gallery, onClose, onSaved }) {
                 <label key={a.id} className="flex items-center justify-between gap-2 px-1 py-1 text-sm">
                   <span className="flex items-center gap-2">
                     <input type="checkbox" checked={ids.has(a.id)} onChange={() => toggle(a.id)} /> {a.name}
+                    {a.isPrivate && <span className="text-[10px] tracking-[0.14em] uppercase u-muted">private</span>}
                   </span>
                   <span className="text-xs u-muted">{plural(counts[a.id] || 0, "photo")}</span>
                 </label>

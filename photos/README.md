@@ -254,6 +254,11 @@ grid style and density, and the cover animation. The live preview switches
 between phone and desktop and is the real cover component. Changes save as
 you go. A gallery with none of this set still opens on its first photo.
 
+**Private albums.** Hover an album on the Photos tab and click the lock.
+A private album is left out of the main link and of links set to "all
+albums"; it shows only on links that pick it by name, which is how a crew
+or client album stays off the public gallery.
+
 **Links.** The main link and any extra links, each with a copy button.
 "New link" picks albums (or all, including albums added later), whether
 reels show, and an optional password. Edit or delete a link at any time;

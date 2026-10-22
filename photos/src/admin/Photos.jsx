@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react"
-import { Star, Trash2, FolderInput, Image as ImageIcon, RefreshCw, ArrowUp, ArrowDown, Pencil, Check, X, Plus, Clock, AlertTriangle, Loader2, Play, GripVertical } from "lucide-react"
+import { Star, Trash2, FolderInput, Image as ImageIcon, RefreshCw, ArrowUp, ArrowDown, Pencil, Check, X, Plus, Clock, AlertTriangle, Loader2, Play, GripVertical, Lock, Unlock } from "lucide-react"
 import { patch, post, del } from "../shared/api.js"
 import { Field, Sheet } from "../shared/ui.jsx"
 import { formatBytes, formatDuration, plural } from "../shared/format.js"
@@ -145,7 +145,7 @@ export function PhotosTab() {
               <Plus size={14} />
             </button>
           </form>
-          <p className="mt-2 text-xs u-muted">Highlights is filled by starring photos. Star a few of the best and guests see them first.</p>
+          <p className="mt-2 text-xs u-muted">Highlights is filled by starring photos. Star a few of the best and guests see them first. Hover an album for rename, order, private and delete; a private album stays off the main link and appears only on links that pick it.</p>
         </div>
       </aside>
 
@@ -301,10 +301,14 @@ function AlbumRow({ album, count, active, onSelect, first, last, albums }) {
       ) : (
         <>
           <button className="flex flex-1 items-center justify-between px-3 py-2 text-left text-sm" onClick={onSelect}>
-            <span className="truncate">{album.name}</span>
+            <span className="flex min-w-0 items-center gap-1.5">
+              <span className="truncate">{album.name}</span>
+              {album.isPrivate && <Lock size={11} className="shrink-0 u-muted" title="Private: shown only on links that pick it" />}
+            </span>
             <span className="ml-2 text-xs u-muted">{count}</span>
           </button>
           <div className="flex opacity-0 group-hover:opacity-100 focus-within:opacity-100">
+            <button className="icon-btn !h-8 !w-7" onClick={() => patch(`/api/admin/albums/${album.id}`, { isPrivate: !album.isPrivate }).then((d) => setGallery(d.gallery))} aria-label={album.isPrivate ? "Make public" : "Make private"} title={album.isPrivate ? "Private. Click to show it on the main link again." : "Public. Click to hide it from the main link; it then shows only on links that pick it."}>{album.isPrivate ? <Unlock size={12} /> : <Lock size={12} />}</button>
             <button className="icon-btn !h-8 !w-7" onClick={() => setEditing(true)} aria-label="Rename"><Pencil size={12} /></button>
             <button className="icon-btn !h-8 !w-7" onClick={() => move(-1)} disabled={first} aria-label="Move up"><ArrowUp size={12} /></button>
             <button className="icon-btn !h-8 !w-7" onClick={() => move(1)} disabled={last} aria-label="Move down"><ArrowDown size={12} /></button>

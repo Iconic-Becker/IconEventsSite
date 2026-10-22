@@ -47,6 +47,17 @@ export function linkAlbumIds(link) {
   return link?.album_ids?.length ? link.album_ids.map(Number) : null
 }
 
+// The albums a viewer of this gallery or link may see, always as a list:
+// a link that names albums shows exactly those (private ones included);
+// the main link and "all albums" links show every album that is not
+// private.
+export async function visibleAlbumIds(gallery, link) {
+  const explicit = linkAlbumIds(link)
+  if (explicit) return explicit
+  const rows = await many("select id from albums where gallery_id = $1 and not is_private", [gallery.id])
+  return rows.map((r) => r.id)
+}
+
 // Hidden galleries are reachable only by signed-in admins (for preview).
 export async function canSee(req, g) {
   if (g.visible) return true
@@ -147,7 +158,7 @@ export async function reelsOf(galleryId, { includePrivate = true } = {}) {
 
 export async function serializeGallery(g, { admin = false, link = null } = {}) {
   const s = settingsOf(g)
-  const ids = linkAlbumIds(link)
+  const ids = admin ? null : await visibleAlbumIds(g, link)
   const albums = await albumsOf(g.id, ids)
   const highlights = await highlightsAlbum(g.id, ids)
   // No cover chosen: the first photo stands in, so a gallery with no

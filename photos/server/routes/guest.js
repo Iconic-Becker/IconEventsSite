@@ -10,7 +10,7 @@ import { storage } from "../storage/index.js"
 import { serializeAll, serializeMedia, downloadKey } from "../lib/media.js"
 import { zipEntries, zipStream } from "../lib/zip.js"
 import { enqueue, poke } from "../jobs/queue.js"
-import { loadBySlug, isUnlocked, canSee, unlockCookieName, unlockToken, serializeGallery, lockedGallery, reelsOf, linkAlbumIds } from "../lib/gallery.js"
+import { loadBySlug, isUnlocked, canSee, unlockCookieName, unlockToken, serializeGallery, lockedGallery, reelsOf, visibleAlbumIds } from "../lib/gallery.js"
 
 export const guest = Router()
 
@@ -22,7 +22,7 @@ guest.use(
     if (!found || !(await canSee(req, found.gallery))) throw notFound("This gallery does not exist or is no longer available")
     req.gallery = found.gallery
     req.link = found.link
-    req.albumIds = linkAlbumIds(found.link)
+    req.albumIds = await visibleAlbumIds(found.gallery, found.link)
     req.unlocked = isUnlocked(req, found.gallery, found.link)
     next()
   }),

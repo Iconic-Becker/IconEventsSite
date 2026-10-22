@@ -9,6 +9,8 @@ import { useCanDelete } from "./AdminApp.jsx"
 export function SettingsTab() {
   const { gallery, setGallery } = useEditor()
   const [pw, setPw] = useState("")
+  const [title, setTitle] = useState(gallery.title)
+  const [eventDate, setEventDate] = useState(gallery.eventDate || "")
   const [msg, setMsg] = useState(null)
   const [jobs, setJobs] = useState([])
   const navigate = useNavigate()
@@ -25,6 +27,22 @@ export function SettingsTab() {
   const flagged = gallery.media.filter((m) => m.status === "failed" || m.status === "attention")
   return (
     <div className="max-w-2xl space-y-8">
+      <section className="space-y-3">
+        <h2 className="font-title-serif text-2xl">Name and date</h2>
+        <form
+          className="grid gap-3 sm:grid-cols-[1fr_auto_auto] sm:items-end"
+          onSubmit={(e) => {
+            e.preventDefault()
+            if (!title.trim()) return
+            save({ title: title.trim(), eventDate: eventDate || null }, "Renamed")
+          }}
+        >
+          <Field label="Gallery title"><input className="field" value={title} onChange={(e) => setTitle(e.target.value)} /></Field>
+          <Field label="Event date"><input className="field" type="date" value={eventDate} onChange={(e) => setEventDate(e.target.value)} /></Field>
+          <button className="btn btn-solid" disabled={!title.trim() || (title.trim() === gallery.title && (eventDate || "") === (gallery.eventDate || ""))}>Rename</button>
+        </form>
+        <p className="text-xs u-muted">The link stays the same when you rename, so anything already shared keeps working.</p>
+      </section>
       <section className="space-y-3">
         <h2 className="font-title-serif text-2xl">Visibility</h2>
         <label className="flex items-center gap-3 text-sm">

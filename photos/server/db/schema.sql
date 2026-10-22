@@ -198,3 +198,8 @@ alter table users add constraint users_role_check check (role in ('owner', 'edit
 -- A replacement upload remembers which item it stands in for; the old one
 -- is trashed when the new file lands.
 alter table media add column if not exists replaces_media_id bigint references media(id) on delete set null;
+
+-- migration: 005 private albums
+-- A private album is left out of the main link and of links set to "all
+-- albums"; it shows only on links that pick it by name.
+alter table albums add column if not exists is_private boolean not null default false;

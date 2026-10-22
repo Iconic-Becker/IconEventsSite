@@ -184,7 +184,7 @@ async function fullGallery(id) {
   const out = await serializeGallery(g, { admin: true })
   const media = await many("select * from media where gallery_id = $1 and trashed_at is null order by album_id nulls last, sort, captured_at nulls last, filename, id", [g.id])
   out.media = await serializeAll(media, { admin: true })
-  out.albumRows = await many("select id, name, slug, sort, cover_media_id as \"coverMediaId\" from albums where gallery_id = $1 order by sort, id", [g.id])
+  out.albumRows = await many("select id, name, slug, sort, cover_media_id as \"coverMediaId\", is_private as \"isPrivate\" from albums where gallery_id = $1 order by sort, id", [g.id])
   out.url = `${config.publicUrl}/${g.slug}`
   out.trash = await serializeAll(await many("select * from media where gallery_id = $1 and trashed_at is not null order by trashed_at desc", [g.id]), { admin: true })
   out.links = await linksOf(g.id)
@@ -563,9 +563,10 @@ admin.patch(
       coverMediaId = b.coverMediaId ? int(b.coverMediaId) : null
       if (coverMediaId && !(await one("select 1 from media where id = $1 and gallery_id = $2", [coverMediaId, a.gallery_id]))) throw bad("Cover must be from this gallery")
     }
+    const isPrivate = b.isPrivate !== undefined ? Boolean(b.isPrivate) : a.is_private
     // Renaming keeps the slug: album links already shared must not break.
-    await query("update albums set name = $2, cover_media_id = $3 where id = $1", [a.id, name, coverMediaId])
-    if (name !== a.name) await bump(a.gallery_id)
+    await query("update albums set name = $2, cover_media_id = $3, is_private = $4 where id = $1", [a.id, name, coverMediaId, isPrivate])
+    if (name !== a.name || isPrivate !== a.is_private) await bump(a.gallery_id)
     res.json({ gallery: await fullGallery(a.gallery_id) })
   }),
 )
