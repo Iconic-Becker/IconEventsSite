@@ -95,6 +95,7 @@ async function bootstrapOwner() {
 
 async function main() {
   console.log(`[boot] node ${process.version}, port ${config.port}, storage ${config.storageDriver}, database ${config.databaseUrl ? "set" : "MISSING"}`)
+  console.log(`[boot] send to website: ${config.website.token ? `on, pull requests go to ${config.website.repo}` : "off (GITHUB_TOKEN is not set in this service's variables)"}`)
   await migrate()
   await bootstrapOwner()
   loadTemplate()
