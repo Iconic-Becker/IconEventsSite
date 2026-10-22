@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import { Link } from "react-router-dom"
-import { ChevronLeft, ChevronRight, LayoutGrid, Heart, Download, Search, ArrowRight, Images } from "lucide-react"
+import { ChevronLeft, ChevronRight, LayoutGrid, Heart, Download, Search, ArrowRight, Images, ExternalLink } from "lucide-react"
+import { useGallery } from "./state.jsx"
 import { Sheet } from "../shared/ui.jsx"
 import { plural } from "../shared/format.js"
 
@@ -193,5 +194,27 @@ export function NextAlbumCard({ gallery, next }) {
         <ArrowRight size={32} className="shrink-0 text-[#B89968] transition-transform group-hover:translate-x-2" />
       </div>
     </Link>
+  )
+}
+
+// A sponsor strip: one line of text and a link that opens in a new tab.
+export function SponsorBanner({ gallery }) {
+  const { track } = useGallery()
+  const b = gallery.settings?.banner
+  if (!b?.text || !b?.url) return null
+  return (
+    <a
+      href={b.url}
+      target="_blank"
+      rel="noopener sponsored"
+      onClick={() => track("banner_click")}
+      className="group flex items-center justify-center gap-3 border-y px-4 py-3 text-center text-sm transition-colors hover:bg-[var(--bg-2)]"
+      style={{ borderColor: "var(--accent)" }}
+    >
+      <span className="u-fg2">{b.text}</span>
+      <span className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap text-[11px] tracking-[0.18em] uppercase u-accent">
+        {b.cta || "Learn more"} <ExternalLink size={12} />
+      </span>
+    </a>
   )
 }

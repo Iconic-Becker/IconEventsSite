@@ -61,6 +61,7 @@ export const DEFAULT_SETTINGS = {
   density: "comfortable", // comfortable | compact
   animation: "fade", // fade | zoom | none
   align: "center", // center | left: logo and text on the cover
+  banner: null, // { text, cta, url } sponsor strip under the cover and on album pages
   focal: { x: 0.5, y: 0.5 },
   mosaicIds: [],
   coverVideoId: null,

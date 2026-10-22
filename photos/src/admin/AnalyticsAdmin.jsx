@@ -29,6 +29,7 @@ export function AnalyticsTab() {
         <Tile label="Lightbox opens" value={t.lightbox} />
         <Tile label="Downloads" value={Number(t.social) + Number(t.full) + Number(t.zips)} sub={`${t.social} social · ${t.full} full · ${t.zips} zip`} />
         <Tile label="Reel plays" value={t.reel_plays} sub={`${t.reel_completes} watched to 90% · ${t.reel_shares} shares · ${t.reel_downloads} downloads`} />
+        {gallery.settings?.banner?.text && <Tile label="Sponsor banner clicks" value={t.banner_clicks} sub={gallery.settings.banner.cta} />}
       </div>
       {data.perDay.length > 0 && (
         <div>

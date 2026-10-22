@@ -252,6 +252,15 @@ admin.patch(
       if (b.settings.coverVideoId !== undefined) {
         settings.coverVideoId = b.settings.coverVideoId ? int(b.settings.coverVideoId) : null
       }
+      if (b.settings.banner !== undefined) {
+        const bn = b.settings.banner
+        if (!bn || !str(bn.text, 200)) settings.banner = null
+        else {
+          const url = str(bn.url, 500)
+          if (!/^https?:\/\//i.test(url)) throw bad("The banner link must start with http:// or https://")
+          settings.banner = { text: str(bn.text, 200), cta: str(bn.cta, 60) || "Learn more", url }
+        }
+      }
     }
     let passwordHash = g.password_hash
     let passwordVersion = g.password_version
@@ -875,7 +884,8 @@ admin.get(
          count(*) filter (where type = 'reel_play') as reel_plays,
          count(*) filter (where type = 'reel_complete') as reel_completes,
          count(*) filter (where type = 'reel_share') as reel_shares,
-         count(*) filter (where type = 'reel_download') as reel_downloads
+         count(*) filter (where type = 'reel_download') as reel_downloads,
+         count(*) filter (where type = 'banner_click') as banner_clicks
        from events where gallery_id = $1`,
       [g.id],
     )

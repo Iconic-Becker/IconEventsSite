@@ -15,6 +15,7 @@ export const EVENT_TYPES = new Set([
   "reel_complete",
   "reel_share",
   "reel_download",
+  "banner_click",
 ])
 
 export function visitorHash(req) {
