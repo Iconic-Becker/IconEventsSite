@@ -24,8 +24,8 @@ March 24, March 31, 2026); summaries are excerpts:
   Fontainebleau Miami Beach): city to confirm.
 - Tiered tickets: Standard, Gold and Platinum, with reflective silver
   Platinum badges and lanyards by tier.
-- A yacht is part of the program. A Presidential Suite gathering with a
-  Spanish tapas station chosen to minimize food allergy risk.
+- A Presidential Suite gathering with a Spanish tapas station chosen to
+  minimize food allergy risk.
 - Saturday Mediterranean lunch, Sunday Mexican lunch.
 - An event playbook locked as the single source of truth the week of the
   event.
@@ -79,6 +79,23 @@ Fontainebleau Miami Beach confirmed. Cost saved: $51,000 in attrition
 fees (replaces "about $70,000").
 
 ## Q3. Three to five decisions, and why
+
+User, 2026-10-22, verbatim (one sentence about the yacht removed at
+Iconic's request):
+
+> Well, I think there was a couple things. The first thing was our ability
+> to pivot really quickly. But I think in terms of like the group to the
+> attendees, what was a big element was that we actually rented out the
+> Fountain Blue's presidential suite, which was cool because we found a way,
+> negotiated and worked with the hotel to get this suite that normally cost
+> $22,000 a night down to only $16,000 a night, which was a big win. That
+> allowed us to have our opening mixer for the VIPs at the penthouse, which
+> offered ocean views and surrounding scenic for the entire city, which was
+> a huge win. [Yacht: Iconic asked that it not be mentioned.]
+
+Captured: the yacht is never mentioned on the page or in these notes.
+Presidential Suite negotiated from $22,000 to $16,000 a night; VIP
+opening mixer there with ocean and city views. Fast pivots.
 
 ## Q4. Challenges overcome
 
