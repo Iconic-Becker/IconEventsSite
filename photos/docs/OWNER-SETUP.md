@@ -73,6 +73,16 @@ repositories). Pick one:
    and `R2 bucket iconic-photos: CORS updated` (or the warning telling you
    to add CORS by hand; see step 1.3).
 
+### If a build fails with no error in the logs
+
+Railway occasionally loses its builder a few seconds into a build. The
+deploy shows "Failed to build an image" with nothing useful in Build
+Logs, and the failed entry has no Redeploy option. The live site keeps
+running the previous version. Push any commit to `main` to start a fresh
+build, or in the project press Cmd+K (Ctrl+K on Windows) and choose
+Redeploy for the photos service. A build that fails twice with a real
+error in the logs is something to fix in the code.
+
 ## 4. DNS
 
 1. Railway service, Settings, **Networking**, **Custom Domain**, enter
