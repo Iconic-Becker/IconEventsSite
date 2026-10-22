@@ -66,6 +66,18 @@ contractual hotel commitments, saving about $70,000. Names: "Dan" and
 
 ## Q2. What made this one hard?
 
+User, 2026-10-22, verbatim (facts):
+
+> Tan & Salim Co Founders of decentralized masters 
+>
+> Yes venue 
+>
+> It was 51,000 in attrition fees they would have has to otherwise pay
+
+Captured: Tan and Salim, co-founders of Decentralized Masters.
+Fontainebleau Miami Beach confirmed. Cost saved: $51,000 in attrition
+fees (replaces "about $70,000").
+
 ## Q3. Three to five decisions, and why
 
 ## Q4. Challenges overcome
@@ -80,10 +92,10 @@ contractual hotel commitments, saving about $70,000. Names: "Dan" and
 
 - Attendance:
 - Days of production on site:
-- Cost saved for the client: about $70,000 (Eden Roc waived hotel commitments)
-- Venue, city, month, year: Fontainebleau (Miami Beach?), late March 2026
+- Cost saved for the client: $51,000 in hotel attrition fees, waived by the Eden Roc
+- Venue, city, month, year: Fontainebleau Miami Beach, Miami Beach, FL, late March 2026
 - Scope:
-- Client name, title, company: Tan and Salim, Decentralized Masters (full names, titles?)
+- Client name, title, company: Tan and Salim, co-founders, Decentralized Masters
 - Aftermovie:
 - Testimonial video:
 - Photo folder / photographer / usage rights:
