@@ -1062,6 +1062,7 @@ export const PHOTO_LIBRARY = {
   "takeover-live-2": { folder: "takeover-live-2", count: 22 },
   "ceo-lawyer-summit": { folder: "the-ceo-lawyer-summit-2021", count: 23 },
   "the-ceo-lawyer-summit-2022": { folder: "the-ceo-lawyer-summit-2022", count: 50 },
+  "pmuw-atsea": { folder: "pmuw-atsea", count: 1 },
 }
 
 /* Every file in a PHOTO_LIBRARY folder, in Iconic's order. Numbering is
