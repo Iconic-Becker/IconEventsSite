@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react"
-import { Star, Trash2, FolderInput, Image as ImageIcon, RefreshCw, ArrowUp, ArrowDown, Pencil, Check, X, Plus, Clock, AlertTriangle, Loader2, Play, GripVertical, Lock, Unlock } from "lucide-react"
-import { patch, post, del } from "../shared/api.js"
-import { Field, Sheet } from "../shared/ui.jsx"
+import { Star, Trash2, FolderInput, Image as ImageIcon, RefreshCw, ArrowUp, ArrowDown, Pencil, Check, X, Plus, Clock, AlertTriangle, Loader2, Play, GripVertical, Lock, Unlock, Globe, ExternalLink } from "lucide-react"
+import { get, patch, post, del } from "../shared/api.js"
+import { Field, Sheet, Notice } from "../shared/ui.jsx"
 import { formatBytes, formatDuration, plural } from "../shared/format.js"
 import { UploadZone } from "./Uploader.jsx"
 import { useEditor } from "./GalleryEditor.jsx"
@@ -18,6 +18,7 @@ export function PhotosTab() {
   const [selected, setSelected] = useState(() => new Set())
   const [moveOpen, setMoveOpen] = useState(false)
   const [moveNew, setMoveNew] = useState("")
+  const [siteOpen, setSiteOpen] = useState(false)
   const [newAlbum, setNewAlbum] = useState("")
   const media = useMemo(() => gallery.media.filter((m) => m.albumId === albumId), [gallery.media, albumId])
   const album = albums.find((a) => a.id === albumId)
@@ -208,6 +209,7 @@ export function PhotosTab() {
             <button className="btn btn-sm" onClick={() => bulk("star")}><Star size={14} /> Star</button>
             <button className="btn btn-sm" onClick={() => bulk("unstar")}>Unstar</button>
             <button className="btn btn-sm" onClick={() => setMoveOpen(true)}><FolderInput size={14} /> Move</button>
+            <button className="btn btn-sm" onClick={() => setSiteOpen(true)} title="Open a pull request on iconic.events with these photos"><Globe size={14} /> Send to website</button>
             {selected.size === 1 && <button className="btn btn-sm" onClick={() => setCover([...selected][0])}><ImageIcon size={14} /> Gallery cover</button>}
             {selected.size === 1 && <button className="btn btn-sm" onClick={() => setAlbumCover([...selected][0])}>Album cover</button>}
             <button className="btn btn-sm" onClick={() => bulk("reprocess")}><RefreshCw size={14} /> Reprocess</button>
@@ -251,6 +253,8 @@ export function PhotosTab() {
         )}
       </section>
 
+      <SendToWebsite open={siteOpen} onClose={() => setSiteOpen(false)} gallery={gallery} ids={(order || media).filter((m) => selected.has(m.id)).map((m) => m.id)} onSent={clear} />
+
       <Sheet open={moveOpen} onClose={() => setMoveOpen(false)} title={`Move ${plural(selected.size, "photo")} to`}>
         <ul className="space-y-1">
           {albums.filter((a) => a.id !== albumId).map((a) => (
@@ -283,6 +287,101 @@ export function PhotosTab() {
         </form>
       </Sheet>
     </div>
+  )
+}
+
+// Selected photos become a pull request on the marketing site: converted
+// to the site's WebP sizes, numbered into one folder per event, with the
+// photo library index updated. Nothing is live until the pull request is
+// merged, so there is no way to break the site from here.
+function SendToWebsite({ open, onClose, gallery, ids, onSent }) {
+  const [cfg, setCfg] = useState(null)
+  const [folder, setFolder] = useState("")
+  const [job, setJob] = useState(null)
+  const [error, setError] = useState(null)
+  const [busy, setBusy] = useState(false)
+  const photoIds = useMemo(() => ids.filter((id) => gallery.media.find((m) => m.id === id && m.kind === "photo" && m.status === "ready")), [ids, gallery.media])
+  useEffect(() => {
+    if (!open) return
+    setJob(null)
+    setError(null)
+    setFolder(gallery.settings?.websiteFolder || gallery.slug.replace(/-[a-z0-9]{6}$/, ""))
+    get("/api/admin/website/config").then(setCfg).catch((e) => setError(e.message))
+  }, [open, gallery.slug, gallery.settings?.websiteFolder])
+  // Poll until the pull request exists or the job gives up.
+  useEffect(() => {
+    if (!job || !["queued", "running"].includes(job.status)) return
+    const t = setTimeout(async () => {
+      try {
+        const { export: e } = await get(`/api/admin/website-exports/${job.id}`)
+        setJob(e)
+      } catch (e) {
+        setError(e.message)
+      }
+    }, 2000)
+    return () => clearTimeout(t)
+  }, [job])
+  const send = async (e) => {
+    e.preventDefault()
+    setBusy(true)
+    setError(null)
+    try {
+      const { export: ex } = await post(`/api/admin/galleries/${gallery.id}/website-exports`, { ids: photoIds, folder: folder.trim() })
+      setJob(ex)
+      onSent?.()
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setBusy(false)
+    }
+  }
+  const valid = /^[a-z0-9](?:[a-z0-9-]{0,78}[a-z0-9])?$/.test(folder.trim())
+  return (
+    <Sheet open={open} onClose={onClose} title="Send to website">
+      {cfg && !cfg.configured && (
+        <Notice>
+          Sending to the website is not set up yet. Add a <code>GITHUB_TOKEN</code> with access to {cfg.repo} to the Railway variables (see docs/OWNER-SETUP.md), then redeploy.
+        </Notice>
+      )}
+      {cfg?.configured && !job && (
+        <form onSubmit={send} className="space-y-4">
+          <p className="text-sm">
+            {plural(photoIds.length, "photo")} will be converted to the site's sizes and opened as a pull request on <strong>{cfg.repo}</strong>. Nothing is live until that pull request is merged.
+            {photoIds.length !== ids.length && <span className="u-muted"> {ids.length - photoIds.length} selected {ids.length - photoIds.length === 1 ? "item is" : "items are"} not finished photos and will be left out.</span>}
+          </p>
+          <Field label="Folder on the site" hint={`${cfg.imageDir}/<folder>/. One folder per event; photos are numbered after whatever is already there.`}>
+            <input className="field" value={folder} onChange={(e) => setFolder(e.target.value)} spellCheck={false} />
+          </Field>
+          {error && <Notice kind="error">{error}</Notice>}
+          <div className="flex justify-end gap-2">
+            <button type="button" className="btn btn-sm" onClick={onClose}>Cancel</button>
+            <button className="btn btn-solid btn-sm" disabled={busy || !valid || !photoIds.length || photoIds.length > cfg.maxPhotos}>
+              {busy ? <Loader2 size={14} className="animate-spin" /> : <Globe size={14} />} Send {plural(photoIds.length, "photo")}
+            </button>
+          </div>
+          {photoIds.length > cfg.maxPhotos && <p className="text-xs text-red-700">Send up to {cfg.maxPhotos} photos at a time.</p>}
+        </form>
+      )}
+      {job && (
+        <div className="space-y-4 text-sm">
+          {["queued", "running"].includes(job.status) && (
+            <p className="flex items-center gap-2"><Loader2 size={14} className="animate-spin" /> Converting {plural(job.count, "photo")} and opening the pull request. This takes a few seconds per photo.</p>
+          )}
+          {job.status === "done" && (
+            <>
+              <Notice kind="ok">Pull request opened with {plural(job.files.length, "photo")} in {cfg?.imageDir}/{job.folder}/ ({job.files[0]?.number} to {job.files[job.files.length - 1]?.number}).</Notice>
+              <a className="btn btn-solid btn-sm" href={job.prUrl} target="_blank" rel="noreferrer"><ExternalLink size={14} /> Open the pull request</a>
+              <p className="u-muted text-xs">Merge it on GitHub to put the photos on the site, and merge before sending more to the same folder so the numbering carries on. To use one on a case study page, reference it from the study's media.</p>
+            </>
+          )}
+          {job.status === "failed" && <Notice kind="error">Could not send: {job.error}</Notice>}
+          {error && <Notice kind="error">{error}</Notice>}
+          <div className="flex justify-end"><button type="button" className="btn btn-sm" onClick={onClose}>Close</button></div>
+        </div>
+      )}
+      {!cfg && !error && <p className="flex items-center gap-2 text-sm"><Loader2 size={14} className="animate-spin" /> Checking</p>}
+      {!cfg && error && <Notice kind="error">{error}</Notice>}
+    </Sheet>
   )
 }
 

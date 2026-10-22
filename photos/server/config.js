@@ -64,4 +64,16 @@ export const config = {
   // Set to the exact origins allowed to call the API from a browser. The
   // public URL is always allowed.
   extraOrigins: (env.EXTRA_ORIGINS || "").split(",").map((s) => s.trim()).filter(Boolean),
+  // "Send to website": selected photos go to the marketing site's repository
+  // as a pull request. Needs a GitHub token with contents and pull request
+  // access to that one repository, set in Railway variables only.
+  website: {
+    token: env.GITHUB_TOKEN,
+    repo: env.WEBSITE_REPO || "Iconic-Becker/IconEventsSite",
+    baseBranch: env.WEBSITE_BASE_BRANCH || null,
+    imageDir: (env.WEBSITE_IMAGE_DIR || "public/images/gallery").replace(/^\/|\/$/g, ""),
+    apiUrl: (env.GITHUB_API_URL || "https://api.github.com").replace(/\/$/, ""),
+    longEdge: Number(env.WEBSITE_LONG_EDGE || 2000),
+    maxPhotos: Number(env.WEBSITE_MAX_PHOTOS || 60),
+  },
 }

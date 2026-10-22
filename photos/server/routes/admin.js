@@ -9,6 +9,7 @@ import { storage, keys, safeName } from "../storage/index.js"
 import { kindFromName, contentTypeFor, serializeAll, serializeMedia } from "../lib/media.js"
 import { serializeGallery, DEFAULT_SETTINGS, RESERVED_ALBUM_SLUGS, toDateString } from "../lib/gallery.js"
 import { enqueue, poke, recoverStale } from "../jobs/queue.js"
+import { websiteConfigured } from "../lib/github.js"
 
 export const admin = Router()
 
@@ -976,6 +977,73 @@ admin.get(
     sendCsv(res, "iconic-photos-guests.csv", csv)
   }),
 )
+
+// ---- Send to website --------------------------------------------------------
+
+admin.get(
+  "/website/config",
+  route(async (req, res) => {
+    res.json({ configured: websiteConfigured(), repo: config.website.repo, imageDir: config.website.imageDir, maxPhotos: config.website.maxPhotos })
+  }),
+)
+
+admin.get(
+  "/galleries/:id/website-exports",
+  route(async (req, res) => {
+    const g = await loadAdminGallery(req.params.id)
+    res.json({ exports: await many("select * from website_exports where gallery_id = $1 order by id desc limit 20", [g.id]).then((r) => r.map(serializeExport)) })
+  }),
+)
+
+admin.post(
+  "/galleries/:id/website-exports",
+  route(async (req, res) => {
+    const g = await loadAdminGallery(req.params.id)
+    if (!websiteConfigured()) return res.status(409).json({ error: "Sending to the website is not set up on this server. Add GITHUB_TOKEN to the Railway variables." })
+    const folder = str(req.body?.folder, 80).trim().toLowerCase()
+    if (!/^[a-z0-9](?:[a-z0-9-]{0,78}[a-z0-9])?$/.test(folder)) return res.status(400).json({ error: "Folder names use lowercase letters, digits and hyphens." })
+    const ids = [...new Set((Array.isArray(req.body?.ids) ? req.body.ids : []).map((v) => int(v)).filter(Boolean))]
+    if (!ids.length) return res.status(400).json({ error: "Select at least one photo." })
+    if (ids.length > config.website.maxPhotos) return res.status(400).json({ error: `Send up to ${config.website.maxPhotos} photos at a time.` })
+    const ready = await many("select id from media where id = any($1::bigint[]) and gallery_id = $2 and trashed_at is null and kind = 'photo' and status = 'ready'", [ids, g.id])
+    const readyIds = new Set(ready.map((r) => Number(r.id)))
+    const sendIds = ids.filter((id) => readyIds.has(id))
+    if (!sendIds.length) return res.status(400).json({ error: "None of the selected items are finished photos. Videos cannot be sent." })
+    const row = await one(
+      "insert into website_exports(gallery_id, user_id, folder, media_ids) values ($1, $2, $3, $4) returning *",
+      [g.id, req.user.id, folder, JSON.stringify(sendIds)],
+    )
+    await query("update galleries set settings = settings || $2::jsonb where id = $1", [g.id, JSON.stringify({ websiteFolder: folder })])
+    await enqueue("website_export", { exportId: Number(row.id) })
+    poke()
+    res.json({ export: serializeExport(row), skipped: ids.length - sendIds.length })
+  }),
+)
+
+admin.get(
+  "/website-exports/:id",
+  route(async (req, res) => {
+    const row = await one("select * from website_exports where id = $1", [int(req.params.id)])
+    if (!row) return res.status(404).json({ error: "Not found" })
+    res.json({ export: serializeExport(row) })
+  }),
+)
+
+function serializeExport(r) {
+  return {
+    id: Number(r.id),
+    galleryId: Number(r.gallery_id),
+    folder: r.folder,
+    count: (r.media_ids || []).length,
+    status: r.status,
+    files: r.files || [],
+    prUrl: r.pr_url,
+    branch: r.branch,
+    error: r.error,
+    createdAt: r.created_at,
+    finishedAt: r.finished_at,
+  }
+}
 
 // ---- Jobs (for the dashboard) ----------------------------------------------
 

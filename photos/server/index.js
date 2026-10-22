@@ -17,6 +17,7 @@ import { galleryHtml, reelHtml, plainHtml, loadTemplate } from "./html.js"
 import { startWorker, releaseInFlight } from "./jobs/queue.js"
 import "./jobs/process-media.js"
 import "./jobs/zips.js"
+import "./jobs/website-export.js"
 
 const app = express()
 app.disable("x-powered-by")

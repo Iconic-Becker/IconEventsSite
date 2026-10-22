@@ -98,3 +98,24 @@ repositories). Pick one:
    and title appear.
 
 Then follow `docs/MIGRATION.md`.
+
+## 6. Send to website (optional)
+
+The Photos tab can send selected photos to iconic.events as a pull
+request on `Iconic-Becker/IconEventsSite`. It needs a GitHub token that
+can write to that one repository.
+
+1. GitHub, Settings, Developer settings, Personal access tokens,
+   Fine-grained tokens, Generate new token.
+2. Resource owner: Iconic-Becker. Repository access: Only select
+   repositories, pick IconEventsSite.
+3. Repository permissions: Contents, Read and write. Pull requests, Read
+   and write. Nothing else.
+4. Expiration: a year is fine; put a reminder in the calendar.
+5. Copy the token into Railway, the iconic-photos service, Variables, as
+   `GITHUB_TOKEN`. Never paste it anywhere else, including chat. Redeploy.
+
+Then in the admin: select photos, Send to website, confirm the folder
+name (one folder per event, defaults to the gallery's address), Send. A
+link to the pull request appears when it is ready. Merge it on GitHub and
+Railway deploys the site with the new photos on /gallery.

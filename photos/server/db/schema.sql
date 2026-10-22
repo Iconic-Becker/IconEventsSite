@@ -213,3 +213,20 @@ create table if not exists slug_aliases (
   link_id bigint references links(id) on delete cascade,
   created_at timestamptz not null default now()
 );
+
+-- migration: 007 website exports
+create table if not exists website_exports (
+  id bigserial primary key,
+  gallery_id bigint not null references galleries(id) on delete cascade,
+  user_id bigint references users(id) on delete set null,
+  folder text not null,
+  media_ids jsonb not null default '[]'::jsonb,
+  status text not null default 'queued' check (status in ('queued', 'running', 'done', 'failed')),
+  files jsonb not null default '[]'::jsonb,
+  pr_url text,
+  branch text,
+  error text,
+  created_at timestamptz not null default now(),
+  finished_at timestamptz
+);
+create index if not exists website_exports_gallery_idx on website_exports(gallery_id, id desc);

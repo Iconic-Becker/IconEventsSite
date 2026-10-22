@@ -192,6 +192,12 @@ migrations on boot, and sets the R2 CORS rule on boot if the token allows.
 | `URL_WINDOW_SECONDS` | no | media URL signing window, default 3600 |
 | `EXTRA_ORIGINS` | no | comma separated extra browser origins allowed to call the API |
 | `MARKETING_URL` | no | default `https://iconic.events` |
+| `GITHUB_TOKEN` | no | enables Send to website: a fine-grained token with Contents and Pull requests read/write on the site repository |
+| `WEBSITE_REPO` | no | default `Iconic-Becker/IconEventsSite` |
+| `WEBSITE_BASE_BRANCH` | no | branch the pull request targets; default the repository's default branch |
+| `WEBSITE_IMAGE_DIR` | no | default `public/images/gallery` |
+| `WEBSITE_LONG_EDGE` | no | longest side of the exported WebP, default 2000 |
+| `WEBSITE_MAX_PHOTOS` | no | photos per send, default 60 |
 | `NODE_ENV` | yes | `production` (the Dockerfile sets it) |
 
 ## R2 bucket and CORS
@@ -273,6 +279,15 @@ description (they become the link preview), choose where the 8 second
 cover clip starts, and copy the share link. In a password protected gallery
 a reel is private until you mark it **Public**; the toggle explains the
 effect.
+
+**Send to website.** Select photos on the Photos tab and click Send to
+website. Each becomes a WebP at the site's sizes (at most 2000px on the
+long edge, with 480 and 960 wide thumbnails) in
+`public/images/gallery/<folder>/` of the marketing site's repository,
+numbered after whatever the folder already holds, and the photo library
+index in `src/case-studies.js` is updated. It arrives as a pull request;
+nothing is live until it is merged. Needs `GITHUB_TOKEN` (see
+docs/OWNER-SETUP.md).
 
 **Favorites.** Each guest's picks with thumbnails, "Copy filenames" (comma
 separated, pastes into Lightroom's filter), and CSV.
@@ -421,3 +436,11 @@ server with Playwright. The run on 2026-10-19 passed 19 of 19 checks
 it measured. Screenshots land in the chosen output folder. Two items are
 limited by the environment and are listed under "Accepted trade-offs":
 real H.264 playback and real link unfurling.
+
+`scripts/verify/website-export.mjs` checks Send to website end to end
+against `scripts/verify/fake-github.mjs`, a stand-in for the GitHub API:
+start the fake on port 3999, start the app with `GITHUB_TOKEN=test-token
+WEBSITE_REPO=Acme/site GITHUB_API_URL=http://localhost:3999`, then run the
+script. It covers validation, numbering after existing files, thumbnails,
+the photo library index, and the admin flow through to the pull request
+link.

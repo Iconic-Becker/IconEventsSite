@@ -393,6 +393,9 @@ await check("Album navigation with a 25-album gallery", async () => {
   // Chips in the sticky bar; the "All albums" sheet with filter.
   await page.click('a:has-text("Dinner")')
   await page.waitForSelector("h2:has-text('Dinner')")
+  // The album's photos arrive after the heading; the page cannot scroll
+  // until they give it height.
+  await page.waitForSelector(".tile")
   await page.evaluate(() => window.scrollTo(0, 500))
   await sleep(300)
   const barTop = (await (await page.$(".sticky")).boundingBox()).y
