@@ -10,6 +10,9 @@ export function SettingsTab() {
   const { gallery, setGallery } = useEditor()
   const [pw, setPw] = useState("")
   const [title, setTitle] = useState(gallery.title)
+  const [slug, setSlug] = useState(gallery.slug)
+  const [slugErr, setSlugErr] = useState(null)
+  const host = (gallery.url || "").replace(/^https?:\/\//, "").replace(/\/[^/]*$/, "")
   const [eventDate, setEventDate] = useState(gallery.eventDate || "")
   const [msg, setMsg] = useState(null)
   const [jobs, setJobs] = useState([])
@@ -42,6 +45,32 @@ export function SettingsTab() {
           <button className="btn btn-solid" disabled={!title.trim() || (title.trim() === gallery.title && (eventDate || "") === (gallery.eventDate || ""))}>Rename</button>
         </form>
         <p className="text-xs u-muted">The link stays the same when you rename, so anything already shared keeps working.</p>
+      </section>
+      <section className="space-y-3">
+        <h2 className="font-title-serif text-2xl">Link address</h2>
+        <form
+          className="flex flex-wrap items-end gap-2"
+          onSubmit={async (e) => {
+            e.preventDefault()
+            setSlugErr(null)
+            try {
+              await save({ slug: slug.trim().toLowerCase() }, "Address changed")
+            } catch (ex) {
+              setSlugErr(ex.message)
+            }
+          }}
+        >
+          <label className="block min-w-0 flex-1">
+            <span className="label">Address</span>
+            <span className="flex items-center border u-line" style={{ background: "var(--bg-2)" }}>
+              <span className="shrink-0 pl-3 text-sm u-muted">{host}/</span>
+              <input className="field !border-0 !bg-transparent" value={slug} onChange={(e) => setSlug(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, "-"))} spellCheck={false} />
+            </span>
+          </label>
+          <button className="btn btn-solid" disabled={slug.trim() === gallery.slug || slug.trim().length < 3}>Change address</button>
+        </form>
+        {slugErr && <Notice kind="error">{slugErr}</Notice>}
+        <p className="text-xs u-muted">Lowercase letters, numbers and hyphens. The old address keeps working as well, so links already sent are safe. Short memorable addresses are guessable; use a password if the gallery is private.</p>
       </section>
       <section className="space-y-3">
         <h2 className="font-title-serif text-2xl">Visibility</h2>

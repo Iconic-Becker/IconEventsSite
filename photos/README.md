@@ -259,6 +259,10 @@ A private album is left out of the main link and of links set to "all
 albums"; it shows only on links that pick it by name, which is how a crew
 or client album stays off the public gallery.
 
+**Addresses.** Every gallery and link gets a random unguessable address.
+Settings (for the gallery) and the link's edit sheet let you pick your own,
+such as `/pmuworldatsea`. The old address keeps working as an alias.
+
 **Links.** The main link and any extra links, each with a copy button.
 "New link" picks albums (or all, including albums added later), whether
 reels show, and an optional password. Edit or delete a link at any time;

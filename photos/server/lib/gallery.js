@@ -20,8 +20,18 @@ export async function loadGallery(slug) {
 export async function loadBySlug(slug) {
   const g = await loadGallery(slug)
   if (g) return { gallery: g, link: null }
-  const link = await one("select * from links where slug = $1", [slug])
-  if (!link) return null
+  let link = await one("select * from links where slug = $1", [slug])
+  if (!link) {
+    // An old address kept as an alias after a rename.
+    const alias = await one("select * from slug_aliases where slug = $1", [slug])
+    if (!alias) return null
+    if (alias.link_id) link = await one("select * from links where id = $1", [alias.link_id])
+    else {
+      const ag = await one("select * from galleries where id = $1 and trashed_at is null", [alias.gallery_id])
+      return ag ? { gallery: ag, link: null } : null
+    }
+    if (!link) return null
+  }
   const gallery = await one("select * from galleries where id = $1 and trashed_at is null", [link.gallery_id])
   if (!gallery || !link.visible) return null
   return { gallery, link }

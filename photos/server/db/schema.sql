@@ -203,3 +203,13 @@ alter table media add column if not exists replaces_media_id bigint references m
 -- A private album is left out of the main link and of links set to "all
 -- albums"; it shows only on links that pick it by name.
 alter table albums add column if not exists is_private boolean not null default false;
+
+-- migration: 006 custom addresses
+-- Owners can rename a gallery's or a link's address. The old one is kept
+-- as an alias so links already shared keep working.
+create table if not exists slug_aliases (
+  slug text primary key,
+  gallery_id bigint references galleries(id) on delete cascade,
+  link_id bigint references links(id) on delete cascade,
+  created_at timestamptz not null default now()
+);

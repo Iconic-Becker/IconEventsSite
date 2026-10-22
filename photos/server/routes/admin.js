@@ -4,7 +4,7 @@ import { config } from "../config.js"
 import { route, bad, notFound, forbidden, str, int } from "../lib/http.js"
 import { hashPassword, checkPassword, startSession, endSession, requireUser, noContributor, ROLES, validPassword, normalizeEmail, validEmail } from "../lib/auth.js"
 import { rateLimit } from "../lib/ratelimit.js"
-import { gallerySlug, slugify, randomSuffix } from "../lib/slug.js"
+import { gallerySlug, slugify, randomSuffix, validSlug } from "../lib/slug.js"
 import { storage, keys, safeName } from "../storage/index.js"
 import { kindFromName, contentTypeFor, serializeAll, serializeMedia } from "../lib/media.js"
 import { serializeGallery, DEFAULT_SETTINGS, RESERVED_ALBUM_SLUGS, toDateString } from "../lib/gallery.js"
@@ -173,6 +173,16 @@ admin.post(
   }),
 )
 
+// A new address must be valid and not in use by any gallery, link or alias.
+async function claimSlug(slug, { galleryId = null, linkId = null } = {}) {
+  if (!validSlug(slug)) throw bad("Addresses use lowercase letters, numbers and hyphens, 3 to 60 characters, and cannot be a reserved word")
+  const taken =
+    (await one("select 1 from galleries where slug = $1 and id is distinct from $2", [slug, galleryId])) ||
+    (await one("select 1 from links where slug = $1 and id is distinct from $2", [slug, linkId])) ||
+    (await one("select 1 from slug_aliases where slug = $1 and gallery_id is distinct from $2 and link_id is distinct from $3", [slug, galleryId, linkId]))
+  if (taken) throw bad("That address is already in use")
+}
+
 async function loadAdminGallery(id) {
   const g = await one("select * from galleries where id = $1", [int(id)])
   if (!g) throw notFound("Gallery not found")
@@ -262,6 +272,14 @@ admin.patch(
         }
       }
     }
+    // Custom address. The old one becomes an alias so shared links live on.
+    let slug = g.slug
+    if (b.slug !== undefined && str(b.slug, 80).trim().toLowerCase() !== g.slug) {
+      slug = str(b.slug, 80).trim().toLowerCase()
+      await claimSlug(slug, { galleryId: g.id })
+      await query("delete from slug_aliases where slug = $1", [slug])
+      await query("insert into slug_aliases(slug, gallery_id) values ($1, $2) on conflict (slug) do update set gallery_id = excluded.gallery_id, link_id = null", [g.slug, g.id])
+    }
     let passwordHash = g.password_hash
     let passwordVersion = g.password_version
     if (b.password !== undefined) {
@@ -276,8 +294,8 @@ admin.patch(
     }
     await query(
       `update galleries set title = $2, subtitle = $3, event_date = $4, location = $5, intro = $6, visible = $7, cover_media_id = $8,
-         settings = $9, password_hash = $10, password_version = $11, updated_at = now() where id = $1`,
-      [g.id, fields.title, fields.subtitle, fields.event_date, fields.location, fields.intro, fields.visible, fields.cover_media_id, JSON.stringify(settings), passwordHash, passwordVersion],
+         settings = $9, password_hash = $10, password_version = $11, slug = $12, updated_at = now() where id = $1`,
+      [g.id, fields.title, fields.subtitle, fields.event_date, fields.location, fields.intro, fields.visible, fields.cover_media_id, JSON.stringify(settings), passwordHash, passwordVersion, slug],
     )
     res.json({ gallery: await fullGallery(g.id) })
   }),
@@ -787,8 +805,12 @@ admin.post(
   route(async (req, res) => {
     const g = await loadAdminGallery(req.params.id)
     const f = await linkFields(g, req.body || {})
-    let slug = gallerySlug(f.name ? `${g.title} ${f.name}` : g.title)
-    while ((await one("select 1 from galleries where slug = $1", [slug])) || (await one("select 1 from links where slug = $1", [slug]))) slug = gallerySlug(g.title)
+    let slug = str(req.body?.slug, 80).trim().toLowerCase()
+    if (slug) await claimSlug(slug)
+    else {
+      slug = gallerySlug(f.name ? `${g.title} ${f.name}` : g.title)
+      while ((await one("select 1 from galleries where slug = $1", [slug])) || (await one("select 1 from links where slug = $1", [slug])) || (await one("select 1 from slug_aliases where slug = $1", [slug]))) slug = gallerySlug(g.title)
+    }
     await query(
       "insert into links(gallery_id, slug, name, album_ids, include_reels, password_hash, password_version, visible) values ($1, $2, $3, $4, $5, $6, $7, $8)",
       [g.id, slug, f.name, f.albumIds, f.includeReels, f.passwordHash, f.passwordVersion, f.visible],
@@ -804,9 +826,16 @@ admin.patch(
     if (!l) throw notFound("Link not found")
     const g = await loadAdminGallery(l.gallery_id)
     const f = await linkFields(g, req.body || {}, l)
+    let slug = l.slug
+    if (req.body?.slug !== undefined && str(req.body.slug, 80).trim().toLowerCase() && str(req.body.slug, 80).trim().toLowerCase() !== l.slug) {
+      slug = str(req.body.slug, 80).trim().toLowerCase()
+      await claimSlug(slug, { linkId: l.id })
+      await query("delete from slug_aliases where slug = $1", [slug])
+      await query("insert into slug_aliases(slug, link_id) values ($1, $2) on conflict (slug) do update set link_id = excluded.link_id, gallery_id = null", [l.slug, l.id])
+    }
     await query(
-      "update links set name = $2, album_ids = $3, include_reels = $4, password_hash = $5, password_version = $6, visible = $7 where id = $1",
-      [l.id, f.name, f.albumIds, f.includeReels, f.passwordHash, f.passwordVersion, f.visible],
+      "update links set name = $2, album_ids = $3, include_reels = $4, password_hash = $5, password_version = $6, visible = $7, slug = $8 where id = $1",
+      [l.id, f.name, f.albumIds, f.includeReels, f.passwordHash, f.passwordVersion, f.visible, slug],
     )
     // Album changes make the link's cached zip stale.
     await query("delete from zips where link_id = $1", [l.id])

@@ -85,11 +85,7 @@ export function AlbumBar({ gallery, albums, current, favoritesCount, favoritesOn
   return (
     <div className="sticky top-0 z-40 border-b u-line backdrop-blur-md" style={{ background: "color-mix(in srgb, var(--bg) 88%, transparent)", paddingTop: "env(safe-area-inset-top)" }}>
       <div className="mx-auto flex h-14 max-w-[1600px] items-center gap-1 px-2 sm:px-4">
-        {/* On phones the header above already carries the title, so the
-            chips get the full width. */}
-        <Link to={`/${gallery.slug}`} className="hidden shrink-0 items-center pr-3 pl-1 sm:flex" aria-label="Gallery overview">
-          <span className="font-title-serif max-w-[220px] truncate text-lg">{gallery.title}</span>
-        </Link>
+        {/* The header above carries the title, so the bar is chips only. */}
         {canLeft && (
           <button className="icon-btn hidden shrink-0 sm:inline-flex" onClick={() => scrollBy(-320)} aria-label="Scroll albums left">
             <ChevronLeft size={18} />

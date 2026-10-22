@@ -108,6 +108,8 @@ function Row({ name, detail, url, locked, hidden, copied, onCopy, onEdit, onDele
 
 function LinkSheet({ link, albums, counts, gallery, onClose, onSaved }) {
   const [name, setName] = useState(link?.name || "")
+  const [slug, setSlug] = useState(link?.slug || "")
+  const host = (gallery.url || "").replace(/^https?:\/\//, "").replace(/\/[^/]*$/, "")
   const [all, setAll] = useState(!link || link.albumIds === null)
   const [ids, setIds] = useState(() => new Set(link?.albumIds || albums.map((a) => a.id)))
   const [includeReels, setIncludeReels] = useState(link ? link.includeReels : true)
@@ -127,6 +129,7 @@ function LinkSheet({ link, albums, counts, gallery, onClose, onSaved }) {
     setErr(null)
     try {
       const body = { name, albumIds: all ? null : [...ids], includeReels }
+      if (slug.trim()) body.slug = slug.trim().toLowerCase()
       if (password) body.password = password
       else if (clearPassword) body.password = null
       const d = link ? await patch(`/api/admin/links/${link.id}`, body) : await post(`/api/admin/galleries/${gallery.id}/links`, body)
@@ -143,6 +146,14 @@ function LinkSheet({ link, albums, counts, gallery, onClose, onSaved }) {
         <Field label="Name" hint="For your own reference, for example Public, Client or Sponsor. Guests do not see it.">
           <input className="field" autoFocus value={name} onChange={(e) => setName(e.target.value)} placeholder="Public" />
         </Field>
+        <label className="block">
+          <span className="label">Address</span>
+          <span className="flex items-center border u-line" style={{ background: "var(--bg-2)" }}>
+            <span className="shrink-0 pl-3 text-sm u-muted">{host}/</span>
+            <input className="field !border-0 !bg-transparent" value={slug} onChange={(e) => setSlug(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, "-"))} placeholder={link ? link.slug : "leave empty for a random one"} spellCheck={false} />
+          </span>
+          <span className="mt-1 block text-xs u-muted">Lowercase letters, numbers and hyphens. {link ? "The old address keeps working too." : ""}</span>
+        </label>
         <div>
           <div className="label">Albums</div>
           <label className="mb-2 flex items-center gap-2 text-sm">

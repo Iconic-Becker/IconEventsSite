@@ -22,3 +22,10 @@ export function randomSuffix(len = 6) {
 export function gallerySlug(title) {
   return `${slugify(title) || "gallery"}-${randomSuffix(6)}`
 }
+
+// Hand-picked addresses: lowercase letters, digits and hyphens, 3 to 60
+// characters, nothing the server itself uses.
+const RESERVED_SLUGS = new Set(["admin", "api", "assets", "fonts", "brand", "_local", "healthz", "robots.txt", "favicon.ico", "favorites", "highlights", "reel"])
+export function validSlug(s) {
+  return /^[a-z0-9](?:[a-z0-9-]{1,58}[a-z0-9])?$/.test(s) && !RESERVED_SLUGS.has(s)
+}

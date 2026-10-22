@@ -103,7 +103,9 @@ await check("Admin: folder upload creates albums and derivatives", async () => {
     G = (await j(await admin.get(`/api/admin/galleries/${G.id}`))).gallery
   }
   const albums = G.albumRows.map((a) => a.name).sort()
-  assert(JSON.stringify(albums) === JSON.stringify(["Keynote", "Photos", "Reception"]), `albums were ${albums}`)
+  // The gallery starts with an empty Photos album; the dropped folder is its own
+  // album (loose files at its root go there) and each sub-folder is another.
+  assert(JSON.stringify(albums) === JSON.stringify(["Keynote", "Photos", "Reception", "event"]), `albums were ${albums}`)
   const photos = G.media.filter((m) => m.kind === "photo")
   const videos = G.media.filter((m) => m.kind === "video")
   assert(photos.length === 33, `photos ${photos.length}`)
@@ -112,7 +114,7 @@ await check("Admin: folder upload creates albums and derivatives", async () => {
   assert(videos.every((m) => m.status === "ready" && m.poster && m.web), "video derivatives missing")
   assert(G.reels.length === 1 && G.reels[0].clip, "reel or cover clip missing")
   assert(!errors.length, `console errors: ${errors.join(" | ")}`)
-  return `33 photos, 3 videos, 3 albums, 1 reel with clip; ${(G.media.length)} items processed`
+  return `33 photos, 3 videos, 4 albums, 1 reel with clip; ${(G.media.length)} items processed`
 })
 
 // ---- B. Upload resumes after the network is cut -------------------------------
