@@ -815,7 +815,8 @@ export function assertLanderSlugsResolve(work) {
 
 /* Hand selected photos per event, in public/images/gallery/<folder>/ as
    01.webp, 02.webp and so on, in the order Iconic picked them. An event not
-   yet written up uses its 01 as the cover on the grid.
+   yet written up uses its 01 as the cover on the grid. An entry may carry a
+   name, used on /gallery when the key matches no event in the index.
    See docs/case-studies/PHOTO-LIBRARY.md. */
 export const PHOTO_LIBRARY = {
   "bad-after-dark": { folder: "bad-after-dark", count: 8 },
@@ -970,7 +971,9 @@ export function galleryFrames() {
   for (const [slug, entry] of Object.entries(PHOTO_LIBRARY)) {
     const built = CASE_STUDY_BY_SLUG[slug]
     const listed = EVENT_INDEX.find((e) => e.slug === slug)
-    const event = built?.name ?? listed?.name ?? slug
+    // An event not yet in the index carries its name from the entry, which
+    // Send to website in Iconic Photos fills in from the gallery title.
+    const event = built?.name ?? listed?.name ?? entry.name ?? slug
     const client = built?.details.client ?? listed?.client
     const place = listed?.location ?? (built ? [built.details.city, built.details.region].filter(Boolean).join(", ") : null)
     libraryPhotos(entry).forEach((src) => {

@@ -65,7 +65,7 @@ for (let i = 0; i < 60 && ["queued", "running"].includes(ex2.status); i++) {
 }
 assert(ex2.status === "done" && ex2.files[0].number === "01", `second export ${ex2.status} ${ex2.error} ${ex2.files[0]?.number}`)
 const idx2 = Buffer.from((await (await fetch(`${gh}/repos/Acme/site/contents/src/case-studies.js?ref=${ex2.branch}`, { headers: { Authorization: "Bearer test-token" } })).json()).content, "base64").toString()
-assert(/"pmu-world-at-sea": \{ folder: "pmu-world-at-sea", count: 1 \},\n\}/.test(idx2), `new entry missing: ${idx2}`)
+assert(/"pmu-world-at-sea": \{ folder: "pmu-world-at-sea", count: 1, name: "Scaling with Systems LIVE 2021" \},\n\}/.test(idx2), `new entry missing: ${idx2}`)
 
 // The gallery remembers the folder for next time.
 const g2 = (await (await api.get(`/api/admin/galleries/${galleryId}`)).json()).gallery

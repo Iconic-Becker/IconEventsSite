@@ -101,10 +101,10 @@ async function run(ex, dir) {
   const indexSrc = await readRepoFile(indexPath, base)
   let indexNote = `\`${indexPath}\` was not found on \`${base}\`, so add the PHOTO_LIBRARY entry by hand.`
   if (indexSrc) {
-    const updated = updateLibrary(indexSrc, folder, next)
+    const updated = updateLibrary(indexSrc, folder, next, gallery.title)
     if (updated && updated !== indexSrc) {
       files.push({ path: indexPath, sha: await createBlob(Buffer.from(updated, "utf8")) })
-      indexNote = existing.length ? `PHOTO_LIBRARY in \`${indexPath}\`: count for \`${folder}\` set to ${next}.` : `PHOTO_LIBRARY in \`${indexPath}\`: new entry \`"${folder}": { folder: "${folder}", count: ${next} }\`. Change the key to the event's slug in CASE_STUDIES or EVENT_INDEX if it differs, so the photos carry the event's name.`
+      indexNote = existing.length ? `PHOTO_LIBRARY in \`${indexPath}\`: count for \`${folder}\` set to ${next}.` : `PHOTO_LIBRARY in \`${indexPath}\`: new entry \`"${folder}": { folder: "${folder}", count: ${next}, name: ${JSON.stringify(gallery.title)} }\`. Photos on /gallery are labelled with that name; once the event is in CASE_STUDIES or EVENT_INDEX, key the entry by its slug.`
     } else {
       indexNote = `PHOTO_LIBRARY in \`${indexPath}\` could not be updated automatically. Add or update: \`"${folder}": { folder: "${folder}", count: ${next} }\`.`
     }
@@ -133,12 +133,15 @@ async function run(ex, dir) {
 }
 
 // Edits the PHOTO_LIBRARY object literal in the site's case-studies.js.
-export function updateLibrary(src, folder, count) {
+export function updateLibrary(src, folder, count, name) {
   const entry = new RegExp(`(folder:\\s*"${folder.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}",\\s*count:\\s*)\\d+`)
   if (entry.test(src)) return src.replace(entry, `$1${count}`)
   const start = src.indexOf("export const PHOTO_LIBRARY = {")
   if (start < 0) return null
   const end = src.indexOf("\n}", start)
   if (end < 0) return null
-  return `${src.slice(0, end)}\n  "${folder}": { folder: "${folder}", count: ${count} },${src.slice(end)}`
+  // A new entry carries the gallery title so /gallery can label the photos
+  // before the event is written up in the site's index.
+  const label = name ? `, name: ${JSON.stringify(String(name))}` : ""
+  return `${src.slice(0, end)}\n  "${folder}": { folder: "${folder}", count: ${count}${label} },${src.slice(end)}`
 }
