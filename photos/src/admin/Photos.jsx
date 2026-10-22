@@ -40,6 +40,19 @@ export function PhotosTab() {
     }
   }
 
+  const [discarding, setDiscarding] = useState(false)
+  const discardUnfinished = async () => {
+    if (!confirm(`Discard ${waitingUpload} unfinished ${waitingUpload === 1 ? "upload" : "uploads"}? Finished photos are not touched. You can drop the files again later.`)) return
+    setDiscarding(true)
+    try {
+      const d = await post(`/api/admin/galleries/${gallery.id}/uploads/discard`)
+      if (d.gallery) setGallery(d.gallery)
+      else await reload()
+    } finally {
+      setDiscarding(false)
+    }
+  }
+
   // Click toggles one photo. Shift-click selects everything between the
   // last photo clicked and this one. Escape clears.
   const lastClicked = useRef(null)
@@ -158,11 +171,18 @@ export function PhotosTab() {
               {waitingUpload > 0 && `${waitingUpload} ${waitingUpload === 1 ? "file never finished" : "files never finished"} uploading: drop the same folder again to resume. `}
               {processingCount > 0 && "Thumbnails appear as they finish."}
             </span>
-            {processingCount > 0 && (
-              <button className="btn btn-sm ml-auto" onClick={recover} disabled={recovering} title="Re-queue anything that stopped moving">
-                <RefreshCw size={12} /> {recovering ? "Checking" : "Nothing moving? Retry"}
-              </button>
-            )}
+            <span className="ml-auto flex items-center gap-2">
+              {processingCount > 0 && (
+                <button className="btn btn-sm" onClick={recover} disabled={recovering} title="Re-queue anything that stopped moving">
+                  <RefreshCw size={12} /> {recovering ? "Checking" : "Nothing moving? Retry"}
+                </button>
+              )}
+              {waitingUpload > 0 && (
+                <button className="btn btn-sm" onClick={discardUnfinished} disabled={discarding} title="Forget the unfinished uploads so this notice goes away">
+                  <X size={12} /> {discarding ? "Discarding" : "Discard unfinished"}
+                </button>
+              )}
+            </span>
           </div>
         )}
         <div className="mb-3 flex flex-wrap items-center justify-between gap-2">

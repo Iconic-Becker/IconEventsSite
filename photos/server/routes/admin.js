@@ -532,6 +532,21 @@ admin.post(
   }),
 )
 
+// Drop every upload in a gallery that never finished, so a bad drag can be
+// cleared instead of resumed. Nothing finished is touched.
+admin.post(
+  "/galleries/:id/uploads/discard",
+  route(async (req, res) => {
+    const g = await loadAdminGallery(req.params.id)
+    const rows = await many("select * from media where gallery_id = $1 and status = 'uploading' and trashed_at is null", [g.id])
+    for (const m of rows) {
+      if (m.upload_id) await storage.abortMultipart(m.original_key, m.upload_id)
+      await query("delete from media where id = $1", [m.id])
+    }
+    res.json({ ok: true, discarded: rows.length, gallery: await fullGallery(g.id) })
+  }),
+)
+
 // Status of in-flight processing, for the admin to poll.
 admin.get(
   "/galleries/:id/status",
