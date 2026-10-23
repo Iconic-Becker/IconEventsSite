@@ -99,6 +99,25 @@ opening mixer there with ocean and city views. Fast pivots.
 
 ## Q4. Challenges overcome
 
+User, 2026-10-23, verbatim (Q4, how it went, facts):
+
+> Yeah, I think I don't think there's any other challenges. The investors
+> reacted really well. They ended up reacting so well that Tan and Salim
+> launched their first high ticket offer, which was the Inflection Club.
+> While we can't disclose the actual, you know, sign up amounts, they were
+> able to onboard north of 30 new members to their Inflection Club. That was
+> baked as a continuation of the community that everyone had experienced
+> here. And then attendees were asking us where the next one is, and that's
+> why we'll be doing their Vegas event here next month. In terms of
+> attendance and days on site, I think the attendance was just about 280,
+> with days on site being about 3.5 days.
+
+Captured: no other challenges. Launched their first high ticket offer, the
+Inflection Club, as a continuation of the event's community: 30+ new
+members (sign up amounts never disclosed). Attendees asked for the next
+one, leading to the Vegas event in November 2026. About 280 attendees,
+3.5 days on site.
+
 ## Q5. Who is this build right for?
 
 ## Q6. Anything else about the event?
@@ -107,8 +126,8 @@ opening mixer there with ocean and city views. Fast pivots.
 
 ## Facts
 
-- Attendance:
-- Days of production on site:
+- Attendance: about 280
+- Days of production on site: 3.5
 - Cost saved for the client: $51,000 in hotel attrition fees, waived by the Eden Roc
 - Venue, city, month, year: Fontainebleau Miami Beach, Miami Beach, FL, late March 2026
 - Scope:
