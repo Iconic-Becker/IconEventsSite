@@ -56,6 +56,8 @@
                 continuously numbered list across the three stages.
    scope        [[label, description]] for the Scope of Services block.
    metrics      { attendance, productionDays, costSaved } strings or null.
+                Optional costSavedBasis: one sentence on how the saving was
+                made, used as the FAQ answer.
    details      { client, clientTitle, venue, city, region, year, dates }.
    media        hero, challenge, band, resultLeft, resultRight: {src, alt}
                 or null. gallery: array of {src, alt}, normally three.
@@ -678,7 +680,7 @@ export const CASE_STUDIES = [
       ["Speakers", "Speaker management."],
       ["Post", "Post production content."],
     ],
-    metrics: { attendance: "800+", productionDays: null, costSaved: "$148,000" },
+    metrics: { attendance: "800+", productionDays: null, costSaved: "$148,000", costSavedBasis: "Iconic Events negotiated $148,000 off the venue and vendor contracts for PMU World 2023." },
     highlights: [
       ["800+", "Attendees on site, against 600 projected"],
       ["#1", "Largest PMU event in North America"],
@@ -825,7 +827,7 @@ export const CASE_STUDIES = [
       ["Closing party", "The closing party on the Hard Rock's own pool areas."],
       ["Production", "Production and on site execution."],
     ],
-    metrics: { attendance: "1,500", productionDays: "4", costSaved: "$140,000" },
+    metrics: { attendance: "1,500", productionDays: "4", costSaved: "$140,000", costSavedBasis: "Focusing PMU World 2025 on one main stage saved the client $140,000 on AV." },
     highlights: [
       ["1,500", "Attendees in person"],
       ["500", "Attendees virtual"],
@@ -863,6 +865,70 @@ export const CASE_STUDIES = [
     citation:
       "Iconic Events, a Florida based event production and coordination company, produced PMU World 2025 for Danny Tran of Highstoke Media at the Seminole Hard Rock Hotel & Casino in Hollywood, Florida in September 2025, delivering social content strategy, red carpet hosts, social first installations, on site editing and 4K recording for 1,500 attendees in person and 500 virtually.",
   },
+
+  // Source: docs/case-studies/Case-Study-Interviews.xlsx, approved by Iconic.
+  {
+    slug: "decentralized-masters-live",
+    name: "Decentralized Masters Live",
+    headline: "How Decentralized Masters Turned Its First Live Event Into a High Ticket Club With 30+ New Members",
+    cta: "Want your community's first event to launch your next offer?",
+    summary:
+      "Tan and Salim, co-founders of Decentralized Masters, had a community of accredited investors from around the world and no live event behind them. We designed their first, at the Fontainebleau Miami Beach, opening with a VIP mixer in the Presidential Suite. When war broke out where they were staying, we worked with the Eden Roc to waive $51,000 in hotel attrition fees and kept the event on track. About 280 investors attended, more than 30 joined the new Inflection Club, and attendees asked for the next one.",
+    challenge: [
+      "Tan and Salim had built a community of accredited investors, an established and discerning group. They wanted to bring them together in person for the first time, to impress them and connect them with the team, but they did not know where to start. This was their first live event, and the guests were coming from countries and cultures around the world.",
+    ],
+    approach: [
+      "Took the Fontainebleau's Presidential Suite for the VIP opening mixer, negotiating it from $22,000 a night down to $16,000, so the first night opened in a penthouse with views over the ocean and the whole city.",
+      "Moved fast when plans changed, from hotel commitments to the program, so attendees never felt the pivots.",
+    ],
+    challengesOvercome: [
+      "Shortly before the event, war broke out where Tan and Salim were staying in Dubai, and the hotel commitments became almost impossible to honor. Plenty of event companies would have walked away. We went to the Eden Roc and worked with them to waive the contractual hotel commitments, which saved the client $51,000 in attrition fees they would otherwise have had to pay, and the event went ahead.",
+    ],
+    scope: [
+      ["Event design", "Their first live event, designed from the ground up for an established investor community."],
+      ["Venue", "The Fontainebleau Miami Beach, with rooms at the Eden Roc."],
+      ["Negotiations", "The Presidential Suite from $22,000 a night down to $16,000, and $51,000 in hotel attrition fees waived."],
+      ["VIP", "The VIP opening mixer in the Presidential Suite."],
+      ["Production", "Program, production and on site execution across three and a half days."],
+    ],
+    metrics: { attendance: "280", productionDays: "3.5", costSaved: "$51,000", costSavedBasis: "Iconic Events worked with the Eden Roc to waive $51,000 in hotel attrition fees the client would otherwise have had to pay after war broke out where the founders were staying." },
+    highlights: [
+      ["280", "Accredited investors on site"],
+      ["30+", "New Inflection Club members"],
+      ["$51K", "Hotel attrition fees waived"],
+    ],
+    results: [
+      "The investors loved it. Meeting Tan and Salim in person, among peers from around the world, turned an online community into a room that wanted more.",
+      "So much more that Tan and Salim launched their first high ticket offer on the back of it: the Inflection Club, built as a continuation of the community attendees had just experienced. More than 30 new members joined. Attendees kept asking where the next one would be. Now members build their year around it: Miami first, then Austin with the Inflection Club, and next Las Vegas in November 2026, which we are producing.",
+    ],
+    rightFor: "Any founder with an investment community, or any community they want to keep for the long term. The strongest way to retain it is to strengthen the connections between members by bringing them together in person. That is what Decentralized Masters did, and it is what let them launch the Inflection Club, open new investment opportunities and build an experience members plan their year around.",
+    stealThis: [
+      "Design the room as the first chapter of your next offer. Decentralized Masters built the Inflection Club as a continuation of the community attendees had just experienced in person, so joining felt like staying, not buying.",
+    ],
+    details: {
+      client: "Tan and Salim",
+      clientTitle: "Co-Founders, Decentralized Masters",
+      venue: "Fontainebleau Miami Beach",
+      city: "Miami Beach",
+      region: "FL",
+      year: "2026",
+      dates: null,
+    },
+    media: {
+      // TODO(collect): photos, aftermovie and testimonial links to come from Iconic.
+      hero: null,
+      challenge: null,
+      band: null,
+      resultLeft: null,
+      resultRight: null,
+      gallery: [],
+      aftermovieUrl: null,
+      testimonialUrl: null,
+    },
+    testimonial: { quote: null, approved: false },
+    citation:
+      "Iconic Events, a Florida based event production and coordination company, produced the first Decentralized Masters Live for co-founders Tan and Salim at the Fontainebleau Miami Beach in March 2026, delivering event design, venue and hotel negotiations including $51,000 in waived attrition fees, a VIP opening mixer in the Presidential Suite and on site execution for about 280 accredited investors.",
+  },
 ]
 
 /* Every event, in the order Iconic keeps them. This drives the grid at
@@ -889,7 +955,7 @@ export const EVENT_INDEX = [
   { slug: "pmuw-2024", name: "PMU World 2024", client: "Danny Tran", when: "2024-08", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "1,237", full: true },
   { slug: "pmuw-2025", name: "PMU World 2025", client: "Danny Tran", when: "2025-09", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "1,500", full: true },
   { slug: "net-rev-summit-2026", name: "Net Rev Summit 2026", client: "Ambro Dipilato", when: "2026-05", location: "Marana, AZ", venue: "Ritz-Carlton Dove Mountain", size: null, full: false },
-  { slug: "decentralized-masters-live", name: "Decentralized Masters Live", client: "Tan and Salim", when: "2026", location: null, venue: null, size: null, full: false },
+  { slug: "decentralized-masters-live", name: "Decentralized Masters Live", client: "Tan and Salim", when: "2026-03", location: "Miami Beach, FL", venue: "Fontainebleau Miami Beach", size: "280", full: true },
   { slug: "fast-start-forum-2024", name: "Fast Start Forum 2024", client: "Tom Wall", when: "2024", location: null, venue: null, size: null, full: false },
   { slug: "fast-start-forum-2025", name: "Fast Start Forum 2025", client: "Tom Wall", when: "2025", location: null, venue: null, size: null, full: false },
   { slug: "the-sales-summit", name: "The Sales Summit", client: "Jeremy Miner", when: "2026", location: null, venue: null, size: null, full: false },
@@ -998,7 +1064,8 @@ export function faqsFor(study) {
   if (study.metrics.costSaved) {
     faqs.push([
       "How much did working with Iconic Events save on production?",
-      `Consolidating strategy, creative, production and on site execution under one accountable team saved the client ${study.metrics.costSaved} against a multi vendor build.`,
+      study.metrics.costSavedBasis ??
+        `Consolidating strategy, creative, production and on site execution under one accountable team saved the client ${study.metrics.costSaved} against a multi vendor build.`,
     ])
   }
 
