@@ -120,6 +120,25 @@ one, leading to the Vegas event in November 2026. About 280 attendees,
 
 ## Q5. Who is this build right for?
 
+User, 2026-10-23, verbatim:
+
+> I think we can improve the right for offer portion of this, because I
+> think it should be like, look, whether you have an investment community,
+> the best way to retain the investment community long term is to strengthen
+> their connections by bringing them together in person. That's what they
+> did, and that's what allowed DML to launch their Inflection Club, and now
+> they have new investment opportunities, and they're creating a new
+> experience that their members build their year around, because they're
+> offering the ability for the members to vacation in different areas, first
+> Miami, next in Austin with the Inflection Club, and now they're going off
+> to Vegas. Yes, it's fine to post a sweets nightly rate, and I will close
+> the public repo.
+
+Captured: Right For reframed around retention through in person
+connection. Members build their year around it: Miami, then Austin with
+the Inflection Club, then Las Vegas. Suite rate OK to publish. Iconic is
+making the repository private.
+
 ## Q6. Anything else about the event?
 
 ## Steal This
