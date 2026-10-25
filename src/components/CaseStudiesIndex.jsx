@@ -20,7 +20,7 @@ export default function CaseStudiesIndex() {
     if (description) {
       description.setAttribute(
         "content",
-        "Learn from the events Iconic Events has engineered for founders, agencies and creators across the US, UK, Spain and the UAE."
+        "Learn from the events Iconic Events has engineered for founders, agencies and creators across the US, UK, Spain, the UAE, Mexico and Costa Rica."
       )
     }
   }, [])

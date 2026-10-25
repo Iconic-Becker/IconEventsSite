@@ -259,7 +259,11 @@ export default function App() {
       <SiteHeader home />
       {/* ── 01 · HERO ─────────────────────────────────────────────────── */}
       <div id="top" />
-      <div className="relative grid min-h-screen grid-cols-1 overflow-hidden bg-onyx md:grid-cols-[22vw_1fr_22vw] xl:grid-cols-[28vw_1fr_28vw]">
+      {/* Sized to the screen less the header and the first row of client logos,
+          so the logos show on load without a scroll: about 248px on a phone
+          (sticky two row nav) and 222px from md up. The content sets the
+          floor on short screens. */}
+      <div className="relative grid min-h-[calc(100svh-248px)] grid-cols-1 overflow-hidden bg-onyx md:min-h-[calc(100svh-222px)] md:grid-cols-[22vw_1fr_22vw] xl:grid-cols-[28vw_1fr_28vw]">
         {/* Centred dark scrim — transparent at the edges, 80% black at centre —
             to tame the inner columns and lift text contrast. */}
         <div
@@ -347,7 +351,7 @@ export default function App() {
         {/* Centre content. */}
         <div
           key={t({ iconic: "i", genflow: "g" })}
-          className="fade-rise relative z-10 flex min-h-screen flex-col items-center justify-center px-5 sm:px-6 py-28 text-center"
+          className="fade-rise relative z-10 flex flex-col items-center justify-center px-5 py-8 text-center sm:px-6 sm:py-16"
         >
           <h1 className="max-w-4xl font-serif text-5xl font-semibold leading-[0.96] tracking-tight text-bone sm:text-[3.5rem]">
             {heroHeadline(t(HERO.headline))}
@@ -383,9 +387,8 @@ export default function App() {
           <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-onyx to-transparent" />
         </div>
 
-        <span className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 font-sans text-[10px] uppercase tracking-[0.3em] text-bone/40">
-          {HERO.scroll} ↓
-        </span>
+        {/* The "Scroll" cue came out when the hero was shortened: the client
+            logos now show below it on load, which does the same job. */}
       </div>
 
       {/* ── 02 · PRESS ────────────────────────────────────────────────── */}
