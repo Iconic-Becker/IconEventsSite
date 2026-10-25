@@ -161,9 +161,10 @@ function Approach({ study }) {
             {study.thirdPerson ? "How It Was Built" : "What We Did"}
           </p>
           <p className="mt-5 font-sans text-sm leading-relaxed text-bone/55">
-            {study.thirdPerson
-              ? "How the event came together, from the first plan to the last guest out."
-              : "Here is how we built it, from the first plan to the last guest out. One team held all of it."}
+            {study.approachLead ??
+              (study.thirdPerson
+                ? "How the event came together, from the first plan to the last guest out."
+                : "Here is how we built it, from the first plan to the last guest out. One team held all of it.")}
           </p>
         </div>
         <div>

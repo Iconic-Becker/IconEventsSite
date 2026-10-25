@@ -49,6 +49,8 @@
                 never a list of what went wrong.
    rightFor     Optional. Who a build like this is right for.
    stealThis    Optional. An idea other hosts can borrow.
+   approachLead Optional. Replaces the line beside What We Did, for
+                engagements that were not full production (EPIC Consulting).
    thirdPerson  Optional. Iconic's own events: no first person, no client.
    results      How it went, in prose, above the metrics. A string or an
                 array of paragraphs. No client revenue (house rule 1).
@@ -1197,6 +1199,81 @@ export const CASE_STUDIES = [
     citation:
       "Iconic Events, a Florida based event production and coordination company, produced Net Rev Summit 2026 for Ambro Dipilato at the Ritz-Carlton Dove Mountain in Marana, Arizona in May 2026, delivering the run of show, a virtual ticket and livestream hosted with 7th Level, attendee hospitality, brand graphics and hotel negotiations.",
   },
+
+  // Source: docs/case-studies/Case-Study-Interviews.xlsx, approved by Iconic.
+  // An EPIC Consulting engagement: Icon coached the event remotely.
+  {
+    slug: "hell-yes-live",
+    name: "Hell Yes Live 2026",
+    format: "EPIC Consulting",
+    approachLead: "Icon coached Becca and her team from the first brief to the debrief. Becca's team ran the event on site.",
+    headline: "How Hell Yes Live Packed the Room and Sold 42 Seats for Next Year Within Days",
+    cta: "Want an event coach in your corner?",
+    summary:
+      "Becca Pike of Hell Yes Coaching wanted her second live event to be bigger and to work as a selling room, and she hired Icon as her event coach. With months of slow sales, a capped room and a key team member gone 72 hours before she was needed, we reframed the event around one promise, rebuilt the sales plan in June and coached the offer on stage. 99 people packed the room, sign-ups from the stage were strong, and 42 tickets for next year sold within days.",
+    challenge: [
+      "Becca Pike runs Hell Yes Coaching, which sells coaching and masterminds including Scale to Seven and The Circle. For her second live event she wanted something bigger, a room that worked as a selling room, and she hired Icon as her event coach to get there.",
+      "Tickets sold slowly for months in a regional market, the fire department capped the room, and a target sponsor dropped out.",
+    ],
+    approach: [
+      "Reframed the event around one promise: from overextended and underpaid to Hell Yes CEO.",
+      "Merged everything into one playbook and one tracker, to protect Becca's time.",
+      "Put GA and VIP on one checkout page.",
+      "Pivoted sales in June: plus-one and gifted tickets, a local campaign that excluded existing leads, and personal calls to people who abandoned checkout.",
+      "Led the on stage offer with the transformation, and kept it to a single public offer.",
+    ],
+    challengesOvercome: [
+      "Mid-build, the team member who held every moving part for Becca left without warning, and she had about 72 hours to replace her. She called Icon, who gave her love, reassurance and a plan. A replacement stepped in, and the show went on.",
+      "In June, a full week passed with zero ticket sales. The June pivots, from gifted tickets to personal calls on abandoned checkouts, brought the room back.",
+    ],
+    scope: [
+      ["Vision", "The vision brief, and the promise and transformation copy."],
+      ["Systems", "One playbook and one tracker for the whole event."],
+      ["Sales", "Funnel and checkout changes, ad review and sales coaching, including the June pivot."],
+      ["Program", "Run of show, and review of the pitch and slides."],
+      ["Coaching", "Biweekly calls with Becca and her team, and the debrief."],
+    ],
+    metrics: { attendance: "99", productionDays: null, costSaved: null },
+    highlights: [
+      ["99", "Attendees on site"],
+      ["42", "Tickets for next year sold within days"],
+      ["5 of 6", "Scholarship seats became high ticket clients"],
+    ],
+    results: [
+      "The room was packed, 99 people on site, and Becca's opening drew praise. Sign-ups from the stage were strong, and 42 tickets for next year sold within days of the event. The next Hell Yes Live moves to the larger Manchester Reserve.",
+    ],
+    rightFor: "Coaches and hosts whose live event is the front door to a high ticket offer, and who have a small team that needs structure.",
+    stealThis: [
+      "Give a handful of scholarship tickets to qualified owners. Hell Yes Live gave out 6, and 5 became high ticket clients.",
+    ],
+    details: {
+      client: "Becca Pike",
+      clientTitle: "Hell Yes Coaching",
+      venue: "The Manchester Hotel",
+      city: "Lexington",
+      region: "KY",
+      year: "2026",
+      dates: null,
+    },
+    media: {
+      // TODO(collect): Becca's stage testimonial video (Iconic to upload to YouTube), photos.
+      hero: null,
+      challenge: null,
+      band: null,
+      resultLeft: null,
+      resultRight: null,
+      gallery: [],
+      aftermovieUrl: null,
+      testimonialUrl: null,
+    },
+    // Said publicly from the stage; published with Iconic's OK, 2026-10-25.
+    testimonial: {
+      quote: "I don't think that there's anyone smarter in the event industry. I hired Icon as my event coach because I knew that he understood this world inside and out. Every single conversation ended with me feeling smarter than when it started.",
+      approved: true,
+    },
+    citation:
+      "Iconic Events, a Florida based event production and coordination company, coached Becca Pike of Hell Yes Coaching through Hell Yes Live 2026 at The Manchester Hotel in Lexington, Kentucky in July 2026 as part of its EPIC Consulting offer, delivering the event's promise, sales strategy, systems, run of show and pitch coaching for 99 attendees.",
+  },
 ]
 
 /* Every event, in the order Iconic keeps them. This drives the grid at
@@ -1227,7 +1304,7 @@ export const EVENT_INDEX = [
   { slug: "fast-start-forum-2024", name: "Fast Start Forum 2025", client: "Tom Wall", when: "2025-02", location: "Fort Lauderdale, FL", venue: "Hilton Fort Lauderdale Marina", size: "194", full: true },
   { slug: "fast-start-forum-2026", name: "Fast Start Forum 2026", client: "Tom Wall", when: "2026-01", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "473", full: true },
   { slug: "the-sales-summit", name: "The Sales Summit", client: "Jeremy Miner", when: "2026-07", location: "Irving, TX", venue: "Irving Convention Center at Las Colinas", size: "700", full: true },
-  { slug: "hell-yes-live", name: "Hell Yes Live", client: "Becca Pike", when: "2025", location: null, venue: null, size: null, full: false },
+  { slug: "hell-yes-live", name: "Hell Yes Live 2026", client: "Becca Pike", when: "2026-07", location: "Lexington, KY", venue: "The Manchester Hotel", size: "99", full: true },
   { slug: "limitless-live", name: "Limitless Live", client: "Gil Valerio", when: "2026", location: null, venue: null, size: null, full: false },
   { slug: "women-and-wealth", name: "Women and Wealth", client: "Shelby Sapp", when: "2026-07", location: "Fort Lauderdale, FL", venue: "Broward County Convention Center", size: null, full: false },
   { slug: "closers-io-retreat", name: "Closers.io Retreat", client: "Cole Gordon", when: "2025", location: null, venue: null, size: null, full: false },
