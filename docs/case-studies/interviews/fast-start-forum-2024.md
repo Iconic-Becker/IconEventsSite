@@ -32,7 +32,7 @@ rules 1 and 2, and this repository is public). Publishable leads:
   2025** at the Hilton Fort Lauderdale Marina. No earlier edition found.
 - Timeline: projection call August 6, 2024; launch plan October 24;
   public launch November 6; Hilton contract signed in November.
-- Attendance: the tracker shows 194 (138 GA, 38 VIP, 10 speakers, 8
+- Attendance: 194 the tracker shows 194 (138 GA, 38 VIP, 10 speakers, 8
   team); a January 30 call said 192. Actual attended count not found.
 - Agenda: Sunday registration and mixer; Monday general sessions, then
   Topgolf; Tuesday sessions, then a VIP dinner at YOLO.
@@ -42,6 +42,20 @@ rules 1 and 2, and this repository is public). Publishable leads:
 - AV by Bash Entertainment. 225 hotel room nights at the Hilton.
 - Post-event call captured no lessons; no results found for Tom's "The
   Council" offer.
+
+## Facts confirmed (2026-10-25)
+
+User, verbatim:
+
+> Hilton Fort Lauderdale Marina
+>
+> 194 FIRST EVENT ADN YES IT WAS IN 2024 Hilton Fort Lauderdale Marina
+>
+> Hilton Fort Lauderdale Marina
+
+Captured: Hilton Fort Lauderdale Marina. 194 attendees. The first event,
+in 2024 per Iconic (the research had February 2 to 4, 2025; Iconic's
+answer stands, and the page shows the year only).
 
 ## Q2. What made this one hard?
 
@@ -57,10 +71,10 @@ rules 1 and 2, and this repository is public). Publishable leads:
 
 ## Facts
 
-- Attendance:
+- Attendance: 194
 - Days of production on site:
 - Cost saved for the client:
-- Venue, city, month, year: Hilton Fort Lauderdale Marina, Fort Lauderdale, FL, February 2 to 4, 2025 (sold in 2024)
+- Venue, city, month, year: Hilton Fort Lauderdale Marina, Fort Lauderdale, FL, 2024
 - Scope:
 - Client name, title, company: Tom Wall, Whole Life Mastermind (title?)
 - Aftermovie:
