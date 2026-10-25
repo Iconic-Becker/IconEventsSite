@@ -30,9 +30,8 @@ export default function CaseStudiesIndex() {
       <SiteHeader />
 
       <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-6xl px-5 sm:px-6">
-          <p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">Case Studies</p>
-          <h1 className="mt-5 max-w-[16ch] font-serif text-4xl sm:max-w-[22ch] font-semibold leading-[0.98] sm:text-7xl">
+        <div className="mx-auto max-w-6xl px-5 text-center sm:px-6">
+          <h1 className="mx-auto max-w-[16ch] font-serif text-4xl sm:max-w-[22ch] font-semibold leading-[0.98] sm:text-7xl">
             Learn from the events we&rsquo;ve engineered.
           </h1>
         </div>
@@ -42,7 +41,7 @@ export default function CaseStudiesIndex() {
           is drawn twice so the loop is seamless; the copy is hidden from
           assistive tech. See PRESS in content.js before touching the files. */}
       <section aria-label="Trusted by" className="border-y border-brass/25 py-6 sm:py-8">
-        <p className="mx-auto max-w-6xl px-5 font-sans text-[10px] font-bold uppercase tracking-[0.24em] text-bone/40 sm:px-6">
+        <p className="mx-auto max-w-6xl px-5 text-center font-sans text-[10px] font-bold uppercase tracking-[0.24em] text-bone/40 sm:px-6">
           Trusted by
         </p>
         <div className="logo-band mt-4 overflow-hidden">
