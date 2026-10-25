@@ -580,3 +580,19 @@ body {
   from { opacity: 0; transform: translateY(28px) scale(0.97); }
   to { opacity: 1; transform: none; }
 }
+
+/* Case studies · client logo band. Two copies of the set side by side, the
+   track sliding one copy's width so the loop never shows a seam. Edges fade
+   into the page. Reduced motion gets one static, wrapped row. */
+@keyframes logo-band { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.logo-band {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.logo-band-track { display: flex; width: max-content; animation: logo-band 40s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .logo-band { -webkit-mask-image: none; mask-image: none; }
+  .logo-band-track { animation: none; width: auto; justify-content: center; }
+  .logo-band-track > ul { flex-wrap: wrap; justify-content: center; }
+  .logo-band-track > ul[aria-hidden] { display: none; }
+}

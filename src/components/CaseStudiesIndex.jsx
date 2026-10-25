@@ -1,5 +1,7 @@
 import { useEffect } from "react"
 import { caseStudyCards } from "../case-studies.js"
+import { PRESS } from "../content.js"
+import { responsive } from "../lib/img.js"
 import SiteHeader from "./SiteHeader.jsx"
 import SiteFooter from "./SiteFooter.jsx"
 
@@ -11,7 +13,6 @@ import SiteFooter from "./SiteFooter.jsx"
    scannable view for deciding which to build next. */
 export default function CaseStudiesIndex() {
   const cards = caseStudyCards()
-  const built = cards.filter((card) => card.href)
 
   useEffect(() => {
     document.title = "Case Studies · Iconic Events"
@@ -19,25 +20,50 @@ export default function CaseStudiesIndex() {
     if (description) {
       description.setAttribute(
         "content",
-        `Every room Iconic Events has engineered: ${cards.length} events for founders, agencies and creators across the US, UK, Spain and the UAE.`
+        "Learn from the events Iconic Events has engineered for founders, agencies and creators across the US, UK, Spain and the UAE."
       )
     }
-  }, [cards.length])
+  }, [])
 
   return (
     <main className="min-h-screen bg-onyx text-bone">
       <SiteHeader />
 
-      <section className="border-b border-brass/25 py-16 sm:py-24">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-5 sm:px-6">
           <p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">Case Studies</p>
-          <h1 className="mt-5 max-w-[18ch] font-serif text-4xl font-semibold leading-[0.98] sm:text-7xl">
-            Every room we have engineered.
+          <h1 className="mt-5 max-w-[16ch] font-serif text-4xl sm:max-w-[22ch] font-semibold leading-[0.98] sm:text-7xl">
+            Learn from the events we&rsquo;ve engineered.
           </h1>
-          <p className="mt-7 max-w-[58ch] font-sans text-lg leading-relaxed text-bone/70">
-            {cards.length} events, {built.length} written up in full so far. Strategy, creative direction,
-            production, show flow and on site execution, held by one team each time.
-          </p>
+        </div>
+      </section>
+
+      {/* The same client logos as the home page row, run as a band. The set
+          is drawn twice so the loop is seamless; the copy is hidden from
+          assistive tech. See PRESS in content.js before touching the files. */}
+      <section aria-label="Trusted by" className="border-y border-brass/25 py-6 sm:py-8">
+        <p className="mx-auto max-w-6xl px-5 font-sans text-[10px] font-bold uppercase tracking-[0.24em] text-bone/40 sm:px-6">
+          Trusted by
+        </p>
+        <div className="logo-band mt-4 overflow-hidden">
+          <div className="logo-band-track">
+            {[0, 1].map((copy) => (
+              <ul key={copy} aria-hidden={copy === 1 || undefined} className="flex shrink-0 items-center">
+                {PRESS.logos.map((l) => (
+                  <li key={l.name} className="shrink-0 px-2 sm:px-4">
+                    <img
+                      width={l.w}
+                      height={l.h}
+                      {...responsive(l.src, "200px")}
+                      alt={copy === 0 ? l.name : ""}
+                      loading="lazy"
+                      className="h-10 w-auto opacity-60 sm:h-14"
+                    />
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
         </div>
       </section>
 
