@@ -25,7 +25,6 @@ export const DEFAULT_VOICE = "iconic"
 // Event-atmosphere photography (backgrounds & montages only — never labelled
 // as a specific client or case study).
 const g = (n) => `/images/gallery/g${n}.webp`
-const cl = (s) => `/images/clients/${s}.webp`
 export const GALLERY = {
   band: [g(8), g(3), g(35), g(23), g(30), g(13), g(19)],
   // Widest, highest-resolution frames — used where an image bleeds full-width
@@ -41,15 +40,6 @@ export const GALLERY = {
   // means the browser fetches it once rather than twice.
   positionRoomWide: "/images/gallery/position-room-960.webp",
   motionWall: [g(8), g(9), g(28), g(31), g(3), g(35), g(23), g(30), g(13), g(19)],
-}
-
-// Hero image walls: four vertical marquee columns mixing client portraits and
-// event atmosphere. Left columns drift up, right columns drift down.
-export const HERO_WALL = {
-  leftA: [g(9), cl("ben-newman"), g(31), cl("eddie-maalouf"), g(23), g(3)],
-  leftB: [cl("ali-awad"), g(8), g(30), cl("ravi-abuvala"), g(35), cl("chase-hughes")],
-  rightA: [g(28), cl("ed-mylett"), g(13), g(19), cl("ali-awad"), g(26)],
-  rightB: [cl("ben-newman"), g(9), g(22), cl("eddie-maalouf"), g(8), cl("ravi-abuvala")],
 }
 
 // Voiced captions for the full-bleed montage band.
