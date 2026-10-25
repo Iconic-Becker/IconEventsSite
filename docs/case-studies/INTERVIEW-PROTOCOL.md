@@ -37,7 +37,10 @@ Always resume an unfinished event before starting a new one. Tell the user
 in one line where you are: *"Next up is Fast Start Forum 2024, event 10 of
 37. Nothing recorded for it yet."*
 
-Work top to bottom through `EVENT_INDEX` unless the user names an event.
+Order (Iconic, 2026-10-25): Hell Yes Live, then Creator Fest and Creator
+Hub Madrid, then every remaining event newest first by date, back to the
+oldest. Events with gaps can be published with the gaps flagged in the
+interview sheet; Iconic adds the missing assets at the end.
 
 ## 2. Run the interview
 
