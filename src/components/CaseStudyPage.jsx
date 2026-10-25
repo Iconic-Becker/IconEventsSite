@@ -297,7 +297,7 @@ function Results({ study }) {
             )}
           </div>
           {stats.length > 0 && (
-            <dl className="grid content-start grid-cols-3 border-y border-tidepool/25">
+            <dl className="grid content-start border-y border-tidepool/25" style={{ gridTemplateColumns: `repeat(${stats.length}, minmax(0, 1fr))` }}>
               {stats.map(([value, label]) => (
                 <div key={label} className="min-w-0 border-r border-tidepool/25 px-3 py-6 last:border-r-0 sm:px-5">
                   <dt className="sr-only">{label}</dt>
