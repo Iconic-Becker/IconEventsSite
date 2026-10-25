@@ -25,7 +25,6 @@ export const DEFAULT_VOICE = "iconic"
 // Event-atmosphere photography (backgrounds & montages only — never labelled
 // as a specific client or case study).
 const g = (n) => `/images/gallery/g${n}.webp`
-const cl = (s) => `/images/clients/${s}.webp`
 export const GALLERY = {
   band: [g(8), g(3), g(35), g(23), g(30), g(13), g(19)],
   // Widest, highest-resolution frames — used where an image bleeds full-width
@@ -41,15 +40,6 @@ export const GALLERY = {
   // means the browser fetches it once rather than twice.
   positionRoomWide: "/images/gallery/position-room-960.webp",
   motionWall: [g(8), g(9), g(28), g(31), g(3), g(35), g(23), g(30), g(13), g(19)],
-}
-
-// Hero image walls: four vertical marquee columns mixing client portraits and
-// event atmosphere. Left columns drift up, right columns drift down.
-export const HERO_WALL = {
-  leftA: [g(9), cl("ben-newman"), g(31), cl("eddie-maalouf"), g(23), g(3)],
-  leftB: [cl("ali-awad"), g(8), g(30), cl("ravi-abuvala"), g(35), cl("chase-hughes")],
-  rightA: [g(28), cl("ed-mylett"), g(13), g(19), cl("ali-awad"), g(26)],
-  rightB: [cl("ben-newman"), g(9), g(22), cl("eddie-maalouf"), g(8), cl("ravi-abuvala")],
 }
 
 // Voiced captions for the full-bleed montage band.
@@ -235,11 +225,32 @@ export const POSITION = {
   ],
 }
 
+/* ── ABOUT US ─────────────────────────────────────────────────────────── */
+// The first section after the logo row, in place of POSITION. The title is a
+// fixed line from the COPY GUIDE and is used verbatim; the body is built from
+// the guide's approved premise copy. Run any change past Icon first.
+export const ABOUT = {
+  eyebrow: "About Us",
+  title: V("Trust is built in a room, not on a social feed.", "Trust is built in a room, not on a social feed."),
+  body: [
+    V(
+      "An audience can follow you for years without fully believing you. A few days in the same room settles it permanently, in one direction or the other.",
+      "An audience can follow you for years without fully believing you. A few days in the same room settles it permanently, in one direction or the other."
+    ),
+    V(
+      "Iconic Events has engineered those rooms since 2017, for founders, brands and creators whose reputation rides on the answer. We are not just an event planning company. Strategy, creative, production and the night itself sit with one team, under a single line of authority.",
+      "Iconic Events has engineered those rooms since 2017, for founders, brands and creators whose reputation rides on the answer. We are not just an event planning company. Strategy, creative, production and the night itself sit with one team, under a single line of authority."
+    ),
+  ],
+  link: V("See the case studies →", "See the case studies →"),
+}
+
 /* ── 05 · SELECTED WORK ───────────────────────────────────────────────── */
 export const WORK = {
   eyebrow: "Selected Work",
   title: V("Rooms we've engineered.", "Rooms we've engineered."),
   index: V("Full Index →", "Full Index →"),
+  readMore: V("Read the case study →", "Read the case study →"),
   featured: {
     slug: "casino-royale",
     label: "Featured",
@@ -265,8 +276,8 @@ export const WORK = {
   },
   archiveLabel: V("More from the archive", "More from the archive"),
   archive: [
-    { id: "a1", img: "/images/gallery/g28.webp", name: "Bad After Dark", slug: "bad-after-dark", result: V("$146K sponsorships", "$146K sponsorships") },
-    { id: "a2", img: "/images/gallery/g13.webp", name: "The CEO Lawyer Summit", slug: "ceo-lawyer-summit", result: V("$25K+ average ticket", "$25K+ avg ticket") },
+    { id: "a1", img: "/images/gallery/g28.webp", name: "Bad After Dark", slug: "bad-after-dark", result: V("$146K sponsorships", "$146K sponsorships"), outcome: V("Partner presence built into the night, not bolted on.", "Partner presence built into the night, not bolted on.") },
+    { id: "a2", img: "/images/gallery/g13.webp", name: "The CEO Lawyer Summit", slug: "ceo-lawyer-summit", result: V("$25K+ average ticket", "$25K+ avg ticket"), outcome: V("A $25K offer, sold without pressure.", "A $25K offer, sold without pressure.") },
     { id: "a3", img: "/images/gallery/g26.webp", name: "Scaling With Systems LIVE", slug: "scaling-with-systems-live", result: V("Founder-led live summit", "Founder-led live summit") },
     { id: "a4", img: "/images/gallery/g3.webp", name: "Viral Ecom Adz", slug: "viral-ecom-adz", result: V("Six-figure sponsorship", "6-figure sponsorship") },
     { id: "a5", img: "/images/gallery/g30.webp", name: "Chase Hughes — London", slug: "chase-hughes-london", result: V("HMS Belfast build", "HMS Belfast build") },

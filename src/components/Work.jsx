@@ -38,7 +38,7 @@ export default function Work() {
       <div className="flex flex-wrap items-baseline justify-between gap-4">
         <h2 className="font-serif text-4xl font-semibold text-bone sm:text-5xl">{t(WORK.title)}</h2>
         <a href="/case-studies" className="font-sans text-xs uppercase tracking-[0.15em] text-brass hover:text-bone">
-          All 37 case studies →
+          All case studies →
         </a>
       </div>
 
@@ -76,13 +76,13 @@ export default function Work() {
         </div>
 
         {/* archive poster cards */}
-        {/* A teaser now that /case-studies carries all 37. Featured poster plus two,
+        {/* A teaser now that /case-studies carries the full index. Featured poster plus two,
             rather than the full archive, which ran to nearly five phone screens. */}
         {WORK.archive.slice(0, 2).map((a) => (
           <a
             key={a.id}
             href={`/case-studies/${a.slug}`}
-            className="group relative flex min-h-[72svh] flex-col justify-end overflow-hidden border border-bone/15 md:min-h-[210px] transition-colors duration-300 hover:border-brass/40"
+            className="group relative flex min-h-[300px] flex-col justify-end overflow-hidden border border-bone/15 md:min-h-[210px] transition-colors duration-300 hover:border-brass/40"
           >
             <img
               {...responsive(a.img, "(min-width: 768px) 30vw, 50vw")}
@@ -98,8 +98,16 @@ export default function Work() {
             />
             <div className="relative p-5 sm:p-6">
               <span className="block font-serif text-2xl text-bone">{a.name}</span>
-              <span className="mt-1 block font-sans text-xs uppercase tracking-[0.12em] text-brass">
+              {a.outcome && (
+                <span className="mt-2 block max-w-[30ch] font-serif text-lg leading-snug text-bone/80">
+                  {t(a.outcome)}
+                </span>
+              )}
+              <span className="mt-2 block font-sans text-xs uppercase tracking-[0.12em] text-brass">
                 {t(a.result)}
+              </span>
+              <span className="mt-3 block font-sans text-xs uppercase tracking-[0.15em] text-brass/80 transition group-hover:text-bone">
+                {t(WORK.readMore)}
               </span>
             </div>
             <Brackets hover />
