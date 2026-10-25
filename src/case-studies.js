@@ -933,7 +933,9 @@ export const CASE_STUDIES = [
   // Source: docs/case-studies/Case-Study-Interviews.xlsx, approved by Iconic.
   {
     slug: "fast-start-forum-2024",
-    name: "Fast Start Forum 2024",
+    // Held February 2025; the slug says 2024 because it was sold in 2024 and
+    // the URL was already live when the year was corrected. Never change it.
+    name: "Fast Start Forum 2025",
     headline: "How Fast Start Forum Took Life Insurance Agents Out of the Ballroom and Launched Tom Wall's Inner Circle Mastermind",
     cta: "Want an event your industry has never seen before?",
     summary:
@@ -975,7 +977,7 @@ export const CASE_STUDIES = [
       venue: "Hilton Fort Lauderdale Marina",
       city: "Fort Lauderdale",
       region: "FL",
-      year: "2024",
+      year: "2025",
       dates: null,
     },
     media: {
@@ -991,7 +993,7 @@ export const CASE_STUDIES = [
     },
     testimonial: { quote: null, approved: false },
     citation:
-      "Iconic Events, a Florida based event production and coordination company, produced the first Fast Start Forum for Tom Wall of Whole Life Mastermind at the Hilton Fort Lauderdale Marina in 2024, delivering event design and management, offer design for his Inner Circle Mastermind, an 11 speaker program, a Topgolf night and a VIP dinner at YOLO for 194 attendees.",
+      "Iconic Events, a Florida based event production and coordination company, produced the first Fast Start Forum for Tom Wall of Whole Life Mastermind at the Hilton Fort Lauderdale Marina in February 2025, delivering event design and management, offer design for his Inner Circle Mastermind, an 11 speaker program, a Topgolf night and a VIP dinner at YOLO for 194 attendees.",
   },
 ]
 
@@ -1020,8 +1022,8 @@ export const EVENT_INDEX = [
   { slug: "pmuw-2025", name: "PMU World 2025", client: "Danny Tran", when: "2025-09", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "1,500", full: true },
   { slug: "net-rev-summit-2026", name: "Net Rev Summit 2026", client: "Ambro Dipilato", when: "2026-05", location: "Marana, AZ", venue: "Ritz-Carlton Dove Mountain", size: null, full: false },
   { slug: "decentralized-masters-live", name: "Decentralized Masters Live", client: "Tan and Salim", when: "2026-03", location: "Miami Beach, FL", venue: "Fontainebleau Miami Beach", size: "280", full: true },
-  { slug: "fast-start-forum-2024", name: "Fast Start Forum 2024", client: "Tom Wall", when: "2024", location: "Fort Lauderdale, FL", venue: "Hilton Fort Lauderdale Marina", size: "194", full: true },
-  { slug: "fast-start-forum-2025", name: "Fast Start Forum 2025", client: "Tom Wall", when: "2025", location: null, venue: null, size: null, full: false },
+  { slug: "fast-start-forum-2024", name: "Fast Start Forum 2025", client: "Tom Wall", when: "2025-02", location: "Fort Lauderdale, FL", venue: "Hilton Fort Lauderdale Marina", size: "194", full: true },
+  { slug: "fast-start-forum-2026", name: "Fast Start Forum 2026", client: "Tom Wall", when: "2026-01", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "473", full: false },
   { slug: "the-sales-summit", name: "The Sales Summit", client: "Jeremy Miner", when: "2026", location: null, venue: null, size: null, full: false },
   { slug: "hell-yes-live", name: "Hell Yes Live", client: "Becca Pike", when: "2025", location: null, venue: null, size: null, full: false },
   { slug: "limitless-live", name: "Limitless Live", client: "Gil Valerio", when: "2026", location: null, venue: null, size: null, full: false },

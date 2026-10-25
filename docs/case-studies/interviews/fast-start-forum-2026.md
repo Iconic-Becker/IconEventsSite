@@ -1,8 +1,8 @@
-# Fast Start Forum 2025
+# Fast Start Forum 2026 (January 19 to 22, 2026)
 
-Slug: `fast-start-forum-2025` (not built). Client: Tom Wall, Whole Life
-Mastermind. Year two; year one (2024, Hilton Fort Lauderdale Marina, 194
-attendees) is in `fast-start-forum-2024.md`. No venue, month, size or
+Slug: `fast-start-forum-2026` (not built; was `fast-start-forum-2025` in the index before the years were corrected). Client: Tom Wall, Whole Life
+Mastermind. Year two; year one (February 2025, Hilton Fort Lauderdale Marina,
+194 attendees) is in `fast-start-forum-2024.md`. No venue, month, size or
 photos on file.
 
 ## Q1. What was different about year two?
@@ -55,6 +55,23 @@ notes (house rules 1 and 2; this repository is public). Publishable leads:
   150 T-shirts. A red carpet.
 - Internal matters in the report (billing, hotel attrition, the client's
   later channel exit) are not case study material and are not recorded.
+
+## Year, sponsors and how it went (2026-10-25)
+
+User, verbatim:
+
+> CORRECT IT DID HAPPEN AT THE BEGINNING OF THIS YEAR, SO I GUESS 2024 WAS ACTUALLY IN 2025, 
+>
+> SURE NAME THE TITLE SPONSOR
+>
+> IT WENT WELL EVERYONE LOVED THE CHACNE TO LEARN FROM A OLYMPIC LEGEND, TOIM SOLD MORE OF THE INNER CIRCLE MASTERMINDF WITH A CUSTOM BOOTH WE HAD SET UP FOR HIM, AND TYHE ATTENDEES LOVED THE ON THE WATER AFTERPARTY WHERE WE EVEN PUT TOMS LOGO ON THE GUITAR FOR EVERYONE TO SEE
+
+Captured: this edition was January 2026, so year one was February 2025
+(the live page keeps its fast-start-forum-2024 address, renamed Fast Start
+Forum 2025). Name the title sponsors. Everyone loved learning from an
+Olympic legend. Tom sold more of the Inner Circle Mastermind from a custom
+booth Iconic set up. An on the water afterparty, with Tom's logo on the
+Guitar Hotel for everyone to see.
 
 ## Q2. Three to five decisions, and why
 

@@ -1,8 +1,8 @@
-# Fast Start Forum 2024
+# Fast Start Forum 2024 (held February 2025; page name Fast Start Forum 2025)
 
 Slug: `fast-start-forum-2024` (not built). Client: Tom Wall, Whole Life
 Mastermind. The first Fast Start Forum; a 2025 edition is separate
-(`fast-start-forum-2025`). No old site row, no Fathom calls (they start
+(`fast-start-forum-2026`, January 2026). No old site row, no Fathom calls (they start
 March 2026), no photos on file.
 
 ## Q1. What did they come to you with?
@@ -109,3 +109,9 @@ ballroom bound events. "City council" may be a transcription error.
 - Aftermovie:
 - Testimonial video:
 - Photo folder / photographer / usage rights:
+
+## Year correction (2026-10-25)
+
+Iconic: "I guess 2024 was actually in 2025." The research date stands:
+February 2 to 4, 2025. The live URL keeps `fast-start-forum-2024`; the
+page name and year now read Fast Start Forum 2025.
