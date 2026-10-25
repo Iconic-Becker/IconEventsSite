@@ -995,6 +995,76 @@ export const CASE_STUDIES = [
     citation:
       "Iconic Events, a Florida based event production and coordination company, produced the first Fast Start Forum for Tom Wall of Whole Life Mastermind at the Hilton Fort Lauderdale Marina in February 2025, delivering event design and management, offer design for his Inner Circle Mastermind, an 11 speaker program, a Topgolf night and a VIP dinner at YOLO for 194 attendees.",
   },
+
+  // Source: docs/case-studies/Case-Study-Interviews.xlsx, approved by Iconic.
+  {
+    slug: "fast-start-forum-2026",
+    name: "Fast Start Forum 2026",
+    headline: "How Fast Start Forum More Than Doubled to 473 Attendees, With Michael Phelps and Its Own Logo on the Guitar Hotel",
+    cta: "Want your event's second year to make the first look small?",
+    summary:
+      "For year two of Fast Start Forum, Tom Wall of Whole Life Mastermind wanted to go bigger and more premium, with sponsors carrying more of the event. We moved it to the Seminole Hard Rock, the Guitar Hotel, built a room with a full sponsor hall led by title sponsors Madan+, Wealth Building Cornerstones and OneAmerica, and brought in Michael Phelps as the keynote. Tom sold more of his Inner Circle Mastermind from a custom booth, the afterparty went out on the water with Tom's logo on the Guitar, and attendance grew from 194 to 473.",
+    challenge: [
+      "Year one proved that life insurance agents wanted something better than a ballroom. For year two, Tom Wall wanted to go bigger and more premium, and to have sponsors carry more of the event.",
+    ],
+    approach: [
+      "Moved from the Hilton Fort Lauderdale Marina to the Seminole Hard Rock Hotel & Casino, the Guitar Hotel, one of the most exciting venues in the country.",
+      "Designed a room big enough for more attendees and a full sponsor hall, and brought in a dedicated sponsor liaison. Title sponsors Madan+, Wealth Building Cornerstones and OneAmerica led about 16 partners in all.",
+      "Brought in Olympic legend Michael Phelps as the keynote, alongside a program led by Tom Wall with speakers including Wade Pfau and Garrett Gunderson.",
+      "Built Tom a custom booth for his Inner Circle Mastermind on the sponsor floor.",
+      "Added a VIP track: a VIP cocktail hour and dinner, and a full VIP day to close the event.",
+      "Threw an on the water afterparty, and put Tom's logo on the Guitar Hotel itself for everyone to see.",
+    ],
+    challengesOvercome: [
+      "The original dates landed on a school vacation week, and the hotel's only other window was January 19 to 22, with very few rooms on the Sunday. We moved the event, then negotiated 50 more Sunday rooms so attendees could arrive the night before.",
+    ],
+    scope: [
+      ["Venue", "The move to the Seminole Hard Rock Hotel & Casino, the Guitar Hotel."],
+      ["Sponsors", "Room and sponsor hall design, and a dedicated sponsor liaison."],
+      ["Program", "The Michael Phelps keynote and a speaker program led by Tom Wall."],
+      ["Offer", "A custom booth for Tom's Inner Circle Mastermind."],
+      ["VIP", "A VIP cocktail hour and dinner, and a full VIP day."],
+      ["Experiences", "The on the water afterparty, and Tom's logo on the Guitar."],
+      ["Production", "Production and on site execution."],
+    ],
+    metrics: { attendance: "473", productionDays: "4", costSaved: null },
+    highlights: [
+      ["473", "Attendees, up from 194 in year one"],
+      ["3", "Title sponsors"],
+      ["1", "Olympic legend on the main stage"],
+    ],
+    results: [
+      "It went well. 473 people came, more than double the 194 at the first Fast Start Forum, and everyone loved the chance to learn from an Olympic legend.",
+      "Tom sold more of his Inner Circle Mastermind than the year before, from the custom booth we set up for him. And the attendees loved the on the water afterparty, with Tom's logo lit up on the Guitar for everyone to see.",
+    ],
+    rightFor: "Membership and mastermind communities ready to step up from a first event to a premium, sponsor backed one, especially in industries whose events usually start and end in a ballroom.",
+    stealThis: [
+      "Put the client's name on the landmark. Tom's logo on the Guitar Hotel turned a venue into a moment, and every photo from the afterparty carried his brand.",
+    ],
+    details: {
+      client: "Tom Wall",
+      clientTitle: "Whole Life Mastermind",
+      venue: "Seminole Hard Rock Hotel & Casino",
+      city: "Hollywood",
+      region: "FL",
+      year: "2026",
+      dates: null,
+    },
+    media: {
+      // TODO(collect): photos, aftermovie and testimonial links to come from Iconic.
+      hero: null,
+      challenge: null,
+      band: null,
+      resultLeft: null,
+      resultRight: null,
+      gallery: [],
+      aftermovieUrl: null,
+      testimonialUrl: null,
+    },
+    testimonial: { quote: null, approved: false },
+    citation:
+      "Iconic Events, a Florida based event production and coordination company, produced Fast Start Forum 2026 for Tom Wall of Whole Life Mastermind at the Seminole Hard Rock Hotel & Casino in Hollywood, Florida in January 2026, delivering the venue move, a sponsor hall led by title sponsors Madan+, Wealth Building Cornerstones and OneAmerica, a Michael Phelps keynote, a VIP track and an on the water afterparty for 473 attendees.",
+  },
 ]
 
 /* Every event, in the order Iconic keeps them. This drives the grid at
@@ -1023,7 +1093,7 @@ export const EVENT_INDEX = [
   { slug: "net-rev-summit-2026", name: "Net Rev Summit 2026", client: "Ambro Dipilato", when: "2026-05", location: "Marana, AZ", venue: "Ritz-Carlton Dove Mountain", size: null, full: false },
   { slug: "decentralized-masters-live", name: "Decentralized Masters Live", client: "Tan and Salim", when: "2026-03", location: "Miami Beach, FL", venue: "Fontainebleau Miami Beach", size: "280", full: true },
   { slug: "fast-start-forum-2024", name: "Fast Start Forum 2025", client: "Tom Wall", when: "2025-02", location: "Fort Lauderdale, FL", venue: "Hilton Fort Lauderdale Marina", size: "194", full: true },
-  { slug: "fast-start-forum-2026", name: "Fast Start Forum 2026", client: "Tom Wall", when: "2026-01", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "473", full: false },
+  { slug: "fast-start-forum-2026", name: "Fast Start Forum 2026", client: "Tom Wall", when: "2026-01", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "473", full: true },
   { slug: "the-sales-summit", name: "The Sales Summit", client: "Jeremy Miner", when: "2026", location: null, venue: null, size: null, full: false },
   { slug: "hell-yes-live", name: "Hell Yes Live", client: "Becca Pike", when: "2025", location: null, venue: null, size: null, full: false },
   { slug: "limitless-live", name: "Limitless Live", client: "Gil Valerio", when: "2026", location: null, venue: null, size: null, full: false },
