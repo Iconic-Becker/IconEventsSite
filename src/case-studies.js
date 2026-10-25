@@ -451,7 +451,7 @@ export const CASE_STUDIES = [
     cta: "Want to bring your community under one roof?",
     thirdPerson: true, // Iconic's own event: no first person, no client line.
     summary:
-      "CreatorHub Live set out to fill a gap: no event brought entrepreneurs and creators together to learn business and media production, and the biggest event at this capacity belonged to MrBeast. Sponsors and attendees were wary of a brand new event. The answer was a hub model, where other events ran their own stages inside CreatorHub, plus a la carte sponsorships and a Lamborghini painted live at the mixer. More than 1,500 people attended over three and a half days at the Marriott Bonnet Creek in Orlando, and the event is now building toward 3,000 in 2027.",
+      "CreatorHub Live set out to fill a gap: no event brought entrepreneurs and creators together to learn business and media production, and the biggest event at this capacity belonged to MrBeast. Sponsors and attendees were wary of a brand new event. The answer was a hub model, where other events ran their own stages inside CreatorHub, plus a la carte sponsorships and a Lamborghini painted live at the mixer. More than 1,500 people attended over three and a half days at the JW Marriott Orlando Bonnet Creek in Orlando, and the event is now building toward 3,000 in 2027.",
     challenge: [
       "There was no event where entrepreneurs and creators could come together to learn business and media production. The largest event at this capacity was run and owned by MrBeast, the biggest media entity on the planet, so building something people would trust enough to pay for meant pushing through heavy resistance.",
       "A brand new event with no history is a hard sell in the creator economy. Sponsors did not want to be first in, the platforms that mattered most, YouTube, TikTok and Snapchat, had to be won over, and getting bodies in the room was just as hard.",
@@ -462,7 +462,7 @@ export const CASE_STUDIES = [
       "Replaced the standard gold, platinum and silver packages with a la carte options, so each sponsor could find a natural way into the event.",
       "Built the hub model: other events contract one of the stages and run their own mini event inside CreatorHub, which is where the name comes from. It put attendees from several communities under one roof with the same purpose, and it is what delivered the attendance.",
       "Ran three stages at once as three separate events that happened to share a building, each with its own dedicated stage manager.",
-      "Brought a Lamborghini into the Marriott Bonnet Creek to be painted live during the networking mixer, inside a 50 foot glass enclosure built with the Marriott so not a drop of paint touched the venue.",
+      "Brought a Lamborghini into the JW Marriott Orlando Bonnet Creek to be painted live during the networking mixer, inside a 50 foot glass enclosure built with the Marriott so not a drop of paint touched the venue.",
       "Planned the content strategy around live podcast studios that ran throughout the event, so every hour on site doubled as content production.",
     ],
     challengesOvercome: [
@@ -474,7 +474,7 @@ export const CASE_STUDIES = [
       ["Sponsorship", "A la carte packages and after party brand activations in place of tiered packages."],
       ["Hub model", "Stages contracted to other events, each running its own mini event inside CreatorHub."],
       ["Content", "Content strategy and live podcast studios running throughout the event."],
-      ["Venue", "Coordination with the Marriott Bonnet Creek, including the Lamborghini enclosure."],
+      ["Venue", "Coordination with the JW Marriott Orlando Bonnet Creek, including the Lamborghini enclosure."],
       ["Production", "Three stage production and show flow, with a stage manager per stage."],
       ["On site", "On site execution across three and a half days."],
     ],
@@ -499,7 +499,7 @@ export const CASE_STUDIES = [
     details: {
       client: null,
       clientTitle: null,
-      venue: "Marriott Bonnet Creek",
+      venue: "JW Marriott Orlando Bonnet Creek",
       city: "Orlando",
       region: "FL",
       year: "2025",
@@ -518,7 +518,7 @@ export const CASE_STUDIES = [
     },
     testimonial: { quote: null, approved: false },
     citation:
-      "Iconic Events, a Florida based event production and coordination company, produced CreatorHub Live, its own event co-owned with Xtend Creators, at the Marriott Bonnet Creek in Orlando, Florida in August 2025 for more than 1,500 attendees, delivering event strategy, sponsorship design, the hub model, live podcast studios, three stage production and on site execution.",
+      "Iconic Events, a Florida based event production and coordination company, produced CreatorHub Live, its own event co-owned with Xtend Creators, at the JW Marriott Orlando Bonnet Creek in Orlando, Florida in August 2025 for more than 1,500 attendees, delivering event strategy, sponsorship design, the hub model, live podcast studios, three stage production and on site execution.",
   },
 
   // Source: docs/case-studies/Case-Study-Interviews.xlsx, approved by Iconic.
@@ -1274,6 +1274,79 @@ export const CASE_STUDIES = [
     citation:
       "Iconic Events, a Florida based event production and coordination company, coached Becca Pike of Hell Yes Coaching through Hell Yes Live 2026 at The Manchester Hotel in Lexington, Kentucky in July 2026 as part of its EPIC Consulting offer, delivering the event's promise, sales strategy, systems, run of show and pitch coaching for 99 attendees.",
   },
+
+  // Source: docs/case-studies/Case-Study-Interviews.xlsx, approved by Iconic.
+  {
+    slug: "creator-fest",
+    name: "Creator Fest 2024",
+    headline: "How Creator Fest Became the Third Largest Creator Event in the Country in Its First Year",
+    cta: "Want to launch the event your industry is missing?",
+    thirdPerson: true, // Iconic's own event: no first person, no client line.
+    summary:
+      "Creator Fest set out to be the first true business event for the creator economy, up against an event owned by the largest creator in the world, with no sponsors willing to back year one. With partner Xtend Creators running talent and sales, Iconic ran the venue, production and speakers at the JW Marriott Orlando Bonnet Creek and won over backers like Snapchat and former VidCon CEO Jim Louderback. 1,031 people came, making it the third largest creator event in the country in its first year, and it returned in 2025 as CreatorHub Live.",
+    challenge: [
+      "Creators had events built for fans, and the only creator event aimed at business owners belonged to the largest creator in the world: MrBeast's VidSummit. Creator Fest set out to be the first true business event for the creator economy, built on five pillars: product, distribution, management, monetization and growth.",
+      "Nobody wanted to back it at first. Sponsors wanted to see what the first three years looked like before they committed, and a brand new event had to earn its credibility with creators and the industry from scratch.",
+    ],
+    approach: [
+      "Partnered from the start with Patrick Israel of Xtend Creators: Iconic ran the venue, production and speakers, and Xtend ran talent, sponsors and ticket sales.",
+      "Built the program on five pillars of the creator business: product, distribution, management, monetization and growth.",
+      "Got tactical with speakers and relational capital, until major players like Snapchat and former VidCon CEO Jim Louderback were behind the event.",
+      "Closed general admission the Saturday before and sold only VIP from then on, to push upgrades.",
+      "Turned a sponsor bought block of 100 tickets into giveaways, five per speaker, so every speaker brought part of their own audience.",
+      "Reworked the founder's opening into a hero's journey talk with an intro video, to build trust from the first minute.",
+      "Gave every attendee a lanyard by category: Creator, Industry, Production or Brand, so the right people found each other.",
+    ],
+    challengesOvercome: [
+      "With no sponsors willing to bet on year one, the event had to win its backers one relationship at a time. It started slow and ramped up quickly, until Snapchat and the former CEO of VidCon were behind it. In the final weeks the speaker lineup kept shifting and sponsor management changed hands, and the program was reshaped around the speakers who were confirmed. The event ran its full four days.",
+    ],
+    scope: [
+      ["Venue", "The JW Marriott Orlando Bonnet Creek Resort & Spa."],
+      ["Production", "Production across four event days."],
+      ["Speakers", "The speaker program, from Snapchat to former VidCon CEO Jim Louderback."],
+      ["Program", "Five pillars: product, distribution, management, monetization and growth."],
+      ["Partner", "Xtend Creators ran talent, sponsors and ticket sales."],
+    ],
+    metrics: { attendance: "1,031", productionDays: "4", costSaved: null },
+    highlights: [
+      ["1,031", "Attendees in year one"],
+      ["#3", "Largest creator event in the country"],
+      ["70+", "Podcasts recorded on site"],
+    ],
+    results: [
+      "1,031 people came, making Creator Fest the third largest creator event in the country in its first year, and the first true business event for the creator economy. Breakout rooms ran anywhere from 45 minutes to three and a half hours, more than 70 podcasts were recorded on site, and about 7 TB of content was captured. Snapchat's representative and former VidCon CEO Jim Louderback both praised the event.",
+      "The lessons shaped what came next. The event was renamed CreatorHub, stayed at the JW Marriott, added virtual tickets and returned in 2025 as CreatorHub Live.",
+    ],
+    rightFor: "A first time event that needs industry credibility fast, with a partner who brings the talent and the sales.",
+    stealThis: [
+      "Open with the founder's story. A hero's journey film before the first talk builds trust before anyone takes the stage.",
+      "Sort the room with lanyards. Creator, Industry, Production and Brand lanyards told everyone who to talk to.",
+      "Let sponsors fund the seats. A sponsor bought block of tickets, given away by speakers, filled the room with each speaker's audience.",
+    ],
+    details: {
+      client: null,
+      clientTitle: null,
+      venue: "JW Marriott Orlando Bonnet Creek",
+      city: "Orlando",
+      region: "FL",
+      year: "2024",
+      dates: null,
+    },
+    media: {
+      // TODO(collect): aftermovie as a YouTube link, photo selects.
+      hero: null,
+      challenge: null,
+      band: null,
+      resultLeft: null,
+      resultRight: null,
+      gallery: [],
+      aftermovieUrl: null,
+      testimonialUrl: null,
+    },
+    testimonial: { quote: null, approved: false },
+    citation:
+      "Iconic Events, a Florida based event production and coordination company, produced Creator Fest, its own event with partner Xtend Creators, at the JW Marriott Orlando Bonnet Creek in Orlando, Florida in August 2024 for 1,031 attendees, delivering the venue, production and speaker program for the first business event for the creator economy.",
+  },
 ]
 
 /* Every event, in the order Iconic keeps them. This drives the grid at
@@ -1291,8 +1364,8 @@ export const CASE_STUDIES = [
    To promote one: add a full entry to CASE_STUDIES with the same slug and
    flip `full` to true here. */
 export const EVENT_INDEX = [
-  { slug: "creatorhub-live", name: "CreatorHub Live", client: null, when: "2025-08", location: "Orlando, FL", venue: "Marriott Bonnet Creek", size: "1,500+", full: true },
-  { slug: "creator-fest", name: "Creator Fest", client: null, when: "2024-08", location: "Orlando, FL", venue: "Marriott Bonnet Creek", size: null, full: false },
+  { slug: "creatorhub-live", name: "CreatorHub Live", client: null, when: "2025-08", location: "Orlando, FL", venue: "JW Marriott Orlando Bonnet Creek", size: "1,500+", full: true },
+  { slug: "creator-fest", name: "Creator Fest 2024", client: null, when: "2024-08", location: "Orlando, FL", venue: "JW Marriott Orlando Bonnet Creek", size: "1,031", full: true },
   { slug: "creator-hub-madrid", name: "Creator Hub Madrid", client: "Universal Music Group", when: "2025", location: "Madrid, Spain", venue: null, size: null, full: false },
   { slug: "freedom-queen-live-2024", name: "Freedom Queen Live 2024", client: "Bridget James Ling", when: "2024-11", location: "St. Petersburg, FL", venue: "The Vinoy", size: "451", full: true },
   { slug: "freedom-queen-live-2025", name: "Freedom Queen Live 2025", client: "Bridget James Ling", when: "2025-11", location: "St. Petersburg, FL", venue: "The Vinoy", size: "530", full: true },

@@ -49,6 +49,38 @@ cut talk, a travel dispute, a broken verification tool). Publishable:
 
 ## Q1. Why build it?
 
+User, 2026-10-25, verbatim:
+
+> So Patrick changed his company name from STEM Media Group to Extend. So
+> we're just going to use Extend only. The JW Marriott Orlando Bonnet Creek
+> is the correct hotel name. I don't want to say it was 600 attendees. I
+> want to say it was 1,031 attendees the first year, because it was a ton of
+> people. And something that I think is worth mentioning is that, like,
+> this, the hero and the name for this story should be like how two creators
+> went up against the world's largest creator event, and didn't win, but
+> like we definitely put up a pretty good fight, or how we created the third
+> largest creator event in the country in just our first year. The only
+> other content creator event that existed for business owners was owned by
+> the largest creator in the world, which was Mr. Beast with VidSummit. And
+> so we've created an event that essentially like just goes so far beyond
+> that, and it's been a huge win. Starting off, it was incredibly difficult
+> because nobody wanted to support us. They all wanted to see, you know,
+> what the first 3 years was going to look like before we got any sponsors.
+> And so we had to get very tactical with how we went about acquiring
+> different speakers and relational capital. And, you know, it started off
+> slow, but it quickly ramped up to the point where we had major players
+> like Snapchat and the, you know, former CEO of VidCon behind us, and, you
+> know, eventually creating an experience that was truly the first business
+> creator event for the creator economy.
+
+Captured: the partner is Xtend Creators only (Patrick Israel renamed Stem
+Media Group to Xtend). Hotel: JW Marriott Orlando Bonnet Creek. 1,031
+attendees (Iconic; supersedes the debrief's 610). Story: the third
+largest creator event in the country in its first year, up against the
+world's largest creator's event (MrBeast, VidSummit). Sponsors wanted to
+see three years first; speakers and relational capital won tactically;
+Snapchat and the former VidCon CEO came on board.
+
 ## Q2. What made this one hard?
 
 ## Q3. Three to five decisions, and why
@@ -63,7 +95,7 @@ cut talk, a travel dispute, a broken verification tool). Publishable:
 
 ## Facts
 
-- Attendance: 610 (debrief)
+- Attendance: 1,031 (Iconic)
 - Days of production on site:
 - Cost saved:
 - Venue, city, month, year: JW Marriott Orlando Bonnet Creek Resort & Spa, Orlando, FL, August 15 to 18, 2024
