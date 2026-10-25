@@ -58,6 +58,28 @@ first step and their largest event to date. Before, most of their events
 ran through a virtual coordinator. Large and loud: Rolex and car
 giveaways. Jeremy Miner is CEO of 7th Level.
 
+## Q2 to Q6, Steal This (2026-10-25)
+
+User, verbatim:
+
+> Yeah, it was a C63 2023 model. I would leave it at 653 registered and
+> attended. I would just say 700 attended. The room loved it. It was we had
+> lines out the door every single day. Even locals that were passing by
+> ended up showing up. People were there for hours upon hours from dusk till
+> dawn to level up their sales skills. Some people even brought out their
+> entire team. So there was groups of, you know, 10 to 12 team members that
+> would be paid for by the company. For Steal This, I think the Rolex
+> giveaway was a really smart idea for how to have people engage with the
+> sponsors, because we had such a huge turnout for the sponsors because of a
+> $10,000 Rolex. And, you know, if that's the cost to engage your sponsors
+> and have them come back year over year, then you're going to make back
+> your money on your sponsors and then some.
+
+Captured: the car was a 2023 Mercedes-AMG C 63 (value $100,000, from the
+previous answer). 700 attended. Lines out the door every day; locals
+walked in; people stayed for hours; companies sent teams of 10 to 12.
+Steal This: a $10,000 Rolex giveaway drove attendees to the sponsors.
+
 ## Q2. What made this one hard?
 
 ## Q3. Three to five decisions, and why
@@ -72,7 +94,7 @@ giveaways. Jeremy Miner is CEO of 7th Level.
 
 ## Facts
 
-- Attendance: 653 registered as of July 6 (final count?)
+- Attendance: 700 attended (Iconic); 653 registered as of July 6
 - Days of production on site:
 - Cost saved for the client:
 - Venue, city, month, year: Irving Convention Center at Las Colinas, Irving, TX, July 10 to 12, 2026
