@@ -1065,6 +1065,76 @@ export const CASE_STUDIES = [
     citation:
       "Iconic Events, a Florida based event production and coordination company, produced Fast Start Forum 2026 for Tom Wall of Whole Life Mastermind at the Seminole Hard Rock Hotel & Casino in Hollywood, Florida in January 2026, delivering the venue move, a sponsor hall led by title sponsors Madan+, Wealth Building Cornerstones and OneAmerica, a Michael Phelps keynote, a VIP track and an on the water afterparty for 473 attendees.",
   },
+
+  // Source: docs/case-studies/Case-Study-Interviews.xlsx, approved by Iconic.
+  {
+    slug: "the-sales-summit",
+    name: "The Sales Summit",
+    headline: "How 7th Level Drew 700 to Its Largest Event Yet, the First Step Toward Filling Stadiums",
+    cta: "Want your first big live event to feel like a stadium tour?",
+    summary:
+      "Jeremy Miner, CEO of 7th Level, wanted to grow his impact until it filled stadiums, and the Sales Summit was the first step: the largest event 7th Level had ever put on, after years of mostly virtual events. We took the Irving Convention Center at Las Colinas, opened with a gala on the terrace and built three days around live call reviews from the stage, a Rolex giveaway and a 2023 Mercedes-AMG C 63 given away from the stage. 700 people attended, with lines out the door every day.",
+    challenge: [
+      "Jeremy Miner was riding a massive wave of authority and impact, and his team at 7th Level wanted to grow it until it filled stadiums. The Sales Summit was the first step: the largest event they had ever put on. Until then, most of their events had been virtual. Jeremy wanted this one large and loud.",
+    ],
+    approach: [
+      "Took the Irving Convention Center at Las Colinas, outside Dallas, with the Westin next door so attendees could walk to every session.",
+      "Opened with a gala on the outdoor terrace the night before day one.",
+      "Built a three day program around Jeremy, Anthony Vizzari and Michael Bernoff, with live call reviews from the stage, guest panels and sponsor spotlights.",
+      "Went large and loud: a $10,000 Rolex giveaway and a $100,000 car, a 2023 Mercedes-AMG C 63, given away from the stage, built around a skill based challenge.",
+      "Gave Elite attendees their own track: a private workshop and an offsite dinner at the Constellation Club.",
+    ],
+    challengesOvercome: [
+      "A competing event landed on the same weekend, and the public launch moved to April 20, leaving about two months to sell the room. The fire marshal declined the permit at first; it was approved on July 7, three days before the doors opened.",
+    ],
+    scope: [
+      ["Venue", "The Irving Convention Center at Las Colinas, with the Westin next door."],
+      ["Opening", "The opening gala on the outdoor terrace."],
+      ["Program", "A three day program and speakers, led by Jeremy Miner, Anthony Vizzari and Michael Bernoff."],
+      ["Giveaways", "The Rolex and car giveaways, built around a skill based challenge."],
+      ["Elite", "The Elite track: a private workshop and a dinner at the Constellation Club."],
+      ["Sponsors", "Sponsor spotlights on the main stage."],
+      ["Production", "Production and on site execution."],
+      ["Content", "Post event content: recordings, storymonials and a trailer."],
+    ],
+    metrics: { attendance: "700", productionDays: "3", costSaved: null },
+    highlights: [
+      ["700", "Attendees"],
+      ["3", "Days, with lines out the door every one"],
+      ["10 to 12", "Person sales teams sent by their companies"],
+    ],
+    results: [
+      "The room loved it. There were lines out the door every single day, and locals passing by came in to see what was happening. People stayed for hours, from the first session to the last, to level up their sales skills.",
+      "Companies sent whole teams, some of 10 to 12 people, paid for by the business. 700 people attended, and the Sales Summit became the first step toward the stadiums Jeremy is building toward.",
+    ],
+    rightFor: "Experts and brands with a fast growing audience who have run mostly virtual events and are ready for a large, loud live one, and companies that want to send their whole sales team to level up together.",
+    stealThis: [
+      "Use the giveaway to send people to your sponsors. A $10,000 Rolex giveaway drove a huge turnout at the sponsor booths. If that is what it costs to engage your sponsors and bring them back year over year, you make the money back on sponsorship and then some.",
+    ],
+    details: {
+      client: "Jeremy Miner",
+      clientTitle: "CEO, 7th Level",
+      venue: "Irving Convention Center at Las Colinas",
+      city: "Irving",
+      region: "TX",
+      year: "2026",
+      dates: null,
+    },
+    media: {
+      // TODO(collect): photos, trailer and testimonial links to come from Iconic.
+      hero: null,
+      challenge: null,
+      band: null,
+      resultLeft: null,
+      resultRight: null,
+      gallery: [],
+      aftermovieUrl: null,
+      testimonialUrl: null,
+    },
+    testimonial: { quote: null, approved: false },
+    citation:
+      "Iconic Events, a Florida based event production and coordination company, produced The Sales Summit for Jeremy Miner, CEO of 7th Level, at the Irving Convention Center at Las Colinas in Irving, Texas in July 2026, delivering the venue, an opening gala, a three day program, Rolex and car giveaways, an Elite track and post event content for 700 attendees.",
+  },
 ]
 
 /* Every event, in the order Iconic keeps them. This drives the grid at
@@ -1094,7 +1164,7 @@ export const EVENT_INDEX = [
   { slug: "decentralized-masters-live", name: "Decentralized Masters Live", client: "Tan and Salim", when: "2026-03", location: "Miami Beach, FL", venue: "Fontainebleau Miami Beach", size: "280", full: true },
   { slug: "fast-start-forum-2024", name: "Fast Start Forum 2025", client: "Tom Wall", when: "2025-02", location: "Fort Lauderdale, FL", venue: "Hilton Fort Lauderdale Marina", size: "194", full: true },
   { slug: "fast-start-forum-2026", name: "Fast Start Forum 2026", client: "Tom Wall", when: "2026-01", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "473", full: true },
-  { slug: "the-sales-summit", name: "The Sales Summit", client: "Jeremy Miner", when: "2026", location: null, venue: null, size: null, full: false },
+  { slug: "the-sales-summit", name: "The Sales Summit", client: "Jeremy Miner", when: "2026-07", location: "Irving, TX", venue: "Irving Convention Center at Las Colinas", size: "700", full: true },
   { slug: "hell-yes-live", name: "Hell Yes Live", client: "Becca Pike", when: "2025", location: null, venue: null, size: null, full: false },
   { slug: "limitless-live", name: "Limitless Live", client: "Gil Valerio", when: "2026", location: null, venue: null, size: null, full: false },
   { slug: "women-and-wealth", name: "Women and Wealth", client: "Shelby Sapp", when: "2026-07", location: "Fort Lauderdale, FL", venue: "Broward County Convention Center", size: null, full: false },
