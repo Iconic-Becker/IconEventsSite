@@ -95,10 +95,12 @@ export default function Method() {
         return
       }
       const anchor = tabsAnchorRef.current
-      const receipts = document.getElementById("receipts")
-      if (!anchor || !receipts) return
+      const section = secRef.current
+      if (!anchor || !section) return
       const reachedTop = anchor.getBoundingClientRect().top <= 44
-      const nextSectionAtMidpoint = receipts.getBoundingClientRect().top <= window.innerHeight * 0.5
+      // Measured off this section's own end, not the next section's id, so
+      // hiding or reordering what follows cannot break the pin.
+      const nextSectionAtMidpoint = section.getBoundingClientRect().bottom <= window.innerHeight * 0.5
       setTabsPinned(reachedTop && !nextSectionAtMidpoint)
     }
     updatePin()
