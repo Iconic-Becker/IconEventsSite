@@ -30,14 +30,34 @@ this public repository. Publishable leads:
 - Back end sales closed on site by about 15 reps (counts and cash are
   client revenue: house rule 1).
 - Challenges on record: a competing event the same weekend; public launch
-  moved to April 20, leaving about two months to sell; hotel pickup was 13
-  of 352 room nights a month before cut-off, the block was opened to
-  nearby events, and the obligation was met by June 24 with no attrition;
+  moved to April 20, leaving about two months to sell;
   the fire marshal first declined the permit, approved July 7.
 - After: raw content, event recordings, 10 storymonials and a trailer
   delivered by August 3. Planning has started on the next annual event.
 
 ## Q1. What did they come to you with?
+
+User, 2026-10-25, verbatim (one on site detail removed at Iconic's
+request):
+
+> Maybe let's not mention the hotel room block at 13 rooms the month before
+> the event. That might be bad for them. We don't need to mention the
+> billing dispute at all. Why Jeremy came with us is because Jeremy's team
+> approached us knowing very well that Jeremy is on a massive wave of
+> authority and impact, and they want to grow their impact to fill stadiums.
+> And doing this event was the first step in doing that. So this was the
+> largest event that they had ever put on at this time. At the time, they
+> had a previous virtual coordinator, and that's how they did a majority of
+> their events. He wanted to go large and loud, and he certainly did with
+> Rolex giveaways, with car giveaways. I mean, the car was $100,000. Like,
+> it was crazy. [An on site detail Iconic asked to leave out.] And Jeremy is
+> the CEO of Seventh Level.
+
+Captured: no hotel block pickup and no billing matters on the page; one
+on site detail never mentioned. Goal: grow to fill stadiums; this was the
+first step and their largest event to date. Before, most of their events
+ran through a virtual coordinator. Large and loud: Rolex and car
+giveaways. Jeremy Miner is CEO of 7th Level.
 
 ## Q2. What made this one hard?
 
@@ -58,7 +78,7 @@ this public repository. Publishable leads:
 - Cost saved for the client:
 - Venue, city, month, year: Irving Convention Center at Las Colinas, Irving, TX, July 10 to 12, 2026
 - Scope:
-- Client name, title, company: Jeremy Miner, 7th Level (title?)
+- Client name, title, company: Jeremy Miner, CEO, 7th Level
 - Aftermovie:
 - Testimonial video:
 - Photo folder / photographer / usage rights:
