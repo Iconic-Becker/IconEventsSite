@@ -271,8 +271,16 @@ export default function App() {
           style={{
             background:
               "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.8) 50%, transparent 100%)",
+            // Eases out over the last third, so the hero ends on plain onyx
+            // and runs into the logo row without a step in tone.
+            WebkitMaskImage: "linear-gradient(to bottom, #000 62%, transparent 100%)",
+            maskImage: "linear-gradient(to bottom, #000 62%, transparent 100%)",
           }}
         />
+
+        {/* Bottom blend: walls and scrim dissolve into the page colour, so the
+            hero and the client logos below read as one unit. */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[8] h-40 bg-gradient-to-b from-transparent to-onyx sm:h-56" />
 
         {/* Foggy brass light ray — a glowing source point + soft-edged volumetric
             beam + outer fog. All edges feathered by radial masks (no straight
@@ -392,7 +400,8 @@ export default function App() {
       </div>
 
       {/* ── 02 · PRESS ────────────────────────────────────────────────── */}
-      <Section className="border-t border-bone/10 py-12">
+      {/* No top rule: the hero fades into this row (see the bottom blend). */}
+      <Section className="pb-12 pt-4 sm:pt-6">
         <p className="text-center font-sans text-xs uppercase tracking-[0.25em] text-bone/40">
           {t(PRESS.label)}
         </p>
