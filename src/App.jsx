@@ -14,10 +14,10 @@ import {
   CTA,
   GALLERY,
   MONTAGE,
-  HERO_WALL,
 } from "./content.js"
 import { useVoice } from "./voice.jsx"
 import { responsive } from "./lib/img.js"
+import { heroFrames } from "./case-studies.js"
 import Icon from "./components/Icon.jsx"
 import Photo from "./components/Photo.jsx"
 import { CtaBrackets } from "./components/CtaButtons.jsx"
@@ -42,17 +42,19 @@ import SiteFooter from "./components/SiteFooter.jsx"
 // translate loops seamlessly; grayscale keeps the mixed sources cohesive.
 // (Column visibility/width is controlled by the wrapper in the hero, so the
 // `.marquee-track` display rule doesn't fight Tailwind's `hidden`.)
-function MarqueeTrack({ images, dir, duration }) {
-  const doubled = [...images, ...images]
+function MarqueeTrack({ frames, dir, duration }) {
+  const doubled = [...frames, ...frames]
   return (
     <div
       className={`marquee-track ${dir === "up" ? "anim-up" : "anim-down"}`}
       style={{ animationDuration: `${duration}s` }}
     >
-      {doubled.map((src, i) => (
+      {doubled.map((frame, i) => (
         <div key={i} className="relative overflow-hidden border border-brass/15">
           <img
-            {...responsive(src, "(min-width: 1280px) 14vw, 22vw")}
+            src={frame.thumbs[0][0]}
+            srcSet={frame.thumbs.map(([u, w]) => `${u} ${w}w`).join(", ")}
+            sizes="(min-width: 1280px) 14vw, 22vw"
             alt=""
             loading="lazy"
             className="aspect-[3/4] w-full object-cover [filter:grayscale(1)_contrast(1.05)_brightness(0.85)]"
@@ -63,6 +65,17 @@ function MarqueeTrack({ images, dir, duration }) {
     </div>
   )
 }
+
+// Hero image walls: four columns of six, every photo from a written case
+// study and none repeated (see heroFrames). Dealt across the columns in turn,
+// so no column shows the same event twice. Left columns drift up, right
+// columns drift down.
+const HERO_COLUMNS = (() => {
+  const frames = heroFrames(24)
+  const cols = [[], [], [], []]
+  frames.forEach((frame, i) => cols[i % 4].push(frame))
+  return { leftA: cols[0], leftB: cols[1], rightA: cols[2], rightB: cols[3] }
+})()
 
 // Hero light particles — static config (left % is relative to the container),
 // so positions stay put across re-renders.
@@ -322,10 +335,10 @@ export default function App() {
         <div className="hero-fade relative hidden overflow-hidden md:block">
           <div className="absolute inset-0 flex items-start gap-3 px-3">
             <div className="flex-1">
-              <MarqueeTrack images={HERO_WALL.leftA} dir="up" duration={42} />
+              <MarqueeTrack frames={HERO_COLUMNS.leftA} dir="up" duration={42} />
             </div>
             <div className="hidden flex-1 xl:block">
-              <MarqueeTrack images={HERO_WALL.leftB} dir="up" duration={58} />
+              <MarqueeTrack frames={HERO_COLUMNS.leftB} dir="up" duration={58} />
             </div>
           </div>
           <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-onyx to-transparent" />
@@ -361,10 +374,10 @@ export default function App() {
         <div className="hero-fade relative hidden overflow-hidden md:block">
           <div className="absolute inset-0 flex items-start gap-3 px-3">
             <div className="flex-1">
-              <MarqueeTrack images={HERO_WALL.rightA} dir="down" duration={50} />
+              <MarqueeTrack frames={HERO_COLUMNS.rightA} dir="down" duration={50} />
             </div>
             <div className="hidden flex-1 xl:block">
-              <MarqueeTrack images={HERO_WALL.rightB} dir="down" duration={64} />
+              <MarqueeTrack frames={HERO_COLUMNS.rightB} dir="down" duration={64} />
             </div>
           </div>
           <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-onyx to-transparent" />
