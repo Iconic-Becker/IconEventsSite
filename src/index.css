@@ -481,9 +481,10 @@ body {
   #testimonials > div, #contact > div, footer section { max-width: 100%; }
   #services, #scope, #method, #receipts, #testimonials { padding-top: 4rem; padding-bottom: 4rem; }
 
-  /* Hero: use the visible mobile viewport and leave room for the two-row header. */
-  #top + div { min-height: calc(100svh - 6.75rem); }
-  #top + div > div[class*="min-h-screen"] { min-height: calc(100svh - 6.75rem); padding: 4.5rem 1.25rem 5.5rem; }
+  /* Hero: the visible mobile viewport, less the two-row header (6.75rem) and
+     the first row of client logos (8.5rem), so the logos show on load. The
+     content sets the floor on short phones. */
+  #top + div { min-height: calc(100svh - 15.25rem); }
   #top + div h1 { font-size: clamp(2.75rem, 13vw, 4rem); line-height: .96; }
   #top + div p { max-width: 34rem; }
 
