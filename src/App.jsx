@@ -30,6 +30,7 @@ import Gallery from "./components/Gallery.jsx"
 import Scope from "./components/Scope.jsx"
 import Method from "./components/Method.jsx"
 import Receipts from "./components/Receipts.jsx"
+import About from "./components/About.jsx"
 import Testimonials from "./components/Testimonials.jsx"
 import Niche from "./components/Niche.jsx"
 import Cta from "./components/Cta.jsx"
@@ -162,6 +163,10 @@ const SHOW_NICHE = false
 // Receipts, the numbers band. Hidden at Iconic's call: it was not doing any
 // work on the page.
 const SHOW_RECEIPTS = false
+
+// Position, "Not event planners. Experience engineers." Hidden at Iconic's
+// call: About Us now opens the page after the logo row and does its job.
+const SHOW_POSITION = false
 
 /* Every press logo ships on one 1400x400 canvas with the mark balanced inside
    it, so the row sets a single height and lets the files carry their own
@@ -398,6 +403,9 @@ export default function App() {
         </div>
       </Section>
 
+      {/* ── ABOUT US — who we are, first thing after the logos ──────────── */}
+      <About />
+
       {/* ── The Room, In Motion ──────────────────────────────────────────── */}
       <Motion />
 
@@ -407,8 +415,9 @@ export default function App() {
           Every component is unchanged; only the sequence and the calls to
           action are new. */}
 
-      {/* ── WHO WE ARE ──────────────────────────────────────────────────── */}
-      <Position />
+      {/* ── WHO WE ARE — superseded by About Us above. Currently hidden; see
+             SHOW_POSITION. ─────────────────────────────────────────────── */}
+      {SHOW_POSITION && <Position />}
 
       {/* ── WHO IT IS FOR — moved ahead of the offer: naming who we are not
              for qualifies the reader before we explain anything. Currently
@@ -419,8 +428,8 @@ export default function App() {
       <Scope />
 
       <CtaBand
-        headline="Tell us about the room you want to build."
-        secondary={{ href: "/case-studies", label: "See all 37 case studies →" }}
+        headline="We solve your event's problems before you sign."
+        secondary={{ href: "/case-studies", label: "See the case studies →" }}
       />
 
       {/* ── HOW WE DO IT ────────────────────────────────────────────────── */}
