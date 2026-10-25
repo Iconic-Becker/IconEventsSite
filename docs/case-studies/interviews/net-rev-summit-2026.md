@@ -50,3 +50,16 @@ to June 12, 2026 (summaries are excerpts, not full transcripts):
 - Aftermovie:
 - Testimonial video:
 - Photo folder / photographer / usage rights:
+
+## Headline (2026-10-25)
+
+User, verbatim:
+
+> All right, but just going back to NetRev for a second, I don't think the
+> title should be around Tickets Ritz-Carlton Online. I think it should be
+> around how they moved the entire, they shook the world of sales forward
+> and had a phenomenal event, like something of that accord would be the
+> way I would want to do it. It's just like they're changing the game by
+> making incredibly high-class, impactful events.
+
+Captured: headline now "How Net Rev Summit 2026 Moved the World of Sales Forward With a High Class, High Impact Event".

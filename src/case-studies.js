@@ -1141,7 +1141,7 @@ export const CASE_STUDIES = [
   {
     slug: "net-rev-summit-2026",
     name: "Net Rev Summit 2026",
-    headline: "How Net Rev Summit 2026 Took Its Ritz-Carlton Stage Online",
+    headline: "How Net Rev Summit 2026 Moved the World of Sales Forward With a High Class, High Impact Event",
     cta: "Want your summit to reach far beyond the room?",
     summary:
       "Net Rev Summit 2026 brought its community to the Ritz-Carlton Dove Mountain in Marana, Arizona, and opened the stage to a virtual audience as well. We restructured the run of show so the story built across the weekend, added a virtual ticket and livestream hosted with 7th Level, turned the full catering minimum into extras for attendees, and after the event negotiated a $16,000 hotel overage down to $1,067.",
