@@ -929,6 +929,70 @@ export const CASE_STUDIES = [
     citation:
       "Iconic Events, a Florida based event production and coordination company, produced the first Decentralized Masters Live for co-founders Tan and Salim at the Fontainebleau Miami Beach in March 2026, delivering event design, venue and hotel negotiations including $51,000 in waived attrition fees, a VIP opening mixer in the Presidential Suite and on site execution for about 280 accredited investors.",
   },
+
+  // Source: docs/case-studies/Case-Study-Interviews.xlsx, approved by Iconic.
+  {
+    slug: "fast-start-forum-2024",
+    name: "Fast Start Forum 2024",
+    headline: "How Fast Start Forum Took Life Insurance Agents Out of the Ballroom and Launched Tom Wall's Inner Circle Mastermind",
+    cta: "Want an event your industry has never seen before?",
+    summary:
+      "Life insurance events usually start and end in a stuffy ballroom. Tom Wall of Whole Life Mastermind wanted something better for his agents. For the first Fast Start Forum, at the Hilton Fort Lauderdale Marina, we opened with a Sunday mixer, took Monday night to Topgolf and closed with a VIP dinner and live jazz at YOLO, around a program of 11 speakers. 194 attendees came, and Tom sold several spots in his first offer and in the Inner Circle Mastermind we helped him design.",
+    challenge: [
+      "Life insurance events had a reputation: stuffy ballrooms, no excitement and no mixers worth staying for. Tom Wall, who runs Whole Life Mastermind, a mastermind and support group for life insurance agents, wanted to build something better for the agents in his community.",
+    ],
+    approach: [
+      "Launched publicly with about three months to sell the room.",
+      "Opened Sunday with registration and a mixer, so agents met before the first session.",
+      "Took Monday night to Topgolf instead of another ballroom reception and open bar, so agents bonded over something they could do together. Tom is a big golfer, and it gave him the chance to show it.",
+      "Closed Tuesday with a VIP dinner at YOLO, one of Fort Lauderdale's hottest destinations, with live jazz and a floor to dance on.",
+      "Built a speaker lineup of 11, hosted by Tom Wall, including Garrett Gunderson, Vince D'Addona and Kristin Andree.",
+    ],
+    challengesOvercome: null,
+    scope: [
+      ["Event design", "Event design and management for the first Fast Start Forum."],
+      ["Offer", "Design of Tom's Inner Circle Mastermind offer."],
+      ["Venue", "The Hilton Fort Lauderdale Marina."],
+      ["Program", "A program of 11 speakers, hosted by Tom Wall."],
+      ["Experiences", "A Sunday mixer, a Monday night at Topgolf and a VIP dinner with live jazz at YOLO."],
+      ["Production", "Production and on site execution."],
+    ],
+    metrics: { attendance: "194", productionDays: null, costSaved: null },
+    highlights: [
+      ["194", "Attendees at the first Fast Start Forum"],
+      ["11", "Speakers on the program"],
+    ],
+    results: [
+      "It went really well. 194 attendees came to the first Fast Start Forum, and Tom sold several spots in his first offer, along with a couple of places in the Inner Circle Mastermind we helped him design. The agents left having bonded over golf and jazz instead of another ballroom reception, and Tom brought the event back the next year.",
+    ],
+    rightFor: "Any industry whose events tend to be standardized and stale, such as insurance or health and wellness, where events usually start and end in a ballroom. Fast Start Forum is a model for breaking that pattern.",
+    stealThis: [
+      "Replace the ballroom mixer with an experience. A night at Topgolf gave agents something to do together, not just something to drink, and the bonding carried back into the sessions. Pick an activity your host loves, too: Tom is a big golfer, and it showed.",
+    ],
+    details: {
+      client: "Tom Wall",
+      clientTitle: "Whole Life Mastermind",
+      venue: "Hilton Fort Lauderdale Marina",
+      city: "Fort Lauderdale",
+      region: "FL",
+      year: "2024",
+      dates: null,
+    },
+    media: {
+      // TODO(collect): photos, aftermovie and testimonial links to come from Iconic.
+      hero: null,
+      challenge: null,
+      band: null,
+      resultLeft: null,
+      resultRight: null,
+      gallery: [],
+      aftermovieUrl: null,
+      testimonialUrl: null,
+    },
+    testimonial: { quote: null, approved: false },
+    citation:
+      "Iconic Events, a Florida based event production and coordination company, produced the first Fast Start Forum for Tom Wall of Whole Life Mastermind at the Hilton Fort Lauderdale Marina in 2024, delivering event design and management, offer design for his Inner Circle Mastermind, an 11 speaker program, a Topgolf night and a VIP dinner at YOLO for 194 attendees.",
+  },
 ]
 
 /* Every event, in the order Iconic keeps them. This drives the grid at
@@ -956,7 +1020,7 @@ export const EVENT_INDEX = [
   { slug: "pmuw-2025", name: "PMU World 2025", client: "Danny Tran", when: "2025-09", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "1,500", full: true },
   { slug: "net-rev-summit-2026", name: "Net Rev Summit 2026", client: "Ambro Dipilato", when: "2026-05", location: "Marana, AZ", venue: "Ritz-Carlton Dove Mountain", size: null, full: false },
   { slug: "decentralized-masters-live", name: "Decentralized Masters Live", client: "Tan and Salim", when: "2026-03", location: "Miami Beach, FL", venue: "Fontainebleau Miami Beach", size: "280", full: true },
-  { slug: "fast-start-forum-2024", name: "Fast Start Forum 2024", client: "Tom Wall", when: "2024", location: null, venue: null, size: null, full: false },
+  { slug: "fast-start-forum-2024", name: "Fast Start Forum 2024", client: "Tom Wall", when: "2024", location: "Fort Lauderdale, FL", venue: "Hilton Fort Lauderdale Marina", size: "194", full: true },
   { slug: "fast-start-forum-2025", name: "Fast Start Forum 2025", client: "Tom Wall", when: "2025", location: null, venue: null, size: null, full: false },
   { slug: "the-sales-summit", name: "The Sales Summit", client: "Jeremy Miner", when: "2026", location: null, venue: null, size: null, full: false },
   { slug: "hell-yes-live", name: "Hell Yes Live", client: "Becca Pike", when: "2025", location: null, venue: null, size: null, full: false },
