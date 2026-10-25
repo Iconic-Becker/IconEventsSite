@@ -1135,6 +1135,68 @@ export const CASE_STUDIES = [
     citation:
       "Iconic Events, a Florida based event production and coordination company, produced The Sales Summit for Jeremy Miner, CEO of 7th Level, at the Irving Convention Center at Las Colinas in Irving, Texas in July 2026, delivering the venue, an opening gala, a three day program, Rolex and car giveaways, an Elite track and post event content for 700 attendees.",
   },
+
+  // Source: Fathom call summaries (M141), published with gaps at Iconic's
+  // request. TODO(collect): see the interview sheet row for what is missing.
+  {
+    slug: "net-rev-summit-2026",
+    name: "Net Rev Summit 2026",
+    headline: "How Net Rev Summit 2026 Took Its Ritz-Carlton Stage Online",
+    cta: "Want your summit to reach far beyond the room?",
+    summary:
+      "Net Rev Summit 2026 brought its community to the Ritz-Carlton Dove Mountain in Marana, Arizona, and opened the stage to a virtual audience as well. We restructured the run of show so the story built across the weekend, added a virtual ticket and livestream hosted with 7th Level, turned the full catering minimum into extras for attendees, and after the event negotiated a $16,000 hotel overage down to $1,067.",
+    challenge: [
+      "Net Rev wanted its summit to reach beyond the room: an in person weekend at the Ritz-Carlton Dove Mountain, plus a virtual audience far larger than the ballroom could hold.",
+    ],
+    approach: [
+      "Restructured the run of show for narrative flow, moving the event's \"why\" talk to Sunday morning and adding a Sunday afternoon roundtable.",
+      "Added a virtual ticket and a livestream, hosted with 7th Level, so the stage reached people who could not be in Arizona.",
+      "Put the full catering minimum to work for attendees: a continental breakfast and Ritz-Carlton gift cards.",
+      "Redesigned the LED wall graphics to match the brand.",
+    ],
+    challengesOvercome: [
+      "A $16,000 hotel overage arrived after the event. We negotiated it down to $1,067, saving the client $14,933.",
+    ],
+    scope: [
+      ["Program", "Run of show and session order, built for the weekend's narrative."],
+      ["Virtual", "A virtual ticket and livestream, hosted with 7th Level."],
+      ["Hospitality", "Catering, a continental breakfast and Ritz-Carlton gift cards for attendees."],
+      ["Branding", "LED wall graphics redesigned to match the brand."],
+      ["Negotiations", "The hotel overage, cut from $16,000 to $1,067."],
+      ["Content", "Event content delivered after the show."],
+    ],
+    metrics: { attendance: null, productionDays: null, costSaved: "$14,933", costSavedBasis: "Iconic Events negotiated a $16,000 hotel overage down to $1,067 after Net Rev Summit 2026." },
+    highlights: [
+      ["$14.9K", "Hotel overage negotiated away"],
+    ],
+    results: [
+      "The weekend ran at the Ritz-Carlton Dove Mountain as planned, and the full set of event content was delivered after the show.",
+    ],
+    rightFor: null,
+    stealThis: null,
+    details: {
+      client: "Ambro Dipilato",
+      clientTitle: null,
+      venue: "Ritz-Carlton Dove Mountain",
+      city: "Marana",
+      region: "AZ",
+      year: "2026",
+      dates: null,
+    },
+    media: {
+      hero: null,
+      challenge: null,
+      band: null,
+      resultLeft: null,
+      resultRight: null,
+      gallery: [],
+      aftermovieUrl: null,
+      testimonialUrl: null,
+    },
+    testimonial: { quote: null, approved: false },
+    citation:
+      "Iconic Events, a Florida based event production and coordination company, produced Net Rev Summit 2026 for Ambro Dipilato at the Ritz-Carlton Dove Mountain in Marana, Arizona in May 2026, delivering the run of show, a virtual ticket and livestream hosted with 7th Level, attendee hospitality, brand graphics and hotel negotiations.",
+  },
 ]
 
 /* Every event, in the order Iconic keeps them. This drives the grid at
@@ -1160,7 +1222,7 @@ export const EVENT_INDEX = [
   { slug: "pmuw-2023", name: "PMU World 2023", client: "Danny Tran", when: "2023-04", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "800+", full: true },
   { slug: "pmuw-2024", name: "PMU World 2024", client: "Danny Tran", when: "2024-08", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "1,237", full: true },
   { slug: "pmuw-2025", name: "PMU World 2025", client: "Danny Tran", when: "2025-09", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "1,500", full: true },
-  { slug: "net-rev-summit-2026", name: "Net Rev Summit 2026", client: "Ambro Dipilato", when: "2026-05", location: "Marana, AZ", venue: "Ritz-Carlton Dove Mountain", size: null, full: false },
+  { slug: "net-rev-summit-2026", name: "Net Rev Summit 2026", client: "Ambro Dipilato", when: "2026-05", location: "Marana, AZ", venue: "Ritz-Carlton Dove Mountain", size: null, full: true },
   { slug: "decentralized-masters-live", name: "Decentralized Masters Live", client: "Tan and Salim", when: "2026-03", location: "Miami Beach, FL", venue: "Fontainebleau Miami Beach", size: "280", full: true },
   { slug: "fast-start-forum-2024", name: "Fast Start Forum 2025", client: "Tom Wall", when: "2025-02", location: "Fort Lauderdale, FL", venue: "Hilton Fort Lauderdale Marina", size: "194", full: true },
   { slug: "fast-start-forum-2026", name: "Fast Start Forum 2026", client: "Tom Wall", when: "2026-01", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "473", full: true },
