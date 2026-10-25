@@ -24,8 +24,7 @@ this public repository. Publishable leads:
 - Program: three days. Opening gala on the outdoor terrace; an Elite
   dinner offsite at the Constellation Club; a private Elite workshop; live
   call review from the stage; guest panels; sponsor spotlights; a car and
-  a Rolex giveaway and a skill based prize element; giraffes on site for
-  four days. Headliners Jeremy Miner, Anthony Vizzari and Michael Bernoff,
+  a Rolex giveaway and a skill based prize element. Headliners Jeremy Miner, Anthony Vizzari and Michael Bernoff,
   nine named speakers in all.
 - Back end sales closed on site by about 15 reps (counts and cash are
   client revenue: house rule 1).
