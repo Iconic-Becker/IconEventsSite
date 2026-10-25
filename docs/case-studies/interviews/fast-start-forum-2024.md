@@ -79,7 +79,22 @@ the VIPs at one of Fort Lauderdale's hottest destinations.
 
 ## Q5. Who is this build right for?
 
-## Q6. Anything else about the event?
+## Q6. How it went (2026-10-25)
+
+User, verbatim (how it went, Steal This, right for):
+
+> I mean, I think it went really, really well. He ended up selling out
+> several of his first time offer. We helped him design his Inner Circle
+> Mastermind, which he ended up selling a couple of them for. I think the
+> steal of this is correct. And who's this right for? I would say an
+> industry who typically has a more standardized stale experience, like city
+> council, health, wellness, events that usually start and end in a
+> ballroom. This is a great type of event to model.
+
+Captured: sold several spots in his first offer; Iconic helped design the
+Inner Circle Mastermind, and he sold a couple. Steal This: replace the
+ballroom mixer with an experience. Right for: industries with stale,
+ballroom bound events. "City council" may be a transcription error.
 
 ## Steal This
 
