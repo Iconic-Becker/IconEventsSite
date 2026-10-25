@@ -159,6 +159,10 @@ function EasterEggReveal() {
 // ribbon repeating the call to action that already sits below it.
 const SHOW_NICHE = false
 
+// Receipts, the numbers band. Hidden at Iconic's call: it was not doing any
+// work on the page.
+const SHOW_RECEIPTS = false
+
 /* Every press logo ships on one 1400x400 canvas with the mark balanced inside
    it, so the row sets a single height and lets the files carry their own
    weight. See PRESS in content.js before touching these images. */
@@ -426,8 +430,9 @@ export default function App() {
              and the testimonial cards came out: with Selected Work and the
              gallery below, the page was carrying five proof sections. The
              client's own words now live on the case study pages, one per
-             event, where they belong to something ─────────────────────── */}
-      <Receipts />
+             event, where they belong to something. Currently hidden; see
+             SHOW_RECEIPTS above. ──────────────────────────────────────── */}
+      {SHOW_RECEIPTS && <Receipts />}
 
       <CtaBand headline="Six figures of production, one accountable team." />
 
