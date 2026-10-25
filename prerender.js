@@ -6,6 +6,7 @@
 // without touching this file.
 import fs from 'node:fs'
 import path from 'node:path'
+import { createHash } from 'node:crypto'
 import { render, preloadRoute } from './dist-ssr/entry-server.js'
 import { CASE_STUDIES } from './src/case-studies.js'
 import { PRIVACY, TERMS } from './src/legal.js'
@@ -98,9 +99,19 @@ const escape = (value) =>
 
 // Without these, a link shared to Slack, WhatsApp or LinkedIn renders as a
 // bare URL: no image, no title, no description.
+// The card URL carries a short hash of the file. WhatsApp and Slack cache a
+// preview by image URL, so a redrawn card would otherwise keep showing the
+// old one; a new hash makes them fetch it again.
+const cardVersion = (rel) =>
+  createHash('sha1').update(fs.readFileSync(`public${rel}`)).digest('hex').slice(0, 8)
+
 function socialTags(route) {
   const url = `${SITE}${route.path}`
-  const image = `${SITE}${route.image ?? '/og/default.jpg'}`
+  // A case study without its own card yet shares the default rather than a
+  // link to a file that does not exist.
+  const wanted = route.image ?? '/og/default.jpg'
+  const rel = fs.existsSync(`public${wanted}`) ? wanted : '/og/default.jpg'
+  const image = `${SITE}${rel}?v=${cardVersion(rel)}`
   return [
     `<meta property="og:type" content="website" />`,
     `<meta property="og:site_name" content="Iconic Events" />`,
