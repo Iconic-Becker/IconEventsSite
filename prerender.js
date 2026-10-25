@@ -26,7 +26,7 @@ const ROUTES = [
     path: '/case-studies',
     title: 'Case Studies | Iconic Events',
     description:
-      'Every room Iconic Events has engineered: events for founders, agencies and creators across the US, UK, Spain and the UAE.',
+      'Learn from the events Iconic Events has engineered for founders, agencies and creators across the US, UK, Spain and the UAE.',
     image: '/og/case-studies.jpg',
   },
   ...CASE_STUDIES.map((study) => ({
