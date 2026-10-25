@@ -59,6 +59,20 @@ answer stands, and the page shows the year only).
 
 ## Q2. What made this one hard?
 
+User, 2026-10-25, verbatim (also Q3):
+
+> We don't need to add what made it hard. It was more along the lines of why
+> Topgolf and YOLO was ultimately, we just wanted to give the attendees an
+> opportunity to bond outside of just this standard ballroom mixer and
+> alcohol drink. Tom also is a big golfer, and this allowed him to show off
+> his golf skills. And the YOLO bar allowed us a fun place to actually dance
+> with a live jazz performance for the VIPs at one of Fort Lauderdale's
+> hottest destinations, YOLO.
+
+Captured: no "what made it hard" on the page. Topgolf: bonding outside the
+ballroom mixer, and Tom is a big golfer. YOLO: dancing and live jazz for
+the VIPs at one of Fort Lauderdale's hottest destinations.
+
 ## Q3. Three to five decisions, and why
 
 ## Q4. Challenges overcome
