@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from "react"
 import SiteHeader from "./SiteHeader.jsx"
 import SiteFooter from "./SiteFooter.jsx"
 import CtaBand from "./CtaBand.jsx"
-import Brackets from "./Brackets.jsx"
+import Icon from "./Icon.jsx"
 import { SCOPE } from "../content.js"
+import { FORMATS, SERVICE_PAGE_BY_ZONE } from "../services.js"
 import { responsive } from "../lib/img.js"
 
 /* /services: what Iconic does, on a page of its own so the nav never sends
@@ -40,40 +41,8 @@ const PLATES = {
   g6: "/images/gallery/position-room.webp",
 }
 
-/* The formats we build, from the copy guide: multi-day conferences and
-   summits, high-ticket brand launches, ascension masterminds, corporate
-   retreats, and single-day activations. The sixth is the guide's creator
-   case. */
-const FORMATS = [
-  {
-    name: "Summits & conferences",
-    line: "Multi-day rooms built as one arc, from the registration line to the close.",
-  },
-  {
-    name: "Ascension masterminds",
-    line: "Smaller rooms, higher stake. The environment is engineered for the next tier to be offered and believed.",
-  },
-  {
-    name: "Brand launches",
-    line: "A brand or an offer put in front of its audience in person for the first time, with the moment written into the run of show.",
-  },
-  {
-    name: "Corporate retreats",
-    line: "Leadership and sales rooms off site, run to the minute so the agenda is what people remember, not the logistics.",
-  },
-  {
-    name: "Single-day activations",
-    line: "One day with a reputation riding on it. Duration is not the qualifier. Stake is.",
-  },
-  {
-    name: "Creator live events",
-    line: "A creator meeting the audience that has only ever known them through a screen. Trust is built in a room, not on a social feed.",
-  },
-]
-
 const num = (i) => String(i + 1).padStart(2, "0")
 const groups = SCOPE.doGroups
-const deliverables = groups.reduce((n, g) => n + g.items.length, 0)
 
 /* Which entry the reader is on, and how far down the schedule they are.
    Both are read off the scroll position: the entry whose top has passed
@@ -144,36 +113,20 @@ function Hero() {
     <section ref={ref} onMouseMove={move} onMouseLeave={leave} className="relative overflow-hidden border-b border-bone/10">
       <div className="pointer-events-none absolute inset-0 opacity-[0.04]" style={pattern} aria-hidden="true" />
       <div className="pattern-reveal pointer-events-none absolute inset-0 opacity-[0.14]" style={pattern} aria-hidden="true" />
-      <div className="relative mx-auto max-w-6xl px-5 pb-14 pt-14 text-center sm:px-6 sm:pb-20 sm:pt-24">
+      <div className="relative mx-auto max-w-6xl px-5 pb-10 pt-14 text-center sm:px-6 sm:pb-14 sm:pt-20">
         <p className="fade-rise font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">Services</p>
         <h1
-          className="fade-rise mx-auto mt-5 max-w-[20ch] font-serif text-5xl font-semibold leading-[0.96] [text-wrap:balance] sm:text-6xl lg:text-7xl"
+          className="fade-rise mx-auto mt-5 max-w-[26ch] font-serif text-5xl font-semibold leading-[0.96] [text-wrap:balance] sm:text-6xl lg:text-7xl"
           style={{ animationDelay: "80ms" }}
         >
           Six zones of service and support. One line of authority.
         </h1>
-        <p className="fade-rise mx-auto mt-8 max-w-[54ch] font-sans text-lg leading-relaxed text-bone/70" style={{ animationDelay: "180ms" }}>
+        <p className="fade-rise mx-auto mt-6 max-w-[68ch] font-sans text-lg leading-relaxed text-bone/70" style={{ animationDelay: "180ms" }}>
           Most event planners oversee logistics. We engineer the room your audience decides in. Strategy,
           creative, production, content, operations and revenue sit with one team, so nothing falls between
           vendors.
         </p>
 
-        {/* A colophon, counted from the schedule below rather than typed. */}
-        <dl
-          className="fade-rise mx-auto mt-12 grid max-w-xl grid-cols-3 gap-6 border-t border-bone/15 pt-6 font-sans sm:mt-16"
-          style={{ animationDelay: "280ms" }}
-        >
-          {[
-            [num(groups.length - 1), "Zones"],
-            [String(deliverables), "Deliverables"],
-            ["2017", "Est."],
-          ].map(([v, k]) => (
-            <div key={k}>
-              <dt className="text-[10px] font-bold uppercase tracking-[0.2em] text-bone/40">{k}</dt>
-              <dd className="mt-2 font-serif text-3xl font-semibold leading-none text-bone sm:text-4xl">{v}</dd>
-            </div>
-          ))}
-        </dl>
       </div>
     </section>
   )
@@ -211,26 +164,26 @@ function Contents({ active }) {
           ))}
         </ol>
 
-        {/* The plate for the active zone. */}
-        <figure className="group relative mt-10 hidden aspect-[4/3] overflow-hidden border border-brass/25 lg:block">
+        {/* The plate for the active zone. From lg up it runs off the left
+            edge of the page and dissolves at its edges, so it reads as a
+            scene behind the schedule rather than a thumbnail beside it. */}
+        <figure className="svc-plate relative mt-10 hidden h-[min(54vh,560px)] lg:ml-[calc(-1*(max(0px,(100vw-72rem)/2)+1.5rem))] lg:block lg:w-[calc(100%+max(0px,(100vw-72rem)/2)+1.5rem)]">
           {groups.map((g, i) => (
             <img
               key={g.id}
-              {...responsive(PLATES[g.id], "33vw")}
+              {...responsive(PLATES[g.id], "40vw")}
               alt=""
               loading={i === 0 ? "eager" : "lazy"}
               decoding="async"
-              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 [filter:saturate(1.08)_contrast(1.06)_brightness(1.05)] ${
+              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 [filter:saturate(1.08)_contrast(1.06)_brightness(1.05)] ${
                 active === i ? "opacity-100" : "opacity-0"
               }`}
             />
           ))}
-          <Brackets />
-          <figcaption className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-onyx/80 to-transparent px-4 pb-3 pt-10 font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-bone/80">
-            <span>Plate {num(active)}</span>
-            <span>{groups[active].group}</span>
-          </figcaption>
         </figure>
+        <p className="mt-3 hidden font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-bone/50 lg:block" aria-live="polite">
+          Plate {num(active)} <span className="mx-2 text-bone/25">·</span> {groups[active].group}
+        </p>
 
         <p className="mt-6 hidden max-w-[30ch] font-sans text-[11px] leading-relaxed text-bone/40 lg:block">
           <span className="mr-2 inline-block h-1 w-1 translate-y-[-2px] bg-brass" aria-hidden="true" />
@@ -279,6 +232,16 @@ function Entry({ g, i, active }) {
           </li>
         ))}
       </ol>
+
+      {SERVICE_PAGE_BY_ZONE[g.id] && (
+        <a
+          href={`/services/${SERVICE_PAGE_BY_ZONE[g.id].slug}`}
+          className="group mt-6 inline-flex items-center gap-2 font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brass transition-colors hover:text-bone"
+        >
+          About {g.group.toLowerCase()}
+          <Icon name="arrow" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+        </a>
+      )}
 
       {/* On smaller screens the plate sits with its entry. */}
       <div className="relative mt-8 aspect-[21/9] overflow-hidden border border-brass/25 lg:hidden">

@@ -450,6 +450,32 @@ body {
   .svc-fill { transition: none; }
 }
 
+/* A plate that dissolves at its edges: soft at the left and right, softer
+   still at the top and bottom, so the photograph sits behind the page
+   rather than in a frame on it. */
+.svc-plate {
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, #000 26%, #000 74%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 16%, #000 84%, transparent 100%);
+  mask-image:
+    linear-gradient(to right, transparent 0%, #000 26%, #000 74%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 16%, #000 84%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+/* The same plate running solid off the right edge of the page, dissolving
+   only toward the text. */
+.svc-plate-r {
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, #000 34%, #000 100%),
+    linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%);
+  mask-image:
+    linear-gradient(to right, transparent 0%, #000 34%, #000 100%),
+    linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
 /* Mobile experience: compact rhythm, touch-first interactions, and safe reflow. */
 :focus-visible { outline: 2px solid var(--color-brass); outline-offset: 3px; }
 .mobile-nav { scrollbar-width: none; -webkit-overflow-scrolling: touch; }
