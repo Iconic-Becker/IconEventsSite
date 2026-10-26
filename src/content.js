@@ -111,6 +111,7 @@ export const PRESS = {
     { name: "Shelby Sapp's Women & Wealth", src: "/images/press/women-and-wealth.webp", w: 1400, h: 400 },
     { name: "NetRevenue", src: "/images/press/netrevenue.webp", w: 1400, h: 400 },
     { name: "Closers.io", src: "/images/press/closers-io.webp", w: 1400, h: 400 },
+    { name: "CreatorHub", src: "/images/press/creatorhub.webp", w: 1400, h: 400 },
   ],
   // Kept, not rendered. The row ran on these names before the logo files
   // arrived. They are press mentions and venues rather than clients, so if
@@ -128,9 +129,10 @@ export const ROOM = {
   meta: "Selected clients · Since 2017",
   // Order is Iconic's call, front of the rail first: Jeremy Miner, Eddie
   // Maalouf, Shelby Sapp, Ambro Dipilato, Chase Hughes, Alexis Mai, then the
-  // rest. Ed Mylett came off on 26 Oct 2026. Shelby, Ambro and Alexis carry
-  // img: null, which draws a branded placeholder, until their headshots are
-  // on file. Ben Newman and Ali Awad stay, but not at the front.
+  // rest. Ed Mylett came off on 26 Oct 2026. Shelby, Ambro, Alexis, Cole,
+  // Max and John carry img: null, which draws a branded placeholder, until
+  // their headshots are on file; the placeholders are spaced out between
+  // photographs. Ben Newman and Ali Awad stay, but not at the front.
   people: [
     {
       id: "r7",
@@ -210,6 +212,24 @@ export const ROOM = {
       result: V("Her Last Call", "Her Last Call"),
     },
     {
+      id: "r11",
+      img: "/images/clients/danny-tran.webp",
+      name: "Danny Tran",
+      // From the PMU World 2025 case study. Photo: PMU World Drive.
+      event: "PMU World 2025",
+      slug: "pmuw-2025",
+      stats: [
+        { value: "1,500", label: "Attendees in person" },
+        { value: "500", label: "Attendees virtual" },
+        { value: "$140K", label: "Saved on AV" },
+      ],
+      result: V("1,500 attendees", "1,500 attendees"),
+      about: V(
+        "PMU World 2025, built to live on social media as much as in the room.",
+        "PMU World 2025, built to live on social as much as in the room."
+      ),
+    },
+    {
       id: "r6",
       img: "/images/clients/ravi-abuvala.webp",
       name: "Ravi Abuvala",
@@ -228,6 +248,41 @@ export const ROOM = {
       ),
     },
     {
+      id: "r12",
+      // Placeholder card until a headshot is on file. No case study yet, so no link.
+      img: null,
+      name: "Cole Gordon",
+      event: "Closers.io Retreat",
+      stats: [{ value: "2025", label: "Produced" }],
+      result: V("Closers.io Retreat", "Closers.io Retreat"),
+    },
+    {
+      id: "r13",
+      img: "/images/clients/bridget-james-ling.webp",
+      name: "Bridget James Ling",
+      // From the Freedom Queen Live 2025 case study.
+      event: "Freedom Queen Live 2025",
+      slug: "freedom-queen-live-2025",
+      stats: [
+        { value: "530", label: "Attendees" },
+        { value: "3.5", label: "Days of production" },
+      ],
+      result: V("530 attendees", "530 attendees"),
+      about: V(
+        "Freedom Queen Live 2025, a business event staged as a Broadway style show.",
+        "Freedom Queen Live 2025, a business event run like a Broadway show."
+      ),
+    },
+    {
+      id: "r14",
+      // Placeholder card until a headshot is on file. No case study yet, so no link.
+      img: null,
+      name: "Max Willett",
+      event: "Maxxed Out Summit",
+      stats: [{ value: "2025", label: "Produced" }],
+      result: V("Maxxed Out Summit", "Maxxed Out Summit"),
+    },
+    {
       id: "r1",
       img: "/images/clients/ben-newman.webp",
       name: "Ben Newman",
@@ -236,6 +291,15 @@ export const ROOM = {
       stats: [{ value: "704K", label: "Instagram" }],
       result: V("Live event production", "Live event production"),
       about: V("Live event production for Ben Newman.", "Live event production for Ben Newman."),
+    },
+    {
+      id: "r15",
+      // Placeholder card until a headshot is on file. No case study yet, so no link.
+      img: null,
+      name: "John Whiting",
+      event: "Bulletproof Financial Accelerator",
+      stats: [{ value: "2022", label: "Orlando, FL" }],
+      result: V("Bulletproof Financial Accelerator", "Bulletproof Financial Accelerator"),
     },
     {
       id: "r3",

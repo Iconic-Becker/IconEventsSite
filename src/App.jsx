@@ -138,7 +138,8 @@ const SHOW_POSITION = false
 
 /* Every press logo ships on one 1400x400 canvas with the mark balanced inside
    it, so the row sets a single height and lets the files carry their own
-   weight. See PRESS in content.js before touching these images. */
+   weight. See PRESS in content.js before touching these images. At sm:h-11
+   seven logos hold one line on a laptop; an eighth will need the row looked at. */
 
 // Fires once, when the row first scrolls into view. Same idiom as Scope and
 // Receipts, kept local rather than shared, as they are.
@@ -312,7 +313,7 @@ export default function App() {
         </p>
         <div
           ref={pressRef}
-          className="mt-5 flex flex-wrap items-center justify-center gap-x-1 gap-y-1 sm:gap-x-2"
+          className="mt-5 flex flex-wrap items-center justify-center gap-x-1 gap-y-1 sm:gap-x-2 lg:gap-x-0"
         >
           {PRESS.logos.map((l, i) => (
             <span
@@ -326,7 +327,7 @@ export default function App() {
                 {...responsive(l.src, "200px")}
                 alt={l.name}
                 loading="lazy"
-                className="h-10 w-auto opacity-50 transition-opacity duration-300 hover:opacity-90 sm:h-12"
+                className="h-10 w-auto opacity-50 transition-opacity duration-300 hover:opacity-90 sm:h-11"
               />
             </span>
           ))}
