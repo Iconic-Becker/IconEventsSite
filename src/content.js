@@ -191,18 +191,12 @@ export const ROOM = {
       id: "r4",
       img: "/images/clients/chase-hughes.webp",
       name: "Chase Hughes",
-      // Audience: ThoughtLeaders estimate, undated.
-      stats: [
-        { value: "730K+", label: "YouTube" },
-        { value: "London", label: "Aboard HMS Belfast" },
-      ],
-      event: "Chase Hughes London",
-      slug: "chase-hughes-london",
+      // Audience: ThoughtLeaders estimate, undated. His London case study was
+      // withdrawn on 26 Oct 2026 as inaccurate, so no link and no figures from it.
+      event: "HMS Belfast, London",
+      stats: [{ value: "730K+", label: "YouTube" }],
       result: V("HMS Belfast build", "HMS Belfast build"),
-      about: V(
-        "A bespoke build aboard HMS Belfast on the Thames: a warship staged as a room, to the last rivet.",
-        "We built the room on a warship, HMS Belfast on the Thames, staged end to end for one unforgettable night."
-      ),
+      about: V("A build aboard HMS Belfast on the Thames for Chase Hughes.", "A build aboard HMS Belfast on the Thames for Chase Hughes."),
     },
     {
       id: "r10",
@@ -359,8 +353,6 @@ export const WORK = {
   archive: [
     { id: "a1", img: "/images/gallery/g28.webp", name: "Bad After Dark", slug: "bad-after-dark", result: V("$146K sponsorships", "$146K sponsorships"), outcome: V("Partner presence built into the night, not bolted on.", "Partner presence built into the night, not bolted on.") },
     { id: "a3", img: "/images/gallery/g26.webp", name: "Scaling With Systems LIVE", slug: "scaling-with-systems-live", result: V("Founder-led live summit", "Founder-led live summit"), outcome: V("300 attendees, all home safely.", "300 attendees, all home safely.") },
-    { id: "a4", img: "/images/gallery/g3.webp", name: "Viral Ecom Adz", slug: "viral-ecom-adz", result: V("Six-figure sponsorship", "6-figure sponsorship") },
-    { id: "a5", img: "/images/gallery/g30.webp", name: "Chase Hughes — London", slug: "chase-hughes-london", result: V("HMS Belfast build", "HMS Belfast build") },
   ],
 }
 
