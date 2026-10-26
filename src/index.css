@@ -58,17 +58,11 @@
   font-weight: 700; font-style: normal; font-display: swap;
 }
 
-/* Causten — reserved for all-caps poster moments (never body copy).
-   Black is the poster weight: the services page sets its headings in it. */
+/* Causten — reserved for all-caps poster moments (never body copy). */
 @font-face {
   font-family: "Causten";
   src: url("/fonts/Causten-Bold.woff2") format("woff2");
   font-weight: 700; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: "Causten";
-  src: url("/fonts/Causten-Black.woff2") format("woff2");
-  font-weight: 900; font-style: normal; font-display: swap;
 }
 
 /* ── Iconic Events — Editorial surface tokens ──────────────────────────
@@ -444,8 +438,8 @@ body {
 }
 
 /* ── /services ─────────────────────────────────────────────────────────
-   Poster headings in Causten Black, each hero line rising out of a clipped
-   box on load; discipline rows that fade up as they scroll in, with a veil
+   Helvetica Bold headings, each hero line rising out of a clipped box on
+   load; discipline rows that fade up as they scroll in, with a veil
    drawing back off the photograph; a slow parallax on the hero picture. */
 @keyframes sv-rise { from { transform: translateY(110%); } to { transform: translateY(0); } }
 .sv-rise { animation: sv-rise 1.1s cubic-bezier(0.16, 1, 0.3, 1) both; }
@@ -467,7 +461,7 @@ body {
   position: absolute;
   inset: 0;
   background: var(--color-onyx);
-  transform-origin: right;
+  transform-origin: left;
   transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
 }
 .in .sv-curtain img { transform: scale(1); }

@@ -197,7 +197,7 @@ deployed.
 
 For context on what is already done, so it does not get re-raised.
 
-- `/services` rebuilt on the Everlast services page pattern (Icon, 26 Oct 2026): a two-line poster title, a caption row and a full-width photograph, the six disciplines as numbered rows with a photo each, and a numbered grid of the formats we build. Headings are set in Causten Black, a new weight subset into `public/fonts/`; the rest of the site is unchanged. The six format lines are new copy drawn from the copy guide's Formats paragraph and want Icon's sign-off.
+- `/services` rebuilt, inspired by Everlast's services page (Icon, 26 Oct 2026): a two-line title, serif italic over Helvetica Bold caps, a caption row and a full-width photograph, the six disciplines as numbered rows with a photo on the left of each, and a numbered grid of the formats we build. Brand fonts only; a Causten Black weight was tried and taken out again. The six format lines are new copy drawn from the copy guide's Formats paragraph and want Icon's sign-off.
 
 - Casino Royale and The CEO Lawyer Summit case studies withdrawn as inaccurate (Iconic, 26 Oct 2026). Both URLs 301 to `/case-studies`. The CEO Lawyer Summit stays in the event index, unlinked; Casino Royale is gone from the index, `/gallery` and the share cards. Selected Work now features PMU World 2023. `docs/case-studies/casino-royale.md` is kept only as the interview protocol's worked example of the format; its facts are not to be reused.
 

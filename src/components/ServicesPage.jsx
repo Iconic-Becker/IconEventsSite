@@ -9,17 +9,16 @@ import { responsive } from "../lib/img.js"
 /* /services: what Iconic does, on a page of its own so the nav never sends
    anyone back to the homepage for it.
 
-   Modelled on Everlast's services page (Icon's call, 26 Oct 2026): a poster
-   title split over two clipped lines, a caption row, a full-width
-   photograph, then the disciplines as long rows, title left, copy and tags
-   in the middle, photograph right, each numbered. A numbered grid of the
-   formats we build closes the page before the call to action.
+   Inspired by Everlast's services page, not a copy of it (Icon's call, 26
+   Oct 2026): a title split over two clipped lines, a caption row, a
+   full-width photograph, then the disciplines as long rows, each numbered,
+   and a numbered grid of the formats we build before the call to action.
 
-   Typography is the one departure from the rest of the site. Headings here
-   are Causten Black in caps, the brand's poster face, which the guidelines
-   reserve for exactly this kind of moment. Cormorant italic carries the
-   second line of the title and the section numbers, so the page still
-   reads as Iconic and not as Everlast.
+   Where Everlast sets a poster sans over a serif, this page flips it: the
+   serif italic leads and Helvetica Bold caps answer. The rows are flipped
+   too, photograph first, then the title, then the copy and tags. Brand
+   fonts only: the section headers are the guideline's Helvetica Bold caps,
+   scaled up.
 
    The intro line is the copy guide's own example of a category term in a
    frame, used as written. The closing line on weddings is the guide's
@@ -103,7 +102,7 @@ function SectionTitle({ title, num, id }) {
   const [ref, seen] = useInView(0.5)
   return (
     <div ref={ref} id={id} className={`flex items-end justify-between gap-6 border-b border-bone/15 pb-5 ${seen ? "in" : ""}`}>
-      <h2 className="sv-fade font-display text-4xl font-black uppercase leading-[0.9] tracking-tight text-bone sm:text-6xl lg:text-7xl">
+      <h2 className="sv-fade font-sans text-4xl font-bold uppercase leading-[0.9] tracking-tight text-bone sm:text-6xl lg:text-7xl">
         {title}
       </h2>
       <span className="sv-fade sv-fade-2 shrink-0 font-serif text-2xl italic leading-none text-brass sm:text-4xl">({num})</span>
@@ -161,7 +160,7 @@ function Strip() {
     <div key={k} className="flex shrink-0 items-center">
       {names.map((n) => (
         <span key={n} className="flex items-center gap-8 pr-8 sm:gap-12 sm:pr-12">
-          <span className="font-display text-3xl font-black uppercase leading-none tracking-tight text-bone/20 sm:text-5xl">{n}</span>
+          <span className="font-serif text-4xl italic leading-none text-bone/25 sm:text-6xl">{n}</span>
           <img src="/logos/IE_sigil_gold.png" alt="" className="h-6 w-auto opacity-50 sm:h-8" loading="lazy" />
         </span>
       ))}
@@ -183,12 +182,25 @@ function Discipline({ g, i, last }) {
       ref={ref}
       className={`grid gap-x-8 gap-y-7 border-bone/10 py-10 sm:py-14 lg:grid-cols-12 ${rules} ${seen ? "in" : ""}`}
     >
+      <div className="lg:col-span-4">
+        <div className="sv-curtain relative aspect-[4/3] overflow-hidden border border-brass/25">
+          <img
+            {...responsive(PHOTOS[g.id], "(min-width: 1024px) 33vw, 100vw")}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover [filter:saturate(1.08)_contrast(1.06)_brightness(1.05)]"
+          />
+          <span className="sv-veil" aria-hidden="true" />
+        </div>
+      </div>
+
       <div className="sv-fade lg:col-span-4">
         <div className="flex items-center gap-4 font-sans text-[11px] font-bold tracking-[0.2em] text-bone/40">
           <span>{String(i + 1).padStart(2, "0")}</span>
           {g.beyond && <span className="uppercase text-brass">Beyond production</span>}
         </div>
-        <h3 className="mt-4 font-display text-4xl font-black uppercase leading-[0.9] tracking-tight text-bone sm:text-5xl lg:text-6xl">
+        <h3 className="mt-4 font-sans text-3xl font-bold uppercase leading-[0.9] tracking-tight text-bone sm:text-4xl lg:text-[2.75rem]">
           {g.group}
         </h3>
       </div>
@@ -206,19 +218,6 @@ function Discipline({ g, i, last }) {
           ))}
         </ul>
       </div>
-
-      <div className="lg:col-span-4">
-        <div className="sv-curtain relative aspect-[4/3] overflow-hidden border border-brass/25">
-          <img
-            {...responsive(PHOTOS[g.id], "(min-width: 1024px) 33vw, 100vw")}
-            alt=""
-            loading="lazy"
-            decoding="async"
-            className="h-full w-full object-cover [filter:saturate(1.08)_contrast(1.06)_brightness(1.05)]"
-          />
-          <span className="sv-veil" aria-hidden="true" />
-        </div>
-      </div>
     </li>
   )
 }
@@ -230,7 +229,7 @@ function Formats() {
       {FORMATS.map((f, i) => (
         <li key={f.name} className={`sv-fade flex flex-col bg-onyx p-6 sm:p-8 ${i % 3 === 1 ? "sv-fade-2" : i % 3 === 2 ? "sv-fade-3" : ""}`}>
           <span className="font-serif text-2xl italic leading-none text-brass">{String(i + 1).padStart(2, "0")}.</span>
-          <h3 className="mt-6 font-display text-2xl font-black uppercase leading-[0.95] tracking-tight text-bone sm:text-3xl">{f.name}</h3>
+          <h3 className="mt-6 font-sans text-xl font-bold uppercase leading-[1] tracking-tight text-bone sm:text-2xl">{f.name}</h3>
           <p className="mt-4 font-sans text-sm leading-relaxed text-bone/65">{f.line}</p>
         </li>
       ))}
@@ -257,13 +256,13 @@ export default function ServicesPage() {
         <div className="mx-auto max-w-6xl px-5 sm:px-6">
           <p className="sv-rise font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">Services</p>
           <h1 className="mt-5 text-[clamp(3rem,13vw,10rem)] leading-[0.88] tracking-tight text-bone">
-            <span className="block overflow-hidden pb-[0.06em]">
-              <span className="sv-rise block font-display font-black uppercase" style={rise(80)}>
+            <span className="block overflow-hidden pb-[0.12em]">
+              <span className="sv-rise block font-serif font-medium italic" style={rise(80)}>
                 Services &amp;
               </span>
             </span>
-            <span className="block overflow-hidden pb-[0.12em]">
-              <span className="sv-rise block font-serif font-medium italic lowercase" style={rise(200)}>
+            <span className="block overflow-hidden pb-[0.06em]">
+              <span className="sv-rise block font-sans font-bold uppercase" style={rise(200)}>
                 capabilities
               </span>
             </span>
