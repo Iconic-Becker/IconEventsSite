@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { NAV } from "../content.js"
-import { responsive } from "../lib/img.js"
+import { CONTACT_PHONE } from "../lib/contact.js"
 
 /* The site's primary navigation, shared by the homepage and the pages off it.
 
@@ -8,8 +8,28 @@ import { responsive } from "../lib/img.js"
    point back at the homepage sections, except #contact on a page that carries
    its own contact form (case studies), which stays on the page. */
 
-function Logo({ className = "" }) {
-  return <img {...responsive("/logos/IE_logo_white.png", "180px")} alt="Iconic Events, Est. 2017" className={className} />
+function PhoneIcon({ className = "" }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true" className={className}>
+      <path d="M5 3h3.5l1.8 4.6-2.3 1.5a11 11 0 0 0 6 6l1.5-2.3L20 14.5V18a2 2 0 0 1-2.2 2A16 16 0 0 1 3 5.2 2 2 0 0 1 5 3z" />
+    </svg>
+  )
+}
+
+/* The phone line, always in the bar, the way Everlast carries theirs. From
+   lg the number is spelled out; at md there is only room for the icon, and
+   the link still dials. */
+function PhoneLink({ className = "" }) {
+  return (
+    <a
+      href={`tel:${CONTACT_PHONE.tel}`}
+      aria-label={`Call Iconic Events on ${CONTACT_PHONE.display}`}
+      className={`inline-flex items-center gap-2 whitespace-nowrap text-brass transition-colors duration-300 hover:text-bone ${className}`}
+    >
+      <PhoneIcon className="h-4 w-4 shrink-0" />
+      <span className="hidden tracking-[0.08em] lg:inline">{CONTACT_PHONE.display}</span>
+    </a>
+  )
 }
 
 // Nav menu link, echoing the primary button: brass corner ticks snap in on hover.
@@ -132,8 +152,8 @@ export default function SiteHeader({ home = false, contactHere = false }) {
 
   return (
     <>
-      {/* Its own solid-black section. Centered logo, menus split L/R, no CTA.
-          Sticky so it persists on scroll. */}
+      {/* Its own solid-black section. The sigil centred, menus split L/R, the
+          phone line at the far right. Sticky so it persists on scroll. */}
       <header className="relative z-40 border-b border-bone/10 bg-onyx md:sticky md:top-0">
         <div className="nav-beam" aria-hidden="true" />
         <nav aria-label="Primary navigation" className="mx-auto grid max-w-6xl grid-cols-3 items-center px-5 py-3 sm:px-6 sm:py-4">
@@ -143,13 +163,23 @@ export default function SiteHeader({ home = false, contactHere = false }) {
             )}
           </div>
           <a href={home ? "#top" : "/"} aria-label="Iconic Events home" className="col-start-2 flex justify-center">
-            <Logo className="hidden h-8 w-auto md:block" />
-            <img src="/logos/IE_sigil_white.png" alt="" aria-hidden="true" className="h-9 w-auto md:hidden" />
+            <img src="/logos/IE_sigil_white.png" alt="" aria-hidden="true" className="h-9 w-auto md:h-10" />
           </a>
           <div className="hidden items-center justify-end gap-6 font-sans text-xs font-medium uppercase tracking-[0.16em] text-bone/70 md:flex">
             {wide(right).map((n) =>
               n.children ? <NavMenu key={n.label} item={n} /> : <NavLink key={n.href} href={n.href}>{n.label}</NavLink>
             )}
+            <PhoneLink className="font-bold" />
+          </div>
+          {/* Small screens: the number spelled out beside the sigil, on load. */}
+          <div className="flex justify-end md:hidden">
+            <a
+              href={`tel:${CONTACT_PHONE.tel}`}
+              className="inline-flex items-center gap-1.5 whitespace-nowrap font-sans text-[11px] font-bold tracking-[0.04em] text-brass"
+            >
+              <PhoneIcon className="h-3.5 w-3.5 shrink-0" />
+              {CONTACT_PHONE.display}
+            </a>
           </div>
         </nav>
         <CaseStudyTab />
@@ -157,7 +187,9 @@ export default function SiteHeader({ home = false, contactHere = false }) {
       {/* Six even columns rather than a scrolling row: at 390px the row pushed
           Contact past the right edge, where nobody swipes to find it. */}
       <nav aria-label="Mobile navigation" className="mobile-nav sticky top-0 z-40 border-y border-bone/10 bg-onyx/95 backdrop-blur md:hidden">
-        <div className="grid grid-cols-6 items-stretch">
+        {/* A seventh, narrow cell dials: the top row with the number scrolls
+            away, and the phone line should stay in reach. */}
+        <div className="grid grid-cols-[repeat(6,minmax(0,1fr))_2.5rem] items-stretch">
           {[...left, ...right].map((n) =>
             n.children ? (
               <button
@@ -168,8 +200,9 @@ export default function SiteHeader({ home = false, contactHere = false }) {
                 onClick={() => setOpenSmall((v) => (v === n.label ? null : n.label))}
                 className={`flex min-h-11 items-center justify-center gap-1 px-1 text-center font-sans text-[10px] font-bold uppercase tracking-[0.04em] transition ${openSmall === n.label ? "bg-brass text-onyx" : "text-bone/70"}`}
               >
+                {/* No ▼ here: with the call cell beside it there is no room
+                    for one, and the button still opens its menu below. */}
                 {n.label}
-                <span aria-hidden="true" className={`text-[7px] leading-none transition-transform duration-300 ${openSmall === n.label ? "rotate-180" : ""}`}>▼</span>
               </button>
             ) : (
               <a key={n.href} href={n.href} className="flex min-h-11 items-center justify-center px-1 text-center font-sans text-[10px] font-bold uppercase tracking-[0.04em] text-bone/70">
@@ -177,6 +210,13 @@ export default function SiteHeader({ home = false, contactHere = false }) {
               </a>
             )
           )}
+          <a
+            href={`tel:${CONTACT_PHONE.tel}`}
+            aria-label={`Call Iconic Events on ${CONTACT_PHONE.display}`}
+            className="flex min-h-11 items-center justify-center border-l border-bone/10 text-brass"
+          >
+            <PhoneIcon className="h-4 w-4" />
+          </a>
         </div>
         {/* A flat strip has nowhere to hang a dropdown, so the panel drops
             below the whole row rather than under one cell. */}

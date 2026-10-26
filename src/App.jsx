@@ -17,7 +17,6 @@ import {
 } from "./content.js"
 import { useVoice } from "./voice.jsx"
 import { responsive } from "./lib/img.js"
-import { heroFrames } from "./case-studies.js"
 import Icon from "./components/Icon.jsx"
 import Photo from "./components/Photo.jsx"
 import { CtaBrackets } from "./components/CtaButtons.jsx"
@@ -31,51 +30,13 @@ import Scope from "./components/Scope.jsx"
 import Method from "./components/Method.jsx"
 import Receipts from "./components/Receipts.jsx"
 import About from "./components/About.jsx"
+import Numbers from "./components/Numbers.jsx"
 import Testimonials from "./components/Testimonials.jsx"
 import Niche from "./components/Niche.jsx"
 import Cta from "./components/Cta.jsx"
 import SiteHeader from "./components/SiteHeader.jsx"
 import CtaBand from "./components/CtaBand.jsx"
 import SiteFooter from "./components/SiteFooter.jsx"
-
-// One vertical marquee column for the hero walls. Content is duplicated so the
-// translate loops seamlessly; grayscale keeps the mixed sources cohesive.
-// (Column visibility/width is controlled by the wrapper in the hero, so the
-// `.marquee-track` display rule doesn't fight Tailwind's `hidden`.)
-function MarqueeTrack({ frames, dir, duration }) {
-  const doubled = [...frames, ...frames]
-  return (
-    <div
-      className={`marquee-track ${dir === "up" ? "anim-up" : "anim-down"}`}
-      style={{ animationDuration: `${duration}s` }}
-    >
-      {doubled.map((frame, i) => (
-        <div key={i} className="relative overflow-hidden border border-brass/15">
-          <img
-            src={frame.thumbs[0][0]}
-            srcSet={frame.thumbs.map(([u, w]) => `${u} ${w}w`).join(", ")}
-            sizes="(min-width: 1280px) 14vw, 22vw"
-            alt=""
-            loading="lazy"
-            className="aspect-[3/4] w-full object-cover [filter:grayscale(1)_contrast(1.05)_brightness(0.85)]"
-          />
-          <div className="pointer-events-none absolute inset-0 bg-onyx/25" />
-        </div>
-      ))}
-    </div>
-  )
-}
-
-// Hero image walls: four columns of six, every photo from a written case
-// study and none repeated (see heroFrames). Dealt across the columns in turn,
-// so no column shows the same event twice. Left columns drift up, right
-// columns drift down.
-const HERO_COLUMNS = (() => {
-  const frames = heroFrames(24)
-  const cols = [[], [], [], []]
-  frames.forEach((frame, i) => cols[i % 4].push(frame))
-  return { leftA: cols[0], leftB: cols[1], rightA: cols[2], rightB: cols[3] }
-})()
 
 // Hero light particles — static config (left % is relative to the container),
 // so positions stay put across re-renders.
@@ -259,29 +220,10 @@ export default function App() {
       <SiteHeader home />
       {/* ── 01 · HERO ─────────────────────────────────────────────────── */}
       <div id="top" />
-      {/* Sized to the screen less the header and the first row of client logos,
-          so the logos show on load without a scroll: about 248px on a phone
-          (sticky two row nav) and 222px from md up. The content sets the
-          floor on short screens. */}
-      <div className="relative grid min-h-[calc(100svh-248px)] grid-cols-1 overflow-hidden bg-onyx md:min-h-[calc(100svh-222px)] md:grid-cols-[22vw_1fr_22vw] xl:grid-cols-[28vw_1fr_28vw]">
-        {/* Centred dark scrim — transparent at the edges, 80% black at centre —
-            to tame the inner columns and lift text contrast. */}
-        <div
-          className="pointer-events-none absolute inset-0 z-[5]"
-          style={{
-            background:
-              "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.8) 50%, transparent 100%)",
-            // Eases out over the last third, so the hero ends on plain onyx
-            // and runs into the logo row without a step in tone.
-            WebkitMaskImage: "linear-gradient(to bottom, #000 62%, transparent 100%)",
-            maskImage: "linear-gradient(to bottom, #000 62%, transparent 100%)",
-          }}
-        />
-
-        {/* Bottom blend: walls and scrim dissolve into the page colour, so the
-            hero and the client logos below read as one unit. */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[8] h-40 bg-gradient-to-b from-transparent to-onyx sm:h-56" />
-
+      {/* The headline on its own: the photo walls came out so the creators
+          below can carry the visuals. Sized to its content, not the screen,
+          so the creators show on load. */}
+      <div className="relative overflow-hidden bg-onyx">
         {/* Foggy brass light ray — a glowing source point + soft-edged volumetric
             beam + outer fog. All edges feathered by radial masks (no straight
             lines); layered blur reads as haze. */}
@@ -343,23 +285,10 @@ export default function App() {
         {/* Easter egg — cursor spotlight reveals the wordmark. */}
         <EasterEggReveal />
 
-        {/* Left wall — drifts up. */}
-        <div className="hero-fade relative hidden overflow-hidden md:block">
-          <div className="absolute inset-0 flex items-start gap-3 px-3">
-            <div className="flex-1">
-              <MarqueeTrack frames={HERO_COLUMNS.leftA} dir="up" duration={42} />
-            </div>
-            <div className="hidden flex-1 xl:block">
-              <MarqueeTrack frames={HERO_COLUMNS.leftB} dir="up" duration={58} />
-            </div>
-          </div>
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-onyx to-transparent" />
-        </div>
-
         {/* Centre content. */}
         <div
           key={t({ iconic: "i", genflow: "g" })}
-          className="fade-rise relative z-10 flex flex-col items-center justify-center px-5 py-8 text-center sm:px-6 sm:py-16"
+          className="fade-rise relative z-10 flex flex-col items-center justify-center px-5 pb-10 pt-14 text-center sm:px-6 sm:pb-14 sm:pt-28"
         >
           <h1 className="max-w-4xl font-serif text-5xl font-semibold leading-[0.96] tracking-tight text-bone sm:text-[3.5rem]">
             {heroHeadline(t(HERO.headline))}
@@ -382,26 +311,17 @@ export default function App() {
           </p>
         </div>
 
-        {/* Right wall — drifts down. */}
-        <div className="hero-fade relative hidden overflow-hidden md:block">
-          <div className="absolute inset-0 flex items-start gap-3 px-3">
-            <div className="flex-1">
-              <MarqueeTrack frames={HERO_COLUMNS.rightA} dir="down" duration={50} />
-            </div>
-            <div className="hidden flex-1 xl:block">
-              <MarqueeTrack frames={HERO_COLUMNS.rightB} dir="down" duration={64} />
-            </div>
-          </div>
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-onyx to-transparent" />
-        </div>
-
-        {/* The "Scroll" cue came out when the hero was shortened: the client
-            logos now show below it on load, which does the same job. */}
       </div>
 
+      {/* ── CREATORS WE WORK WITH — the founders, by face and name, straight
+             under the hero and before the brand logos, the order GenFlow
+             uses: who we work with is the first thing after the promise. ── */}
+      <InTheRoom />
+
       {/* ── 02 · PRESS ────────────────────────────────────────────────── */}
-      {/* No top rule: the hero fades into this row (see the bottom blend). */}
-      <Section className="pb-12 pt-4 sm:pt-6">
+      {/* No top rule: it sits under the creators rail, in the same dark field
+          the hero fades into. */}
+      <Section className="pb-12 pt-8 sm:pt-10">
         <p className="text-center font-sans text-xs uppercase tracking-[0.25em] text-bone/40">
           {t(PRESS.label)}
         </p>
@@ -430,6 +350,8 @@ export default function App() {
 
       {/* ── ABOUT US — who we are, first thing after the logos ──────────── */}
       <About />
+      <Numbers />
+
 
       {/* ── The Room, In Motion ──────────────────────────────────────────── */}
       <Motion />
@@ -460,9 +382,10 @@ export default function App() {
       {/* ── HOW WE DO IT ────────────────────────────────────────────────── */}
       <Method />
 
-      {/* ── PROOF — the numbers, and only the numbers. The founder portraits
-             and the testimonial cards came out: with Selected Work and the
-             gallery below, the page was carrying five proof sections. The
+      {/* ── PROOF — the numbers, and only the numbers. The testimonial cards
+             came out: with Selected Work and the gallery below, the page was
+             carrying five proof sections. The founder portraits are back,
+             as In the Room, above. The
              client's own words now live on the case study pages, one per
              event, where they belong to something. Currently hidden; see
              SHOW_RECEIPTS above. ──────────────────────────────────────── */}

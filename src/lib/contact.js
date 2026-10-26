@@ -12,3 +12,7 @@
    index.html carries the same value in its Organization JSON-LD. Static
    HTML cannot import, so that one is maintained by hand; change both. */
 export const CONTACT_EMAIL = "contact@iconic.events"
+
+/* The public phone line. Shown in the header on every page and in the footer.
+   legal.js and index.html's Organization JSON-LD carry it too, by hand. */
+export const CONTACT_PHONE = { display: "(305) 791-5290", tel: "+13057915290" }

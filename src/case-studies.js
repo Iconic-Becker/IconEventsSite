@@ -1697,25 +1697,3 @@ export function galleryFrames() {
     thumbs: [480, 960].map((w) => [frame.src.replace(/\.webp$/, `-${w}.webp`), w]),
   }))
 }
-
-/* Photos for the home page hero walls: written case studies only, taken one
-   event at a time in turn so every event shows before any shows twice, and
-   no file appears more than once. Each event's own placed frames come first,
-   then its library. Misfiled and repeated shots are already out, via
-   galleryFrames. */
-export function heroFrames(count) {
-  const byEvent = new Map()
-  for (const frame of galleryFrames()) {
-    if (!frame.href) continue
-    if (!byEvent.has(frame.slug)) byEvent.set(frame.slug, [])
-    byEvent.get(frame.slug).push(frame)
-  }
-  const lists = [...byEvent.values()]
-  const out = []
-  for (let i = 0; out.length < count && lists.some((list) => i < list.length); i++) {
-    for (const list of lists) {
-      if (list[i] && out.length < count) out.push(list[i])
-    }
-  }
-  return out
-}

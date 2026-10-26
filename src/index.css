@@ -188,31 +188,6 @@ body {
   .nav-beam::before { animation: none; opacity: 0; }
 }
 
-/* Hero image walls — vertical marquee columns that fade in/out at the edges.
-   Left columns drift up, right columns drift down. */
-@keyframes hero-up {
-  from { transform: translateY(0); }
-  to { transform: translateY(-50%); }
-}
-@keyframes hero-down {
-  from { transform: translateY(-50%); }
-  to { transform: translateY(0); }
-}
-.marquee-track {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-.anim-up { animation: hero-up linear infinite; }
-.anim-down { animation: hero-down linear infinite; }
-.hero-fade {
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
-  mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
-}
-@media (prefers-reduced-motion: reduce) {
-  .anim-up, .anim-down { animation: none; }
-}
-
 /* Hero light particles — drift down from top-centre, fading before the headline. */
 @keyframes particle-fall {
   0% { transform: translateY(0); opacity: 0; }
@@ -481,10 +456,6 @@ body {
   #testimonials > div, #contact > div, footer section { max-width: 100%; }
   #services, #scope, #method, #receipts, #testimonials { padding-top: 4rem; padding-bottom: 4rem; }
 
-  /* Hero: the visible mobile viewport, less the two-row header (6.75rem) and
-     the first row of client logos (8.5rem), so the logos show on load. The
-     content sets the floor on short phones. */
-  #top + div { min-height: calc(100svh - 15.25rem); }
   #top + div h1 { font-size: clamp(2.75rem, 13vw, 4rem); line-height: .96; }
   #top + div p { max-width: 34rem; }
 
@@ -596,4 +567,21 @@ body {
   .logo-band-track { animation: none; width: auto; justify-content: center; }
   .logo-band-track > ul { flex-wrap: wrap; justify-content: center; }
   .logo-band-track > ul[aria-hidden] { display: none; }
+}
+
+/* Creators who trust us: a low banner of founder strips running left without
+   end. Two copies of the set; sliding one copy's width (-50%) loops with no
+   seam. Edges fade into the page. Hover pauses; reduced motion gets a still
+   row that scrolls by hand. */
+@keyframes creator-rail { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.creator-rail {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+.creator-track { animation: creator-rail 70s linear infinite; }
+.creator-rail:hover .creator-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .creator-rail { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+  .creator-track { animation: none; }
+  .creator-track > ul[aria-hidden] { display: none; }
 }
