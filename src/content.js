@@ -132,7 +132,7 @@ export const ROOM = {
   // rest. Ed Mylett came off on 26 Oct 2026. Shelby, Ambro, Alexis, Cole,
   // Max and John carry img: null, which draws a branded placeholder, until
   // their headshots are on file; the placeholders are spaced out between
-  // photographs. Ben Newman and Ali Awad stay, but not at the front.
+  // photographs. Ben Newman and Ali Awad came off on 26 Oct 2026.
   people: [
     {
       id: "r7",
@@ -283,16 +283,6 @@ export const ROOM = {
       result: V("Maxxed Out Summit", "Maxxed Out Summit"),
     },
     {
-      id: "r1",
-      img: "/images/clients/ben-newman.webp",
-      name: "Ben Newman",
-      // Audience: CreatorDB, refreshed 8 Oct 2026 (@continuedfight). His event
-      // figures and case study link came out with the Casino Royale case study.
-      stats: [{ value: "704K", label: "Instagram" }],
-      result: V("Live event production", "Live event production"),
-      about: V("Live event production for Ben Newman.", "Live event production for Ben Newman."),
-    },
-    {
       id: "r15",
       // Placeholder card until a headshot is on file. No case study yet, so no link.
       img: null,
@@ -300,17 +290,6 @@ export const ROOM = {
       event: "Bulletproof Financial Accelerator",
       stats: [{ value: "2022", label: "Orlando, FL" }],
       result: V("Bulletproof Financial Accelerator", "Bulletproof Financial Accelerator"),
-    },
-    {
-      id: "r3",
-      img: "/images/clients/ali-awad.webp",
-      name: "Ali Awad",
-      // The CEO Lawyer Summit happened; its case study was withdrawn on
-      // 26 Oct 2026 as inaccurate, so no link and no figures from it.
-      event: "The CEO Lawyer Summit",
-      stats: [],
-      result: V("Live event production", "Live event production"),
-      about: V("The CEO Lawyer Summit, produced for Ali Awad.", "The CEO Lawyer Summit, produced for Ali Awad."),
     },
   ],
 }
