@@ -229,7 +229,3 @@ For context on what is already done, so it does not get re-raised.
 
 - Headshots still needed for Shelby Sapp, Ambro Dipilato, Alexis Mai, Cole
   Gordon, Max Willett and John Whiting. Each shows a placeholder until then.
-- Universal Music Group logo: not in Drive. Needs a supplied file, then the
-  same 1400x400 bone-on-transparent canvas as the rest (see PRESS in
-  src/content.js). An eighth logo will wrap the home row at 1440px, so the
-  row needs a look when it goes in.
