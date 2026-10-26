@@ -9,14 +9,16 @@ import { responsive } from "../lib/img.js"
 /* /services: what Iconic does, on a page of its own so the nav never sends
    anyone back to the homepage for it.
 
-   Designed from the copy (Icon's call, 26 Oct 2026). "Six disciplines. One
-   line of authority" is a scope document, so the page is laid out as one: a
-   contents column that stays put while you read, the six disciplines as
-   numbered entries with their deliverables set out as a schedule (1.1, 1.2
-   and so on), and the formats as a ledger. The one line of authority is
-   drawn, literally: a brass rule beside the entries that fills as you read
-   down, with a mark at each discipline that lights when you reach it. The
-   contents column carries a plate for whichever discipline you are on.
+   Designed from the copy (Icon's call, 26 Oct 2026). "Six zones of service
+   and support. One line of authority" is a scope document, so the page is
+   laid out as one: a centred hero, a contents column that stays put while
+   you read, the six zones as numbered entries with their deliverables set
+   out as a schedule (1.1, 1.2 and so on), and the formats as a ledger. The
+   one line of authority is drawn, literally: a brass rule beside the
+   entries that fills as you read down, with a mark at each zone that
+   lights when you reach it. The contents column carries a plate for
+   whichever zone you are on. "Zones of service and support" is Icon's
+   term for the six groups; the content file still calls them doGroups.
 
    The intro line is the copy guide's own example of a category term in a
    frame, used as written. The closing line on weddings is the guide's
@@ -27,7 +29,7 @@ const TITLE = "Event Production Services | Iconic Events"
 const DESCRIPTION =
   "Strategy, creative, production, content, operations and revenue for live events, under one team and a single line of authority. Iconic Events, event production since 2017."
 
-/* One plate per discipline, from the gallery. The first four are the
+/* One plate per zone, from the gallery. The first four are the
    methodology stills; the last two are room shots. */
 const PLATES = {
   g1: "/images/gallery/strategy.webp",
@@ -142,12 +144,15 @@ function Hero() {
     <section ref={ref} onMouseMove={move} onMouseLeave={leave} className="relative overflow-hidden border-b border-bone/10">
       <div className="pointer-events-none absolute inset-0 opacity-[0.04]" style={pattern} aria-hidden="true" />
       <div className="pattern-reveal pointer-events-none absolute inset-0 opacity-[0.14]" style={pattern} aria-hidden="true" />
-      <div className="relative mx-auto max-w-6xl px-5 pb-14 pt-14 sm:px-6 sm:pb-20 sm:pt-24">
+      <div className="relative mx-auto max-w-6xl px-5 pb-14 pt-14 text-center sm:px-6 sm:pb-20 sm:pt-24">
         <p className="fade-rise font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">Services</p>
-        <h1 className="fade-rise mt-5 max-w-[14ch] font-serif text-5xl font-semibold leading-[0.96] sm:text-7xl lg:text-8xl" style={{ animationDelay: "80ms" }}>
-          Six disciplines. One line of authority.
+        <h1
+          className="fade-rise mx-auto mt-5 max-w-[20ch] font-serif text-5xl font-semibold leading-[0.96] [text-wrap:balance] sm:text-6xl lg:text-7xl"
+          style={{ animationDelay: "80ms" }}
+        >
+          Six zones of service and support. One line of authority.
         </h1>
-        <p className="fade-rise mt-8 max-w-[54ch] font-sans text-lg leading-relaxed text-bone/70" style={{ animationDelay: "180ms" }}>
+        <p className="fade-rise mx-auto mt-8 max-w-[54ch] font-sans text-lg leading-relaxed text-bone/70" style={{ animationDelay: "180ms" }}>
           Most event planners oversee logistics. We engineer the room your audience decides in. Strategy,
           creative, production, content, operations and revenue sit with one team, so nothing falls between
           vendors.
@@ -155,11 +160,11 @@ function Hero() {
 
         {/* A colophon, counted from the schedule below rather than typed. */}
         <dl
-          className="fade-rise mt-12 grid grid-cols-3 gap-6 border-t border-bone/15 pt-6 font-sans sm:mt-16 sm:max-w-xl"
+          className="fade-rise mx-auto mt-12 grid max-w-xl grid-cols-3 gap-6 border-t border-bone/15 pt-6 font-sans sm:mt-16"
           style={{ animationDelay: "280ms" }}
         >
           {[
-            [num(groups.length - 1), "Disciplines"],
+            [num(groups.length - 1), "Zones"],
             [String(deliverables), "Deliverables"],
             ["2017", "Est."],
           ].map(([v, k]) => (
@@ -206,7 +211,7 @@ function Contents({ active }) {
           ))}
         </ol>
 
-        {/* The plate for the active discipline. */}
+        {/* The plate for the active zone. */}
         <figure className="group relative mt-10 hidden aspect-[4/3] overflow-hidden border border-brass/25 lg:block">
           {groups.map((g, i) => (
             <img
