@@ -137,7 +137,7 @@ function Hero() {
 function Contents({ active }) {
   return (
     <aside className="min-w-0 lg:col-span-4">
-      <div className="lg:sticky lg:top-28">
+      <div className="lg:sticky lg:top-28 lg:flex lg:h-[calc(100vh-7rem)] lg:flex-col">
         <p className="font-sans text-[10px] font-bold uppercase tracking-[0.24em] text-bone/40">Scope of service</p>
         <ol className="mobile-nav mt-4 flex gap-x-6 gap-y-2 overflow-x-auto pb-2 font-sans text-xs font-bold uppercase tracking-[0.16em] lg:block lg:space-y-1 lg:overflow-visible lg:pb-0">
           {groups.map((g, i) => (
@@ -164,13 +164,11 @@ function Contents({ active }) {
           ))}
         </ol>
 
-        {/* The plate for the active zone. From lg up it runs off the left
-            edge of the page and dissolves along a diagonal, from the top
-            left corner down to the bottom right, so the photograph fills
-            the lower left of the page and the upper right stays dark for
-            the text. Nothing sits beneath it: the caption and the note
-            came out to give it the room (Icon, 26 Oct 2026). */}
-        <figure className="svc-plate relative mt-6 hidden h-[min(62vh,640px)] lg:ml-[calc(-1*(max(0px,(100vw-72rem)/2)+1.5rem))] lg:block lg:w-[calc(100%+max(0px,(100vw-72rem)/2)+1.5rem)]">
+        {/* The plate for the active zone. From lg up it fills the whole of
+            the column beneath the contents: off the left edge of the page,
+            across to the line of authority, and down to the foot of the
+            viewport, dissolving at all four edges (Icon, 26 Oct 2026). */}
+        <figure className="svc-plate relative mt-6 hidden lg:block lg:min-h-0 lg:flex-1 lg:ml-[calc(-1*(max(0px,(100vw-72rem)/2)+1.5rem))] lg:w-[calc(100%+max(0px,(100vw-72rem)/2)+1.5rem+3rem)]">
           {groups.map((g, i) => (
             <img
               key={g.id}

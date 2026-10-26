@@ -450,18 +450,15 @@ body {
   .svc-fill { transition: none; }
 }
 
-/* The contents column plate: a wedge. Solid toward the left edge of the
-   page, dissolving along the diagonal from the top left corner to the
-   bottom right, with a soft top so it does not cut under the contents. */
+/* The contents column plate: fills the column and dissolves at all four
+   edges, so the photograph sits behind the page rather than in a frame. */
 .svc-plate {
   -webkit-mask-image:
-    linear-gradient(to bottom left, transparent 36%, #000 58%),
-    linear-gradient(to bottom, transparent 0%, #000 18%, #000 90%, transparent 100%),
-    linear-gradient(to right, rgba(0, 0, 0, 0.55) 0%, #000 14%, #000 78%, transparent 100%);
+    linear-gradient(to right, transparent 0%, #000 22%, #000 78%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
   mask-image:
-    linear-gradient(to bottom left, transparent 36%, #000 58%),
-    linear-gradient(to bottom, transparent 0%, #000 18%, #000 90%, transparent 100%),
-    linear-gradient(to right, rgba(0, 0, 0, 0.55) 0%, #000 14%, #000 78%, transparent 100%);
+    linear-gradient(to right, transparent 0%, #000 22%, #000 78%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
 }
