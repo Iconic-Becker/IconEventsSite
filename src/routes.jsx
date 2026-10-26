@@ -5,6 +5,8 @@ import CaseStudiesIndex from "./components/CaseStudiesIndex.jsx"
 import NextSteps from "./components/NextSteps.jsx"
 import Vendors from "./components/Vendors.jsx"
 import Contact from "./components/Contact.jsx"
+import ServicesPage from "./components/ServicesPage.jsx"
+import ReviewsPage from "./components/ReviewsPage.jsx"
 import LegalPage from "./components/LegalPage.jsx"
 import { PRIVACY, TERMS } from "./legal.js"
 import { caseStudyFromPath } from "./case-studies.js"
@@ -41,6 +43,10 @@ export function routeFor(pathname) {
   if (path === "/vendors" || path === "/partners") return <Vendors />
 
   if (path === "/contact") return <Contact />
+
+  // Pages of their own so the nav never sends anyone back to the homepage.
+  if (path === "/services") return <ServicesPage />
+  if (path === "/reviews") return <ReviewsPage />
 
   if (path === "/privacy") return <LegalPage doc={PRIVACY} />
   if (path === "/terms") return <LegalPage doc={TERMS} />

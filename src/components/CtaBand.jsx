@@ -9,7 +9,7 @@ import { CtaBrackets } from "./CtaButtons.jsx"
 
    Uses the same CtaBrackets as the hero, on Tide Pool, so it reads as part of
    the page rather than an insert. */
-export default function CtaBand({ headline, secondary }) {
+export default function CtaBand({ headline, secondary, href = "#contact" }) {
   return (
     <section className="relative overflow-hidden bg-tidepool py-14 sm:py-20">
       <div
@@ -22,7 +22,7 @@ export default function CtaBand({ headline, secondary }) {
           {headline}
         </h2>
         <div className="flex flex-wrap items-center gap-6">
-          <CtaBrackets href="#contact">Start a conversation</CtaBrackets>
+          <CtaBrackets href={href}>Start a conversation</CtaBrackets>
           {secondary && (
             <a
               href={secondary.href}

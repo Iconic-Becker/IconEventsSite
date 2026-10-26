@@ -58,30 +58,15 @@ export const MONTAGE = {
    nothing, and "Voices" pointed at the testimonial section that no longer
    exists. Every href below resolves to a real id on the page. */
 export const NAV = {
-  left: [
-    { href: "#scope", label: "Services" },
-    { href: "#method", label: "Method" },
-    // A real page, not an anchor, and the only one marked smallOnly: the
-    // brass tab above the header covers this from md up, so showing it in
-    // the bar too would be the same destination twice. Below md the tab is
-    // hidden, and this takes over.
-    { href: "/case-studies", label: "Case Studies", smallOnly: true },
-  ],
-  right: [
-    { href: "#work", label: "Work" },
-    // Its own page now. The homepage keeps its gallery section, but the nav
-    // goes to the full set, where every photo links to its case study.
+  // Every link is a page of its own, so the bar never sends anyone back to
+  // the homepage to find something (Iconic's call, 26 Oct 2026). Case
+  // Studies is smallOnly: from md up the brass tab under the bar covers it.
+  links: [
+    { href: "/services", label: "Services" },
     { href: "/gallery", label: "Gallery" },
-    {
-      href: "#contact",
-      label: "Contact",
-      // Opens a menu rather than jumping straight to the form, because there
-      // are two ways in now and they are for different people.
-      children: [
-        { href: "#contact", label: "Start a conversation", note: "Tell us about the room you want to build." },
-        { href: "/vendors", label: "Vendor sign-up", note: "Crew, kit and suppliers. Join the list we work from." },
-      ],
-    },
+    { href: "/case-studies", label: "Case Studies", smallOnly: true },
+    { href: "/reviews", label: "Reviews" },
+    { href: "/contact", label: "Contact" },
   ],
 }
 
@@ -462,6 +447,10 @@ export const SERVICES = {
 }
 
 /* ── 07 · SCOPE OF SERVICE ────────────────────────────────────────────── */
+/* The services page and the homepage teaser read the six disciplines below.
+   `line` is each one in a sentence; `beyond` marks the two a production
+   company does not offer, which the page sets apart. The group names and
+   items are the client's exact copy. */
 export const SCOPE = {
   eyebrow: "Scope of Service",
   title: V("Everything we do. Everything we don't.", "Everything we do. Everything we don't."),
@@ -472,6 +461,8 @@ export const SCOPE = {
     {
       id: "g1",
       group: "Strategy",
+      line: "The room's intent, mapped before a single decision is made.",
+      beyond: true,
       items: [
         "Event Vision Brief",
         "Audience journey mapping",
@@ -482,6 +473,7 @@ export const SCOPE = {
     {
       id: "g2",
       group: "Creative",
+      line: "Story, set, light and pacing, built as one world your audience steps into.",
       items: [
         "Stage & set design",
         "Lighting psychology",
@@ -493,6 +485,7 @@ export const SCOPE = {
     {
       id: "g3",
       group: "Production",
+      line: "Stage, light, sound and scenic, directed as one instrument.",
       items: [
         "Technical direction",
         "Audio engineering",
@@ -504,6 +497,7 @@ export const SCOPE = {
     {
       id: "g4",
       group: "Content",
+      line: "One night, captured and cut into a quarter of content.",
       items: [
         "Live content capture",
         "Multi-cam reel production",
@@ -515,6 +509,7 @@ export const SCOPE = {
     {
       id: "g5",
       group: "Operations",
+      line: "The logistics run to the minute, and out of sight.",
       items: [
         "Venue sourcing & negotiation",
         "Logistics & timeline management",
@@ -526,6 +521,8 @@ export const SCOPE = {
     {
       id: "g6",
       group: "Revenue",
+      line: "Tiers, offers and the sell-from-stage moment, engineered into the run of show.",
+      beyond: true,
       items: [
         "Sell-from-stage coaching",
         "Offer suite design",
@@ -688,17 +685,15 @@ export const CTA = {
 export const FOOTER = {
   line: V("Experience engineers. Est. 2017.", "Experience engineers for the creator economy. Est. 2017."),
   columns: [
-    // Every item that names a page or section links to it. Sections are
-    // anchors on the homepage, the only page this footer appears on.
+    // Every item links to a page of its own, the same set as the header.
     {
       id: "col1",
       head: "Explore",
       items: [
-        { label: "Work", href: "#work" },
-        { label: "Services", href: "#scope" },
-        { label: "Method", href: "#method" },
+        { label: "Services", href: "/services" },
         { label: "Case Studies", href: "/case-studies" },
         { label: "Gallery", href: "/gallery" },
+        { label: "Reviews", href: "/reviews" },
       ],
     },
     {
@@ -709,7 +704,7 @@ export const FOOTER = {
       // the same inbox. CONTACT_EMAIL is still the fallback when a submission
       // fails (see src/lib/enquiry.js).
       items: [
-        { label: "Start a conversation", href: "#contact" },
+        { label: "Start a conversation", href: "/contact" },
         { label: "Vendor sign-up", href: "/vendors" },
         { label: "(305) 791-5290", href: "tel:+13057915290" },
         "Miami · Las Vegas",

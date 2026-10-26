@@ -516,7 +516,7 @@ export default function CaseStudyPage({ study }) {
     <main className="min-h-screen bg-onyx text-bone">
       <StructuredData study={study} faqs={faqs} />
 
-      <SiteHeader contactHere />
+      <SiteHeader />
 
       {/* hero: the title sits on the image */}
       <section className="relative flex min-h-[62svh] items-end overflow-hidden sm:min-h-[78svh]">
