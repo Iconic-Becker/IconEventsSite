@@ -26,26 +26,30 @@ function accent(text, phrase) {
   )
 }
 
-/* A required single choice, shown as a row of chips. Nothing is pre-selected,
-   so every answer that reaches the inbox is one the visitor picked. */
-export function ChoiceGroup({ label, options, value, onChange, missing }) {
+/* A choice shown as a row of chips. Nothing is pre-selected, so every answer
+   that reaches the inbox is one the visitor picked. `multi` takes an array
+   and toggles; `optional` says so beside the label. */
+export function ChoiceGroup({ label, options, value, onChange, missing, multi = false, optional = false }) {
   return (
     <fieldset>
       <legend className="flex flex-wrap items-baseline gap-x-3 font-sans text-[11px] font-bold uppercase tracking-[0.14em] text-brass">
         {label}
+        {optional && <span className="normal-case tracking-normal text-onyx/45">{multi ? "Optional, pick any" : "Optional"}</span>}
         {missing && (
           <span role="alert" className="normal-case tracking-normal text-[#a3271f]">Pick one</span>
         )}
       </legend>
       <div className="mt-3 flex flex-wrap gap-2">
         {options.map((option) => {
-          const selected = value === option
+          const selected = multi ? value.includes(option) : value === option
           return (
             <button
               key={option}
               type="button"
               aria-pressed={selected}
-              onClick={() => onChange(option)}
+              onClick={() =>
+                onChange(multi ? (selected ? value.filter((v) => v !== option) : [...value, option]) : selected && optional ? "" : option)
+              }
               className={`min-h-11 border px-3.5 py-2 text-left font-sans text-sm leading-snug transition ${selected ? "border-brass bg-brass text-onyx" : missing ? "border-[#a3271f]/50 bg-onyx/[0.04] text-onyx/75 hover:border-brass" : "border-onyx/25 bg-onyx/[0.04] text-onyx/75 hover:border-brass"}`}
             >
               {option}
@@ -57,10 +61,13 @@ export function ChoiceGroup({ label, options, value, onChange, missing }) {
   )
 }
 
-export function TextField({ label, ...props }) {
+export function TextField({ label, optional = false, ...props }) {
   return (
     <label className="block">
-      <span className="block font-sans text-[11px] font-bold uppercase tracking-[0.14em] text-brass">{label}</span>
+      <span className="flex flex-wrap items-baseline gap-x-3 font-sans text-[11px] font-bold uppercase tracking-[0.14em] text-brass">
+        {label}
+        {optional && <span className="normal-case tracking-normal text-onyx/45">Optional</span>}
+      </span>
       <input
         {...props}
         className="mt-2 min-h-12 w-full border border-onyx/25 bg-transparent px-4 font-sans text-base text-onyx placeholder-onyx/40 outline-none transition focus:border-brass"
@@ -70,12 +77,13 @@ export function TextField({ label, ...props }) {
 }
 
 /* Anything sent sooner than this after the form appeared is a script: nobody
-   reads and answers seven questions in three seconds. */
+   reads and answers these questions in three seconds. */
 export const MIN_FILL_MS = 3000
 
 /* ── Start a Conversation · The Brief ─────────────────────────────────
-   Full-height, patterned close. A gold-bordered paper card: who you are,
-   four required single choices, one optional note, then send. */
+   Full-height, patterned close. A gold-bordered paper card asking what
+   Everlast's quote form asks, in its order: who you are, the event, its size
+   and budget, the services, the details, how you found us. */
 /* eyebrow and title override the homepage copy, so a case study can close
    on its own line above the same form. */
 export default function Cta({ modal = false, split = false, eyebrow, title, aside }) {
@@ -84,11 +92,16 @@ export default function Cta({ modal = false, split = false, eyebrow, title, asid
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [company, setCompany] = useState("")
+  const [phone, setPhone] = useState("")
+  const [eventName, setEventName] = useState("")
   const [event, setEvent] = useState("")
+  const [date, setDate] = useState("")
+  const [venue, setVenue] = useState("")
   const [guests, setGuests] = useState("")
   const [budget, setBudget] = useState("")
-  const [timing, setTiming] = useState("")
+  const [services, setServices] = useState([])
   const [notes, setNotes] = useState("")
+  const [heard, setHeard] = useState("")
   const [botcheck, setBotcheck] = useState("")
   const [tried, setTried] = useState(false)
   const [status, setStatus] = useState("idle")
@@ -97,7 +110,7 @@ export default function Cta({ modal = false, split = false, eyebrow, title, asid
     shownAt.current = Date.now()
   }, [])
 
-  const choicesMade = event && guests && budget && timing
+  const choicesMade = event && guests && budget && date.trim()
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())
 
   async function submit(e) {
@@ -112,7 +125,7 @@ export default function Cta({ modal = false, split = false, eyebrow, title, asid
     }
     setStatus("loading")
     try {
-      await sendEnquiry({ name, email, company, event, guests, budget, timing, notes })
+      await sendEnquiry({ name, email, company, phone, eventName, event, date, venue, guests, budget, services, notes, heard })
       /* Only past a resolved send: the confirmation page is the receipt, so
          it must never appear for an enquiry that did not reach us. */
       setStatus("done")
@@ -197,9 +210,8 @@ export default function Cta({ modal = false, split = false, eyebrow, title, asid
               <div className="grid gap-5 sm:grid-cols-2">
                 <TextField label="Your name" required value={name} onChange={(e) => setName(e.target.value)} placeholder="First and last" autoComplete="name" />
                 <TextField label="Work email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@company.com" autoComplete="email" />
-                <div className="sm:col-span-2">
-                  <TextField label="Company or website" required value={company} onChange={(e) => setCompany(e.target.value)} placeholder="company.com" autoComplete="organization" />
-                </div>
+                <TextField label="Company or website" required value={company} onChange={(e) => setCompany(e.target.value)} placeholder="company.com" autoComplete="organization" />
+                <TextField label={f.phoneLabel} optional type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="(305) 555-0100" autoComplete="tel" />
               </div>
               {tried && (!name.trim() || !emailOk || !company.trim()) && (
                 <p role="alert" className="mt-3 font-sans text-sm text-[#a3271f]">Name, email and company help us come back to you properly.</p>
@@ -218,10 +230,20 @@ export default function Cta({ modal = false, split = false, eyebrow, title, asid
               />
 
               <div className="mt-9 space-y-8">
+                <TextField label={f.eventNameLabel} optional value={eventName} onChange={(e) => setEventName(e.target.value)} placeholder={f.eventNamePlaceholder} />
                 <ChoiceGroup label={f.eventLabel} options={f.events} value={event} onChange={setEvent} missing={tried && !event} />
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div>
+                    <TextField label={f.dateLabel} required value={date} onChange={(e) => setDate(e.target.value)} placeholder={f.datePlaceholder} />
+                    {tried && !date.trim() && (
+                      <p role="alert" className="mt-2 font-sans text-sm text-[#a3271f]">A month or a season is plenty.</p>
+                    )}
+                  </div>
+                  <TextField label={f.venueLabel} optional value={venue} onChange={(e) => setVenue(e.target.value)} placeholder={f.venuePlaceholder} />
+                </div>
                 <ChoiceGroup label={f.guestsLabel} options={f.guests} value={guests} onChange={setGuests} missing={tried && !guests} />
                 <ChoiceGroup label={f.budgetLabel} options={f.budgets} value={budget} onChange={setBudget} missing={tried && !budget} />
-                <ChoiceGroup label={f.timingLabel} options={f.timings} value={timing} onChange={setTiming} missing={tried && !timing} />
+                <ChoiceGroup label={f.servicesLabel} options={f.services} value={services} onChange={setServices} multi optional />
                 <label className="block">
                   <span className="flex flex-wrap items-baseline gap-x-3 font-sans text-[11px] font-bold uppercase tracking-[0.14em] text-brass">
                     {f.notesLabel}
@@ -236,6 +258,7 @@ export default function Cta({ modal = false, split = false, eyebrow, title, asid
                     className="mt-3 w-full resize-y border border-onyx/25 bg-transparent px-4 py-3 font-sans text-base text-onyx placeholder-onyx/40 outline-none transition focus:border-brass"
                   />
                 </label>
+                <ChoiceGroup label={f.sourceLabel} options={f.sources} value={heard} onChange={setHeard} optional />
               </div>
 
               <button

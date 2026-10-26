@@ -110,25 +110,30 @@ async function post(payload) {
 /* Resolves only when the enquiry has actually been accepted. Every other
    path throws, so the caller can never show a success state for a
    submission that went nowhere. */
-export async function sendEnquiry({ name, email, company, event, guests, budget, timing, notes }) {
+export async function sendEnquiry({ name, email, company, phone, eventName, event, date, venue, guests, budget, services, notes, heard }) {
   const budgetLine = budget === "I don't know yet" ? "Budget not set" : budget
   const flagged = flags(FREE_MAIL.test(email), SALES_PITCH.test(notes))
   /* The subject carries the triage, so leads can be sorted from the inbox
      list without opening one. */
   const payload = {
     ...(ACCESS_KEY ? { access_key: ACCESS_KEY } : {}),
-    subject: `${flagged ? "[Check] " : ""}${budgetLine} · ${guests} guests · ${timing} · ${name}, ${company}`,
+    subject: `${flagged ? "[Check] " : ""}${budgetLine} · ${guests} guests · ${date.trim()} · ${name}, ${company}`,
     from_name: "Iconic Events website",
     name,
     email,
     ...(flagged ? { flags: flagged } : {}),
     replyto: email,
     company,
-    event,
+    phone: phone.trim() || "Not given",
+    event_name: eventName.trim() || "Not given",
+    event_type: event,
+    event_date: date.trim(),
+    venue: venue.trim() || "Not given",
     guests,
     budget,
-    timing,
-    anything_else: notes.trim() || "Nothing added",
+    services: services.length ? services.join(", ") : "Not specified",
+    project_details: notes.trim() || "Nothing added",
+    heard_about_us: heard || "Not given",
     source: trafficSource(),
     page: typeof window === "undefined" ? "" : window.location.href,
     submitted: miamiTime(new Date()),
