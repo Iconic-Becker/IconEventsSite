@@ -2,18 +2,23 @@ import Icon from "./Icon.jsx"
 
 /* Primary CTA — "Brass Brackets": outlined, with corner ticks that snap outward
    to frame the label on hover, plus a faint sheen sweep. Editorial, heritage.
-   One signature move, sharp corners, brass/onyx/bone. */
-export function CtaBrackets({ href = "#contact", children = "Start a Conversation", onClick }) {
-  const bracket =
-    "pointer-events-none absolute h-2.5 w-2.5 border-brass transition-all duration-300 ease-out"
+   One signature move, sharp corners, brass/onyx/bone.
+
+   `solid` fills it with brass and sets the label and ticks in onyx: the
+   hero's one call to action, at Iconic's call. */
+export function CtaBrackets({ href = "#contact", children = "Start a Conversation", onClick, solid = false }) {
+  const bracket = `pointer-events-none absolute h-2.5 w-2.5 ${solid ? "border-onyx/70" : "border-brass"} transition-all duration-300 ease-out`
+  const look = solid
+    ? "border border-brass bg-brass text-onyx hover:brightness-110"
+    : "border border-bone/25 text-bone hover:border-brass/50 hover:text-brass"
   return (
     <a
       href={href}
       onClick={onClick}
-      className="group relative inline-flex items-center gap-3 overflow-hidden border border-bone/25 px-9 py-4 font-sans text-xs font-bold uppercase tracking-[0.2em] text-bone transition-colors duration-300 hover:border-brass/50 hover:text-brass"
+      className={`group relative inline-flex items-center gap-3 overflow-hidden px-9 py-4 font-sans text-xs font-bold uppercase tracking-[0.2em] transition duration-300 ${look}`}
     >
       {/* sheen */}
-      <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-brass/20 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
+      <span className={`pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent ${solid ? "via-bone/35" : "via-brass/20"} to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full`} />
       {/* corner ticks (inset → snap to corners on hover) */}
       <span className={`${bracket} left-1.5 top-1.5 border-l border-t group-hover:left-0 group-hover:top-0`} />
       <span className={`${bracket} right-1.5 top-1.5 border-r border-t group-hover:right-0 group-hover:top-0`} />

@@ -37,6 +37,11 @@ import SiteHeader from "./components/SiteHeader.jsx"
 import CtaBand from "./components/CtaBand.jsx"
 import SiteFooter from "./components/SiteFooter.jsx"
 
+// The cursor spotlight that reveals a hidden wordmark in the hero. Off at
+// Iconic's call: it sat in the old full-height hero, and in the shorter one
+// it lands on the headline.
+const SHOW_EASTER_EGG = false
+
 // Hero light particles — static config (left % is relative to the container),
 // so positions stay put across re-renders.
 const HERO_PARTICLES = [
@@ -267,7 +272,7 @@ export default function App() {
         </div>
 
         {/* Easter egg — cursor spotlight reveals the wordmark. */}
-        <EasterEggReveal />
+        {SHOW_EASTER_EGG && <EasterEggReveal />}
 
         {/* Centre content. */}
         <div
@@ -282,7 +287,7 @@ export default function App() {
           </p>
           {/* One call to action, nothing after it: headline, subhead, button. */}
           <div className="mt-10">
-            <CtaBrackets href="#contact">{t(HERO.ctaPrimary)}</CtaBrackets>
+            <CtaBrackets href="#contact" solid>{t(HERO.ctaPrimary)}</CtaBrackets>
           </div>
         </div>
 
