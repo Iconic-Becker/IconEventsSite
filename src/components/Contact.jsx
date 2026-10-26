@@ -138,7 +138,7 @@ export default function Contact() {
         <div className="px-5 py-16 sm:px-6 lg:py-24 lg:pl-[max(1.5rem,calc(50vw-34.5rem))] lg:pr-16">
           <p className="font-sans text-xs font-bold uppercase tracking-[0.28em] text-brass">Contact</p>
           <h1 className="mt-6 font-serif text-5xl font-semibold leading-[1.02] sm:text-6xl lg:text-7xl">
-            Let&rsquo;s work <span className="text-brass">together.</span>
+            Talk to a <span className="text-brass">director.</span>
           </h1>
           <p className="mt-5 max-w-xl font-sans text-lg text-bone/65">
             Questions, ideas, press or anything else. A director reads every message and writes back within 48 hours.
