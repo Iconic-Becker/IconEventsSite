@@ -1,8 +1,8 @@
 import { SCOPE } from "../content.js"
 
 /* The six disciplines, as cards: name, one line, and the client's own list of
-   what sits under it. Shared by /services (full) and the homepage (compact,
-   no lists, with a link through).
+   what sits under it. The homepage renders it compact (no lists, with a link
+   through); /services lays the same groups out as rows of its own.
 
    Built with Everlast in mind. A production company's pillars cover what we
    call Creative, Production and Operations. Strategy and Revenue are where

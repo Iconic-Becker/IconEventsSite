@@ -66,11 +66,12 @@ project-root `fonts/` folder.
 |---|---|---|
 | **Cormorant Garamond** | Display serif — titles, headlines, pull quotes | 400/500/600/700 + italics |
 | **Helvetica** | Body sans — section headers, subheaders, body | 400, 400 italic, 700 |
-| **Causten Bold** | Reserved — all-caps poster moments only | 700 (hero edition line) |
+| **Causten** | Reserved — all-caps poster moments only | 700 (hero edition line), 900 (the headings on `/services`) |
 
 Tailwind exposes these as `font-serif`, `font-sans`, and `font-display`
-(Causten). Causten is used sparingly — the hero's edition line — and never for
-body copy, per the guideline.
+(Causten). Causten is used sparingly — the hero's edition line, and the
+poster headings on `/services` in Black — and never for body copy, per the
+guideline.
 
 ---
 
