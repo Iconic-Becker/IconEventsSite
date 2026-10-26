@@ -13,20 +13,6 @@
    ]
   ]
  },
- "/images/gallery/uncontested-room.webp": {
-  "w": 2000,
-  "h": 1131,
-  "set": [
-   [
-    "/images/gallery/uncontested-room-480.webp",
-    480
-   ],
-   [
-    "/images/gallery/uncontested-room-960.webp",
-    960
-   ]
-  ]
- },
  "/images/gallery/insight.webp": {
   "w": 1600,
   "h": 900,
