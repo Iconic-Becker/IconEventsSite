@@ -400,5 +400,89 @@
     960
    ]
   ]
+ },
+ "/images/gallery/the-black-course/17.webp": {
+  "w": 1920,
+  "h": 1067,
+  "set": [
+   [
+    "/images/gallery/the-black-course/17-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/the-black-course/17-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/bad-after-dark/03.webp": {
+  "w": 1272,
+  "h": 850,
+  "set": [
+   [
+    "/images/gallery/bad-after-dark/03-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/bad-after-dark/03-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/scaling-with-systems-live-2022/03.webp": {
+  "w": 1700,
+  "h": 1133,
+  "set": [
+   [
+    "/images/gallery/scaling-with-systems-live-2022/03-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/scaling-with-systems-live-2022/03-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/bulletproof-financial-accelerator/07.webp": {
+  "w": 1100,
+  "h": 733,
+  "set": [
+   [
+    "/images/gallery/bulletproof-financial-accelerator/07-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/bulletproof-financial-accelerator/07-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/pmuw-2023/15.webp": {
+  "w": 1920,
+  "h": 908,
+  "set": [
+   [
+    "/images/gallery/pmuw-2023/15-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/pmuw-2023/15-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/bulletproof-financial-accelerator/08.webp": {
+  "w": 1100,
+  "h": 733,
+  "set": [
+   [
+    "/images/gallery/bulletproof-financial-accelerator/08-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/bulletproof-financial-accelerator/08-960.webp",
+    960
+   ]
+  ]
  }
 }

@@ -55,7 +55,7 @@ export const SERVICE_PAGES = [
     slug: "event-strategy",
     zone: "g1",
     draft: true,
-    plate: "/images/gallery/strategy.webp",
+    plate: "/images/gallery/the-black-course/17.webp",
     title: "Event strategy",
     seoTitle: "Event Strategy for Summits, Masterminds and Launches | Iconic Events",
     description:
