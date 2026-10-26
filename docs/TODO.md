@@ -197,6 +197,8 @@ deployed.
 
 For context on what is already done, so it does not get re-raised.
 
+- `/services` rebuilt as a scope document (Icon, 26 Oct 2026, after two passes modelled on Everlast's page were turned down for looking like it): a contents column that stays put, the six zones of service and support (Icon's term) as numbered entries with their deliverables set out as a schedule, a brass line of authority that fills as you read, a plate per zone, and the formats as a ledger. Hero centred. Brand fonts only. The six format lines and the one-line note on "beyond production" are new copy drawn from the copy guide and want Icon's sign-off.
+
 - Casino Royale, The CEO Lawyer Summit, Viral Ecom Adz and Chase Hughes London case studies withdrawn as inaccurate (Iconic, 26 Oct 2026). All four URLs 301 to `/case-studies`; Viral Ecom Adz and HMS Belfast, London stay in the event index, unlinked, like The CEO Lawyer Summit. The suggestions at the foot of each case study now lead with the newest events. The CEO Lawyer Summit stays in the event index, unlinked; Casino Royale is gone from the index, `/gallery` and the share cards. Selected Work now features PMU World 2023. `docs/case-studies/casino-royale.md` is kept only as the interview protocol's worked example of the format; its facts are not to be reused.
 
 - Homepage resequenced so the page answers who we are, who it is for, what we do, how, proof, then work. Section numbering removed. Calls to action added through the middle: the longest stretch with no CTA went from 17.6 phone screens to 5.3, and the page from 22.0 screens to 16.0.
