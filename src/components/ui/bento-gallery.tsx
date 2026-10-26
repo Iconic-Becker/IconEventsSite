@@ -106,7 +106,7 @@ const InteractiveImageBentoGallery: React.FC<InteractiveImageBentoGalleryProps> 
           {imageItems.map((item, index) => (
             <div
               key={item.id}
-              className={`bento-tile group relative flex cursor-pointer items-end overflow-hidden border border-brass/20 bg-tidepool p-4 outline-none transition-colors duration-300 hover:border-brass/70 focus-visible:border-brass focus-visible:ring-2 focus-visible:ring-brass ${item.span}`}
+              className={`bento-tile group relative flex cursor-pointer items-end overflow-hidden bg-tidepool p-4 outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-bone ${item.span}`}
               onClick={() => open(index)}
               onPointerDown={() => { loadLightbox() }}
               onKeyDown={(e) => {
