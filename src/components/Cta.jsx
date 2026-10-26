@@ -135,14 +135,24 @@ export default function Cta({ modal = false, split = false, eyebrow, title, asid
   }
 
   return (
-    <div id="contact" className={`relative flex items-center overflow-hidden bg-onyx ${modal ? "py-6 sm:py-8" : "min-h-screen py-16 sm:py-24"}`}>
+    <div
+      id="contact"
+      className={`relative bg-onyx ${
+        // No overflow-hidden when split: it would stop the pitch column from
+        // sticking while the form scrolls past it.
+        split ? "lg:grid lg:min-h-[calc(100svh-4.5rem)] lg:grid-cols-2" : `flex items-center overflow-hidden ${modal ? "py-6 sm:py-8" : "min-h-screen py-16 sm:py-24"}`
+      }`}
+    >
       {/* brand pattern across the whole background */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.05]" style={pattern} aria-hidden="true" />
-      {/* `split` puts the pitch on the left and the form on the right, for the
-          page that is nothing but this. Below lg it stacks, which is the same
-          order the single column already uses. */}
-      <div className={`relative z-10 mx-auto w-full px-5 sm:px-6 ${split ? "max-w-6xl lg:grid lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-16" : "max-w-4xl"}`}>
-        <div className={split ? "lg:sticky lg:top-28" : ""}>
+      {/* `split` is the contact page: two halves of the screen, the pitch on
+          the dark left and the form filling the bone right half, edge to edge
+          (Iconic's call). The wrapper dissolves (lg:contents) so the halves
+          are the grid's own columns. Each half's outer padding lines its
+          content up with the 72rem container the rest of the site uses.
+          Below lg it stacks, pitch first. */}
+      <div className={`relative z-10 w-full ${split ? "lg:contents" : "mx-auto max-w-4xl px-5 sm:px-6"}`}>
+        <div className={split ? "px-5 py-16 sm:px-6 lg:sticky lg:top-24 lg:self-start lg:py-24 lg:pl-[max(1.5rem,calc(50vw-34.5rem))] lg:pr-16" : ""}>
         <Eyebrow text={eyebrow} />
         <h2 className={`mt-6 max-w-4xl font-serif font-semibold leading-[1.02] text-bone ${modal ? "text-4xl sm:text-5xl" : "text-5xl sm:text-6xl lg:text-7xl"}`}>
           {title ?? accent(t(CTA.title), "about the room")}
@@ -152,11 +162,11 @@ export default function Cta({ modal = false, split = false, eyebrow, title, asid
             need more than a heading next to a long form. */}
         {aside}
         </div>
-        <div className={split ? "lg:mt-0" : ""}>
+        <div className={split ? "relative bg-bone px-5 py-12 text-onyx sm:px-10 lg:py-24 lg:pl-16 lg:pr-[max(1.5rem,calc(50vw-34.5rem))]" : ""}>
         {status !== "done" && (
           <>
             {status === "error" && (
-              <div role="alert" className="mt-8 border border-brass/60 bg-onyx/60 p-5 sm:p-6">
+              <div role="alert" className={`border border-brass/60 p-5 sm:p-6 ${split ? "mb-8 bg-onyx" : "mt-8 bg-onyx/60"}`}>
                 <p className="font-sans text-xs font-bold uppercase tracking-[0.18em] text-brass">
                   That didn&rsquo;t send
                 </p>
@@ -169,7 +179,11 @@ export default function Cta({ modal = false, split = false, eyebrow, title, asid
                 </p>
               </div>
             )}
-            <form onSubmit={submit} noValidate className={`border border-brass bg-bone text-onyx ${modal ? "mt-6 p-5 sm:p-7" : "mt-10 p-6 sm:p-12"}`}>
+            <form
+              onSubmit={submit}
+              noValidate
+              className={`text-onyx ${split ? "" : `border border-brass bg-bone ${modal ? "mt-6 p-5 sm:p-7" : "mt-10 p-6 sm:p-12"}`}`}
+            >
               {/* Signpost for vendors, so a pitch never has to come through
                   the client brief. */}
               <p className="mb-8 border-b border-onyx/15 pb-5 font-sans text-sm leading-relaxed text-onyx/65">
@@ -238,17 +252,17 @@ export default function Cta({ modal = false, split = false, eyebrow, title, asid
                 <a href="/terms" className="underline underline-offset-2 transition hover:text-onyx">Terms and Conditions</a>.
               </p>
             </form>
-            <p className="mt-5 max-w-xl font-sans text-xs leading-relaxed text-bone/45">
+            <p className={`mt-5 max-w-xl font-sans text-xs leading-relaxed ${split ? "border-t border-onyx/15 pt-5 text-onyx/55" : "text-bone/45"}`}>
               {t(f.reassurance)}
             </p>
             {/* Vendors land on this section too, and the form above is written
                 for clients. Send them somewhere that fits. */}
             {!modal && (
-              <p className="mt-6 font-sans text-xs text-bone/45">
+              <p className={`mt-6 font-sans text-xs ${split ? "text-onyx/55" : "text-bone/45"}`}>
                 Supplying rather than booking?{" "}
                 <a
                   href="/vendors"
-                  className="font-bold uppercase tracking-[0.14em] text-brass underline underline-offset-4 transition hover:text-bone"
+                  className={`font-bold uppercase tracking-[0.14em] text-brass underline underline-offset-4 transition ${split ? "hover:text-onyx" : "hover:text-bone"}`}
                 >
                   Join the vendor list
                 </a>
