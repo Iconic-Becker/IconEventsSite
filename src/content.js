@@ -676,9 +676,16 @@ export const CTA = {
     { id: "c3", value: "0", label: V("pitch decks — just the conversation", "pitch decks — just the conversation") },
   ],
   form: {
-    /* Every choice is required and none is pre-selected, so an answer in the
-       inbox is always one the visitor actually picked. */
-    eventLabel: "What's the event?",
+    /* The questions and their order follow Everlast's quote form (Iconic's
+       call, 26 Oct 2026): who you are, the event, its size and budget, the
+       services, the details, then how you found us. The single choices that
+       triage a lead (event type, guests, budget) are required and none is
+       pre-selected, so an answer in the inbox is always one the visitor
+       actually picked. Everything marked optional can be left blank. */
+    phoneLabel: "Phone",
+    eventNameLabel: "Event name",
+    eventNamePlaceholder: "A working title is fine",
+    eventLabel: "Event type",
     events: [
       "Client summit or conference",
       "Launch",
@@ -686,13 +693,20 @@ export const CTA = {
       "Customer or VIP event",
       "Not sure yet",
     ],
-    guestsLabel: "How many guests?",
+    dateLabel: "Event date",
+    datePlaceholder: "Best estimate is fine",
+    venueLabel: "Venue",
+    venuePlaceholder: "Or the city, if not booked",
+    guestsLabel: "Estimated attendance",
     guests: ["Under 50", "50 to 150", "150 to 500", "500+"],
-    budgetLabel: "Event budget",
+    budgetLabel: "Budget range",
     budgets: ["Under $50k", "$50k to $150k", "$150k to $500k", "$500k+", "I don't know yet"],
-    timingLabel: "When is the room?",
-    timings: ["Within 3 months", "3 to 6 months", "6 to 12 months", "Just exploring"],
-    notesLabel: "Anything else we should know?",
+    // The six disciplines on /services, so the answer maps to how we scope.
+    servicesLabel: "Services needed",
+    services: ["Strategy", "Creative", "Production", "Content", "Operations", "Revenue", "Not sure yet"],
+    sourceLabel: "How did you hear about us?",
+    sources: ["Referral", "Instagram", "Google", "At one of our events", "Other"],
+    notesLabel: "Project details: scope, goals, anything else we should know",
     notesPlaceholder: V(
       "What the room has to achieve, where you need support, what is already in place.",
       "What the room needs to do, where you need a hand, what's already sorted."
