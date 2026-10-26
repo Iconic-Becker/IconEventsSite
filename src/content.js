@@ -87,8 +87,10 @@ export const NAV = {
 
 /* ── 01 · HERO ────────────────────────────────────────────────────────── */
 export const HERO = {
-  // Kept, not rendered. The audience line and the est. mark came out of the
-  // hero at Iconic's call; the copy stays here in case either returns.
+  // Kept, not rendered. The audience line, the est. mark, the outcome line
+  // and the hero's "See the Work" link came out at Iconic's call: the hero is
+  // the headline, the subhead and one button. The copy stays here in case
+  // any returns (ctaSecondary is still used by Testimonials and Niche).
   audience: V("For founder-led businesses past $1M", "For founders scaling past $1M"),
   est: "Est. 2017",
   headline: V(

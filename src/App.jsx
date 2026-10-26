@@ -17,7 +17,6 @@ import {
 } from "./content.js"
 import { useVoice } from "./voice.jsx"
 import { responsive } from "./lib/img.js"
-import Icon from "./components/Icon.jsx"
 import Photo from "./components/Photo.jsx"
 import { CtaBrackets } from "./components/CtaButtons.jsx"
 import InTheRoom from "./components/InTheRoom.jsx"
@@ -67,21 +66,6 @@ function highlight(text, phrase, cls = "text-brass") {
     </>
   )
 }
-// Keep desktop copy inline while allowing an intentional mobile-only break.
-function mobileBreakAfter(text, phrase) {
-  const i = text.indexOf(phrase)
-  if (i === -1) return text
-  const end = i + phrase.length
-  return (
-    <>
-      {text.slice(0, end)}
-      <br className="md:hidden" />
-      <span className="hidden md:inline"> </span>
-      {text.slice(end).trimStart()}
-    </>
-  )
-}
-
 function heroHeadline(text) {
   const phrase = " through"
   const i = text.indexOf(phrase)
@@ -296,19 +280,10 @@ export default function App() {
           <p className="mx-auto mt-6 max-w-xl font-sans text-lg leading-relaxed text-bone/70">
             {t(HERO.subhead)}
           </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-6">
+          {/* One call to action, nothing after it: headline, subhead, button. */}
+          <div className="mt-10">
             <CtaBrackets href="#contact">{t(HERO.ctaPrimary)}</CtaBrackets>
-            <a
-              href="#work"
-              className="group inline-flex items-center gap-2 font-sans text-xs font-bold uppercase tracking-[0.2em] text-bone/60 transition hover:text-bone"
-            >
-              {t(HERO.ctaSecondary)}
-              <Icon name="arrow" className="h-4 w-4 transition group-hover:translate-x-1" />
-            </a>
           </div>
-          <p className="mx-auto mt-8 max-w-md font-serif text-xl italic text-brass">
-            {mobileBreakAfter(t(HERO.outcome), "room of 150.")}
-          </p>
         </div>
 
       </div>
