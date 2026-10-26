@@ -30,15 +30,18 @@ const TITLE = "Event Production Services | Iconic Events"
 const DESCRIPTION =
   "Strategy, creative, production, content, operations and revenue for live events, under one team and a single line of authority. Iconic Events, event production since 2017."
 
-/* One plate per zone, from the gallery. The first four are the
-   methodology stills; the last two are room shots. */
+/* One plate per zone, all event photography from the case study folders
+   (no generated images, Icon's call). Each is chosen to show the zone at
+   work: a mastermind table for strategy, the designed stage for creative,
+   the rig and the room for production, the camera for content, the
+   kitchen for operations, and the room on its feet for revenue. */
 const PLATES = {
-  g1: "/images/gallery/strategy.webp",
-  g2: "/images/gallery/creative.webp",
-  g3: "/images/gallery/production.webp",
-  g4: "/images/gallery/amplification.webp",
-  g5: "/images/gallery/g2.webp",
-  g6: "/images/gallery/position-room.webp",
+  g1: "/images/gallery/the-black-course/17.webp",
+  g2: "/images/gallery/bad-after-dark/03.webp",
+  g3: "/images/gallery/scaling-with-systems-live-2022/03.webp",
+  g4: "/images/gallery/bulletproof-financial-accelerator/08.webp",
+  g5: "/images/gallery/bulletproof-financial-accelerator/07.webp",
+  g6: "/images/gallery/pmuw-2023/15.webp",
 }
 
 const num = (i) => String(i + 1).padStart(2, "0")
