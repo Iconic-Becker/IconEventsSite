@@ -136,7 +136,7 @@ export const PRESS = {
 
 /* ── 03 · PORTRAIT CAROUSEL — In the Room ─────────────────────────────── */
 export const ROOM = {
-  title: V("Creators we work with", "Creators we work with"),
+  title: V("Creators who trust us", "Creators who trust us"),
   sub: V(
     "Founders who trust us with the biggest moments of their year.",
     "The founders you follow trust us with their biggest rooms."
