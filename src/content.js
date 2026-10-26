@@ -142,52 +142,41 @@ export const ROOM = {
     "The founders you follow trust us with their biggest rooms."
   ),
   meta: "Selected clients · Since 2017",
+  // Order is Iconic's call, front of the rail first: Jeremy Miner, Eddie
+  // Maalouf, Shelby Sapp, Ambro Dipilato, Chase Hughes, Alexis Mai, then the
+  // rest. Shelby, Ambro and Alexis join in those slots once their headshots
+  // are on file. Ben Newman and Ali Awad stay, but not at the front.
   people: [
     {
-      id: "r1",
-      img: "/images/clients/ben-newman.webp",
-      name: "Ben Newman",
-      // Audience: CreatorDB, refreshed 8 Oct 2026 (@continuedfight). Event
-      // figures from the Casino Royale case study.
+      id: "r7",
+      img: "/images/clients/jeremy-miner.webp",
+      name: "Jeremy Miner",
+      event: "The Sales Summit",
+      slug: "the-sales-summit",
+      // Audience and reps trained: 7th Level's own speaker card for Net Rev
+      // Summit 2026 (Drive, speaker_jeremy_miner.png). Attendance: the case study.
       stats: [
-        { value: "704K", label: "Instagram" },
-        { value: "150", label: "Attendees" },
-        { value: "$100K", label: "Saved in production" },
+        { value: "2.5M+", label: "Followers" },
+        { value: "400K+", label: "Reps trained" },
+        { value: "700", label: "Attendees" },
       ],
-      event: "Casino Royale",
-      slug: "casino-royale",
-      result: V("$1.8M · 150 seats", "$1.8M from 150 seats"),
+      result: V("700 attendees", "700 attendees"),
       about: V(
-        "A 007 Casino Royale evening at the Palms, projection mapped and choreographed to sell a new membership tier from the stage. $1.8M from a hundred and fifty seats.",
-        "We turned the Palms into a 007 Casino Royale night, projection mapped and built to close. 150 seats, $1.8M in membership sold from the stage."
+        "The Sales Summit: 7th Level's largest event yet, three days at the Irving Convention Center built around live call reviews from the stage.",
+        "The Sales Summit. 7th Level's biggest event ever, 700 people and three days of live call reviews from the stage."
       ),
     },
     {
-      id: "r2",
-      img: "/images/clients/ed-mylett.webp",
-      name: "Ed Mylett",
-      // Audience: CreatorDB, 19 Jul 2026 (Instagram); vidIQ, Jul 2025 (YouTube).
-      stats: [
-        { value: "2.8M", label: "Instagram" },
-        { value: "1M+", label: "YouTube" },
-      ],
-      result: V("Live event production", "Live event production"),
+      id: "r5",
+      img: "/images/clients/eddie-maalouf.webp",
+      name: "Eddie Maalouf",
+      stats: [{ value: "$146K", label: "Sponsorship in six days" }],
+      event: "Bad After Dark",
+      slug: "bad-after-dark",
+      result: V("$146K in six days", "$146K in 6 days"),
       about: V(
-        "A live room shaped around attention, authority, and the moments that matter on stage.",
-        "A live room built to hold attention and give every moment on stage a clear job."
-      ),
-    },
-    {
-      id: "r3",
-      img: "/images/clients/ali-awad.webp",
-      name: "Ali Awad",
-      stats: [{ value: "$25K", label: "Offer sold without pressure" }],
-      event: "The CEO Lawyer Summit",
-      slug: "ceo-lawyer-summit",
-      result: V("$25K+ average ticket", "$25K+ avg ticket"),
-      about: V(
-        "The CEO Lawyer Summit: a room engineered to sell a $25K offer without a hint of pressure. The close was written into the choreography.",
-        "The CEO Lawyer Summit. We engineered the room to sell a $25K+ ticket. The close was baked into the flow, and it closed."
+        "Bad After Dark, an evening that returned $146K in sponsorship inside six days. Restraint on the surface, revenue underneath.",
+        "Bad After Dark pulled $146K in sponsorship in 6 days. A night that looked effortless and printed money."
       ),
     },
     {
@@ -208,16 +197,18 @@ export const ROOM = {
       ),
     },
     {
-      id: "r5",
-      img: "/images/clients/eddie-maalouf.webp",
-      name: "Eddie Maalouf",
-      stats: [{ value: "$146K", label: "Sponsorship in six days" }],
-      event: "Bad After Dark",
-      slug: "bad-after-dark",
-      result: V("$146K in six days", "$146K in 6 days"),
+      id: "r2",
+      img: "/images/clients/ed-mylett.webp",
+      name: "Ed Mylett",
+      // Audience: CreatorDB, 19 Jul 2026 (Instagram); vidIQ, Jul 2025 (YouTube).
+      stats: [
+        { value: "2.8M", label: "Instagram" },
+        { value: "1M+", label: "YouTube" },
+      ],
+      result: V("Live event production", "Live event production"),
       about: V(
-        "Bad After Dark, an evening that returned $146K in sponsorship inside six days. Restraint on the surface, revenue underneath.",
-        "Bad After Dark pulled $146K in sponsorship in 6 days. A night that looked effortless and printed money."
+        "A live room shaped around attention, authority, and the moments that matter on stage.",
+        "A live room built to hold attention and give every moment on stage a clear job."
       ),
     },
     {
@@ -226,9 +217,9 @@ export const ROOM = {
       name: "Ravi Abuvala",
       // From the Scaling With Systems LIVE case study.
       stats: [
-        { value: "300", label: "Attendees, all home safely" },
-        { value: "$1.2M", label: "Sold in under 24 hours" },
-        { value: "2022", label: "Booked us again" },
+        { value: "300", label: "Attendees" },
+        { value: "$1.2M", label: "Sold in 24 hours" },
+        { value: "2022", label: "Booked again" },
       ],
       event: "Scaling With Systems LIVE",
       slug: "scaling-with-systems-live",
@@ -236,6 +227,38 @@ export const ROOM = {
       about: V(
         "A founder-led live summit shaped as one continuous audience journey, from arrival through the final moment on stage.",
         "A live summit built around the full audience journey, with every production decision working toward the moments that mattered on stage."
+      ),
+    },
+    {
+      id: "r1",
+      img: "/images/clients/ben-newman.webp",
+      name: "Ben Newman",
+      // Audience: CreatorDB, refreshed 8 Oct 2026 (@continuedfight). Event
+      // figures from the Casino Royale case study.
+      stats: [
+        { value: "704K", label: "Instagram" },
+        { value: "150", label: "Attendees" },
+        { value: "$100K", label: "Saved" },
+      ],
+      event: "Casino Royale",
+      slug: "casino-royale",
+      result: V("$1.8M · 150 seats", "$1.8M from 150 seats"),
+      about: V(
+        "A 007 Casino Royale evening at the Palms, projection mapped and choreographed to sell a new membership tier from the stage. $1.8M from a hundred and fifty seats.",
+        "We turned the Palms into a 007 Casino Royale night, projection mapped and built to close. 150 seats, $1.8M in membership sold from the stage."
+      ),
+    },
+    {
+      id: "r3",
+      img: "/images/clients/ali-awad.webp",
+      name: "Ali Awad",
+      stats: [{ value: "$25K", label: "Offer sold without pressure" }],
+      event: "The CEO Lawyer Summit",
+      slug: "ceo-lawyer-summit",
+      result: V("$25K+ average ticket", "$25K+ avg ticket"),
+      about: V(
+        "The CEO Lawyer Summit: a room engineered to sell a $25K offer without a hint of pressure. The close was written into the choreography.",
+        "The CEO Lawyer Summit. We engineered the room to sell a $25K+ ticket. The close was baked into the flow, and it closed."
       ),
     },
   ],
