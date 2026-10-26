@@ -151,7 +151,7 @@ export const ROOM = {
       // figures from the Casino Royale case study.
       stats: [
         { value: "704K", label: "Instagram followers" },
-        { value: "150", label: "Attendees, Casino Royale" },
+        { value: "150", label: "Attendees" },
         { value: "$100K", label: "Saved in production" },
       ],
       event: "Casino Royale",

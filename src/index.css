@@ -568,3 +568,20 @@ body {
   .logo-band-track > ul { flex-wrap: wrap; justify-content: center; }
   .logo-band-track > ul[aria-hidden] { display: none; }
 }
+
+/* Creators who trust us: a low banner of founder strips running left without
+   end. Two copies of the set; sliding one copy's width (-50%) loops with no
+   seam. Edges fade into the page. Hover pauses; reduced motion gets a still
+   row that scrolls by hand. */
+@keyframes creator-rail { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.creator-rail {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+.creator-track { animation: creator-rail 70s linear infinite; }
+.creator-rail:hover .creator-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .creator-rail { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+  .creator-track { animation: none; }
+  .creator-track > ul[aria-hidden] { display: none; }
+}
