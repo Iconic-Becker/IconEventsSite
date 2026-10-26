@@ -165,9 +165,12 @@ function Contents({ active }) {
         </ol>
 
         {/* The plate for the active zone. From lg up it runs off the left
-            edge of the page and dissolves at its edges, so it reads as a
-            scene behind the schedule rather than a thumbnail beside it. */}
-        <figure className="svc-plate relative mt-10 hidden h-[min(54vh,560px)] lg:ml-[calc(-1*(max(0px,(100vw-72rem)/2)+1.5rem))] lg:block lg:w-[calc(100%+max(0px,(100vw-72rem)/2)+1.5rem)]">
+            edge of the page and dissolves along a diagonal, from the top
+            left corner down to the bottom right, so the photograph fills
+            the lower left of the page and the upper right stays dark for
+            the text. Nothing sits beneath it: the caption and the note
+            came out to give it the room (Icon, 26 Oct 2026). */}
+        <figure className="svc-plate relative mt-6 hidden h-[min(62vh,640px)] lg:ml-[calc(-1*(max(0px,(100vw-72rem)/2)+1.5rem))] lg:block lg:w-[calc(100%+max(0px,(100vw-72rem)/2)+1.5rem)]">
           {groups.map((g, i) => (
             <img
               key={g.id}
@@ -181,14 +184,6 @@ function Contents({ active }) {
             />
           ))}
         </figure>
-        <p className="mt-3 hidden font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-bone/50 lg:block" aria-live="polite">
-          Plate {num(active)} <span className="mx-2 text-bone/25">·</span> {groups[active].group}
-        </p>
-
-        <p className="mt-6 hidden max-w-[30ch] font-sans text-[11px] leading-relaxed text-bone/40 lg:block">
-          <span className="mr-2 inline-block h-1 w-1 translate-y-[-2px] bg-brass" aria-hidden="true" />
-          Beyond production: a production company's scope ends before these. Ours does not.
-        </p>
       </div>
     </aside>
   )
