@@ -467,9 +467,27 @@ function Related({ study }) {
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {siblings.map((item) => {
             const cover = item.media.hero ?? item.media.band ?? item.media.resultLeft
+            // No photography yet: the brand pattern on Tide Pool, carrying the
+            // event's headline figure so the card still has something to say.
+            const figure = !cover && item.highlights?.[0]
             return (
               <a key={item.slug} href={`/case-studies/${item.slug}`} className="group relative min-h-[250px] overflow-hidden border border-bone/15 sm:min-h-[300px]">
-                {cover && <img src={cover.src} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0" />}
+                {cover ? (
+                  <img src={cover.src} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0" />
+                ) : (
+                  <div aria-hidden="true" className="absolute inset-0 bg-tidepool">
+                    <div
+                      className="absolute inset-0 opacity-[0.08] transition duration-700 group-hover:scale-105"
+                      style={{ backgroundImage: "url(/images/patterns/pattern-white.webp)", backgroundSize: "300px auto" }}
+                    />
+                    {figure && (
+                      <div className="absolute inset-x-5 top-6">
+                        <p className="font-serif text-6xl font-semibold leading-none text-brass">{figure[0]}</p>
+                        <p className="mt-2 max-w-[22ch] font-sans text-[11px] uppercase leading-snug tracking-[0.12em] text-bone/60">{figure[1]}</p>
+                      </div>
+                    )}
+                  </div>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-onyx via-onyx/25 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-5">
                   <h3 className="font-serif text-2xl font-semibold">{item.name}</h3>

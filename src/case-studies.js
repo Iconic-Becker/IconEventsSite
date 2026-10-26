@@ -220,106 +220,6 @@ export const CASE_STUDIES = [
   },
 
   {
-    slug: "viral-ecom-adz",
-    name: "Viral Ecom Adz",
-    // TODO(copy): least detail on file of the six. Replace headline, summary,
-    // challenge and approach with the real account before publication.
-    headline: "How Viral Ecom Adz Carried Partner Revenue Without Feeling Sponsored",
-    cta: "Want a retreat your partners pay to be part of?",
-    summary:
-      "Viral Ecom Adz needed a room that carried real partner revenue without losing an audience that came for the content. We took creative direction, production and on site execution as one job, and built partner presence into the architecture of the evening.",
-    challenge:
-      "Partner revenue in a room whose audience came for the content rather than the brands.",
-    approach: {
-      pre: ["Designed partner presence into the structure of the evening rather than around it."],
-      onsite: ["Ran production and on site execution with the same team that designed the room."],
-      post: [],
-    },
-    scope: [
-      ["Creative", "Creative direction and room design."],
-      ["Production", "Staging, lighting and technical build."],
-      ["On site", "Show calling and execution by the design team."],
-    ],
-    metrics: { attendance: null, productionDays: null, costSaved: null },
-    details: {
-      client: "Noah Brewer",
-      clientTitle: null,
-      venue: null,
-      city: null,
-      region: null,
-      year: null,
-      dates: null,
-    },
-    media: {
-      hero: null,
-      challenge: null,
-      band: { src: "/images/gallery/g3.webp", alt: "Viral Ecom Adz room" },
-      resultLeft: { src: "/images/gallery/g2.webp", alt: "Viral Ecom Adz stage" },
-      resultRight: null,
-      gallery: [
-        { src: "/images/gallery/g6.webp", alt: "Production detail at Viral Ecom Adz" },
-      ],
-      aftermovieUrl: null,
-      testimonialUrl: null,
-    },
-    testimonial: { quote: null, approved: false },
-    citation:
-      "Iconic Events, a Florida based event production and coordination company, produced Viral Ecom Adz, delivering creative direction, production and on site execution as a single scope.",
-  },
-
-  {
-    slug: "chase-hughes-london",
-    name: "Chase Hughes, London",
-    headline: "How Chase Hughes Staged a Room Aboard HMS Belfast in London",
-    cta: "Want to take your people somewhere nobody expects, like Chase did?",
-    summary:
-      "Chase Hughes wanted his room on a heritage warship moored on the Thames. We took creative direction, production, show flow and on site execution as one job, and built the event into the geometry of HMS Belfast instead of over it.",
-    challenge:
-      "A heritage warship is not a venue. Every sightline, power run and load in path had to be engineered around a structure that could not be altered.",
-    approach: {
-      pre: [
-        "Surveyed the vessel and designed staging to its existing geometry.",
-        "Planned load in and power around a structure that could not be modified.",
-      ],
-      onsite: [
-        "Built the room into the ship, down to the last rivet.",
-        "Ran show calling and on site execution with the same team that designed the room.",
-      ],
-      post: [],
-    },
-    scope: [
-      ["Creative", "Creative direction designed to the vessel's own geometry."],
-      ["Production", "Staging, lighting, power and load in on a heritage structure."],
-      ["Show flow", "Run of show across a non standard space."],
-      ["On site", "Show calling and execution by the design team."],
-    ],
-    metrics: { attendance: null, productionDays: null, costSaved: null },
-    details: {
-      client: "Chase Hughes",
-      clientTitle: null,
-      venue: "HMS Belfast, River Thames",
-      city: "London",
-      region: null,
-      year: null,
-      dates: null,
-    },
-    media: {
-      hero: null,
-      challenge: null,
-      band: { src: "/images/gallery/g30.webp", alt: "HMS Belfast build on the River Thames for Chase Hughes" },
-      resultLeft: { src: "/images/gallery/g8.webp", alt: "Staging detail aboard HMS Belfast, London" },
-      resultRight: null,
-      gallery: [],
-      aftermovieUrl: null,
-      testimonialUrl: null,
-    },
-    testimonial: { quote: null, approved: false },
-    citation:
-      "Iconic Events, a Florida based event production and coordination company, produced Chase Hughes London aboard HMS Belfast on the River Thames, delivering creative direction, production, show flow and on site execution as a single scope.",
-  },
-
-  // Source: docs/case-studies/Case-Study-Interviews.xlsx, approved by Iconic.
-  {
     slug: "creatorhub-live",
     name: "CreatorHub Live",
     headline: "How CreatorHub Live Brought 1,500+ Creators and Entrepreneurs Under One Roof",
@@ -1264,7 +1164,7 @@ export const EVENT_INDEX = [
   { slug: "pimcon-2024", name: "PimCon 2024", client: "Rankings.io", when: "2024", location: null, venue: null, size: null, full: false },
   { slug: "the-black-course", name: "The Black Course", client: "Chase Hughes", when: "2023-06", location: null, venue: null, size: null, full: false },
   { slug: "behavior-pilot", name: "Behavior Pilot", client: "Chase Hughes", when: "2023", location: null, venue: null, size: null, full: false },
-  { slug: "chase-hughes-london", name: "HMS Belfast, London", client: "Chase Hughes", when: "2023-02", location: "London, UK", venue: "HMS Belfast", size: null, full: true },
+  { slug: "chase-hughes-london", name: "HMS Belfast, London", client: "Chase Hughes", when: "2023-02", location: "London, UK", venue: "HMS Belfast", size: null, full: false },
   { slug: "sales-momentum-live", name: "Sales Momentum Live", client: "Aaron Platt", when: "2023", location: null, venue: null, size: null, full: false },
   { slug: "the-guardians-annual", name: "The Guardians Annual", client: "Thaddeus Gala", when: "2022-04", location: null, venue: null, size: null, full: false },
   { slug: "e-p-i-c", name: "E.P.I.C", client: "Kaaba Luum", when: "2023", location: null, venue: null, size: null, full: false },
@@ -1276,7 +1176,7 @@ export const EVENT_INDEX = [
   { slug: "scaling-with-systems-live", name: "Scaling With Systems LIVE 2021", client: "Ravi Abuvala", when: "2021-04", location: null, venue: null, size: null, full: true },
   { slug: "egc-2022", name: "EGC 2022", client: "Austin Zelan", when: "2022", location: null, venue: null, size: null, full: false },
   { slug: "dealcon-2025", name: "DealCon 2025", client: "Tom Shipley", when: "2025", location: null, venue: null, size: null, full: false },
-  { slug: "viral-ecom-adz", name: "Viral Ecom Adz", client: "Noah Brewer", when: "2023-06", location: null, venue: null, size: null, full: true },
+  { slug: "viral-ecom-adz", name: "Viral Ecom Adz", client: "Noah Brewer", when: "2023-06", location: null, venue: null, size: null, full: false },
   // From the old klevr.events site (docs/case-studies/LEGACY-SITE-EXTRACT.md).
   { slug: "scaling-with-systems-live-2022", name: "Scaling With Systems LIVE 2022", client: "Ravi Abuvala", when: "2022", location: "Miami, FL", venue: "1111 Miami", size: null, full: false },
   { slug: "rise-x", name: "Rise X", client: "Joel Kaplan and Sergio Tavarez", when: "2022-04", location: "Costa Rica", venue: null, size: null, full: false },
@@ -1303,8 +1203,14 @@ export function caseStudyFromPath(pathname) {
   return CASE_STUDY_BY_SLUG[slug] ?? null
 }
 
+/* The case studies suggested at the foot of a case study page: the newest
+   events first, by `when` in the event index, so the suggestions lead with
+   current work. Nothing on the page says they are recent (Iconic's call). */
 export function otherCaseStudies(slug, limit = 4) {
-  return CASE_STUDIES.filter((study) => study.slug !== slug).slice(0, limit)
+  const when = (study) => EVENT_INDEX.find((e) => e.slug === study.slug)?.when ?? ""
+  return CASE_STUDIES.filter((study) => study.slug !== slug)
+    .sort((a, b) => when(b).localeCompare(when(a)))
+    .slice(0, limit)
 }
 
 /* The three published metrics, in order, skipping any that are not yet known.
