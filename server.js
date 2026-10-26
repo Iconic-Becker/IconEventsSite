@@ -97,8 +97,8 @@ function resolveFile(urlPath) {
    study here go to the index, and the old calculator to the contact form. */
 const MOVED = {
   "/partners": "/vendors",
-  "/case-studies/the-ceo-lawyer-summit-2021": "/case-studies/ceo-lawyer-summit",
-  "/case-studies/the-ceo-lawyer-summit-2022": "/case-studies/ceo-lawyer-summit",
+  "/case-studies/the-ceo-lawyer-summit-2021": "/case-studies",
+  "/case-studies/the-ceo-lawyer-summit-2022": "/case-studies",
   "/case-studies/scaling-with-systems-2021": "/case-studies/scaling-with-systems-live",
   "/case-studies/chase-hughes-london-warship": "/case-studies/chase-hughes-london",
   "/case-studies/pmu-world-live-2023": "/case-studies",
@@ -106,6 +106,10 @@ const MOVED = {
   "/case-studies/group-convert-live-1": "/case-studies",
   "/case-studies/epic-growth-conference": "/case-studies",
   "/calculator": "/contact",
+  // Case studies withdrawn at Iconic's call on 26 Oct 2026 as inaccurate. Both
+  // pages were live and indexed, so they go to the index rather than a 404.
+  "/case-studies/casino-royale": "/case-studies",
+  "/case-studies/ceo-lawyer-summit": "/case-studies",
 }
 
 createServer((req, res) => {

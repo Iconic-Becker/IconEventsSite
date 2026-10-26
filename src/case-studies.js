@@ -82,78 +82,6 @@
 
 export const CASE_STUDIES = [
   {
-    slug: "casino-royale",
-    name: "Casino Royale",
-    headline:
-      "How Ben Newman Filled 150 Seats at Casino Royale and Saved $100K in Production",
-    cta: "Want to bring your community back into one room like Ben did?",
-    summary:
-      "Ben Newman was coming back to live events after five years away, and he needed a room built around a single decision. We took the whole job: strategy, creative direction, production, show flow and the night itself. We turned Palms Casino Resort in Las Vegas into a projection mapped Casino Royale for 150 guests across three days of production. Because one team held all of it, Ben saved $100,000 against a multi vendor build.",
-    challenge:
-      "Ben Newman had not held a live event in five years, and he was bringing a new membership tier to an audience that already knew both him and his offer. Familiarity was the problem: the room had to renew attention rather than introduce anything. The new tier also needed a setting that made a high value commitment feel proportionate to the decision being asked for.",
-    approach: {
-      pre: [
-        "Fixed the commercial outcome first: sell the new membership tier from the stage, not by follow up.",
-        "Mapped the audience's existing relationship to host and offer, to locate where attention would drop.",
-        "Set capacity against the commercial objective rather than a headcount target, landing on 150 seats.",
-        "Fixed the moment of the close, then sequenced every other decision backward from it.",
-        "Built the Casino Royale world as one continuous environment, so the theme carried the evening instead of decorating it.",
-      ],
-      onsite: [
-        "Projection mapped the venue to convert the Palms space into the themed build.",
-        "Choreographed pacing, lighting and stage transitions toward the decision point.",
-        "Ran show calling and on site execution with the same team that designed the room.",
-      ],
-      post: [
-        "Captured content through the evening for use after the close, including the following year's launch.",
-      ],
-    },
-    scope: [
-      ["Strategy", "Commercial objective, audience mapping, capacity and format set against the outcome."],
-      ["Creative", "Theme concept and creative direction, built as one continuous environment."],
-      ["Production", "Projection mapping, lighting, staging and the full technical build."],
-      ["Show flow", "Run of show, pacing and choreography, written around the decision point."],
-      ["On site", "Show calling and execution by the same team that designed the room."],
-      ["Content", "Capture through the evening for use after the close."],
-    ],
-    metrics: { attendance: "150", productionDays: "3", costSaved: "$100,000" },
-    details: {
-      client: "Ben Newman",
-      // TODO(confirm): exact job title and company, currently assumed.
-      clientTitle: "Founder, Ben Newman Companies",
-      venue: "Palms Casino Resort",
-      city: "Las Vegas",
-      region: "NV",
-      year: "2023",
-      dates: null, // TODO(confirm): exact dates, ISO 8601, for Event schema.
-    },
-    media: {
-      hero: null, // TODO(shoot): room at capacity, 16:9, 2400x1350, lower third clear of faces.
-      challenge: { src: "/images/gallery/g34.webp", alt: "Guests at the gaming tables during Casino Royale at Palms Casino Resort in Las Vegas" },
-      band: { src: "/images/gallery/g31.webp", alt: "Projection mapped walls and gold accent lighting in the Casino Royale build at Palms Casino Resort" },
-      resultLeft: { src: "/images/gallery/g32.webp", alt: "Ben Newman on stage at Casino Royale at Palms Casino Resort, Las Vegas, introducing the new membership tier" },
-      resultRight: null, // TODO(shoot): room wide enough to read 150 seats, 4:3.
-      gallery: [
-        { src: "/images/gallery/g9.webp", alt: "Casino Royale themed room set at Palms Casino Resort in Las Vegas, produced by Iconic Events" },
-        { src: "/images/gallery/g24.webp", alt: "Table setting and gaming floor styling at Casino Royale, a Ben Newman event" },
-        { src: "/images/gallery/g25.webp", alt: "Lighting and projection design at Casino Royale, Palms Casino Resort, Las Vegas" },
-      ],
-      aftermovieUrl: "https://www.youtube.com/watch?v=CmrSzYrgTWY",
-      // TODO(confirm): sent as "a link for us"; confirm it is the testimonial and not the aftermovie.
-      testimonialUrl: "https://www.youtube.com/watch?v=3XTRiuOMD4k",
-    },
-    testimonial: {
-      // Sample copy written to size the layout. NOT Ben Newman's words.
-      // approved stays false, so nothing renders and Review schema is held.
-      quote:
-        "I came to them with a room I had waited five years to fill and no real idea how to make it feel like an event again. They took the concept, the build and the run of show, and on the night I walked in and did my part. One team, one person to call.",
-      approved: false,
-    },
-    citation:
-      "Iconic Events, a Florida based event production and coordination company, produced Casino Royale for Ben Newman at Palms Casino Resort in Las Vegas, Nevada, delivering strategy, creative direction, projection mapped production, show flow and on site execution for a 150 guest room across three days, saving the client $100,000 against a multi vendor build.",
-  },
-
-  {
     slug: "bad-after-dark",
     name: "Bad After Dark",
     format: "Brand activation",
@@ -209,59 +137,6 @@ export const CASE_STUDIES = [
     testimonial: { quote: null, approved: false },
     citation:
       "Iconic Events, a Florida based event production and coordination company, produced Bad After Dark for Eddie Maalouf, delivering strategy, creative direction, production and on site execution as a single scope.",
-  },
-
-  {
-    slug: "ceo-lawyer-summit",
-    name: "The CEO Lawyer Summit 2021",
-    headline: "How Ali Awad Sold a $25K Offer Without Pressure at The CEO Lawyer Summit",
-    cta: "Want a summit that sells from the stage like Ali's?",
-    summary:
-      "Ali Awad needed to present a high value offer to a room of professionals who negotiate for a living. We took the whole job: strategy, creative direction, production, show flow and on site execution. We wrote the close into the choreography of the room instead of the script.",
-    challenge:
-      "A high ticket offer to a room of lawyers. Any pressure in the room would read instantly, and cost the close.",
-    approach: {
-      pre: [
-        "Fixed the moment of the close, then sequenced authority and proof backward from it.",
-        "Mapped where a professional audience would resist, and designed around it.",
-      ],
-      onsite: [
-        "Ran a room where the sequence, not the script, carried the decision.",
-        "Ran show calling and on site execution with the same team that designed the room.",
-      ],
-      post: [],
-    },
-    scope: [
-      ["Strategy", "Objective, audience mapping and format set against the close."],
-      ["Creative", "Creative direction and room design."],
-      ["Show flow", "Run of show and choreography built around the decision point."],
-      ["On site", "Show calling and execution by the design team."],
-    ],
-    metrics: { attendance: null, productionDays: null, costSaved: null },
-    details: {
-      client: "Ali Awad",
-      clientTitle: null,
-      venue: null,
-      city: null,
-      region: null,
-      year: "2021",
-      dates: null,
-    },
-    media: {
-      hero: null,
-      challenge: null,
-      band: { src: "/images/gallery/g13.webp", alt: "The CEO Lawyer Summit main room" },
-      resultLeft: { src: "/images/gallery/g16.webp", alt: "The CEO Lawyer Summit stage" },
-      resultRight: null,
-      gallery: [
-        { src: "/images/gallery/g19.webp", alt: "The CEO Lawyer Summit audience" },
-      ],
-      aftermovieUrl: null,
-      testimonialUrl: null,
-    },
-    testimonial: { quote: null, approved: false },
-    citation:
-      "Iconic Events, a Florida based event production and coordination company, produced The CEO Lawyer Summit for Ali Awad, delivering strategy, creative direction, show flow and on site execution as a single scope.",
   },
 
   {
@@ -1396,12 +1271,11 @@ export const EVENT_INDEX = [
   { slug: "powerhouse", name: "Powerhouse", client: "Los Silva", when: "2022", location: null, venue: null, size: null, full: false },
   { slug: "founder-os", name: "Founder OS", client: "Matt Gray", when: "2023", location: null, venue: null, size: null, full: false },
   { slug: "the-ceo-lawyer-summit-2022", name: "The CEO Lawyer Summit 2022", client: "Ali Awad", when: "2022-12", location: null, venue: null, size: null, full: false },
-  { slug: "ceo-lawyer-summit", name: "The CEO Lawyer Summit 2021", client: "Ali Awad", when: "2021-12", location: null, venue: null, size: null, full: true },
+  { slug: "ceo-lawyer-summit", name: "The CEO Lawyer Summit 2021", client: "Ali Awad", when: "2021-12", location: null, venue: null, size: null, full: false },
   { slug: "scaling-with-systems-live-2023", name: "Scaling With Systems LIVE 2023", client: "Ravi Abuvala", when: "2023", location: null, venue: null, size: null, full: false },
   { slug: "scaling-with-systems-live", name: "Scaling With Systems LIVE 2021", client: "Ravi Abuvala", when: "2021-04", location: null, venue: null, size: null, full: true },
   { slug: "egc-2022", name: "EGC 2022", client: "Austin Zelan", when: "2022", location: null, venue: null, size: null, full: false },
   { slug: "dealcon-2025", name: "DealCon 2025", client: "Tom Shipley", when: "2025", location: null, venue: null, size: null, full: false },
-  { slug: "casino-royale", name: "Casino Royale", client: "Ben Newman", when: "2023-10", location: "Las Vegas, NV", venue: "Palms Casino Resort", size: "150", full: true },
   { slug: "viral-ecom-adz", name: "Viral Ecom Adz", client: "Noah Brewer", when: "2023-06", location: null, venue: null, size: null, full: true },
   // From the old klevr.events site (docs/case-studies/LEGACY-SITE-EXTRACT.md).
   { slug: "scaling-with-systems-live-2022", name: "Scaling With Systems LIVE 2022", client: "Ravi Abuvala", when: "2022", location: "Miami, FL", venue: "1111 Miami", size: null, full: false },
@@ -1422,7 +1296,7 @@ export const CASE_STUDY_BY_SLUG = Object.fromEntries(
   CASE_STUDIES.map((study) => [study.slug, study])
 )
 
-/* Resolve "/case-studies/casino-royale" to a study, or null for an unknown
+/* Resolve "/case-studies/bad-after-dark" to a study, or null for an unknown
    slug so the page can render a real not-found state. */
 export function caseStudyFromPath(pathname) {
   const slug = pathname.replace(/^\/case-studies\/?/, "").replace(/\/+$/, "")
@@ -1524,7 +1398,6 @@ export function assertLanderSlugsResolve(work) {
    See docs/case-studies/PHOTO-LIBRARY.md. */
 export const PHOTO_LIBRARY = {
   "bad-after-dark": { folder: "bad-after-dark", count: 8 },
-  "casino-royale": { folder: "casino-royale", count: 13 },
   "viral-ecom-adz": { folder: "viral-ecom-adz", count: 49 },
   "chase-hughes-london": { folder: "chase-hughes-london", count: 19 },
   "the-black-course": { folder: "the-black-course", count: 43 },
