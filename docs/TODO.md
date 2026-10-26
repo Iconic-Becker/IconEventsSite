@@ -224,3 +224,12 @@ For context on what is already done, so it does not get re-raised.
 - Google Tag Manager container GTM-PS4743JW, plus the second Search Console verification tag. The site had no analytics at all since the container was lost in the repository switch.
 - `enquiry_submitted` and `spa_page_view` pushed to dataLayer, so the confirmation page and the enquiry conversion are measurable in a single page app. Kevin needs to create triggers on those two event names.
 - Client names resolved for all 37 events. The undated Freedom Queen Live is the 2024 edition and is now named and slugged as such.
+
+## Creators rail and brand logos (26 Oct 2026)
+
+- Headshots still needed for Shelby Sapp, Ambro Dipilato, Alexis Mai, Cole
+  Gordon, Max Willett and John Whiting. Each shows a placeholder until then.
+- Universal Music Group logo: not in Drive. Needs a supplied file, then the
+  same 1400x400 bone-on-transparent canvas as the rest (see PRESS in
+  src/content.js). An eighth logo will wrap the home row at 1440px, so the
+  row needs a look when it goes in.

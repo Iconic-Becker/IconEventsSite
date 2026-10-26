@@ -484,5 +484,39 @@
     960
    ]
   ]
+ },
+ "/images/press/creatorhub.webp": {
+  "w": 1400,
+  "h": 400,
+  "set": [
+   [
+    "/images/press/creatorhub-480.webp",
+    480
+   ],
+   [
+    "/images/press/creatorhub-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/clients/danny-tran.webp": {
+  "w": 640,
+  "h": 800,
+  "set": [
+   [
+    "/images/clients/danny-tran-480.webp",
+    480
+   ]
+  ]
+ },
+ "/images/clients/bridget-james-ling.webp": {
+  "w": 640,
+  "h": 800,
+  "set": [
+   [
+    "/images/clients/bridget-james-ling-480.webp",
+    480
+   ]
+  ]
  }
 }
