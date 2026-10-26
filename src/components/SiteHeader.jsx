@@ -4,9 +4,9 @@ import { CONTACT_PHONE } from "../lib/contact.js"
 /* The site's primary navigation, the same on every page.
 
    Every link is a page of its own (NAV in content.js), so the bar never sends
-   anyone back to the homepage. Laid out in three even columns so it sits
-   level: the sigil home on the left, the four links centred, the phone line
-   on the right. The brass case studies tab hangs from the middle. */
+   anyone back to the homepage. The sigil sits in the middle with two links
+   either side of it, so the bar is level around it; the phone line sits at
+   the far right. The brass case studies tab hangs from the sigil. */
 
 function PhoneIcon({ className = "" }) {
   return (
@@ -27,7 +27,9 @@ function PhoneLink({ className = "", iconClass = "h-4 w-4" }) {
       className={`inline-flex items-center gap-2 whitespace-nowrap font-bold text-brass transition-colors duration-300 hover:text-bone ${className}`}
     >
       <PhoneIcon className={`${iconClass} shrink-0`} />
-      {CONTACT_PHONE.display}
+      {/* At md the right column holds two links and the phone, so the number
+          gives way to the icon until lg; on phones it shows in full. */}
+      <span className="md:hidden lg:inline">{CONTACT_PHONE.display}</span>
     </a>
   )
 }
@@ -59,7 +61,10 @@ function CaseStudyTab() {
 }
 
 export default function SiteHeader({ home = false }) {
+  // Two either side of the sigil.
   const wide = NAV.links.filter((n) => !n.smallOnly)
+  const left = wide.slice(0, Math.ceil(wide.length / 2))
+  const right = wide.slice(Math.ceil(wide.length / 2))
 
   return (
     <>
@@ -67,19 +72,26 @@ export default function SiteHeader({ home = false }) {
           scroll; on phones the menu row below is what sticks. */}
       <header className="relative z-40 border-b border-bone/10 bg-onyx md:sticky md:top-0">
         <div className="nav-beam" aria-hidden="true" />
-        <nav aria-label="Primary navigation" className="mx-auto grid max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-4 px-5 py-3 sm:px-6 sm:py-4">
-          <a href={home ? "#top" : "/"} aria-label="Iconic Events home" className="justify-self-start">
-            <img src="/logos/IE_sigil_white.png" alt="" aria-hidden="true" className="h-9 w-auto md:h-10" />
-          </a>
-          <div className="hidden items-center gap-8 font-sans text-xs font-medium uppercase tracking-[0.16em] text-bone/70 md:flex lg:gap-10">
-            {wide.map((n) => (
+        <nav aria-label="Primary navigation" className="mx-auto grid max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-6 px-5 py-3 sm:px-6 sm:py-4 lg:gap-10">
+          <div className="hidden items-center justify-end gap-8 font-sans text-xs font-medium uppercase tracking-[0.16em] text-bone/70 md:flex lg:gap-10">
+            {left.map((n) => (
               <NavLink key={n.href} href={n.href}>
                 {n.label}
               </NavLink>
             ))}
           </div>
-          <div className="col-start-3 justify-self-end">
-            <PhoneLink className="text-[11px] tracking-[0.04em] md:text-xs md:tracking-[0.08em]" iconClass="h-3.5 w-3.5 md:h-4 md:w-4" />
+          <a href={home ? "#top" : "/"} aria-label="Iconic Events home" className="col-start-2 flex justify-center">
+            <img src="/logos/IE_sigil_white.png" alt="" aria-hidden="true" className="h-9 w-auto md:h-10" />
+          </a>
+          <div className="col-start-3 flex items-center justify-end gap-8 font-sans text-xs font-medium uppercase tracking-[0.16em] text-bone/70 md:justify-between lg:gap-10">
+            <div className="hidden items-center gap-8 md:flex lg:gap-10">
+              {right.map((n) => (
+                <NavLink key={n.href} href={n.href}>
+                  {n.label}
+                </NavLink>
+              ))}
+            </div>
+            <PhoneLink className="text-[11px] normal-case tracking-[0.04em] md:text-xs md:tracking-[0.08em]" iconClass="h-3.5 w-3.5 md:h-4 md:w-4" />
           </div>
         </nav>
         <CaseStudyTab />
