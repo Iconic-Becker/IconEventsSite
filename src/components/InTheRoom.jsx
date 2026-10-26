@@ -16,12 +16,26 @@ function Card({ p, copy }) {
   const stats = p.stats ?? []
   const body = (
     <>
-      <img
-        {...responsive(p.img, "(min-width: 640px) 270px, 230px")}
-        alt={copy ? "" : p.name}
-        loading="lazy"
-        className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
-      />
+      {p.img ? (
+        <img
+          {...responsive(p.img, "(min-width: 640px) 270px, 230px")}
+          alt={copy ? "" : p.name}
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+        />
+      ) : (
+        // No headshot on file yet: Tide Pool, the brand pattern and the
+        // person's initials, so the card holds its place in the rail.
+        <div aria-hidden="true" className="absolute inset-0 bg-tidepool">
+          <div
+            className="absolute inset-0 opacity-[0.08]"
+            style={{ backgroundImage: "url(/images/patterns/pattern-white.webp)", backgroundSize: "300px auto" }}
+          />
+          <span className="absolute inset-x-0 top-[22%] text-center font-serif text-7xl font-semibold text-brass/80 sm:text-8xl">
+            {p.name.split(" ").map((w) => w[0]).join("")}
+          </span>
+        </div>
+      )}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-onyx via-onyx/45 via-35% to-transparent" />
       <div className="absolute inset-x-0 bottom-0 px-4 pb-4 text-center">
         <h3 className="font-sans text-base font-bold uppercase tracking-[0.08em] text-bone sm:text-lg">{p.name}</h3>

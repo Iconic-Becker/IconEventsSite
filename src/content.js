@@ -144,8 +144,9 @@ export const ROOM = {
   meta: "Selected clients · Since 2017",
   // Order is Iconic's call, front of the rail first: Jeremy Miner, Eddie
   // Maalouf, Shelby Sapp, Ambro Dipilato, Chase Hughes, Alexis Mai, then the
-  // rest. Shelby, Ambro and Alexis join in those slots once their headshots
-  // are on file. Ben Newman and Ali Awad stay, but not at the front.
+  // rest. Shelby, Ambro and Alexis carry img: null, which draws a branded
+  // placeholder, until their headshots are on file. Ben Newman and Ali Awad
+  // stay, but not at the front.
   people: [
     {
       id: "r7",
@@ -180,6 +181,29 @@ export const ROOM = {
       ),
     },
     {
+      id: "r8",
+      // Placeholder card until a headshot is on file. No case study yet, so no link.
+      img: null,
+      name: "Shelby Sapp",
+      event: "Women and Wealth",
+      stats: [
+        { value: "July 2026", label: "Fort Lauderdale, FL" },
+      ],
+      result: V("Women and Wealth", "Women and Wealth"),
+    },
+    {
+      id: "r9",
+      // Placeholder card until a headshot is on file. Figure: the Net Rev Summit 2026 case study.
+      img: null,
+      name: "Ambro Dipilato",
+      event: "Net Rev Summit 2026",
+      slug: "net-rev-summit-2026",
+      stats: [
+        { value: "$14.9K", label: "Saved on the hotel" },
+      ],
+      result: V("Net Rev Summit 2026", "Net Rev Summit 2026"),
+    },
+    {
       id: "r4",
       img: "/images/clients/chase-hughes.webp",
       name: "Chase Hughes",
@@ -195,6 +219,17 @@ export const ROOM = {
         "A bespoke build aboard HMS Belfast on the Thames: a warship staged as a room, to the last rivet.",
         "We built the room on a warship, HMS Belfast on the Thames, staged end to end for one unforgettable night."
       ),
+    },
+    {
+      id: "r10",
+      // Placeholder card until a headshot is on file. No case study yet, so no link.
+      img: null,
+      name: "Alexis Mai",
+      event: "Her Last Call",
+      stats: [
+        { value: "2025", label: "Produced" },
+      ],
+      result: V("Her Last Call", "Her Last Call"),
     },
     {
       id: "r2",
