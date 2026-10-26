@@ -128,9 +128,9 @@ export const ROOM = {
   meta: "Selected clients · Since 2017",
   // Order is Iconic's call, front of the rail first: Jeremy Miner, Eddie
   // Maalouf, Shelby Sapp, Ambro Dipilato, Chase Hughes, Alexis Mai, then the
-  // rest. Shelby, Ambro and Alexis carry img: null, which draws a branded
-  // placeholder, until their headshots are on file. Ben Newman and Ali Awad
-  // stay, but not at the front.
+  // rest. Ed Mylett came off on 26 Oct 2026. Shelby, Ambro and Alexis carry
+  // img: null, which draws a branded placeholder, until their headshots are
+  // on file. Ben Newman and Ali Awad stay, but not at the front.
   people: [
     {
       id: "r7",
@@ -208,21 +208,6 @@ export const ROOM = {
         { value: "2025", label: "Produced" },
       ],
       result: V("Her Last Call", "Her Last Call"),
-    },
-    {
-      id: "r2",
-      img: "/images/clients/ed-mylett.webp",
-      name: "Ed Mylett",
-      // Audience: CreatorDB, 19 Jul 2026 (Instagram); vidIQ, Jul 2025 (YouTube).
-      stats: [
-        { value: "2.8M", label: "Instagram" },
-        { value: "1M+", label: "YouTube" },
-      ],
-      result: V("Live event production", "Live event production"),
-      about: V(
-        "A live room shaped around attention, authority, and the moments that matter on stage.",
-        "A live room built to hold attention and give every moment on stage a clear job."
-      ),
     },
     {
       id: "r6",
