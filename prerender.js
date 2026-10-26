@@ -51,6 +51,24 @@ ROUTES.push({
   image: '/og/default.jpg',
 })
 
+// The nav's own pages, so it never sends anyone back to the homepage.
+ROUTES.push(
+  {
+    path: '/services',
+    title: 'Event Production Services | Iconic Events',
+    description:
+      'Strategy, creative, production, content, operations and revenue for live events, under one team and a single line of authority. Iconic Events, event production since 2017.',
+    image: '/og/default.jpg',
+  },
+  {
+    path: '/reviews',
+    title: 'Client Reviews | Iconic Events',
+    description:
+      'What founders and creators say about working with Iconic Events, in their own words, with the event each review comes from.',
+    image: '/og/default.jpg',
+  },
+)
+
 // The privacy policy and terms. Indexed: ad platforms and visitors look for
 // them, and Meta checks the privacy policy URL on lead forms.
 for (const doc of [PRIVACY, TERMS]) {

@@ -26,6 +26,7 @@ import Motion from "./components/Motion.jsx"
 import Work from "./components/Work.jsx"
 import Gallery from "./components/Gallery.jsx"
 import Scope from "./components/Scope.jsx"
+import Disciplines from "./components/Disciplines.jsx"
 import Method from "./components/Method.jsx"
 import Receipts from "./components/Receipts.jsx"
 import About from "./components/About.jsx"
@@ -36,6 +37,10 @@ import Cta from "./components/Cta.jsx"
 import SiteHeader from "./components/SiteHeader.jsx"
 import CtaBand from "./components/CtaBand.jsx"
 import SiteFooter from "./components/SiteFooter.jsx"
+
+// Scope, the long list of everything in and out of scope. Replaced on the
+// homepage by the services teaser (Disciplines, compact) and /services.
+const SHOW_SCOPE = false
 
 // The cursor spotlight that reveals a hidden wordmark in the hero. Off at
 // Iconic's call: it sat in the old full-height hero, and in the shorter one
@@ -351,8 +356,24 @@ export default function App() {
              hidden; see SHOW_NICHE above. ──────────────────────────────── */}
       {SHOW_NICHE && <Niche />}
 
-      {/* ── WHAT IS AND IS NOT INCLUDED ─────────────────────────────────── */}
-      <Scope />
+      {/* ── SERVICES — the six disciplines in brief, through to /services for
+             the full lists. The long Scope section it replaces is hidden;
+             see SHOW_SCOPE. ─────────────────────────────────────────────── */}
+      {SHOW_SCOPE && <Scope />}
+      <section id="services" className="py-16 sm:py-24">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6">
+          <div className="mb-8 flex flex-wrap items-baseline justify-between gap-4 border-b border-brass/40 pb-3">
+            <span className="font-sans text-xs font-bold uppercase tracking-[0.28em] text-brass">Services</span>
+            <a href="/services" className="font-sans text-xs uppercase tracking-[0.15em] text-brass hover:text-bone">
+              All services →
+            </a>
+          </div>
+          <h2 className="mb-10 max-w-[20ch] font-serif text-4xl font-semibold leading-tight text-bone sm:text-5xl">
+            Six disciplines. One line of authority.
+          </h2>
+          <Disciplines compact />
+        </div>
+      </section>
 
       <CtaBand
         headline="We solve your event's problems before you sign."
