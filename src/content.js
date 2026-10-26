@@ -87,10 +87,11 @@ export const NAV = {
 
 /* ── 01 · HERO ────────────────────────────────────────────────────────── */
 export const HERO = {
-  // Kept, not rendered. The audience line, the est. mark, the outcome line
-  // and the hero's "See the Work" link came out at Iconic's call: the hero is
-  // the headline, the subhead and one button. The copy stays here in case
-  // any returns (ctaSecondary is still used by Testimonials and Niche).
+  // Kept, not rendered. The audience line, the est. mark and the hero's "See
+  // the Work" link came out at Iconic's call: the hero is the headline, the
+  // subhead and one button. The copy stays here in case any returns
+  // (ctaSecondary is still used by Testimonials and Niche). The old outcome
+  // line went for good with the Casino Royale case study.
   audience: V("For founder-led businesses past $1M", "For founders scaling past $1M"),
   est: "Est. 2017",
   headline: V(
@@ -100,10 +101,6 @@ export const HERO = {
   subhead: V(
     "Through psychology-led stage design, production, and experience architecture for live in person events.",
     "Through psychology-led stage design, production, and experience architecture for live in person events."
-  ),
-  outcome: V(
-    "$1.8M from a single room of 150. That is the room we build.",
-    "$1.8M sold from a single room of 150. That's the room we build."
   ),
   ctaPrimary: V("Start a Conversation", "Book the Call"),
   ctaSecondary: V("See the Work", "See the Work"),
@@ -270,33 +267,22 @@ export const ROOM = {
       id: "r1",
       img: "/images/clients/ben-newman.webp",
       name: "Ben Newman",
-      // Audience: CreatorDB, refreshed 8 Oct 2026 (@continuedfight). Event
-      // figures from the Casino Royale case study.
-      stats: [
-        { value: "704K", label: "Instagram" },
-        { value: "150", label: "Attendees" },
-        { value: "$100K", label: "Saved" },
-      ],
-      event: "Casino Royale",
-      slug: "casino-royale",
-      result: V("$1.8M · 150 seats", "$1.8M from 150 seats"),
-      about: V(
-        "A 007 Casino Royale evening at the Palms, projection mapped and choreographed to sell a new membership tier from the stage. $1.8M from a hundred and fifty seats.",
-        "We turned the Palms into a 007 Casino Royale night, projection mapped and built to close. 150 seats, $1.8M in membership sold from the stage."
-      ),
+      // Audience: CreatorDB, refreshed 8 Oct 2026 (@continuedfight). His event
+      // figures and case study link came out with the Casino Royale case study.
+      stats: [{ value: "704K", label: "Instagram" }],
+      result: V("Live event production", "Live event production"),
+      about: V("Live event production for Ben Newman.", "Live event production for Ben Newman."),
     },
     {
       id: "r3",
       img: "/images/clients/ali-awad.webp",
       name: "Ali Awad",
-      stats: [{ value: "$25K", label: "Offer sold without pressure" }],
+      // The CEO Lawyer Summit happened; its case study was withdrawn on
+      // 26 Oct 2026 as inaccurate, so no link and no figures from it.
       event: "The CEO Lawyer Summit",
-      slug: "ceo-lawyer-summit",
-      result: V("$25K+ average ticket", "$25K+ avg ticket"),
-      about: V(
-        "The CEO Lawyer Summit: a room engineered to sell a $25K offer without a hint of pressure. The close was written into the choreography.",
-        "The CEO Lawyer Summit. We engineered the room to sell a $25K+ ticket. The close was baked into the flow, and it closed."
-      ),
+      stats: [],
+      result: V("Live event production", "Live event production"),
+      about: V("The CEO Lawyer Summit, produced for Ali Awad.", "The CEO Lawyer Summit, produced for Ali Awad."),
     },
   ],
 }
@@ -359,34 +345,35 @@ export const WORK = {
   title: V("Rooms we've engineered.", "Rooms we've engineered."),
   index: V("Full Index →", "Full Index →"),
   readMore: V("Read the case study →", "Read the case study →"),
+  // PMU World 2023 since 26 Oct 2026, when the Casino Royale case study was
+  // withdrawn at Iconic's call. All three figures come from its case study.
   featured: {
-    slug: "casino-royale",
+    slug: "pmuw-2023",
     label: "Featured",
-    meta: "Ben Newman · Palms Casino Resort · 2023",
-    img: "/images/gallery/g9.webp",
-    headline: V("Casino Royale, built to sell from the stage.", "Casino Royale — built to sell from the stage."),
+    meta: "Danny Tran · Seminole Hard Rock · 2023",
+    img: "/images/gallery/pmuw-2023/02.webp",
+    headline: V("PMU World, the largest in North America on the first try.", "PMU World. The largest in North America, first try."),
     challengeLabel: V("Challenge", "Challenge"),
     challenge: V(
-      "A five-year wait and a new membership tier to sell.",
-      "A 5-year wait and a new membership tier to sell."
+      "A seven month old brand, no attendee list, and an industry that doubted it.",
+      "A seven month old brand, no attendee list, and an industry full of doubters."
     ),
     approachLabel: V("Approach", "Approach"),
     approach: V(
-      "A 007 Casino Royale build, projection-mapped, with the close engineered into the choreography.",
-      "A 007 Casino Royale build, projection-mapped, with the close engineered into the choreography."
+      "Two stages run like a music festival, and more than 16 interactive installations built in-house.",
+      "Two stages run like a music festival, plus 16+ interactive installations we built ourselves."
     ),
     stats: [
-      { value: "$1.8M", label: V("membership sales", "in sales") },
-      { value: "150", label: V("attendees", "attendees") },
-      { value: "100%", label: V("2024 sold out", "2024 sold out") },
+      { value: "800+", label: V("attendees, 600 projected", "attendees vs 600 projected") },
+      { value: "#1", label: V("PMU event in North America", "PMU event in North America") },
+      { value: "$148K", label: V("saved off contracts", "saved off contracts") },
     ],
     cta: V("Read the case study →", "Read the case study →"),
   },
   archiveLabel: V("More from the archive", "More from the archive"),
   archive: [
     { id: "a1", img: "/images/gallery/g28.webp", name: "Bad After Dark", slug: "bad-after-dark", result: V("$146K sponsorships", "$146K sponsorships"), outcome: V("Partner presence built into the night, not bolted on.", "Partner presence built into the night, not bolted on.") },
-    { id: "a2", img: "/images/gallery/g13.webp", name: "The CEO Lawyer Summit", slug: "ceo-lawyer-summit", result: V("$25K+ average ticket", "$25K+ avg ticket"), outcome: V("A $25K offer, sold without pressure.", "A $25K offer, sold without pressure.") },
-    { id: "a3", img: "/images/gallery/g26.webp", name: "Scaling With Systems LIVE", slug: "scaling-with-systems-live", result: V("Founder-led live summit", "Founder-led live summit") },
+    { id: "a3", img: "/images/gallery/g26.webp", name: "Scaling With Systems LIVE", slug: "scaling-with-systems-live", result: V("Founder-led live summit", "Founder-led live summit"), outcome: V("300 attendees, all home safely.", "300 attendees, all home safely.") },
     { id: "a4", img: "/images/gallery/g3.webp", name: "Viral Ecom Adz", slug: "viral-ecom-adz", result: V("Six-figure sponsorship", "6-figure sponsorship") },
     { id: "a5", img: "/images/gallery/g30.webp", name: "Chase Hughes — London", slug: "chase-hughes-london", result: V("HMS Belfast build", "HMS Belfast build") },
   ],

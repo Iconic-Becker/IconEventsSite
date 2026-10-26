@@ -13,10 +13,8 @@ Nothing here can start without you.
 |---|---|---|
 | 2 | **The five new pages** | About, FAQ, Recaps, and two more I cannot read from the screenshot. Tell me what each holds. Note "Recaps" may be the same thing as the case studies grid; worth deciding before both get built. |
 | 3 | **Shelby Sapp testimonial** | Quote, name, role, image. The section on `/nextsteps` stays hidden until it is filled. Her event is Women and Wealth. |
-| 4 | **Casino Royale photos** | Position 01, hero of the room at capacity, 16:9. Position 05, a wide shot that reads 150 seats. Usage rights are confirmed for all photos; photographer credit is still to collect if it is wanted on the page. **Some frames on file are from other events**, and now show on `/gallery` labelled Casino Royale: `g34` is a Group Convert team photo, `g24` has a "Sean ...rien" stage screen, and `g32` is captioned "Ben Newman on stage" but shows guests at a casino table. `public/images/gallery/casino-royale/` holds 13 hand picked frames to choose replacements from. |
 | 5 | **Ben Newman quote** | Verbatim words, written permission, and his exact job title. The quote on file is sample copy with `approved: false`, so nothing renders and Review schema is withheld. |
 | 6 | **Which video is which** | One link was sent as "a link for us" and placed as the testimonial; the other was named as the aftermovie. Confirm, or they swap. |
-| 7 | **Casino Royale gaps** | Exact dates, verified venue address, weeks of planning, which vendors Iconic managed directly. |
 | 9 | **PimCon** | Dated "Oct 2026?" and may not have happened. Confirm before it is written up. |
 | 27 | **Two trusted-by logos are stand-ins** | Live now, but neither is the real artwork. **Closers.io** was supplied in its dark brand colour, `#041116`, within a few values of the section background; it is reversed to bone here, red half disc included, because the red went muddy at the row's opacity. **Women & Wealth** was not in the batch of five, so it is re-canvassed onto 1400x400 at 24% fill. Both files were sent more than once and never arrived, so try another route: commit them to the repo directly, or rename before sending. Keep new logos on the 1400x400 canvas and **do not trim them**. |
 
@@ -37,7 +35,7 @@ Each one affects every case study, so settling them early avoids rework across 3
 
 | # | Decision | Context |
 |---|---|---|
-| 10 | **How is the savings figure calculated?** | Every headline leads with a cost saved number. Casino Royale says $100,000. If that was a one-off estimate rather than a repeatable basis, the figures will not survive a prospect asking "saved against what?" Highest priority of the four. |
+| 10 | **How is the savings figure calculated?** | Every headline leads with a cost saved number. If that was a one-off estimate rather than a repeatable basis, the figures will not survive a prospect asking "saved against what?" Highest priority of the four. |
 | 11 | **Does the no-client-revenue rule apply site wide?** | Case study pages publish only attendance, days of production and cost saved. The homepage still sells on `$1.8M`, `$146K` and `$25K+ average ticket`. They currently contradict each other. |
 | 12 | **Do we name third party brands?** | Internal copy says "007 Casino Royale". The case study says "Casino Royale themed", because an indexed page courting AI citation carries trademark exposure internal copy does not. |
 | 13 | **Add the two extra sections?** | Interview questions 4 and 5, what nearly broke and who the build is wrong for, have nowhere to render. Both are strong trust signals and rarely published. Adding them changes every page, so decide before the interviews start. |
@@ -198,6 +196,8 @@ deployed.
 ## Recently shipped
 
 For context on what is already done, so it does not get re-raised.
+
+- Casino Royale and The CEO Lawyer Summit case studies withdrawn as inaccurate (Iconic, 26 Oct 2026). Both URLs 301 to `/case-studies`. The CEO Lawyer Summit stays in the event index, unlinked; Casino Royale is gone from the index, `/gallery` and the share cards. Selected Work now features PMU World 2023. `docs/case-studies/casino-royale.md` is kept only as the interview protocol's worked example of the format; its facts are not to be reused.
 
 - Homepage resequenced so the page answers who we are, who it is for, what we do, how, proof, then work. Section numbering removed. Calls to action added through the middle: the longest stretch with no CTA went from 17.6 phone screens to 5.3, and the page from 22.0 screens to 16.0.
 - Three homepage sections taken out. Capability, and the In the room and From the host pair that put three showcase sections back to back. The Uncontested Room is **hidden, not deleted**: it sits behind `SHOW_NICHE` in `App.jsx`, component and copy intact, so it is a one-word change to bring back.

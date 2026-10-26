@@ -42,18 +42,16 @@ function Card({ p, copy }) {
         <p className="mt-0.5 font-sans text-[10px] font-bold uppercase tracking-[0.14em] text-brass">
           {p.event ?? "Live events"}
         </p>
-        {/* Fixed height whether a card has one figure or three, so every
+        {/* Fixed height whether a card has three figures or none, so every
             name sits at the same height across the row. */}
-        {stats.length > 0 && (
-          <dl className="mt-3 flex h-[3.4rem] justify-center divide-x divide-bone/20 border-t border-bone/15 pt-3">
-            {stats.map((s) => (
-              <div key={s.label} className="flex min-w-0 flex-1 flex-col px-1.5">
-                <dt className="mt-1 break-words font-sans text-[8px] uppercase leading-tight tracking-[0.1em] text-bone/60">{s.label}</dt>
-                <dd className="order-first font-serif text-xl font-semibold leading-none text-bone sm:text-2xl">{s.value}</dd>
-              </div>
-            ))}
-          </dl>
-        )}
+        <dl className="mt-3 flex h-[3.4rem] justify-center divide-x divide-bone/20 border-t border-bone/15 pt-3">
+          {stats.map((s) => (
+            <div key={s.label} className="flex min-w-0 flex-1 flex-col px-1.5">
+              <dt className="mt-1 break-words font-sans text-[8px] uppercase leading-tight tracking-[0.1em] text-bone/60">{s.label}</dt>
+              <dd className="order-first font-serif text-xl font-semibold leading-none text-bone sm:text-2xl">{s.value}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </>
   )
