@@ -2,18 +2,10 @@ import { ABOUT } from "../content.js"
 import { useVoice } from "../voice.jsx"
 
 // About Us: the first thing after the logo row: who Iconic is, before what
-// it builds. Two facts beside the copy. No event count, at Iconic's call: a
-// number reads as a ceiling. Countries are Iconic's own list, which runs wider
-// than the case studies written so far. Set on bone, like the Gallery, so the
-// page is not dark end to end.
-const COUNTRIES = ["US", "UK", "Spain", "UAE", "Mexico", "Costa Rica"]
-
+// it builds. Set on bone, like the Gallery, so the page is not dark end to
+// end. Its figures moved to the numbers bar that follows it (Numbers.jsx).
 export default function About() {
   const { t } = useVoice()
-  const facts = [
-    ["2017", "Founded"],
-    [String(COUNTRIES.length), `Countries: ${COUNTRIES.join(", ")}`],
-  ]
 
   return (
     <section id="about" className="relative bg-bone py-16 text-onyx sm:py-24">
@@ -41,15 +33,6 @@ export default function About() {
             </a>
           </div>
         </div>
-
-        <dl className="mt-12 grid grid-cols-2 gap-6 border-t border-onyx/15 pt-8 sm:mt-16">
-          {facts.map(([value, label]) => (
-            <div key={label} className="flex flex-col">
-              <dt className="mt-1 font-sans text-[11px] uppercase leading-snug tracking-[0.12em] text-onyx/55">{label}</dt>
-              <dd className="order-first font-serif text-3xl font-semibold text-tidepool sm:text-5xl">{value}</dd>
-            </div>
-          ))}
-        </dl>
       </div>
     </section>
   )

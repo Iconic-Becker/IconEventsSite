@@ -31,6 +31,7 @@ import Scope from "./components/Scope.jsx"
 import Method from "./components/Method.jsx"
 import Receipts from "./components/Receipts.jsx"
 import About from "./components/About.jsx"
+import Numbers from "./components/Numbers.jsx"
 import Testimonials from "./components/Testimonials.jsx"
 import Niche from "./components/Niche.jsx"
 import Cta from "./components/Cta.jsx"
@@ -399,9 +400,15 @@ export default function App() {
             logos now show below it on load, which does the same job. */}
       </div>
 
+      {/* ── CREATORS WE WORK WITH — the founders, by face and name, straight
+             under the hero and before the brand logos, the order GenFlow
+             uses: who we work with is the first thing after the promise. ── */}
+      <InTheRoom />
+
       {/* ── 02 · PRESS ────────────────────────────────────────────────── */}
-      {/* No top rule: the hero fades into this row (see the bottom blend). */}
-      <Section className="pb-12 pt-4 sm:pt-6">
+      {/* No top rule: it sits under the creators rail, in the same dark field
+          the hero fades into. */}
+      <Section className="pb-12 pt-8 sm:pt-10">
         <p className="text-center font-sans text-xs uppercase tracking-[0.25em] text-bone/40">
           {t(PRESS.label)}
         </p>
@@ -430,6 +437,8 @@ export default function App() {
 
       {/* ── ABOUT US — who we are, first thing after the logos ──────────── */}
       <About />
+      <Numbers />
+
 
       {/* ── The Room, In Motion ──────────────────────────────────────────── */}
       <Motion />
@@ -460,9 +469,10 @@ export default function App() {
       {/* ── HOW WE DO IT ────────────────────────────────────────────────── */}
       <Method />
 
-      {/* ── PROOF — the numbers, and only the numbers. The founder portraits
-             and the testimonial cards came out: with Selected Work and the
-             gallery below, the page was carrying five proof sections. The
+      {/* ── PROOF — the numbers, and only the numbers. The testimonial cards
+             came out: with Selected Work and the gallery below, the page was
+             carrying five proof sections. The founder portraits are back,
+             as In the Room, above. The
              client's own words now live on the case study pages, one per
              event, where they belong to something. Currently hidden; see
              SHOW_RECEIPTS above. ──────────────────────────────────────── */}

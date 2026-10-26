@@ -46,8 +46,8 @@ export const GALLERY = {
 export const MONTAGE = {
   kicker: V("The Room, In Motion", "The Energy We Engineer"),
   line: V(
-    "Stage, light, cadence, crowd — the levers set before the doors open.",
-    "Fire, stage, crowd, close — this is the room we build for you."
+    "Stage, light, cadence, crowd: the levers set before the doors open.",
+    "Fire, stage, crowd, close. This is the room we build for you."
   ),
 }
 
@@ -110,7 +110,7 @@ export const HERO = {
 
 /* ── 02 · PRESS ───────────────────────────────────────────────────────── */
 export const PRESS = {
-  label: V("As trusted by", "Trusted by"),
+  label: V("Brands who trust us", "Brands who trust us"),
   // Every file ships on the same 1400x400 canvas, bone on transparent, the
   // logo optically balanced inside it: a long wordmark set smaller, a stacked
   // mark larger. That padding is the balancing, so the row sets one height for
@@ -136,21 +136,23 @@ export const PRESS = {
 
 /* ── 03 · PORTRAIT CAROUSEL — In the Room ─────────────────────────────── */
 export const ROOM = {
-  title: V("In the Room", "In the Room"),
+  title: V("Creators we work with", "Creators we work with"),
   sub: V(
     "Founders who trust us with the biggest moments of their year.",
     "The founders you follow trust us with their biggest rooms."
   ),
-  meta: "Selected clients · 2017—2024",
+  meta: "Selected clients · Since 2017",
   people: [
     {
       id: "r1",
       img: "/images/clients/ben-newman.webp",
       name: "Ben Newman",
+      event: "Casino Royale",
+      slug: "casino-royale",
       result: V("$1.8M · 150 seats", "$1.8M from 150 seats"),
       about: V(
-        "A 007 Casino Royale evening at the Palms — projection-mapped, choreographed, and built to sell a new membership tier from the stage. $1.8M from a hundred and fifty seats.",
-        "We turned the Palms into a 007 Casino Royale night — projection-mapped and built to close. 150 seats, $1.8M in membership sold from the stage."
+        "A 007 Casino Royale evening at the Palms, projection mapped and choreographed to sell a new membership tier from the stage. $1.8M from a hundred and fifty seats.",
+        "We turned the Palms into a 007 Casino Royale night, projection mapped and built to close. 150 seats, $1.8M in membership sold from the stage."
       ),
     },
     {
@@ -167,39 +169,47 @@ export const ROOM = {
       id: "r3",
       img: "/images/clients/ali-awad.webp",
       name: "Ali Awad",
+      event: "The CEO Lawyer Summit",
+      slug: "ceo-lawyer-summit",
       result: V("$25K+ average ticket", "$25K+ avg ticket"),
       about: V(
-        "The CEO Lawyer Summit — a room engineered to sell a $25K offer without a hint of pressure. The close was written into the choreography.",
-        "The CEO Lawyer Summit — we engineered the room to sell a $25K+ ticket. The close was baked into the flow, and it closed."
+        "The CEO Lawyer Summit: a room engineered to sell a $25K offer without a hint of pressure. The close was written into the choreography.",
+        "The CEO Lawyer Summit. We engineered the room to sell a $25K+ ticket. The close was baked into the flow, and it closed."
       ),
     },
     {
       id: "r4",
       img: "/images/clients/chase-hughes.webp",
       name: "Chase Hughes",
+      event: "Chase Hughes London",
+      slug: "chase-hughes-london",
       result: V("HMS Belfast build", "HMS Belfast build"),
       about: V(
-        "A bespoke build aboard HMS Belfast on the Thames — a warship staged as a room, to the last rivet.",
-        "We built the room on a warship — HMS Belfast on the Thames — staged end to end for one unforgettable night."
+        "A bespoke build aboard HMS Belfast on the Thames: a warship staged as a room, to the last rivet.",
+        "We built the room on a warship, HMS Belfast on the Thames, staged end to end for one unforgettable night."
       ),
     },
     {
       id: "r5",
       img: "/images/clients/eddie-maalouf.webp",
       name: "Eddie Maalouf",
+      event: "Bad After Dark",
+      slug: "bad-after-dark",
       result: V("$146K in six days", "$146K in 6 days"),
       about: V(
-        "Bad After Dark — an evening that returned $146K in sponsorship inside six days. Restraint on the surface, revenue underneath.",
-        "Bad After Dark pulled $146K in sponsorship in 6 days — a night that looked effortless and printed money."
+        "Bad After Dark, an evening that returned $146K in sponsorship inside six days. Restraint on the surface, revenue underneath.",
+        "Bad After Dark pulled $146K in sponsorship in 6 days. A night that looked effortless and printed money."
       ),
     },
     {
       id: "r6",
       img: "/images/clients/ravi-abuvala.webp",
       name: "Ravi Abuvala",
-      result: V("Scaling With Systems LIVE", "Scaling With Systems LIVE"),
+      event: "Scaling With Systems LIVE",
+      slug: "scaling-with-systems-live",
+      result: V("300 attendees", "300 attendees"),
       about: V(
-        "A founder-led live summit shaped as one continuous audience journey — from arrival through the final moment on stage.",
+        "A founder-led live summit shaped as one continuous audience journey, from arrival through the final moment on stage.",
         "A live summit built around the full audience journey, with every production decision working toward the moments that mattered on stage."
       ),
     },
@@ -244,6 +254,19 @@ export const ABOUT = {
   ],
   link: V("See the case studies →", "See the case studies →"),
 }
+
+/* ── THE NUMBERS ─────────────────────────────────────────────────────── */
+// A slim bar straight after About Us, the way the agencies Iconic benchmarks
+// against lead with three or four figures. Every figure is one the site
+// already stands behind: the hero's annual figure, the largest attendance in
+// the case studies (CreatorHub Live, PMU World 2025), Iconic's own country
+// list, and the founding year. No event count, at Iconic's call.
+export const NUMBERS = [
+  { value: "$100M+", label: "Moves through our events each year" },
+  { value: "1,500+", label: "Attendees at a single event" },
+  { value: "6", label: "Countries: US, UK, Spain, UAE, Mexico, Costa Rica" },
+  { value: "2017", label: "Founded" },
+]
 
 /* ── 05 · SELECTED WORK ───────────────────────────────────────────────── */
 export const WORK = {

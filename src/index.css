@@ -597,3 +597,16 @@ body {
   .logo-band-track > ul { flex-wrap: wrap; justify-content: center; }
   .logo-band-track > ul[aria-hidden] { display: none; }
 }
+
+/* Creators we work with: a rail of portrait cards drifting left. Each copy of
+   the set carries its trailing gap as padding, so sliding one copy's width
+   (-50%) loops without a seam. Hover pauses; reduced motion gets a plain row
+   that scrolls by hand. */
+@keyframes creator-rail { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.creator-track { animation: creator-rail 60s linear infinite; }
+.creator-rail:hover .creator-track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .creator-rail { overflow-x: auto; }
+  .creator-track { animation: none; padding-left: 1.25rem; }
+  .creator-track > ul[aria-hidden] { display: none; }
+}
