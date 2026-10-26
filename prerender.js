@@ -10,6 +10,7 @@ import { createHash } from 'node:crypto'
 import { render, preloadRoute } from './dist-ssr/entry-server.js'
 import { CASE_STUDIES } from './src/case-studies.js'
 import { PRIVACY, TERMS } from './src/legal.js'
+import { SERVICE_PAGES } from './src/services.js'
 
 const SITE = 'https://www.iconic.events'
 
@@ -60,6 +61,16 @@ ROUTES.push(
       'Strategy, creative, production, content, operations and revenue for live events, under one team and a single line of authority. Iconic Events, event production since 2017.',
     image: '/og/default.jpg',
   },
+  // One page per zone of service and support, from the same list the
+  // router reads, so a page cannot exist without being prerendered.
+  ...SERVICE_PAGES.map((page) => ({
+    path: `/services/${page.slug}`,
+    title: page.seoTitle,
+    description: page.description,
+    image: '/og/default.jpg',
+    // A draft stays out of the sitemap and is marked noindex until signed off.
+    sitemap: !page.draft,
+  })),
   {
     path: '/reviews',
     title: 'Client Reviews | Iconic Events',

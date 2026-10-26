@@ -6,10 +6,12 @@ import NextSteps from "./components/NextSteps.jsx"
 import Vendors from "./components/Vendors.jsx"
 import Contact from "./components/Contact.jsx"
 import ServicesPage from "./components/ServicesPage.jsx"
+import ServicePage from "./components/ServicePage.jsx"
 import ReviewsPage from "./components/ReviewsPage.jsx"
 import LegalPage from "./components/LegalPage.jsx"
 import { PRIVACY, TERMS } from "./legal.js"
 import { caseStudyFromPath } from "./case-studies.js"
+import { servicePageFromPath } from "./services.js"
 import { splitPage } from "./lib/split-page.jsx"
 
 // Its own chunk: the gallery carries an animation library no other page
@@ -46,6 +48,11 @@ export function routeFor(pathname) {
 
   // Pages of their own so the nav never sends anyone back to the homepage.
   if (path === "/services") return <ServicesPage />
+  // One page per zone of service and support, listed in services.js.
+  if (path.startsWith("/services/")) {
+    const page = servicePageFromPath(path)
+    return page ? <ServicePage page={page} /> : <CaseStudyNotFound />
+  }
   if (path === "/reviews") return <ReviewsPage />
 
   if (path === "/privacy") return <LegalPage doc={PRIVACY} />
