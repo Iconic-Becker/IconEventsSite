@@ -518,5 +518,19 @@
     480
    ]
   ]
+ },
+ "/images/press/universal-music-group.webp": {
+  "w": 1400,
+  "h": 400,
+  "set": [
+   [
+    "/images/press/universal-music-group-480.webp",
+    480
+   ],
+   [
+    "/images/press/universal-music-group-960.webp",
+    960
+   ]
+  ]
  }
 }

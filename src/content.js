@@ -112,6 +112,7 @@ export const PRESS = {
     { name: "NetRevenue", src: "/images/press/netrevenue.webp", w: 1400, h: 400 },
     { name: "Closers.io", src: "/images/press/closers-io.webp", w: 1400, h: 400 },
     { name: "CreatorHub", src: "/images/press/creatorhub.webp", w: 1400, h: 400 },
+    { name: "Universal Music Group", src: "/images/press/universal-music-group.webp", w: 1400, h: 400 },
   ],
   // Kept, not rendered. The row ran on these names before the logo files
   // arrived. They are press mentions and venues rather than clients, so if
