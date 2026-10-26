@@ -150,7 +150,7 @@ export const ROOM = {
       // Audience: CreatorDB, refreshed 8 Oct 2026 (@continuedfight). Event
       // figures from the Casino Royale case study.
       stats: [
-        { value: "704K", label: "Instagram followers" },
+        { value: "704K", label: "Instagram" },
         { value: "150", label: "Attendees" },
         { value: "$100K", label: "Saved in production" },
       ],
@@ -168,8 +168,8 @@ export const ROOM = {
       name: "Ed Mylett",
       // Audience: CreatorDB, 19 Jul 2026 (Instagram); vidIQ, Jul 2025 (YouTube).
       stats: [
-        { value: "2.8M", label: "Instagram followers" },
-        { value: "1M+", label: "YouTube subscribers" },
+        { value: "2.8M", label: "Instagram" },
+        { value: "1M+", label: "YouTube" },
       ],
       result: V("Live event production", "Live event production"),
       about: V(
@@ -196,7 +196,7 @@ export const ROOM = {
       name: "Chase Hughes",
       // Audience: ThoughtLeaders estimate, undated.
       stats: [
-        { value: "730K+", label: "YouTube subscribers" },
+        { value: "730K+", label: "YouTube" },
         { value: "London", label: "Aboard HMS Belfast" },
       ],
       event: "Chase Hughes London",
