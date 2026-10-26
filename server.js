@@ -105,7 +105,7 @@ const MOVED = {
   "/case-studies/7-figure-agency": "/case-studies",
   "/case-studies/group-convert-live-1": "/case-studies",
   "/case-studies/epic-growth-conference": "/case-studies",
-  "/calculator": "/contact",
+  "/calculator": "/get-a-quote",
   // Case studies withdrawn at Iconic's call on 26 Oct 2026 as inaccurate. All
   // four were live and indexed, so they go to the index rather than a 404.
   "/case-studies/casino-royale": "/case-studies",

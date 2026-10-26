@@ -59,14 +59,15 @@ export const MONTAGE = {
    exists. Every href below resolves to a real id on the page. */
 export const NAV = {
   // Every link is a page of its own, so the bar never sends anyone back to
-  // the homepage to find something (Iconic's call, 26 Oct 2026). Case
-  // Studies is smallOnly: from md up the brass tab under the bar covers it.
+  // the homepage to find something (Iconic's call, 26 Oct 2026). Portfolio is
+  // the case studies. Get a quote is smallOnly: from md up the brass tab
+  // under the bar covers it. /reviews is still live, from the footer.
   links: [
     { href: "/services", label: "Services" },
     { href: "/gallery", label: "Gallery" },
-    { href: "/case-studies", label: "Case Studies", smallOnly: true },
-    { href: "/reviews", label: "Reviews" },
+    { href: "/case-studies", label: "Portfolio" },
     { href: "/contact", label: "Contact" },
+    { href: "/get-a-quote", label: "Get a quote", smallOnly: true },
   ],
 }
 
@@ -743,7 +744,8 @@ export const FOOTER = {
       // the same inbox. CONTACT_EMAIL is still the fallback when a submission
       // fails (see src/lib/enquiry.js).
       items: [
-        { label: "Start a conversation", href: "/contact" },
+        { label: "Get a quote", href: "/get-a-quote" },
+        { label: "Contact", href: "/contact" },
         { label: "Vendor sign-up", href: "/vendors" },
         { label: "(305) 791-5290", href: "tel:+13057915290" },
         "Miami · Las Vegas",

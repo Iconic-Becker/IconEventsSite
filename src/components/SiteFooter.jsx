@@ -7,11 +7,11 @@ import { responsive } from "../lib/img.js"
 
    On the homepage, section links are in-page anchors. Elsewhere they point
    back at the homepage sections, and "Start a conversation" goes to the
-   contact page rather than an anchor that is not there. */
+   quote page rather than an anchor that is not there. */
 
 function resolve(href, home) {
   if (home || !href.startsWith("#")) return href
-  if (href === "#contact") return "/contact"
+  if (href === "#contact") return "/get-a-quote"
   return `/${href}`
 }
 

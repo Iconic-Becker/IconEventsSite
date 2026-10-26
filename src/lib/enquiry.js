@@ -142,6 +142,29 @@ export async function sendEnquiry({ name, email, company, phone, eventName, even
   return post(payload)
 }
 
+/* A message from /contact: anything that is not an event brief. Same inbox,
+   with a [Message] subject so it sorts apart from quotes, and the same
+   contract: it resolves only once the endpoint has accepted it. */
+export async function sendMessage({ name, email, message }) {
+  // A personal address is normal here, so only a sales pitch is flagged.
+  const flagged = flags(false, SALES_PITCH.test(message))
+  const payload = {
+    ...(ACCESS_KEY ? { access_key: ACCESS_KEY } : {}),
+    subject: `[Message] ${flagged ? "[Check] " : ""}${name}`,
+    from_name: "Iconic Events website",
+    name,
+    email,
+    ...(flagged ? { flags: flagged } : {}),
+    replyto: email,
+    message: message.trim(),
+    source: trafficSource(),
+    page: typeof window === "undefined" ? "" : window.location.href,
+    submitted: miamiTime(new Date()),
+  }
+
+  return post(payload)
+}
+
 /* A vendor, venue or agency offering a service. Same inbox, but its own
    sender name and a [Partner] subject, so one mail rule files it away from
    client enquiries. */
