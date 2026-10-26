@@ -88,6 +88,7 @@ export default function Work() {
               {...responsive(a.img, "(min-width: 768px) 30vw, 50vw")}
               alt=""
               loading="lazy"
+              style={a.imgPos ? { objectPosition: a.imgPos } : undefined}
               className="absolute inset-0 h-full w-full object-cover grayscale transition-all duration-700 ease-out group-hover:scale-105 group-hover:grayscale-0"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent md:from-onyx md:via-onyx/55" />

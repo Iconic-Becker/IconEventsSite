@@ -350,9 +350,13 @@ export const WORK = {
     cta: V("Read the case study →", "Read the case study →"),
   },
   archiveLabel: V("More from the archive", "More from the archive"),
+  // Each tile uses a photograph from its own case study with the client in
+  // it (Iconic's rule): Eddie Maalouf hosting Bad After Dark, Ravi Abuvala
+  // on stage at Scaling With Systems LIVE. `imgPos` keeps a face in frame
+  // when a tall photo is cropped to a wide card.
   archive: [
-    { id: "a1", img: "/images/gallery/g28.webp", name: "Bad After Dark", slug: "bad-after-dark", result: V("$146K sponsorships", "$146K sponsorships"), outcome: V("Partner presence built into the night, not bolted on.", "Partner presence built into the night, not bolted on.") },
-    { id: "a3", img: "/images/gallery/g26.webp", name: "Scaling With Systems LIVE", slug: "scaling-with-systems-live", result: V("Founder-led live summit", "Founder-led live summit"), outcome: V("300 attendees, all home safely.", "300 attendees, all home safely.") },
+    { id: "a1", img: "/images/gallery/bad-after-dark/01.webp", imgPos: "center 52%", name: "Bad After Dark", slug: "bad-after-dark", result: V("$146K sponsorships", "$146K sponsorships"), outcome: V("Partner presence built into the night, not bolted on.", "Partner presence built into the night, not bolted on.") },
+    { id: "a3", img: "/images/gallery/scaling-with-systems-live-2021/09.webp", name: "Scaling With Systems LIVE", slug: "scaling-with-systems-live", result: V("Founder-led live summit", "Founder-led live summit"), outcome: V("300 attendees, all home safely.", "300 attendees, all home safely.") },
   ],
 }
 
@@ -603,7 +607,7 @@ export const RECEIPTS = {
     { id: "n1", value: "$1.8M", img: "/images/gallery/g32.webp", label: V("membership, from 150 seats", "membership from 150 seats") },
     { id: "n2", value: "$146K", img: "/images/gallery/g34.webp", label: V("sponsorship, in six days", "sponsorship in 6 days") },
     { id: "n3", value: "40+", img: "/images/gallery/g25.webp", label: V("rooms engineered", "rooms engineered") },
-    { id: "n4", value: "100%", img: "/images/gallery/g24.webp", imgPos: "center 18%", label: V("2024 events sold out", "2024 events sold out") },
+    { id: "n4", value: "100%", img: "/images/gallery/g24.webp", imgPos: "center 52%", label: V("2024 events sold out", "2024 events sold out") },
   ],
 }
 
