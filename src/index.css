@@ -568,14 +568,3 @@ body {
   .logo-band-track > ul { flex-wrap: wrap; justify-content: center; }
   .logo-band-track > ul[aria-hidden] { display: none; }
 }
-
-/* Creators who trust us: each founder as an all-access pass hanging from a
-   lanyard. Passes sit at a slight tilt, set per card in --tilt, and swing
-   straight when hovered or focused. Reduced motion keeps them still and
-   straight. */
-.pass { transform: rotate(var(--tilt, 0deg)); transform-origin: 50% -2.5rem; transition: transform .6s cubic-bezier(.22, 1, .36, 1); }
-.pass:hover, .pass:focus-visible { transform: rotate(0deg) translateY(-6px); }
-.pass-slot { width: 2.25rem; height: .45rem; border-radius: 9999px; background: var(--color-onyx); box-shadow: inset 0 1px 2px rgba(0,0,0,.8), 0 0 0 1px rgba(184,153,104,.35); }
-@media (prefers-reduced-motion: reduce) {
-  .pass, .pass:hover, .pass:focus-visible { transform: none; transition: none; }
-}

@@ -147,6 +147,13 @@ export const ROOM = {
       id: "r1",
       img: "/images/clients/ben-newman.webp",
       name: "Ben Newman",
+      // Audience: CreatorDB, refreshed 8 Oct 2026 (@continuedfight). Event
+      // figures from the Casino Royale case study.
+      stats: [
+        { value: "704K", label: "Instagram followers" },
+        { value: "150", label: "Attendees, Casino Royale" },
+        { value: "$100K", label: "Saved in production" },
+      ],
       event: "Casino Royale",
       slug: "casino-royale",
       result: V("$1.8M · 150 seats", "$1.8M from 150 seats"),
@@ -159,6 +166,11 @@ export const ROOM = {
       id: "r2",
       img: "/images/clients/ed-mylett.webp",
       name: "Ed Mylett",
+      // Audience: CreatorDB, 19 Jul 2026 (Instagram); vidIQ, Jul 2025 (YouTube).
+      stats: [
+        { value: "2.8M", label: "Instagram followers" },
+        { value: "1M+", label: "YouTube subscribers" },
+      ],
       result: V("Live event production", "Live event production"),
       about: V(
         "A live room shaped around attention, authority, and the moments that matter on stage.",
@@ -169,6 +181,7 @@ export const ROOM = {
       id: "r3",
       img: "/images/clients/ali-awad.webp",
       name: "Ali Awad",
+      stats: [{ value: "$25K", label: "Offer sold without pressure" }],
       event: "The CEO Lawyer Summit",
       slug: "ceo-lawyer-summit",
       result: V("$25K+ average ticket", "$25K+ avg ticket"),
@@ -181,6 +194,11 @@ export const ROOM = {
       id: "r4",
       img: "/images/clients/chase-hughes.webp",
       name: "Chase Hughes",
+      // Audience: ThoughtLeaders estimate, undated.
+      stats: [
+        { value: "730K+", label: "YouTube subscribers" },
+        { value: "London", label: "Aboard HMS Belfast" },
+      ],
       event: "Chase Hughes London",
       slug: "chase-hughes-london",
       result: V("HMS Belfast build", "HMS Belfast build"),
@@ -193,6 +211,7 @@ export const ROOM = {
       id: "r5",
       img: "/images/clients/eddie-maalouf.webp",
       name: "Eddie Maalouf",
+      stats: [{ value: "$146K", label: "Sponsorship in six days" }],
       event: "Bad After Dark",
       slug: "bad-after-dark",
       result: V("$146K in six days", "$146K in 6 days"),
@@ -205,6 +224,12 @@ export const ROOM = {
       id: "r6",
       img: "/images/clients/ravi-abuvala.webp",
       name: "Ravi Abuvala",
+      // From the Scaling With Systems LIVE case study.
+      stats: [
+        { value: "300", label: "Attendees, all home safely" },
+        { value: "$1.2M", label: "Sold in under 24 hours" },
+        { value: "2022", label: "Booked us again" },
+      ],
       event: "Scaling With Systems LIVE",
       slug: "scaling-with-systems-live",
       result: V("300 attendees", "300 attendees"),
