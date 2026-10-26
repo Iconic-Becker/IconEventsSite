@@ -277,7 +277,7 @@ export default function ServicePage({ page }) {
 
       <CtaBand
         headline="Tell us about the room you want to build."
-        href="/contact"
+        href="/get-a-quote"
         secondary={{ href: "/services", label: "All six zones →" }}
       />
       <SiteFooter />

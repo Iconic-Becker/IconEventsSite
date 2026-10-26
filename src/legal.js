@@ -4,11 +4,13 @@
    Drafted 2026-10-05 from what the site actually does, so it can be kept
    true. If any of these change, change the policy with them:
 
-   - Enquiry form (Cta.jsx): name, work email, company or website, phone,
+   - Enquiry form (Cta.jsx, on /get-a-quote and the homepage): name, work email, company or website, phone,
      event name, event type, event date, venue, guest count, budget range,
      services needed, project details, how they heard about us, plus the
      traffic source (utm_source or referring site). Delivered by Web3Forms to
      contact@iconic.events.
+   - Message form (Contact.jsx): name, email, message, plus the traffic
+     source. Same delivery.
    - Vendor form (Vendors.jsx): company, name, email, phone, website,
      coverage, categories, insurance status, notes. Same delivery.
    - Google Tag Manager, container GTM-PS4743JW. Whatever it loads (Meta

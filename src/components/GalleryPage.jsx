@@ -233,7 +233,7 @@ export default function GalleryPage() {
             <a href="/case-studies" className="border border-bone/25 px-6 py-3 font-sans text-[10px] font-bold uppercase tracking-[0.14em] text-bone transition hover:border-brass hover:text-brass">
               All case studies
             </a>
-            <a href="/contact" className="bg-brass px-6 py-3 font-sans text-[10px] font-bold uppercase tracking-[0.14em] text-onyx">
+            <a href="/get-a-quote" className="bg-brass px-6 py-3 font-sans text-[10px] font-bold uppercase tracking-[0.14em] text-onyx">
               Start a conversation
             </a>
           </div>

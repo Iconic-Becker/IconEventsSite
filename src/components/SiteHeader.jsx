@@ -6,7 +6,7 @@ import { CONTACT_PHONE } from "../lib/contact.js"
    Every link is a page of its own (NAV in content.js), so the bar never sends
    anyone back to the homepage. The sigil sits in the middle with two links
    either side of it, so the bar is level around it; the phone line sits at
-   the far right. The brass case studies tab hangs from the sigil. */
+   the far right. The brass Get a quote tab hangs from the sigil. */
 
 function PhoneIcon({ className = "" }) {
   return (
@@ -49,13 +49,13 @@ function NavLink({ href, children }) {
   )
 }
 
-function CaseStudyTab() {
+function QuoteTab() {
   return (
     <a
-      href="/case-studies"
+      href="/get-a-quote"
       className="case-study-tab absolute left-1/2 top-full z-50 hidden h-9 min-w-[250px] -translate-x-1/2 items-center justify-center rounded-b-xl bg-brass px-10 font-display text-xs font-bold uppercase tracking-[0.18em] text-onyx shadow-[0_12px_28px_rgba(0,0,0,0.3)] transition hover:brightness-110 md:flex"
     >
-      Our case studies
+      Get a quote
     </a>
   )
 }
@@ -94,15 +94,15 @@ export default function SiteHeader({ home = false }) {
             <PhoneLink className="text-[11px] normal-case tracking-[0.04em] md:text-xs md:tracking-[0.08em]" iconClass="h-3.5 w-3.5 md:h-4 md:w-4" />
           </div>
         </nav>
-        <CaseStudyTab />
+        <QuoteTab />
       </header>
-      {/* Phones: the links as even cells, Case Studies included since the
-          brass tab is hidden here, and a narrow call cell so the phone line
-          stays in reach once the top row has scrolled away. */}
+      {/* Phones: the links as even cells, Get a quote included (in brass)
+          since the tab is hidden here, and a narrow call cell so the phone
+          line stays in reach once the top row has scrolled away. */}
       <nav aria-label="Mobile navigation" className="mobile-nav sticky top-0 z-40 border-y border-bone/10 bg-onyx/95 backdrop-blur md:hidden">
         <div className="grid grid-cols-[repeat(5,minmax(0,1fr))_2.5rem] items-stretch">
           {NAV.links.map((n) => (
-            <a key={n.href} href={n.href} className="flex min-h-11 items-center justify-center px-1 text-center font-sans text-[10px] font-bold uppercase tracking-[0.04em] text-bone/70">
+            <a key={n.href} href={n.href} className={`flex min-h-11 items-center justify-center px-1 text-center font-sans text-[10px] font-bold uppercase tracking-[0.04em] ${n.smallOnly ? "text-brass" : "text-bone/70"}`}>
               {n.label}
             </a>
           ))}

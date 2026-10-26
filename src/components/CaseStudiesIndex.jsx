@@ -133,7 +133,7 @@ export default function CaseStudiesIndex() {
             Tell us about the room you want to build.
           </h2>
           <a
-            href="/#contact"
+            href="/get-a-quote"
             className="bg-brass px-6 py-3 font-sans text-[10px] font-bold uppercase tracking-[0.14em] text-onyx"
           >
             Start a conversation
