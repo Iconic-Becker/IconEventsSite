@@ -54,7 +54,7 @@ export const PHASES = [
   { n: 5, name: "Creative", line: "The eight standard design deliverables, from badges and signage to splash screens and speaker cards, each approved in writing." },
   { n: 6, name: "Program and Content", line: "The floor plan, the speakers, the sponsors and the capture plan, written into one run of show." },
   { n: 7, name: "Pre-Event Operations", line: "The countdown from 60 days out: the tentative run of show at 14 days, the Playbook in every hand at 10, the final run of show locked at 7 and changed only in an emergency." },
-  { n: 8, name: "On Site", line: "Day 0 is a full tech rehearsal. Show days are run by a dedicated show caller with the Event Director, so you spend the day with your audience, not in meetings." },
+  { n: 8, name: "On Site", line: "Day 0 is a full tech rehearsal. Show days are run by our show caller with the Event Director, so you spend the day with your audience, not in meetings." },
   { n: 9, name: "Closeout", line: "A client debrief within seven business days: what went right, what to fix, and the plan that makes the next event easier to sell. Your footage and final films follow." },
 ]
 
@@ -77,17 +77,17 @@ export const SERVICE_PAGES = [
     title: "Live event production",
     seoTitle: "Live Event Production Company | Iconic Events, Miami and Las Vegas",
     description:
-      "Live event production from Iconic Events: stage, light, sound, video and scenic specified, negotiated and directed as one show, with a dedicated show caller and a Day 0 tech rehearsal at every event. Founded 2017, based in Miami.",
+      "Live event production by Iconic Events: stage, light, sound, video and scenic, specified, negotiated and directed as one show, with a dedicated show caller and a Day 0 tech rehearsal at every event. Founded 2017, based in Miami.",
     buyer:
       "Live event production for founders, brands and creators who need a summit, launch or mastermind built, rehearsed and run as one show, with one team accountable for the room.",
     lead:
-      "Live event production is the technical delivery of a live event: the stage, lighting, sound, video and scenic, specified for the show, built and rehearsed. On the day it is run to a locked run of show. Iconic Events directs all of it under one line of authority, with a dedicated show caller and a tech rehearsal before doors open.",
+      "Live event production is the technical delivery of a live event: the stage, lighting, sound, video and scenic, specified for the show, built and rehearsed. On the day it is run to a locked run of show. We direct all of it under one line of authority, with a dedicated show caller and a tech rehearsal before doors open.",
     covers: {
       heading: "What is live event production?",
       paragraphs: [
-        "Live event production is everything the audience sees and hears from the moment doors open: the stage and set, the lighting, the sound, the screens and cameras, and the scenic that holds it together. It also covers what the audience never sees: the rigging, the power, the crew, the Day 0 rehearsal, and the run of show that decides what happens in which minute. At Iconic that run of show is tentative at 14 days out and locked at 7.",
+        "Live event production is everything the audience sees and hears from the moment doors open: the stage and set, the lighting, the sound, the screens and cameras, and the scenic that holds it together. It also covers what the audience never sees: the rigging, the power, the crew, the Day 0 rehearsal, and the run of show that decides what happens in which minute. Our run of show is tentative at 14 days out and locked at 7.",
         "Most event planners oversee logistics. We engineer the room your audience decides in. In practice that means one team specifies every element of the production for the show you are putting on. It negotiates the production with local partners who know the venue, and directs it on the day through one show caller. The stage is drawn around the run of show rather than around what the venue has on a truss. The audio is designed for speech first, because a room that cannot hear clearly cannot be convinced.",
-        "Iconic owns no equipment, and that is deliberate. It lets the team produce anywhere in the country through local, trusted partners, and it means the production is specified for your show rather than built from what sits in a warehouse. The team's own background in audio visual production is the reference point: it knows what equipment should cost in any market, and what a show needs against what a quote tends to include.",
+        "We own no equipment, and that is deliberate. It lets us produce anywhere in the country through local, trusted partners, and it means the production is specified for your show rather than built from what sits in a warehouse. Our own background in audio visual production is the reference point: we know what equipment should cost in any market, and what a show needs against what a quote tends to include.",
       ],
     },
     included: {
@@ -98,12 +98,12 @@ export const SERVICE_PAGES = [
         { name: "Audio engineering", line: "Speech-first sound design for the room, with delays and front fills so every seat hears clearly, headset microphones for speakers, and playback with a backup." },
         { name: "Lighting and LED", line: "Lighting that makes the room feel like somewhere other than a ballroom, cued to the show's moments, and LED or projection sized to the room and its sightlines." },
         { name: "Live video and broadcast", line: "Cameras for the screens in the room and a recorded cut of the stage, directed as a show. When the event calls for it, a stream for the audience that is not in the room." },
-        { name: "Crew and vendor management", line: "Every crew member and supplier on one schedule, briefed and directed by Iconic, with the AV contract negotiated down to what the show needs." },
+        { name: "Crew and vendor management", line: "Every crew member and supplier on one schedule, briefed and directed by our team, with the AV contract negotiated down to what the show needs." },
       ],
       decide:
-        "You decide the budget, the venue, the design, and each creative deliverable in writing. Inside the plan you approved, Iconic decides on the day, so the show never waits for a meeting.",
+        "You decide the budget, the venue, the design, and each creative deliverable in writing. Inside the plan you approved, our team decides on the day, so the show never waits for a meeting.",
       boundaries:
-        "Venue power, internet, union labour and effects permits are arranged in the plan and paid to the venue or the authority that provides them. Iconic produces the show; it does not sell the tickets or run your marketing.",
+        "Venue power, internet, union labour and effects permits are arranged in the plan and paid to the venue or the authority that provides them. We produce the show. We do not sell the tickets or run your marketing.",
     },
     phases: {
       intro:
@@ -111,7 +111,7 @@ export const SERVICE_PAGES = [
       focus: [3, 7, 8],
       notes: {
         3: "The production is specified here, before anything is rented: the stage drawn around the run of show, the audio designed for speech, the screens sized to the room. Then the quotes are read against it and negotiated down, usually by tens of thousands of dollars and sometimes by hundreds of thousands.",
-        7: "Load-in for a 1,000-person summit takes one to two days. It is planned into the countdown from the start, because too little time for load-in and setup is the failure Iconic sees most often in rooms it did not produce.",
+        7: "Load-in for a 1,000-person summit takes one to two days. It is planned into the countdown from the start, because too little time for load-in and setup is the failure we see most often in rooms we did not produce.",
         8: "Day 0 is a full tech rehearsal, at every event, so every piece of tech is proven before anyone stands on the stage. On show days the show caller calls the cues, the Event Director runs the room, and you get a short check-in each morning rather than a day of meetings.",
       },
     },
@@ -119,7 +119,7 @@ export const SERVICE_PAGES = [
       heading: "Live event production vs event planning",
       paragraphs: [
         "An event planner organises the event: the venue, the catering, the schedule, the suppliers, and the good ones do it well. Production is a different job. It is the technical build and the live running of the show itself. It needs a technical direction, a show caller, and a Day 0 rehearsal with the stage, the screens, the audio and the speakers before doors open.",
-        "Many planners hire a production company for that part, and many production companies do only that part. Iconic does both under one line of authority, and adds the strategy and revenue work a production company does not offer: the strategy before anything is designed, and the revenue moment the room is built around. The difference shows on the day. There is one plan, one call sheet and one person to ask.",
+        "Many planners hire a production company for that part, and many production companies do only that part. We do both under one line of authority, and add the strategy and revenue work a production company does not offer: the strategy before anything is designed, and the revenue moment the room is built around. The difference shows on the day. There is one plan, one call sheet and one person to ask.",
       ],
     },
     proof: {
@@ -138,14 +138,17 @@ export const SERVICE_PAGES = [
       ["Load-in", "The days when the stage, rigging, screens, lighting and sound are brought into the venue and built. One to two days for a 1,000-person summit."],
     ],
     faqs: [
-      ["What does a live event production company do?", "It designs, builds and runs the technical side of a live event: the stage, lighting, sound, video, screens and scenic, plus the crew and the rehearsal. Iconic adds the direction on top: one technical direction for the room, a show caller on the day, and the strategy and revenue work a production company does not offer."],
-      ["How far in advance do we need to book live event production?", "About 30 days is the shortest lead time Iconic takes on a full production, and some experiences can be done in less depending on their complexity. Earlier is better, because the venue, the dates and the capacity are strategy decisions, and the earlier they are made the more room the production has."],
-      ["How long does load-in take for a 1,000-person summit?", "One to two days, followed by Day 0, a full tech rehearsal. Too little time for load-in and setup is the problem Iconic sees most often in events it did not produce, so the days are planned into the countdown from the start."],
-      ["Do you bring your own equipment?", "No, and on purpose. Owning nothing lets Iconic produce anywhere in the country through local partners who know the venue, and specify the production for your show rather than for a warehouse. The team's AV background means it knows what equipment should cost in any market."],
+      ["What does a live event production company do?", "It designs, builds and runs the technical side of a live event: the stage, lighting, sound, video, screens and scenic, plus the crew and the rehearsal. We add the direction on top: one technical direction for the room, a show caller on the day, and the strategy and revenue work a production company does not offer."],
+      ["How far in advance do we need to book live event production?", "About 30 days is the shortest lead time we take on a full production, and some experiences can be done in less depending on their complexity. Earlier is better, because the venue, the dates and the capacity are strategy decisions, and the earlier they are made the more room the production has."],
+      ["How long does load-in take for a 1,000-person summit?", "One to two days, followed by Day 0, a full tech rehearsal. Too little time for load-in and setup is the problem we see most often in events we did not produce, so the days are planned into the countdown from the start."],
+      ["Do you bring your own equipment?", "No, and on purpose. Owning nothing lets us produce anywhere in the country through local partners who know the venue, and specify the production for your show rather than for a warehouse. Our AV background means we know what equipment should cost in any market."],
       ["Who runs the show on the day?", "A dedicated show caller, assigned to the event, calls the cues, working in tandem with the Event Director and the production partner. Your event day is treated like a wedding day, and you should not spend it in meetings with the coordinator. So before the event there is a State of the Union with your team, so everyone shares one objective. Everyone receives the Event Playbook, and on show days you get short check-ins."],
-      ["What goes wrong most often at live events, and how do you prevent it?", "Two things. Not enough time planned for load-in, setup and deliveries, and no breaks for the attendees. Agendas packed to the edge leave no room to breathe, so attendees end up overwhelmed and the client spends more than they needed to. Iconic designs both out: time for the build, and air in the schedule."],
-      ["How much does live event production cost?", "Iconic charges a management fee, fixed at the outset and tied to scope. The production itself is specified for your show and negotiated with the production partners. Separating what the show needs from what a quote tends to include usually brings the AV contract down by tens of thousands of dollars, and sometimes by hundreds of thousands."],
-      ["Do you produce events outside Florida?", "Yes. Iconic is based in Miami with Las Vegas as a second base, and has produced in the United States, the United Kingdom, Spain, the United Arab Emirates, Mexico and Costa Rica."],
+      ["What goes wrong most often at live events, and how do you prevent it?", "Two things. Not enough time planned for load-in, setup and deliveries, and no breaks for the attendees. Agendas packed to the edge leave no room to breathe, so attendees end up overwhelmed and the client spends more than they needed to. We design both out: time for the build, and air in the schedule."],
+      ["How much does live event production cost?", "We charge a management fee, fixed at the outset and tied to scope. The production itself is specified for your show and negotiated with the production partners. Separating what the show needs from what a quote tends to include usually brings the AV contract down by tens of thousands of dollars, and sometimes by hundreds of thousands."],
+      ["Who is on the team for a live event?", "The same six roles on every event: an Event Director, an Event Coordinator, an Experience Officer, a Sponsor Liaison, a Production Director and a Media Lead. For the show itself we add a dedicated show caller, and the production crew comes from local partners who know the venue."],
+      ["What size of event do you produce?", "Rooms from 20 people to 3,000. The largest to date was a 3,000-person conference built on a 90-foot LED wall with six rigged delay screens; the smallest are masterminds of a few dozen."],
+      ["How long have you been producing live events?", "Since 2017, when we were founded in Miami. We have produced in the United States, the United Kingdom, Spain, the United Arab Emirates, Mexico and Costa Rica."],
+      ["Do you produce events outside Florida?", "Yes. We are based in Miami with Las Vegas as a second base, and we have produced in the United States, the United Kingdom, Spain, the United Arab Emirates, Mexico and Costa Rica."],
     ],
     related: ["audio-visual-event-production", "conference-and-summit-production", "event-video-production"],
     cta: {

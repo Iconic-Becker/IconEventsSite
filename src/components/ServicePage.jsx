@@ -4,7 +4,6 @@ import SiteFooter from "./SiteFooter.jsx"
 import CtaBand from "./CtaBand.jsx"
 import Icon from "./Icon.jsx"
 import {
-  FACTS,
   FORMATS,
   PHASES,
   SERVICE_PAGE_BY_SLUG,
@@ -146,7 +145,6 @@ export default function ServicePage({ page }) {
   const n = zoneNumber(page)
   const sections = sectionsFor(page)
   const related = (page.related ?? []).map((slug) => SERVICE_PAGE_BY_SLUG[slug]).filter(Boolean)
-  const facts = [...FACTS, ...(page.facts ?? [])]
 
   useEffect(() => {
     document.title = page.seoTitle
@@ -160,38 +158,47 @@ export default function ServicePage({ page }) {
       <StructuredData page={page} zone={zone} />
       {page.draft && <meta name="robots" content="noindex, nofollow" />}
 
-      {/* Hero: breadcrumb, the buyer line, the title, the direct answer;
-          the plate dissolving off the right edge. */}
+      {/* Hero: the photograph fills the background and fades toward the
+          text; over it the breadcrumb, the title, the zone's line and the
+          direct answer. No buyer line and no facts table on the page
+          (Icon, 27 Oct 2026): the facts are in the questions, and the
+          structured data still carries them. */}
       <section className="relative overflow-hidden border-b border-bone/10">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-5 pb-12 pt-10 sm:px-6 sm:pb-16 sm:pt-16 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-7">
-            <nav aria-label="Breadcrumb" className="fade-rise font-sans text-[10px] font-bold uppercase tracking-[0.24em] text-bone/40">
+        <figure className="svc-hero-plate absolute inset-y-0 right-0 w-full lg:w-[72%]" aria-hidden="true">
+          <img
+            {...responsive(page.plate, "(min-width: 1024px) 72vw, 100vw")}
+            alt=""
+            fetchpriority="high"
+            decoding="async"
+            className="h-full w-full object-cover [filter:saturate(1.08)_contrast(1.06)]"
+          />
+        </figure>
+        <div className="relative mx-auto max-w-6xl px-5 pb-14 pt-10 sm:px-6 sm:pb-20 sm:pt-16">
+          <div className="max-w-[56ch] lg:max-w-[48%]">
+            <nav aria-label="Breadcrumb" className="fade-rise font-sans text-[10px] font-bold uppercase tracking-[0.24em] text-bone/50">
               {page.kind === "city" ? (
                 <>
                   <a href="/" className="transition-colors hover:text-brass">Home</a>
-                  <span className="mx-3 text-bone/20">/</span>
+                  <span className="mx-3 text-bone/25">/</span>
                   <span className="text-brass">{page.city}</span>
                 </>
               ) : (
                 <>
                   <a href="/services" className="transition-colors hover:text-brass">Services</a>
-                  <span className="mx-3 text-bone/20">/</span>
+                  <span className="mx-3 text-bone/25">/</span>
                   <span className="text-brass">{n} {zone?.group}</span>
                 </>
               )}
             </nav>
-            <p className="fade-rise mt-6 max-w-[60ch] font-sans text-sm font-bold uppercase tracking-[0.12em] text-bone/60" style={{ animationDelay: "60ms" }}>
-              {page.buyer}
-            </p>
-            <h1 className="fade-rise mt-4 max-w-[16ch] font-serif text-5xl font-semibold leading-[0.96] sm:text-7xl" style={{ animationDelay: "120ms" }}>
+            <h1 className="fade-rise mt-6 max-w-[16ch] font-serif text-5xl font-semibold leading-[0.96] sm:text-7xl" style={{ animationDelay: "80ms" }}>
               {page.title}
             </h1>
             {zone && (
-              <p className="fade-rise mt-6 max-w-[40ch] font-serif text-2xl italic leading-snug text-bone/85 sm:text-3xl" style={{ animationDelay: "200ms" }}>
+              <p className="fade-rise mt-6 max-w-[40ch] font-serif text-2xl italic leading-snug text-bone/85 sm:text-3xl" style={{ animationDelay: "160ms" }}>
                 {zone.line}
               </p>
             )}
-            <p className="fade-rise mt-8 max-w-[62ch] font-sans text-lg leading-relaxed text-bone/75" style={{ animationDelay: "280ms" }}>
+            <p className="fade-rise mt-8 max-w-[58ch] font-sans text-lg leading-relaxed text-bone/80" style={{ animationDelay: "240ms" }}>
               {page.lead}
             </p>
             {page.kind === "city" && (
@@ -202,38 +209,13 @@ export default function ServicePage({ page }) {
                   window.dataLayer.push({ event: "cta_click", cta_label: page.cta.label, cta_position: "hero", page_path: pagePath(page) })
                 }}
                 className="fade-rise group mt-8 inline-flex items-center gap-3 border border-bone/25 px-7 py-3.5 font-sans text-xs font-bold uppercase tracking-[0.2em] text-bone transition hover:border-brass/50 hover:text-brass"
-                style={{ animationDelay: "360ms" }}
+                style={{ animationDelay: "320ms" }}
               >
                 {page.cta.label}
                 <Icon name="arrow" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
             )}
           </div>
-          <div className="lg:col-span-5">
-            <figure className="svc-plate-r relative h-[min(44vh,420px)] lg:mr-[calc(-1*(max(0px,(100vw-72rem)/2)+1.5rem))] lg:h-full lg:min-h-[480px] lg:w-[calc(100%+max(0px,(100vw-72rem)/2)+1.5rem)]">
-              <img
-                {...responsive(page.plate, "(min-width: 1024px) 50vw, 100vw")}
-                alt=""
-                fetchpriority="high"
-                decoding="async"
-                className="h-full w-full object-cover [filter:saturate(1.08)_contrast(1.06)_brightness(1.05)]"
-              />
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      {/* Key facts: the same facts the structured data carries. */}
-      <section className="border-b border-bone/10">
-        <div className="mx-auto max-w-6xl px-5 sm:px-6">
-          <dl className="grid grid-cols-1 gap-x-10 sm:grid-cols-2 lg:grid-cols-4">
-            {facts.map(([k, v]) => (
-              <div key={k} className="border-b border-bone/10 py-4 sm:py-5 lg:[&:nth-last-child(-n+4)]:border-b-0">
-                <dt className="font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-bone/40">{k}</dt>
-                <dd className="mt-1.5 font-sans text-sm leading-snug text-bone/85">{v}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
       </section>
 
