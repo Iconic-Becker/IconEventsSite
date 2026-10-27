@@ -42,15 +42,23 @@ const ROUTES = [
 // /nextsteps is prerendered so a refresh or a bookmark resolves, but kept out
 // of the sitemap: it is a post-submission confirmation page, marked noindex in
 // the page itself and disallowed in robots.txt.
-// The contact form as its own page, for linking to directly from anywhere
-// that is not the homepage.
-ROUTES.push({
-  path: '/contact',
-  title: 'Contact | Iconic Events',
-  description:
-    'Tell Iconic Events about the room you want to build. Event production, stage design and experience architecture for live in person events.',
-  image: '/og/default.jpg',
-})
+// The enquiry form as its own page, and the short contact page beside it.
+ROUTES.push(
+  {
+    path: '/get-a-quote',
+    title: 'Get a Quote | Iconic Events',
+    description:
+      'Tell Iconic Events about the room you want to build. Event production, stage design and experience architecture for live in person events.',
+    image: '/og/default.jpg',
+  },
+  {
+    path: '/contact',
+    title: 'Contact | Iconic Events',
+    description:
+      'Contact Iconic Events. Call, email or send a message, and a director will write back within 48 hours. Offices in Miami and Las Vegas.',
+    image: '/og/default.jpg',
+  },
+)
 
 // The nav's own pages, so it never sends anyone back to the homepage.
 ROUTES.push(

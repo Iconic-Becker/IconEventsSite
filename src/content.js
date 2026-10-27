@@ -59,14 +59,15 @@ export const MONTAGE = {
    exists. Every href below resolves to a real id on the page. */
 export const NAV = {
   // Every link is a page of its own, so the bar never sends anyone back to
-  // the homepage to find something (Iconic's call, 26 Oct 2026). Case
-  // Studies is smallOnly: from md up the brass tab under the bar covers it.
+  // the homepage to find something (Iconic's call, 26 Oct 2026). Portfolio is
+  // the case studies. Get a quote is smallOnly: from md up the brass tab
+  // under the bar covers it. /reviews is still live, from the footer.
   links: [
     { href: "/services", label: "Services" },
     { href: "/gallery", label: "Gallery" },
-    { href: "/case-studies", label: "Case Studies", smallOnly: true },
-    { href: "/reviews", label: "Reviews" },
+    { href: "/case-studies", label: "Portfolio" },
     { href: "/contact", label: "Contact" },
+    { href: "/get-a-quote", label: "Get a quote", smallOnly: true },
   ],
 }
 
@@ -111,6 +112,8 @@ export const PRESS = {
     { name: "Shelby Sapp's Women & Wealth", src: "/images/press/women-and-wealth.webp", w: 1400, h: 400 },
     { name: "NetRevenue", src: "/images/press/netrevenue.webp", w: 1400, h: 400 },
     { name: "Closers.io", src: "/images/press/closers-io.webp", w: 1400, h: 400 },
+    { name: "CreatorHub", src: "/images/press/creatorhub.webp", w: 1400, h: 400 },
+    { name: "Universal Music Group", src: "/images/press/universal-music-group.webp", w: 1400, h: 400 },
   ],
   // Kept, not rendered. The row ran on these names before the logo files
   // arrived. They are press mentions and venues rather than clients, so if
@@ -128,9 +131,10 @@ export const ROOM = {
   meta: "Selected clients · Since 2017",
   // Order is Iconic's call, front of the rail first: Jeremy Miner, Eddie
   // Maalouf, Shelby Sapp, Ambro Dipilato, Chase Hughes, Alexis Mai, then the
-  // rest. Shelby, Ambro and Alexis carry img: null, which draws a branded
-  // placeholder, until their headshots are on file. Ben Newman and Ali Awad
-  // stay, but not at the front.
+  // rest. Ed Mylett came off on 26 Oct 2026. Shelby, Ambro, Alexis, Cole,
+  // Max and John carry img: null, which draws a branded placeholder, until
+  // their headshots are on file; the placeholders are spaced out between
+  // photographs. Ben Newman and Ali Awad came off on 26 Oct 2026.
   people: [
     {
       id: "r7",
@@ -210,18 +214,21 @@ export const ROOM = {
       result: V("Her Last Call", "Her Last Call"),
     },
     {
-      id: "r2",
-      img: "/images/clients/ed-mylett.webp",
-      name: "Ed Mylett",
-      // Audience: CreatorDB, 19 Jul 2026 (Instagram); vidIQ, Jul 2025 (YouTube).
+      id: "r11",
+      img: "/images/clients/danny-tran.webp",
+      name: "Danny Tran",
+      // From the PMU World 2025 case study. Photo: PMU World Drive.
+      event: "PMU World 2025",
+      slug: "pmuw-2025",
       stats: [
-        { value: "2.8M", label: "Instagram" },
-        { value: "1M+", label: "YouTube" },
+        { value: "1,500", label: "Attendees in person" },
+        { value: "500", label: "Attendees virtual" },
+        { value: "$140K", label: "Saved on AV" },
       ],
-      result: V("Live event production", "Live event production"),
+      result: V("1,500 attendees", "1,500 attendees"),
       about: V(
-        "A live room shaped around attention, authority, and the moments that matter on stage.",
-        "A live room built to hold attention and give every moment on stage a clear job."
+        "PMU World 2025, built to live on social media as much as in the room.",
+        "PMU World 2025, built to live on social as much as in the room."
       ),
     },
     {
@@ -243,25 +250,48 @@ export const ROOM = {
       ),
     },
     {
-      id: "r1",
-      img: "/images/clients/ben-newman.webp",
-      name: "Ben Newman",
-      // Audience: CreatorDB, refreshed 8 Oct 2026 (@continuedfight). His event
-      // figures and case study link came out with the Casino Royale case study.
-      stats: [{ value: "704K", label: "Instagram" }],
-      result: V("Live event production", "Live event production"),
-      about: V("Live event production for Ben Newman.", "Live event production for Ben Newman."),
+      id: "r12",
+      // Placeholder card until a headshot is on file. No case study yet, so no link.
+      img: null,
+      name: "Cole Gordon",
+      event: "Closers.io Retreat",
+      stats: [{ value: "2025", label: "Produced" }],
+      result: V("Closers.io Retreat", "Closers.io Retreat"),
     },
     {
-      id: "r3",
-      img: "/images/clients/ali-awad.webp",
-      name: "Ali Awad",
-      // The CEO Lawyer Summit happened; its case study was withdrawn on
-      // 26 Oct 2026 as inaccurate, so no link and no figures from it.
-      event: "The CEO Lawyer Summit",
-      stats: [],
-      result: V("Live event production", "Live event production"),
-      about: V("The CEO Lawyer Summit, produced for Ali Awad.", "The CEO Lawyer Summit, produced for Ali Awad."),
+      id: "r13",
+      img: "/images/clients/bridget-james-ling.webp",
+      name: "Bridget James Ling",
+      // From the Freedom Queen Live 2025 case study.
+      event: "Freedom Queen Live 2025",
+      slug: "freedom-queen-live-2025",
+      stats: [
+        { value: "530", label: "Attendees" },
+        { value: "3.5", label: "Days of production" },
+      ],
+      result: V("530 attendees", "530 attendees"),
+      about: V(
+        "Freedom Queen Live 2025, a business event staged as a Broadway style show.",
+        "Freedom Queen Live 2025, a business event run like a Broadway show."
+      ),
+    },
+    {
+      id: "r14",
+      // Placeholder card until a headshot is on file. No case study yet, so no link.
+      img: null,
+      name: "Max Willett",
+      event: "Maxxed Out Summit",
+      stats: [{ value: "2025", label: "Produced" }],
+      result: V("Maxxed Out Summit", "Maxxed Out Summit"),
+    },
+    {
+      id: "r15",
+      // Placeholder card until a headshot is on file. No case study yet, so no link.
+      img: null,
+      name: "John Whiting",
+      event: "Bulletproof Financial Accelerator",
+      stats: [{ value: "2022", label: "Orlando, FL" }],
+      result: V("Bulletproof Financial Accelerator", "Bulletproof Financial Accelerator"),
     },
   ],
 }
@@ -647,9 +677,16 @@ export const CTA = {
     { id: "c3", value: "0", label: V("pitch decks — just the conversation", "pitch decks — just the conversation") },
   ],
   form: {
-    /* Every choice is required and none is pre-selected, so an answer in the
-       inbox is always one the visitor actually picked. */
-    eventLabel: "What's the event?",
+    /* The questions and their order follow Everlast's quote form (Iconic's
+       call, 26 Oct 2026): who you are, the event, its size and budget, the
+       services, the details, then how you found us. The single choices that
+       triage a lead (event type, guests, budget) are required and none is
+       pre-selected, so an answer in the inbox is always one the visitor
+       actually picked. Everything marked optional can be left blank. */
+    phoneLabel: "Phone",
+    eventNameLabel: "Event name",
+    eventNamePlaceholder: "A working title is fine",
+    eventLabel: "Event type",
     events: [
       "Client summit or conference",
       "Launch",
@@ -657,13 +694,20 @@ export const CTA = {
       "Customer or VIP event",
       "Not sure yet",
     ],
-    guestsLabel: "How many guests?",
+    dateLabel: "Event date",
+    datePlaceholder: "Best estimate is fine",
+    venueLabel: "Venue",
+    venuePlaceholder: "Or the city, if not booked",
+    guestsLabel: "Estimated attendance",
     guests: ["Under 50", "50 to 150", "150 to 500", "500+"],
-    budgetLabel: "Event budget",
+    budgetLabel: "Budget range",
     budgets: ["Under $50k", "$50k to $150k", "$150k to $500k", "$500k+", "I don't know yet"],
-    timingLabel: "When is the room?",
-    timings: ["Within 3 months", "3 to 6 months", "6 to 12 months", "Just exploring"],
-    notesLabel: "Anything else we should know?",
+    // The six disciplines on /services, so the answer maps to how we scope.
+    servicesLabel: "Services needed",
+    services: ["Strategy", "Creative", "Production", "Content", "Operations", "Revenue", "Not sure yet"],
+    sourceLabel: "How did you hear about us?",
+    sources: ["Referral", "Instagram", "Google", "At one of our events", "Other"],
+    notesLabel: "Project details: scope, goals, anything else we should know",
     notesPlaceholder: V(
       "What the room has to achieve, where you need support, what is already in place.",
       "What the room needs to do, where you need a hand, what's already sorted."
@@ -700,7 +744,8 @@ export const FOOTER = {
       // the same inbox. CONTACT_EMAIL is still the fallback when a submission
       // fails (see src/lib/enquiry.js).
       items: [
-        { label: "Start a conversation", href: "/contact" },
+        { label: "Get a quote", href: "/get-a-quote" },
+        { label: "Contact", href: "/contact" },
         { label: "Vendor sign-up", href: "/vendors" },
         { label: "(305) 791-5290", href: "tel:+13057915290" },
         "Miami · Las Vegas",

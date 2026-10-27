@@ -85,14 +85,14 @@ const InteractiveImageBentoGallery: React.FC<InteractiveImageBentoGalleryProps> 
   const close = useCallback(() => setSelected(null), [])
 
   return (
-    <section className="relative w-full bg-onyx pb-16 pt-12 text-bone sm:pb-24 sm:pt-20">
+    <section className="relative w-full bg-bone pb-16 pt-12 text-onyx sm:pb-24 sm:pt-20">
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
           {eyebrow && (
             <p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">{eyebrow}</p>
           )}
           <h1 className={`font-serif text-5xl font-semibold leading-none sm:text-7xl ${eyebrow ? "mt-5" : ""}`}>{title}</h1>
-          <p className="mt-5 font-sans text-lg leading-relaxed text-bone/70">{description}</p>
+          <p className="mt-5 font-sans text-lg leading-relaxed text-onyx/70">{description}</p>
         </div>
         {children}
       </div>
@@ -106,7 +106,7 @@ const InteractiveImageBentoGallery: React.FC<InteractiveImageBentoGalleryProps> 
           {imageItems.map((item, index) => (
             <div
               key={item.id}
-              className={`bento-tile group relative flex cursor-pointer items-end overflow-hidden border border-brass/20 bg-tidepool p-4 outline-none transition-colors duration-300 hover:border-brass/70 focus-visible:border-brass focus-visible:ring-2 focus-visible:ring-brass ${item.span}`}
+              className={`bento-tile group relative flex cursor-pointer items-end overflow-hidden bg-tidepool p-4 outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-bone ${item.span}`}
               onClick={() => open(index)}
               onPointerDown={() => { loadLightbox() }}
               onKeyDown={(e) => {
@@ -141,7 +141,7 @@ const InteractiveImageBentoGallery: React.FC<InteractiveImageBentoGalleryProps> 
         </div>
       </div>
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
-        <p className="mt-6 text-center font-sans text-[10px] uppercase tracking-[0.2em] text-bone/40">
+        <p className="mt-6 text-center font-sans text-[10px] uppercase tracking-[0.2em] text-onyx/50">
           Select a photo to enlarge it and see the event
         </p>
         {footer}

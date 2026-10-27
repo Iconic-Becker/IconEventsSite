@@ -150,7 +150,7 @@ export const SERVICE_PAGES = [
     related: ["audio-visual-event-production", "conference-and-summit-production", "event-video-production"],
     cta: {
       headline: "Discuss your live event production.",
-      lead: "Tell us the event, the dates and the room you have in mind. A director replies within 48 hours with the questions we need answered before a Vision Call.",
+      lead: "Tell us the event, the dates and the room you have in mind on the quote form. A director replies within 48 hours with the questions we need answered before a Vision Call.",
       label: "Start a conversation",
     },
   },

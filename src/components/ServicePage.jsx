@@ -196,7 +196,7 @@ export default function ServicePage({ page }) {
             </p>
             {page.kind === "city" && (
               <a
-                href="/contact"
+                href="/get-a-quote"
                 onClick={() => {
                   window.dataLayer = window.dataLayer || []
                   window.dataLayer.push({ event: "cta_click", cta_label: page.cta.label, cta_position: "hero", page_path: pagePath(page) })
@@ -427,7 +427,7 @@ export default function ServicePage({ page }) {
         headline={page.cta.headline}
         lead={page.cta.lead}
         label={page.cta.label}
-        href="/contact"
+        href="/get-a-quote"
         track={{ page_path: pagePath(page) }}
         secondary={{ href: "/services", label: "All services →" }}
       />

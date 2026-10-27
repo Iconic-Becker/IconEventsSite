@@ -318,7 +318,7 @@ export default function ServicesPage() {
 
       <CtaBand
         headline="Tell us about the room you want to build."
-        href="/contact"
+        href="/get-a-quote"
         secondary={{ href: "/case-studies", label: "See the case studies →" }}
       />
       <SiteFooter />

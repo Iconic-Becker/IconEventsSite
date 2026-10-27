@@ -204,18 +204,18 @@ export default function GalleryPage() {
       <button
         type="button"
         onClick={() => setShowing((n) => Math.min(n + PAGE, POOL.length))}
-        className="border border-brass/60 px-8 py-3.5 font-sans text-[11px] font-bold uppercase tracking-[0.16em] text-brass transition hover:bg-brass hover:text-onyx"
+        className="border border-onyx/30 px-8 py-3.5 font-sans text-[11px] font-bold uppercase tracking-[0.16em] text-onyx transition hover:border-brass hover:bg-brass"
       >
         Show more photos
       </button>
-      <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-bone/40">
+      <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-onyx/50">
         Showing {showing} of {POOL.length}
       </p>
     </div>
   )
 
   return (
-    <main className="min-h-screen bg-onyx text-bone">
+    <main className="min-h-screen bg-bone text-onyx">
       <SiteHeader />
       <InteractiveImageBentoGallery
         imageItems={items}
@@ -224,16 +224,16 @@ export default function GalleryPage() {
         footer={more}
       />
 
-      <section className="border-t border-bone/10 py-16 sm:py-20">
+      <section className="border-t border-onyx/10 py-16 sm:py-20">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-8 px-5 sm:px-6">
           <h2 className="max-w-[24ch] font-serif text-3xl font-semibold leading-tight sm:text-5xl">
             Tell us about the room you want to build.
           </h2>
           <div className="flex flex-wrap gap-3">
-            <a href="/case-studies" className="border border-bone/25 px-6 py-3 font-sans text-[10px] font-bold uppercase tracking-[0.14em] text-bone transition hover:border-brass hover:text-brass">
+            <a href="/case-studies" className="border border-onyx/25 px-6 py-3 font-sans text-[10px] font-bold uppercase tracking-[0.14em] text-onyx transition hover:border-brass hover:bg-brass">
               All case studies
             </a>
-            <a href="/contact" className="bg-brass px-6 py-3 font-sans text-[10px] font-bold uppercase tracking-[0.14em] text-onyx">
+            <a href="/get-a-quote" className="bg-brass px-6 py-3 font-sans text-[10px] font-bold uppercase tracking-[0.14em] text-onyx">
               Start a conversation
             </a>
           </div>

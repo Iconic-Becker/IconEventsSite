@@ -4,10 +4,13 @@
    Drafted 2026-10-05 from what the site actually does, so it can be kept
    true. If any of these change, change the policy with them:
 
-   - Enquiry form (Cta.jsx): name, work email, company or website, event
-     type, guest count, budget range, timing, notes, plus the traffic
-     source (utm_source or referring site). Delivered by Web3Forms to
+   - Enquiry form (Cta.jsx, on /get-a-quote and the homepage): name, work email, company or website, phone,
+     event name, event type, event date, venue, guest count, budget range,
+     services needed, project details, how they heard about us, plus the
+     traffic source (utm_source or referring site). Delivered by Web3Forms to
      contact@iconic.events.
+   - Message form (Contact.jsx): name, email, message, plus the traffic
+     source. Same delivery.
    - Vendor form (Vendors.jsx): company, name, email, phone, website,
      coverage, categories, insurance status, notes. Same delivery.
    - Google Tag Manager, container GTM-PS4743JW. Whatever it loads (Meta
@@ -27,7 +30,7 @@
 
 const EMAIL = "contact@iconic.events"
 const PHONE = "(305) 791-5290"
-const UPDATED = "October 5, 2026"
+const UPDATED = "October 26, 2026"
 
 const mail = { a: EMAIL, href: `mailto:${EMAIL}` }
 
@@ -50,7 +53,7 @@ export const PRIVACY = {
         {
           list: [
             "Your name, email address, phone number, company name and website.",
-            "Details about your event, such as the type of event, guest numbers, budget range, timing and any notes you add.",
+            "Details about your event, such as its name, type, date, venue, guest numbers, budget range, the services you need, how you heard about us and any notes you add.",
             "For vendors, the services you offer, the areas you cover and whether you carry insurance.",
             "Anything else you choose to tell us in a message, call or meeting.",
           ],

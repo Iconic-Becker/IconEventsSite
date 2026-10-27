@@ -138,7 +138,9 @@ const SHOW_POSITION = false
 
 /* Every press logo ships on one 1400x400 canvas with the mark balanced inside
    it, so the row sets a single height and lets the files carry their own
-   weight. See PRESS in content.js before touching these images. */
+   weight. See PRESS in content.js before touching these images. The row is an
+   even grid, eight across on a laptop, four on a tablet and two on a phone, so
+   no logo is ever left alone on a line. */
 
 // Fires once, when the row first scrolls into view. Same idiom as Scope and
 // Receipts, kept local rather than shared, as they are.
@@ -312,12 +314,12 @@ export default function App() {
         </p>
         <div
           ref={pressRef}
-          className="mt-5 flex flex-wrap items-center justify-center gap-x-1 gap-y-1 sm:gap-x-2"
+          className="mx-auto mt-5 grid max-w-3xl grid-cols-2 items-center gap-y-1 sm:grid-cols-4 lg:max-w-none lg:grid-cols-8"
         >
           {PRESS.logos.map((l, i) => (
             <span
               key={l.name}
-              className={`inline-flex ${pressSeen ? "logo-rise" : "opacity-0"}`}
+              className={`flex justify-center ${pressSeen ? "logo-rise" : "opacity-0"}`}
               style={pressSeen ? { animationDelay: `${i * 100}ms` } : undefined}
             >
               <img
@@ -326,7 +328,7 @@ export default function App() {
                 {...responsive(l.src, "200px")}
                 alt={l.name}
                 loading="lazy"
-                className="h-10 w-auto opacity-50 transition-opacity duration-300 hover:opacity-90 sm:h-12"
+                className="h-auto w-full max-w-[168px] opacity-50 transition-opacity duration-300 hover:opacity-90"
               />
             </span>
           ))}
