@@ -369,10 +369,6 @@ export default function ServicePage({ page }) {
                   </li>
                 ))}
               </ol>
-              <p className="mt-6 max-w-[60ch] font-sans text-sm leading-relaxed text-bone/50">
-                We do not produce weddings or personal celebrations. When that work comes to us, we place it with
-                people who do it properly.
-              </p>
             </Section>
 
             {page.terms?.length > 0 && (
