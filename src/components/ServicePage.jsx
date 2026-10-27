@@ -392,7 +392,7 @@ export default function ServicePage({ page }) {
               <div className="mt-6">
                 {page.faqs.map(([q, a], i) => (
                   <details key={q} className="group border-b border-bone/10 py-5" open={i === 0}>
-                    <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 font-serif text-2xl font-semibold leading-tight text-bone marker:hidden [&::-webkit-details-marker]:hidden">
+                    <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 font-serif text-2xl font-semibold leading-tight text-bone transition-colors duration-300 marker:hidden group-open:text-brass hover:text-brass/80 [&::-webkit-details-marker]:hidden">
                       {q}
                       <Icon name="plus" className="h-4 w-4 shrink-0 translate-y-0.5 text-brass transition-transform duration-300 group-open:rotate-45" />
                     </summary>
