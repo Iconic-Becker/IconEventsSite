@@ -39,7 +39,7 @@ export const FACTS = [
   ["Rooms produced", "20 to 3,000 people"],
   ["Produced in", "United States, United Kingdom, Spain, United Arab Emirates, Mexico, Costa Rica"],
   ["Run of show", "Tentative at 14 days out, final locked at 7"],
-  ["Lead time", "About 30 days for a full production"],
+  ["Lead time", "Usually 8 to 10 months out; 30 days is the floor"],
   ["Fee", "A management fee, fixed at the outset and tied to scope"],
   ["On every event", "Event Director, Event Coordinator, Experience Officer, Sponsor Liaison, Production Director, Media Lead"],
 ]
@@ -139,7 +139,7 @@ export const SERVICE_PAGES = [
     ],
     faqs: [
       ["What does a live event production company do?", "It designs, builds and runs the technical side of a live event: the stage, lighting, sound, video, screens and scenic, plus the crew and the rehearsal. We add the direction on top: one technical direction for the room, a show caller on the day, and the strategy and revenue work a production company does not offer."],
-      ["How far in advance do we need to book live event production?", "About 30 days is the shortest lead time we take on a full production, and some experiences can be done in less depending on their complexity. Earlier is better, because the venue, the dates and the capacity are strategy decisions, and the earlier they are made the more room the production has."],
+      ["How far in advance do we need to book live event production?", "Most clients bring us in 8 to 10 months before the event, and that is the lead time we design for: it leaves room to choose the venue and the dates as strategy decisions rather than defaults. Thirty days is the floor. We take a full production on at that notice as an emergency, and some experiences can be done in less depending on their complexity."],
       ["How long does load-in take for a 1,000-person summit?", "One to two days, followed by Day 0, a full tech rehearsal. Too little time for load-in and setup is the problem we see most often in events we did not produce, so the days are planned into the countdown from the start."],
       ["Do you bring your own equipment?", "No, and on purpose. Owning nothing lets us produce anywhere in the country through local partners who know the venue, and specify the production for your show rather than for a warehouse. Our AV background means we know what equipment should cost in any market."],
       ["Who runs the show on the day?", "A dedicated show caller, assigned to the event, calls the cues, working in tandem with the Event Director and the production partner. Your event day is treated like a wedding day, and you should not spend it in meetings with the coordinator. So before the event there is a State of the Union with your team, so everyone shares one objective. Everyone receives the Event Playbook, and on show days you get short check-ins."],
