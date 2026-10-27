@@ -180,7 +180,9 @@ for (const route of ROUTES) {
       `  <link rel="canonical" href="${SITE}${route.path}" />\n${
         SPLIT_CHUNKS[route.path] ? `  <link rel="modulepreload" crossorigin href="/assets/${SPLIT_CHUNKS[route.path]}" />\n` : ''
       }${socialTags(route)}\n${
-        route.sitemap === false ? '  <meta name="robots" content="noindex, nofollow" />\n' : ''
+        route.sitemap === false
+          ? '  <meta name="robots" content="noindex, nofollow" />\n'
+          : '  <meta name="robots" content="index, follow" />\n'
       }  </head>`
     )
     .replace('<div id="root"></div>', `<div id="root">${render(route.path)}</div>`)

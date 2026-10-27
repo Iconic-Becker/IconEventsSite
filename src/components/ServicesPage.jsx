@@ -229,14 +229,19 @@ function Entry({ g, i, active }) {
         ))}
       </ol>
 
-      {SERVICE_PAGE_BY_ZONE[g.id] && (
-        <a
-          href={pagePath(SERVICE_PAGE_BY_ZONE[g.id])}
-          className="group mt-6 inline-flex items-center gap-2 font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brass transition-colors hover:text-bone"
-        >
-          About {g.group.toLowerCase()}
-          <Icon name="arrow" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-        </a>
+      {SERVICE_PAGE_BY_ZONE[g.id]?.length > 0 && (
+        <nav className="mt-6 flex flex-wrap gap-x-6 gap-y-3" aria-label={`${g.group} pages`}>
+          {SERVICE_PAGE_BY_ZONE[g.id].map((page) => (
+            <a
+              key={page.slug}
+              href={pagePath(page)}
+              className="group inline-flex items-center gap-2 font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brass transition-colors hover:text-bone"
+            >
+              {page.title}
+              <Icon name="arrow" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </a>
+          ))}
+        </nav>
       )}
 
       {/* On smaller screens the plate sits with its entry. */}
