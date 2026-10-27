@@ -25,13 +25,12 @@ const REVIEWS = CASE_STUDIES.filter((s) => s.testimonial?.approved).map((s) => (
 }))
 
 /* Video testimonials, from Icon on 27 Oct 2026. Ambro's also sits on the
-   Net Rev Summit case study. Scott's and Daniel's surnames, titles and
-   events are still to come from Icon; until then they carry a first name
-   and no event link. */
+   Net Rev Summit case study. Scott's and Daniel's titles and events are
+   still to come from Icon; until then they carry no event link. */
 const VIDEO_REVIEWS = [
   { name: "Ambro Dipilato", title: null, event: "Net Rev Summit 2026", slug: "net-rev-summit-2026", url: "https://youtu.be/4j77Mc4tc5M" },
-  { name: "Scott", title: null, event: null, slug: null, url: "https://youtu.be/WSRpzsUqEak" },
-  { name: "Daniel", title: null, event: null, slug: null, url: "https://youtu.be/h2NEy-b0mFo" },
+  { name: "Scott Rodrigues", title: null, event: null, slug: null, url: "https://youtu.be/WSRpzsUqEak" },
+  { name: "Daniel Dipilato", title: null, event: null, slug: null, url: "https://youtu.be/h2NEy-b0mFo" },
 ]
 
 const embedSrc = (url) => {
