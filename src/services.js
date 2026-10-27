@@ -183,7 +183,7 @@ export const SERVICE_PAGES = [
       heading: "What is included in audio visual event production",
       items: [
         { name: "AV specification", line: "A written specification for the show: audio, video, LED, lighting, rigging, power and crew, drawn from the run of show before anything is quoted." },
-        { name: "Contract negotiation", line: "The quotes read against the specification, what the show needs separated from what a quote tends to include, and the contract negotiated down on your behalf." },
+        { name: "Contract negotiation", line: "The quotes read against the specification, what the show needs separated from what a quote tends to include, and the contract negotiated down. You sign it; we align the vision and do the negotiating." },
         { name: "Audio engineering", line: "Speech-first sound design, delays and front fills for every seat, headset microphones for speakers, playback with a backup, and a redundant network on a flagship build." },
         { name: "LED and projection", line: "Walls and screens sized to the room and the sightlines, with the processing, the graphics machines and their backups, and confidence monitors for the stage." },
         { name: "Lighting design", line: "A rig that makes the room feel like somewhere other than a ballroom, cued to the show's moments on a console, with haze, gobos and effects where the show calls for them." },
@@ -230,7 +230,7 @@ export const SERVICE_PAGES = [
     faqs: [
       ["What does audio visual event production include?", "Sound, microphones, LED walls and projection, cameras, lighting and the crew who operate them, plus the rigging and power they need. We add the specification before anything is quoted, the negotiation of the contract, a full tech rehearsal on Day 0 and a show caller on the day."],
       ["Do you own the AV equipment?", "No, and on purpose. Owning nothing lets us produce anywhere in the country through local partners who know the venue, and specify the system for your show rather than for a warehouse. Our own background in audio visual production means we know what equipment should cost in any market."],
-      ["How do you keep AV costs down?", "By writing the specification first and reading the quote against it. What the show needs is separated from what a quote tends to include, and the contract is negotiated down on your behalf, usually by tens of thousands of dollars and sometimes by hundreds of thousands. Our fee is a management fee, fixed at the outset and tied to scope."],
+      ["How do you keep AV costs down?", "By writing the specification first and reading the quote against it. What the show needs is separated from what a quote tends to include, and the contract is negotiated down, usually by tens of thousands of dollars and sometimes by hundreds of thousands. You sign the AV contract yourself; we align the vision with you, then negotiate it. Our fee is a management fee, fixed at the outset and tied to scope."],
       ["We already have an AV partner. Can you work with them?", "Yes. Our clients range from first-time producers to teams with seasoned AV partners, and the partner stays. We still write the specification, read their quote against it, and direct the room on the day so the partner, the stage and the speakers move together."],
       ["What do you insist on for sound in a speech-led room?", "Delays and front fills so every seat hears clearly, headset microphones so speakers can move, playback with a backup, and on a flagship build a redundant audio network. A room that cannot hear clearly cannot be convinced."],
       ["What was your largest AV build?", "Women and Wealth 2026 at the Broward County Convention Center, for 3,000 people: a 90-foot LED wall of 440 panels, six rigged delay screens, more than fifty line array cabinets, four broadcast cameras, about 180 lighting fixtures and 34 chain motors, with cold sparks and CO2 on the entrances."],
@@ -303,7 +303,7 @@ export const SERVICE_PAGES = [
       items: [
         { slug: "pmuw-2025", changed: "Built for social: red carpet hosts, social-first installations, and an editor on site for daily recaps and sponsor testimonial cuts, all recorded in 4K, for 1,500 people over four days." },
         { name: "PimCon", where: "2024 and 2025", attendance: null, changed: "Capture without the production. PimCon has renewed with us three years running for the content alone: the whole event captured, the splash screens, the graphics and the media handled, without our team producing the event or being on site to run it." },
-        { slug: "creatorhub-live", changed: "A supercar painted live on the floor as the networking mixer, with the event's logo on it, captured and cut so that the video travelled far beyond the 1,500 people in the room." },
+        { slug: "creatorhub-live", changed: "A Lamborghini painted live in a glass box by the artist One of One as the networking mixer, with the event's logo on the car, captured and cut so that the video travelled far beyond the 1,500 people in the room." },
       ],
     },
     terms: [
@@ -362,12 +362,12 @@ export const SERVICE_PAGES = [
         { name: "Creative", line: "The stage, the lighting and the brand world, designed so the event's name reads from every angle of the room." },
         { name: "Production", line: "Audio visual specified for the show and negotiated down, a full tech rehearsal on Day 0, and a dedicated show caller on show days." },
         { name: "Content", line: "A content crew on every show day, the top 20 photographs by the next morning, and every frame of footage yours in your own Drive." },
-        { name: "Operations and revenue", line: "Registration through our own check-in system, speakers managed with a Speaker Packet, sponsors looked after by a liaison, and the offer coached into the run of show." },
+        { name: "Operations and revenue", line: "Registration through our own check-in system, speakers you choose briefed with a Speaker Packet and a speaker liaison on request, sponsors looked after by a liaison, and the offer coached into the run of show." },
       ],
       decide:
         "You decide the venue, the budget, the design and each creative deliverable in writing. We bring the shortlist, the negotiation and the direction; inside the plan you approved, our team decides on the day.",
       boundaries:
-        "Venue power, internet, union labour and effects permits are paid to the venue or the authority that provides them. We do not produce weddings or personal celebrations; when that work comes to us, we place it with people who do it properly.",
+        "Venue power, internet, union labour and effects permits are paid to the venue or the authority that provides them. You sign the venue and AV contracts; we align the vision, then negotiate them.",
     },
     phases: {
       intro: "Every Miami event runs through the nine phases of the Iconic Standard. Two of them are where being based here makes the difference.",
