@@ -48,11 +48,14 @@ export function routeFor(pathname) {
 
   // Pages of their own so the nav never sends anyone back to the homepage.
   if (path === "/services") return <ServicesPage />
-  // One page per zone of service and support, listed in services.js.
+  // The service pages under /services/ and the city pages at the root,
+  // all listed in services.js.
   if (path.startsWith("/services/")) {
     const page = servicePageFromPath(path)
     return page ? <ServicePage page={page} /> : <CaseStudyNotFound />
   }
+  const cityPage = servicePageFromPath(path)
+  if (cityPage) return <ServicePage page={cityPage} />
   if (path === "/reviews") return <ReviewsPage />
 
   if (path === "/privacy") return <LegalPage doc={PRIVACY} />

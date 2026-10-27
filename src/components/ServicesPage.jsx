@@ -4,7 +4,7 @@ import SiteFooter from "./SiteFooter.jsx"
 import CtaBand from "./CtaBand.jsx"
 import Icon from "./Icon.jsx"
 import { SCOPE } from "../content.js"
-import { FORMATS, SERVICE_PAGE_BY_ZONE } from "../services.js"
+import { FORMATS, SERVICE_PAGE_BY_ZONE, pagePath } from "../services.js"
 import { responsive } from "../lib/img.js"
 
 /* /services: what Iconic does, on a page of its own so the nav never sends
@@ -231,7 +231,7 @@ function Entry({ g, i, active }) {
 
       {SERVICE_PAGE_BY_ZONE[g.id] && (
         <a
-          href={`/services/${SERVICE_PAGE_BY_ZONE[g.id].slug}`}
+          href={pagePath(SERVICE_PAGE_BY_ZONE[g.id])}
           className="group mt-6 inline-flex items-center gap-2 font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-brass transition-colors hover:text-bone"
         >
           About {g.group.toLowerCase()}

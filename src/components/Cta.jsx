@@ -121,6 +121,9 @@ export default function Cta({ modal = false, split = false, eyebrow, title, asid
          in GTM. */
       window.dataLayer = window.dataLayer || []
       window.dataLayer.push({ event: "enquiry_submitted" })
+      // The SEO team's reporting expects GA4's lead event; both are pushed
+      // so nothing already wired to enquiry_submitted has to change.
+      window.dataLayer.push({ event: "generate_lead" })
       navigate("/nextsteps")
     } catch (error) {
       console.error("Enquiry failed to send:", error)

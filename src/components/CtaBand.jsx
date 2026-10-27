@@ -9,7 +9,15 @@ import { CtaBrackets } from "./CtaButtons.jsx"
 
    Uses the same CtaBrackets as the hero, on Tide Pool, so it reads as part of
    the page rather than an insert. */
-export default function CtaBand({ headline, secondary, href = "#contact" }) {
+export default function CtaBand({ headline, lead, label = "Start a conversation", secondary, href = "#contact", track }) {
+  // The service pages ask for the click to be measured; a page that passes
+  // `track` gets a cta_click event with its path and the label clicked.
+  const onClick = track
+    ? () => {
+        window.dataLayer = window.dataLayer || []
+        window.dataLayer.push({ event: "cta_click", cta_label: label, cta_position: "band", ...track })
+      }
+    : undefined
   return (
     <section className="relative overflow-hidden bg-tidepool py-14 sm:py-20">
       <div
@@ -18,11 +26,16 @@ export default function CtaBand({ headline, secondary, href = "#contact" }) {
         aria-hidden="true"
       />
       <div className="relative mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-8 px-5 sm:px-6">
-        <h2 className="max-w-[24ch] font-serif text-3xl font-semibold leading-tight text-bone sm:text-5xl">
-          {headline}
-        </h2>
+        <div>
+          <h2 className="max-w-[24ch] font-serif text-3xl font-semibold leading-tight text-bone sm:text-5xl">
+            {headline}
+          </h2>
+          {lead && <p className="mt-4 max-w-[52ch] font-sans text-sm leading-relaxed text-bone/70">{lead}</p>}
+        </div>
         <div className="flex flex-wrap items-center gap-6">
-          <CtaBrackets href={href}>Start a conversation</CtaBrackets>
+          <CtaBrackets href={href} onClick={onClick}>
+            {label}
+          </CtaBrackets>
           {secondary && (
             <a
               href={secondary.href}
