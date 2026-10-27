@@ -24,6 +24,64 @@ const REVIEWS = CASE_STUDIES.filter((s) => s.testimonial?.approved).map((s) => (
   event: s.name,
 }))
 
+/* Video testimonials, from Icon on 27 Oct 2026. Ambro's also sits on the
+   Net Rev Summit case study. Scott's and Daniel's surnames, titles and
+   events are still to come from Icon; until then they carry a first name
+   and no event link. */
+const VIDEO_REVIEWS = [
+  { name: "Ambro Dipilato", title: null, event: "Net Rev Summit 2026", slug: "net-rev-summit-2026", url: "https://youtu.be/4j77Mc4tc5M" },
+  { name: "Scott", title: null, event: null, slug: null, url: "https://youtu.be/WSRpzsUqEak" },
+  { name: "Daniel", title: null, event: null, slug: null, url: "https://youtu.be/h2NEy-b0mFo" },
+]
+
+const embedSrc = (url) => {
+  const m = url.match(/(?:v=|youtu\.be\/)([\w-]{6,})/)
+  return m ? `https://www.youtube-nocookie.com/embed/${m[1]}` : null
+}
+
+function VideoReviews() {
+  return (
+    <section className="py-16 sm:py-24">
+      <div className="mx-auto max-w-6xl px-5 sm:px-6">
+        <p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">On camera</p>
+        <h2 className="mt-4 max-w-[22ch] font-serif text-4xl font-semibold leading-none text-bone sm:text-6xl">
+          Three clients, in their own words.
+        </h2>
+        <ul className="mt-12 grid gap-10 md:grid-cols-3">
+          {VIDEO_REVIEWS.map((r) => (
+            <li key={r.url}>
+              <figure>
+                <div className="relative aspect-video w-full border border-brass/40 bg-onyx">
+                  <iframe
+                    src={embedSrc(r.url)}
+                    title={`${r.name} on working with Iconic Events`}
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 h-full w-full"
+                  />
+                </div>
+                <figcaption className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1 border-t border-bone/15 pt-3">
+                  <span className="font-sans text-sm font-bold uppercase tracking-[0.14em] text-bone">{r.name}</span>
+                  {r.title && <span className="font-sans text-sm text-bone/60">{r.title}</span>}
+                  {r.event &&
+                    (r.slug ? (
+                      <a href={`/case-studies/${r.slug}`} className="ml-auto font-sans text-xs font-bold uppercase tracking-[0.16em] text-brass transition hover:text-bone">
+                        {r.event} →
+                      </a>
+                    ) : (
+                      <span className="ml-auto font-sans text-xs font-bold uppercase tracking-[0.16em] text-bone/50">{r.event}</span>
+                    ))}
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}
+
 export default function ReviewsPage() {
   useEffect(() => {
     document.title = TITLE
@@ -43,6 +101,8 @@ export default function ReviewsPage() {
           </h1>
         </div>
       </section>
+
+      <VideoReviews />
 
       <section className="bg-bone py-16 text-onyx sm:py-24">
         <ul className="mx-auto max-w-4xl space-y-16 px-5 sm:px-6">

@@ -130,6 +130,9 @@ export const SERVICE_PAGES = [
         { slug: "creatorhub-live", changed: "A hub model where other events ran their own stages inside CreatorHub, plus a Lamborghini painted live on the floor, for more than 1,500 creators and entrepreneurs." },
       ],
     },
+    films: [
+      { url: "https://youtu.be/GI3Un2dTjEY", title: "Women and Wealth 2026", caption: "3,000 people at the Broward County Convention Center. Our largest build to date, in four minutes." },
+    ],
     terms: [
       ["Run of show", "The minute-by-minute script of the event: every cue, walk-on, video and transition, in order. Tentative at 14 days out, locked at 7."],
       ["Show caller", "The person who calls each cue to the crew during the show, so lighting, sound, video and the stage move together."],
@@ -219,6 +222,10 @@ export const SERVICE_PAGES = [
         { slug: "freedom-queen-live-2025", changed: "A Broadway-style show rather than a conference: every dance number cued to the AV and the stage, rehearsed around the speakers, and kept a surprise until the flash mob opened the event." },
       ],
     },
+    films: [
+      { url: "https://youtu.be/GI3Un2dTjEY", title: "Women and Wealth 2026", caption: "The 90-foot LED wall, the six delay screens, the flown arrays and the lighting rig, as the room saw them." },
+      { url: "https://youtu.be/ZYvRLFzl59o", title: "PMU World 2024", caption: "Year two at the Seminole Hard Rock: the room halved, one stage, and a sponsor hall." },
+    ],
     terms: [
       ["Delay screens", "Screens placed deeper in a large room, fed with the same picture, so the back rows see what the front rows see."],
       ["Front fill", "Small speakers along the front of the stage that cover the first rows the main arrays fire over."],
@@ -306,6 +313,11 @@ export const SERVICE_PAGES = [
         { slug: "creatorhub-live", changed: "A Lamborghini painted live in a glass box by the artist One of One as the networking mixer, with the event's logo on the car, captured and cut so that the video travelled far beyond the 1,500 people in the room." },
       ],
     },
+    films: [
+      { url: "https://youtu.be/ZYvRLFzl59o", title: "PMU World 2024", caption: "The aftermovie, cut from a content crew's capture across three days." },
+      { url: "https://youtu.be/CmrSzYrgTWY", title: "The Guardians Annual", caption: "A retreat captured and cut into the film the next year sells on." },
+      { url: "https://youtu.be/cCAnIgzz1I0", title: "Decentralized Masters Live", caption: "A first live event at the Fontainebleau Miami Beach, from the VIP mixer to the close." },
+    ],
     terms: [
       ["Hot Picks", "The top 20 photographs from each show day, edited and delivered the same day or by the following morning."],
       ["Storymonial", "Our name for a testimonial film that layers the attendee's story over footage from the event, rather than a person answering a question at a camera. Delivered within 30 days."],
@@ -401,6 +413,10 @@ export const SERVICE_PAGES = [
         { name: "1111 Miami", where: "Miami" },
       ],
     },
+    films: [
+      { url: "https://youtu.be/GI3Un2dTjEY", title: "Women and Wealth 2026", caption: "Broward County Convention Center, Fort Lauderdale. 3,000 people, our largest room to date." },
+      { url: "https://youtu.be/cCAnIgzz1I0", title: "Decentralized Masters Live", caption: "Fontainebleau Miami Beach. A first live event, opened in the Presidential Suite." },
+    ],
     terms: [
       ["Attrition", "The fee a hotel charges when a group books a block of rooms and fills fewer than it committed to. One of the terms our volume lets us negotiate."],
       ["Site visit", "A walk through a venue with you before it is chosen. Standard with our clients in South Florida; call and we will arrange it."],
