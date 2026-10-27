@@ -112,6 +112,10 @@ const MOVED = {
   "/case-studies/ceo-lawyer-summit": "/case-studies",
   "/case-studies/viral-ecom-adz": "/case-studies",
   "/case-studies/chase-hughes-london": "/case-studies",
+  // The draft Strategy service page, retired when the 12 SEO service pages
+  // replaced it (27 Oct 2026). It was noindex and never linked from outside
+  // the site; its ground is covered by the sponsorship and revenue pages.
+  "/services/event-strategy": "/services",
 }
 
 createServer((req, res) => {

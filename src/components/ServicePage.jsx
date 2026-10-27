@@ -3,72 +3,109 @@ import SiteHeader from "./SiteHeader.jsx"
 import SiteFooter from "./SiteFooter.jsx"
 import CtaBand from "./CtaBand.jsx"
 import Icon from "./Icon.jsx"
-import { SCOPE } from "../content.js"
-import { FORMATS, SERVICE_PAGE_BY_ZONE, zoneFor, zoneNumber } from "../services.js"
+import {
+  FACTS,
+  FORMATS,
+  PHASES,
+  SERVICE_PAGE_BY_SLUG,
+  pagePath,
+  proofItem,
+  zoneFor,
+  zoneNumber,
+} from "../services.js"
 import { responsive } from "../lib/img.js"
 
-/* One zone of service and support, on a page of its own at /services/<slug>.
-   The content comes from src/services.js; this is the layout.
+/* One service page, or one city page, from src/services.js. This is the
+   layout; the content is in the data.
 
    The same document family as /services: a plate that dissolves into the
-   page, headings in Cormorant, deliverables as a numbered schedule, and a
-   column of contents that stays put. The lead paragraph under the title
-   is the direct answer; everything below it is the evidence. */
+   page, headings in Cormorant, the schedule numbered, and a column of
+   contents that stays put. The order follows the LinkGraph review of
+   26 October: the buyer line and the direct answer first, the brand voice
+   after; proof with what changed; decision points and boundaries; one
+   call to action phrased for the service, with the click tracked. */
 
 const SITE = "https://www.iconic.events"
 
-const SECTIONS = [
-  ["covers", "What it covers"],
-  ["included", "What is included"],
-  ["sits", "Where it sits"],
-  ["formats", "Who it is for"],
-  ["questions", "Questions"],
-]
+function sectionsFor(page) {
+  return [
+    ["covers", "What it covers"],
+    ["included", "What you receive"],
+    ["phases", "How it works"],
+    page.compare && ["compare", "Compared"],
+    ["proof", "Proof"],
+    page.venues && ["venues", "Venues"],
+    ["formats", "Who it is for"],
+    page.terms?.length && ["terms", "Terms"],
+    ["questions", "Questions"],
+  ].filter(Boolean)
+}
 
 function StructuredData({ page, zone }) {
-  const url = `${SITE}/services/${page.slug}`
-  const service = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: page.title,
-    serviceType: page.title,
-    description: page.lead,
-    url,
-    provider: {
-      "@type": "Organization",
-      name: "Iconic Events",
-      url: `${SITE}/`,
-      telephone: "+1-305-791-5290",
-    },
-    areaServed: ["Miami, FL", "Las Vegas, NV", "United States"],
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: `${zone.group}: what is included`,
-      itemListElement: zone.items.map((item) => ({
-        "@type": "Offer",
-        itemOffered: { "@type": "Service", name: item, description: page.included[item] },
-      })),
-    },
+  const url = `${SITE}${pagePath(page)}`
+  const provider = {
+    "@type": "Organization",
+    name: "Iconic Events",
+    url: `${SITE}/`,
+    telephone: "+1-305-791-5290",
+    foundingDate: "2017",
+    address: { "@type": "PostalAddress", addressLocality: "Miami", addressRegion: "FL", addressCountry: "US" },
+    sameAs: [
+      "https://www.instagram.com/iconicbecker",
+      "https://www.linkedin.com/company/iconiceventsusa",
+      "https://www.youtube.com/@iconiceventsUSA",
+    ],
   }
+  const main =
+    page.kind === "city"
+      ? {
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: `Iconic Events, ${page.city}`,
+          description: page.lead,
+          url,
+          telephone: "+1-305-791-5290",
+          address: { "@type": "PostalAddress", addressLocality: page.city, addressRegion: page.region, addressCountry: "US" },
+          areaServed: page.areaServed,
+          parentOrganization: provider,
+        }
+      : {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: page.title,
+          serviceType: page.title,
+          description: page.lead,
+          url,
+          provider,
+          areaServed: ["Miami, FL", "Las Vegas, NV", "United States"],
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: page.included.heading,
+            itemListElement: page.included.items.map((it) => ({
+              "@type": "Offer",
+              itemOffered: { "@type": "Service", name: it.name, description: it.line },
+            })),
+          },
+        }
   const faq = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: page.faqs.map(([q, a]) => ({
-      "@type": "Question",
-      name: q,
-      acceptedAnswer: { "@type": "Answer", text: a },
-    })),
+    mainEntity: page.faqs.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
   }
   const crumbs = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
-      { "@type": "ListItem", position: 2, name: "Services", item: `${SITE}/services` },
-      { "@type": "ListItem", position: 3, name: page.title, item: url },
+      ...(page.kind === "city"
+        ? [{ "@type": "ListItem", position: 2, name: page.title, item: url }]
+        : [
+            { "@type": "ListItem", position: 2, name: "Services", item: `${SITE}/services` },
+            { "@type": "ListItem", position: 3, name: page.title, item: url },
+          ]),
     ],
   }
-  return [service, faq, crumbs].map((block, i) => (
+  return [main, faq, crumbs].map((block, i) => (
     <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(block) }} />
   ))
 }
@@ -81,9 +118,35 @@ function H2({ id, children }) {
   )
 }
 
+function Section({ id, title, children }) {
+  return (
+    <div className="border-t border-bone/10 py-10 sm:py-14">
+      <H2 id={id}>{title}</H2>
+      {children}
+    </div>
+  )
+}
+
+function Prose({ paragraphs }) {
+  return (
+    <div className="mt-6 max-w-[62ch] space-y-5 font-sans text-base leading-relaxed text-bone/75">
+      {paragraphs.map((p) => (
+        <p key={p}>{p}</p>
+      ))}
+    </div>
+  )
+}
+
+function Num({ children, brass = false }) {
+  return <span className={`font-sans text-[10px] font-bold tracking-[0.18em] ${brass ? "text-brass" : "text-bone/35"}`}>{children}</span>
+}
+
 export default function ServicePage({ page }) {
   const zone = zoneFor(page)
   const n = zoneNumber(page)
+  const sections = sectionsFor(page)
+  const related = (page.related ?? []).map((slug) => SERVICE_PAGE_BY_SLUG[slug]).filter(Boolean)
+  const facts = [...FACTS, ...(page.facts ?? [])]
 
   useEffect(() => {
     document.title = page.seoTitle
@@ -97,46 +160,54 @@ export default function ServicePage({ page }) {
       <StructuredData page={page} zone={zone} />
       {page.draft && <meta name="robots" content="noindex, nofollow" />}
 
-      {/* Hero: the breadcrumb, the title and the direct answer on the
-          left; the plate dissolving off the right edge. */}
+      {/* Hero: breadcrumb, the buyer line, the title, the direct answer;
+          the plate dissolving off the right edge. */}
       <section className="relative overflow-hidden border-b border-bone/10">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-5 pb-12 pt-10 sm:px-6 sm:pb-16 sm:pt-16 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
             <nav aria-label="Breadcrumb" className="fade-rise font-sans text-[10px] font-bold uppercase tracking-[0.24em] text-bone/40">
-              <a href="/services" className="transition-colors hover:text-brass">
-                Services
-              </a>
-              <span className="mx-3 text-bone/20">/</span>
-              <span className="text-brass">
-                {n} {zone.group}
-              </span>
-            </nav>
-            <div className="fade-rise mt-6 flex flex-wrap items-center gap-3" style={{ animationDelay: "60ms" }}>
-              <p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">Zone {n}</p>
-              {zone.beyond && (
-                <span className="border border-brass/40 px-2 py-1 font-sans text-[9px] font-bold uppercase tracking-[0.2em] text-brass">
-                  Beyond production
-                </span>
+              {page.kind === "city" ? (
+                <>
+                  <a href="/" className="transition-colors hover:text-brass">Home</a>
+                  <span className="mx-3 text-bone/20">/</span>
+                  <span className="text-brass">{page.city}</span>
+                </>
+              ) : (
+                <>
+                  <a href="/services" className="transition-colors hover:text-brass">Services</a>
+                  <span className="mx-3 text-bone/20">/</span>
+                  <span className="text-brass">{n} {zone?.group}</span>
+                </>
               )}
-            </div>
-            <h1
-              className="fade-rise mt-4 max-w-[14ch] font-serif text-5xl font-semibold leading-[0.96] sm:text-7xl"
-              style={{ animationDelay: "120ms" }}
-            >
+            </nav>
+            <p className="fade-rise mt-6 max-w-[60ch] font-sans text-sm font-bold uppercase tracking-[0.12em] text-bone/60" style={{ animationDelay: "60ms" }}>
+              {page.buyer}
+            </p>
+            <h1 className="fade-rise mt-4 max-w-[16ch] font-serif text-5xl font-semibold leading-[0.96] sm:text-7xl" style={{ animationDelay: "120ms" }}>
               {page.title}
             </h1>
-            <p
-              className="fade-rise mt-6 max-w-[40ch] font-serif text-2xl italic leading-snug text-bone/85 sm:text-3xl"
-              style={{ animationDelay: "200ms" }}
-            >
-              {zone.line}
-            </p>
-            <p
-              className="fade-rise mt-8 max-w-[60ch] font-sans text-lg leading-relaxed text-bone/70"
-              style={{ animationDelay: "280ms" }}
-            >
+            {zone && (
+              <p className="fade-rise mt-6 max-w-[40ch] font-serif text-2xl italic leading-snug text-bone/85 sm:text-3xl" style={{ animationDelay: "200ms" }}>
+                {zone.line}
+              </p>
+            )}
+            <p className="fade-rise mt-8 max-w-[62ch] font-sans text-lg leading-relaxed text-bone/75" style={{ animationDelay: "280ms" }}>
               {page.lead}
             </p>
+            {page.kind === "city" && (
+              <a
+                href="/get-a-quote"
+                onClick={() => {
+                  window.dataLayer = window.dataLayer || []
+                  window.dataLayer.push({ event: "cta_click", cta_label: page.cta.label, cta_position: "hero", page_path: pagePath(page) })
+                }}
+                className="fade-rise group mt-8 inline-flex items-center gap-3 border border-bone/25 px-7 py-3.5 font-sans text-xs font-bold uppercase tracking-[0.2em] text-bone transition hover:border-brass/50 hover:text-brass"
+                style={{ animationDelay: "360ms" }}
+              >
+                {page.cta.label}
+                <Icon name="arrow" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </a>
+            )}
           </div>
           <div className="lg:col-span-5">
             <figure className="svc-plate-r relative h-[min(44vh,420px)] lg:mr-[calc(-1*(max(0px,(100vw-72rem)/2)+1.5rem))] lg:h-full lg:min-h-[480px] lg:w-[calc(100%+max(0px,(100vw-72rem)/2)+1.5rem)]">
@@ -152,6 +223,20 @@ export default function ServicePage({ page }) {
         </div>
       </section>
 
+      {/* Key facts: the same facts the structured data carries. */}
+      <section className="border-b border-bone/10">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6">
+          <dl className="grid grid-cols-1 gap-x-10 sm:grid-cols-2 lg:grid-cols-4">
+            {facts.map(([k, v]) => (
+              <div key={k} className="border-b border-bone/10 py-4 sm:py-5 lg:[&:nth-last-child(-n+4)]:border-b-0">
+                <dt className="font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-bone/40">{k}</dt>
+                <dd className="mt-1.5 font-sans text-sm leading-snug text-bone/85">{v}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
       {/* Body: contents on the left, the document on the right. */}
       <section className="py-12 sm:py-20">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-5 sm:px-6 lg:grid-cols-12 lg:gap-16">
@@ -159,43 +244,27 @@ export default function ServicePage({ page }) {
             <div className="lg:sticky lg:top-28">
               <p className="font-sans text-[10px] font-bold uppercase tracking-[0.24em] text-bone/40">On this page</p>
               <ol className="mobile-nav mt-4 flex gap-x-6 overflow-x-auto pb-2 font-sans text-xs font-bold uppercase tracking-[0.16em] lg:block lg:space-y-1 lg:overflow-visible lg:pb-0">
-                {SECTIONS.map(([id, label]) => (
+                {sections.map(([id, label]) => (
                   <li key={id} className="shrink-0">
-                    <a href={`#${id}`} className="inline-block py-1.5 text-bone/50 transition-colors hover:text-bone">
-                      {label}
-                    </a>
+                    <a href={`#${id}`} className="inline-block py-1.5 text-bone/50 transition-colors hover:text-bone">{label}</a>
                   </li>
                 ))}
               </ol>
 
-              <p className="mt-10 font-sans text-[10px] font-bold uppercase tracking-[0.24em] text-bone/40">The six zones</p>
-              <ol className="mt-4 space-y-1 font-sans text-xs font-bold uppercase tracking-[0.16em]">
-                {SCOPE.doGroups.map((g, i) => {
-                  const linked = SERVICE_PAGE_BY_ZONE[g.id]
-                  const here = g.id === zone.id
-                  const inner = (
-                    <>
-                      <span className={`tracking-[0.2em] ${here ? "text-brass" : "text-bone/30"}`}>{String(i + 1).padStart(2, "0")}</span>
-                      {g.group}
-                    </>
-                  )
-                  return (
-                    <li key={g.id}>
-                      {linked && !here ? (
-                        <a href={`/services/${linked.slug}`} className="inline-flex items-center gap-3 py-1.5 text-bone/50 transition-colors hover:text-bone">
-                          {inner}
-                        </a>
-                      ) : (
-                        <span className={`inline-flex items-center gap-3 py-1.5 ${here ? "text-bone" : "text-bone/40"}`}>{inner}</span>
-                      )}
-                    </li>
-                  )
-                })}
-              </ol>
-              <a
-                href="/services"
-                className="mt-6 inline-flex items-center gap-2 font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-bone/50 transition-colors hover:text-brass"
-              >
+              {related.length > 0 && (
+                <>
+                  <p className="mt-10 font-sans text-[10px] font-bold uppercase tracking-[0.24em] text-bone/40">Related services</p>
+                  <ul className="mt-4 space-y-1 font-sans text-xs font-bold uppercase tracking-[0.16em]">
+                    {related.map((r) => (
+                      <li key={r.slug}>
+                        <a href={pagePath(r)} className="inline-block py-1.5 text-bone/50 transition-colors hover:text-bone">{r.title}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+
+              <a href="/services" className="mt-8 inline-flex items-center gap-2 font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-bone/50 transition-colors hover:text-brass">
                 <Icon name="arrow" className="h-3.5 w-3.5 rotate-180" />
                 All services
               </a>
@@ -203,50 +272,118 @@ export default function ServicePage({ page }) {
           </aside>
 
           <div className="lg:col-span-8">
-            {/* What it covers */}
-            <div className="border-t border-bone/10 py-10 sm:py-14">
-              <H2 id="covers">{page.covers.heading}</H2>
-              <div className="mt-6 max-w-[62ch] space-y-5 font-sans text-base leading-relaxed text-bone/75">
-                {page.covers.paragraphs.map((p) => (
-                  <p key={p}>{p}</p>
-                ))}
-              </div>
-            </div>
+            <Section id="covers" title={page.covers.heading}>
+              <Prose paragraphs={page.covers.paragraphs} />
+            </Section>
 
-            {/* The schedule of deliverables, each with its line. */}
-            <div className="border-t border-bone/10 py-10 sm:py-14">
-              <H2 id="included">What is included in {page.title.toLowerCase()}</H2>
+            <Section id="included" title={page.included.heading}>
               <ol className="mt-8">
-                {zone.items.map((item, j) => (
-                  <li key={item} className="grid gap-x-8 gap-y-2 border-b border-bone/10 py-5 sm:grid-cols-12 sm:items-baseline">
-                    <span className="font-sans text-[10px] font-bold tracking-[0.18em] text-bone/35 sm:col-span-1">
-                      {Number(n)}.{j + 1}
-                    </span>
-                    <h3 className="font-serif text-2xl font-semibold leading-tight text-bone sm:col-span-4">{item}</h3>
-                    <p className="max-w-[48ch] font-sans text-sm leading-relaxed text-bone/65 sm:col-span-7">{page.included[item]}</p>
+                {page.included.items.map((it, j) => (
+                  <li key={it.name} className="grid gap-x-8 gap-y-2 border-b border-bone/10 py-5 sm:grid-cols-12 sm:items-baseline">
+                    <Num>{j + 1}</Num>
+                    <h3 className="font-serif text-2xl font-semibold leading-tight text-bone sm:col-span-4">{it.name}</h3>
+                    <p className="max-w-[48ch] font-sans text-sm leading-relaxed text-bone/65 sm:col-span-7">{it.line}</p>
                   </li>
                 ))}
               </ol>
-            </div>
+              {(page.included.decide || page.included.boundaries) && (
+                <div className="mt-8 grid gap-6 sm:grid-cols-2">
+                  {page.included.decide && (
+                    <div>
+                      <h3 className="font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-brass">Who decides what</h3>
+                      <p className="mt-2 font-sans text-sm leading-relaxed text-bone/65">{page.included.decide}</p>
+                    </div>
+                  )}
+                  {page.included.boundaries && (
+                    <div>
+                      <h3 className="font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-brass">What is not included</h3>
+                      <p className="mt-2 font-sans text-sm leading-relaxed text-bone/65">{page.included.boundaries}</p>
+                    </div>
+                  )}
+                </div>
+              )}
+            </Section>
 
-            {/* Where it sits */}
-            <div className="border-t border-bone/10 py-10 sm:py-14">
-              <H2 id="sits">{page.sits.heading}</H2>
-              <div className="mt-6 max-w-[62ch] space-y-5 font-sans text-base leading-relaxed text-bone/75">
-                {page.sits.paragraphs.map((p) => (
-                  <p key={p}>{p}</p>
+            <Section id="phases" title="How it works: the nine-phase event lifecycle">
+              <p className="mt-6 max-w-[62ch] font-sans text-base leading-relaxed text-bone/75">{page.phases.intro}</p>
+              <ol className="mt-8">
+                {PHASES.map((ph) => {
+                  const focus = page.phases.focus.includes(ph.n)
+                  const note = page.phases.notes?.[ph.n]
+                  return (
+                    <li key={ph.n} className={`grid gap-x-8 gap-y-2 border-b border-bone/10 py-5 sm:grid-cols-12 ${focus ? "" : "opacity-70"}`}>
+                      <Num brass={focus}>{String(ph.n).padStart(2, "0")}</Num>
+                      <h3 className="font-serif text-2xl font-semibold leading-tight text-bone sm:col-span-4">{ph.name}</h3>
+                      <div className="sm:col-span-7">
+                        <p className="max-w-[52ch] font-sans text-sm leading-relaxed text-bone/65">{ph.line}</p>
+                        {note && <p className="mt-3 max-w-[52ch] border-l border-brass/50 pl-4 font-sans text-sm leading-relaxed text-bone/80">{note}</p>}
+                      </div>
+                    </li>
+                  )
+                })}
+              </ol>
+            </Section>
+
+            {page.compare && (
+              <Section id="compare" title={page.compare.heading}>
+                <Prose paragraphs={page.compare.paragraphs} />
+              </Section>
+            )}
+
+            <Section id="proof" title={page.kind === "city" ? `Rooms produced in ${page.city}` : `Proof: ${page.title.toLowerCase()} in the room`}>
+              {page.proof.intro && <p className="mt-6 max-w-[62ch] font-sans text-base leading-relaxed text-bone/75">{page.proof.intro}</p>}
+              <ol className="mt-8">
+                {page.proof.items.map(proofItem).map((p, j) => (
+                  <li key={p.name} className="grid gap-x-8 gap-y-2 border-b border-bone/10 py-6 sm:grid-cols-12 sm:items-baseline">
+                    <Num brass>{String(j + 1).padStart(2, "0")}</Num>
+                    <div className="sm:col-span-4">
+                      <h3 className="font-serif text-2xl font-semibold leading-tight text-bone">
+                        {p.href ? <a href={p.href} className="transition-colors hover:text-brass">{p.name}</a> : p.name}
+                      </h3>
+                      <p className="mt-1 font-sans text-[11px] uppercase tracking-[0.14em] text-bone/45">
+                        {[p.where, p.attendance ? `${p.attendance} in the room` : null].filter(Boolean).join(" · ")}
+                      </p>
+                    </div>
+                    <div className="sm:col-span-7">
+                      <p className="max-w-[52ch] font-sans text-sm leading-relaxed text-bone/65">{p.changed}</p>
+                      {p.href && (
+                        <a href={p.href} className="group mt-3 inline-flex items-center gap-2 font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-brass transition-colors hover:text-bone">
+                          Read the case study
+                          <Icon name="arrow" className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                        </a>
+                      )}
+                    </div>
+                  </li>
                 ))}
-              </div>
-            </div>
+              </ol>
+            </Section>
 
-            {/* Who it is for: the formats, compact. */}
-            <div className="border-t border-bone/10 py-10 sm:py-14">
-              <H2 id="formats">Who {page.title.toLowerCase()} is for</H2>
+            {page.venues && (
+              <Section id="venues" title={page.venues.heading}>
+                {page.venues.intro && <p className="mt-6 max-w-[62ch] font-sans text-base leading-relaxed text-bone/75">{page.venues.intro}</p>}
+                <ul className="mt-8 grid gap-x-10 sm:grid-cols-2">
+                  {page.venues.list.map((v) => (
+                    <li key={v.name} className="flex items-baseline gap-4 border-b border-bone/10 py-3">
+                      <span className="h-1 w-1 shrink-0 translate-y-[-3px] bg-brass" aria-hidden="true" />
+                      <span className="font-sans text-sm text-bone/75">
+                        {v.name}
+                        {v.where && <span className="text-bone/45">, {v.where}</span>}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </Section>
+            )}
+
+            <Section id="formats" title={`Who ${page.kind === "city" ? "we produce for" : `${page.title.toLowerCase()} is for`}`}>
               <ol className="mt-8 grid gap-x-10 sm:grid-cols-2">
                 {FORMATS.map((f, i) => (
-                  <li key={f.name} className="flex items-baseline gap-4 border-b border-bone/10 py-3">
-                    <span className="w-7 shrink-0 font-sans text-[10px] font-bold tracking-[0.18em] text-brass">{String(i + 1).padStart(2, "0")}</span>
-                    <span className="font-sans text-sm text-bone/75">{f.name}</span>
+                  <li key={f.name} className="border-b border-bone/10 py-4">
+                    <div className="flex items-baseline gap-4">
+                      <Num brass>{String(i + 1).padStart(2, "0")}</Num>
+                      <span className="font-serif text-xl font-semibold text-bone">{f.name}</span>
+                    </div>
+                    <p className="mt-1.5 pl-9 font-sans text-sm leading-relaxed text-bone/60">{f.line}</p>
                   </li>
                 ))}
               </ol>
@@ -254,11 +391,22 @@ export default function ServicePage({ page }) {
                 We do not produce weddings or personal celebrations. When that work comes to us, we place it with
                 people who do it properly.
               </p>
-            </div>
+            </Section>
 
-            {/* Questions */}
-            <div className="border-t border-bone/10 py-10 sm:py-14">
-              <H2 id="questions">Questions about {page.title.toLowerCase()}</H2>
+            {page.terms?.length > 0 && (
+              <Section id="terms" title="Terms used on this page">
+                <dl className="mt-6">
+                  {page.terms.map(([term, def]) => (
+                    <div key={term} className="grid gap-x-8 gap-y-1 border-b border-bone/10 py-4 sm:grid-cols-12 sm:items-baseline">
+                      <dt className="font-serif text-xl font-semibold text-bone sm:col-span-4">{term}</dt>
+                      <dd className="max-w-[52ch] font-sans text-sm leading-relaxed text-bone/65 sm:col-span-8">{def}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </Section>
+            )}
+
+            <Section id="questions" title={`Questions about ${page.kind === "city" ? `event production in ${page.city}` : page.title.toLowerCase()}`}>
               <div className="mt-6">
                 {page.faqs.map(([q, a], i) => (
                   <details key={q} className="group border-b border-bone/10 py-5" open={i === 0}>
@@ -270,15 +418,18 @@ export default function ServicePage({ page }) {
                   </details>
                 ))}
               </div>
-            </div>
+            </Section>
           </div>
         </div>
       </section>
 
       <CtaBand
-        headline="Tell us about the room you want to build."
+        headline={page.cta.headline}
+        lead={page.cta.lead}
+        label={page.cta.label}
         href="/get-a-quote"
-        secondary={{ href: "/services", label: "All six zones →" }}
+        track={{ page_path: pagePath(page) }}
+        secondary={{ href: "/services", label: "All services →" }}
       />
       <SiteFooter />
     </main>
