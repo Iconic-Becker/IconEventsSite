@@ -33,6 +33,7 @@ function sectionsFor(page) {
     ["phases", "How it works"],
     page.compare && ["compare", "Compared"],
     ["proof", "Proof"],
+    page.films?.length && ["films", "Films"],
     page.venues && ["venues", "Venues"],
     ["formats", "Who it is for"],
     page.terms?.length && ["terms", "Terms"],
@@ -107,6 +108,12 @@ function StructuredData({ page, zone }) {
   return [main, faq, crumbs].map((block, i) => (
     <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(block) }} />
   ))
+}
+
+/* youtube.com/watch?v=ID or youtu.be/ID -> privacy friendly embed src */
+function embedSrc(url) {
+  const m = url.match(/(?:v=|youtu\.be\/)([\w-]{6,})/)
+  return m ? `https://www.youtube-nocookie.com/embed/${m[1]}` : null
 }
 
 function H2({ id, children }) {
@@ -339,6 +346,31 @@ export default function ServicePage({ page }) {
                 ))}
               </ol>
             </Section>
+
+            {page.films?.length > 0 && (
+              <Section id="films" title={page.kind === "city" ? `Films from ${page.city} rooms` : "Films from the room"}>
+                <div className={`mt-8 grid gap-8 ${page.films.length > 1 ? "sm:grid-cols-2" : ""}`}>
+                  {page.films.map((f, i) => (
+                    <figure key={f.url} className={page.films.length % 2 === 1 && i === page.films.length - 1 ? "sm:col-span-2" : ""}>
+                      <div className="relative aspect-video w-full border border-brass/40 bg-onyx">
+                        <iframe
+                          src={embedSrc(f.url)}
+                          title={`${f.title} aftermovie`}
+                          loading="lazy"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          className="absolute inset-0 h-full w-full"
+                        />
+                      </div>
+                      <figcaption className="mt-3">
+                        <span className="font-serif text-xl font-semibold text-bone">{f.title}</span>
+                        {f.caption && <p className="mt-1 font-sans text-sm leading-relaxed text-bone/60">{f.caption}</p>}
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+              </Section>
+            )}
 
             {page.venues && (
               <Section id="venues" title={page.venues.heading}>
