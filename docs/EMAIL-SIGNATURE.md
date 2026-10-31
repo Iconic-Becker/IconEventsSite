@@ -11,7 +11,11 @@ To send someone a prefilled link, put their details in the URL:
 
 ## What is in it
 
-One block. The sigil in Tide Pool beside a Tide Pool rule; name in serif caps,
+One block. The sigil in Tide Pool beside a Tide Pool rule, animated as the
+old logo was: it holds, drops out, fades back in on a short rise, a brass
+glint passes down it, and it holds again. Frame one is the finished sigil,
+so Outlook desktop (which does not animate) shows it whole. The text
+cannot move; Gmail allows no CSS animation in a signature. Then name in serif caps,
 title, mobile and email, then www.iconic.events with the LinkedIn, YouTube
 and Facebook squares on the same line. Company accounts by default;
 LinkedIn can be a personal profile per person. Instagram and TikTok are
