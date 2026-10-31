@@ -130,12 +130,14 @@ sheet.paste(frames[3], (0, frames[0].height * 2))
 palette = sheet.quantize(colors=96, method=Image.MEDIANCUT)
 # Median cut averages the big flat areas a shade off. Pin the ground and the
 # wordmark to their exact values so the banner sits flush on a white email.
-pal = palette.getpalette()[: 96 * 3]
-for target in (WHITE, ONYX):
-    idx = min(range(96), key=lambda i: sum((pal[i * 3 + c] - target[c]) ** 2 for c in range(3)))
-    pal[idx * 3 : idx * 3 + 3] = list(target)
-palette.putpalette(pal)
 q = [f.quantize(palette=palette, dither=Image.NONE) for f in frames]
+pal = palette.getpalette()[: 96 * 3]
+for target, tol in ((WHITE, 8), (ONYX, 8)):
+    for i in range(96):
+        if all(abs(pal[i * 3 + c] - target[c]) <= tol for c in range(3)):
+            pal[i * 3 : i * 3 + 3] = list(target)
+for f in q:
+    f.putpalette(pal)
 q[0].save(
     OUT / "banner.gif",
     save_all=True,
