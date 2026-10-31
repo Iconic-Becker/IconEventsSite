@@ -57,7 +57,7 @@
       <ol>
         <li>Press <b>Copy signature</b>.</li>
         <li>In Gmail: the gear, <b>See all settings</b>, scroll to <b>Signature</b>, <b>Create new</b>, name it <i>Iconic</i>.</li>
-        <li>Click into the box and paste. The logo and icons appear after a moment.</li>
+        <li>Click into the box and paste. The sigil and icons appear after a moment.</li>
         <li>Under <b>Signature defaults</b> pick <i>Iconic</i> for new emails and replies. Keep <i>Insert signature before quoted text</i> ticked.</li>
         <li>Scroll down, <b>Save Changes</b>. Send yourself a test.</li>
       </ol>
@@ -114,31 +114,29 @@
     const email = v.email.trim() || "you@iconic.events";
     const text = "font-family:Helvetica,Arial,sans-serif;";
     const icon = (href, file, alt) =>
-      `<td style="padding:0 8px 0 0"><a href="${esc(href)}" target="_blank" style="text-decoration:none"><img src="${ASSETS}${file}" width="24" height="24" alt="${alt}" style="display:block;border:0;width:24px;height:24px"></a></td>`;
+      `<td style="padding:0 6px 0 0;vertical-align:middle"><a href="${esc(href)}" target="_blank" style="text-decoration:none"><img src="${ASSETS}${file}" width="20" height="20" alt="${alt}" style="display:block;border:0;width:20px;height:20px"></a></td>`;
     const contact = [];
     if (phone) contact.push(`<a href="${esc(telHref(phone))}" style="color:#0E1312;text-decoration:none">${esc(phone)}</a>`);
     contact.push(`<a href="mailto:${esc(email)}" style="color:#0E1312;text-decoration:none">${esc(email)}</a>`);
 
-    return `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;${text}color:#0E1312;width:400px;max-width:100%">
-<tr><td style="padding:0 14px 0 0;vertical-align:middle;width:34px"><img src="${ASSETS}sigil.png" width="34" height="112" alt="" style="display:block;border:0;width:34px;height:112px"></td>
-<td style="padding:4px 0 4px 16px;border-left:3px solid #112E2E;vertical-align:middle">
+    return `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;${text}color:#0E1312">
+<tr><td style="padding:0 14px 0 0;vertical-align:middle;width:30px"><img src="${ASSETS}sigil.png" width="30" height="100" alt="" style="display:block;border:0;width:30px;height:100px"></td>
+<td style="padding:2px 0 2px 16px;border-left:3px solid #112E2E;vertical-align:middle">
 <div style="${text}font-family:Georgia,'Times New Roman',serif;font-size:19px;line-height:24px;font-weight:bold;letter-spacing:2px;color:#0E1312">${esc(name)}</div>
-<div style="${text}font-size:12px;line-height:18px;color:#112E2E;padding-top:2px">${esc(title)}</div>
-<div style="${text}font-size:10px;line-height:16px;letter-spacing:2px;color:#888888;padding-top:10px">ICONIC EVENTS &nbsp;&middot;&nbsp; MIAMI &nbsp;&middot;&nbsp; LAS VEGAS</div>
-<div style="${text}font-size:12px;line-height:18px;padding-top:8px">${contact.join(`<span style="color:#888888">&nbsp;&nbsp;|&nbsp;&nbsp;</span>`)}</div>
-<div style="${text}font-size:12px;line-height:18px"><a href="${SITE}" target="_blank" style="color:#112E2E;text-decoration:none;font-weight:bold">iconic.events</a></div>
-</td></tr>
-<tr><td colspan="2" style="padding:14px 0 0 0"><table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse"><tr>
+<div style="${text}font-size:12px;line-height:18px;color:#112E2E;padding-top:1px">${esc(title)}</div>
+<div style="${text}font-size:12px;line-height:18px;padding-top:9px">${contact.join(`<span style="color:#888888">&nbsp;&nbsp;|&nbsp;&nbsp;</span>`)}</div>
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin-top:5px"><tr>
+<td style="${text}font-size:12px;line-height:20px;padding:0 12px 0 0;vertical-align:middle"><a href="${SITE}" target="_blank" style="color:#112E2E;text-decoration:none;font-weight:bold">www.iconic.events</a></td>
 ${icon(cleanUrl(v.linkedin, COMPANY.linkedin), "li.png", "LinkedIn")}
 ${icon(COMPANY.youtube, "yt.png", "YouTube")}
 ${icon(COMPANY.facebook, "fb.png", "Facebook")}
-</tr></table></td></tr>
-<tr><td colspan="2" style="padding:10px 0 0 0"><a href="${SITE}" target="_blank" style="text-decoration:none"><img src="${ASSETS}banner.gif" width="400" height="190" alt="Iconic Events. A standard of Iconic." style="display:block;border:0;width:400px;max-width:100%;height:auto"></a></td></tr>
+</tr></table>
+</td></tr>
 </table>`;
   }
 
   function plain(v) {
-    const lines = [(v.name.trim() || "Your Name").toUpperCase(), v.title.trim(), "Iconic Events · Miami · Las Vegas", [v.phone.trim(), v.email.trim()].filter(Boolean).join(" | "), SITE];
+    const lines = [(v.name.trim() || "Your Name").toUpperCase(), v.title.trim(), [v.phone.trim(), v.email.trim()].filter(Boolean).join(" | "), SITE];
     return lines.filter(Boolean).join("\n");
   }
 

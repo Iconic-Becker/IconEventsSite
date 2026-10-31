@@ -11,23 +11,16 @@ To send someone a prefilled link, put their details in the URL:
 
 ## What is in it
 
-- The brass sigil, large, beside a Tide Pool rule. Then name in serif
-  caps, title in Tide Pool, the company line, mobile and email,
-  iconic.events.
-- Three social tiles: LinkedIn, YouTube, Facebook. Company accounts by
-  default; LinkedIn can be a personal profile per person. Instagram and
-  TikTok are left off at Iconic's request.
-- The animated banner: black wordmark on white, a brass hairline that
-  redraws while the line beneath it alternates between "A standard of
-  Iconic." and "Engraved, not printed." The first frame is the finished
-  composition, so Outlook desktop (which does not animate) shows a complete
-  banner, not a blank one.
-- Sigil and wordmark in one composition is against the brand guideline's
-  default. Iconic chose it for the signature on 31 Oct 2026.
+One block. The brass sigil beside a Tide Pool rule; name in serif caps,
+title, mobile and email, then www.iconic.events with the LinkedIn, YouTube
+and Facebook squares on the same line. Company accounts by default;
+LinkedIn can be a personal profile per person. Instagram and TikTok are
+left off, and there is no banner, both at Iconic's request (31 Oct 2026).
 
-The old signature's images sat on Google's image host, where nobody at
-Iconic controls them. These are served from the site itself, from
-`public/signature/`, so the links are stable for as long as the site is.
+The four images have to live at a URL: Gmail strips embedded image data
+from signatures, and the old signature's images sat on Google's image
+host where nobody at Iconic controls them. They are served from the site,
+from `public/signature/`, which is the least hosting that works.
 
 ## Changing it
 
@@ -40,6 +33,8 @@ Iconic controls them. These are served from the site itself, from
 - Keep the filenames. Signatures already pasted into Gmail point at them by
   name, and images are cached for a month, so a replacement under the same
   name reaches everyone within a month without anyone re-pasting.
+- Sigil and wordmark together, or a banner under the block, were tried and
+  taken out. The block stands on its own.
 
 ## Open points
 
