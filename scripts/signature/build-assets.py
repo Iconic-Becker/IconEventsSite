@@ -9,17 +9,19 @@ from the brand assets in the repo, so a rerun reproduces the files exactly:
 
 Needs Pillow only (python3 -m pip install pillow).
 
-  banner.gif   Tide Pool block, white wordmark, a brass hairline that redraws
-               while the tagline alternates between the two lines in use.
-               Frame one is the complete composition, so clients that do not
-               animate (Outlook desktop) show a finished banner.
-  ig.png, li.png, yt.png, tt.png, fb.png
+  sigil.png    The brass sigil, shown large beside the rule in the text block.
+  banner.gif   Black wordmark on white, a brass hairline that redraws while
+               the tagline alternates between the two lines in use. Frame one
+               is the complete composition, so clients that do not animate
+               (Outlook desktop) show a finished banner.
+  li.png, yt.png, fb.png
                Social tiles, Tide Pool fill with a white glyph. Drawn at 2x
                and shown at 24px. Solid fills so they read the same in light
                and dark mode mail clients.
 
-Brand rules honoured: wordmark only, never with the sigil; white on Tide Pool;
-brass as a single small flourish; sharp corners.
+Sigil and wordmark together is Iconic's own call for the signature (31 Oct
+2026), against the guideline's default. Sharp corners; brass only as the
+sigil and the hairline.
 """
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
@@ -30,13 +32,14 @@ FONTS = ROOT / "fonts"
 OUT.mkdir(parents=True, exist_ok=True)
 
 TIDEPOOL = (17, 46, 46)
+ONYX = (14, 19, 18)
 BRASS = (184, 153, 104)
 WHITE = (255, 255, 255)
 
 # ---------------------------------------------------------------- banner ----
 # Laid out in 1x pixels, rendered at SCALE for retina mail clients.
 SCALE = 2
-W, H = 400, 150
+W, H = 400, 190
 FPS = 12
 HOLD_MS = 3000
 TAGLINES = ["A STANDARD OF ICONIC.", "ENGRAVED, NOT PRINTED."]
@@ -51,17 +54,17 @@ def ease(t):
     return t * t * (3 - 2 * t)
 
 
-wordmark = Image.open(ROOT / "public" / "logos" / "IE_logo_white.png").convert("RGBA")
-wm_w = s(230)
+wordmark = Image.open(ROOT / "public" / "logos" / "IE_logo_black.png").convert("RGBA")
+wm_w = s(340)
 wm_h = int(round(wordmark.height * wm_w / wordmark.width))
 wordmark = wordmark.resize((wm_w, wm_h), Image.LANCZOS)
-WM_POS = ((s(W) - wm_w) // 2, s(16))
+WM_POS = ((s(W) - wm_w) // 2, s(6))
 
 tag_font = ImageFont.truetype(str(FONTS / "Helvetica.ttf"), s(8.5))
 TRACK = s(2.6)
-RULE_Y = s(124)
+RULE_Y = s(156)
 RULE_MAX = s(150)
-TAG_Y = s(134)
+TAG_Y = s(166)
 
 
 def tracked_width(draw, text):
@@ -77,7 +80,7 @@ def draw_tracked(draw, text, y, fill):
 
 def frame(rule_frac, tag_index, tag_alpha):
     """rule_frac: 0..1 of the hairline's length. tag_alpha: 0..1 opacity."""
-    im = Image.new("RGBA", (s(W), s(H)), TIDEPOOL + (255,))
+    im = Image.new("RGBA", (s(W), s(H)), WHITE + (255,))
     im.alpha_composite(wordmark, WM_POS)
     layer = Image.new("RGBA", im.size, (0, 0, 0, 0))
     d = ImageDraw.Draw(layer)
@@ -125,6 +128,13 @@ sheet.paste(frames[0], (0, 0))
 sheet.paste(frames[len(frames) // 2], (0, frames[0].height))
 sheet.paste(frames[3], (0, frames[0].height * 2))
 palette = sheet.quantize(colors=96, method=Image.MEDIANCUT)
+# Median cut averages the big flat areas a shade off. Pin the ground and the
+# wordmark to their exact values so the banner sits flush on a white email.
+pal = palette.getpalette()[: 96 * 3]
+for target in (WHITE, ONYX):
+    idx = min(range(96), key=lambda i: sum((pal[i * 3 + c] - target[c]) ** 2 for c in range(3)))
+    pal[idx * 3 : idx * 3 + 3] = list(target)
+palette.putpalette(pal)
 q = [f.quantize(palette=palette, dither=Image.NONE) for f in frames]
 q[0].save(
     OUT / "banner.gif",
@@ -137,6 +147,14 @@ q[0].save(
 )
 # A still of the finished composition, for anywhere a GIF is unwelcome.
 frames[0].save(OUT / "banner.png", optimize=True)
+
+# ----------------------------------------------------------------- sigil ----
+# Shown at 34x112 beside the rule; exported at 2x. Transparent, so it sits on
+# whatever the mail client paints behind it.
+sigil = Image.open(ROOT / "public" / "logos" / "IE_sigil_gold.png").convert("RGBA")
+sig_h = s(112)
+sig_w = int(round(sigil.width * sig_h / sigil.height))
+sigil.resize((sig_w, sig_h), Image.LANCZOS).save(OUT / "sigil.png", optimize=True)
 
 # ---------------------------------------------------------- social tiles ----
 TILE = 48       # output px, shown at 24
@@ -158,13 +176,6 @@ def u(v):
     return int(round(v * 2 * SS))
 
 
-# Instagram: rounded square outline, lens, flash dot
-im, d = tile()
-d.rounded_rectangle([u(6), u(6), u(18), u(18)], radius=u(3.4), outline=WHITE, width=u(1.4))
-d.ellipse([u(9.1), u(9.1), u(14.9), u(14.9)], outline=WHITE, width=u(1.4))
-d.ellipse([u(14.9), u(7.8), u(16.3), u(9.2)], fill=WHITE)
-finish(im, "ig.png")
-
 # LinkedIn: the "in" lettermark
 im, d = tile()
 f_in = ImageFont.truetype(str(FONTS / "Helvetica-Bold.ttf"), u(13))
@@ -176,16 +187,6 @@ im, d = tile()
 d.rounded_rectangle([u(4), u(7), u(20), u(17.5)], radius=u(3.2), fill=WHITE)
 d.polygon([(u(10.4), u(9.6)), (u(10.4), u(14.9)), (u(15.2), u(12.25))], fill=TIDEPOOL)
 finish(im, "yt.png")
-
-# TikTok: the note, drawn as stem, hook and a head
-im, d = tile()
-head = [u(5.6), u(13.0), u(12.2), u(19.4)]
-d.ellipse(head, fill=WHITE)
-d.ellipse([head[0] + u(2.2), head[1] + u(2.2), head[2] - u(2.2), head[3] - u(2.2)], fill=TIDEPOOL)
-d.rectangle([u(10.0), u(4.6), u(12.2), u(16.2)], fill=WHITE)
-# hook: a quarter ring sweeping from the stem top to the right
-d.arc([u(10.0), u(3.4), u(18.6), u(12.0)], start=250, end=10, fill=WHITE, width=u(2.2))
-finish(im, "tt.png")
 
 # Facebook: the "f"
 im, d = tile()

@@ -51,8 +51,6 @@
         <input id="email" name="email" placeholder="you@iconic.events" inputmode="email">
         <label for="linkedin">LinkedIn <small>your profile URL, or leave blank for the company page</small></label>
         <input id="linkedin" name="linkedin" placeholder="https://www.linkedin.com/in/…">
-        <label for="instagram">Instagram <small>your profile URL, or leave blank for @iconicbecker</small></label>
-        <input id="instagram" name="instagram" placeholder="https://www.instagram.com/…">
       </form>
 
       <h2 style="margin-top:36px">Put it in Gmail</h2>
@@ -87,15 +85,13 @@
   const SITE = "https://www.iconic.events";
   const ASSETS = SITE + "/signature/";
   const COMPANY = {
-    instagram: "https://www.instagram.com/iconicbecker",
     linkedin: "https://www.linkedin.com/company/iconiceventsusa",
     youtube: "https://www.youtube.com/@iconiceventsUSA",
-    tiktok: "https://www.tiktok.com/@iconicbecker",
     facebook: "https://www.facebook.com/iconicbecker",
   };
 
   const $ = (id) => document.getElementById(id);
-  const fields = ["name", "title", "phone", "email", "linkedin", "instagram"];
+  const fields = ["name", "title", "phone", "email", "linkedin"];
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
   function telHref(display) {
@@ -124,21 +120,20 @@
     contact.push(`<a href="mailto:${esc(email)}" style="color:#0E1312;text-decoration:none">${esc(email)}</a>`);
 
     return `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;${text}color:#0E1312;width:400px;max-width:100%">
-<tr><td style="padding:0 0 0 16px;border-left:3px solid #112E2E">
+<tr><td style="padding:0 14px 0 0;vertical-align:middle;width:34px"><img src="${ASSETS}sigil.png" width="34" height="112" alt="" style="display:block;border:0;width:34px;height:112px"></td>
+<td style="padding:4px 0 4px 16px;border-left:3px solid #112E2E;vertical-align:middle">
 <div style="${text}font-family:Georgia,'Times New Roman',serif;font-size:19px;line-height:24px;font-weight:bold;letter-spacing:2px;color:#0E1312">${esc(name)}</div>
 <div style="${text}font-size:12px;line-height:18px;color:#112E2E;padding-top:2px">${esc(title)}</div>
 <div style="${text}font-size:10px;line-height:16px;letter-spacing:2px;color:#888888;padding-top:10px">ICONIC EVENTS &nbsp;&middot;&nbsp; MIAMI &nbsp;&middot;&nbsp; LAS VEGAS</div>
 <div style="${text}font-size:12px;line-height:18px;padding-top:8px">${contact.join(`<span style="color:#888888">&nbsp;&nbsp;|&nbsp;&nbsp;</span>`)}</div>
 <div style="${text}font-size:12px;line-height:18px"><a href="${SITE}" target="_blank" style="color:#112E2E;text-decoration:none;font-weight:bold">iconic.events</a></div>
 </td></tr>
-<tr><td style="padding:14px 0 0 19px"><table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse"><tr>
-${icon(cleanUrl(v.instagram, COMPANY.instagram), "ig.png", "Instagram")}
+<tr><td colspan="2" style="padding:14px 0 0 0"><table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse"><tr>
 ${icon(cleanUrl(v.linkedin, COMPANY.linkedin), "li.png", "LinkedIn")}
 ${icon(COMPANY.youtube, "yt.png", "YouTube")}
-${icon(COMPANY.tiktok, "tt.png", "TikTok")}
 ${icon(COMPANY.facebook, "fb.png", "Facebook")}
 </tr></table></td></tr>
-<tr><td style="padding:16px 0 0 0"><a href="${SITE}" target="_blank" style="text-decoration:none"><img src="${ASSETS}banner.gif" width="400" height="150" alt="Iconic Events. A standard of Iconic." style="display:block;border:0;width:400px;max-width:100%;height:auto"></a></td></tr>
+<tr><td colspan="2" style="padding:10px 0 0 0"><a href="${SITE}" target="_blank" style="text-decoration:none"><img src="${ASSETS}banner.gif" width="400" height="190" alt="Iconic Events. A standard of Iconic." style="display:block;border:0;width:400px;max-width:100%;height:auto"></a></td></tr>
 </table>`;
   }
 

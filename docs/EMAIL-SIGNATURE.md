@@ -11,16 +11,19 @@ To send someone a prefilled link, put their details in the URL:
 
 ## What is in it
 
-- Name in serif caps, title in Tide Pool, the company line, mobile and
-  email, iconic.events. A Tide Pool rule down the left.
-- Five social tiles: Instagram, LinkedIn, YouTube, TikTok, Facebook. The
-  company accounts by default; Instagram and LinkedIn can be a personal
-  profile per person.
-- The animated banner: white wordmark on Tide Pool, a brass hairline that
+- The brass sigil, large, beside a Tide Pool rule. Then name in serif
+  caps, title in Tide Pool, the company line, mobile and email,
+  iconic.events.
+- Three social tiles: LinkedIn, YouTube, Facebook. Company accounts by
+  default; LinkedIn can be a personal profile per person. Instagram and
+  TikTok are left off at Iconic's request.
+- The animated banner: black wordmark on white, a brass hairline that
   redraws while the line beneath it alternates between "A standard of
   Iconic." and "Engraved, not printed." The first frame is the finished
   composition, so Outlook desktop (which does not animate) shows a complete
   banner, not a blank one.
+- Sigil and wordmark in one composition is against the brand guideline's
+  default. Iconic chose it for the signature on 31 Oct 2026.
 
 The old signature's images sat on Google's image host, where nobody at
 Iconic controls them. These are served from the site itself, from
