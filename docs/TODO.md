@@ -48,6 +48,7 @@ Each one affects every case study, so settling them early avoids rework across 3
 | 15 | **`klevr.events` redirect** | DNS and host config, not code. **Leave the MX records alone**: that domain carries Iconic's email. Redirect the web traffic only. |
 | 16 | **GBP booking URL** | `https://www.iconic.events/#contact`. The form is live and delivering, so this is unblocked. Status unconfirmed. |
 | 17 | **GBP services and products sheet** | I can draft it from the existing services copy so the GBP entries match the site language. |
+| 18 | **Roll out the new email signature** | Everyone makes theirs at `/signature/` and pastes it into Gmail. Steps and open points in `docs/EMAIL-SIGNATURE.md`. Confirm the Facebook account (site says `iconicbecker`, old signature said `klevrevents`). |
 
 ## Flagged for the SEO team
 

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Email signature · Iconic Events</title>
+<link rel="icon" href="/favicon-32.png">
+<style>
+  :root { --onyx:#0E1312; --tide:#112E2E; --tint:#DDE5E4; --brass:#B89968; --bone:#F4F0E8; --grey:#888888; --border:#D0D0D0; }
+  * { box-sizing:border-box; }
+  html, body { margin:0; background:var(--bone); color:var(--onyx); font:15px/1.55 Helvetica, Arial, sans-serif; }
+  main { max-width:1040px; margin:0 auto; padding:40px 16px 80px; }
+  h1 { font:700 30px/1.15 Georgia, "Times New Roman", serif; letter-spacing:.5px; margin:0 0 6px; }
+  .lede { color:var(--tide); margin:0 0 32px; max-width:60ch; }
+  .grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:40px; }
+  @media (max-width:760px) { .grid { grid-template-columns:minmax(0,1fr); gap:28px; } main { padding-top:28px; } }
+  h2 { font:700 12px/1 Helvetica, Arial, sans-serif; letter-spacing:2px; text-transform:uppercase; color:var(--tide); margin:0 0 14px; padding-bottom:8px; border-bottom:2px solid var(--tide); }
+  label { display:block; font-size:12px; letter-spacing:.3px; color:var(--tide); font-weight:700; margin:14px 0 4px; }
+  label small { font-weight:400; color:var(--grey); letter-spacing:0; }
+  input { width:100%; border:1px solid var(--border); background:#fff; padding:10px 12px; font:15px Helvetica, Arial, sans-serif; color:var(--onyx); border-radius:0; }
+  input:focus { outline:2px solid var(--tide); outline-offset:-1px; }
+  .preview { background:#fff; border:1px solid var(--border); padding:24px; overflow-x:auto; }
+  .actions { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 8px; }
+  button { font:700 13px/1 Helvetica, Arial, sans-serif; letter-spacing:1px; text-transform:uppercase; padding:14px 18px; border:2px solid var(--tide); background:var(--tide); color:#fff; cursor:pointer; border-radius:0; }
+  button.ghost { background:transparent; color:var(--tide); }
+  button:focus-visible { outline:2px solid var(--brass); outline-offset:2px; }
+  .status { min-height:22px; font-size:13px; color:var(--tide); }
+  ol { padding-left:20px; margin:0; } li { margin:6px 0; }
+  details { margin-top:28px; } summary { cursor:pointer; font-weight:700; color:var(--tide); }
+  textarea { width:100%; height:220px; margin-top:10px; font:12px/1.4 Menlo, Consolas, monospace; border:1px solid var(--border); padding:10px; border-radius:0; }
+  .note { font-size:13px; color:var(--grey); margin-top:24px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Email signature</h1>
+  <p class="lede">Fill in your details, copy, paste into Gmail. Every signature in the company comes from this page, so they all match.</p>
+
+  <div class="grid">
+    <section>
+      <h2>Your details</h2>
+      <form id="f" autocomplete="off">
+        <label for="name">Full name</label>
+        <input id="name" name="name" placeholder="Chrissy Belgin">
+        <label for="title">Title</label>
+        <input id="title" name="title" placeholder="Chief Experience Officer">
+        <label for="phone">Mobile <small>as you want it shown</small></label>
+        <input id="phone" name="phone" placeholder="(727) 420-0359" inputmode="tel">
+        <label for="email">Email</label>
+        <input id="email" name="email" placeholder="you@iconic.events" inputmode="email">
+        <label for="linkedin">LinkedIn <small>your profile URL, or leave blank for the company page</small></label>
+        <input id="linkedin" name="linkedin" placeholder="https://www.linkedin.com/in/…">
+        <label for="instagram">Instagram <small>your profile URL, or leave blank for @iconicbecker</small></label>
+        <input id="instagram" name="instagram" placeholder="https://www.instagram.com/…">
+      </form>
+
+      <h2 style="margin-top:36px">Put it in Gmail</h2>
+      <ol>
+        <li>Press <b>Copy signature</b>.</li>
+        <li>In Gmail: the gear, <b>See all settings</b>, scroll to <b>Signature</b>, <b>Create new</b>, name it <i>Iconic</i>.</li>
+        <li>Click into the box and paste. The logo and icons appear after a moment.</li>
+        <li>Under <b>Signature defaults</b> pick <i>Iconic</i> for new emails and replies. Keep <i>Insert signature before quoted text</i> ticked.</li>
+        <li>Scroll down, <b>Save Changes</b>. Send yourself a test.</li>
+      </ol>
+      <p class="note">On the Gmail phone app, signatures are per device: set it once on desktop, and the app uses it when “Mobile signature” is off. Apple Mail and Outlook users: use <b>Copy HTML</b> below and paste into the signature editor, or ask for a hand.</p>
+    </section>
+
+    <section>
+      <h2>Preview</h2>
+      <div class="preview" id="preview"></div>
+      <div class="actions">
+        <button type="button" id="copy">Copy signature</button>
+        <button type="button" id="copyHtml" class="ghost">Copy HTML</button>
+      </div>
+      <div class="status" id="status" aria-live="polite"></div>
+      <details>
+        <summary>HTML source</summary>
+        <textarea id="src" readonly spellcheck="false"></textarea>
+      </details>
+    </section>
+  </div>
+</main>
+
+<script>
+(() => {
+  const SITE = "https://www.iconic.events";
+  const ASSETS = SITE + "/signature/";
+  const COMPANY = {
+    instagram: "https://www.instagram.com/iconicbecker",
+    linkedin: "https://www.linkedin.com/company/iconiceventsusa",
+    youtube: "https://www.youtube.com/@iconiceventsUSA",
+    tiktok: "https://www.tiktok.com/@iconicbecker",
+    facebook: "https://www.facebook.com/iconicbecker",
+  };
+
+  const $ = (id) => document.getElementById(id);
+  const fields = ["name", "title", "phone", "email", "linkedin", "instagram"];
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  function telHref(display) {
+    const digits = display.replace(/\D/g, "");
+    if (!digits) return "";
+    return "tel:+" + (digits.length === 10 ? "1" + digits : digits);
+  }
+
+  function cleanUrl(v, fallback) {
+    v = v.trim();
+    if (!v) return fallback;
+    if (!/^https?:\/\//i.test(v)) v = "https://" + v;
+    return v;
+  }
+
+  function build(v) {
+    const name = (v.name.trim() || "Your Name").toUpperCase();
+    const title = v.title.trim() || "Title";
+    const phone = v.phone.trim();
+    const email = v.email.trim() || "you@iconic.events";
+    const text = "font-family:Helvetica,Arial,sans-serif;";
+    const icon = (href, file, alt) =>
+      `<td style="padding:0 8px 0 0"><a href="${esc(href)}" target="_blank" style="text-decoration:none"><img src="${ASSETS}${file}" width="24" height="24" alt="${alt}" style="display:block;border:0;width:24px;height:24px"></a></td>`;
+    const contact = [];
+    if (phone) contact.push(`<a href="${esc(telHref(phone))}" style="color:#0E1312;text-decoration:none">${esc(phone)}</a>`);
+    contact.push(`<a href="mailto:${esc(email)}" style="color:#0E1312;text-decoration:none">${esc(email)}</a>`);
+
+    return `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;${text}color:#0E1312;width:400px;max-width:100%">
+<tr><td style="padding:0 0 0 16px;border-left:3px solid #112E2E">
+<div style="${text}font-family:Georgia,'Times New Roman',serif;font-size:19px;line-height:24px;font-weight:bold;letter-spacing:2px;color:#0E1312">${esc(name)}</div>
+<div style="${text}font-size:12px;line-height:18px;color:#112E2E;padding-top:2px">${esc(title)}</div>
+<div style="${text}font-size:10px;line-height:16px;letter-spacing:2px;color:#888888;padding-top:10px">ICONIC EVENTS &nbsp;&middot;&nbsp; MIAMI &nbsp;&middot;&nbsp; LAS VEGAS</div>
+<div style="${text}font-size:12px;line-height:18px;padding-top:8px">${contact.join(`<span style="color:#888888">&nbsp;&nbsp;|&nbsp;&nbsp;</span>`)}</div>
+<div style="${text}font-size:12px;line-height:18px"><a href="${SITE}" target="_blank" style="color:#112E2E;text-decoration:none;font-weight:bold">iconic.events</a></div>
+</td></tr>
+<tr><td style="padding:14px 0 0 19px"><table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse"><tr>
+${icon(cleanUrl(v.instagram, COMPANY.instagram), "ig.png", "Instagram")}
+${icon(cleanUrl(v.linkedin, COMPANY.linkedin), "li.png", "LinkedIn")}
+${icon(COMPANY.youtube, "yt.png", "YouTube")}
+${icon(COMPANY.tiktok, "tt.png", "TikTok")}
+${icon(COMPANY.facebook, "fb.png", "Facebook")}
+</tr></table></td></tr>
+<tr><td style="padding:16px 0 0 0"><a href="${SITE}" target="_blank" style="text-decoration:none"><img src="${ASSETS}banner.gif" width="400" height="150" alt="Iconic Events. A standard of Iconic." style="display:block;border:0;width:400px;max-width:100%;height:auto"></a></td></tr>
+</table>`;
+  }
+
+  function plain(v) {
+    const lines = [(v.name.trim() || "Your Name").toUpperCase(), v.title.trim(), "Iconic Events · Miami · Las Vegas", [v.phone.trim(), v.email.trim()].filter(Boolean).join(" | "), SITE];
+    return lines.filter(Boolean).join("\n");
+  }
+
+  function values() {
+    const v = {};
+    for (const k of fields) v[k] = $(k).value;
+    return v;
+  }
+
+  let html = "";
+  function render() {
+    const v = values();
+    html = build(v);
+    $("preview").innerHTML = html;
+    $("src").value = html;
+    try { localStorage.setItem("iconic-signature", JSON.stringify(v)); } catch (_) {}
+  }
+
+  function say(msg) {
+    $("status").textContent = msg;
+    clearTimeout(say.t);
+    say.t = setTimeout(() => { $("status").textContent = ""; }, 4000);
+  }
+
+  async function copyRich() {
+    try {
+      if (navigator.clipboard && window.ClipboardItem) {
+        await navigator.clipboard.write([new ClipboardItem({
+          "text/html": new Blob([html], { type: "text/html" }),
+          "text/plain": new Blob([plain(values())], { type: "text/plain" }),
+        })]);
+        return true;
+      }
+    } catch (_) {}
+    // Older browsers: select the rendered preview and copy that.
+    const range = document.createRange();
+    range.selectNodeContents($("preview"));
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    const ok = document.execCommand("copy");
+    sel.removeAllRanges();
+    return ok;
+  }
+
+  $("copy").addEventListener("click", async () => {
+    say((await copyRich()) ? "Copied. Now paste it into Gmail’s signature box." : "Copy failed. Select the preview and copy it by hand.");
+  });
+  $("copyHtml").addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(html); say("HTML copied."); }
+    catch (_) { $("src").select(); document.execCommand("copy"); say("HTML copied."); }
+  });
+
+  // Prefill: a link with ?name=…&title=… wins, then whatever this browser last typed.
+  const q = new URLSearchParams(location.search);
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem("iconic-signature") || "{}"); } catch (_) {}
+  for (const k of fields) {
+    $(k).value = q.get(k) ?? saved[k] ?? "";
+    $(k).addEventListener("input", render);
+  }
+  render();
+})();
+</script>
+</body>
+</html>
