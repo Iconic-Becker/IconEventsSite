@@ -11,7 +11,7 @@ To send someone a prefilled link, put their details in the URL:
 
 ## What is in it
 
-One block. The brass sigil beside a Tide Pool rule; name in serif caps,
+One block. The sigil in Tide Pool beside a Tide Pool rule; name in serif caps,
 title, mobile and email, then www.iconic.events with the LinkedIn, YouTube
 and Facebook squares on the same line. Company accounts by default;
 LinkedIn can be a personal profile per person. Instagram and TikTok are

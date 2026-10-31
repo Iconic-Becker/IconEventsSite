@@ -11,7 +11,7 @@ drawn from the brand assets in the repo, so a rerun reproduces the files:
 
 Needs Pillow only (python3 -m pip install pillow).
 
-  sigil.png             The brass sigil, shown beside the rule. 2x.
+  sigil.png             The sigil in Tide Pool, shown beside the rule. 2x.
   li.png, yt.png, fb.png
                         Social tiles, Tide Pool fill with a white glyph,
                         drawn at 2x and shown at 20px. Solid fills so they
@@ -26,12 +26,18 @@ FONTS = ROOT / "fonts"
 OUT.mkdir(parents=True, exist_ok=True)
 
 TIDEPOOL = (17, 46, 46)
+ONYX = (14, 19, 18)
 WHITE = (255, 255, 255)
 
 # ----------------------------------------------------------------- sigil ----
 # Shown at 30x100 beside the rule; exported at 2x. Transparent, so it sits on
-# whatever the mail client paints behind it.
-sigil = Image.open(ROOT / "public" / "logos" / "IE_sigil_gold.png").convert("RGBA")
+# whatever the mail client paints behind it. Tide Pool to match the rule, at
+# Iconic's choice over brass (31 Oct 2026); set SIGIL_COLOUR to ONYX for black.
+SIGIL_COLOUR = TIDEPOOL
+sigil = Image.open(ROOT / "public" / "logos" / "IE_sigil_black.png").convert("RGBA")
+alpha = sigil.getchannel("A")
+sigil = Image.new("RGBA", sigil.size, SIGIL_COLOUR + (0,))
+sigil.putalpha(alpha)
 sig_h = 200
 sig_w = int(round(sigil.width * sig_h / sigil.height))
 sigil.resize((sig_w, sig_h), Image.LANCZOS).save(OUT / "sigil.png", optimize=True)
