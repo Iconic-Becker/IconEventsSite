@@ -72,7 +72,7 @@ export const SERVICE_PAGES = [
     slug: "live-event-production",
     kind: "service",
     zone: "g3",
-    draft: true,
+    draft: false,
     plate: "/images/gallery/scaling-with-systems-live-2022/03.webp",
     title: "Live event production",
     seoTitle: "Live Event Production Company | Iconic Events, Miami and Las Vegas",
@@ -164,7 +164,7 @@ export const SERVICE_PAGES = [
     slug: "audio-visual-event-production",
     kind: "service",
     zone: "g3",
-    draft: true,
+    draft: false,
     plate: "/images/gallery/bad-after-dark/03.webp",
     title: "Audio visual event production",
     seoTitle: "Audio Visual Event Production | Iconic Events, Miami and Las Vegas",
@@ -256,7 +256,7 @@ export const SERVICE_PAGES = [
     slug: "event-video-production",
     kind: "service",
     zone: "g4",
-    draft: true,
+    draft: false,
     plate: "/images/gallery/bulletproof-financial-accelerator/08.webp",
     title: "Event video production",
     seoTitle: "Event Video Production and Content Capture | Iconic Events",
@@ -345,10 +345,11 @@ export const SERVICE_PAGES = [
   {
     slug: "event-production-miami",
     kind: "city",
+    zone: "g3",
     city: "Miami",
     region: "FL",
     areaServed: ["Miami", "Miami Beach", "Fort Lauderdale", "Hollywood, FL", "South Florida"],
-    draft: true,
+    draft: false,
     plate: "/images/gallery/pmuw-2023/15.webp",
     title: "Event production in Miami",
     seoTitle: "Event Production Company in Miami | Iconic Events",
@@ -443,9 +444,11 @@ export const SERVICE_PAGES = [
 ]
 
 export const SERVICE_PAGE_BY_SLUG = Object.fromEntries(SERVICE_PAGES.map((p) => [p.slug, p]))
-export const SERVICE_PAGE_BY_ZONE = Object.fromEntries(
-  SERVICE_PAGES.filter((p) => p.kind === "service").map((p) => [p.zone, p]).reverse()
-)
+export const SERVICE_PAGE_BY_ZONE = SERVICE_PAGES.reduce((byZone, page) => {
+  byZone[page.zone] ??= []
+  byZone[page.zone].push(page)
+  return byZone
+}, {})
 
 export function pagePath(page) {
   return page.kind === "city" ? `/${page.slug}` : `/services/${page.slug}`
