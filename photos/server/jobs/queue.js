@@ -30,7 +30,9 @@ async function claim() {
     where id = (
       select id from jobs
       where status = 'queued' and run_after <= now()
-      order by id
+      -- Face scanning of the back catalogue is bulk work: it waits behind
+      -- anything a person is watching for (processing, zips, exports).
+      order by (type = 'detect_faces'), id
       for update skip locked
       limit 1
     )

@@ -84,29 +84,39 @@ function GalleryView({ albumSlug }) {
   const need = favoritesView ? albums.map((a) => a.slug).filter((s) => s !== "highlights") : current ? [current.slug] : []
   // The first page paints at once; later pages stream in behind it so a
   // 3,000 photo album is scrollable within a second on a phone.
+  // A load that is under way keeps going when the guest moves to another
+  // album or to favorites: its pages are still right for that album, and
+  // abandoning it would leave the cache saying "loading" for good.
+  const inflight = useRef(new Set())
+  const mounted = useRef(true)
   useEffect(() => {
-    let cancelled = false
+    mounted.current = true
+    return () => {
+      mounted.current = false
+    }
+  }, [])
+  useEffect(() => {
     for (const s of need) {
-      if (cache[s]) continue
+      if (cache[s] || inflight.current.has(s)) continue
+      inflight.current.add(s)
       setCache((c) => ({ ...c, [s]: { loading: true, media: [] } }))
       ;(async () => {
         let offset = 0
         let first = true
         try {
-          while (offset !== null && !cancelled) {
+          while (offset !== null && mounted.current) {
             const d = await get(`/api/g/${slug}/albums/${s}?offset=${offset}`)
-            if (cancelled) return
+            if (!mounted.current) return
             setCache((c) => ({ ...c, [s]: { media: first ? d.media : [...(c[s]?.media || []), ...d.media], total: d.total, loading: false, more: d.nextOffset !== null } }))
             first = false
             offset = d.nextOffset
           }
         } catch {
-          if (!cancelled) setCache((c) => ({ ...c, [s]: { media: c[s]?.media || [], loading: false, more: false } }))
+          if (mounted.current) setCache((c) => ({ ...c, [s]: { media: c[s]?.media || [], loading: false, more: false } }))
+        } finally {
+          inflight.current.delete(s)
         }
       })()
-    }
-    return () => {
-      cancelled = true
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [need.join("|"), slug])

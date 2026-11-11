@@ -81,7 +81,7 @@ const shown = await page.locator(tile).count()
 assert(shown === confident.length, `view shows ${shown}, expected ${confident.length}`)
 await page.screenshot({ path: `${out}/people-view.png` })
 // Hide the first one from the UI, confirm it leaves the list.
-await page.click(`${tile} >> nth=0`)
+await page.click(`${tile} >> nth=0 >> [aria-label="Select"]`)
 await page.click('button:has-text("Not Verify Person")')
 await page.waitForFunction((n) => document.querySelectorAll("div.aspect-square.cursor-pointer").length === n, confident.length - 1)
 assert(!errors.length, `console errors: ${errors.join(" | ")}`)

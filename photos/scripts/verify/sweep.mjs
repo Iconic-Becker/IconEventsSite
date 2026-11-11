@@ -29,6 +29,7 @@ async function step(name, fn) {
   } catch (e) {
     results.push({ name, ok: false, ms: Date.now() - t, detail: e.message })
     console.log(`FAIL  ${String(Date.now() - t).padStart(5)}ms  ${name}  ${e.message.split("\n")[0]}`)
+    if (currentErrs?.length) console.log(`      console: ${currentErrs.slice(0, 3).join(" | ").slice(0, 600)}`)
     try {
       const file = `${shots}/fail-${results.length}.png`
       await currentPage?.screenshot({ path: file })
@@ -108,8 +109,9 @@ for (const w of only === "admin" ? [] : [390, 1440]) {
       const arrows = await page.$$('button[aria-label^="Scroll albums"]')
       assert(arrows.length === 0 || arrows.length <= 2, "arrow buttons")
     }
-    const all = await page.$('button[aria-label="All albums"]')
-    assert(all, "no All albums button")
+    // A locator, not a handle: the page re-renders as photos arrive in pages.
+    const all = page.locator('button[aria-label="All albums"]')
+    assert(await all.count(), "no All albums button")
     await all.click()
     await page.waitForSelector('[role="dialog"] li a')
     await page.keyboard.press("Escape")
@@ -126,7 +128,7 @@ for (const w of only === "admin" ? [] : [390, 1440]) {
     return "chip, sheet open/close via Escape, X, item"
   })
   await step(`guest ${tag}: heart gate cancel, bad email, good email, toggle`, async () => {
-    const heart = (await page.$$('.tile [aria-label="Add to favorites"]'))[0]
+    const heart = page.locator('.tile [aria-label="Add to favorites"]').first()
     await heart.click()
     await page.waitForSelector("text=Save your favorites")
     await page.click('[role="dialog"] button[aria-label="Close"]')
@@ -373,17 +375,29 @@ if (only !== "guest") {
     await page.click('button:has-text("Unstar")')
     await sleep(600)
     const tiles = await page.$$(".aspect-square.cursor-pointer")
+    // Clicking the photo previews it; arrows move; Esc closes; the tick box selects.
     await tiles[0].click()
+    await page.waitForSelector('[role="dialog"][aria-label="Preview"] img')
+    await page.keyboard.press("ArrowRight")
+    await page.waitForSelector('[role="dialog"][aria-label="Preview"] >> text=2 of')
+    await page.keyboard.press(" ")
+    await page.waitForSelector('[role="dialog"][aria-label="Preview"] >> text=Selected')
+    await page.keyboard.press("Escape")
+    await page.waitForSelector('[role="dialog"][aria-label="Preview"]', { state: "detached" })
+    await page.waitForSelector("text=1 selected")
+    await page.click('button:has-text("Clear")')
+    const tick = (i) => page.click(`.aspect-square.cursor-pointer >> nth=${i} >> [aria-label="Select"]`)
+    await tick(0)
     await page.click('button:has-text("Gallery cover")')
     await page.waitForSelector("text=Cover")
-    await tiles[1].click()
+    await tick(1)
     await page.click('button:has-text("Album cover")')
     await page.waitForSelector("text=Album cover")
-    await tiles[2].click()
+    await tick(2)
     await page.click('button:has-text("Move")')
     await page.click('[role="dialog"] button:has-text("Sponsors")')
     await sleep(600)
-    await (await page.$$(".aspect-square.cursor-pointer"))[3].click()
+    await tick(3)
     await page.click('button:has-text("Delete")')
     await page.waitForSelector("text=/Trash \\(1\\)/")
     await page.click("summary:has-text('Trash')")
@@ -481,8 +495,12 @@ if (only !== "guest") {
     await page.click('button:has-text("Delete gallery")')
     await page.waitForURL(/\/admin$/)
     await page.click("summary:has-text('Trash')")
-    await page.click('button:has-text("Restore")')
-    await page.waitForFunction(() => !document.body.innerText.includes("Trash ("))
+    // Other test galleries may sit in the trash too; restore this one and
+    // wait for it to leave the trash list.
+    const inTrash = () => document.querySelectorAll("details li").length
+    const before = await page.evaluate(inTrash)
+    await page.click(`details li:has-text("Sweep Gallery") >> button:has-text("Restore")`)
+    await page.waitForFunction((n) => document.querySelectorAll("details li").length < n, before)
     const csv = await admin.get(`/api/admin/galleries/${gid}/favorites.csv`)
     assert(csv.ok(), "favorites csv")
     noErr(errs, "settings")

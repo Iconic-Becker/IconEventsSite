@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react"
-import { Star, Trash2, FolderInput, Image as ImageIcon, RefreshCw, ArrowUp, ArrowDown, Pencil, Check, X, Plus, Clock, AlertTriangle, Loader2, Play, GripVertical, Lock, Unlock, Globe, ExternalLink, UserRound, UserRoundX, Undo2 } from "lucide-react"
+import { Star, Trash2, FolderInput, Image as ImageIcon, RefreshCw, ArrowUp, ArrowDown, Pencil, Check, X, Plus, Clock, AlertTriangle, Loader2, Play, GripVertical, Lock, Unlock, Globe, ExternalLink, UserRound, UserRoundX, Undo2, ChevronLeft, ChevronRight, Square, CheckSquare } from "lucide-react"
+import { createPortal } from "react-dom"
 import { get, patch, post, del } from "../shared/api.js"
 import { Field, Sheet, Notice } from "../shared/ui.jsx"
 import { formatBytes, formatDuration, plural } from "../shared/format.js"
@@ -50,6 +51,8 @@ export function PhotosTab() {
     if (gone) setAlbumId(albums[0]?.id)
   }, [albums, albumId, sentMedia.length, people, person, personId])
   const [selected, setSelected] = useState(() => new Set())
+  // Full-screen preview of one photo; arrows move through the current list.
+  const [previewId, setPreviewId] = useState(null)
   const [moveOpen, setMoveOpen] = useState(false)
   const [moveNew, setMoveNew] = useState("")
   const [siteOpen, setSiteOpen] = useState(false)
@@ -116,6 +119,18 @@ export function PhotosTab() {
   const clear = () => setSelected(new Set())
   useEffect(() => {
     const onKey = (e) => {
+      if (previewId != null) {
+        const ids = (order || media).map((m) => m.id)
+        const i = ids.indexOf(previewId)
+        if (e.key === "Escape") setPreviewId(null)
+        if (e.key === "ArrowRight" && i >= 0 && i < ids.length - 1) setPreviewId(ids[i + 1])
+        if (e.key === "ArrowLeft" && i > 0) setPreviewId(ids[i - 1])
+        if (e.key === " " && i >= 0 && !/input|textarea|button/i.test(e.target.tagName)) {
+          e.preventDefault()
+          toggle(previewId)
+        }
+        return
+      }
       if (e.key === "Escape") clear()
       if ((e.metaKey || e.ctrlKey) && e.key === "a" && !/input|textarea/i.test(e.target.tagName)) {
         e.preventDefault()
@@ -266,7 +281,7 @@ export function PhotosTab() {
                 ? `${plural(media.length, "photo")} sent to iconic.events, newest first. Only you see this list; each photo stays in its own album.`
                 : person
                   ? <PersonSummary person={person} scan={people.scan} showPossible={showPossible} setShowPossible={setShowPossible} showHidden={showHidden} setShowHidden={setShowHidden} />
-                  : `${plural(media.length, "item")} · click to select, shift-click for a range, drag to reorder${dragIds?.length > 1 ? ` · moving ${dragIds.length}` : ""}`}
+                  : `${plural(media.length, "item")} · click a photo to preview, tick the box to select, shift-click boxes for a range, drag to reorder${dragIds?.length > 1 ? ` · moving ${dragIds.length}` : ""}`}
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -312,6 +327,7 @@ export function PhotosTab() {
               m={m}
               selected={selected.has(m.id)}
               onToggle={(e) => toggle(m.id, e)}
+              onOpen={() => setPreviewId(m.id)}
               isCover={gallery.cover?.id === m.id}
               isAlbumCover={album?.coverMediaId === m.id}
               draggable={!isView}
@@ -339,6 +355,17 @@ export function PhotosTab() {
           </details>
         )}
       </section>
+
+      {previewId != null && (
+        <Preview
+          list={list}
+          id={previewId}
+          selected={selected.has(previewId)}
+          onToggle={() => toggle(previewId)}
+          onMove={(id) => setPreviewId(id)}
+          onClose={() => setPreviewId(null)}
+        />
+      )}
 
       <SendToWebsite open={siteOpen} onClose={() => setSiteOpen(false)} gallery={gallery} ids={(order || media).filter((m) => selected.has(m.id)).map((m) => m.id)} onSent={clear} />
 
@@ -544,21 +571,88 @@ function AlbumRow({ album, count, active, onSelect, first, last, albums }) {
   )
 }
 
-export function MediaTile({ m, selected, onToggle, isCover, isAlbumCover, dragging, dragCount = 0, ...drag }) {
+export function MediaTile({ m, selected, onToggle, onOpen, isCover, isAlbumCover, dragging, dragCount = 0, ...drag }) {
   const busy = ["uploading", "uploaded", "processing"].includes(m.status)
+  const canOpen = Boolean(m.thumb && onOpen)
   return (
-    <div {...drag} className={`relative aspect-square cursor-pointer overflow-hidden select-none ${selected ? "ring-2 ring-[var(--accent)]" : ""} ${dragging ? "opacity-40" : ""}`} style={{ background: "var(--bg-3)" }} onClick={(e) => onToggle(e)} title={`${m.filename}${m.sizeBytes ? ` · ${formatBytes(m.sizeBytes)}` : ""}${m.websitePath ? `\nOn the website: ${m.websitePath}` : ""}${m.error ? `\n${m.error}` : ""}`}>
+    <div
+      {...drag}
+      className={`group relative aspect-square cursor-pointer overflow-hidden select-none ${selected ? "ring-2 ring-[var(--accent)]" : ""} ${dragging ? "opacity-40" : ""}`}
+      style={{ background: "var(--bg-3)" }}
+      onClick={(e) => (canOpen ? onOpen(e) : onToggle(e))}
+      title={`${m.filename}${m.sizeBytes ? ` · ${formatBytes(m.sizeBytes)}` : ""}${m.websitePath ? `\nOn the website: ${m.websitePath}` : ""}${m.error ? `\n${m.error}` : ""}${canOpen ? "\nClick to preview, tick the box to select" : ""}`}
+    >
       {dragCount > 0 && <span className="absolute top-1 left-1 z-10 bg-[#B89968] px-1.5 text-xs text-[#0E1312]">{dragCount}</span>}
       {m.thumb ? <img src={m.thumb} alt="" className="h-full w-full object-cover" loading="lazy" draggable={false} /> : <div className="flex h-full flex-col items-center justify-center gap-1 px-1 text-center text-[10px] u-muted">{m.status === "uploading" ? <><Clock size={16} /> waiting for upload</> : busy ? <><Loader2 className="animate-spin" size={16} /> processing</> : m.filename}</div>}
       {m.kind === "video" && <span className="absolute bottom-1 left-1 flex items-center gap-1 bg-black/60 px-1.5 py-0.5 text-[10px] text-white"><Play size={10} fill="currentColor" /> {formatDuration(m.duration)}</span>}
       {m.highlighted && <Star size={14} className="absolute top-1 left-1 text-[#B89968] drop-shadow" fill="#B89968" />}
+      {isCover && <span className="absolute right-1 bottom-1 bg-[#B89968] px-1 text-[9px] uppercase text-[#0E1312]">Cover</span>}
+      {isAlbumCover && !isCover && <span className="absolute right-1 bottom-1 bg-white/90 px-1 text-[9px] uppercase text-[#0E1312]">Album cover</span>}
+      {(m.status === "failed" || m.status === "attention") && <span className={`absolute top-1 left-1 flex items-center gap-1 px-1 text-[9px] uppercase text-white ${m.status === "failed" ? "bg-red-700" : "bg-amber-600"}`}><AlertTriangle size={10} /> {m.status === "failed" ? "Failed" : "Check"}</span>}
       {m.websiteSentAt && m.kind !== "video" && <span className="absolute bottom-1 left-1 flex items-center gap-1 bg-black/60 px-1.5 py-0.5 text-[10px] text-white" title="On the website"><Globe size={10} /> Site</span>}
       {m.match && !m.match.confident && !m.match.rejected && <span className="absolute top-1 left-1 bg-amber-500 px-1.5 py-0.5 text-[10px] uppercase text-[#0E1312]" title={`Possible match (${Math.round(m.match.similarity * 100)})`}>Maybe</span>}
-      {isCover && <span className="absolute top-1 right-1 bg-[#B89968] px-1 text-[9px] uppercase text-[#0E1312]">Cover</span>}
-      {isAlbumCover && !isCover && <span className="absolute top-1 right-1 bg-white/90 px-1 text-[9px] uppercase text-[#0E1312]">Album cover</span>}
-      {(m.status === "failed" || m.status === "attention") && <span className={`absolute right-1 bottom-1 flex items-center gap-1 px-1 text-[9px] uppercase text-white ${m.status === "failed" ? "bg-red-700" : "bg-amber-600"}`}><AlertTriangle size={10} /> {m.status === "failed" ? "Failed" : "Check"}</span>}
-      <span className={`absolute bottom-1 right-1 h-4 w-4 border ${selected ? "border-[var(--accent)] bg-[var(--accent)]" : "border-white/80 bg-black/30"}`} />
-      {m.thumb && <GripVertical size={14} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 drop-shadow transition-opacity hover:opacity-70" />}
+      {/* The tick box is the only thing that selects. A generous hit area
+          so it is easy on a trackpad; shift-click picks a range. */}
+      <button
+        type="button"
+        role="checkbox"
+        aria-checked={selected}
+        aria-label="Select"
+        className="absolute top-0 right-0 z-10 flex h-8 w-8 items-center justify-center"
+        onClick={(e) => {
+          e.stopPropagation()
+          onToggle(e)
+        }}
+      >
+        <span className={`flex h-5 w-5 items-center justify-center border-2 ${selected ? "border-[var(--accent)] bg-[var(--accent)] text-[#0E1312]" : "border-white bg-black/40 text-transparent group-hover:bg-black/60"}`}>
+          <Check size={14} strokeWidth={3} />
+        </span>
+      </button>
+      {canOpen && <GripVertical size={14} className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 drop-shadow transition-opacity group-hover:opacity-60" />}
     </div>
+  )
+}
+
+// Full-screen look at one photo, with the same tick box as the grid so a
+// pass through an album can be done here: arrows move, space selects.
+function Preview({ list, id, selected, onToggle, onMove, onClose }) {
+  const i = list.findIndex((m) => m.id === id)
+  const m = list[i]
+  useEffect(() => {
+    const prev = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [])
+  if (!m) return null
+  const src = m.kind === "video" ? m.web : m.display || m.thumb
+  return createPortal(
+    <div className="fixed inset-0 z-[1000] flex flex-col bg-black/95 text-white" role="dialog" aria-modal="true" aria-label="Preview">
+      <div className="flex items-center gap-3 px-4 py-2 text-sm">
+        <button className={`flex items-center gap-2 border px-3 py-1.5 ${selected ? "border-[#B89968] bg-[#B89968] text-[#0E1312]" : "border-white/40"}`} onClick={onToggle} role="checkbox" aria-checked={selected} aria-label="Select this photo">
+          {selected ? <CheckSquare size={16} /> : <Square size={16} />} {selected ? "Selected" : "Select"}
+        </button>
+        <span className="truncate">{m.filename}</span>
+        <span className="hidden text-white/60 sm:inline">{m.width && m.height ? `${m.width}×${m.height}` : ""}{m.sizeBytes ? ` · ${formatBytes(m.sizeBytes)}` : ""}{m.match ? ` · ${m.match.confident ? "confident" : "possible"} match` : ""}</span>
+        <span className="ml-auto text-white/60">{i + 1} of {list.length}</span>
+        <button className="icon-btn !text-white" onClick={onClose} aria-label="Close preview"><X size={20} /></button>
+      </div>
+      <div className="relative flex flex-1 items-center justify-center overflow-hidden" onClick={onClose}>
+        {m.kind === "video" ? (
+          <video src={src} poster={m.poster} controls autoPlay className="max-h-full max-w-full" onClick={(e) => e.stopPropagation()} />
+        ) : (
+          <img src={src} alt="" className="max-h-full max-w-full object-contain" onClick={(e) => e.stopPropagation()} />
+        )}
+        {i > 0 && (
+          <button className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/50 p-2 hover:bg-black/80" onClick={(e) => { e.stopPropagation(); onMove(list[i - 1].id) }} aria-label="Previous"><ChevronLeft size={24} /></button>
+        )}
+        {i < list.length - 1 && (
+          <button className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/50 p-2 hover:bg-black/80" onClick={(e) => { e.stopPropagation(); onMove(list[i + 1].id) }} aria-label="Next"><ChevronRight size={24} /></button>
+        )}
+      </div>
+      <div className="px-4 py-2 text-center text-xs text-white/50">Arrows move · space selects · Esc closes</div>
+    </div>,
+    document.body,
   )
 }
