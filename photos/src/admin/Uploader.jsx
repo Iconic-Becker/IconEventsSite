@@ -4,9 +4,10 @@ import { Uploader, collectFiles } from "./uploader.js"
 import { Sheet } from "../shared/ui.jsx"
 import { formatBytes } from "../shared/format.js"
 
-export function UploadZone({ galleryId, target = "album", onProgress, compact, hint }) {
+export function UploadZone({ galleryId, target = "album", onProgress, compact, hint, wholePage = false }) {
   const [state, setState] = useState(null)
   const [over, setOver] = useState(false)
+  const [pageOver, setPageOver] = useState(false)
   const [conflict, setConflict] = useState(null) // { files, resolve }
   const uploader = useRef()
   const folderInput = useRef()
@@ -49,6 +50,48 @@ export function UploadZone({ galleryId, target = "album", onProgress, compact, h
     addItems(await collectFiles(e.dataTransfer))
   }
 
+  // With wholePage, a folder dropped anywhere on the page uploads, not
+  // only on the dashed box. The browser would otherwise open the image.
+  // Enter and leave fire for every element the pointer crosses, so a
+  // counter tells a real exit from a move between children.
+  const depth = useRef(0)
+  useEffect(() => {
+    if (!wholePage) return
+    const hasFiles = (e) => [...(e.dataTransfer?.types || [])].includes("Files")
+    const enter = (e) => {
+      if (!hasFiles(e)) return
+      depth.current += 1
+      setPageOver(true)
+    }
+    const leave = (e) => {
+      if (!hasFiles(e)) return
+      depth.current = Math.max(0, depth.current - 1)
+      if (depth.current === 0) setPageOver(false)
+    }
+    const overWindow = (e) => {
+      if (hasFiles(e)) e.preventDefault()
+    }
+    const drop = async (e) => {
+      depth.current = 0
+      setPageOver(false)
+      if (!hasFiles(e)) return
+      e.preventDefault()
+      // The dashed box handles its own drop; the event still bubbles here.
+      if (e.target instanceof Element && e.target.closest("[data-drop-zone]")) return
+      addItems(await collectFiles(e.dataTransfer))
+    }
+    window.addEventListener("dragenter", enter)
+    window.addEventListener("dragleave", leave)
+    window.addEventListener("dragover", overWindow)
+    window.addEventListener("drop", drop)
+    return () => {
+      window.removeEventListener("dragenter", enter)
+      window.removeEventListener("dragleave", leave)
+      window.removeEventListener("dragover", overWindow)
+      window.removeEventListener("drop", drop)
+    }
+  }, [wholePage])
+
   const pct = state?.total ? Math.round((state.sent / state.total) * 100) : 0
   const decide = (policy) => {
     conflict?.resolve(policy)
@@ -88,7 +131,17 @@ export function UploadZone({ galleryId, target = "album", onProgress, compact, h
           <p className="mt-3 text-xs u-muted">Replaced photos go to the trash for 30 days. Your choice applies to the rest of this upload.</p>
         </Sheet>
       )}
+      {pageOver && (
+        <div className="pointer-events-none fixed inset-0 z-[900] flex items-center justify-center p-6" style={{ background: "color-mix(in srgb, var(--bg) 80%, transparent)" }} aria-hidden="true">
+          <div className="flex h-full w-full flex-col items-center justify-center border-4 border-dashed border-[var(--accent)] text-center">
+            <UploadCloud className="u-accent mb-4" size={48} />
+            <div className="font-title-serif text-3xl">Drop to upload</div>
+            <div className="mt-2 max-w-md text-sm u-muted">Each folder becomes an album. Files already here are skipped or replaced, your choice.</div>
+          </div>
+        </div>
+      )}
       <div
+        data-drop-zone=""
         onDragOver={(e) => {
           e.preventDefault()
           setOver(true)
@@ -98,7 +151,7 @@ export function UploadZone({ galleryId, target = "album", onProgress, compact, h
         className={`flex flex-col items-center justify-center border-2 border-dashed text-center transition-colors ${over ? "border-[var(--accent)] bg-[var(--bg-3)]" : "u-line"} ${compact ? "p-5" : "p-10"}`}
       >
         <UploadCloud className="u-accent mb-3" size={compact ? 24 : 32} />
-        <div className={compact ? "text-sm" : "text-base"}>{target === "reel" ? "Drop a video to feature it" : "Drop a folder of photos here"}</div>
+        <div className={compact ? "text-sm" : "text-base"}>{target === "reel" ? "Drop a video to feature it" : wholePage ? "Drop a folder of photos anywhere on this page" : "Drop a folder of photos here"}</div>
         <div className="mt-1 max-w-md text-xs u-muted">{hint || (target === "reel" ? "MP4 or MOV. It becomes a featured reel with its own share page." : "Each folder becomes an album with the folder's name, so drop one folder per album, or a whole event folder with sub-folders. Files not in a folder go to Photos. JPEG and video only, no RAW. Re-drop any time to resume, add files, or replace re-edited ones.")}</div>
         <div className="mt-4 flex flex-wrap justify-center gap-2">
           {target !== "reel" && (
