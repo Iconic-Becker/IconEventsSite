@@ -29,7 +29,7 @@
    ═══════════════════════════════════════════════════════════════════════ */
 
 const EMAIL = "contact@iconic.events"
-const PHONE = "(305) 791-5290"
+const PHONE = "(305) 306-2001"
 const UPDATED = "October 26, 2026"
 
 const mail = { a: EMAIL, href: `mailto:${EMAIL}` }

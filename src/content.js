@@ -747,7 +747,7 @@ export const FOOTER = {
         { label: "Get a quote", href: "/get-a-quote" },
         { label: "Contact", href: "/contact" },
         { label: "Vendor sign-up", href: "/vendors" },
-        { label: "(305) 791-5290", href: "tel:+13057915290" },
+        { label: "(305) 306-2001", href: "tel:+13053062001" },
         "Miami · Las Vegas",
       ],
     },

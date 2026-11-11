@@ -399,7 +399,7 @@ Consequences to handle on rebuild:
 
    Studio        Contact                 Follow
    Work          contact@iconic.events   Instagram
-   Services      (305) 791-5290          LinkedIn
+   Services      (305) 306-2001          LinkedIn
    Method        Miami · Las Vegas       Vimeo
    Journal
    ─────────────────────────────────────────────

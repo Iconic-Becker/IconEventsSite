@@ -47,7 +47,7 @@ function StructuredData({ page, zone }) {
     "@type": "Organization",
     name: "Iconic Events",
     url: `${SITE}/`,
-    telephone: "+1-305-791-5290",
+    telephone: "+1-305-306-2001",
     foundingDate: "2017",
     address: { "@type": "PostalAddress", addressLocality: "Miami", addressRegion: "FL", addressCountry: "US" },
     sameAs: [
@@ -64,7 +64,7 @@ function StructuredData({ page, zone }) {
           name: `Iconic Events, ${page.city}`,
           description: page.lead,
           url,
-          telephone: "+1-305-791-5290",
+          telephone: "+1-305-306-2001",
           address: { "@type": "PostalAddress", addressLocality: page.city, addressRegion: page.region, addressCountry: "US" },
           areaServed: page.areaServed,
           parentOrganization: provider,

@@ -15,4 +15,4 @@ export const CONTACT_EMAIL = "contact@iconic.events"
 
 /* The public phone line. Shown in the header on every page and in the footer.
    legal.js and index.html's Organization JSON-LD carry it too, by hand. */
-export const CONTACT_PHONE = { display: "(305) 791-5290", tel: "+13057915290" }
+export const CONTACT_PHONE = { display: "(305) 306-2001", tel: "+13053062001" }
