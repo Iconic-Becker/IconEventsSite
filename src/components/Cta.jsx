@@ -214,7 +214,7 @@ export default function Cta({ modal = false, split = false, eyebrow, title, asid
                 <TextField label="Your name" required value={name} onChange={(e) => setName(e.target.value)} placeholder="First and last" autoComplete="name" />
                 <TextField label="Work email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@company.com" autoComplete="email" />
                 <TextField label="Company or website" required value={company} onChange={(e) => setCompany(e.target.value)} placeholder="company.com" autoComplete="organization" />
-                <TextField label={f.phoneLabel} optional type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="(305) 555-0100" autoComplete="tel" />
+                <TextField label={f.phoneLabel} optional type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="(305) 306-2001" autoComplete="tel" />
               </div>
               {tried && (!name.trim() || !emailOk || !company.trim()) && (
                 <p role="alert" className="mt-3 font-sans text-sm text-[#a3271f]">Name, email and company help us come back to you properly.</p>
