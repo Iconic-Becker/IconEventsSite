@@ -129,3 +129,18 @@ Then in the admin: select photos, Send to website, confirm the folder
 name (one folder per event, defaults to the gallery's address), Send. A
 link to the pull request appears when it is ready. Merge it on GitHub and
 Railway deploys the site with the new photos on /gallery.
+
+## 7. People (find photos of someone)
+
+Nothing to set up. In the admin, People in the top bar, add a name, then
+Add photos: five to ten clear photos of that person's face, different
+angles and lighting, ideally with the face large in the frame. The server
+scans every photo for faces and compares them; each gallery's Photos tab
+then has a People list with their matches, best first. If a wrong photo
+shows up, select it and click Not <name>. A fresh upload of 3,000 photos
+takes about eight minutes to scan; the count on the Photos tab shows how
+many are left.
+
+Faces are detected and compared on your own server with open models.
+Nothing is sent to any outside service and no account is needed. Face data
+is deleted with the photo it came from.

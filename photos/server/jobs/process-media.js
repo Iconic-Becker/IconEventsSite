@@ -162,6 +162,7 @@ async function processVideo(m, src, dir) {
 // the gallery are stale.
 async function afterReady(m) {
   await query("update galleries set content_version = content_version + 1, updated_at = now() where id = $1", [m.gallery_id])
+  if (m.kind === "photo") await enqueue("detect_faces", { mediaId: m.id }, { dedupe: true })
   const reel = await one("select id from reels where media_id = $1", [m.id])
   if (reel) {
     await enqueue("cover_clip", { reelId: reel.id })

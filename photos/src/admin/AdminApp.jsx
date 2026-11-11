@@ -7,6 +7,7 @@ import { Login } from "./Login.jsx"
 import { GalleriesList } from "./GalleriesList.jsx"
 import { GalleryEditor } from "./GalleryEditor.jsx"
 import { Users } from "./Users.jsx"
+import { People } from "./People.jsx"
 import { ErrorBoundary } from "../shared/ErrorBoundary.jsx"
 
 const Me = createContext(null)
@@ -42,6 +43,7 @@ export default function AdminApp() {
             <Route index element={<GalleriesList />} />
             <Route path="galleries/:id/*" element={<GalleryEditor />} />
             <Route path="users" element={me.role === "owner" ? <Users /> : <Navigate to="/admin" replace />} />
+            <Route path="people" element={<People />} />
             <Route path="*" element={<Navigate to="/admin" replace />} />
           </Routes>
         </ErrorBoundary>
@@ -67,6 +69,7 @@ function Nav() {
         </Link>
         <nav className="flex flex-1 items-center gap-1 self-stretch">
           <NavLink to="/admin" end className={link}>Galleries</NavLink>
+          <NavLink to="/admin/people" className={link}>People</NavLink>
           {me.role === "owner" && <NavLink to="/admin/users" className={link}>Users</NavLink>}
           <a href="/api/admin/guests.csv" className={link({ isActive: false })}>Guests CSV</a>
         </nav>

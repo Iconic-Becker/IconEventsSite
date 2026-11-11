@@ -18,6 +18,8 @@ import { startWorker, releaseInFlight } from "./jobs/queue.js"
 import "./jobs/process-media.js"
 import "./jobs/zips.js"
 import "./jobs/website-export.js"
+import { scheduleFaceBackfill } from "./jobs/faces.js"
+import { onRecover } from "./jobs/queue.js"
 
 const app = express()
 app.disable("x-powered-by")
@@ -50,6 +52,7 @@ app.use(cookieParser())
 app.use("/api", csrf)
 app.use("/api", express.json({ limit: "5mb" }))
 app.use("/api/admin/galleries/:id/logo", express.raw({ type: ["image/*"], limit: "2mb" }))
+app.use("/api/admin/people/:id/refs", express.raw({ type: ["image/*"], limit: "30mb" }))
 app.use("/api/admin", admin)
 app.use("/api/g", guest)
 app.use("/api", (req, res, next) => next(notFound("No such endpoint")))
@@ -109,7 +112,10 @@ async function main() {
       console.warn(`[boot] could not set R2 CORS (the token may lack bucket config rights): ${err.message}. See README for the rule to apply by hand.`)
     }
   }
-  if (config.worker) await startWorker()
+  if (config.worker) {
+    onRecover(() => scheduleFaceBackfill())
+    await startWorker()
+  }
   app.listen(config.port, () => console.log(`[boot] Iconic Photos on ${config.publicUrl} (port ${config.port}, storage ${storage.name})`))
 }
 

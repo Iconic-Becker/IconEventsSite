@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react"
-import { Star, Trash2, FolderInput, Image as ImageIcon, RefreshCw, ArrowUp, ArrowDown, Pencil, Check, X, Plus, Clock, AlertTriangle, Loader2, Play, GripVertical, Lock, Unlock, Globe, ExternalLink } from "lucide-react"
+import { Star, Trash2, FolderInput, Image as ImageIcon, RefreshCw, ArrowUp, ArrowDown, Pencil, Check, X, Plus, Clock, AlertTriangle, Loader2, Play, GripVertical, Lock, Unlock, Globe, ExternalLink, UserRound, UserRoundX, Undo2 } from "lucide-react"
 import { get, patch, post, del } from "../shared/api.js"
 import { Field, Sheet, Notice } from "../shared/ui.jsx"
 import { formatBytes, formatDuration, plural } from "../shared/format.js"
@@ -21,16 +21,47 @@ export function PhotosTab() {
     [gallery.media],
   )
   const onWebsite = albumId === WEBSITE
+  // People views: "person:<id>" lists that person's matches in this gallery.
+  const personId = typeof albumId === "string" && albumId.startsWith("person:") ? Number(albumId.slice(7)) : null
+  const [people, setPeople] = useState(null)
+  const [showPossible, setShowPossible] = useState(false)
+  const [showHidden, setShowHidden] = useState(false)
+  const loadPeople = () => get(`/api/admin/galleries/${gallery.id}/people`).then(setPeople).catch(() => {})
   useEffect(() => {
-    if (albumId === WEBSITE ? !sentMedia.length : !albums.find((a) => a.id === albumId)) setAlbumId(albums[0]?.id)
-  }, [albums, albumId, sentMedia.length])
+    loadPeople()
+  }, [gallery.id, gallery.media.length])
+  // While a fresh upload is still being scanned, keep the counts moving.
+  useEffect(() => {
+    if (!people || !people.scan.pending) return
+    const t = setTimeout(loadPeople, 5000)
+    return () => clearTimeout(t)
+  }, [people])
+  const person = personId ? people?.people.find((p) => p.id === personId) : null
+  const personMedia = useMemo(() => {
+    if (!person) return []
+    const byId = new Map(gallery.media.map((m) => [m.id, m]))
+    return person.matches
+      .filter((x) => (showHidden ? x.rejected : !x.rejected && (x.confident || showPossible)))
+      .map((x) => ({ ...byId.get(x.mediaId), match: x }))
+      .filter((m) => m.id)
+  }, [person, gallery.media, showPossible, showHidden])
+  useEffect(() => {
+    const gone = albumId === WEBSITE ? !sentMedia.length : personId ? people && !person : !albums.find((a) => a.id === albumId)
+    if (gone) setAlbumId(albums[0]?.id)
+  }, [albums, albumId, sentMedia.length, people, person, personId])
   const [selected, setSelected] = useState(() => new Set())
   const [moveOpen, setMoveOpen] = useState(false)
   const [moveNew, setMoveNew] = useState("")
   const [siteOpen, setSiteOpen] = useState(false)
   const [newAlbum, setNewAlbum] = useState("")
-  const media = useMemo(() => (albumId === WEBSITE ? sentMedia : gallery.media.filter((m) => m.albumId === albumId)), [gallery.media, albumId, sentMedia])
-  const album = albumId === WEBSITE ? { id: WEBSITE, name: "On the website" } : albums.find((a) => a.id === albumId)
+  const media = useMemo(() => (albumId === WEBSITE ? sentMedia : personId ? personMedia : gallery.media.filter((m) => m.albumId === albumId)), [gallery.media, albumId, sentMedia, personId, personMedia])
+  const album = albumId === WEBSITE ? { id: WEBSITE, name: "On the website" } : personId ? { id: albumId, name: person?.name || "" } : albums.find((a) => a.id === albumId)
+  const isView = onWebsite || Boolean(personId)
+  const notThem = async (undo = false) => {
+    await post(`/api/admin/galleries/${gallery.id}/people/${personId}/reject`, { mediaIds: [...selected], undo })
+    await loadPeople()
+    clear()
+  }
   const counts = useMemo(() => {
     const c = {}
     for (const m of gallery.media) if (m.albumId) c[m.albumId] = (c[m.albumId] || 0) + 1
@@ -136,7 +167,7 @@ export function PhotosTab() {
   const onDrop = async () => {
     const ids = order?.map((m) => m.id)
     setDragIds(null)
-    if (!ids || onWebsite) return
+    if (!ids || isView) return
     await post(`/api/admin/albums/${albumId}/reorder`, { ids })
     reload()
   }
@@ -162,6 +193,29 @@ export function PhotosTab() {
               <AlbumRow key={a.id} album={a} count={counts[a.id] || 0} active={a.id === albumId} onSelect={() => { setAlbumId(a.id); clear() }} first={i === 0} last={i === albums.length - 1} albums={albums} />
             ))}
           </ul>
+          {people && people.people.length > 0 && (
+            <div className="mt-4">
+              <div className="mb-2 flex items-center justify-between">
+                <div className="eyebrow">People</div>
+                {people.scan.pending > 0 && <span className="flex items-center gap-1 text-xs u-muted"><Loader2 size={12} className="animate-spin" /> {people.scan.pending} to scan</span>}
+              </div>
+              <ul className="border u-line">
+                {people.people.map((p) => {
+                  const confident = p.matches.filter((x) => x.confident && !x.rejected).length
+                  const possible = p.matches.filter((x) => !x.confident && !x.rejected).length
+                  return (
+                    <li key={p.id} className={`flex items-center border-b u-line last:border-b-0 ${personId === p.id ? "bg-[var(--bg-3)]" : ""}`}>
+                      <button className="flex flex-1 items-center gap-2 px-3 py-2 text-left text-sm" onClick={() => { setAlbumId(`person:${p.id}`); setShowHidden(false); clear() }} title={p.ready ? `Photos that look like ${p.name}` : `${p.name} has no reference photos yet`}>
+                        <UserRound size={14} className="shrink-0" /> {p.name}
+                        <span className="ml-auto text-xs u-muted">{p.ready ? <>{confident}{possible ? <span className="opacity-70"> +{possible}?</span> : null}</> : "no photos yet"}</span>
+                      </button>
+                    </li>
+                  )
+                })}
+              </ul>
+              <p className="mt-1 text-xs u-muted">Add people and their reference photos under People in the top bar.</p>
+            </div>
+          )}
           {sentMedia.length > 0 && (
             <ul className="mt-2 border u-line">
               <li className={`flex items-center ${onWebsite ? "bg-[var(--bg-3)]" : ""}`}>
@@ -210,11 +264,13 @@ export function PhotosTab() {
             <div className="text-xs u-muted">
               {onWebsite
                 ? `${plural(media.length, "photo")} sent to iconic.events, newest first. Only you see this list; each photo stays in its own album.`
-                : `${plural(media.length, "item")} · click to select, shift-click for a range, drag to reorder${dragIds?.length > 1 ? ` · moving ${dragIds.length}` : ""}`}
+                : person
+                  ? <PersonSummary person={person} scan={people.scan} showPossible={showPossible} setShowPossible={setShowPossible} showHidden={showHidden} setShowHidden={setShowHidden} />
+                  : `${plural(media.length, "item")} · click to select, shift-click for a range, drag to reorder${dragIds?.length > 1 ? ` · moving ${dragIds.length}` : ""}`}
             </div>
           </div>
           <div className="flex items-center gap-2">
-            {!onWebsite && (
+            {!isView && (
               <button className="btn btn-sm" onClick={() => post(`/api/admin/albums/${albumId}/sort-by-capture`).then((d) => setGallery(d.gallery))} title="Order by capture time, then filename">
                 <Clock size={14} /> Sort by time
               </button>
@@ -234,6 +290,8 @@ export function PhotosTab() {
             <button className="btn btn-sm" onClick={() => bulk("unstar")}>Unstar</button>
             <button className="btn btn-sm" onClick={() => setMoveOpen(true)}><FolderInput size={14} /> Move</button>
             <button className="btn btn-sm" onClick={() => setSiteOpen(true)} title="Open a pull request on iconic.events with these photos"><Globe size={14} /> Send to website</button>
+            {person && !showHidden && <button className="btn btn-sm" onClick={() => notThem(false)} title={`Hide these from ${person.name}'s list`}><UserRoundX size={14} /> Not {person.name}</button>}
+            {person && showHidden && <button className="btn btn-sm" onClick={() => notThem(true)}><Undo2 size={14} /> Put back</button>}
             {selected.size === 1 && <button className="btn btn-sm" onClick={() => setCover([...selected][0])}><ImageIcon size={14} /> Gallery cover</button>}
             {selected.size === 1 && <button className="btn btn-sm" onClick={() => setAlbumCover([...selected][0])}>Album cover</button>}
             <button className="btn btn-sm" onClick={() => bulk("reprocess")}><RefreshCw size={14} /> Reprocess</button>
@@ -241,7 +299,12 @@ export function PhotosTab() {
           </div>
         )}
 
-        {!media.length && !onWebsite && <div className="border u-line p-16 text-center u-muted">This album is empty. Drop photos on the left, or move some here.</div>}
+        {!media.length && !isView && <div className="border u-line p-16 text-center u-muted">This album is empty. Drop photos on the left, or move some here.</div>}
+        {!media.length && person && (
+          <div className="border u-line p-16 text-center u-muted">
+            {!person.ready ? `${person.name} has no reference photos yet. Add some under People.` : people.scan.pending ? `Still scanning. ${person.name}'s photos appear here as they are found.` : showHidden ? "Nothing hidden." : `No ${showPossible ? "" : "confident "}matches for ${person.name} in this gallery${!showPossible && person.matches.some((x) => !x.confident && !x.rejected) ? ", but there are possible ones: show them above" : ""}.`}
+          </div>
+        )}
         <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6">
           {list.map((m) => (
             <MediaTile
@@ -251,7 +314,7 @@ export function PhotosTab() {
               onToggle={(e) => toggle(m.id, e)}
               isCover={gallery.cover?.id === m.id}
               isAlbumCover={album?.coverMediaId === m.id}
-              draggable={!onWebsite}
+              draggable={!isView}
               onDragStart={() => onDragStart(m)}
               onDragOver={(e) => onDragOver(e, m.id)}
               onDrop={onDrop}
@@ -311,6 +374,24 @@ export function PhotosTab() {
         </form>
       </Sheet>
     </div>
+  )
+}
+
+function PersonSummary({ person, scan, showPossible, setShowPossible, showHidden, setShowHidden }) {
+  const confident = person.matches.filter((x) => x.confident && !x.rejected).length
+  const possible = person.matches.filter((x) => !x.confident && !x.rejected).length
+  const hidden = person.matches.filter((x) => x.rejected).length
+  const toggle = (on, set, label) => (
+    <button className={`underline-offset-2 hover:underline ${on ? "u-fg" : ""}`} onClick={() => set(!on)}>{on ? "hide" : "show"} {label}</button>
+  )
+  return (
+    <span className="flex flex-wrap items-center gap-x-2">
+      <span>{plural(confident, "confident match", "confident matches")}, best first.</span>
+      {possible > 0 && <span>{possible} possible ({toggle(showPossible, setShowPossible, "them")}).</span>}
+      {hidden > 0 && <span>{hidden} hidden as not {person.name} ({toggle(showHidden, setShowHidden, "them")}).</span>}
+      {scan.pending > 0 && <span className="flex items-center gap-1"><Loader2 size={12} className="animate-spin" /> {scan.pending} photos still to scan.</span>}
+      <span>Select wrong ones and click Not {person.name}.</span>
+    </span>
   )
 }
 
@@ -472,6 +553,7 @@ export function MediaTile({ m, selected, onToggle, isCover, isAlbumCover, draggi
       {m.kind === "video" && <span className="absolute bottom-1 left-1 flex items-center gap-1 bg-black/60 px-1.5 py-0.5 text-[10px] text-white"><Play size={10} fill="currentColor" /> {formatDuration(m.duration)}</span>}
       {m.highlighted && <Star size={14} className="absolute top-1 left-1 text-[#B89968] drop-shadow" fill="#B89968" />}
       {m.websiteSentAt && m.kind !== "video" && <span className="absolute bottom-1 left-1 flex items-center gap-1 bg-black/60 px-1.5 py-0.5 text-[10px] text-white" title="On the website"><Globe size={10} /> Site</span>}
+      {m.match && !m.match.confident && !m.match.rejected && <span className="absolute top-1 left-1 bg-amber-500 px-1.5 py-0.5 text-[10px] uppercase text-[#0E1312]" title={`Possible match (${Math.round(m.match.similarity * 100)})`}>Maybe</span>}
       {isCover && <span className="absolute top-1 right-1 bg-[#B89968] px-1 text-[9px] uppercase text-[#0E1312]">Cover</span>}
       {isAlbumCover && !isCover && <span className="absolute top-1 right-1 bg-white/90 px-1 text-[9px] uppercase text-[#0E1312]">Album cover</span>}
       {(m.status === "failed" || m.status === "attention") && <span className={`absolute right-1 bottom-1 flex items-center gap-1 px-1 text-[9px] uppercase text-white ${m.status === "failed" ? "bg-red-700" : "bg-amber-600"}`}><AlertTriangle size={10} /> {m.status === "failed" ? "Failed" : "Check"}</span>}

@@ -6,6 +6,10 @@ COPY package.json package-lock.json ./
 RUN npm ci --no-audit --no-fund
 COPY . .
 RUN npm run build && npm prune --omit=dev
+# onnxruntime ships binaries for every platform plus CUDA and TensorRT
+# providers; the server only needs the Linux x64 CPU runtime.
+RUN rm -rf node_modules/onnxruntime-node/bin/napi-v6/darwin node_modules/onnxruntime-node/bin/napi-v6/win32 node_modules/onnxruntime-node/bin/napi-v6/linux/arm64 \
+ && rm -f node_modules/onnxruntime-node/bin/napi-v6/linux/x64/libonnxruntime_providers_cuda.so node_modules/onnxruntime-node/bin/napi-v6/linux/x64/libonnxruntime_providers_tensorrt.so
 
 FROM node:22-bookworm-slim
 ENV NODE_ENV=production

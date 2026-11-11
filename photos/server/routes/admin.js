@@ -10,6 +10,7 @@ import { kindFromName, contentTypeFor, serializeAll, serializeMedia } from "../l
 import { serializeGallery, DEFAULT_SETTINGS, RESERVED_ALBUM_SLUGS, toDateString } from "../lib/gallery.js"
 import { enqueue, poke, recoverStale } from "../jobs/queue.js"
 import { websiteConfigured } from "../lib/github.js"
+import { detectFaces, faceCrop, normalize, CONFIDENT } from "../lib/faces.js"
 
 export const admin = Router()
 
@@ -975,6 +976,168 @@ admin.get(
     const csv = [["Email", "Name", "Gallery", "Gallery link", "First seen", "Last seen", "Favorites"]]
     for (const r of rows) csv.push([r.email, r.name, r.title, `${config.publicUrl}/${r.slug}`, iso(r.first_seen_at), iso(r.last_seen_at), String(r.favorites)])
     sendCsv(res, "iconic-photos-guests.csv", csv)
+  }),
+)
+
+// ---- People (find photos of someone) ----------------------------------------
+// A person is a name plus a few reference photos. Every scanned face is
+// compared with the average of the reference embeddings; matches show up
+// per gallery on the Photos tab. Owners and editors manage people.
+
+async function serializePerson(p) {
+  const refs = await many("select id, key, created_at from person_refs where person_id = $1 order by id", [p.id])
+  return {
+    id: Number(p.id),
+    name: p.name,
+    refs: await Promise.all(refs.map(async (r) => ({ id: Number(r.id), url: await storage.signGetUrl(r.key), createdAt: r.created_at }))),
+    ready: refs.length > 0,
+    createdAt: p.created_at,
+  }
+}
+
+// The person's embedding is the normalised mean of the references.
+async function refreshPerson(personId) {
+  const refs = await many("select embedding from person_refs where person_id = $1", [personId])
+  let emb = []
+  if (refs.length) {
+    const sum = new Array(refs[0].embedding.length).fill(0)
+    for (const r of refs) r.embedding.forEach((v, i) => (sum[i] += v))
+    emb = normalize(sum)
+  }
+  await query("update people set embedding = $2, updated_at = now() where id = $1", [personId, emb])
+  if (emb.length) {
+    await enqueue("match_person", { personId: Number(personId) }, { dedupe: true })
+    poke()
+  } else {
+    await query("delete from person_matches where person_id = $1", [personId])
+  }
+}
+
+admin.get(
+  "/people",
+  route(async (req, res) => {
+    const rows = await many("select * from people order by lower(name)")
+    res.json({ people: await Promise.all(rows.map(serializePerson)) })
+  }),
+)
+
+admin.post(
+  "/people",
+  noContributor,
+  route(async (req, res) => {
+    const name = str(req.body?.name, 80).trim()
+    if (!name) throw bad("Give the person a name")
+    const row = await one("insert into people(name, created_by) values ($1, $2) returning *", [name, req.user.id])
+    res.json({ person: await serializePerson(row) })
+  }),
+)
+
+admin.patch(
+  "/people/:id",
+  noContributor,
+  route(async (req, res) => {
+    const name = str(req.body?.name, 80).trim()
+    if (!name) throw bad("Give the person a name")
+    const row = await one("update people set name = $2, updated_at = now() where id = $1 returning *", [int(req.params.id), name])
+    if (!row) throw notFound("No such person")
+    res.json({ person: await serializePerson(row) })
+  }),
+)
+
+admin.delete(
+  "/people/:id",
+  noContributor,
+  route(async (req, res) => {
+    const refs = await many("select key from person_refs where person_id = $1", [int(req.params.id)])
+    await query("delete from people where id = $1", [int(req.params.id)])
+    if (refs.length) await storage.deleteMany(refs.map((r) => r.key))
+    res.json({ ok: true })
+  }),
+)
+
+// A reference photo, sent as the raw request body. The largest face in it
+// is the person; the crop is kept as a thumbnail and the embedding joins
+// the average. A photo with no clear face is refused.
+admin.put(
+  "/people/:id/refs",
+  noContributor,
+  route(async (req, res) => {
+    const p = await one("select * from people where id = $1", [int(req.params.id)])
+    if (!p) throw notFound("No such person")
+    if (!req.body?.length) throw bad("Empty file")
+    // Lenient on detection here: the admin chose this photo for its face.
+    const { faces } = await detectFaces(req.body, { scoreThr: 0.5, minSize: 0.08 })
+    if (!faces.length) throw bad("No clear face in that photo. Use one where the face is large and well lit.")
+    const face = faces.sort((a, b) => b.size - a.size)[0]
+    if (faces.length > 1 && faces[1].size > face.size * 0.8) throw bad("More than one face of similar size in that photo. Use one where this person is clearly the main face.")
+    const crop = await faceCrop(req.body, face.box)
+    const key = `people/${p.id}/${randomSuffix(8)}.jpg`
+    await storage.putObject(key, crop, "image/jpeg")
+    await query("insert into person_refs(person_id, key, embedding) values ($1, $2, $3)", [p.id, key, face.embedding])
+    await refreshPerson(p.id)
+    res.json({ person: await serializePerson(p) })
+  }),
+)
+
+admin.delete(
+  "/people/:id/refs/:refId",
+  noContributor,
+  route(async (req, res) => {
+    const r = await one("delete from person_refs where id = $1 and person_id = $2 returning key", [int(req.params.refId), int(req.params.id)])
+    if (r) await storage.deleteMany([r.key])
+    await refreshPerson(int(req.params.id))
+    const p = await one("select * from people where id = $1", [int(req.params.id)])
+    res.json({ person: p ? await serializePerson(p) : null })
+  }),
+)
+
+// Matches in one gallery, per person: confident ones first by quality, then
+// the possible ones. Also how far the scan has got, so the tab can say
+// "still looking" on a fresh upload.
+admin.get(
+  "/galleries/:id/people",
+  route(async (req, res) => {
+    const g = await loadAdminGallery(req.params.id)
+    const people = await many("select * from people order by lower(name)")
+    const rows = await many(
+      `select pm.person_id, pm.media_id, pm.face_id, pm.similarity, pm.quality, pm.state, f.box
+         from person_matches pm join media m on m.id = pm.media_id join faces f on f.id = pm.face_id
+        where m.gallery_id = $1 and m.trashed_at is null`,
+      [g.id],
+    )
+    const scan = await one("select count(*) filter (where faces_at is null) as pending, count(*) as total from media where gallery_id = $1 and kind = 'photo' and trashed_at is null and status in ('ready','attention')", [g.id])
+    const byPerson = new Map(people.map((p) => [Number(p.id), []]))
+    for (const r of rows) byPerson.get(Number(r.person_id))?.push(r)
+    res.json({
+      scan: { pending: Number(scan.pending), total: Number(scan.total) },
+      people: people.map((p) => {
+        const list = byPerson.get(Number(p.id)) || []
+        // One entry per photo: the best face of that person in it.
+        const best = new Map()
+        for (const r of list) {
+          const cur = best.get(Number(r.media_id))
+          if (!cur || r.similarity > cur.similarity) best.set(Number(r.media_id), r)
+        }
+        const matches = [...best.values()].map((r) => ({ mediaId: Number(r.media_id), faceId: Number(r.face_id), similarity: Number(r.similarity), quality: Number(r.quality), confident: Number(r.similarity) >= CONFIDENT, rejected: r.state === "rejected", box: r.box }))
+        matches.sort((a, b) => (b.confident - a.confident) || (b.quality - a.quality) || (b.similarity - a.similarity))
+        return { id: Number(p.id), name: p.name, ready: p.embedding?.length > 0, matches }
+      }),
+    })
+  }),
+)
+
+// "Not them": hide a wrong match for good. Undo brings it back.
+admin.post(
+  "/galleries/:id/people/:personId/reject",
+  route(async (req, res) => {
+    const g = await loadAdminGallery(req.params.id)
+    const ids = (Array.isArray(req.body?.mediaIds) ? req.body.mediaIds : []).map((v) => int(v)).filter(Boolean)
+    const state = req.body?.undo ? "auto" : "rejected"
+    await query(
+      "update person_matches pm set state = $4 from media m where m.id = pm.media_id and m.gallery_id = $1 and pm.person_id = $2 and pm.media_id = any($3::bigint[])",
+      [g.id, int(req.params.personId), ids, state],
+    )
+    res.json({ ok: true })
   }),
 )
 

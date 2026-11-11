@@ -292,6 +292,18 @@ list, newest first. That list is a view for the admin only: the photos
 stay in their albums and attendees never see it. Needs `GITHUB_TOKEN`
 (see docs/OWNER-SETUP.md).
 
+**People.** Add a person under People in the top bar and give them five
+to ten clear photos of their face. Every finished photo is scanned for
+faces on the server (OpenCV's YuNet and SFace models, in `server/models`,
+Apache 2.0 and MIT; nothing leaves the server) and each face is compared
+with the person's reference photos. On a gallery's Photos tab, People
+lists each person with their matches: confident ones first, best photo
+first (large, sharp face), with possible matches and hidden ones a click
+away. Select wrong ones and click "Not <name>" to hide them. The list is
+a view for the admin only; attendees never see it and photos stay in
+their albums. A 3,000 photo event takes about eight minutes to scan in
+the background; new uploads are scanned as they finish.
+
 **Favorites.** Each guest's picks with thumbnails, "Copy filenames" (comma
 separated, pastes into Lightroom's filter), and CSV.
 
@@ -439,6 +451,12 @@ server with Playwright. The run on 2026-10-19 passed 19 of 19 checks
 it measured. Screenshots land in the chosen output folder. Two items are
 limited by the environment and are listed under "Accepted trade-offs":
 real H.264 playback and real link unfurling.
+
+`scripts/verify/people.mjs` checks People end to end: reference photos
+in (one without a face refused), matches out with confidence and quality,
+hide and put back, the People page and the person view in a browser, and
+nothing on the guest side. It needs three reference crops and an
+`expected.json` listing the media ids they should match, in `$REFS`.
 
 `scripts/verify/website-export.mjs` checks Send to website end to end
 against `scripts/verify/fake-github.mjs`, a stand-in for the GitHub API:

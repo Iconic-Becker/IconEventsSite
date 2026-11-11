@@ -65,7 +65,13 @@ async function runOne(job) {
 
 // Puts back jobs whose worker vanished (no heartbeat for 3 minutes) and
 // re-queues media that was uploaded but has no job to process it.
+let backfill = null
+export function onRecover(fn) {
+  backfill = fn
+}
+
 export async function recoverStale({ all = false } = {}) {
+  if (backfill) await backfill().catch((err) => console.error("[jobs] backfill failed:", err.message))
   const stale = await query(
     all
       ? "update jobs set status = 'queued', locked_at = null where status = 'running' returning id"

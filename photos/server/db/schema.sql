@@ -234,3 +234,41 @@ create index if not exists website_exports_gallery_idx on website_exports(galler
 -- migration: 008 photos sent to the website
 alter table media add column if not exists website_sent_at timestamptz;
 alter table media add column if not exists website_path text;
+
+-- migration: 009 people and faces
+create table if not exists people (
+  id bigserial primary key,
+  name text not null,
+  embedding real[] not null default '{}',
+  created_by bigint references users(id) on delete set null,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+create table if not exists person_refs (
+  id bigserial primary key,
+  person_id bigint not null references people(id) on delete cascade,
+  key text not null,
+  embedding real[] not null,
+  created_at timestamptz not null default now()
+);
+create table if not exists faces (
+  id bigserial primary key,
+  media_id bigint not null references media(id) on delete cascade,
+  box jsonb not null,
+  size real not null,
+  score real not null,
+  sharpness real not null default 0,
+  embedding real[] not null
+);
+create index if not exists faces_media_idx on faces(media_id);
+create table if not exists person_matches (
+  person_id bigint not null references people(id) on delete cascade,
+  face_id bigint not null references faces(id) on delete cascade,
+  media_id bigint not null references media(id) on delete cascade,
+  similarity real not null,
+  quality real not null default 0,
+  state text not null default 'auto' check (state in ('auto', 'rejected')),
+  primary key (person_id, face_id)
+);
+create index if not exists person_matches_media_idx on person_matches(media_id);
+alter table media add column if not exists faces_at timestamptz;
