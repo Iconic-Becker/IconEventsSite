@@ -1,7 +1,7 @@
 // Screenshot helper: node scripts/verify/shot.mjs <url> <out.png> [width] [height] [fullPage]
 import { chromium } from "playwright"
 const [url, out, w = "390", h = "844", full = "0"] = process.argv.slice(2)
-const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" })
+const browser = await chromium.launch({ executablePath: process.env.CHROME || "/opt/pw-browsers/chromium" })
 const ctx = await browser.newContext({ viewport: { width: Number(w), height: Number(h) }, deviceScaleFactor: 1, isMobile: Number(w) < 700, hasTouch: Number(w) < 700 })
 const page = await ctx.newPage()
 const errors = []

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { Plus, Trash2, UserRound, Loader2, ImagePlus, Pencil, Check, X } from "lucide-react"
 import { get, post, patch, del, api } from "../shared/api.js"
 import { Field, Notice, Spinner } from "../shared/ui.jsx"
+import { plural } from "../shared/format.js"
 import { useCanDelete } from "./AdminApp.jsx"
 
 // People the galleries should look for. Each needs a handful of reference
@@ -52,12 +53,31 @@ export function People() {
   )
 }
 
+function RefRow({ refs, canEdit, onRemove }) {
+  return (
+    <div className="flex flex-wrap gap-2">
+      {refs.map((r) => (
+        <div key={r.id} className="group relative h-24 w-24 overflow-hidden" style={{ background: "var(--bg-3)" }}>
+          {r.url && <img src={r.url} alt="" className="h-full w-full object-cover" />}
+          {canEdit && (
+            <button className="absolute top-1 right-1 flex h-6 w-6 items-center justify-center bg-black/60 text-white opacity-0 group-hover:opacity-100" onClick={() => onRemove(r.id)} aria-label="Remove reference photo">
+              <X size={12} />
+            </button>
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function PersonCard({ person, canEdit, onChange }) {
   const [busy, setBusy] = useState(0)
   const [err, setErr] = useState(null)
   const [editing, setEditing] = useState(false)
   const [name, setName] = useState(person.name)
   const input = useRef()
+  const uploaded = person.refs.filter((r) => r.source !== "confirmed")
+  const learned = person.refs.filter((r) => r.source === "confirmed")
   const upload = async (files) => {
     setErr(null)
     const problems = []
@@ -101,7 +121,7 @@ function PersonCard({ person, canEdit, onChange }) {
         ) : (
           <h2 className="font-title-serif text-2xl">{person.name}</h2>
         )}
-        <span className="text-xs u-muted">{person.refs.length} reference {person.refs.length === 1 ? "photo" : "photos"}{person.refs.length > 0 && person.refs.length < 3 ? " · add a few more for better matches" : ""}</span>
+        <span className="text-xs u-muted">{plural(uploaded.length, "reference photo")}{learned.length ? `, ${plural(learned.length, "learned from a confirmed photo", "learned from confirmed photos")}` : ""}{uploaded.length > 0 && uploaded.length < 3 && !learned.length ? " · add a few more for better matches" : ""}</span>
         {canEdit && (
           <span className="ml-auto flex items-center gap-1">
             <button className="btn btn-sm" onClick={() => input.current.click()} disabled={busy > 0}>
@@ -117,17 +137,14 @@ function PersonCard({ person, canEdit, onChange }) {
       {!person.refs.length ? (
         <p className="text-sm u-muted">No reference photos yet, so nothing is matched. Add some clear photos of {person.name}'s face.</p>
       ) : (
-        <div className="flex flex-wrap gap-2">
-          {person.refs.map((r) => (
-            <div key={r.id} className="group relative h-24 w-24 overflow-hidden" style={{ background: "var(--bg-3)" }}>
-              <img src={r.url} alt="" className="h-full w-full object-cover" />
-              {canEdit && (
-                <button className="absolute top-1 right-1 flex h-6 w-6 items-center justify-center bg-black/60 text-white opacity-0 group-hover:opacity-100" onClick={() => removeRef(r.id)} aria-label="Remove reference photo">
-                  <X size={12} />
-                </button>
-              )}
+        <div className="space-y-3">
+          <RefRow refs={uploaded} canEdit={canEdit} onRemove={removeRef} />
+          {learned.length > 0 && (
+            <div>
+              <div className="mb-1 text-xs u-muted">Learned from photos you confirmed in galleries. Unconfirming a photo there removes it here.</div>
+              <RefRow refs={learned} canEdit={canEdit} onRemove={removeRef} />
             </div>
-          ))}
+          )}
         </div>
       )}
     </div>

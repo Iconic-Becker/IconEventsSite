@@ -6,13 +6,13 @@ import { chromium, request } from "playwright"
 import sharp from "sharp"
 import exifReader from "exif-reader"
 import { execFileSync } from "node:child_process"
-import { writeFileSync, mkdirSync, readFileSync } from "node:fs"
+import { writeFileSync, mkdirSync, readFileSync, statSync, readdirSync } from "node:fs"
 import { resolve } from "node:path"
 
 const base = process.argv[2] || "http://localhost:3000"
 const shots = process.argv[3] || "data/verify-shots"
 mkdirSync(shots, { recursive: true })
-const CHROME = "/opt/pw-browsers/chromium-1194/chrome-linux/chrome"
+const CHROME = process.env.CHROME || "/opt/pw-browsers/chromium"
 const OWNER = { email: "owner@iconic.events", password: "test-password-123" }
 const results = []
 const t0 = Date.now()
@@ -360,8 +360,11 @@ await check("Each of the 5 cover layouts renders at 390 and 1440 and the focal p
 // ---- I. No customization looks finished --------------------------------------
 await check("A gallery with no customization looks finished", async () => {
   const { gallery } = await j(await admin.post("/api/admin/galleries", { data: { title: "Scaling with Systems LIVE", eventDate: "2021-11-04" } }))
-  uploadViaApi(gallery.id, "data/real/20_Scaling_with_Systems_LIVE_2021_2")
-  const g = await waitProcessed(admin, gallery.id, 30)
+  // Whatever real photos are on hand; the count follows the folder.
+  const realDir = "data/real/20_Scaling_with_Systems_LIVE_2021_2"
+  const realCount = readdirSync(realDir, { recursive: true }).filter((f) => /\.jpe?g$/i.test(String(f))).length
+  uploadViaApi(gallery.id, realDir)
+  const g = await waitProcessed(admin, gallery.id, realCount)
   const api = await j(await (await apiCtx()).get(`/api/g/${g.slug}`))
   assert(api.cover && api.cover.display, "no automatic cover")
   for (const [w, h] of [[390, 844], [1440, 900]]) {
@@ -642,7 +645,8 @@ await check("noindex header present; robots.txt disallows", async () => {
 await check("Resumed 29 MB upload processed to a playable web version", async () => {
   const g = await waitProcessed(admin, G.id, 1)
   const m = g.media.find((x) => x.filename === "big-trailer.mp4")
-  assert(m.status === "ready" && m.web && Number(m.sizeBytes) === 29353181, `status ${m.status} size ${m.sizeBytes}`)
+  const expectedSize = statSync("data/fixtures/big/big-trailer.mp4").size
+  assert(m.status === "ready" && m.web && Number(m.sizeBytes) === expectedSize, `status ${m.status} size ${m.sizeBytes}, file ${expectedSize}`)
   return `status ready, stored size ${m.sizeBytes}, web ${Math.round(m.derivativeSizes.web / 1024)} KB`
 })
 

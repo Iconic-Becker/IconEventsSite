@@ -272,3 +272,17 @@ create table if not exists person_matches (
 );
 create index if not exists person_matches_media_idx on person_matches(media_id);
 alter table media add column if not exists faces_at timestamptz;
+
+-- migration: 010 confirmed matches and learned references
+alter table person_matches drop constraint if exists person_matches_pkey;
+alter table person_matches add column if not exists id bigserial;
+alter table person_matches add primary key (id);
+alter table person_matches alter column face_id drop not null;
+create unique index if not exists person_matches_face_uq on person_matches(person_id, face_id) where face_id is not null;
+create unique index if not exists person_matches_media_uq on person_matches(person_id, media_id) where face_id is null;
+alter table person_matches drop constraint if exists person_matches_state_check;
+alter table person_matches add constraint person_matches_state_check check (state in ('auto', 'confirmed', 'rejected'));
+alter table person_refs alter column key drop not null;
+alter table person_refs add column if not exists source text not null default 'upload';
+alter table person_refs add column if not exists face_id bigint references faces(id) on delete set null;
+alter table person_refs add column if not exists media_id bigint references media(id) on delete cascade;

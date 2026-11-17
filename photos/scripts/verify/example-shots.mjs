@@ -6,7 +6,7 @@ const [slug, gid, albumSlug, photoId, outArg] = process.argv.slice(2)
 const base = "http://localhost:3000", out = outArg || "data/example-shots"
 import { mkdirSync } from "node:fs"
 mkdirSync(out, { recursive: true })
-const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" })
+const browser = await chromium.launch({ executablePath: process.env.CHROME || "/opt/pw-browsers/chromium" })
 async function shot(name, url, w, h, full, before) {
   const ctx = await browser.newContext({ viewport: { width: w, height: h }, isMobile: w < 700, hasTouch: w < 700, deviceScaleFactor: w < 700 ? 2 : 1 })
   const page = await ctx.newPage()

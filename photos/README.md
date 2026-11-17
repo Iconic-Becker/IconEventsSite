@@ -299,8 +299,13 @@ Apache 2.0 and MIT; nothing leaves the server) and each face is compared
 with the person's reference photos. On a gallery's Photos tab, People
 lists each person with their matches: confident ones first, best photo
 first (large, sharp face), with possible matches and hidden ones a click
-away. Select wrong ones and click "Not <name>" to hide them. The list is
-a view for the admin only; attendees never see it and photos stay in
+away. Tick photos and click "Yes, it's <name>" to confirm them, or "Not
+<name>" to hide them. From any album, tick photos and click "Mark as" to
+say who is in them. A confirmed photo's face becomes a reference the
+matching learns from (shown on the People page as learned), so a few
+confirmations on real event photos sharpen every later match;
+unconfirming or hiding a photo forgets what was learned from it. The list
+is a view for the admin only; attendees never see it and photos stay in
 their albums. A 3,000 photo event takes about eight minutes to scan in
 the background; new uploads are scanned as they finish.
 

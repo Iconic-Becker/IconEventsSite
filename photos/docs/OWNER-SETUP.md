@@ -136,8 +136,11 @@ Nothing to set up. In the admin, People in the top bar, add a name, then
 Add photos: five to ten clear photos of that person's face, different
 angles and lighting, ideally with the face large in the frame. The server
 scans every photo for faces and compares them; each gallery's Photos tab
-then has a People list with their matches, best first. If a wrong photo
-shows up, select it and click Not <name>. A fresh upload of 3,000 photos
+then has a People list with their matches, best first. Tick the right
+ones and click Yes, it's <name>: those become confirmed and the matching
+learns that person's face from them. If a wrong photo shows up, tick it
+and click Not <name>. In any album, tick photos of someone and click Mark
+as to add them to that person's list. A fresh upload of 3,000 photos
 takes about eight minutes to scan; the count on the Photos tab shows how
 many are left.
 

@@ -1,7 +1,7 @@
 import { chromium } from "playwright"
 const base = "http://localhost:3000"
 const out = process.argv[2]
-const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" })
+const browser = await chromium.launch({ executablePath: process.env.CHROME || "/opt/pw-browsers/chromium" })
 const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } })
 const errors = []
 page.on("console", (m) => m.type() === "error" && errors.push(m.text()))

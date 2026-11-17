@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react"
-import { Star, Trash2, FolderInput, Image as ImageIcon, RefreshCw, ArrowUp, ArrowDown, Pencil, Check, X, Plus, Clock, AlertTriangle, Loader2, Play, GripVertical, Lock, Unlock, Globe, ExternalLink, UserRound, UserRoundX, Undo2, ChevronLeft, ChevronRight, Square, CheckSquare } from "lucide-react"
+import { Star, Trash2, FolderInput, Image as ImageIcon, RefreshCw, ArrowUp, ArrowDown, Pencil, Check, X, Plus, Clock, AlertTriangle, Loader2, Play, GripVertical, Lock, Unlock, Globe, ExternalLink, UserRound, UserRoundX, UserRoundCheck, Undo2, ChevronLeft, ChevronRight, Square, CheckSquare } from "lucide-react"
 import { createPortal } from "react-dom"
 import { get, patch, post, del } from "../shared/api.js"
 import { Field, Sheet, Notice } from "../shared/ui.jsx"
@@ -60,10 +60,30 @@ export function PhotosTab() {
   const media = useMemo(() => (albumId === WEBSITE ? sentMedia : personId ? personMedia : gallery.media.filter((m) => m.albumId === albumId)), [gallery.media, albumId, sentMedia, personId, personMedia])
   const album = albumId === WEBSITE ? { id: WEBSITE, name: "On the website" } : personId ? { id: albumId, name: person?.name || "" } : albums.find((a) => a.id === albumId)
   const isView = onWebsite || Boolean(personId)
+  // Confirming or hiding teaches the matching, which re-runs in the
+  // background for a few seconds; pick up its result when it lands.
+  const settle = useRef(null)
+  const loadPeopleSoon = () => {
+    clearTimeout(settle.current)
+    loadPeople()
+    settle.current = setTimeout(() => {
+      loadPeople()
+      settle.current = setTimeout(loadPeople, 6000)
+    }, 3000)
+  }
+  useEffect(() => () => clearTimeout(settle.current), [])
   const notThem = async (undo = false) => {
     await post(`/api/admin/galleries/${gallery.id}/people/${personId}/reject`, { mediaIds: [...selected], undo })
-    await loadPeople()
     clear()
+    loadPeopleSoon()
+  }
+  // "Yes, that's them" from the person's list, or "Mark as" from any album.
+  const [markOpen, setMarkOpen] = useState(false)
+  const confirmAs = async (pid, undo = false) => {
+    await post(`/api/admin/galleries/${gallery.id}/people/${pid}/confirm`, { mediaIds: [...selected], undo })
+    clear()
+    setMarkOpen(false)
+    loadPeopleSoon()
   }
   const counts = useMemo(() => {
     const c = {}
@@ -218,6 +238,7 @@ export function PhotosTab() {
                 {people.people.map((p) => {
                   const confident = p.matches.filter((x) => x.confident && !x.rejected).length
                   const possible = p.matches.filter((x) => !x.confident && !x.rejected).length
+                  // Confirmed photos count in the main number.
                   return (
                     <li key={p.id} className={`flex items-center border-b u-line last:border-b-0 ${personId === p.id ? "bg-[var(--bg-3)]" : ""}`}>
                       <button className="flex flex-1 items-center gap-2 px-3 py-2 text-left text-sm" onClick={() => { setAlbumId(`person:${p.id}`); setShowHidden(false); clear() }} title={p.ready ? `Photos that look like ${p.name}` : `${p.name} has no reference photos yet`}>
@@ -305,8 +326,11 @@ export function PhotosTab() {
             <button className="btn btn-sm" onClick={() => bulk("unstar")}>Unstar</button>
             <button className="btn btn-sm" onClick={() => setMoveOpen(true)}><FolderInput size={14} /> Move</button>
             <button className="btn btn-sm" onClick={() => setSiteOpen(true)} title="Open a pull request on iconic.events with these photos"><Globe size={14} /> Send to website</button>
+            {person && !showHidden && [...selected].some((id) => !person.matches.find((x) => x.mediaId === id)?.confirmed) && <button className="btn btn-sm" onClick={() => confirmAs(person.id)} title={`Confirm these are ${person.name}; the matching learns from them`}><UserRoundCheck size={14} /> Yes, it's {person.name}</button>}
+            {person && !showHidden && [...selected].every((id) => person.matches.find((x) => x.mediaId === id)?.confirmed) && <button className="btn btn-sm" onClick={() => confirmAs(person.id, true)} title="Back to an ordinary match"><Undo2 size={14} /> Unconfirm</button>}
             {person && !showHidden && <button className="btn btn-sm" onClick={() => notThem(false)} title={`Hide these from ${person.name}'s list`}><UserRoundX size={14} /> Not {person.name}</button>}
             {person && showHidden && <button className="btn btn-sm" onClick={() => notThem(true)}><Undo2 size={14} /> Put back</button>}
+            {!person && people?.people.length > 0 && <button className="btn btn-sm" onClick={() => setMarkOpen(true)} title="Say who is in these photos"><UserRoundCheck size={14} /> Mark as</button>}
             {selected.size === 1 && <button className="btn btn-sm" onClick={() => setCover([...selected][0])}><ImageIcon size={14} /> Gallery cover</button>}
             {selected.size === 1 && <button className="btn btn-sm" onClick={() => setAlbumCover([...selected][0])}>Album cover</button>}
             <button className="btn btn-sm" onClick={() => bulk("reprocess")}><RefreshCw size={14} /> Reprocess</button>
@@ -355,6 +379,20 @@ export function PhotosTab() {
           </details>
         )}
       </section>
+
+      <Sheet open={markOpen} onClose={() => setMarkOpen(false)} title={`Mark ${plural(selected.size, "photo")} as`}>
+        <ul className="space-y-1">
+          {(people?.people || []).map((p) => (
+            <li key={p.id}>
+              <button className="btn w-full justify-between" onClick={() => confirmAs(p.id)}>
+                <span className="flex items-center gap-2"><UserRound size={14} /> {p.name}</span>
+                <span className="u-muted normal-case tracking-normal">{p.matches.filter((x) => x.confirmed).length} confirmed</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-3 text-xs u-muted">The photos join that person's list as confirmed, and their face in each photo teaches the matching. Add people under People in the top bar.</p>
+      </Sheet>
 
       {previewId != null && (
         <Preview
@@ -405,7 +443,8 @@ export function PhotosTab() {
 }
 
 function PersonSummary({ person, scan, showPossible, setShowPossible, showHidden, setShowHidden }) {
-  const confident = person.matches.filter((x) => x.confident && !x.rejected).length
+  const confirmed = person.matches.filter((x) => x.confirmed && !x.rejected).length
+  const confident = person.matches.filter((x) => x.confident && !x.confirmed && !x.rejected).length
   const possible = person.matches.filter((x) => !x.confident && !x.rejected).length
   const hidden = person.matches.filter((x) => x.rejected).length
   const toggle = (on, set, label) => (
@@ -413,11 +452,11 @@ function PersonSummary({ person, scan, showPossible, setShowPossible, showHidden
   )
   return (
     <span className="flex flex-wrap items-center gap-x-2">
-      <span>{plural(confident, "confident match", "confident matches")}, best first.</span>
+      <span>{confirmed ? `${confirmed} confirmed by you, ` : ""}{plural(confident, "likely match", "likely matches")}, best first.</span>
       {possible > 0 && <span>{possible} possible ({toggle(showPossible, setShowPossible, "them")}).</span>}
       {hidden > 0 && <span>{hidden} hidden as not {person.name} ({toggle(showHidden, setShowHidden, "them")}).</span>}
       {scan.pending > 0 && <span className="flex items-center gap-1"><Loader2 size={12} className="animate-spin" /> {scan.pending} photos still to scan.</span>}
-      <span>Select wrong ones and click Not {person.name}.</span>
+      <span>Tick photos, then Yes, it's {person.name} to confirm (the matching learns from them) or Not {person.name} to hide.</span>
     </span>
   )
 }
@@ -591,6 +630,7 @@ export function MediaTile({ m, selected, onToggle, onOpen, isCover, isAlbumCover
       {(m.status === "failed" || m.status === "attention") && <span className={`absolute top-1 left-1 flex items-center gap-1 px-1 text-[9px] uppercase text-white ${m.status === "failed" ? "bg-red-700" : "bg-amber-600"}`}><AlertTriangle size={10} /> {m.status === "failed" ? "Failed" : "Check"}</span>}
       {m.websiteSentAt && m.kind !== "video" && <span className="absolute bottom-1 left-1 flex items-center gap-1 bg-black/60 px-1.5 py-0.5 text-[10px] text-white" title="On the website"><Globe size={10} /> Site</span>}
       {m.match && !m.match.confident && !m.match.rejected && <span className="absolute top-1 left-1 bg-amber-500 px-1.5 py-0.5 text-[10px] uppercase text-[#0E1312]" title={`Possible match (${Math.round(m.match.similarity * 100)})`}>Maybe</span>}
+      {m.match?.confirmed && !m.match.rejected && <span className="absolute top-1 left-1 flex items-center gap-1 bg-emerald-600 px-1.5 py-0.5 text-[10px] uppercase text-white" title="Confirmed by you"><Check size={10} strokeWidth={3} /> Confirmed</span>}
       {/* The tick box is the only thing that selects. A generous hit area
           so it is easy on a trackpad; shift-click picks a range. */}
       <button
@@ -634,7 +674,7 @@ function Preview({ list, id, selected, onToggle, onMove, onClose }) {
           {selected ? <CheckSquare size={16} /> : <Square size={16} />} {selected ? "Selected" : "Select"}
         </button>
         <span className="truncate">{m.filename}</span>
-        <span className="hidden text-white/60 sm:inline">{m.width && m.height ? `${m.width}×${m.height}` : ""}{m.sizeBytes ? ` · ${formatBytes(m.sizeBytes)}` : ""}{m.match ? ` · ${m.match.confident ? "confident" : "possible"} match` : ""}</span>
+        <span className="hidden text-white/60 sm:inline">{m.width && m.height ? `${m.width}×${m.height}` : ""}{m.sizeBytes ? ` · ${formatBytes(m.sizeBytes)}` : ""}{m.match ? ` · ${m.match.confirmed ? "confirmed" : m.match.confident ? "likely" : "possible"} match` : ""}</span>
         <span className="ml-auto text-white/60">{i + 1} of {list.length}</span>
         <button className="icon-btn !text-white" onClick={onClose} aria-label="Close preview"><X size={20} /></button>
       </div>

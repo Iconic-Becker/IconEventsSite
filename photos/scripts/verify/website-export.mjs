@@ -74,7 +74,7 @@ const marked = g2.media.filter((m) => m.websiteSentAt)
 assert(marked.length === 3 && marked.every((m) => /^public\/images\/gallery\/.+\/\d\d\.webp$/.test(m.websitePath)), `marked ${marked.length} ${marked.map((m) => m.websitePath)}`)
 
 // Browser: the button, the sheet, the pull request link.
-const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" })
+const browser = await chromium.launch({ executablePath: process.env.CHROME || "/opt/pw-browsers/chromium" })
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 } })
 const errors = []
 page.on("console", (m) => m.type() === "error" && !/favicon/.test(m.text()) && errors.push(m.text()))

@@ -2,14 +2,14 @@
 // desktop, and times the paths guests feel. Run against a local server:
 //   node scripts/verify/sweep.mjs <realGallerySlug> <reelGallerySlug> <bigGallerySlug> [shotsDir]
 import { chromium, request } from "playwright"
-import { mkdirSync, writeFileSync, statSync } from "node:fs"
+import { mkdirSync, writeFileSync, statSync, readdirSync } from "node:fs"
 
 const [realSlug, reelSlug, bigSlug, shots = "data/sweep-shots", only = "all"] = process.argv.slice(2)
 let currentPage = null
 let currentErrs = null
 const base = "http://localhost:3000"
 const OWNER = { email: "owner@iconic.events", password: "test-password-123" }
-const CHROME = "/opt/pw-browsers/chromium-1194/chrome-linux/chrome"
+const CHROME = process.env.CHROME || "/opt/pw-browsers/chromium"
 mkdirSync(shots, { recursive: true })
 const results = []
 const RUN = Date.now().toString(36)
@@ -340,7 +340,10 @@ if (only !== "guest") {
     await chooser.setFiles("data/fixtures/event")
     await page.waitForSelector("text=/Uploaded \\d+ files/", { timeout: 120000 })
     const [chooser2] = await Promise.all([page.waitForEvent("filechooser"), page.click('button:has-text("Choose files")')])
-    await chooser2.setFiles(["data/real/19_Takeover_Live_2/19 Takeover Live 2/01 F2643EEF-0721-4B5C-9BF4-636E9251C61A_1_105_c.jpeg"])
+    // Any real photo will do: the first one in the real folder the suite uses.
+    const realDir = "data/real/20_Scaling_with_Systems_LIVE_2021_2"
+    const realFile = readdirSync(realDir).find((f) => /\.jpe?g$/i.test(f))
+    await chooser2.setFiles([`${realDir}/${realFile}`])
     await page.waitForSelector("text=/Uploaded \\d+ files/", { timeout: 60000 })
     // wait for processing
     const until = Date.now() + 240000
