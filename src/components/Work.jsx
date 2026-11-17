@@ -59,18 +59,12 @@ export default function Work() {
             <h3 className="mt-2 font-serif text-3xl font-semibold text-bone sm:text-4xl">
               {t(f.headline)}
             </h3>
-            <div className="mt-4 flex gap-8">
-              {f.stats.map((s, i) => (
-                <div key={i}>
-                  <div className="font-serif text-2xl font-semibold text-brass">{s.value}</div>
-                  <div className="font-sans text-[11px] uppercase tracking-[0.1em] text-bone/60">
-                    {t(s.label)}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <p className="mt-4 max-w-xl font-sans text-sm leading-relaxed text-bone/80">
+              {f.lead.bold}
+              {f.lead.rest}
+            </p>
             <a href={`/case-studies/${f.slug}`} className="mt-5 inline-block font-sans text-xs uppercase tracking-[0.15em] text-brass hover:text-bone">
-              {t(f.cta)}
+              {f.ctaLabel}
             </a>
           </div>
         </div>
@@ -98,17 +92,13 @@ export default function Work() {
               className="pointer-events-none absolute left-6 top-6 h-8 w-auto opacity-80"
             />
             <div className="relative p-5 sm:p-6">
-              <span className="block font-serif text-2xl text-bone">{a.name}</span>
-              {a.outcome && (
-                <span className="mt-2 block max-w-[30ch] font-serif text-lg leading-snug text-bone/80">
-                  {t(a.outcome)}
-                </span>
-              )}
-              <span className="mt-2 block font-sans text-xs uppercase tracking-[0.12em] text-brass">
-                {t(a.result)}
-              </span>
+              <h3 className="block font-serif text-2xl leading-snug text-bone">{a.headline}</h3>
+              <p className="mt-2 max-w-[40ch] font-sans text-sm leading-relaxed text-bone/80">
+                {a.lead.bold}
+                {a.lead.rest}
+              </p>
               <span className="mt-3 block font-sans text-xs uppercase tracking-[0.15em] text-brass/80 transition group-hover:text-bone">
-                {t(WORK.readMore)}
+                {a.ctaLabel}
               </span>
             </div>
             <Brackets hover />

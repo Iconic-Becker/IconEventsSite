@@ -81,14 +81,14 @@ export const HERO = {
   audience: V("For founder-led businesses past $1M", "For founders scaling past $1M"),
   est: "Est. 2017",
   headline: V(
-    "More than $100M moves through the events we manage each year.",
-    "More than $100M moves through the events we manage each year."
+    "Your reputation enters the room before you do.",
+    "Your reputation enters the room before you do."
   ),
   subhead: V(
-    "Through psychology-led stage design, production, and experience architecture for live in person events.",
-    "Through psychology-led stage design, production, and experience architecture for live in person events."
+    "We make sure the room agrees with it. Most event planners oversee logistics. We engineer the room your offer lives in.",
+    "We make sure the room agrees with it. Most event planners oversee logistics. We engineer the room your offer lives in."
   ),
-  ctaPrimary: V("Start a Conversation", "Book the Call"),
+  ctaPrimary: V("Request the vision call", "Request the vision call"),
   ctaSecondary: V("See the Work", "See the Work"),
   scroll: "Scroll",
 }
@@ -328,8 +328,8 @@ export const ABOUT = {
       "An audience can follow you for years without fully believing you. A few days in the same room settles it permanently, in one direction or the other."
     ),
     V(
-      "Iconic Events has engineered those rooms since 2017, for founders, brands and creators whose reputation rides on the answer. We are not just an event planning company. Strategy, creative, production and the night itself sit with one team, under a single line of authority.",
-      "Iconic Events has engineered those rooms since 2017, for founders, brands and creators whose reputation rides on the answer. We are not just an event planning company. Strategy, creative, production and the night itself sit with one team, under a single line of authority."
+      "Iconic Events is an event production company in Miami and Las Vegas that has engineered those rooms since 2017, for founders, brands, and creators whose reputation rides on the answer. We are not just an event planning company. We are an experience engineering firm. Strategy, creative, production, and the night itself sit under a single line of authority.",
+      "Iconic Events is an event production company in Miami and Las Vegas that has engineered those rooms since 2017, for founders, brands, and creators whose reputation rides on the answer. We are not just an event planning company. We are an experience engineering firm. Strategy, creative, production, and the night itself sit under a single line of authority."
     ),
   ],
   link: V("See the case studies →", "See the case studies →"),
@@ -361,7 +361,11 @@ export const WORK = {
     label: "Featured",
     meta: "Danny Tran · Seminole Hard Rock · 2023",
     img: "/images/gallery/pmuw-2023/02.webp",
-    headline: V("PMU World, the largest in North America on the first try.", "PMU World. The largest in North America, first try."),
+    headline: V("PMU World, the largest in North America on the first try", "PMU World, the largest in North America on the first try"),
+    // The sentence under the headline and the link text, from the homepage
+    // brief (01-homepage-v1). `bold` is set in bold, `rest` follows it.
+    lead: { bold: "PMU World 2023 at the Seminole Hard Rock", rest: ": 800+ attendees against a projection of 600, the #1 PMU event in North America, and $148K saved off contracts." },
+    ctaLabel: "Read the PMU World 2023 case study →",
     challengeLabel: V("Challenge", "Challenge"),
     challenge: V(
       "A seven month old brand, no attendee list, and an industry that doubted it.",
@@ -385,8 +389,16 @@ export const WORK = {
   // on stage at Scaling With Systems LIVE. `imgPos` keeps a face in frame
   // when a tall photo is cropped to a wide card.
   archive: [
-    { id: "a1", img: "/images/gallery/bad-after-dark/01.webp", imgPos: "center 52%", name: "Bad After Dark", slug: "bad-after-dark", result: V("$146K sponsorships", "$146K sponsorships"), outcome: V("Partner presence built into the night, not bolted on.", "Partner presence built into the night, not bolted on.") },
-    { id: "a3", img: "/images/gallery/scaling-with-systems-live-2021/09.webp", name: "Scaling With Systems LIVE", slug: "scaling-with-systems-live", result: V("Founder-led live summit", "Founder-led live summit"), outcome: V("300 attendees, all home safely.", "300 attendees, all home safely.") },
+    { id: "a1", img: "/images/gallery/bad-after-dark/01.webp", imgPos: "center 52%", name: "Bad After Dark", slug: "bad-after-dark",
+      headline: "Bad After Dark: partner presence built into the night, not bolted on",
+      lead: { bold: "Bad After Dark:", rest: " $146K in sponsorships in six days, in Las Vegas." },
+      ctaLabel: "Read the Bad After Dark case study →",
+      result: V("$146K sponsorships", "$146K sponsorships"), outcome: V("Partner presence built into the night, not bolted on.", "Partner presence built into the night, not bolted on.") },
+    { id: "a3", img: "/images/gallery/scaling-with-systems-live-2021/09.webp", name: "Scaling With Systems LIVE", slug: "scaling-with-systems-live",
+      headline: "Scaling With Systems LIVE: a founder-led live summit",
+      lead: { bold: "Scaling With Systems LIVE:", rest: " 300 attendees in Miami and $1.2M sold in 24 hours." },
+      ctaLabel: "Read the Scaling With Systems LIVE case study →",
+      result: V("Founder-led live summit", "Founder-led live summit"), outcome: V("300 attendees, all home safely.", "300 attendees, all home safely.") },
   ],
 }
 
@@ -577,54 +589,134 @@ export const SCOPE = {
   headlineDont: ["weddings", "trade-shows", "town halls", "single-day panels"],
 }
 
+/* ── HOMEPAGE SERVICES ────────────────────────────────────────────────── */
+/* The homepage's own copy for the six disciplines, from the homepage brief
+   (01-homepage-v1). Kept apart from SCOPE on purpose: /services reads SCOPE
+   and is not part of this change. */
+export const HOME_SERVICES = {
+  title: "What an event production company builds: six disciplines, one line of authority",
+  intro: "At Iconic Events, event production covers six disciplines under a single line of authority: strategy, creative, production, content, operations, and revenue.",
+  capabilitiesLead: "Three capabilities carry every engagement:",
+  capabilities: [
+    { name: "Environment Engineering", body: "room design, sensory calibration, and floor architecture built around one commercial outcome." },
+    { name: "Operational Command", body: "vendor negotiation, production, and live execution under a single line of authority." },
+    { name: "Invisible Armor", body: "full operational authority from contract to closeout. The friction never reaches you, your speakers, or your audience." },
+  ],
+  link: "All services",
+  disciplines: [
+    { id: "h1", group: "Event strategy", line: "The room's intent, mapped before a single decision is made." },
+    { id: "h2", group: "Creative direction", line: "Story, set, light, and pacing, built as one world your audience steps into." },
+    { id: "h3", group: "Live event production", line: "Stage, light, sound, and scenic, directed as one instrument." },
+    { id: "h4", group: "Event content", line: "One night, captured and cut into a quarter of content." },
+    { id: "h5", group: "Event operations", line: "Logistics run to the minute, out of sight." },
+    { id: "h6", group: "Revenue design", line: "Tiers, offers, and the sell-from-stage moment, engineered into the run of show." },
+  ],
+}
+
+/* ── HOMEPAGE ASSURANCE ───────────────────────────────────────────────── */
+/* The two statements after the services, from the homepage brief
+   (01-homepage-v1), with the call to action that closes them. */
+export const HOME_ASSURANCE = {
+  blocks: [
+    {
+      title: "We solve your event's problems before you sign.",
+      body: [
+        "By the time a contract exists, we have already mapped what can go wrong: the vendor who will miss load-in, the registration line that will bottleneck, the transition that will break the room. Reacting well on the day is the amateur version of this work. The professional version is that there is nothing left to react to.",
+      ],
+    },
+    {
+      title: "Designed for our own absence.",
+      body: [
+        "Every engagement is built so the event runs whether or not we are standing in the room. The run of show is locked fourteen days out and does not change. We solved the problems before the contract was signed. You do not need another corporate event planner. You need the bottleneck removed, and the bottleneck is you.",
+      ],
+    },
+  ],
+  cta: "Request the vision call",
+}
+
+/* ── HOMEPAGE FIT ─────────────────────────────────────────────────────── */
+/* "We are not for everyone", from the homepage brief (01-homepage-v1). */
+export const HOME_FIT = {
+  title: "We are not for everyone.",
+  body: [
+    "Iconic Events produces multi-day conferences and summits, high-ticket brand launches, ascension masterminds, corporate retreats, and single-day activations. What we build is a room where an audience decides whether to believe you, and where a reputation is riding on the answer.",
+    "We do not produce weddings or personal celebrations. We accept a limited number of engagements each year and turn down more than we accept.",
+    "If the first question is what it costs, before we have established what it produces, we are not the right fit.",
+  ],
+  cta: "Request the vision call",
+}
+
+/* ── HOMEPAGE FAQ ─────────────────────────────────────────────────────── */
+/* "Event production questions, answered", from the homepage brief
+   (01-homepage-v1). [question, answer] pairs. */
+export const HOME_FAQ = {
+  title: "Event production questions, answered",
+  faqs: [
+    [
+      "What does an event production company do?",
+      "An event production company, also called an event production agency, covers six disciplines. At Iconic Events, all six sit under one line of authority: strategy, creative, production, content, operations, and revenue. The event's intent is mapped before a single decision is made; stage, light, sound, and scenic are directed as one instrument; the logistics run to the minute; and the night is captured and cut into a quarter of content.",
+    ],
+    [
+      "What is the difference between an event production company and an event planner?",
+      "The difference between an event production company and an event planner is what the work is aimed at. Most event planners oversee logistics. Iconic Events, an event production company, engineers the room your offer lives in. It also runs strategy, creative, production, content, operations, and revenue under one line of authority. That is why Iconic Events describes itself as an experience engineering firm.",
+    ],
+    [
+      "What is an experience engineering firm?",
+      "An experience engineering firm, as Iconic Events practices it, treats a live event as infrastructure, architecture, and operational systems, never decoration. The room is a machine built to convert. Temperature, seating density, how people are received at the door, and the silence held in the moment that matters are the mechanisms by which a room earns belief.",
+    ],
+    [
+      "What types of events does Iconic Events produce?",
+      "As a live event production company, Iconic Events produces multi-day conferences and summits, high-ticket brand launches, ascension masterminds, corporate retreats, and single-day activations. Duration is not the qualifier. A one-day activation with a reputation riding on it is in scope. A three-day event with nothing at risk is not.",
+    ],
+    [
+      "How does an engagement with Iconic Events start, and how is the fee set?",
+      "An engagement with Iconic Events starts with the vision call. No pricing is discussed on that call. We are establishing whether your event is one we can build. Iconic Events charges a management fee, fixed at the outset and tied to scope rather than to the size of your spend.",
+    ],
+    [
+      "How does Iconic Events prepare for event day?",
+      "Iconic Events prepares for event day by locking the run of show fourteen days out and documenting vendor confirmations, the staffing plan, and the decision authority. The event then runs whether or not its team is in the room. Iconic Events maps and solves the problems before the contract is signed.",
+    ],
+    [
+      "Does Iconic Events produce weddings?",
+      "Iconic Events does not produce weddings or personal celebrations. When that work comes to us, we place it with people who do it properly.",
+    ],
+  ],
+}
+
 /* ── 08 · METHODOLOGY ─────────────────────────────────────────────────── */
 export const METHOD = {
   eyebrow: "Methodology",
-  title: V("The Iconic Standard.", "The Iconic Standard."),
-  sub: V(
-    "Five phases, one operating system, applied to every room.",
-    "Five phases, one operating system, run on every room."
-  ),
+  // The heading reads "The Iconic Standard: five phases, applied to every
+  // room" (homepage brief 01-homepage-v1). The title is the large styled
+  // part; titleTail follows it in the same heading, smaller.
+  title: V("The Iconic Standard:", "The Iconic Standard:"),
+  titleTail: "five phases, applied to every room",
+  sub: V("One operating system for every engagement.", "One operating system for every engagement."),
   phases: [
     {
       id: "m1", num: "I", name: V("Insight", "Insight"), img: "/images/gallery/insight.webp",
-      body: V("Audience psychology, offer economics, room physics.", "Audience psychology, offer economics, room physics."),
-      detail: V(
-        "Before a single element is designed, we study who is in the room and why they came — their beliefs, their objections, the economics of the offer, and the physics of the space itself. Every decision that follows traces back to what we learn here.",
-        "Before we design a single element, we study who's in your room and why they showed up — their beliefs, their objections, the math of your offer, and the space itself. Every decision that follows is built on it.",
-      ),
+      body: V("Audience psychology, offer economics, and room physics.", "Audience psychology, offer economics, and room physics."),
+      detail: V("Before a single element is designed, we study who is in the room and why they came: their beliefs, their objections, the economics of the offer, and the physics of the space itself. Every decision that follows traces back to what we learn here.", "Before a single element is designed, we study who is in the room and why they came: their beliefs, their objections, the economics of the offer, and the physics of the space itself. Every decision that follows traces back to what we learn here."),
     },
     {
       id: "m2", num: "II", name: V("Strategy", "Strategy"), img: "/images/gallery/strategy.webp",
-      body: V("A revenue-first blueprint; every sell-from-stage moment mapped.", "A revenue-first blueprint; every sell-from-stage moment mapped."),
-      detail: V(
-        "The insight becomes a revenue-first blueprint: the arc of the day, the tier structure, and the exact moments the room is asked to decide. Nothing on stage is left to improvisation.",
-        "That insight becomes a revenue-first blueprint — the arc of the day, your tier structure, and the exact moments you ask the room to buy. Nothing on stage is left to chance.",
-      ),
+      body: V("A revenue-first blueprint, with every sell-from-stage moment mapped.", "A revenue-first blueprint, with every sell-from-stage moment mapped."),
+      detail: V("The insight becomes a revenue-first blueprint: the arc of the day, the tier structure, and the exact moments the room is asked to decide. Nothing on stage is left to improvisation.", "The insight becomes a revenue-first blueprint: the arc of the day, the tier structure, and the exact moments the room is asked to decide. Nothing on stage is left to improvisation."),
     },
     {
       id: "m3", num: "III", name: V("Creative", "Creative"), img: "/images/gallery/creative.webp",
-      body: V("Story, room, rhythm — the world the audience lives in.", "Story, room, rhythm — the world your audience lives in."),
-      detail: V(
-        "Story, set, light, and pacing are composed into a single world the audience steps inside. The creative is never decoration — it is built to carry the message and hold attention all the way to the close.",
-        "Story, set, light, and pacing come together into one world your audience steps into. The creative isn't decoration — it's engineered to carry your message and hold the room to the close.",
-      ),
+      body: V("Story, room, and rhythm: the world the audience lives in.", "Story, room, and rhythm: the world the audience lives in."),
+      detail: V("Story, set, light, and pacing form a single world the audience steps into. The creative is never decoration. It is built to carry the message and hold attention all the way to the close.", "Story, set, light, and pacing form a single world the audience steps into. The creative is never decoration. It is built to carry the message and hold attention all the way to the close."),
     },
     {
       id: "m4", num: "IV", name: V("Production", "Production"), img: "/images/gallery/production.webp",
-      body: V("Stage, light, sound, scenic in-house. No vendor seams.", "Stage, light, sound, scenic in-house. No vendor seams."),
-      detail: V(
-        "Stage, light, sound, and scenic are engineered and operated by one team, in-house. The room runs to the second, and there are no vendor seams for the audience to feel.",
-        "Stage, light, sound, and scenic are built and run by one in-house team. The room runs to the second, with no vendor seams for your audience to feel.",
-      ),
+      body: V("Stage, light, sound, and scenic under one line of authority.", "Stage, light, sound, and scenic under one line of authority."),
+      detail: V("Stage, light, sound, and scenic are engineered and directed under a single line of authority, from vendor negotiation to the live show. The room runs to the second.", "Stage, light, sound, and scenic are engineered and directed under a single line of authority, from vendor negotiation to the live show. The room runs to the second."),
     },
     {
       id: "m5", num: "V", name: V("Amplification", "Amplification"), img: "/images/gallery/amplification.webp",
-      body: V("Capture, edit, distribute — a quarter of content from one night.", "Capture, edit, distribute — a quarter of content from one night."),
-      detail: V(
-        "The night is captured in full and cut into a quarter of content — keynotes, reels, and social edits that keep working long after the doors close. One room becomes months of reach.",
-        "We capture the whole night and cut it into a quarter of content — keynotes, reels, and social edits that keep selling long after the doors close. One room becomes months of reach.",
-      ),
+      body: V("Capture, edit, and distribute: a quarter of content from one night.", "Capture, edit, and distribute: a quarter of content from one night."),
+      detail: V("The night is captured in full and cut into a quarter of content: keynotes, reels, and social edits that keep working long after the doors close. One room becomes months of reach.", "The night is captured in full and cut into a quarter of content: keynotes, reels, and social edits that keep working long after the doors close. One room becomes months of reach."),
     },
   ],
 }

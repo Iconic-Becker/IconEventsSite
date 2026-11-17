@@ -19,9 +19,9 @@ const SITE = 'https://www.iconic.events'
 const ROUTES = [
   {
     path: '/',
-    title: 'Event Production in South Florida | Iconic Events',
+    title: 'Event Production Company Miami & Las Vegas | Iconic Events',
     description:
-      'Iconic Events is a full-service event production company crafting corporate & experiential events across South Florida. Get a free quote today.',
+      'Iconic Events is an event production company in Miami and Las Vegas. We engineer summits, masterminds, and launches for founders and creators.',
     image: '/og/default.jpg',
   },
   {
