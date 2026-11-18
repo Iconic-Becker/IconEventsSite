@@ -33,8 +33,8 @@ const ROUTES = [
   },
   ...CASE_STUDIES.map((study) => ({
     path: `/case-studies/${study.slug}`,
-    title: `${study.name} · Case Study · Iconic Events`,
-    description: study.summary,
+    title: study.metaTitle ?? `${study.name} · Case Study · Iconic Events`,
+    description: study.metaDescription ?? study.summary,
     image: `/og/${study.slug}.jpg`,
   })),
 ]
