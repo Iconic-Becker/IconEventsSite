@@ -86,7 +86,7 @@ export const MIN_FILL_MS = 3000
    and budget, the services, the details, how you found us. */
 /* eyebrow and title override the homepage copy, so a case study can close
    on its own line above the same form. */
-export default function Cta({ modal = false, split = false, eyebrow, title, aside }) {
+export default function Cta({ modal = false, split = false, eyebrow, title, aside, home = false, lead, leadSecondary }) {
   const { t } = useVoice()
   const f = CTA.form
   const [name, setName] = useState("")
@@ -169,11 +169,12 @@ export default function Cta({ modal = false, split = false, eyebrow, title, asid
           Below lg it stacks, pitch first. */}
       <div className={`relative z-10 w-full ${split ? "lg:contents" : "mx-auto max-w-4xl px-5 sm:px-6"}`}>
         <div className={split ? "px-5 py-16 sm:px-6 lg:sticky lg:top-24 lg:self-start lg:py-24 lg:pl-[max(1.5rem,calc(50vw-34.5rem))] lg:pr-16" : ""}>
-        <Eyebrow text={eyebrow} />
+        {eyebrow !== false && <Eyebrow text={eyebrow} />}
         <h2 className={`mt-6 max-w-4xl font-serif font-semibold leading-[1.02] text-bone ${modal ? "text-4xl sm:text-5xl" : "text-5xl sm:text-6xl lg:text-7xl"}`}>
           {title ?? accent(t(CTA.title), "about the room")}
         </h2>
-        <p className="mt-5 max-w-xl font-sans text-lg text-bone/65">{t(CTA.formLead)}</p>
+        <p className="mt-5 max-w-xl font-sans text-lg text-bone/65">{lead ?? (home ? "Begin with the vision call. No pricing is discussed. We are establishing whether your event is one we can build." : t(CTA.formLead))}</p>
+        {(leadSecondary || home) && <p className="mt-5 max-w-xl font-sans text-lg text-bone/65">{leadSecondary ?? "A minute of answers is enough to start."}</p>}
         {/* Only the split page passes this: the left column is tall enough to
             need more than a heading next to a long form. */}
         {aside}
@@ -281,6 +282,11 @@ export default function Cta({ modal = false, split = false, eyebrow, title, asid
             <p className={`mt-5 max-w-xl font-sans text-xs leading-relaxed ${split ? "border-t border-onyx/15 pt-5 text-onyx/55" : "text-bone/45"}`}>
               {t(f.reassurance)}
             </p>
+            {home && (
+              <p className="mt-5 font-sans text-xs text-bone/45">
+                Iconic Events works from Miami and Las Vegas. Call <a href="tel:+13057915290" className="underline underline-offset-4">(305) 791-5290</a>.
+              </p>
+            )}
             {/* Vendors land on this section too, and the form above is written
                 for clients. Send them somewhere that fits. */}
             {!modal && (

@@ -85,20 +85,22 @@ export const CASE_STUDIES = [
     slug: "bad-after-dark",
     name: "Bad After Dark",
     format: "Brand activation",
+    metaTitle: "Bad After Dark: Brand Activation Case Study | Iconic Events",
+    metaDescription: "Bad After Dark brand activation case study: how Iconic Events produced a Las Vegas night for Eddie Maalouf that earned $146K in sponsorships in six days.",
     headline: "How Eddie Maalouf Built Bad After Dark With One Accountable Team",
     cta: "Want to build a brand activation like Eddie's?",
     summary:
-      "Eddie Maalouf needed an evening that looked effortless and still did commercial work for his partners. We took the whole job: strategy, creative direction, production, show flow and on site execution. We designed a tightly held room where partner presence was built into the architecture of the night, not bolted onto it.",
+      "Bad After Dark was a brand activation for Eddie Maalouf, an evening that looked effortless and still did commercial work for his partners. We took the whole job: strategy, creative direction, production, show flow, and on-site execution. We designed a tightly held room where partner presence was built into the architecture of the night, not bolted onto it. Held in Las Vegas, the night earned $146K in sponsorships in six days.",
     challenge:
-      "Sponsorship had to be earned rather than sold. The room needed to feel like an invitation, not an activation, while still giving partners a return they could measure.",
+      "Sponsorship had to be earned rather than sold. The room needed to feel like an invitation, not an activation, while still giving partners a measurable return.",
     approach: {
       pre: [
         "Set the guest list and room size against what the evening had to return, not a headcount target.",
-        "Designed partner presence into the environment before any creative was signed off.",
+        "Designed partner presence into the environment before any creative was signed off, with partner logos on the projection wall.",
       ],
       onsite: [
         "Built and ran a single unbroken atmosphere across the evening.",
-        "Ran show calling and on site execution with the same team that designed the room.",
+        "Ran show calling and on-site execution with the same team that designed the room.",
       ],
       post: [], // TODO(copy): what was delivered after the event.
     },
@@ -106,15 +108,17 @@ export const CASE_STUDIES = [
       ["Strategy", "Objective, guest list and format set against what the evening had to return."],
       ["Creative", "Creative direction for a single continuous atmosphere."],
       ["Production", "Lighting, staging and technical build."],
-      ["On site", "Show calling and execution by the design team."],
+      ["On-site", "Show calling and execution by the design team."],
     ],
+    results: "$146K in sponsorships in six days.",
+    locationLabel: "Location",
     // TODO(collect): all three metrics.
     metrics: { attendance: null, productionDays: null, costSaved: null },
     details: {
       client: "Eddie Maalouf",
       clientTitle: null,
       venue: null,
-      city: null,
+      city: "Las Vegas",
       region: null,
       year: null,
       dates: null,
@@ -136,7 +140,17 @@ export const CASE_STUDIES = [
     },
     testimonial: { quote: null, approved: false },
     citation:
-      "Iconic Events, a Florida based event production and coordination company, produced Bad After Dark for Eddie Maalouf, delivering strategy, creative direction, production and on site execution as a single scope.",
+      "Iconic Events, a Miami and Las Vegas event production company, produced Bad After Dark for Eddie Maalouf in Las Vegas. Iconic Events delivered strategy, creative direction, production, and on-site execution as a single scope.",
+    faqs: [
+      [
+        "Who produced Eddie Maalouf's Bad After Dark?",
+        "Iconic Events, a Miami and Las Vegas event production company, produced Bad After Dark for Eddie Maalouf in Las Vegas. Iconic Events delivered strategy, creative direction, production, and on-site execution as a single scope.",
+      ],
+      [
+        "How did Bad After Dark earn $146K in sponsorships?",
+        "Bad After Dark earned $146K in sponsorships in six days. It was also a sponsor activation. Iconic Events designed partner presence into the room before any creative was signed off, and partner logos ran across the projection wall.",
+      ],
+    ],
   },
 
   {
@@ -1243,6 +1257,7 @@ export function photoPositions(study) {
    and FAQPage schema never carries a placeholder. Budget is absent by rule 2
    and has no field to draw from. */
 export function faqsFor(study) {
+  if (study.faqs) return study.faqs
   const d = study.details
   const where = [d.venue, d.city].filter(Boolean).join(" in ")
   const faqs = []

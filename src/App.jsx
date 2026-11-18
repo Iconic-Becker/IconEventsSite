@@ -6,6 +6,10 @@ import {
   POSITION,
   WORK,
   SERVICES,
+  HOME_SERVICES,
+  HOME_ASSURANCE,
+  HOME_FIT,
+  HOME_FAQ,
   SCOPE,
   METHOD,
   RECEIPTS,
@@ -26,7 +30,6 @@ import Motion from "./components/Motion.jsx"
 import Work from "./components/Work.jsx"
 import Gallery from "./components/Gallery.jsx"
 import Scope from "./components/Scope.jsx"
-import Disciplines from "./components/Disciplines.jsx"
 import Method from "./components/Method.jsx"
 import Receipts from "./components/Receipts.jsx"
 import About from "./components/About.jsx"
@@ -34,6 +37,7 @@ import Numbers from "./components/Numbers.jsx"
 import Testimonials from "./components/Testimonials.jsx"
 import Niche from "./components/Niche.jsx"
 import Cta from "./components/Cta.jsx"
+import Icon from "./components/Icon.jsx"
 import SiteHeader from "./components/SiteHeader.jsx"
 import CtaBand from "./components/CtaBand.jsx"
 import SiteFooter from "./components/SiteFooter.jsx"
@@ -77,16 +81,15 @@ function highlight(text, phrase, cls = "text-brass") {
   )
 }
 function heroHeadline(text) {
-  const phrase = " through"
+  // "Your reputation enters the room" / "before you do." on two lines.
+  const phrase = " before"
   const i = text.indexOf(phrase)
   if (i === -1) return text
-  const end = i + phrase.length
   return (
     <>
-      <span className="md:whitespace-nowrap">{text.slice(0, end)}</span>
-      <br className="hidden md:block" />
-      <span className="md:hidden"> </span>
-      <span className="md:whitespace-nowrap">{text.slice(end).trimStart()}</span>
+      {text.slice(0, i)}
+      <br />
+      {text.slice(i).trimStart()}
     </>
   )
 }
@@ -367,20 +370,65 @@ export default function App() {
           <div className="mb-8 flex flex-wrap items-baseline justify-between gap-4 border-b border-brass/40 pb-3">
             <span className="font-sans text-xs font-bold uppercase tracking-[0.28em] text-brass">Services</span>
             <a href="/services" className="font-sans text-xs uppercase tracking-[0.15em] text-brass hover:text-bone">
-              All services →
+              {HOME_SERVICES.link} →
             </a>
           </div>
-          <h2 className="mb-10 max-w-[20ch] font-serif text-4xl font-semibold leading-tight text-bone sm:text-5xl">
-            Six disciplines. One line of authority.
+          <h2 className="mb-6 max-w-4xl font-serif text-4xl font-semibold leading-tight text-bone sm:text-5xl">
+            {HOME_SERVICES.title}
           </h2>
-          <Disciplines compact />
+          <p className="mb-10 max-w-3xl font-sans text-lg leading-relaxed text-bone/70">{HOME_SERVICES.intro}</p>
+          {/* The capabilities sit in a Tide Pool panel, the six disciplines in
+              their own boxes beneath it. Both stay inside this one section and
+              container, under the heading, so they read as parts of one answer. */}
+          <div className="space-y-6">
+            <div className="border border-brass/30 bg-tidepool p-6 sm:p-8">
+              <p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">{HOME_SERVICES.capabilitiesLead}</p>
+              <ul className="mt-5 grid gap-8 md:grid-cols-3 md:gap-10">
+                {HOME_SERVICES.capabilities.map((c) => (
+                  <li key={c.name} className="border-t border-brass/40 pt-4">
+                    <h3 className="font-serif text-2xl font-semibold text-bone">{c.name}</h3>
+                    <p className="mt-2 font-sans text-sm leading-relaxed text-bone/70">{c.body}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <ol className="grid gap-px border border-bone/10 bg-bone/10 sm:grid-cols-2 lg:grid-cols-3">
+              {HOME_SERVICES.disciplines.map((d, i) => (
+                <li key={d.id} className="flex flex-col bg-onyx p-6 sm:p-7">
+                  <span className="font-sans text-[11px] font-bold tracking-[0.18em] text-bone/35">{String(i + 1).padStart(2, "0")}</span>
+                  <h3 className="mt-4 font-serif text-3xl font-semibold text-bone">{d.group}</h3>
+                  <p className="mt-2 font-sans text-sm leading-relaxed text-bone/65">{d.line}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </section>
 
-      <CtaBand
-        headline="We solve your event's problems before you sign."
-        secondary={{ href: "/case-studies", label: "See the case studies →" }}
-      />
+      {/* Same Tide Pool band and pattern as CtaBand, with room for the two
+          statements and the button the homepage brief puts after them. */}
+      <section className="relative overflow-hidden bg-tidepool py-14 sm:py-20">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.05]"
+          style={{ backgroundImage: "url(/images/patterns/pattern-white.webp)", backgroundSize: "440px auto" }}
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto max-w-6xl px-5 sm:px-6">
+          <div className="grid gap-12 md:grid-cols-2 md:gap-16">
+            {HOME_ASSURANCE.blocks.map((b) => (
+              <div key={b.title}>
+                <h2 className="max-w-[24ch] font-serif text-3xl font-semibold leading-tight text-bone sm:text-4xl">{b.title}</h2>
+                {b.body.map((p) => (
+                  <p key={p} className="mt-5 max-w-[56ch] font-sans text-base leading-relaxed text-bone/75">{p}</p>
+                ))}
+              </div>
+            ))}
+          </div>
+          <div className="mt-12">
+            <CtaBrackets href="#contact">{HOME_ASSURANCE.cta}</CtaBrackets>
+          </div>
+        </div>
+      </section>
 
       {/* ── HOW WE DO IT ────────────────────────────────────────────────── */}
       <Method />
@@ -402,8 +450,52 @@ export default function App() {
 
       <Gallery />
 
+      {/* ── WE ARE NOT FOR EVERYONE — who the work is and is not for ───── */}
+      <section id="fit" className="bg-onyx py-16 sm:py-24">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6">
+          <div className="grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:gap-16">
+            <h2 className="font-serif text-4xl font-semibold leading-tight text-bone sm:text-5xl">{HOME_FIT.title}</h2>
+            <div>
+              {HOME_FIT.body.map((p) => (
+                <p key={p} className="mb-5 max-w-[60ch] font-sans text-base leading-relaxed text-bone/75 last:mb-0">{p}</p>
+              ))}
+              <div className="mt-10">
+                <CtaBrackets href="#contact">{HOME_FIT.cta}</CtaBrackets>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ — the questions a prospect asks before the call ─────────── */}
+      <section id="questions" className="bg-bone py-16 text-onyx sm:py-24">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: HOME_FAQ.faqs.map(([q, a]) => ({
+            "@type": "Question",
+            name: q,
+            acceptedAnswer: { "@type": "Answer", text: a },
+          })),
+        }).replace(/</g, "\\u003c") }} />
+        <div className="mx-auto max-w-4xl px-5 sm:px-6">
+          <h2 className="font-serif text-4xl font-semibold leading-tight text-onyx sm:text-5xl">{HOME_FAQ.title}</h2>
+          <div className="mt-8">
+            {HOME_FAQ.faqs.map(([q, a], i) => (
+              <details key={q} className="group border-b border-onyx/15 py-5" open={i === 0}>
+                <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 font-serif text-2xl font-semibold leading-tight text-onyx transition-colors duration-300 marker:hidden group-open:text-tidepool hover:text-tidepool/80 [&::-webkit-details-marker]:hidden">
+                  {q}
+                  <Icon name="plus" className="h-4 w-4 shrink-0 translate-y-0.5 text-brass transition-transform duration-300 group-open:rotate-45" />
+                </summary>
+                <p className="mt-4 max-w-[62ch] font-sans text-base leading-relaxed text-onyx/70">{a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── START A CONVERSATION — The Brief (locked in) ────────────────── */}
-      <Cta />
+      <Cta home />
 
       <SiteFooter home />
     </div>

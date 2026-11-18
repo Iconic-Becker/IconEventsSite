@@ -268,7 +268,7 @@ function Results({ study }) {
   const place = d.venue && d.city && d.venue.includes(d.city) ? d.venue : [d.venue, d.city].filter(Boolean).join(", ")
   const details = [
     ["Client", d.client],
-    ["Venue", place],
+    [study.locationLabel ?? "Venue", place],
     ["Year", d.year],
   ].filter(([, value]) => Boolean(value))
   const story = paragraphs(study.results)
@@ -525,9 +525,9 @@ export default function CaseStudyPage({ study }) {
     .join(" · ")
 
   useEffect(() => {
-    document.title = `${study.name} · Case Study · Iconic Events`
+    document.title = study.metaTitle ?? `${study.name} · Case Study · Iconic Events`
     const description = document.querySelector('meta[name="description"]')
-    if (description) description.setAttribute("content", study.summary)
+    if (description) description.setAttribute("content", study.metaDescription ?? study.summary)
   }, [study])
 
   return (
@@ -597,7 +597,12 @@ export default function CaseStudyPage({ study }) {
       <FAQ faqs={faqs} />
 
       {/* the one ask on the page: the site's contact form, headed by this event's line */}
-      <Cta eyebrow="Start a Conversation" title={study.cta} />
+      <Cta
+        eyebrow={false}
+        title={study.cta}
+        lead="Begin with the vision call. No pricing is discussed. We are establishing whether your event is one we can build."
+        leadSecondary="A minute of answers is enough to start."
+      />
 
       <Related study={study} />
 

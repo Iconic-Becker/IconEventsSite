@@ -106,7 +106,7 @@ export default function Gallery() {
         <div className="border-b-4 border-tidepool pb-3"><span className="font-sans text-xs font-bold uppercase tracking-[0.28em] text-brass">Gallery</span></div>
         <div className="mt-8 grid gap-6 md:grid-cols-[0.8fr_1.2fr] md:items-end">
           <h2 className="font-serif text-4xl font-semibold leading-none sm:text-7xl">Inside the room.</h2>
-          <p className="max-w-xl font-sans text-base leading-relaxed text-onyx/65 md:justify-self-end">Stage, light, detail, and audience. Drag any row to look around, or turn the room for a new edit.</p>
+          <p className="max-w-xl font-sans text-base leading-relaxed text-onyx/65 md:justify-self-end">Stage, lighting, detail, and audience from the rooms we have engineered. Drag any row to look around, or turn the room for a new edit.</p>
         </div>
       </div>
       <div className="pointer-events-none sticky top-[calc(100svh-4.5rem)] z-30 mx-auto h-0 max-w-6xl px-3 sm:top-[calc(100svh-6rem)] sm:px-6">

@@ -59,16 +59,15 @@ function Head({ t }) {
           {METHOD.eyebrow}
         </span>
       </div>
-      <h2 className="flex flex-wrap items-center gap-x-4 gap-y-1 font-serif text-5xl font-semibold leading-[1.02] text-bone sm:text-6xl lg:text-7xl">
+      <h2 className="max-w-4xl font-serif text-4xl font-semibold leading-[1.1] text-bone sm:text-5xl lg:text-6xl">
         <img
           src="/logos/IE_sigil_gold.png"
           alt=""
           aria-hidden="true"
-          className="inline-block h-[0.85em] w-auto"
+          className="mr-4 inline-block h-[0.8em] w-auto align-[-0.08em]"
         />
-        <span>{words[0]}</span>
-        <span className="text-brass">{words[1]}</span>
-        {words.length > 2 && <span>{words.slice(2).join(" ")}</span>}
+        {words[0]} <span className="text-brass">{words[1]}</span>
+        {words.length > 2 && <> {words.slice(2).join(" ")}</>} {METHOD.titleTail}
       </h2>
       <p className="mt-5 max-w-2xl font-sans text-bone/65">{t(METHOD.sub)}</p>
     </>

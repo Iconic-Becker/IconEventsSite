@@ -19,22 +19,22 @@ const SITE = 'https://www.iconic.events'
 const ROUTES = [
   {
     path: '/',
-    title: 'Event Production in South Florida | Iconic Events',
+    title: 'Event Production Company Miami & Las Vegas | Iconic Events',
     description:
-      'Iconic Events is a full-service event production company crafting corporate & experiential events across South Florida. Get a free quote today.',
+      'Iconic Events is an event production company in Miami and Las Vegas. We engineer summits, masterminds, and launches for founders and creators.',
     image: '/og/default.jpg',
   },
   {
     path: '/case-studies',
-    title: 'Case Studies | Iconic Events',
+    title: 'Event Production Case Studies for Founders | Iconic Events',
     description:
-      'Learn from the events Iconic Events has engineered for founders, agencies and creators across the US, UK, Spain, the UAE, Mexico and Costa Rica.',
+      'Event production case studies from Iconic Events: how we built summits, masterminds, and launches for founders, creators, and agencies in six countries.',
     image: '/og/case-studies.jpg',
   },
   ...CASE_STUDIES.map((study) => ({
     path: `/case-studies/${study.slug}`,
-    title: `${study.name} · Case Study · Iconic Events`,
-    description: study.summary,
+    title: study.metaTitle ?? `${study.name} · Case Study · Iconic Events`,
+    description: study.metaDescription ?? study.summary,
     image: `/og/${study.slug}.jpg`,
   })),
 ]
