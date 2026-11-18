@@ -11,6 +11,8 @@ import { render, preloadRoute } from './dist-ssr/entry-server.js'
 import { CASE_STUDIES } from './src/case-studies.js'
 import { PRIVACY, TERMS } from './src/legal.js'
 import { SERVICE_PAGES, pagePath } from './src/services.js'
+import { HERO } from './src/content.js'
+import { CONTACT_EMAIL, CONTACT_PHONE } from './src/lib/contact.js'
 
 const SITE = 'https://www.iconic.events'
 
@@ -134,6 +136,37 @@ const SPLIT_CHUNKS = { '/gallery': chunk('GalleryPage') }
 const escape = (value) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
+// Fallback for visitors and crawlers that do not run JavaScript. The prerendered
+// markup already carries the text, but the scroll reveals stay at opacity 0
+// without JS and the hero button points at a form that needs JS to submit, so
+// this block repeats the headline and description and links to the quote page,
+// the phone and the email, none of which need a script.
+//
+// Its copy comes from HERO and contact.js, so it cannot drift from the page. It
+// sits after #root, not inside it, so React hydration never sees it. Inline
+// styles because it has to read correctly even if nothing else loads.
+const homeNoscript = () => {
+  const copy = (pair) => (pair && typeof pair === 'object' && 'iconic' in pair ? pair.iconic : pair)
+  const button =
+    'display:inline-block;margin-top:24px;padding:14px 28px;background:#B89968;color:#0E1312;' +
+    'font-weight:600;text-decoration:none;font-family:system-ui,sans-serif'
+  const link = 'color:#B89968'
+  return [
+    '<noscript>',
+    '  <section style="background:#0E1312;color:#F4F0E8;padding:56px 24px;text-align:center;' +
+      'font-family:Georgia,serif;line-height:1.5">',
+    `    <h2 style="font-size:32px;font-weight:600;max-width:28ch;margin:0 auto">${escape(copy(HERO.headline))}</h2>`,
+    `    <p style="font-family:system-ui,sans-serif;font-size:18px;max-width:46ch;margin:20px auto 0;opacity:.8">${escape(copy(HERO.subhead))}</p>`,
+    `    <a href="/get-a-quote" style="${button}">${escape(copy(HERO.ctaPrimary))}</a>`,
+    '    <p style="font-family:system-ui,sans-serif;font-size:16px;margin:28px 0 0">',
+    `      <a href="tel:${CONTACT_PHONE.tel}" style="${link}">${escape(CONTACT_PHONE.display)}</a> &middot;`,
+    `      <a href="mailto:${CONTACT_EMAIL}" style="${link}">${escape(CONTACT_EMAIL)}</a>`,
+    '    </p>',
+    '  </section>',
+    '</noscript>',
+  ].join('\n')
+}
+
 // Without these, a link shared to Slack, WhatsApp or LinkedIn renders as a
 // bare URL: no image, no title, no description.
 // The card URL carries a short hash of the file. WhatsApp and Slack cache a
@@ -185,7 +218,10 @@ for (const route of ROUTES) {
           : '  <meta name="robots" content="index, follow" />\n'
       }  </head>`
     )
-    .replace('<div id="root"></div>', `<div id="root">${render(route.path)}</div>`)
+    .replace(
+      '<div id="root"></div>',
+      `<div id="root">${render(route.path)}</div>${route.path === '/' ? `\n${homeNoscript()}` : ''}`
+    )
 
   // Write both route/index.html and route.html so the extensionless URL
   // resolves on static servers that prefer either convention.
