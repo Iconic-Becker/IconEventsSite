@@ -26,9 +26,9 @@ const ROUTES = [
   },
   {
     path: '/case-studies',
-    title: 'Case Studies | Iconic Events',
+    title: 'Event Production Case Studies for Founders | Iconic Events',
     description:
-      'Learn from the events Iconic Events has engineered for founders, agencies and creators across the US, UK, Spain, the UAE, Mexico and Costa Rica.',
+      'Event production case studies from Iconic Events: how we built summits, masterminds, and launches for founders, creators, and agencies in six countries.',
     image: '/og/case-studies.jpg',
   },
   ...CASE_STUDIES.map((study) => ({
