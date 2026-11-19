@@ -4,8 +4,11 @@ import { Uploader, collectFiles } from "./uploader.js"
 import { Sheet } from "../shared/ui.jsx"
 import { formatBytes } from "../shared/format.js"
 
-export function UploadZone({ galleryId, target = "album", onProgress, compact, hint, wholePage = false }) {
+export function UploadZone({ galleryId, target = "album", onProgress, compact, hint, wholePage = false, albumId = null, albumName = null }) {
   const [state, setState] = useState(null)
+  // The album open right now; loose files added later go to it.
+  const albumRef = useRef(albumId)
+  albumRef.current = albumId
   const [over, setOver] = useState(false)
   const [pageOver, setPageOver] = useState(false)
   const [conflict, setConflict] = useState(null) // { files, resolve }
@@ -41,7 +44,7 @@ export function UploadZone({ galleryId, target = "album", onProgress, compact, h
 
   const addItems = async (items) => {
     if (!items.length) return
-    ensure().add(items)
+    ensure().add(items.map((it) => ({ ...it, albumId: albumRef.current })))
   }
 
   const onDrop = async (e) => {
@@ -135,8 +138,8 @@ export function UploadZone({ galleryId, target = "album", onProgress, compact, h
         <div className="pointer-events-none fixed inset-0 z-[900] flex items-center justify-center p-6" style={{ background: "color-mix(in srgb, var(--bg) 80%, transparent)" }} aria-hidden="true">
           <div className="flex h-full w-full flex-col items-center justify-center border-4 border-dashed border-[var(--accent)] text-center">
             <UploadCloud className="u-accent mb-4" size={48} />
-            <div className="font-title-serif text-3xl">Drop to upload</div>
-            <div className="mt-2 max-w-md text-sm u-muted">Each folder becomes an album. Files already here are skipped or replaced, your choice.</div>
+            <div className="font-title-serif text-3xl">{albumName ? `Drop to upload into ${albumName}` : "Drop to upload"}</div>
+            <div className="mt-2 max-w-md text-sm u-muted">{albumName ? `Loose photos go into ${albumName}. ` : ""}Each folder becomes its own album. Files already here are skipped or replaced, your choice.</div>
           </div>
         </div>
       )}
@@ -151,8 +154,8 @@ export function UploadZone({ galleryId, target = "album", onProgress, compact, h
         className={`flex flex-col items-center justify-center border-2 border-dashed text-center transition-colors ${over ? "border-[var(--accent)] bg-[var(--bg-3)]" : "u-line"} ${compact ? "p-5" : "p-10"}`}
       >
         <UploadCloud className="u-accent mb-3" size={compact ? 24 : 32} />
-        <div className={compact ? "text-sm" : "text-base"}>{target === "reel" ? "Drop a video to feature it" : wholePage ? "Drop a folder of photos anywhere on this page" : "Drop a folder of photos here"}</div>
-        <div className="mt-1 max-w-md text-xs u-muted">{hint || (target === "reel" ? "MP4 or MOV. It becomes a featured reel with its own share page." : "Each folder becomes an album with the folder's name, so drop one folder per album, or a whole event folder with sub-folders. Files not in a folder go to Photos. JPEG and video only, no RAW. Re-drop any time to resume, add files, or replace re-edited ones.")}</div>
+        <div className={compact ? "text-sm" : "text-base"}>{target === "reel" ? "Drop a video to feature it" : albumName ? `Drop photos anywhere on this page to add them to ${albumName}` : wholePage ? "Drop a folder of photos anywhere on this page" : "Drop a folder of photos here"}</div>
+        <div className="mt-1 max-w-md text-xs u-muted">{hint || (target === "reel" ? "MP4 or MOV. It becomes a featured reel with its own share page." : `${albumName ? `Loose photos go into the album you have open. ` : "Loose photos go to Photos. "}Each folder dropped becomes an album with the folder's name, so drop one folder per album, or a whole event folder with sub-folders. JPEG and video only, no RAW. Re-drop any time to resume, add files, or replace re-edited ones.`)}</div>
         <div className="mt-4 flex flex-wrap justify-center gap-2">
           {target !== "reel" && (
             <button className="btn btn-sm" onClick={() => folderInput.current.click()}>

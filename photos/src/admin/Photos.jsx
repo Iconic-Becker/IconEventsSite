@@ -217,7 +217,7 @@ export function PhotosTab() {
   return (
     <div className="grid gap-6 lg:grid-cols-[300px_1fr]">
       <aside className="space-y-5">
-        <UploadZone galleryId={gallery.id} compact wholePage onProgress={(s) => { setUploading(s.running); if (!s.running) reload() }} />
+        <UploadZone galleryId={gallery.id} compact wholePage albumId={typeof albumId === "number" ? albumId : null} albumName={typeof albumId === "number" ? album?.name : null} onProgress={(s) => { setUploading(s.running); if (!s.running) reload() }} />
         <div>
           <div className="mb-2 flex items-center justify-between">
             <div className="eyebrow">Albums</div>

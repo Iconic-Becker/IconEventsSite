@@ -239,7 +239,7 @@ logo. Deleting a gallery after its 30 trash days deletes the prefix.
 the title plus a random six character suffix (`smith-gala-x7k2qd`), shown
 with a copy button. It is not guessable and nothing lists it.
 
-**Add photos.** On the Photos tab drop one or more folders anywhere on the page, not only on the dashed box. The folder a
+**Add photos.** On the Photos tab drop one or more folders anywhere on the page, not only on the dashed box. Loose photos, dropped or chosen without a folder, go into the album you have open. The folder a
 photo sits in becomes its album, so three folders dropped together make
 three albums, and an event folder with sub-folders makes one album per
 sub-folder. Files dropped without a folder go to the Photos album. `.txt`

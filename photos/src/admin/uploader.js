@@ -127,7 +127,8 @@ export class Uploader {
 
   add(items) {
     for (const it of items) {
-      this.files.push({ id: Math.random().toString(36).slice(2), path: it.path, size: it.file.size, file: it.file, status: "queued", sent: 0 })
+      // albumId: the album open when the file was added; loose files land there.
+      this.files.push({ id: Math.random().toString(36).slice(2), path: it.path, size: it.file.size, file: it.file, albumId: it.albumId ?? null, status: "queued", sent: 0 })
     }
     this.emit()
     if (!this.running) this.start()
@@ -157,7 +158,7 @@ export class Uploader {
         for (const f of batch) f.status = "planning"
         let plan
         try {
-          const ask = (files, onConflict) => retry(() => post(`/api/admin/galleries/${this.galleryId}/uploads`, { target: this.target, onConflict, files: files.map((f) => ({ path: f.path, size: f.size, type: f.file.type, lastModified: f.file.lastModified })) }), { signal: this.abort.signal })
+          const ask = (files, onConflict) => retry(() => post(`/api/admin/galleries/${this.galleryId}/uploads`, { target: this.target, onConflict, files: files.map((f) => ({ path: f.path, size: f.size, type: f.file.type, lastModified: f.file.lastModified, albumId: f.albumId })) }), { signal: this.abort.signal })
           plan = await ask(batch, this.policy || "ask")
           const conflicts = plan.files.filter((p) => p.conflict)
           if (conflicts.length) {

@@ -358,8 +358,16 @@ admin.delete(
 // a single PUT URL for small files, or a multipart upload id plus the parts
 // already stored, so a dropped connection or a re-dropped folder resumes.
 
-async function albumForPath(galleryId, relPath, cache) {
+async function albumForPath(galleryId, relPath, cache, albumId = null) {
   const parts = relPath.split("/").filter(Boolean)
+  // A loose file goes to the album the admin has open, if any.
+  if (parts.length < 2 && albumId) {
+    const open = cache.get(`#${albumId}`) || (await one("select * from albums where id = $1 and gallery_id = $2", [albumId, galleryId]))
+    if (open) {
+      cache.set(`#${albumId}`, open)
+      return open
+    }
+  }
   // The folder a photo sits in is its album: "Day 1/x.jpg" is album Day 1,
   // "Event/Keynote/x.jpg" is album Keynote, and a loose file with no folder
   // goes to Photos. Dropping several folders at once gives one album each.
@@ -403,7 +411,7 @@ admin.post(
         out.push({ path: relPath, skipped: true, reason: "File is empty or too large" })
         continue
       }
-      const album = target === "reel" ? null : await albumForPath(g.id, relPath, cache)
+      const album = target === "reel" ? null : await albumForPath(g.id, relPath, cache, int(f.albumId) || null)
       // An unfinished upload of the same file resumes. A finished one with
       // the same name in the same album is a conflict.
       const existing = await one(

@@ -339,12 +339,21 @@ if (only !== "guest") {
     const [chooser] = await Promise.all([page.waitForEvent("filechooser"), page.click('button:has-text("Choose folder")')])
     await chooser.setFiles("data/fixtures/event")
     await page.waitForSelector("text=/Uploaded \\d+ files/", { timeout: 120000 })
+    // A loose file goes into the album that is open, not the first one.
+    await page.click("text=Reception")
+    await page.waitForSelector("h2:has-text('Reception')")
     const [chooser2] = await Promise.all([page.waitForEvent("filechooser"), page.click('button:has-text("Choose files")')])
     // Any real photo will do: the first one in the real folder the suite uses.
     const realDir = "data/real/20_Scaling_with_Systems_LIVE_2021_2"
     const realFile = readdirSync(realDir).find((f) => /\.jpe?g$/i.test(f))
     await chooser2.setFiles([`${realDir}/${realFile}`])
     await page.waitForSelector("text=/Uploaded \\d+ files/", { timeout: 60000 })
+    {
+      const { gallery } = await j(await admin.get(`/api/admin/galleries/${gid}`))
+      const reception = gallery.albumRows.find((a) => a.name === "Reception")
+      const loose = gallery.media.find((m) => m.filename === realFile)
+      assert(loose && reception && loose.albumId === reception.id, `loose file went to album ${gallery.albumRows.find((a) => a.id === loose?.albumId)?.name}, not Reception`)
+    }
     // wait for processing
     const until = Date.now() + 240000
     while (Date.now() < until) {
