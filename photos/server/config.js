@@ -59,6 +59,10 @@ export const config = {
   // First owner bootstrap. Either set these once, or run `npm run setup-owner`.
   ownerEmail: env.OWNER_EMAIL,
   ownerPassword: env.OWNER_PASSWORD,
+  // With RESET_OWNER_PASSWORD=true the two above reset an existing
+  // account's password at boot instead of creating one. Remove all three
+  // afterwards.
+  resetOwnerPassword: env.RESET_OWNER_PASSWORD === "true",
   // Where the marketing site lives, for the footer link and the root page.
   marketingUrl: env.MARKETING_URL || "https://iconic.events",
   // Set to the exact origins allowed to call the API from a browser. The

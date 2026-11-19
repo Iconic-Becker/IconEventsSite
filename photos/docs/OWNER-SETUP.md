@@ -109,6 +109,21 @@ error in the logs is something to fix in the code.
 
 Then follow `docs/MIGRATION.md`.
 
+## Forgot the admin password
+
+Passwords are stored as hashes, so nobody can look one up. If
+`OWNER_PASSWORD` is still among the Railway variables, that is it. If
+not, reset it from Railway without touching the database:
+
+1. Service, Variables: set `OWNER_EMAIL` to the account's email,
+   `OWNER_PASSWORD` to the new password (10 characters or more), and
+   `RESET_OWNER_PASSWORD` to `true`. Deploy.
+2. The boot log says `reset the password for <email>`. Sign in at /admin.
+3. Remove all three variables and deploy again, so the reset cannot run
+   twice and the password is not left lying in the variables.
+
+Other users' passwords are reset by an owner on the Users page.
+
 ## 6. Send to website (optional)
 
 The Photos tab can send selected photos to iconic.events as a pull

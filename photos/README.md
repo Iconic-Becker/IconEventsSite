@@ -182,6 +182,7 @@ migrations on boot, and sets the R2 CORS rule on boot if the token allows.
 | `R2_BUCKET` | no | default `iconic-photos` |
 | `R2_ENDPOINT` | no | override the derived endpoint |
 | `OWNER_EMAIL`, `OWNER_PASSWORD` | once | creates the first owner if no account exists; remove afterwards |
+| `RESET_OWNER_PASSWORD` | no | `true` makes the two above reset that account's password at boot instead (forgotten password); remove all three afterwards |
 | `WORKER` | no | `false` to run this instance without the background worker |
 | `WORKER_CONCURRENCY` | no | parallel jobs, default 2 |
 | `PART_SIZE_MB` | no | upload part size, default 16 |

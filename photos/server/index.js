@@ -9,7 +9,7 @@ import { one, query } from "./db/pool.js"
 import { storage } from "./storage/index.js"
 import { csrf } from "./lib/csrf.js"
 import { errorHandler, notFound } from "./lib/http.js"
-import { hashPassword } from "./lib/auth.js"
+import { hashPassword, validPassword } from "./lib/auth.js"
 import { admin } from "./routes/admin.js"
 import { guest } from "./routes/guest.js"
 import { localStorageRoutes } from "./routes/local-storage.js"
@@ -90,9 +90,22 @@ app.use(errorHandler)
 // ---- Boot ------------------------------------------------------------------
 
 async function bootstrapOwner() {
+  if (!config.ownerEmail || !config.ownerPassword) return
+  const email = config.ownerEmail.toLowerCase()
+  // A forgotten password: RESET_OWNER_PASSWORD=true makes the same two
+  // variables reset an existing account instead of creating one. The
+  // account is re-enabled and unlocked too.
+  if (config.resetOwnerPassword) {
+    if (!validPassword(config.ownerPassword)) return console.error("[boot] RESET_OWNER_PASSWORD: OWNER_PASSWORD must be at least 10 characters; nothing changed.")
+    const u = await one("update users set password_hash = $2, disabled = false where email = $1 returning id", [email, await hashPassword(config.ownerPassword)])
+    if (!u) return console.error(`[boot] RESET_OWNER_PASSWORD: no account with the email ${email}; nothing changed.`)
+    await query("delete from sessions where user_id = $1", [u.id])
+    console.log(`[boot] reset the password for ${email}. Remove OWNER_EMAIL, OWNER_PASSWORD and RESET_OWNER_PASSWORD from the environment now.`)
+    return
+  }
   const any = await one("select 1 from users limit 1")
-  if (any || !config.ownerEmail || !config.ownerPassword) return
-  await query("insert into users(email, name, role, password_hash) values ($1, 'Owner', 'owner', $2)", [config.ownerEmail.toLowerCase(), await hashPassword(config.ownerPassword)])
+  if (any) return
+  await query("insert into users(email, name, role, password_hash) values ($1, 'Owner', 'owner', $2)", [email, await hashPassword(config.ownerPassword)])
   console.log(`[boot] created first owner account ${config.ownerEmail}. Remove OWNER_EMAIL and OWNER_PASSWORD from the environment now.`)
 }
 
