@@ -232,3 +232,10 @@ For context on what is already done, so it does not get re-raised.
 
 - Headshots still needed for Shelby Sapp, Ambro Dipilato, Alexis Mai, Cole
   Gordon, Max Willett and John Whiting. Each shows a placeholder until then.
+
+## Waiting on Icon for live case studies (22 Nov 2026)
+
+| Case study | Needed |
+|---|---|
+| Scale or Sell | Photos, Cameron's testimonial (written) and his testimonial video, both with his written permission to publish. The testimonial replaces "Cam called it his best event ever". |
+| Freedom Queen Live 2026 | The rest of the photos, and a full size original of the hero (the current one is 851px wide and soft on large screens). |

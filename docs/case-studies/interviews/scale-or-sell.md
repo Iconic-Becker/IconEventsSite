@@ -222,7 +222,7 @@ Icon, 2026-11-22, answers to the checks (verbatim):
 
 ## Facts
 
-- Attendance (final): 137 (Iconic, 2026-11-22: the published figure)
+- Attendance (final): 150 (Iconic, 2026-11-22: "call it 150 attendees")
 - Days of production on site: 4 planned (1 setup, 3 show), plus a team
   day on November 4
 - Cost saved for the client:

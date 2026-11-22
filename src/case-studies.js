@@ -450,7 +450,7 @@ export const CASE_STUDIES = [
     headline: "How Scale or Sell Sold Out a Month Early and Became Cameron England's Best Event Yet, Inside a Fort Lauderdale Motor Club",
     cta: "Want your next event to be your best one yet?",
     summary:
-      "Cameron England's earlier events had strong content and poor execution: bad venues and mic failures that pulled him into logistics when he should have been teaching and selling. For Scale or Sell he hired Icon as his event coach. We moved the dates away from Thanksgiving travel, took the mastermind into the Rebel Motor Club in Fort Lauderdale, cut $14,000 from the venue and AV, and had Pablo run all three days on site. It sold out a month early with a waitlist, and 137 attendees came.",
+      "Cameron England's earlier events had strong content and poor execution: bad venues and mic failures that pulled him into logistics when he should have been teaching and selling. For Scale or Sell he hired Icon as his event coach. We moved the dates away from Thanksgiving travel, took the mastermind into the Rebel Motor Club in Fort Lauderdale, cut $14,000 from the venue and AV, and had Pablo run all three days on site. It sold out a month early with a waitlist, and 150 attendees came.",
     challenge: [
       "Cameron England runs License and Scale. His earlier live events had strong content but poor execution, from bad venues to mic failures, and every problem landed on him. Instead of teaching and selling, he spent his own events running logistics.",
       "For Scale or Sell he wanted a step change: a bigger room than ever before, and the best event he had run.",
@@ -477,18 +477,18 @@ export const CASE_STUDIES = [
       ["On site", "Day of coordination for all three days."],
     ],
     metrics: {
-      attendance: "137",
+      attendance: "150",
       productionDays: null,
       costSaved: "$14,000",
       costSavedBasis: "Iconic Events negotiated the Rebel Motor Club from $30,000 to $20,000 and helped Cameron England's team bring the AV from $18,000 to $14,000 for Scale or Sell.",
     },
     highlights: [
-      ["137", "Attendees"],
+      ["150", "Attendees"],
       ["30", "Days early, sold out with a waitlist"],
       ["$14K", "Saved on the venue and AV"],
     ],
     results: [
-      "Scale or Sell sold out a month before the doors opened, with a waitlist of people asking for tickets, and 137 attendees came. The jump in quality from Cam's earlier events was obvious to the people who had been to them, and Cam called it his best event ever.",
+      "Scale or Sell sold out a month before the doors opened, with a waitlist of people asking for tickets, and 150 attendees came. The jump in quality from Cam's earlier events was obvious to the people who had been to them, and Cam called it his best event ever.",
     ],
     rightFor: null,
     stealThis: [
@@ -518,7 +518,7 @@ export const CASE_STUDIES = [
     // replaces "Cam called it his best event ever" in results.
     testimonial: { quote: null, approved: false },
     citation:
-      "Iconic Events, a Florida based event production and coordination company, coached Cameron England through Scale or Sell, a mastermind at the Rebel Motor Club in Fort Lauderdale, Florida in November 2026, delivering event coaching, venue and AV negotiations saving $14,000, and day of coordination for 137 attendees.",
+      "Iconic Events, a Florida based event production and coordination company, coached Cameron England through Scale or Sell, a mastermind at the Rebel Motor Club in Fort Lauderdale, Florida in November 2026, delivering event coaching, venue and AV negotiations saving $14,000, and day of coordination for 150 attendees.",
   },
 
   // Source: docs/case-studies/interviews/freedom-queen-live-2026.md, draft v3,
@@ -1316,7 +1316,7 @@ export const EVENT_INDEX = [
   { slug: "creator-fest", name: "Creator Fest 2024", client: null, when: "2024-08", location: "Orlando, FL", venue: "JW Marriott Orlando Bonnet Creek", size: "1,031", full: true },
   { slug: "creator-hub-madrid", name: "Creator Hub Madrid", client: "Universal Music Group", when: "2025", location: "Madrid, Spain", venue: null, size: null, full: false },
   { slug: "freedom-queen-live-2024", name: "Freedom Queen Live 2024", client: "Bridget James Ling", when: "2024-11", location: "St. Petersburg, FL", venue: "The Vinoy", size: "451", full: true },
-  { slug: "scale-or-sell", name: "Scale or Sell", client: "Cameron England", when: "2026-11", location: "Fort Lauderdale, FL", venue: "Rebel Motor Club", size: "137", full: true },
+  { slug: "scale-or-sell", name: "Scale or Sell", client: "Cameron England", when: "2026-11", location: "Fort Lauderdale, FL", venue: "Rebel Motor Club", size: "150", full: true },
   { slug: "freedom-queen-live-2026", name: "Freedom Queen Live 2026", client: "Bridget James Ling", when: "2026-11", location: "Aventura, FL", venue: "JW Marriott Miami Turnberry Resort & Spa", size: "359", full: true },
   { slug: "freedom-queen-live-2025", name: "Freedom Queen Live 2025", client: "Bridget James Ling", when: "2025-11", location: "St. Petersburg, FL", venue: "The Vinoy", size: "530", full: true },
   { slug: "pmuw-2023", name: "PMU World 2023", client: "Danny Tran", when: "2023-04", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "800+", full: true },
