@@ -24,10 +24,11 @@ const RECAP_GROUPS = [
   },
   {
     name: "Freedom Queen Live",
-    client: "Bridget James Ling, St. Petersburg, FL",
+    client: "Bridget James Ling, St. Petersburg and Miami, FL",
     items: [
       ["freedom-queen-live-2024", "Freedom Queen Live 2024", "her first live event, and the launch of her Inner Circle."],
       ["freedom-queen-live-2025", "Freedom Queen Live 2025", "530 attendees at a Broadway-style show."],
+      ["freedom-queen-live-2026", "Freedom Queen Live 2026", "359 women business owners, in its first year in Miami."],
     ],
   },
   {

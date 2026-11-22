@@ -164,6 +164,11 @@ These are not style preferences. `src/case-studies.js` and
    with a plausible number. One exception (Iconic, 2026-09-30): counts of
    speakers or sponsors Iconic managed may be given as an estimate from
    Iconic, written "about 40 speakers".
+   Attendance (Iconic, 2026-11-22): no tracker records a checked-in
+   count, so the published attendance is the highest attendance count on
+   record for the event (tracker, playbook or Iconic's own figure), not a
+   lower debrief count. Iconic sets the figure per event; record it in the
+   notes file's Facts block with "(Iconic, date)".
 4. **A quote renders only when `approved: true`**, which requires the
    client's verbatim words *and* written permission. Review schema is
    emitted on the same condition. Unapproved or sample copy must never
