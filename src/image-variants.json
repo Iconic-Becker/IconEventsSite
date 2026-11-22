@@ -542,5 +542,117 @@
     480
    ]
   ]
+ },
+ "/images/gallery/pmuw-at-sea/01.webp": {
+  "w": 1920,
+  "h": 1283,
+  "set": [
+   [
+    "/images/gallery/pmuw-at-sea/01-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/pmuw-at-sea/01-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/pmuw-at-sea/02.webp": {
+  "w": 1282,
+  "h": 1920,
+  "set": [
+   [
+    "/images/gallery/pmuw-at-sea/02-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/pmuw-at-sea/02-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/pmuw-at-sea/03.webp": {
+  "w": 1920,
+  "h": 1283,
+  "set": [
+   [
+    "/images/gallery/pmuw-at-sea/03-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/pmuw-at-sea/03-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/pmuw-at-sea/04.webp": {
+  "w": 1920,
+  "h": 1283,
+  "set": [
+   [
+    "/images/gallery/pmuw-at-sea/04-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/pmuw-at-sea/04-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/pmuw-at-sea/05.webp": {
+  "w": 1920,
+  "h": 1283,
+  "set": [
+   [
+    "/images/gallery/pmuw-at-sea/05-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/pmuw-at-sea/05-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/pmuw-at-sea/06.webp": {
+  "w": 1920,
+  "h": 1283,
+  "set": [
+   [
+    "/images/gallery/pmuw-at-sea/06-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/pmuw-at-sea/06-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/pmuw-at-sea/07.webp": {
+  "w": 1920,
+  "h": 1283,
+  "set": [
+   [
+    "/images/gallery/pmuw-at-sea/07-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/pmuw-at-sea/07-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/pmuw-at-sea/08.webp": {
+  "w": 1920,
+  "h": 1283,
+  "set": [
+   [
+    "/images/gallery/pmuw-at-sea/08-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/pmuw-at-sea/08-960.webp",
+    960
+   ]
+  ]
  }
 }

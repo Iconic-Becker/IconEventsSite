@@ -495,13 +495,18 @@ export const CASE_STUDIES = [
       dates: "October 12 to 16, 2026",
     },
     media: {
-      // TODO(collect): photos (the gallery exists at photos.iconic.events).
-      hero: null,
-      challenge: null,
-      band: null,
-      resultLeft: null,
-      resultRight: null,
-      gallery: [],
+      // From the PMU World at Sea gallery on photos.iconic.events (Iconic's
+      // own content team).
+      hero: { src: "/images/gallery/pmuw-at-sea/01.webp", alt: "Hundreds of PMU World at Sea attendees gathered on the main theater stage under the PMU World at Sea backdrop, aboard Wonder of the Seas" },
+      challenge: { src: "/images/gallery/pmuw-at-sea/02.webp", alt: "Sponsor workshop kits laid out on a table, cartridges, tools and pigments for the hands on sessions at PMU World at Sea, aboard Wonder of the Seas" },
+      band: { src: "/images/gallery/pmuw-at-sea/03.webp", alt: "Attendees dressed in white filling the dance floor at the PMU World at Sea VIP party, aboard Wonder of the Seas" },
+      resultLeft: { src: "/images/gallery/pmuw-at-sea/04.webp", alt: "Attendees cheering with arms raised in the ship's main theater at PMU World at Sea, aboard Wonder of the Seas" },
+      resultRight: { src: "/images/gallery/pmuw-at-sea/05.webp", alt: "Three attendees smiling at a hands on workshop table at PMU World at Sea, aboard Wonder of the Seas" },
+      gallery: [
+        { src: "/images/gallery/pmuw-at-sea/06.webp", alt: "An attendee at the PMU World at Sea 2026 shell and coral photo wall, aboard Wonder of the Seas" },
+        { src: "/images/gallery/pmuw-at-sea/07.webp", alt: "A speaker on the main theater stage in front of the PMU World at Sea backdrop, aboard Wonder of the Seas" },
+        { src: "/images/gallery/pmuw-at-sea/08.webp", alt: "Two attendees holding up PMU World signs on the pool deck at night, aboard Wonder of the Seas" },
+      ],
       aftermovieUrl: null,
       testimonialUrl: null,
     },
