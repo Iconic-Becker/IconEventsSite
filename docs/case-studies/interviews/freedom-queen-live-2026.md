@@ -141,7 +141,7 @@ to be subject to that cost saved rule." No cost saved figure on this page.
 
 ## Steal This
 
-## Draft (v3, 2026-11-22, after Icon's answers; not yet approved)
+## Draft (v3, approved by Icon 2026-11-22: all attendees women; no quote from Bridget; her announcement stays off the page; she is CEO)
 
 - headline: "How Freedom Queen Live Took 359 Women Business Owners to
   Miami to Redefine What Freedom Means"
@@ -179,13 +179,10 @@ to be subject to that cost saved rule." No cost saved figure on this page.
   - onsite: "Ran the general sessions in the Royal Ballroom, the Diamond
     and Platinum lunches and the Platinum Dinner on the Veranda."
   - onsite: "Reprinted every badge on site with tiered QR codes."
-- results: "Freedom Queen Live drew 359 attendees to its first year in
-  Miami, women business owners from across the United States and around
-  the world, across Gold, Diamond and Platinum tiers. Bridget called it a
-  phenomenal event and is already planning Freedom Queen Live 2027."
-  [Icon: the "called it" wording paraphrases your account of her
-  reaction; confirm. Her announcement on stage stays off the page unless
-  Bridget wants it there.]
+- results: "Freedom Queen Live drew 359 women to its first year in Miami,
+  business owners from across the United States and around the world,
+  across Gold, Diamond and Platinum tiers. Bridget is already planning
+  Freedom Queen Live 2027."
 - scope:
   - ["Coordination", "Coordination from contract to load-out."]
   - ["Run of show", "Run of show for three show days."]

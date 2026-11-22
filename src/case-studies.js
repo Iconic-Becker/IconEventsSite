@@ -438,6 +438,81 @@ export const CASE_STUDIES = [
       "Iconic Events, a Florida based event production and coordination company, produced Freedom Queen Live 2025 for Bridget James Ling at the Vinoy in St. Petersburg, Florida in November 2025, delivering a Broadway style show with rehearsed dance performances, a flash mob opening and staged butler service for 530 attendees.",
   },
 
+  // Source: docs/case-studies/interviews/freedom-queen-live-2026.md, draft v3,
+  // approved by Iconic 2026-11-22. No cost saved by Iconic's call: our role
+  // was coordination and liaison, not production.
+  {
+    slug: "freedom-queen-live-2026",
+    name: "Freedom Queen Live 2026",
+    format: "Conference",
+    approachLead: "We coordinated and ran the show. Bridget's team held the venue, AV and stage design contracts.",
+    headline: "How Freedom Queen Live Took 359 Women Business Owners to Miami to Redefine What Freedom Means",
+    cta: "Want an event that moves your community forward, wherever it meets?",
+    summary:
+      "Freedom Queen Live is the three day conference for women in business who sell high ticket offers, lead movements and are ready to scale. Its promise is freedom: a company that compounds year after year without its founder as the constant face of the brand. For its third year, Bridget James Ling moved it from St. Petersburg to Miami, where business is heading and where women flying in from Hong Kong and New Zealand could reach it. We coordinated the conference and ran the show for 359 attendees. Bridget is already planning 2027.",
+    challenge: [
+      "Freedom Queen Live is for women who were born to lead: founders who sell high ticket offers, want to become known for their work and are building companies that compound year after year. Freedom, as Bridget James Ling teaches it, is a business that keeps growing without its founder as the constant face of the brand.",
+      "After two years at the Vinoy in St. Petersburg, Bridget wanted the event where the real motion in business is. Miami is the hub for where commerce and business owners are going, and an international one: her community travels from as far as Hong Kong and New Zealand. Year three had to move cities without losing what made it Freedom Queen.",
+    ],
+    approach: {
+      pre: [
+        "Acted as the single liaison between Bridget's team, the hotel and every supplier.",
+        "Built and owned the run of show across three show days.",
+        "Managed the hotel room block, which finished above its minimum.",
+      ],
+      onsite: [
+        "Ran the general sessions in the Royal Ballroom, the Diamond and Platinum lunches and the Platinum Dinner on the Veranda.",
+        "Reprinted every badge on site with tiered QR codes.",
+      ],
+      post: [],
+    },
+    challengesOvercome: [
+      "Bridget's own team held the venue, AV, vendors, security and stage design for the first time. We kept one plan across all of them as the single liaison, so nobody worked from an old version.",
+      "Registration needed new badges on site. We reprinted every one overnight, laminated, with a QR code for each ticket tier, before doors opened.",
+    ],
+    scope: [
+      ["Coordination", "Coordination from contract to load-out."],
+      ["Run of show", "Run of show for three show days."],
+      ["Liaison", "One point of contact across the hotel, AV, vendors and security, all contracted by the client."],
+      ["Hotel", "Room block management."],
+      ["Registration", "Badges with tiered QR codes, reprinted on site."],
+    ],
+    metrics: { attendance: "359", productionDays: null, costSaved: null },
+    highlights: [
+      ["359", "Women business owners"],
+      ["3", "Years of Freedom Queen Live"],
+    ],
+    results: [
+      "Freedom Queen Live drew 359 women to its first year in Miami, business owners from across the United States and around the world, across Gold, Diamond and Platinum tiers.",
+      "Three days ran on the themes of Excellence, Sales and Growth, from the first Freedom Queen Live mastermind session to an award ceremony that celebrated the community's wins on stage, in front of everyone. Bridget is already planning Freedom Queen Live 2027.",
+    ],
+    rightFor: null,
+    stealThis: null,
+    details: {
+      client: "Bridget James Ling",
+      clientTitle: "CEO, Freedom Queen",
+      venue: "JW Marriott Miami Turnberry Resort & Spa",
+      city: "Aventura",
+      region: "FL",
+      year: "2026",
+      dates: "November 19 to 21, 2026",
+    },
+    media: {
+      // TODO(collect): photos and aftermovie from the content team.
+      hero: null,
+      challenge: null,
+      band: null,
+      resultLeft: null,
+      resultRight: null,
+      gallery: [],
+      aftermovieUrl: null,
+      testimonialUrl: null,
+    },
+    testimonial: { quote: null, approved: false },
+    citation:
+      "Iconic Events, a Florida based event production and coordination company, coordinated Freedom Queen Live 2026 for Bridget James Ling of Freedom Queen at the JW Marriott Miami Turnberry Resort & Spa in Aventura, Florida in November 2026, delivering coordination, run of show and supplier liaison for 359 attendees.",
+  },
+
   // Source: docs/case-studies/Case-Study-Interviews.xlsx, approved by Iconic.
   {
     slug: "pmuw-2023",
@@ -1157,6 +1232,7 @@ export const EVENT_INDEX = [
   { slug: "creator-fest", name: "Creator Fest 2024", client: null, when: "2024-08", location: "Orlando, FL", venue: "JW Marriott Orlando Bonnet Creek", size: "1,031", full: true },
   { slug: "creator-hub-madrid", name: "Creator Hub Madrid", client: "Universal Music Group", when: "2025", location: "Madrid, Spain", venue: null, size: null, full: false },
   { slug: "freedom-queen-live-2024", name: "Freedom Queen Live 2024", client: "Bridget James Ling", when: "2024-11", location: "St. Petersburg, FL", venue: "The Vinoy", size: "451", full: true },
+  { slug: "freedom-queen-live-2026", name: "Freedom Queen Live 2026", client: "Bridget James Ling", when: "2026-11", location: "Aventura, FL", venue: "JW Marriott Miami Turnberry Resort & Spa", size: "359", full: true },
   { slug: "freedom-queen-live-2025", name: "Freedom Queen Live 2025", client: "Bridget James Ling", when: "2025-11", location: "St. Petersburg, FL", venue: "The Vinoy", size: "530", full: true },
   { slug: "pmuw-2023", name: "PMU World 2023", client: "Danny Tran", when: "2023-04", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "800+", full: true },
   { slug: "pmuw-2024", name: "PMU World 2024", client: "Danny Tran", when: "2024-08", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "1,237", full: true },
