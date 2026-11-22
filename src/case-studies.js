@@ -455,7 +455,7 @@ export const CASE_STUDIES = [
     approach: [
       "Suggested the format: PMU World at sea, a closer and more connected edition to hold the community together while Beauty World is built.",
       "Built the program around the ship: education in the main theater by day, and afternoon workshops where VIPs trained hands on alongside the mentors.",
-      "Oversaw every sponsor shipment, from Hanafy, MAST PMU, Tina Davies, NUE and the American Academy of Micropigmentation, shipped far earlier than usual and cleared by international and port security.",
+      "Oversaw the logistics of every sponsor shipment, from Hanafy, MAST PMU, Tina Davies, NUE and the American Academy of Micropigmentation, shipped far earlier than usual and cleared by international and port security.",
       "Ran the AV ourselves on board, with no outside AV company: confidence monitors, capture and the master slideshow.",
       "Packed the sponsor bags on board, two extra cabins and long days of prep, and managed boarding with porters.",
       "Opened the week with a welcome mixer in the Solarium, and kept a content team on the program throughout.",
@@ -467,7 +467,7 @@ export const CASE_STUDIES = [
     scope: [
       ["Format", "The cruise concept, to hold momentum while Beauty World is built."],
       ["Program", "Theater sessions by day and hands on VIP workshops with mentors."],
-      ["Sponsors", "Shipping and security clearance for every sponsor's workshop materials."],
+      ["Sponsor logistics", "Shipping and security clearance for every sponsor's workshop materials. The sponsorships themselves were sold and managed by Danny's team, not by us."],
       ["AV", "AV run in house on board."],
       ["Logistics", "Sponsor bags, boarding and the welcome mixer."],
       ["Content", "A content team throughout the program."],

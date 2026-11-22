@@ -238,4 +238,5 @@ For context on what is already done, so it does not get re-raised.
 | Case study | Needed |
 |---|---|
 | Scale or Sell | Photos, Cameron's testimonial (written) and his testimonial video, both with his written permission to publish. The testimonial replaces "Cam called it his best event ever". |
+| PMU World at Sea | A testimonial from Danny Tran, with his written permission, to add as a quote. |
 | Freedom Queen Live 2026 | The rest of the photos, and a full size original of the hero (the current one is 851px wide and soft on large screens). |
