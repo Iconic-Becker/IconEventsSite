@@ -15,11 +15,12 @@ import SiteFooter from "./SiteFooter.jsx"
 const RECAP_GROUPS = [
   {
     name: "PMU World",
-    client: "Danny Tran, Hollywood, FL",
+    client: "Danny Tran, Hollywood, FL and at sea",
     items: [
       ["pmuw-2023", "PMU World 2023", "800+ attendees against a projection of 600, the largest permanent makeup event in North America on the first try."],
       ["pmuw-2024", "PMU World 2024", "1,237 attendees in year two, in a smaller room."],
       ["pmuw-2025", "PMU World 2025", "2,000 attendees in year three, in an event built for social."],
+      ["pmuw-at-sea", "PMU World at Sea", "455 attendees aboard Wonder of the Seas, buying Danny time to build Beauty World."],
     ],
   },
   {
