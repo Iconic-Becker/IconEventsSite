@@ -72,6 +72,38 @@ badges or a plan unless it says otherwise.
 
 ## Q1. What did they come to you with?
 
+Icon, 2026-11-22 (verbatim, voice; one line on the client's own finances
+removed, as it is not page material):
+
+> so, Cameron and Glenn's event was a mastermind that was sold under our
+> consulting, our offer. Typically, we don't attend on-site at these, but
+> I... Have big beliefs in the future of Cameron and I happen to be
+> traveling towards another event at the time. So I did end up coming. So
+> I didn't run it hands-on, but Pablo did. I would absolutely run it like
+> the hell yes life page. I would call this a mastermind since it was less
+> than 150 people. It was hands down his best event ever. I actually have
+> a testimonial from him that I will get here for you in a moment. The
+> mastermind went great. I don't have the recap call yet to understand how
+> many sales were done from the event, but it was a huge, huge jump in
+> quality from his London event. It was a huge jump in quality from his
+> Dubai event. The attendees noticed. He sold out the event a month out
+> from the event. He quite literally had a wait list of people begging him
+> to buy tickets. Which was a great part. [Client finances removed.] He
+> sold an offer on the back end. I don't know how well that offer did. We
+> created such a unique venue by working with the Rebel Motor Club to
+> create a event unlike any other where attendees were surrounded by
+> vintage and new cars. We had really cool activations like putting his
+> logo on the side of a Aventador. Yeah, it was all around just a great
+> event. We even had some very fun attendee gifts where energy drinks and
+> zins were packed inside of his company's branded boxes. He called them
+> stim packs to make sure everyone was paying attention.
+
+Captured: a mastermind, sold as EPIC consulting; Icon attended by choice
+but did not run it; Pablo ran it on site. Present like Hell Yes Live.
+Best event ever; a big jump in quality from his London and Dubai events;
+sold out a month early with a waitlist. Testimonial from Cam to come.
+Back end sales unknown (and client revenue in any case).
+
 ## Q2. What made this one hard?
 
 ## Q3. Three to five decisions, and why
@@ -82,67 +114,95 @@ badges or a plan unless it says otherwise.
 
 ## Q6. Anything else about the event?
 
+Icon, 2026-11-22, answers to the checks (verbatim):
+1. "No i said cameron england" (there is no Glenn; a transcription slip).
+2. Name the Lamborghini Aventador: "Yes".
+3. Stim packs: "no include it its on brand for him" (energy drinks and
+   Zyn pouches).
+4. "swap in his testimonial once is arrives and we'll have a palce for a
+   video testimonial to put this".
+5. Cost saved (voice): "we originally got this venue that would have cost
+   like $30,000 that we got for $20,000. We came up with unique ways to
+   save money by avoiding hotel contracts. His AV was supposed to be
+   $18,000. We helped his team negotiate those contracts down to $14,000."
+   Saved: $10,000 on the venue plus $4,000 on AV, $14,000 in all.
+6. London and Dubai comparison: not answered; left off the page.
+
 ## Steal This
 
-## Draft (from the brain, not yet approved)
+## Draft (v2, 2026-11-22, after Icon's answers; not yet approved)
 
-Plan only. Nothing in the brain says how the weekend went. Before any
-draft is used, Icon should decide whether a personal consulting
-engagement belongs on the Iconic Events case study grid at all.
-
-- headline: "How Cameron England Built a VIP Day, a Mixer and a Two Day
-  Conference Inside Rebel Motor Club [result, with a number]".
-  Placeholder until Icon gives the outcome.
-- summary (draft, about 65 words): "Cameron England wanted the Scale Or Sell
-  Conference to run like a much bigger event inside Rebel Motor Club in
-  Fort Lauderdale. We briefed his team, wrote the event playbook and put
-  a day-of coordinator on site for all three days, so Cameron could stay
-  in the room. A VIP day flipped into an evening mixer with a car inside,
-  followed by two full conference days. [Result.]"
+- name: "Scale or Sell 2026"
+- format: "Mastermind" (Icon). Hell Yes Live shows "EPIC Consulting";
+  Icon chose Mastermind here.
+- approachLead: "Icon coached Cameron and his team from the first plan to
+  the event. Pablo ran all three days on site."
+- headline: "How Scale or Sell Sold Out a Month Early and Became Cameron
+  England's Best Event Yet, Inside a Fort Lauderdale Motor Club"
+- summary (about 95 words): "Cameron England's earlier events had strong
+  content and poor execution: bad venues and mic failures that pulled him
+  into logistics when he should have been teaching and selling. For Scale
+  or Sell he hired Icon as his event coach. We moved the dates away from
+  Thanksgiving travel, took the mastermind out of the hotel ballroom and
+  into the Rebel Motor Club in Fort Lauderdale, and had Pablo run all three
+  days on site. It sold out a month early with a waitlist, 137 attendees
+  came, and Cam called it his best event ever." [Last clause: confirm, or
+  replace with his testimonial once approved.]
 - challenge:
-  - "Scale Or Sell ran in a motor club, not a hotel ballroom. One room had
-    to hold a VIP day, flip into a mixer the same evening, then host two
-    full conference days, and Cameron needed to be on stage and with his
-    buyers, not solving problems."
-  - [Q1 and Q2 in Icon's words.]
-- approach:
-  - pre:
-    - "Ran a team day with Cameron's team before the event: a vision
-      session, sales prep, a yacht and a team dinner."
-    - "Briefed the team on how the event runs and wrote the event
-      playbook."
-    - "Replaced the venue's seating with about 150 comfortable rental
-      chairs."
-  - onsite:
-    - "Put a day-of coordinator on site all three days as the first stop
-      for any problem, so Cameron could focus on the room."
-    - "Ran VIP check-in at noon, cleared the room at 5 PM and flipped it
-      for the GA check-in and evening mixer, with a wrapped car inside
-      for the mixer only."
-    - "Kept an upstairs glass room for speakers and high value
-      conversations."
-  - post: [Gap. Nothing in the brain.]
-- results: [Gap. Nothing in the brain on how it went.]
+  - "Cameron England runs License and Scale. His earlier live events had
+    strong content but poor execution, from bad venues to mic failures,
+    and every problem landed on him. Instead of teaching and selling, he
+    spent his own events running logistics."
+  - "For Scale or Sell he wanted a step change: a bigger room, about 70 to
+    75 people against about 47 before, and the best event he had run."
+- challengesOvercome:
+  - "The first plan put the event in Miami across Sunday to Tuesday, the
+    week before Thanksgiving. We moved it to a Friday to Sunday, so nobody
+    had to choose between the mastermind and travelling home."
+  - "A motor club is not a hotel. We built the room from nothing: 132
+    seats on the floor and a mezzanine above, with 150 upgraded chairs,
+    because Cam would not put his attendees in plastic ones."
+- approach (one list, coaching then on site):
+  - "Coached Cameron and his team through weekly calls and one playbook
+    for the whole event."
+  - "Took the event out of the hotel ballroom and into the Rebel Motor
+    Club, so attendees spent three days surrounded by vintage and new
+    cars."
+  - "Turned the cars into the brand: Cam's logo on the side of a
+    Lamborghini Aventador." [Icon: naming the car is a third party brand;
+    keep, or say "a supercar"?]
+  - "Packed the attendee gifts as stim packs: energy drinks inside Cam's
+    branded boxes, to keep the room switched on." [Icon: you also said
+    "zins"; nicotine pouches on a public page, keep or drop?]
+  - "Briefed the on site team, then Pablo ran all three days: a VIP day and
+    an evening mixer on Friday, two main days, and a VIP dinner on
+    Saturday at MAASS in the Four Seasons."
+- results: "Scale or Sell sold out a month before the doors opened, with a
+  waitlist of people asking for tickets, and 137 attendees came. The jump
+  in quality from Cam's earlier events was obvious to the people who had
+  been to them, and Cam called it his best event ever." [Testimonial to
+  replace or support the last clause.]
 - scope:
-  - ["Consulting", "Event consulting and a team day with the client's
-    team."]
-  - ["Playbook", "The event playbook and a team briefing."]
-  - ["Day-of coordination", "A day-of coordinator on site all three
-    days."]
-  - ["Room", "Seating, the VIP day to mixer flip, and the car feature."]
-- metrics: attendance: null; productionDays: null (Thursday setup plus
-  three show days planned; confirm); costSaved: null.
-- details: client "Cameron England"; clientTitle: null; venue "Rebel
-  Motor Club"; city "Fort Lauderdale"; region "FL"; year "2026"; dates
-  "November 6 to 8, 2026".
-- format: [Ask. Not inferred.]
-- cta: "Want your event to run without you solving every problem?"
-  (draft)
+  - ["Coaching", "Weekly calls with Cameron and his team."]
+  - ["Systems", "One playbook for the whole event."]
+  - ["Venue", "The Rebel Motor Club, set for a mastermind."]
+  - ["Experience", "The branded supercar and the stim pack gifts."]
+  - ["Schedule", "New dates clear of Thanksgiving travel."]
+  - ["On site", "Day of coordination for all three days."]
+- metrics: attendance "137"; productionDays null; costSaved null (Icon:
+  exempt like Freedom Queen? Coaching engagement).
+- highlights: ["137", "Attendees"]; ["1 month", "Sold out before the
+  doors opened"].
+- details: client "Cameron England"; clientTitle "Founder, License and
+  Scale"; venue "Rebel Motor Club"; city "Fort Lauderdale"; region "FL";
+  year "2026"; dates "November 6 to 8, 2026".
+- cta: "Want an event coach in your corner?" (as Hell Yes Live) or "Want
+  your next event to be your best one yet?"
 - citation: "Iconic Events, a Florida based event production and
-  coordination company, supported Cameron England's Scale Or Sell
-  Conference at Rebel Motor Club in Fort Lauderdale, Florida in November
-  2026, delivering event consulting, the event playbook, a team briefing
-  and day-of coordination [for N attendees]."
+  coordination company, coached Cameron England through Scale or Sell
+  2026, a mastermind at the Rebel Motor Club in Fort Lauderdale, Florida in
+  November 2026, delivering event coaching, venue design and day of
+  coordination for 137 attendees."
 
 ## Questions for Icon
 
@@ -162,7 +222,7 @@ engagement belongs on the Iconic Events case study grid at all.
 
 ## Facts
 
-- Attendance (final): 137 (Iconic, 2026-11-22: the published figure)
+- Attendance (final): 150 (Iconic, 2026-11-22: "call it 150 attendees")
 - Days of production on site: 4 planned (1 setup, 3 show), plus a team
   day on November 4
 - Cost saved for the client:

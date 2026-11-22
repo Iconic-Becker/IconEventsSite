@@ -42,6 +42,7 @@ const RECAP_GROUPS = [
 ]
 
 const CASE_STUDY_GROUP = [
+  ["scale-or-sell", "Scale or Sell", "Cameron England, Fort Lauderdale, FL", "Sold out a month early, with $14K saved on the venue and AV."],
   ["the-sales-summit", "The Sales Summit", "Jeremy Miner, Irving, TX", "Produced 7th Level's largest event to date, with 700 attendees."],
   ["hell-yes-live", "Hell Yes Live 2026", "Becca Pike, Lexington, KY", "Sold 42 seats for next year within days."],
   ["net-rev-summit-2026", "Net Rev Summit 2026", "Ambro Dipilato, Marana, AZ", "At the Ritz-Carlton Dove Mountain, with a virtual ticket and livestream. $14.9K saved on the hotel."],

@@ -71,6 +71,13 @@ badges or a plan unless it says otherwise.
 
 ## Q6. Anything else about the event?
 
+Icon, 2026-11-22 (verbatim): "event was a mastermind but the hosts were
+Maxwell and Vanessa". Format: Mastermind. The club's own hosts ran the
+room (Vanessa Braun is the club lead); Tan and Salim remain the client.
+On hold until the recap call (Rachel, the recap bot, is pulling more).
+Same hold for DML Vegas.
+
+
 ## Steal This
 
 ## Draft (v2, 2026-11-22, from the brain and the dossier; not yet approved)
@@ -123,7 +130,8 @@ badges or a plan unless it says otherwise.
 - details: client "Tan Gera and Salim"; clientTitle "Co-Founders,
   Decentralized Masters"; venue "Bellagio"; city "Las Vegas"; region "NV";
   year "2026"; dates "November 11 to 12, 2026".
-- format: [Ask. Mastermind?]
+- format: "Mastermind" (Icon, 2026-11-22). Credit Maxwell and Vanessa as
+  the hosts.
 - cta: "Want to give your inner circle a room of its own?"
 - citation: "Iconic Events, a Florida based event production and
   coordination company, produced the Inflection Club for Decentralized
