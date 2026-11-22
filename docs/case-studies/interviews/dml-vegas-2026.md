@@ -1,8 +1,15 @@
-# DML Vegas (Decentralized Masters Live with the Inflection Club, November 10 to 15, 2026)
+# DML Vegas (Decentralized Masters Live, Las Vegas, November 2026)
 
 Slug: `dml-vegas-2026` (not built). EVENT_INDEX: client Tan and Salim,
 2026-11, Las Vegas, NV, Bellagio. No final size or photos on file. No old
-site row. Follows the first Decentralized Masters Live (March 2026,
+site row.
+
+The Inflection Club is its own event (Icon, 2026-11-22: "it was the first
+two days of the event"), with its own notes in `inflection-club-2026.md`.
+This page covers Decentralized Masters Live only. The research below still
+describes the whole week, since the brain records it as one engagement.
+
+Follows the first Decentralized Masters Live (March 2026,
 Fontainebleau Miami Beach, slug `decentralized-masters-live`), whose
 published results already say "next Las Vegas in November 2026, which we
 are producing".
@@ -57,28 +64,26 @@ All of it is the plan before the event; nothing yet on how it went.
 Plan only. Nothing in the brain says how the week went, so results are
 left as a gap and the headline has no number yet.
 
-- headline: "How Decentralized Masters Brought Its Investors to the
-  Bellagio for a Week in Las Vegas and [result, with a number]".
+- headline: "How Decentralized Masters Live Took Its Investor Community
+  to the Bellagio and [result, with a number]".
   Placeholder until Icon gives the outcome.
-- summary (draft, about 70 words): "Eight months after their first live event,
-  Tan and Salim of Decentralized Masters brought their community to Las
-  Vegas: three days for the Inflection Club, the high ticket community
-  born at the first event, then three days of Decentralized Masters Live
-  at the Bellagio. We produced both back to back, from the Tower Ballroom
-  general session to a Saturday night at AREA15, with our own team and a
-  content crew on site. [Result.]"
+- summary (draft, about 60 words): "Eight months after their first live
+  event, Tan and Salim of Decentralized Masters brought their investor
+  community to Las Vegas for Decentralized Masters Live at the Bellagio,
+  straight after the Inflection Club's own days in the same venue. We
+  produced it from the Tower Ballroom general session to a Saturday night
+  at AREA15, with our own team and a content crew on site. [Result.]"
 - challenge:
   - "The first Decentralized Masters Live, in Miami Beach in March 2026,
     turned an online investor community into a room that wanted more, and
-    launched the Inflection Club. Las Vegas had to deliver two events in
-    one week at the Bellagio: an intimate program for Inflection Club
-    members, then the full Decentralized Masters Live for a larger room."
+    launched the Inflection Club. Las Vegas had to follow the club's own
+    days in the same venue and turn the room over for the full
+    Decentralized Masters Live."
   - [Q1 and Q2: why Las Vegas, what this edition had to do differently.]
 - approach:
   - pre:
-    - "Planned two events back to back in one venue: the Inflection Club
-      from November 10 to 12 and Decentralized Masters Live from November
-      13 to 15."
+    - "Planned Decentralized Masters Live to follow the Inflection Club in
+      the same venue, with the room turned over between them."
     - "Worked hand in hand with the Bellagio's in-house AV provider on
       rigging, power and the Tower Ballroom general session."
     - "Designed the event backdrop and printed materials, and prepared
@@ -131,7 +136,8 @@ left as a gap and the headline has no number yet.
 5. Any cost saved for the client, stated with a figure, as in March?
 6. Format: Summit, Conference, Mastermind, or two formats (Inflection
    Club as a Mastermind)?
-7. One page for both events, or a separate Inflection Club page?
+7. Answered: the Inflection Club is its own event and page (Icon,
+   2026-11-22). Confirm DML's own dates (the brain has November 13 to 15).
 8. Photos and aftermovie from the content team, testimonial, and a quote
    with written permission.
 
