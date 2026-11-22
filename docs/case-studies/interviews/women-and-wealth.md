@@ -48,6 +48,92 @@ yet on how it went.
   hand with a local AV provider, neither taking credit for their work nor
   handing it all to them. No partner is named.
 
+## Draft (from the brain, not yet approved)
+
+Written from the planning documents only. Nothing below says how the
+event went, because the brain does not record it. Every result line waits
+for Icon.
+
+- **headline:** How Women and Wealth Set Out to Become the Largest Women
+  in Sales Conference in the United States (number to add once the final
+  attendance is confirmed)
+- **summary:** Shelby Sapp wanted more than a sales training. She wanted
+  the largest women in sales conference in the United States, an event
+  that sold a transformation rather than a ticket and set her up as the
+  leading voice for women in sales in every industry. We built three days
+  at the Broward County Convention Center in Fort Lauderdale around one
+  idea: no woman should walk in alone. A personality survey sorted
+  registrants into cohorts, the cohorts met on video before the event,
+  and colour coded badges brought them together on the floor. (Result
+  sentence to add.)
+- **challenge:**
+  1. Shelby Sapp is known for teaching women to sell. For Women and
+     Wealth she wanted something bigger: the largest women in sales
+     conference in the United States, and the moment that made her the
+     definitive voice for women in sales across real estate, insurance,
+     high ticket sales, content and business ownership.
+  2. The brief was a feeling, not a format: "Tony Robbins meets a world
+     class women's summit," with arena level production that still felt
+     warm. A room of up to 2,500 women had to feel personal, and every
+     attendee had to leave ready to buy next year's ticket.
+  3. (Q1 and Q2 from Icon: what was riding on it, and what made it hard.
+     The brain has a launch about two months before the doors, which may
+     be the constraint.)
+- **approach:**
+  - pre: Venue and hotel: the Broward County Convention Center on the
+    Intracoastal, with the hotel directly across the street.
+  - pre: A Shelby branded personality survey for every registrant, then
+    cohorts of 20 to 40 women with something in common.
+  - pre: Virtual cohort calls hosted by our team before the event, so
+    attendees met their people before they met the room.
+  - onsite: Colour coded badges by cohort, so every woman walked into day
+    one already knowing who she was looking for.
+  - onsite: A professional emcee, so Shelby could be the headliner rather
+    than the host.
+  - onsite: Production at arena tour scale, warmer and more feminine, in
+    dark green, dark red, white and cream, delivered hand in hand with a
+    local AV provider.
+  - onsite: A Roaring 20s gala taken from Shelby's own Gatsby house party.
+  - onsite and post: Six videographers and four photographers across
+    every show day, and twenty staff on registration and the floor.
+- **results:** GAP. Final attendance, how the cohorts landed, the gala,
+  next year's date.
+- **scope:**
+  - Vision: event concept, identity and experience design.
+  - Venue and hotel: venue alignment and the hotel across the street.
+  - Community: personality survey, cohorts, pre-event cohort calls and
+    colour coded badges.
+  - Program: emcee and run of show.
+  - Production: stage, AV and lighting, hand in hand with a local AV
+    provider.
+  - Content: six videographers and four photographers on every show day.
+  - Operations: registration and attendee management with twenty staff.
+  - Gala: the Roaring 20s gala.
+- **metrics:** attendance GAP (planned up to 2,500, not publishable as a
+  result); productionDays 5 (2 load-in, 3 show; confirm); costSaved null.
+- **details:** client Shelby Sapp (title GAP), venue Broward County
+  Convention Center, Fort Lauderdale, FL, 2026, July 31 to August 2.
+- **format:** GAP (Conference? Ask; do not infer).
+- **cta:** Want to fill a convention center and make every attendee feel
+  known?
+- **citation:** Iconic Events, a Florida based event production company,
+  produced the Women and Wealth Conference for Shelby Sapp at the Broward
+  County Convention Center in Fort Lauderdale, Florida from July 31 to
+  August 2, 2026, delivering experience design, attendee cohort
+  matchmaking, production, content capture and on site operations.
+
+## Questions for Icon
+
+1. Final attendance, and whether it was women only as planned.
+2. How it went: the room, the cohorts on the floor, the gala, anything
+   Shelby said afterwards. Did she book 2027?
+3. What made it hard (launch to doors in about two months?), and one or
+   two things that nearly broke and how the team handled them.
+4. Did the livestream for Academy members happen?
+5. Shelby's title, and whether a quote can be approved.
+6. Photos and the aftermovie from the content team, with usage rights.
+7. Format: Conference, Summit, or something else.
+
 ## Q1. What did they come to you with?
 
 ## Q2. What made this one hard?
