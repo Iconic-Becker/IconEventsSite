@@ -73,48 +73,63 @@ badges or a plan unless it says otherwise.
 
 ## Steal This
 
-## Draft (from the brain, not yet approved)
+## Draft (v2, 2026-11-22, from the brain and the dossier; not yet approved)
 
-Plan only. Results and the headline number wait for Icon.
-
-- headline: "How Decentralized Masters Gave Its Inflection Club Members
-  [N] Days at the Bellagio Before Anyone Else Arrived" (placeholder)
-- summary: "At the first Decentralized Masters Live, more than 30
-  investors joined a new high ticket community, the Inflection Club. Eight
-  months later, co-founders Tan and Salim gave those members a live event
-  of their own: the opening days of the Las Vegas week at the Bellagio,
-  with members and their partners, before Decentralized Masters Live
-  began. We produced it as its own program, then turned the same venue
-  over to the main event. [Result.]"
-- challenge: [Q1 and Q2. What the club needed that the main event could
-  not give it; why members and spouses; what was riding on it.]
+- headline: "How Decentralized Masters Gave 67 Inflection Club Members Two
+  Days at the Bellagio Before Anyone Else Arrived"
+- summary (about 85 words): "At the first Decentralized Masters Live in
+  March 2026, more than 30 investors joined a new high ticket community,
+  the Inflection Club. Eight months later, co-founders Tan Gera and Salim
+  gave its members two days of their own at the Bellagio in Las Vegas,
+  before Decentralized Masters Live began. We produced the program, two
+  members only dinners and a recap video cut overnight, for 54 members and
+  13 partners. Tan's verdict afterwards: the feedback has been great all
+  round." [The quote needs Tan's written permission; otherwise drop it.]
+- challenge:
+  - "The Inflection Club was born at the first Decentralized Masters Live:
+    a high ticket community for the investors who wanted more than one
+    event a year. Its members had paid to be closer to Tan and Salim, so
+    the club needed time and a room of its own, not a reserved row at the
+    main event."
+  - [Q1 and Q2 from Icon: what Tan asked for, what was riding on it.]
 - approach:
-  - pre: "Planned the club's days as a program in its own right, ahead of
-    the main event in the same venue."
-  - pre: "Prepared the Inflection Club presentation and materials."
-  - onsite: "Hosted members and their partners at the Bellagio, then
-    turned the venue over to Decentralized Masters Live." [Confirm, plus
-    Q3 decisions.]
-  - post: [Gap.]
-- results: [Gap: final attendance, renewals or new members, response.]
+  - pre: "Planned two meeting days for the club, Wednesday and Thursday,
+    ahead of the main event in the same hotel, with AV loaded in the day
+    before."
+  - pre: "Built a program around the club's interests: private market
+    portfolio construction, estate planning, a 100 year plan, founder
+    stories, expert rotations and an open AMA with Tan and Salim."
+  - onsite: "Hosted the club's group dinner on the Bellagio's Grand Patio,
+    about 80 plated, and a Principal and Chairman dinner at Lago, James
+    Bond themed, for the inner circle."
+  - onsite: "Edited a recap video on the night of the second day, so
+    members could share it before they left."
+  - onsite: "Gave members purple badges at Decentralized Masters Live, so
+    the club stayed visible across the week."
+- results: "67 Inflection Club members and partners spent two days at the
+  Bellagio before Decentralized Masters Live opened. [Renewals, new
+  members, what members said.]"
 - scope:
-  - ["Event design", "A members only program ahead of the main event."]
-  - ["Venue", "The Bellagio, Las Vegas."]
-  - ["Creative", "Inflection Club presentation and materials."]
-  - ["Content", "Video and photography team on site."]
-  - ["Production", "Production and on site execution."]
-- metrics: attendance null (planned 67); productionDays null; costSaved
-  null.
-- details: client "Tan and Salim"; clientTitle "Co-Founders,
+  - ["Program", "Two days of sessions, rotations and an AMA."]
+  - ["Dinners", "The club dinner on the Grand Patio and a James Bond
+    themed Principal and Chairman dinner at Lago."]
+  - ["Content", "A recap video edited overnight, and photo and video
+    coverage."]
+  - ["Identity", "Purple club badges carried into the main event."]
+  - ["Production", "AV, venue and on site execution."]
+- metrics: attendance "67"; productionDays "3" (load-in Nov 10, meetings
+  Nov 11 and 12; confirm); costSaved null (recap video at no charge is a
+  value add, not a saving; Icon to decide).
+- details: client "Tan Gera and Salim"; clientTitle "Co-Founders,
   Decentralized Masters"; venue "Bellagio"; city "Las Vegas"; region "NV";
-  year "2026"; dates [to confirm].
+  year "2026"; dates "November 11 to 12, 2026".
 - format: [Ask. Mastermind?]
-- cta: "Want to give your inner circle a room of its own?" (draft)
+- cta: "Want to give your inner circle a room of its own?"
 - citation: "Iconic Events, a Florida based event production and
   coordination company, produced the Inflection Club for Decentralized
-  Masters co-founders Tan and Salim at the Bellagio in Las Vegas, Nevada
-  in November 2026, a members only program held ahead of Decentralized
-  Masters Live [for N members]."
+  Masters co-founders Tan Gera and Salim at the Bellagio in Las Vegas,
+  Nevada in November 2026, a two day members only program held ahead of
+  Decentralized Masters Live for 67 members and partners."
 
 ## Questions for Icon
 
