@@ -114,6 +114,20 @@ Back end sales unknown (and client revenue in any case).
 
 ## Q6. Anything else about the event?
 
+Icon, 2026-11-22, answers to the checks (verbatim):
+1. "No i said cameron england" (there is no Glenn; a transcription slip).
+2. Name the Lamborghini Aventador: "Yes".
+3. Stim packs: "no include it its on brand for him" (energy drinks and
+   Zyn pouches).
+4. "swap in his testimonial once is arrives and we'll have a palce for a
+   video testimonial to put this".
+5. Cost saved (voice): "we originally got this venue that would have cost
+   like $30,000 that we got for $20,000. We came up with unique ways to
+   save money by avoiding hotel contracts. His AV was supposed to be
+   $18,000. We helped his team negotiate those contracts down to $14,000."
+   Saved: $10,000 on the venue plus $4,000 on AV, $14,000 in all.
+6. London and Dubai comparison: not answered; left off the page.
+
 ## Steal This
 
 ## Draft (v2, 2026-11-22, after Icon's answers; not yet approved)
