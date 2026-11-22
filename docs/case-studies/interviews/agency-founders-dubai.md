@@ -23,6 +23,37 @@ this public repository. Nothing on how the event went.
 - Venue, city within the UAE and client company: not in the brain. Dubai
   comes from the event name and the site's EVENT_INDEX.
 
+## Dossier (Grok research, 2026-11-22)
+
+From Icon's Grok search of the brain (non-finance pages), event Drive
+folders, Slack, Gmail and Fathom. Publishable facts only: money (other
+than a cost saved candidate), billing matters, internal problems and
+private links are left out on purpose; the full dossier stays with Icon.
+No tracker records a checked-in count, so every number below is tickets,
+badges or a plan unless it says otherwise.
+
+- Program: Mon Feb 2 VIP dinner; Tue Feb 3 VIP sessions and a mixer; Wed
+  Feb 4 and Thu Feb 5 general sessions and a closing dinner; Fri Feb 6 a
+  VIP yacht day.
+- Venue: Armani Hotel Dubai in the Burj Khalifa, Downtown Dubai; the
+  opening dinner as a full buyout of Atmosphere.
+- Numbers: tracker 176 (VIP 62, GA 96, speakers 7, team 11); 42 Agency
+  Founders members. No check-in count.
+- Client: Eddie Maalouf, BAD Marketing; Terry Maalouf led experience
+  design. Titles not found.
+- Scope: venue and food and beverage coordination, Dubai government event
+  and work permits, AV quote review, badges and lanyards, swag including
+  custom hookah speaker gifts, decor, the yacht, seating plans.
+- Hard: Dubai event and work permits needing passports for every paid
+  staff member (approved Jan 28); no shirt sizes or dietary data collected
+  at sale; an AV quote well over budget; seating at the limit.
+- Handled: a badge shipment problem; the badges were redirected and
+  arrived on time.
+- Outcome, Icon (Feb 16): "a phenomenal end to the AF chapter (until
+  further notice)", crediting Terry's design and same hour edits.
+- Next: no rebook; we later produced Eddie's BAD Marketing party at
+  AREA15, Las Vegas, Sep 22, 2026, 900 guests (its own event).
+
 ## Q1. What did they come to you with?
 
 ## Q2. What made this one hard?

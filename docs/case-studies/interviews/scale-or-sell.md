@@ -39,6 +39,37 @@ before the event; nothing yet on how it went.
   an upstairs glass room kept for speakers and high value closes; a
   greeter at check-in, with check-in run off the event tracker.
 
+## Dossier (Grok research, 2026-11-22)
+
+From Icon's Grok search of the brain (non-finance pages), event Drive
+folders, Slack, Gmail and Fathom. Publishable facts only: money (other
+than a cost saved candidate), billing matters, internal problems and
+private links are left out on purpose; the full dossier stays with Icon.
+No tracker records a checked-in count, so every number below is tickets,
+badges or a plan unless it says otherwise.
+
+- Code A32, sold as a six month done with you consulting program, but run
+  hands on: Icon built the playbook, ran weekly calls and the Nov 3 team
+  briefing; Pablo was day of coordinator all three days.
+- Dates: VIP day Fri Nov 6 (12 to 5 PM) and a mixer that evening; main
+  days Sat Nov 7 and Sun Nov 8; VIP dinner Saturday at MAASS, Four Seasons.
+- Venue: Rebel Motor Club, Fort Lauderdale, FL (not a hotel). Main floor
+  132 seats plus a 30 to 40 seat mezzanine.
+- Client: Cameron England, Founder, License and Scale LLC.
+- Brief (Fathom, Jul 27): past events had "strong content but poor
+  execution (bad venues, mic failures)", which pulled Cam into logistics
+  instead of delivery and sales. Goal: grow from about 47 to 70 to 75 and
+  deliver his best event ever.
+- Numbers: tracker 149 bodies (133 tickets sold); a ticket tab says 156
+  in the room, VIP day 73, mixer 147. No check-in count. Either way about
+  double his previous event.
+- Hard: moved from a Sunday to Tuesday Miami plan to Friday to Sunday to
+  avoid Thanksgiving travel; a non-hotel venue; 150 upgraded chairs,
+  because Cam would not have plastic ones.
+- Next: Cam's team is hosting a mastermind in December and asked Icon
+  about a villa setting.
+- Debrief, media, quote: not found.
+
 ## Q1. What did they come to you with?
 
 ## Q2. What made this one hard?

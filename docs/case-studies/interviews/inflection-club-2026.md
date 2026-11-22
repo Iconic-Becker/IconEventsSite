@@ -27,6 +27,38 @@ on how it went.
 - Same team as DML Vegas: Icon, Chrissy and Pablo, event staff and a
   content team.
 
+## Dossier (Grok research, 2026-11-22)
+
+From Icon's Grok search of the brain (non-finance pages), event Drive
+folders, Slack, Gmail and Fathom. Publishable facts only: money (other
+than a cost saved candidate), billing matters, internal problems and
+private links are left out on purpose; the full dossier stays with Icon.
+No tracker records a checked-in count, so every number below is tickets,
+badges or a plan unless it says otherwise.
+
+- Dates: two meeting days, Wed Nov 11 and Thu Nov 12, 2026. Tue Nov 10
+  was AV load-in and setup only. (Settles question 1.)
+- Venue: Bellagio, Las Vegas. Sessions in Da Vinci 4; IC Group Dinner on
+  the Grand Patio; Principal and Chairman Dinner at Lago.
+- Numbers: the club's final numbers, 67 (54 members and 13 spouses or
+  guests). Meals served: Day 1 lunch 76, dinner 81; Day 2 lunch 79; VIP
+  dinner 35. Earlier figures 66 and 69.
+- Client: Tanuj (Tan) Gera, Co-Founder and CEO, DM Intelligence LLC
+  (Decentralized Masters), with co-founder Salim. Club lead Vanessa Braun.
+- Program, Wednesday: opening; Life After the Wire and The Earliest Seat
+  (Tan and Salim); private market portfolio construction; DISC; a founder
+  interview; six expert rotations; IC Group Dinner, about 80 plated.
+  Thursday: The 100-Year Plan; estate planning; A Founder's Story; trivia;
+  Money Stories; AMA; closing; Principal and Chairman Dinner at Lago,
+  James Bond 007 theme, about 31 to 35 guests.
+- Club only: purple badges at DML; a 45 to 60 second recap video edited
+  on the night of day two at no charge; the prior IC Austin video opened
+  the program.
+- Tan, Nov 17: "thank you and congrats for the wonderful week of events,
+  the feedback has been great all round." (Ask permission to publish.)
+- Renewals or new members: not found.
+- Video: day one and day two folders exist (Juan Jaramillo).
+
 ## Q1. What did they come to you with?
 
 ## Q2. What made this one hard?

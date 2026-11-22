@@ -46,6 +46,45 @@ of it is the plan before the event; nothing yet on how it went.
 - Client and venue contracts both signed before the event (client
   contract signed October 29 and 31, 2026).
 
+## Dossier (Grok research, 2026-11-22)
+
+From Icon's Grok search of the brain (non-finance pages), event Drive
+folders, Slack, Gmail and Fathom. Publishable facts only: money (other
+than a cost saved candidate), billing matters, internal problems and
+private links are left out on purpose; the full dossier stays with Icon.
+No tracker records a checked-in count, so every number below is tickets,
+badges or a plan unless it says otherwise.
+
+- Dates: team arrived Tue Nov 17; load-in Wed Nov 18 from 6 AM; show
+  Thu Nov 19 to Sat Nov 21; strike Saturday night; load-out Sun Nov 22.
+- Venue: JW Marriott Miami Turnberry Resort & Spa, Aventura, FL. Royal
+  Ballroom 1 to 4 and foyers for general session; the Veranda for the
+  Diamond and Platinum lunches and the Platinum Dinner; Palmetto 1 and 2
+  as the green room.
+- Numbers: 359 ticket holders on the final playbook (Gold 278, Diamond
+  66, Platinum 15), 14 more than on Oct 8. No check-in count.
+- Client: Bridget James Ling, CEO and speaker. Company to print: Freedom
+  Queen LLC per the playbook and SOW; the brain says Move and Manifest
+  LLC. Confirm with Bridget.
+- Brief: third edition, goal 400, scope up to 399. This year the client
+  held venue, AV, vendors, security and stage design; we were the liaison
+  across all of them and ran coordination and run of show.
+- Hard: the ballroom seats 320 at rounds against a 336 seat layout;
+  registration day confusion (Wednesday or Thursday); a room block with a
+  minimum to protect; 12 duplicate tickets; strict venue rules (no haze,
+  no cold sparks, nothing on the walls, music off at 9:30 PM).
+- Handled on site: rush badge reprints, laminated, with QR codes by tier;
+  a merch order and an attendee folio sorted on site.
+- Cost saved candidate: the room block finished above its minimum after
+  a projected shortfall on Nov 13, partly by reassigning a master billed
+  room instead of cancelling it. Confirm the figure on the final hotel
+  bill before using it.
+- On site, Chrissy: "this was brilliant. Magazine with event Info and
+  schedule." No debrief yet.
+- 2027: not booked; the run of show had a Saturday close selling FQL 2027.
+- Media: content and media team listed; folder not found yet.
+- Why the move from the Vinoy: not found.
+
 ## Q1. What did they come to you with?
 
 ## Q2. What made this one hard?

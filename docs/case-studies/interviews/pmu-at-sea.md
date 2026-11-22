@@ -42,6 +42,31 @@ went beyond the headcount.
 - Status in the brain: delivered, the cruise ended October 16, 2026, past
   event, closeout stage.
 
+## Dossier (Grok research, 2026-11-22)
+
+From Icon's Grok search of the brain (non-finance pages), event Drive
+folders, Slack, Gmail and Fathom. Publishable facts only: money (other
+than a cost saved candidate), billing matters, internal problems and
+private links are left out on purpose; the full dossier stays with Icon.
+No tracker records a checked-in count, so every number below is tickets,
+badges or a plan unless it says otherwise.
+
+- Numbers: about 315 people came, speakers included (post-event debrief,
+  Oct 29). The 455 was the tracker plan. Do not publish "sold out".
+- Client: Danny Tran, Highstoke (PMU World). Title not found.
+- Scope on board: no outside AV company, so we ran the AV ourselves
+  (confidence monitor, capture, master slideshow); printing; sponsor bag
+  prep that took two extra rooms and 10 to 12 hour days; a content team;
+  boarding with porters; the welcome mixer as an open Solarium meetup.
+- How it went: no attendee complaints; dinner seating the main one; 25
+  speakers against about 43 planned.
+- 2027: no sailing. PMU World takes a break; the next event may widen to
+  the beauty industry.
+- Media: a photo gallery and recordings exist.
+- Quote: only a 2021 testimonial from Danny, which carries a revenue
+  figure (not publishable under house rule 1).
+- Sponsors: named in the dossier; no permission to name them publicly.
+
 ## Q1. What did they come to you with?
 
 ## Q2. What made this one hard?

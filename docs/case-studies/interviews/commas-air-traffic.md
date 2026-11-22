@@ -31,6 +31,32 @@ repository. What is left that could be published:
   account that client payments sit in before reaching the bank. Confirm
   whether the client is that company, and whether the party was for it.
 
+## Dossier (Grok research, 2026-11-22)
+
+From Icon's Grok search of the brain (non-finance pages), event Drive
+folders, Slack, Gmail and Fathom. Publishable facts only: money (other
+than a cost saved candidate), billing matters, internal problems and
+private links are left out on purpose; the full dossier stays with Icon.
+No tracker records a checked-in count, so every number below is tickets,
+badges or a plan unless it says otherwise.
+
+- Event: the Commas "Air Traffic" party, code M173. Mon Sep 21, 2026, 7 PM
+  to midnight (extended from 11 PM).
+- Venue: AREA15, Las Vegas: the plane and the Altair Sky Lounge,
+  rebranded "Air Traffic", the terminal wall, patio and upper lounge.
+- Client: Commas the company (a payments platform, formerly FanBasis),
+  the primary host. Contacts Yash and Angelina.
+- Purpose: an exclusive, sponsor backed networking party during Vegas
+  week, airline themed: a flight attendant champagne cart, gobos on the
+  plane, a sponsor ticker board, an ice luge, a celebrity impersonator on
+  a custom stage, a red carpet step and repeat.
+- Guests: referral list capped at 300; about 200 planned for the patio
+  performance. Final not found.
+- Hard: planned in about seven days; the food and beverage minimum met by
+  moving food to passed appetizers and the rest to the bar; the indoor
+  projector sat too high, so the show moved outside.
+- Photos: two folders exist. Outcome, rebook and quote: not found.
+
 ## Q1. What did they come to you with?
 
 ## Q2. What made this one hard?

@@ -29,6 +29,37 @@ how the event went.
 - A hotel block appears to have been in place (the tracker projects a
   hotel commission), but the hotel is not named.
 
+## Dossier (Grok research, 2026-11-22)
+
+From Icon's Grok search of the brain (non-finance pages), event Drive
+folders, Slack, Gmail and Fathom. Publishable facts only: money (other
+than a cost saved candidate), billing matters, internal problems and
+private links are left out on purpose; the full dossier stays with Icon.
+No tracker records a checked-in count, so every number below is tickets,
+badges or a plan unless it says otherwise.
+
+- Correct name M+ Masterclass 2026 (code M145). Dates Sun Sep 27 to Tue
+  Sep 29, 2026, not August.
+- Venue: Eden Roc Miami Beach. Pompeii Ballroom, a breakout room, the Spa
+  Garden and Spa Terrace, the Eden Roc Garden; dinner in the Nobu Eden Roc
+  area.
+- Client: Kuldeep Madan, principal, Madan Plus (M+). Title to confirm.
+- Numbers: hotel food and beverage guarantee raised to 159 on Sep 23
+  (200 contracted). No check-in count.
+- Hard: a date move; headcount growth moved Tuesday's meals from the Spa
+  Terrace to the Eden Roc Garden.
+- Handled on site: the merch supplier failed to deliver, so a team member
+  spent day one driving Miami, Hialeah and North Fort Lauderdale to buy
+  every unit locally. Client: "please thank your team for tracking down"
+  the merch.
+- Cost saved candidate: the AV quote was cut by $5,457.
+- Client, Oct 21: "Honestly, we were happy with how the event went."
+- Content: 20 storymonials delivered against 10 contracted, plus a
+  trailer and a photo gallery. Brendan Regan (client team): "testament to
+  the awesome video team!"
+- Next: not booked; client leaning to about 150 guests in spring.
+- Hold: Icon to clear before any page or quote request (closeout open).
+
 ## Q1. What did they come to you with?
 
 ## Q2. What made this one hard?

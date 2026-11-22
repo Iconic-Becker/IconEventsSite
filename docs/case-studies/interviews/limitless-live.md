@@ -13,6 +13,37 @@ debrief. Every fact on this page has to come from Icon.
 
 - Known only from the site's EVENT_INDEX: client Gil Valerio, year 2026.
 
+## Dossier (Grok research, 2026-11-22)
+
+From Icon's Grok search of the brain (non-finance pages), event Drive
+folders, Slack, Gmail and Fathom. Publishable facts only: money (other
+than a cost saved candidate), billing matters, internal problems and
+private links are left out on purpose; the full dossier stays with Icon.
+No tracker records a checked-in count, so every number below is tickets,
+badges or a plan unless it says otherwise.
+
+- Correct name Limitless Agency Live 2026, code A31 (consulting). The
+  EVENT_INDEX slug `limitless-live` is not live, so it can be renamed.
+- Dates: Inner Circle day Thu Jun 11, 2026; main event Fri and Sat,
+  likely Jun 12 and 13 (inferred, confirm).
+- Venue: Durango Casino & Resort, Las Vegas; Inner Circle at a
+  Fontainebleau penthouse; VIP dinner as a buyout of Wax Rabbit.
+- Numbers: tracker 153 tickets (GA 103, Inner Circle 20, VIP 30), goal
+  200. No check-in count.
+- Client: Gil Valerio and Dave Pancham, Limitless Agency. Titles not
+  found.
+- Brief: theme "Build a Sellable Agency"; Gil's story, "Chaos to
+  Limitless".
+- Scope (consulting): weekly check-ins, pitch and deck coaching, sales
+  scripts, vendor guidance, sponsor placement, a feedback survey. Gil:
+  "from 300 slides to 24. I want to kiss you and kill you at the same
+  time." (Informal; ask permission.)
+- Outcome (debrief, Jun 23): a "major success"; more women attended; AV
+  excellent. Deals closed on site are client revenue (house rule 1).
+- Next: 2027 planned for Fort Lauderdale, about 160 cap, not confirmed.
+- Photos: about 2,800, for a gallery.
+- Some on site problems are in the debrief; not page material.
+
 ## Q1. What did they come to you with?
 
 ## Q2. What made this one hard?

@@ -134,6 +134,38 @@ for Icon.
 6. Photos and the aftermovie from the content team, with usage rights.
 7. Format: Conference, Summit, or something else.
 
+## Dossier (Grok research, 2026-11-22)
+
+From Icon's Grok search of the brain (non-finance pages), event Drive
+folders, Slack, Gmail and Fathom. Publishable facts only: money (other
+than a cost saved candidate), billing matters, internal problems and
+private links are left out on purpose; the full dossier stays with Icon.
+No tracker records a checked-in count, so every number below is tickets,
+badges or a plan unless it says otherwise.
+
+- Dates: load-in Jul 29 to 30; show Fri Jul 31 to Sun Aug 2; load-out
+  Mon Aug 3, 2026 (six days on site).
+- Venue: Broward County Convention Center. Registration in Atlantic
+  Ballroom A, VVIP lunches in Atlantic Ballroom D. Omni primary, Hilton
+  Marina secondary.
+- Numbers: tracker 1,639 in the room (1,583 attendees, 8 media, 29
+  sponsors, 19 team) from 1,744 tickets. No check-in count.
+- Client: Shelby Sapp. Company printed three ways (She Sells Events LLC,
+  Shelby Sapp's Women and Wealth Conference LLC, Women in Wealth Events
+  LLC). Title not found.
+- How it went (Fathom recaps, Aug 7 and 10): a "major success". The world
+  building, aerialists, champagne towers and mirror walls, drove huge
+  social engagement; speakers a hit; AV seamless; security effective. The
+  value was brand building. Forbes Riley rated it "Top Notch".
+- Gala: an Old Money Gala on Aug 1, Roaring 20s and Great Gatsby theme;
+  testimonials mention the Gatsby party.
+- Not confirmed as delivered: the survey, cohorts and colour coded badges,
+  and the Academy livestream. Keep them off the page until Icon confirms.
+- 2027: not booked; a waitlist and sponsor interest for 2027.
+- Content: six videographers and four photographers; headshots, B-roll,
+  storymonials and a trailer delivered.
+- Some on site friction is in the recaps; not page material.
+
 ## Q1. What did they come to you with?
 
 ## Q2. What made this one hard?

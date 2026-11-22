@@ -45,6 +45,39 @@ All of it is the plan before the event; nothing yet on how it went.
   team (videographers and a photographer). Days worked not recorded.
 - Client contract signed (confirmed by Icon, November 3, 2026).
 
+## Dossier (Grok research, 2026-11-22)
+
+From Icon's Grok search of the brain (non-finance pages), event Drive
+folders, Slack, Gmail and Fathom. Publishable facts only: money (other
+than a cost saved candidate), billing matters, internal problems and
+private links are left out on purpose; the full dossier stays with Icon.
+No tracker records a checked-in count, so every number below is tickets,
+badges or a plan unless it says otherwise.
+
+- Dates: load-in Fri Nov 13; Friday welcome cocktail on the Grand Patio
+  and an opening gala, Casino Royale themed, with a custom roulette table;
+  main days Sat Nov 14 and Sun Nov 15; load-out Mon Nov 16.
+- Venue: Bellagio. General session Tower Ballroom 1, 2 and 4; meals in 3,
+  5 and 8; breakouts TB6, TB7 and Raphael 1. Saturday night at AREA15's
+  Altair Lounge (the plane), 7 to 11 PM. Sunday Platinum event at Legacy
+  Club, Circa (about 100). Pre-event party at The Chandelier.
+- Numbers: tracker 306 bodies (planned 296). No check-in count.
+- Client: Tanuj (Tan) Gera, Co-Founder and CEO, DM Intelligence LLC, with
+  co-founder Salim.
+- Program: "The Game" (an investment committee format), Digital Assets in
+  2027, and a Your 2027 Plan workshop.
+- Handled: the recap video render crashed on Nov 19 and was fixed
+  overnight.
+- Savings (no single figure yet): room rental waived for all contracted
+  space; shoulder rooms removed so no attrition exposure; printing off
+  site at about a quarter of the hotel's price; the club recap video at no
+  charge. A cost saved figure needs Icon.
+- Tan, Nov 17: "the feedback has been great all round."
+- Next edition: no Austin DML found; "Austin" was a past IC event. Drop
+  that line from the March page's reading.
+- Media: DML recordings and a media index exist; a separate videographer
+  filmed Tan and Salim; Tan asked for book signing photos.
+
 ## Q1. What did they come to you with?
 
 ## Q2. What made this one hard?
