@@ -87,7 +87,30 @@ badges or a plan unless it says otherwise.
 
 ## Q1. What did they come to you with?
 
+Icon, 2026-11-22, on the narrative (verbatim):
+
+> the ballroom built for 320 is not the narrative we want it should be
+> about helping women push themselves forward, to become business icons
+> and redefine what freedom means as a biz owner something like that
+
+Icon, 2026-11-22, why Miami (verbatim, voice):
+
+> Freedom Queen, you know, wants to be at the forefront of business and,
+> you know, where the real motion is in the world. And Tampa and St.
+> Petersburg, well, it's great. Miami really is the hub for where the
+> future of commerce and business owners is going. That's why we wanted
+> to bring it there. We also serve international clientele. So, you know,
+> women are coming from all across the world, places like Hong Kong, New
+> Zealand, to get here. So we wanted to make sure that it was an
+> international hub. So Miami is a little bit easier than Tampa.
+
+
 ## Q2. What made this one hard?
+
+Icon, 2026-11-22: room capacity is not to be mentioned. ("I don't want to
+answer that or mention it.") Never use the 320 seat ballroom, the layout
+or no-shows on the page.
+
 
 ## Q3. Three to five decisions, and why
 
@@ -97,57 +120,72 @@ badges or a plan unless it says otherwise.
 
 ## Q6. Anything else about the event?
 
+Icon, 2026-11-22 (verbatim, voice):
+
+> it was a phenomenal event. Bridget was super happy with it. She even
+> announced the birth of her new daughter at this event. So the next
+> Freedom Queen, and has already making plans for 2027.
+
+Company (verbatim): "just go with Freedom Queen is the name of the event.
+The company is technically Move and Manifest, but that's just their legal
+name. They do business as Freedom Queen. And the event is named Freedom
+Queen Live."
+
+Format: "I would say this is a conference."
+
+Cost saved (verbatim): "it definitely finished above the minimum. I don't
+really want to put a cost saved figure on this event because we really
+weren't that involved with coordination. So I don't think this event has
+to be subject to that cost saved rule." No cost saved figure on this page.
+
+
 ## Steal This
 
-## Draft (v2, 2026-11-22, from the brain and the dossier; not yet approved)
+## Draft (v3, 2026-11-22, after Icon's answers; not yet approved)
 
-Attendance 359 is Iconic's published figure. Brackets mark what Icon must
-still supply.
-
-- headline: "How Freedom Queen Live Moved to Miami for Its Third Year and
-  Brought 359 Attendees Into a Ballroom Built for 320"
-- summary (about 75 words): "For its third year, Bridget James Ling took
-  Freedom Queen Live from the Vinoy in St. Petersburg to the JW Marriott
-  Miami Turnberry in Aventura. Her own team held the venue, AV and stage
-  design; we were the liaison between all of them, and ran coordination
-  and the run of show. The ballroom seated 320 at rounds, the community
-  had sold 359 tickets, and the hotel's rules ruled out half the usual
-  effects. Three show days ran on schedule. [Result sentence.]"
+- headline: "How Freedom Queen Live Took 359 Women Business Owners to
+  Miami to Redefine What Freedom Means"
+- summary (about 80 words): "Freedom Queen Live exists to help women push
+  themselves forward, become icons in their own businesses and redefine
+  what freedom means as a business owner. For its third year, Bridget
+  James Ling moved it from St. Petersburg to Miami, where the future of
+  business is being built and where women flying in from as far as Hong
+  Kong and New Zealand could reach it. We coordinated the conference and
+  ran the show across three days at the JW Marriott Miami Turnberry for
+  359 attendees. Bridget is already planning 2027."
 - challenge:
-  - "Freedom Queen Live grew up at the Vinoy in St. Petersburg. For year
-    three, Bridget James Ling moved it to Miami: a new city, a new hotel
-    and a new in-house team, for a community that already knew what a
-    Freedom Queen Live should feel like. [Why Miami, in Icon's words.]"
-  - "This time Bridget's team held the venue, AV, vendors, security and
-    stage design themselves. Our job was to hold all of it together: one
-    liaison across every supplier, and the run of show."
+  - "Freedom Queen Live is built for women who want more from their
+    businesses and their lives: to push themselves forward, become icons
+    in their own industries and redefine what freedom means as a
+    business owner."
+  - "After two years at the Vinoy in St. Petersburg, Bridget James Ling
+    wanted the event where the real motion in business is. Miami is the
+    hub for where commerce and business owners are going, and an
+    international one: her community travels from as far as Hong Kong and
+    New Zealand. Year three had to move cities without losing what made
+    it Freedom Queen."
 - challengesOvercome:
-  - "The Royal Ballroom seats 320 at rounds. The layout called for 336,
-    and the community bought 359 tickets. [How the room was made to fit:
-    Icon.]"
-  - "The hotel allows no haze, no cold sparks, nothing on the walls and
-    music off at 9:30 PM, so every moment of the show had to work
-    without the usual effects."
-  - "Twelve duplicate tickets and confusion over which day registration
-    opened were caught before doors, and badges were reprinted overnight,
-    laminated, with a QR code for each ticket tier."
+  - "Bridget's own team held the venue, AV, vendors, security and stage
+    design for the first time. We kept one plan across all of them as the
+    single liaison, so nobody worked from an old version."
+  - "Registration needed new badges on site. We reprinted every one
+    overnight, laminated, with a QR code for each ticket tier, before
+    doors opened."
 - approach:
   - pre: "Acted as the single liaison between Bridget's team, the hotel
-    and every supplier, so nobody worked from an old version of the
-    plan."
+    and every supplier."
   - pre: "Built and owned the run of show across three show days."
-  - pre: "Protected the hotel room block: the group finished above its
-    minimum after a projected shortfall a week out." [Confirm on the
-    final hotel bill.]
-  - onsite: "Ran the Royal Ballroom general sessions, Diamond and
-    Platinum lunches and the Platinum Dinner on the Veranda, with the
-    green room in Palmetto."
-  - onsite: "Reprinted every badge on site with tiered QR codes, and
-    sorted the merch order and attendee questions at the desk."
-  - post: [Gap.]
-- results: "Freedom Queen Live drew 359 attendees in its third year and
-  its first in Miami, across Gold, Diamond and Platinum tiers. [How the
-  room felt, what Bridget said, 2027.]"
+  - pre: "Managed the hotel room block, which finished above its minimum."
+  - onsite: "Ran the general sessions in the Royal Ballroom, the Diamond
+    and Platinum lunches and the Platinum Dinner on the Veranda."
+  - onsite: "Reprinted every badge on site with tiered QR codes."
+- results: "Freedom Queen Live drew 359 attendees to its first year in
+  Miami, women business owners from across the United States and around
+  the world, across Gold, Diamond and Platinum tiers. Bridget called it a
+  phenomenal event and is already planning Freedom Queen Live 2027."
+  [Icon: the "called it" wording paraphrases your account of her
+  reaction; confirm. Her announcement on stage stays off the page unless
+  Bridget wants it there.]
 - scope:
   - ["Coordination", "Coordination from contract to load-out."]
   - ["Run of show", "Run of show for three show days."]
@@ -155,21 +193,19 @@ still supply.
     security, all contracted by the client."]
   - ["Hotel", "Room block management."]
   - ["Registration", "Badges with tiered QR codes, reprinted on site."]
-- metrics: attendance "359"; productionDays "5" (load-in Nov 18 to
-  load-out Nov 22; confirm); costSaved null (room block figure pending the
-  final bill).
-- details: client "Bridget James Ling"; clientTitle "CEO, Freedom Queen"
-  [confirm the company name]; venue "JW Marriott Miami Turnberry Resort &
-  Spa"; city "Aventura"; region "FL"; year "2026"; dates "November 19 to
-  21, 2026".
-- format: [Ask.]
-- cta: "Want to take your event to a new city without losing what made it
-  yours?"
+- metrics: attendance "359"; productionDays "5" (confirm); costSaved null
+  (Icon: exempt, our role was coordination support).
+- details: client "Bridget James Ling"; clientTitle "CEO, Freedom Queen";
+  venue "JW Marriott Miami Turnberry Resort & Spa"; city "Aventura";
+  region "FL"; year "2026"; dates "November 19 to 21, 2026".
+- format: "Conference"
+- cta: "Want an event that moves your community forward, wherever it
+  meets?"
 - citation: "Iconic Events, a Florida based event production and
   coordination company, coordinated Freedom Queen Live 2026 for Bridget
-  James Ling at the JW Marriott Miami Turnberry Resort & Spa in Aventura,
-  Florida in November 2026, delivering coordination, run of show and
-  supplier liaison for 359 attendees."
+  James Ling of Freedom Queen at the JW Marriott Miami Turnberry Resort &
+  Spa in Aventura, Florida in November 2026, delivering coordination, run
+  of show and supplier liaison for 359 attendees."
 
 ## Questions for Icon
 
