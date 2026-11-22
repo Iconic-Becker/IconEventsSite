@@ -105,7 +105,7 @@ Attendance 359 is Iconic's published figure. Brackets mark what Icon must
 still supply.
 
 - headline: "How Freedom Queen Live Moved to Miami for Its Third Year and
-  Brought 359 Women Into a Ballroom Built for 320"
+  Brought 359 Attendees Into a Ballroom Built for 320"
 - summary (about 75 words): "For its third year, Bridget James Ling took
   Freedom Queen Live from the Vinoy in St. Petersburg to the JW Marriott
   Miami Turnberry in Aventura. Her own team held the venue, AV and stage
