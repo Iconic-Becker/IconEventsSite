@@ -532,5 +532,15 @@
     960
    ]
   ]
+ },
+ "/images/gallery/freedom-queen-live-2026/01.webp": {
+  "w": 851,
+  "h": 599,
+  "set": [
+   [
+    "/images/gallery/freedom-queen-live-2026/01-480.webp",
+    480
+   ]
+  ]
  }
 }

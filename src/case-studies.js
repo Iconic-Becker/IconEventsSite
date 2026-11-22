@@ -449,7 +449,7 @@ export const CASE_STUDIES = [
     headline: "How Freedom Queen Live Took 359 Women Business Owners to Miami to Redefine What Freedom Means",
     cta: "Want an event that moves your community forward, wherever it meets?",
     summary:
-      "Freedom Queen Live is the three day conference for women in business who sell high ticket offers, lead movements and are ready to scale. Its promise is freedom: a company that compounds year after year without its founder as the constant face of the brand. For its third year, Bridget James Ling moved it from St. Petersburg to Miami, where business is heading and where women flying in from Hong Kong and New Zealand could reach it. We coordinated the conference and ran the show for 359 attendees. Bridget is already planning 2027.",
+      "Freedom Queen Live is the three day conference for women in business who sell high ticket offers, lead movements and are ready to scale, and its promise is freedom: a company that keeps growing without its founder as the constant face of the brand. For year three, Bridget James Ling moved it from St. Petersburg to Miami, within reach of women flying in from as far as Hong Kong. We coordinated the conference for 359 attendees. Bridget, who has trusted us with it three years in a row, is already planning 2027.",
     challenge: [
       "Freedom Queen Live is for women who were born to lead: founders who sell high ticket offers, want to become known for their work and are building companies that compound year after year. Freedom, as Bridget James Ling teaches it, is a business that keeps growing without its founder as the constant face of the brand.",
       "After two years at the Vinoy in St. Petersburg, Bridget wanted the event where the real motion in business is. Miami is the hub for where commerce and business owners are going, and an international one: her community travels from as far as Hong Kong and New Zealand. Year three had to move cities without losing what made it Freedom Queen.",
@@ -480,11 +480,12 @@ export const CASE_STUDIES = [
     metrics: { attendance: "359", productionDays: null, costSaved: null },
     highlights: [
       ["359", "Women business owners"],
-      ["3", "Years of Freedom Queen Live"],
+      ["3", "Years in a row Bridget has trusted us with Freedom Queen Live"],
     ],
     results: [
       "Freedom Queen Live drew 359 women to its first year in Miami, business owners from across the United States and around the world, across Gold, Diamond and Platinum tiers.",
       "Three days ran on the themes of Excellence, Sales and Growth, from the first Freedom Queen Live mastermind session to an award ceremony that celebrated the community's wins on stage, in front of everyone. Bridget is already planning Freedom Queen Live 2027.",
+      "It was the third year in a row Bridget trusted us with Freedom Queen Live, from her first event at the Vinoy to her first in Miami.",
     ],
     rightFor: null,
     stealThis: null,
@@ -498,8 +499,8 @@ export const CASE_STUDIES = [
       dates: "November 19 to 21, 2026",
     },
     media: {
-      // TODO(collect): photos and aftermovie from the content team.
-      hero: null,
+      // TODO(collect): more photos and the aftermovie from the content team.
+      hero: { src: "/images/gallery/freedom-queen-live-2026/01.webp", alt: "Bridget James Ling speaking on stage under the Freedom Queen backdrop to a ballroom of women at Freedom Queen Live 2026, JW Marriott Miami Turnberry, Aventura, Florida" },
       challenge: null,
       band: null,
       resultLeft: null,

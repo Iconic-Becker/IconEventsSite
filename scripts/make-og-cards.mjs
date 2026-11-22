@@ -48,6 +48,13 @@ const CASE_CARDS = [
     eyebrow: "Iconic Events · Ravi Abuvala",
     title: "Scaling With Systems LIVE.",
   },
+  {
+    out: "og/freedom-queen-live-2026.jpg",
+    img: "/images/gallery/freedom-queen-live-2026/01.webp",
+    pos: "50% 30%",
+    eyebrow: "Iconic Events · Bridget James Ling",
+    title: "Freedom Queen Live.",
+  },
 ]
 
 const casePage = (card) => `<!doctype html>
