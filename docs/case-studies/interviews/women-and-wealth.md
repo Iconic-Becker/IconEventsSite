@@ -182,7 +182,7 @@ badges or a plan unless it says otherwise.
 
 ## Facts
 
-- Attendance (final):
+- Attendance (final): 3,000 women (Iconic, 2026-11-22: the published figure)
 - Days of production on site: 5 planned (2 load-in, 3 show)
 - Cost saved for the client:
 - Venue, city, month, year: Broward County Convention Center, Fort

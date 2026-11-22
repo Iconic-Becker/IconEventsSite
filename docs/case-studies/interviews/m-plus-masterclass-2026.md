@@ -140,7 +140,7 @@ fill; nothing here may ship until the client, venue and outcome are known.
 
 ## Facts
 
-- Attendance (final): 200 on the finance tracker, not confirmed as final
+- Attendance (final): 159 (Iconic, 2026-11-22: the published figure)
 - Days of production on site: 4 planned (1 pre-show, 3 show)
 - Cost saved for the client:
 - Venue, city, month, year: ?, ?, August 27 to 29, 2026

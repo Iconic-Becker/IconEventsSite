@@ -83,7 +83,7 @@ badges or a plan unless it says otherwise.
 
 ## Facts
 
-- Attendance (final): 455 confirmed in the room (brain); confirm it is
+- Attendance (final): 455 (Iconic, 2026-11-22: the published figure)
   the final number
 - Days of production on site: 5 at sea (October 12 to 16), plus 3 days of
   bag prep on land before sailing; confirm how Icon wants to count it

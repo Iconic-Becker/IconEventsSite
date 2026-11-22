@@ -162,7 +162,7 @@ engagement belongs on the Iconic Events case study grid at all.
 
 ## Facts
 
-- Attendance (final):
+- Attendance (final): 137 (Iconic, 2026-11-22: the published figure)
 - Days of production on site: 4 planned (1 setup, 3 show), plus a team
   day on November 4
 - Cost saved for the client:

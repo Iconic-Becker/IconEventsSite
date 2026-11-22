@@ -73,7 +73,7 @@ badges or a plan unless it says otherwise.
 
 ## Facts
 
-- Attendance (final):
+- Attendance (final): 300 (Iconic, 2026-11-22: the published figure)
 - Days of production on site: 1 (setup the morning of the event)
 - Cost saved for the client:
 - Venue, city, month, year: 2026; venue, city and month not on record

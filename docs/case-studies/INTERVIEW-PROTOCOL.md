@@ -165,10 +165,10 @@ These are not style preferences. `src/case-studies.js` and
    speakers or sponsors Iconic managed may be given as an estimate from
    Iconic, written "about 40 speakers".
    Attendance (Iconic, 2026-11-22): no tracker records a checked-in
-   count, so the published attendance is the total expected attendees on
-   the event's final tracker or playbook. Our own team is never counted.
-   Where a debrief records how many actually came and it is lower, use
-   that instead, so the page never claims more than were in the room.
+   count, so the published attendance is the highest attendance count on
+   record for the event (tracker, playbook or Iconic's own figure), not a
+   lower debrief count. Iconic sets the figure per event; record it in the
+   notes file's Facts block with "(Iconic, date)".
 4. **A quote renders only when `approved: true`**, which requires the
    client's verbatim words *and* written permission. Review schema is
    emitted on the same condition. Unapproved or sample copy must never

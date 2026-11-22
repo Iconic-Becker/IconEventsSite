@@ -176,7 +176,7 @@ left as a gap and the headline has no number yet.
 
 ## Facts
 
-- Attendance (final):
+- Attendance (final): 306 (Iconic, 2026-11-22: the published figure)
 - Days of production on site:
 - Cost saved for the client:
 - Venue, city, month, year: Bellagio (Tower Ballroom), Las Vegas, NV,

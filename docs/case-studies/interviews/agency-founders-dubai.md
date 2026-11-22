@@ -122,7 +122,7 @@ not enough for a page yet.
 
 ## Facts
 
-- Attendance (final): not recorded
+- Attendance (final): 176 (Iconic, 2026-11-22: the published figure)
 - Days of production on site: 4.5 show days on the tracker; pre-show not
   recorded
 - Cost saved for the client:

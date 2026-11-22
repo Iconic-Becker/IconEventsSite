@@ -92,7 +92,7 @@ No draft is possible from the brain. Placeholders only.
 
 ## Facts
 
-- Attendance (final):
+- Attendance (final): 153 (Iconic, 2026-11-22: the published figure)
 - Days of production on site:
 - Cost saved for the client:
 - Venue, city, month, year: ?, ?, ?, 2026

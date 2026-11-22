@@ -182,7 +182,7 @@ must supply.
 
 ## Facts
 
-- Attendance (final):
+- Attendance (final): 359 (Iconic, 2026-11-22: the published figure)
 - Days of production on site: 5 planned (1 load-in, 3 show, 1 load-out)
 - Cost saved for the client:
 - Venue, city, month, year: JW Marriott Miami Turnberry Resort & Spa,

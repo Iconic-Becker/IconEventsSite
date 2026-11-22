@@ -129,7 +129,7 @@ Plan only. Results and the headline number wait for Icon.
 
 ## Facts
 
-- Attendance (final):
+- Attendance (final): 67 (Iconic, 2026-11-22: the published figure)
 - Days of production on site:
 - Cost saved for the client:
 - Venue, city, month, year: Bellagio, Las Vegas, NV, November 2026
