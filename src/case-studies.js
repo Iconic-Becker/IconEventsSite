@@ -438,6 +438,83 @@ export const CASE_STUDIES = [
       "Iconic Events, a Florida based event production and coordination company, produced Freedom Queen Live 2025 for Bridget James Ling at the Vinoy in St. Petersburg, Florida in November 2025, delivering a Broadway style show with rehearsed dance performances, a flash mob opening and staged butler service for 530 attendees.",
   },
 
+  // Source: docs/case-studies/interviews/pmu-at-sea.md, Icon's answers of
+  // 2026-11-22. Sponsors may be named (Icon). No cost saved by Icon's call.
+  {
+    slug: "pmuw-at-sea",
+    name: "PMU World at Sea",
+    format: "Conference",
+    headline: "How PMU World Took 455 Attendees to Sea and Bought Danny Tran the Time to Build Beauty World",
+    cta: "Want to keep your community's momentum while you build what's next?",
+    summary:
+      "After three years of PMU World growing every year, Danny Tran is preparing its next leap: Beauty World, a 5,000 to 10,000 person event that takes a year or two to build. To keep the momentum without another ballroom, we suggested taking PMU World to sea. On Wonder of the Seas, from Miami to Nassau and CocoCay, 455 attendees learned in the ship's main theater by day and trained hands on with mentors in the afternoons, with every sponsor's razors, machines and pigments cleared through port security.",
+    challenge: [
+      "PMU World has grown every year since its first edition, and Danny Tran, founder and CEO of Highstoke Media, is preparing the next leap: Beauty World, the jump from a 2,000 person conference to a 5,000 to 10,000 person one. A jump that size takes a year or two to build.",
+      "Danny needed that time without losing the momentum of an annual event. Our answer was a different format: take PMU World onto a cruise ship, a closer, more intentional and more connected version of the event than had ever been done in the industry, and build Beauty World behind it.",
+    ],
+    approach: [
+      "Suggested the format: PMU World at sea, a closer and more connected edition to hold the community together while Beauty World is built.",
+      "Built the program around the ship: education in the main theater by day, and afternoon workshops where VIPs trained hands on alongside the mentors.",
+      "Oversaw every sponsor shipment, from Hanafy, MAST PMU, Tina Davies, NUE and the American Academy of Micropigmentation, shipped far earlier than usual and cleared by international and port security.",
+      "Ran the AV ourselves on board, with no outside AV company: confidence monitors, capture and the master slideshow.",
+      "Packed the sponsor bags on board, two extra cabins and long days of prep, and managed boarding with porters.",
+      "Opened the week with a welcome mixer in the Solarium, and kept a content team on the program throughout.",
+    ],
+    challengesOvercome: [
+      "At sea, nothing can be bought once the ship leaves, and an attendee who misses boarding misses the event. Every item and every arrival had to be planned for in advance, with no second chance.",
+      "Workshop kits are not things you walk onto a ship: razors, tattoo machines and pigments. Every sponsor's materials shipped far earlier than any hotel event needs and were cleared by international and port security, with the paperwork to match. We oversaw all of it, so every sponsor could lead their workshop.",
+    ],
+    scope: [
+      ["Format", "The cruise concept, to hold momentum while Beauty World is built."],
+      ["Program", "Theater sessions by day and hands on VIP workshops with mentors."],
+      ["Sponsors", "Shipping and security clearance for every sponsor's workshop materials."],
+      ["AV", "AV run in house on board."],
+      ["Logistics", "Sponsor bags, boarding and the welcome mixer."],
+      ["Content", "A content team throughout the program."],
+    ],
+    metrics: { attendance: "455", productionDays: null, costSaved: null },
+    highlights: [
+      ["455", "Attendees at sea"],
+      ["2", "Ports of call, Nassau and CocoCay"],
+    ],
+    results: [
+      "It was a huge success. Attendees who have come for years loved it, and first timers found a new home in the PMU community. Many cited it as the breakthrough they needed, or the assurance to keep going.",
+      "It also gave Danny the breathing room he needed to focus on the wider vision: Beauty World, planned for late 2027 or 2028.",
+    ],
+    rightFor: null,
+    stealThis: [
+      "When you need a year to build something bigger, change the format, not the calendar. A smaller, closer edition keeps the community together and buys the time.",
+    ],
+    details: {
+      client: "Danny Tran",
+      clientTitle: "Founder and CEO, Highstoke Media",
+      venue: "Wonder of the Seas",
+      city: "Miami",
+      region: "FL",
+      year: "2026",
+      dates: "October 12 to 16, 2026",
+    },
+    media: {
+      // From the PMU World at Sea gallery on photos.iconic.events (Iconic's
+      // own content team).
+      hero: { src: "/images/gallery/pmuw-at-sea/01.webp", alt: "Hundreds of PMU World at Sea attendees gathered on the main theater stage under the PMU World at Sea backdrop, aboard Wonder of the Seas" },
+      challenge: { src: "/images/gallery/pmuw-at-sea/02.webp", alt: "Sponsor workshop kits laid out on a table, cartridges, tools and pigments for the hands on sessions at PMU World at Sea, aboard Wonder of the Seas" },
+      band: { src: "/images/gallery/pmuw-at-sea/03.webp", alt: "Attendees dressed in white filling the dance floor at the PMU World at Sea VIP party, aboard Wonder of the Seas" },
+      resultLeft: { src: "/images/gallery/pmuw-at-sea/04.webp", alt: "Attendees cheering with arms raised in the ship's main theater at PMU World at Sea, aboard Wonder of the Seas" },
+      resultRight: { src: "/images/gallery/pmuw-at-sea/05.webp", alt: "Three attendees smiling at a hands on workshop table at PMU World at Sea, aboard Wonder of the Seas" },
+      gallery: [
+        { src: "/images/gallery/pmuw-at-sea/06.webp", alt: "An attendee at the PMU World at Sea 2026 shell and coral photo wall, aboard Wonder of the Seas" },
+        { src: "/images/gallery/pmuw-at-sea/07.webp", alt: "A speaker on the main theater stage in front of the PMU World at Sea backdrop, aboard Wonder of the Seas" },
+        { src: "/images/gallery/pmuw-at-sea/08.webp", alt: "Two attendees holding up PMU World signs on the pool deck at night, aboard Wonder of the Seas" },
+      ],
+      aftermovieUrl: null,
+      testimonialUrl: null,
+    },
+    testimonial: { quote: null, approved: false },
+    citation:
+      "Iconic Events, a Florida based event production and coordination company, produced PMU World at Sea for Danny Tran of Highstoke Media aboard Wonder of the Seas from Miami to Nassau and CocoCay in October 2026, delivering the cruise format, theater and workshop program, sponsor shipping and security clearance, and onboard AV for 455 attendees.",
+  },
+
   // Source: docs/case-studies/interviews/scale-or-sell.md, draft v2 and
   // Icon's answers of 2026-11-22. A coaching engagement presented like Hell
   // Yes Live: Icon coached, Pablo ran the days on site. The testimonial and
@@ -1321,6 +1398,7 @@ export const EVENT_INDEX = [
   { slug: "freedom-queen-live-2025", name: "Freedom Queen Live 2025", client: "Bridget James Ling", when: "2025-11", location: "St. Petersburg, FL", venue: "The Vinoy", size: "530", full: true },
   { slug: "pmuw-2023", name: "PMU World 2023", client: "Danny Tran", when: "2023-04", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "800+", full: true },
   { slug: "pmuw-2024", name: "PMU World 2024", client: "Danny Tran", when: "2024-08", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "1,237", full: true },
+  { slug: "pmuw-at-sea", name: "PMU World at Sea", client: "Danny Tran", when: "2026-10", location: "Miami to Nassau and CocoCay", venue: "Wonder of the Seas", size: "455", full: true },
   { slug: "pmuw-2025", name: "PMU World 2025", client: "Danny Tran", when: "2025-09", location: "Hollywood, FL", venue: "Seminole Hard Rock Hotel & Casino", size: "1,500", full: true },
   { slug: "net-rev-summit-2026", name: "Net Rev Summit 2026", client: "Ambro Dipilato", when: "2026-05", location: "Marana, AZ", venue: "Ritz-Carlton Dove Mountain", size: null, full: true },
   { slug: "decentralized-masters-live", name: "Decentralized Masters Live", client: "Tan and Salim", when: "2026-03", location: "Miami Beach, FL", venue: "Fontainebleau Miami Beach", size: "280", full: true },

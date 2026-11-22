@@ -55,6 +55,13 @@ const CASE_CARDS = [
     eyebrow: "Iconic Events · Bridget James Ling",
     title: "Freedom Queen Live.",
   },
+  {
+    out: "og/pmuw-at-sea.jpg",
+    img: "/images/gallery/pmuw-at-sea/01.webp",
+    pos: "50% 30%",
+    eyebrow: "Iconic Events · Danny Tran",
+    title: "PMU World at Sea.",
+  },
 ]
 
 const casePage = (card) => `<!doctype html>

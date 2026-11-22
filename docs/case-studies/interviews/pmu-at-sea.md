@@ -69,6 +69,61 @@ badges or a plan unless it says otherwise.
 
 ## Q1. What did they come to you with?
 
+Icon, 2026-11-22 (verbatim, voice, answering Q1 to Q6 and the checks):
+
+> so effectively, Danny wanted to give the last three years he's been
+> growing PME World Every year it's been getting bigger and bigger and
+> bigger. But, you know, in preparation of what's that next quantum leap
+> he wants to take with the events is he wants to build Beauty World,
+> right? And to build Beauty World, that is the jump from a, you know,
+> 2,000 person conference to a 5,000 to 10,000 person conference usually
+> takes like one to two years, right? And so to give Danny prep time
+> without losing momentum, we suggested, why don't we bring this on to a
+> boat? So we are creating a more intentional, closer, connected version
+> of this event. That had never been done before. And then give us time to
+> start building Beauty World in the back end. Now, what made this hard is
+> that when you're dealing with a bow, you are in a completely new world
+> of challenges that you don't typically have at hotels. Obviously, the
+> biggest one being that if you need something, you can't just go to the
+> store and buy it. And if not all the attendees arrive in time, they
+> don't make it to the event. What really makes it the most difficult
+> though is managing vendors and sponsor materials because effectively
+> what has to happen is they have to ship these items well in advance
+> farther than we ever normally do and they have to each be verified by
+> international security and the ports to make sure that everything checks
+> off. So everything is a lot slower to get onto the boat and it's also
+> way more difficult. So there's a lot more paperwork that's involved with
+> getting everything approved and handled to go to the event. And we were
+> able to oversee all of that for Danny to make sure that. All of his
+> sponsors were able to lead their workshops with things like razors and
+> tattoo guns and pigments and all kinds of stuff that typically wouldn't
+> be able to just usually be walked on, but we made it possible so that
+> these workshops could really, really kick off. How did it go? It was a
+> huge success. The attendees that have been coming for years loved it,
+> and the attendees that had this been their first time really loved it.
+> They all found a new home within the PMU community. And a lot of them
+> cited this event as the breakthrough that they needed or the assurance
+> to keep going. We can name his sponsors. That's totally fine. I would
+> say this event was kind of like a, it was more like a conference and
+> workshop because during the day we had educational sessions using the
+> cruise's main theater. And then, and then in the afternoons we would
+> have workshop sessions where attendees, our VIPs actually could sit down
+> and, and be able to actually conduct real training sessions along the
+> mentors. I'm going to remove the cost savings on this because that's
+> just not as valuable here. And I would say that this was a really good
+> opportunity for us to give Danny a little bit of breathing room. And
+> focus on the wider vision to expand to beauty world come 2027, late 2027
+> or 2028.
+
+Captured: the cruise was our suggestion, a closer, more connected format
+to hold momentum while Danny builds Beauty World (5,000 to 10,000, late
+2027 or 2028). Hard: nothing to buy at sea, late arrivals miss the ship,
+and every sponsor item shipped early and cleared by international and
+port security, which we oversaw. Workshops ran with razors, tattoo
+machines and pigments. Sponsors may be named. Format: Conference (theater
+sessions by day, hands on VIP workshops with mentors in the afternoons).
+No cost saved. Attendance 455.
+
 ## Q2. What made this one hard?
 
 ## Q3. Three to five decisions, and why
