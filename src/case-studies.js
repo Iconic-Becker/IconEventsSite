@@ -438,6 +438,71 @@ export const CASE_STUDIES = [
       "Iconic Events, a Florida based event production and coordination company, produced Freedom Queen Live 2025 for Bridget James Ling at the Vinoy in St. Petersburg, Florida in November 2025, delivering a Broadway style show with rehearsed dance performances, a flash mob opening and staged butler service for 530 attendees.",
   },
 
+  // Source: docs/case-studies/interviews/bad-takeover-2026.md, Icon's answer
+  // of 2026-11-22. Not to be confused with Bad After Dark (January 2024).
+  // Attendance is the highest count on record (the AREA15 planning call).
+  {
+    slug: "bad-takeover-2026",
+    name: "Bad Takeover 2026",
+    format: "Brand activation",
+    headline: "How Bad Takeover Became the Party to Be at After Funnel Hacking Live, and Handed Its Sponsors the Whole Room",
+    cta: "Want the party everyone goes to after the main event?",
+    summary:
+      "Every Funnel Hacking Live, Eddie Maalouf's BAD Marketing throws Bad Takeover, the party the industry heads to when the main event closes. For 2026 Eddie wanted something attendees had not seen: not another night of projection mapping and gambling, but the hub, the place to be. We added a hookah lounge, brought back the custom branded casino tables with every sponsor's logo on the felt, and turned the projection wall over to the sponsors, each with a spotlight of their own content on rotation. 900 guests came.",
+    challenge: [
+      "Every Funnel Hacking Live, Eddie Maalouf's BAD Marketing throws Bad Takeover, a party that rides alongside the main event and brings the industry, and its sponsors, into one room.",
+      "For 2026 Eddie wanted something attendees had not seen before. Projection mapping and gambling had become what people expected. This year the party had to be the hub: the place everyone wanted to be the moment Funnel Hacking Live closed.",
+    ],
+    approach: [
+      "Built a hookah lounge on site, an intimate place to sit, talk and stay.",
+      "Brought back the custom branded blackjack and casino tables, with every sponsor's logo on the felt.",
+      "Turned the projection mapping wall over to the sponsors: each had a spotlight of their own content, cycling through the night, so the sponsors took over the whole room.",
+      "Held it at AREA15 in Las Vegas, the home of every BAD party.",
+    ],
+    challengesOvercome: null,
+    scope: [
+      ["Concept", "A new format for the party: the hub after Funnel Hacking Live."],
+      ["Lounge", "An on site hookah lounge."],
+      ["Casino", "Custom branded blackjack and casino tables carrying every sponsor's logo."],
+      ["Sponsors", "A content spotlight for each sponsor on the projection mapping wall."],
+      ["Venue", "AREA15, Las Vegas."],
+    ],
+    metrics: { attendance: "900", productionDays: null, costSaved: null },
+    highlights: [
+      ["900", "Guests"],
+    ],
+    results: [
+      "Bad Takeover was the place to be after Funnel Hacking Live, and 900 guests came. Sponsors did not get a booth. They took over the whole room.",
+    ],
+    rightFor: null,
+    stealThis: [
+      "Give every sponsor the room, not a booth: a spotlight of their own on the projection wall, cycling all night.",
+    ],
+    details: {
+      client: "Eddie Maalouf",
+      clientTitle: null,
+      venue: "AREA15",
+      city: "Las Vegas",
+      region: "NV",
+      year: "2026",
+      dates: "September 22, 2026",
+    },
+    media: {
+      // TODO(collect): photos.
+      hero: null,
+      challenge: null,
+      band: null,
+      resultLeft: null,
+      resultRight: null,
+      gallery: [],
+      aftermovieUrl: null,
+      testimonialUrl: null,
+    },
+    testimonial: { quote: null, approved: false },
+    citation:
+      "Iconic Events, a Florida based event production and coordination company, produced Bad Takeover 2026 for Eddie Maalouf of BAD Marketing at AREA15 in Las Vegas, Nevada on September 22, 2026, after Funnel Hacking Live, delivering a hookah lounge, custom branded casino tables and sponsor spotlights on the projection mapping wall for 900 guests.",
+  },
+
   // Source: docs/case-studies/interviews/pmu-at-sea.md, Icon's answers of
   // 2026-11-22. Sponsors may be named (Icon). No cost saved by Icon's call.
   {
@@ -1416,6 +1481,7 @@ export const EVENT_INDEX = [
   { slug: "limitless-live", name: "Limitless Live", client: "Gil Valerio", when: "2026", location: null, venue: null, size: null, full: false },
   { slug: "women-and-wealth", name: "Women and Wealth", client: "Shelby Sapp", when: "2026-07", location: "Fort Lauderdale, FL", venue: "Broward County Convention Center", size: null, full: false },
   { slug: "closers-io-retreat", name: "Closers.io Retreat", client: "Cole Gordon", when: "2025", location: null, venue: null, size: null, full: false },
+  { slug: "bad-takeover-2026", name: "Bad Takeover 2026", client: "Eddie Maalouf", when: "2026-09", location: "Las Vegas, NV", venue: "AREA15", size: "900", full: true },
   { slug: "bad-after-dark", name: "Bad After Dark", client: "Eddie Maalouf", when: "2024-01", location: null, venue: null, size: null, full: true },
   { slug: "agency-founders-dubai", name: "Agency Founders Dubai", client: "Eddie Maalouf", when: "2026", location: "Dubai, UAE", venue: null, size: null, full: false },
   { slug: "maxxed-out-summit", name: "Maxxed Out Summit", client: "Max Willett", when: "2025", location: null, venue: null, size: null, full: false },
