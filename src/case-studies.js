@@ -438,6 +438,90 @@ export const CASE_STUDIES = [
       "Iconic Events, a Florida based event production and coordination company, produced Freedom Queen Live 2025 for Bridget James Ling at the Vinoy in St. Petersburg, Florida in November 2025, delivering a Broadway style show with rehearsed dance performances, a flash mob opening and staged butler service for 530 attendees.",
   },
 
+  // Source: docs/case-studies/interviews/commas-air-traffic.md, Icon's answer
+  // of 2026-11-23. Client printed as Commas, no person named (Icon). Hand
+  // written FAQs, so the generated "Commas's Commas Air Traffic" never shows.
+  {
+    slug: "commas-air-traffic",
+    name: "Commas Air Traffic",
+    format: "After party",
+    headline: "How Commas Turned a 747 at AREA15 Into an After Party for 400 Guests",
+    cta: "Want an after party people talk about all year?",
+    summary:
+      "Commas wanted an after party worthy of its reputation: a place for the industry to connect, and proof that Commas throws the wildest, most unique parties around. We built it in about a week inside AREA15's brand new plane, a retrofitted 747 rebranded as Air Traffic, with flight attendants and a champagne cart, cigar rollers, performers, magicians, models and a Kanye West impersonator on a custom stage. 400 guests came.",
+    challenge: [
+      "Commas has a name in the industry as the company that hosts wild, unique parties. During Vegas week it wanted an after party that kept that name: somewhere the industry would come to connect, and a night nobody else could have thrown.",
+      "There was about a week to build it, and the room was a 747.",
+    ],
+    approach: [
+      "Took over AREA15's brand new plane, a retrofitted 747, and the sky lounge around it, and rebranded the whole space Air Traffic.",
+      "Dressed the night as an airline: performers in flight attendant uniforms, a flight attendant champagne cart, gobos on the plane and a sponsor ticker board like a departures screen.",
+      "Filled it with activations: cigar rollers, performers, magicians, models and an ice luge.",
+      "Brought in the showstopper, a Kanye West impersonator on a custom stage.",
+      "Rolled out a red carpet and step and repeat for Commas and its partners.",
+    ],
+    challengesOvercome: [
+      "The party went from first call to doors in about seven days. We met the venue's food and drink minimum by switching to passed appetizers and a bar charged on consumption, so the plan held without cutting the experience.",
+      "Inside the plane, the projector hung too high for the performance. We moved the show outside to the patio, where it played to the crowd in the open air.",
+    ],
+    scope: [
+      ["Concept", "The Air Traffic theme across the plane and the sky lounge."],
+      ["Activations", "Cigar rollers, performers, magicians, models and an ice luge."],
+      ["Talent", "A Kanye West impersonator on a custom stage, and flight attendant performers."],
+      ["Branding", "Gobos on the plane, a sponsor ticker board, and a red carpet step and repeat."],
+      ["Production", "Venue, food and drink, and on site execution, built in about a week."],
+    ],
+    metrics: { attendance: "400", productionDays: null, costSaved: null },
+    highlights: [
+      ["400", "Guests"],
+      ["1", "Retrofitted 747"],
+    ],
+    results: [
+      "400 guests came through the plane by the end of the night. Commas got its after party, a place to connect and another night that kept its name as the company that throws the parties everyone remembers.",
+    ],
+    rightFor: null,
+    stealThis: [
+      "Pick a theme and commit to it. A plane became an airline, from the flight attendants to the departures board, and every guest knew where they were the moment they walked in.",
+    ],
+    details: {
+      client: "Commas",
+      clientTitle: null,
+      venue: "AREA15",
+      city: "Las Vegas",
+      region: "NV",
+      year: "2026",
+      dates: "September 21, 2026",
+    },
+    media: {
+      // TODO(collect): photos, coming from Icon.
+      hero: null,
+      challenge: null,
+      band: null,
+      resultLeft: null,
+      resultRight: null,
+      gallery: [],
+      aftermovieUrl: null,
+      testimonialUrl: null,
+    },
+    testimonial: { quote: null, approved: false },
+    citation:
+      "Iconic Events, a Florida based event production and coordination company, produced Commas Air Traffic, an after party for Commas inside AREA15's retrofitted 747 in Las Vegas, Nevada on September 21, 2026, delivering the airline theme, live activations, talent and on site execution for 400 guests.",
+    faqs: [
+      [
+        "Who produced the Commas Air Traffic after party?",
+        "Iconic Events, a Florida based event production and coordination company, produced Commas Air Traffic, an after party for Commas inside AREA15's retrofitted 747 in Las Vegas, Nevada on September 21, 2026, delivering the airline theme, live activations, talent and on site execution for 400 guests.",
+      ],
+      [
+        "What did Iconic Events deliver for Commas Air Traffic?",
+        "Concept: the Air Traffic theme across the plane and the sky lounge. Activations: cigar rollers, performers, magicians, models and an ice luge. Talent: a Kanye West impersonator on a custom stage, and flight attendant performers. Branding: gobos on the plane, a sponsor ticker board, and a red carpet step and repeat. Production: venue, food and drink, and on site execution, built in about a week.",
+      ],
+      [
+        "How many people attended Commas Air Traffic?",
+        "400 guests.",
+      ],
+    ],
+  },
+
   // Source: docs/case-studies/interviews/bad-takeover-2026.md, Icon's answer
   // of 2026-11-22. Not to be confused with Bad After Dark (January 2024).
   // Attendance is the highest count on record (the AREA15 planning call).
@@ -1481,6 +1565,7 @@ export const EVENT_INDEX = [
   { slug: "limitless-live", name: "Limitless Live", client: "Gil Valerio", when: "2026", location: null, venue: null, size: null, full: false },
   { slug: "women-and-wealth", name: "Women and Wealth", client: "Shelby Sapp", when: "2026-07", location: "Fort Lauderdale, FL", venue: "Broward County Convention Center", size: null, full: false },
   { slug: "closers-io-retreat", name: "Closers.io Retreat", client: "Cole Gordon", when: "2025", location: null, venue: null, size: null, full: false },
+  { slug: "commas-air-traffic", name: "Commas Air Traffic", client: "Commas", when: "2026-09", location: "Las Vegas, NV", venue: "AREA15", size: "400", full: true },
   { slug: "bad-takeover-2026", name: "Bad Takeover 2026", client: "Eddie Maalouf", when: "2026-09", location: "Las Vegas, NV", venue: "AREA15", size: "900", full: true },
   { slug: "bad-after-dark", name: "Bad After Dark", client: "Eddie Maalouf", when: "2024-01", location: null, venue: null, size: null, full: true },
   { slug: "agency-founders-dubai", name: "Agency Founders Dubai", client: "Eddie Maalouf", when: "2026", location: "Dubai, UAE", venue: null, size: null, full: false },
