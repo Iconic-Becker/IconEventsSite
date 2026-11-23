@@ -581,12 +581,12 @@ export const CASE_STUDIES = [
       dates: "November 6 to 8, 2026",
     },
     media: {
-      // TODO(collect): photos, and Cameron's testimonial video.
-      hero: null,
-      challenge: null,
-      band: null,
-      resultLeft: null,
-      resultRight: null,
+      // From Icon, 23 Nov 2026. TODO(collect): Cameron's testimonial video.
+      hero: { src: "/images/gallery/scale-or-sell/01.webp", alt: "Cameron England on stage under the License and Scale logo at Scale or Sell, the Rebel Motor Club, Fort Lauderdale" },
+      challenge: { src: "/images/gallery/scale-or-sell/02.webp", alt: "Cameron England in white on stage in front of the room at Scale or Sell, the Rebel Motor Club, Fort Lauderdale" },
+      band: { src: "/images/gallery/scale-or-sell/03.webp", alt: "The full room from the mezzanine, rows of attendees at laptops under chandeliers with cars racked along the wall, at Scale or Sell, the Rebel Motor Club, Fort Lauderdale" },
+      resultLeft: { src: "/images/gallery/scale-or-sell/04.webp", alt: "Attendees at their tables facing the stage, vintage and new cars stacked on racks behind them, at Scale or Sell, the Rebel Motor Club, Fort Lauderdale" },
+      resultRight: { src: "/images/gallery/scale-or-sell/05.webp", alt: "The room seen from above, branded boxes on every table and the slides on screens either side, at Scale or Sell, the Rebel Motor Club, Fort Lauderdale" },
       gallery: [],
       aftermovieUrl: null,
       testimonialUrl: null,

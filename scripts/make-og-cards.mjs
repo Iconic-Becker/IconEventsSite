@@ -62,6 +62,13 @@ const CASE_CARDS = [
     eyebrow: "Iconic Events · Danny Tran",
     title: "PMU World at Sea.",
   },
+  {
+    out: "og/scale-or-sell.jpg",
+    img: "/images/gallery/scale-or-sell/01.webp",
+    pos: "50% 40%",
+    eyebrow: "Iconic Events · Cameron England",
+    title: "Scale or Sell.",
+  },
 ]
 
 const casePage = (card) => `<!doctype html>
