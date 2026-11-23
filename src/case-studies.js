@@ -582,12 +582,16 @@ export const CASE_STUDIES = [
     },
     media: {
       // From Icon, 23 Nov 2026. TODO(collect): Cameron's testimonial video.
-      hero: { src: "/images/gallery/scale-or-sell/01.webp", alt: "Cameron England on stage under the License and Scale logo at Scale or Sell, the Rebel Motor Club, Fort Lauderdale" },
+      hero: { src: "/images/gallery/scale-or-sell/01.webp", alt: "Rows of attendees at their tables watching the stage, vintage and new cars racked on the wall behind them and chandeliers overhead, at Scale or Sell, the Rebel Motor Club, Fort Lauderdale" },
       challenge: { src: "/images/gallery/scale-or-sell/02.webp", alt: "Cameron England in white on stage in front of the room at Scale or Sell, the Rebel Motor Club, Fort Lauderdale" },
-      band: { src: "/images/gallery/scale-or-sell/03.webp", alt: "The full room from the mezzanine, rows of attendees at laptops under chandeliers with cars racked along the wall, at Scale or Sell, the Rebel Motor Club, Fort Lauderdale" },
-      resultLeft: { src: "/images/gallery/scale-or-sell/04.webp", alt: "Attendees at their tables facing the stage, vintage and new cars stacked on racks behind them, at Scale or Sell, the Rebel Motor Club, Fort Lauderdale" },
-      resultRight: { src: "/images/gallery/scale-or-sell/05.webp", alt: "The room seen from above, branded boxes on every table and the slides on screens either side, at Scale or Sell, the Rebel Motor Club, Fort Lauderdale" },
-      gallery: [],
+      band: { src: "/images/gallery/scale-or-sell/03.webp", alt: "The whole group outside the motor club, arms in the air, beside a red sports car, at Scale or Sell, the Rebel Motor Club, Fort Lauderdale" },
+      resultLeft: { src: "/images/gallery/scale-or-sell/04.webp", alt: "Cameron England on stage under the License and Scale logo at Scale or Sell, the Rebel Motor Club, Fort Lauderdale" },
+      resultRight: { src: "/images/gallery/scale-or-sell/05.webp", alt: "The matte black Lamborghini Aventador with the License and Scale logo on its door, attendees gathered around it outside, at Scale or Sell, the Rebel Motor Club, Fort Lauderdale" },
+      gallery: [
+        { src: "/images/gallery/scale-or-sell/06.webp", alt: "Guests at a candlelit table at the Saturday VIP dinner at MAASS in the Four Seasons, Scale or Sell menus at every place, Fort Lauderdale" },
+        { src: "/images/gallery/scale-or-sell/07.webp", alt: "The evening mixer seen from above, attendees talking at the bar under the chandeliers, at Scale or Sell, the Rebel Motor Club, Fort Lauderdale" },
+        { src: "/images/gallery/scale-or-sell/08.webp", alt: "The full room from the mezzanine, rows of attendees at laptops, slides on screens either side and cars racked along the wall, at Scale or Sell, the Rebel Motor Club, Fort Lauderdale" },
+      ],
       aftermovieUrl: null,
       testimonialUrl: null,
     },
