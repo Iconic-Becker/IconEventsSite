@@ -654,5 +654,75 @@
     960
    ]
   ]
+ },
+ "/images/gallery/scale-or-sell/01.webp": {
+  "w": 1920,
+  "h": 1283,
+  "set": [
+   [
+    "/images/gallery/scale-or-sell/01-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/scale-or-sell/01-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/scale-or-sell/02.webp": {
+  "w": 1536,
+  "h": 1920,
+  "set": [
+   [
+    "/images/gallery/scale-or-sell/02-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/scale-or-sell/02-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/scale-or-sell/03.webp": {
+  "w": 1536,
+  "h": 1920,
+  "set": [
+   [
+    "/images/gallery/scale-or-sell/03-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/scale-or-sell/03-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/scale-or-sell/04.webp": {
+  "w": 1546,
+  "h": 1920,
+  "set": [
+   [
+    "/images/gallery/scale-or-sell/04-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/scale-or-sell/04-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/scale-or-sell/05.webp": {
+  "w": 1536,
+  "h": 1920,
+  "set": [
+   [
+    "/images/gallery/scale-or-sell/05-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/scale-or-sell/05-960.webp",
+    960
+   ]
+  ]
  }
 }
