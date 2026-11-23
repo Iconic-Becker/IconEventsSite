@@ -64,7 +64,7 @@ const CASE_CARDS = [
   },
   {
     out: "og/scale-or-sell.jpg",
-    img: "/images/gallery/scale-or-sell/01.webp",
+    img: "/images/gallery/scale-or-sell/04.webp",
     pos: "50% 40%",
     eyebrow: "Iconic Events · Cameron England",
     title: "Scale or Sell.",
