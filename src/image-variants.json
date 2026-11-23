@@ -766,5 +766,47 @@
     960
    ]
   ]
+ },
+ "/images/gallery/scale-or-sell/09.webp": {
+  "w": 1610,
+  "h": 1207,
+  "set": [
+   [
+    "/images/gallery/scale-or-sell/09-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/scale-or-sell/09-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/scale-or-sell/10.webp": {
+  "w": 1536,
+  "h": 1920,
+  "set": [
+   [
+    "/images/gallery/scale-or-sell/10-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/scale-or-sell/10-960.webp",
+    960
+   ]
+  ]
+ },
+ "/images/gallery/scale-or-sell/11.webp": {
+  "w": 1546,
+  "h": 1920,
+  "set": [
+   [
+    "/images/gallery/scale-or-sell/11-480.webp",
+    480
+   ],
+   [
+    "/images/gallery/scale-or-sell/11-960.webp",
+    960
+   ]
+  ]
  }
 }
