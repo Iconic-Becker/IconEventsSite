@@ -59,6 +59,33 @@ badges or a plan unless it says otherwise.
 
 ## Q1. What did they come to you with?
 
+Icon, 2026-11-23 (verbatim, voice; one word for the impersonator replaced
+with "[impersonator]", as it is a slur and must never reach the page):
+
+> so what Kama's wanted from the night was a really cool after party, a
+> place to connect and maintain their, you know, credentials in the
+> industry as the company that hosts wild and unique parties. It was good.
+> I would say 400 guests came in total by the time it was all said and
+> done. I would say that the client was just yash. I would just say
+> commas. I wouldn't actually publish the name. I would call this event an
+> after party. I will work on getting you the photos now. Yes, I
+> definitely think it belongs in the portfolio. Because it was super
+> unique because we ended up not only doing this event in Area 15's brand
+> new plane. So we quite literally retrofitted a 747 plane and had all
+> these insane activations like cigar rollers and performers and
+> magicians. But we also brought in a mini Kanye West. So we had a
+> [impersonator] Kanye West. That was like a real showstopper. We also had
+> girls dressed up in like air traffic control. Like we had girls dressed
+> up in like flight attendant outfits. We had models. Like it was just an
+> awesome experience for everybody.
+
+Captured: the brief was a cool after party, a place to connect, keeping
+Commas known as the company that throws wild, unique parties. 400 guests.
+Client printed as Commas, no person named. Format: After party. In the
+portfolio. AREA15's brand new plane, a retrofitted 747; cigar rollers,
+performers, magicians, models, flight attendant costumes and a Kanye West
+impersonator as the showstopper. Photos to come.
+
 ## Q2. What made this one hard?
 
 ## Q3. Three to five decisions, and why
@@ -73,7 +100,7 @@ badges or a plan unless it says otherwise.
 
 ## Facts
 
-- Attendance (final): 300 (Iconic, 2026-11-22: the published figure)
+- Attendance (final): 400 (Icon, 2026-11-23)
 - Days of production on site: 1 (setup the morning of the event)
 - Cost saved for the client:
 - Venue, city, month, year: 2026; venue, city and month not on record
