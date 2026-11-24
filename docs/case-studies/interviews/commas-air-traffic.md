@@ -178,3 +178,44 @@ skeleton to fill in the interview, not a page. Not enough to publish.
 10. Any cost saved for the client on record? None in the brain.
 11. Photos, video, and usage rights.
 12. A quote from the client, verbatim, with written permission.
+
+## Catch-up (2026-11-24)
+
+Icon, verbatim (voice; two expletives masked as [expletive] in this
+public file):
+
+> 1 so, why the plane? I mean, why the [expletive] not? That's what I
+> should see on the site, honestly. That is pretty much my thought
+> process for it. It was just a unique experience, dude. Like, anyone can
+> buy a bar or a club in Vegas, but there's very few unique locations.
+> And luckily, Area 15 offers all of them. And so the plane offers... By
+> the way, we were the first people to ever rent this venue. So that's a
+> whole unique element. But the airline offered a really unique mechanism
+> for us to invite our attendees into a new world they hadn't experienced
+> in Vegas that wasn't centered around like clubbing or partying. And it
+> was just [expletive] sick. Why the Kanye impersonator as the
+> showstopper? Because it was awesome. That was pretty much it. We
+> literally put a little Kanye shirt on him. He danced. The attendees
+> loved it. It was great for the visuals. We got tens of millions of hits
+> on social. Like, it was a home run. And after a party like this is
+> right for any company that wants to take advantage and piggyback off of
+> a large event. Pretty much the exact same answer I gave on bad
+> takeover. What would a prospect ask ChatGPT? They would ask them, what
+> is a cool event or cool venues in Vegas unique for, you know, a 100 to
+> 500 person size group? And Area 15 will definitely be that. I feel like
+> the steal this is kind of very lame how you wrote it. I think it's just
+> like when you're going to create a theme, like really dial into it. We
+> could have just done it out of plane and called it a day. But instead we
+> hired flight attendants. We had airline carts that were transformed
+> into alcohol carts. We had drinks that were named after the sponsors.
+> We had everyone that checked into the event got a plane ticket to check
+> them in. It was a very, it felt like they were truly in a terminal. And
+> that experience is what makes it, again, feel like you're entering a
+> brand world.
+
+Applied: "Why the plane? Honestly, why not?" on the page (the expletive
+held back pending Icon's explicit OK); the first group ever to rent the
+plane; a new world in Vegas not centered on clubbing; the impersonator as
+the showstopper, "tens of millions" of social views (Icon's figure, rough;
+exact count requested); right for a company piggybacking a large event;
+one AI search FAQ; Steal This replaced with Icon's: dial into the theme.

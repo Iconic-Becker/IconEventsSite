@@ -451,13 +451,13 @@ export const CASE_STUDIES = [
       "Commas wanted an after party worthy of its reputation: a place for the industry to connect, and proof that Commas throws the wildest, most unique parties around. We built it in about a week inside AREA15's brand new plane, a retrofitted 747 rebranded as Air Traffic, with flight attendants and a champagne cart, cigar rollers, performers, magicians, models and a Kanye West impersonator on a custom stage. 400 guests came.",
     challenge: [
       "Commas has a name in the industry as the company that hosts wild, unique parties. During Vegas week it wanted an after party that kept that name: somewhere the industry would come to connect, and a night nobody else could have thrown.",
-      "There was about a week to build it, and the room was a 747.",
+      "Anyone can book a bar or a club in Vegas. Very few venues are genuinely unique, and Commas needed one of them, with about a week to build it.",
     ],
     approach: [
-      "Took over AREA15's brand new plane, a retrofitted 747, and the sky lounge around it, and rebranded the whole space Air Traffic.",
-      "Dressed the night as an airline: performers in flight attendant uniforms, a flight attendant champagne cart, gobos on the plane and a sponsor ticker board like a departures screen.",
+      "Why the plane? Honestly, why not? We took over AREA15's brand new plane, a retrofitted 747, and the sky lounge around it, and became the first group ever to rent it. An airline gave us a way to invite guests into a world they had never seen in Vegas, one that was not about clubbing.",
+      "Dialled into the theme: flight attendants, airline carts turned into bar carts, drinks named after the sponsors, gobos on the plane, a sponsor ticker board like a departures screen, and a plane ticket for every guest at check in.",
       "Filled it with activations: cigar rollers, performers, magicians, models and an ice luge.",
-      "Brought in the showstopper, a Kanye West impersonator on a custom stage.",
+      "Brought in the showstopper, a Kanye West impersonator in a Kanye shirt, dancing on a custom stage, because it was awesome and it was made for the cameras.",
       "Rolled out a red carpet and step and repeat for Commas and its partners.",
     ],
     challengesOvercome: [
@@ -478,10 +478,11 @@ export const CASE_STUDIES = [
     ],
     results: [
       "400 guests came through the plane by the end of the night. Commas got its after party, a place to connect and another night that kept its name as the company that throws the parties everyone remembers.",
+      "The showstopper was a home run. Guests loved the impersonator, the visuals were made for social, and the clips drew tens of millions of views.",
     ],
-    rightFor: null,
+    rightFor: "Any company that wants to piggyback on a large event: an after party gives you an exclusive cut of its audience, on your terms.",
     stealThis: [
-      "Pick a theme and commit to it. A plane became an airline, from the flight attendants to the departures board, and every guest knew where they were the moment they walked in.",
+      "When you pick a theme, dial all the way into it. We could have hosted a party in a plane and called it a day. Instead there were flight attendants, airline carts turned into bar carts, drinks named after the sponsors and a plane ticket for every guest at check in. It felt like a real terminal, and that is what makes guests feel they have entered a brand's world.",
     ],
     details: {
       client: "Commas",
@@ -518,6 +519,10 @@ export const CASE_STUDIES = [
       [
         "How many people attended Commas Air Traffic?",
         "400 guests.",
+      ],
+      [
+        "What are unique event venues in Las Vegas for 100 to 500 guests?",
+        "AREA15 has some of the most unusual event spaces in Las Vegas, including a retrofitted 747 and the sky lounge around it. Iconic Events produced Commas Air Traffic there for 400 guests, the first event ever held in the plane.",
       ],
     ],
   },
