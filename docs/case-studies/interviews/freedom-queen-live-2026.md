@@ -239,3 +239,30 @@ to be subject to that cost saved rule." No cost saved figure on this page.
 - Aftermovie:
 - Testimonial video:
 - Photo folder / photographer / usage rights:
+
+## Catch-up (2026-11-24)
+
+Icon, verbatim (voice):
+
+> 1. So, the services that were rendered in this event, specifically, was
+> Day of Coordination, which means that we're here just to essentially
+> take the stress off of Bridget and her team and just let them worry
+> about doing their best from stage, while we worry about running the
+> event and managing all the teams to do so. I think the celebratory item
+> in that is that with very little preparation or time, we could still
+> hop in and fit into any ecosystem and help drive an event forward. Two,
+> who in an event like this for? Any woman who is trying to bring
+> womanhood forward I would say we can leave what went right off the
+> page. A prospect would probably ask, how to coordinate a women's
+> business conference or best places to organize a women's business
+> conference in Miami. And that is two answers that we have there. For
+> Steel This, I would include that Bridget made the media night at the
+> event an opportunity where all attendees could really go and get
+> content from the event. So by having specific stations that were preset
+> with different activations and intentions, all of the attendees got to
+> have their own little photo shoot moment. That was really fun for them.
+
+Applied: scope is day of coordination (the room block and "contract to
+load-out" lines came out); the win is stepping into Bridget's team with
+little lead time; right for any woman bringing womanhood forward; nothing
+added under how it went; two AI search FAQs; Steal This from media night.
