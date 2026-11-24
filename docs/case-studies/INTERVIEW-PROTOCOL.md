@@ -44,7 +44,7 @@ interview sheet; Iconic adds the missing assets at the end.
 
 ## 2. Run the interview
 
-Six questions, asked one or two at a time, never all at once. The user
+Seven questions, asked one or two at a time, never all at once. The user
 answers by voice note or typing. Answers will be messy, out of order, and
 will jump between events. That is expected.
 
@@ -62,7 +62,17 @@ will jump between events. That is expected.
 4. **What nearly broke?** What went sideways, when, and what the team did
    about it live. This will feel wrong to answer. Ask anyway.
 5. **Who is this build right for, and who is it wrong for?**
-6. **Anything else about the night?** Details, moments, things that stuck.
+6. **What went right, and anything else about the night?** Details,
+   moments, things that stuck.
+7. **What would a prospect ask ChatGPT or Google before booking an event
+   like this?** (Iconic, 2026-11-24.) The answers become `faqExtra` on the
+   page: questions an answer engine can lift whole, answered in one or two
+   plain sentences that name Iconic Events.
+
+Ask every question for every event, including ones built from research
+notes. Research can supply facts; it cannot supply the why, the right fit
+or the Steal This, which come from Iconic in its own words (Iconic,
+2026-11-24, after a session that skipped them).
 
 Then the facts, which are quick:
 
