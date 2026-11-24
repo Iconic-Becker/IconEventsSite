@@ -49,6 +49,9 @@
                 never a list of what went wrong.
    rightFor     Optional. Who a build like this is right for.
    stealThis    Optional. An idea other hosts can borrow.
+   installations Optional [[name, description]], rendered as its own
+                section after What We Did. For the case studies that warrant
+                the fuller breakdown; installationsLead is its opening line.
    approachLead Optional. Replaces the line beside What We Did, for
                 engagements that were not full production (EPIC Consulting).
    thirdPerson  Optional. Iconic's own events: no first person, no client.
@@ -446,41 +449,66 @@ export const CASE_STUDIES = [
     slug: "women-and-wealth",
     name: "Women and Wealth",
     format: "Summit",
-    headline: "How Shelby Sapp's First Event Drew 3,000 Women, and Three Pink Cars Into a Third Floor Ballroom",
-    cta: "Want your first event to be the one everyone talks about?",
+    metaTitle: "Shelby Sapp's Women and Wealth: 3,000 Women in Fort Lauderdale | Iconic Events",
+    metaDescription: "How Shelby Sapp, CEO of She Sells Academy, changed the lives of 3,000 women at Women and Wealth 2026 in Fort Lauderdale, three pink cars and all.",
+    headline: "How Shelby Sapp Radically Changed the Lives of 3,000 Women at Women and Wealth",
+    cta: "Want your first event to change lives the way Shelby Sapp's did?",
     summary:
-      "Shelby Sapp, CEO of She Sells Academy, had never run a live event, and she wanted her first to be the largest women in sales event in the United States, with plenty of people doubting it could be done. We built Women and Wealth at the Broward County Convention Center as a summit that took every attendee through a transformation, from aerialists and champagne towers to Shelby's pink G-Wagon, Rolls-Royce and Porsche on the third floor. 3,000 women came, some lining up at 6 a.m., and the event drew tens of millions of views.",
+      "Shelby Sapp, CEO of She Sells Academy, set out to radically change the lives of the women in her community, and for her first live event she wanted nothing less than the largest women in sales event in the United States. Women and Wealth brought 3,000 women to Fort Lauderdale for three days built around one transformation: becoming the top 1% woman in your field. We designed every installation to move them through it, from aerialists and champagne towers to Shelby Sapp's three pink cars on the third floor.",
     challenge: [
-      "Shelby Sapp is on track to become the next female Tony Robbins. For Women and Wealth she wanted the largest women in sales event in the United States: Tony Robbins meets a world class women's summit, built around one transformation, becoming the top 1% woman in your field.",
-      "It was her first live event. And before the doors opened there was a lot of doubt about a women's event, much of it from people with no stake in it.",
+      "Shelby Sapp is the CEO of She Sells Academy and is on track to become the next female Tony Robbins. Her community is women who sell: in real estate, insurance, high ticket sales, content and their own businesses. Shelby Sapp wanted to give them a room that would change their lives, not another sales training.",
+      "The brief for Women and Wealth was the largest women in sales event in the United States: Tony Robbins meets a world class women's summit. The event would sell a transformation, not a ticket. Every woman would come through the psychology of sales, communication, negotiation, investing her income, and mindset and confidence, and leave as the top 1% woman in her field, feeling she could do anything.",
+      "It was Shelby Sapp's first live event. And before the doors opened there was a lot of doubt about a women's event, much of it from people with no stake in it. Women and Wealth had to answer all of it in the room.",
     ],
-    approach: [
-      "Designed every activation around the transformation, so the room told the story: aerialists, champagne towers and mirrored walls in an Old Money palette of dark green, cream, gold and maroon.",
-      "Brought Shelby's own pink G-Wagon, Rolls-Royce and Porsche inside as the centerpiece, a brand experience no other event could copy, with dedicated security to keep them untouched.",
-      "Closed Saturday with an Old Money gala in a Roaring 20s, Great Gatsby theme, taken from Shelby's own Gatsby house party.",
-      "Worked within a brand new union building, clearing every vendor through its rules, and delivered the stage hand in hand with a local AV provider.",
-      "Put six videographers and four photographers on every show day, so the transformation lived on beyond the room.",
+    approach: {
+      pre: [
+        "Built the identity of Women and Wealth with Shelby Sapp: Old Money luxury in dark green velvet, cream, gold and maroon, with reflective and mirrored surfaces and a New York inspired feel.",
+        "Named the ticket tiers after the transformation itself, New Money, Old Money and Generational Wealth, each with its own colour carried across badges, lanyards and merch.",
+        "Designed every installation as a step in Shelby Sapp's transformation, so the room told the story before a speaker said a word.",
+        "Planned Shelby Sapp's three pink cars into the build from the start, and won the building's approval to bring them up a shaft elevator to the third floor.",
+        "Cleared every vendor through the rules of a brand new union building, and planned the stage hand in hand with a local AV provider.",
+      ],
+      onsite: [
+        "Opened with a welcome gala on the red carpet, and closed Saturday with the Old Money gala, a Roaring 20s, Great Gatsby night taken from Shelby Sapp's own Gatsby house party.",
+        "Ran two full days of main stage sessions in the Atlantic Ballroom, with registration, catering and crowd control for 3,000 women.",
+        "Put six videographers and four photographers on every show day, and held a testimonial recording block on Sunday afternoon.",
+      ],
+      post: [
+        "Delivered headshots, B-roll, attendee testimonials and a trailer, so Shelby Sapp's transformation kept travelling after the room emptied.",
+      ],
+    },
+    installationsLead: "Every installation at Women and Wealth was chosen for one reason: to move 3,000 women through Shelby Sapp's transformation, from who they were when they walked in to the top 1% woman in their field.",
+    installations: [
+      ["Shelby Sapp's pink cars", "Shelby Sapp's pink G-Wagon, pink Rolls-Royce and pink Porsche, inside the convention center on the third floor, with dedicated security to keep them untouched. A brand experience no other event could copy, and the photograph every woman wanted."],
+      ["The aerialists", "Performers in the air above the room, so the first thing every woman did at Women and Wealth was look up."],
+      ["The champagne towers", "Champagne towers as arrival moments: the signal that this was not a sales training, and that every woman in the room had arrived somewhere new."],
+      ["The mirrored world", "Reflective, mirrored surfaces through the Old Money palette of dark green velvet, cream, gold and maroon, built for photographs and for seeing yourself in the room."],
+      ["The galas", "A welcome gala on the red carpet, and the Old Money gala in a Roaring 20s, Great Gatsby theme, taken from Shelby Sapp's own Gatsby house party."],
+      ["The testimonial studio", "A testimonial recording block on the final afternoon, with the content team on every show day, capturing the transformation in the women's own words."],
     ],
     challengesOvercome: [
-      "The cars. The summit was on the third floor, so we found a shaft elevator that could take their weight and got the building to approve it. Then came the protocols: plastic on every floor, and every car under 20% fuel. With a tight load in window and no time for a mechanic, we had the Rolls-Royce tank drained by the dealer and drove the other two until they were under the line. All three made it upstairs.",
-      "Demand outran every plan. Attendees lined up from 6 a.m. to claim table space, and the lines were massive. Crowd control held, and the excitement made it into the room.",
-      "A first event, in a brand new union building, with a lot of outside doubt. Every vendor was cleared through the building's rules, and the event answered the doubters itself.",
+      "The cars. Women and Wealth was on the third floor, so we found a shaft elevator that could take the weight of Shelby Sapp's cars and got the building to approve it. Then came the protocols: plastic on every floor, and every car under 20% fuel. With a tight load in window and no time for a mechanic, we had the Rolls-Royce tank drained by the dealer and drove the other two until they were under the line. All three made it upstairs.",
+      "Demand outran every plan. Women lined up from 6 a.m. to claim table space, and the lines were massive. Crowd control held, and the excitement made it into the room.",
+      "A first event, in a brand new union building, with a lot of outside doubt. Every vendor was cleared through the building's rules, and Women and Wealth answered the doubters itself.",
     ],
     scope: [
-      ["Experience", "Activations designed around one transformation: aerialists, champagne towers and mirrored walls."],
-      ["Centerpiece", "Shelby's three pink cars on the third floor, with dedicated security."],
-      ["Gala", "An Old Money gala in a Roaring 20s theme."],
-      ["Venue", "Vendor clearance in a brand new union building, and crowd control for 3,000."],
+      ["Identity", "The Old Money look of Women and Wealth, and ticket tiers named for the transformation."],
+      ["Installations", "Aerialists, champagne towers, a mirrored world and Shelby Sapp's three pink cars."],
+      ["Centerpiece", "Building approval, a shaft elevator and fuel protocols to bring three cars to the third floor, with dedicated security."],
+      ["Galas", "A welcome gala and the Old Money gala in a Roaring 20s theme."],
+      ["Venue", "Vendor clearance in a brand new union building, registration and crowd control for 3,000."],
       ["Production", "The stage, hand in hand with a local AV provider."],
-      ["Content", "Six videographers and four photographers on every show day."],
+      ["Content", "Six videographers and four photographers on every show day, testimonials, headshots, B-roll and a trailer."],
     ],
     metrics: { attendance: "3,000", productionDays: "6", costSaved: null },
     highlights: [
       ["3,000", "Women"],
       ["3", "Pink cars on the third floor"],
+      ["10", "Videographers and photographers"],
     ],
     results: [
-      "3,000 women came to Shelby's first event, and the event drew tens of millions of views. Shelby defined herself as a force to be reckoned with, and people now recognize her as the next female Tony Robbins. It was a huge home run.",
+      "3,000 women came to Shelby Sapp's first event. The world we built, the aerialists, the champagne towers, the mirrored walls and the cars, drove huge engagement on social, and Women and Wealth drew tens of millions of views.",
+      "The speakers were a hit, the production ran without a seam and security held a room of 3,000. Shelby Sapp defined herself as a force to be reckoned with, and people now recognize her as the next female Tony Robbins. It was a huge home run.",
     ],
     rightFor: "Anyone genuinely trying to shift the consciousness of a generation, who wants to become the next Tony Robbins.",
     stealThis: null,
@@ -506,7 +534,21 @@ export const CASE_STUDIES = [
     },
     testimonial: { quote: null, approved: false },
     citation:
-      "Iconic Events, a Florida based event production and coordination company, produced Women and Wealth, Shelby Sapp's first live event, at the Broward County Convention Center in Fort Lauderdale, Florida from July 31 to August 2, 2026, delivering experience design, a pink car centerpiece on the third floor, an Old Money gala, production and crowd control for 3,000 women.",
+      "Iconic Events, a Florida based event production and coordination company, produced Women and Wealth, Shelby Sapp's first live event, at the Broward County Convention Center in Fort Lauderdale, Florida from July 31 to August 2, 2026, delivering experience design, installations including Shelby Sapp's three pink cars on the third floor, two galas, production and crowd control for 3,000 women.",
+    faqExtra: [
+      [
+        "Who is Shelby Sapp?",
+        "Shelby Sapp is the CEO of She Sells Academy, which teaches women to sell, and the founder of Women and Wealth. Her first live event, Women and Wealth 2026 in Fort Lauderdale, drew 3,000 women, and she is widely seen as the next female Tony Robbins. Iconic Events produced it.",
+      ],
+      [
+        "What is Women and Wealth?",
+        "Women and Wealth is Shelby Sapp's summit for women in sales and business, built around one transformation: becoming the top 1% woman in your field. The 2026 edition ran from July 31 to August 2 at the Broward County Convention Center in Fort Lauderdale, Florida, for 3,000 women.",
+      ],
+      [
+        "How did Women and Wealth get cars into the convention center?",
+        "Iconic Events brought Shelby Sapp's pink G-Wagon, Rolls-Royce and Porsche to the third floor of the Broward County Convention Center by shaft elevator, with the building's approval, plastic on every floor and every car under 20% fuel.",
+      ],
+    ],
   },
 
   // Source: docs/case-studies/interviews/commas-air-traffic.md, Icon's answer
