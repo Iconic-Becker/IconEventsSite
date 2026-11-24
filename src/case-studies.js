@@ -761,7 +761,7 @@ export const CASE_STUDIES = [
     slug: "freedom-queen-live-2026",
     name: "Freedom Queen Live 2026",
     format: "Conference",
-    approachLead: "We coordinated and ran the show. Bridget's team held the venue, AV and stage design contracts.",
+    approachLead: "Day of coordination: we ran the event and managed every team on site, so Bridget and her team could focus on the stage. Her team held the venue, AV and stage design contracts.",
     headline: "How Freedom Queen Live Took 359 Women Business Owners to Miami to Redefine What Freedom Means",
     cta: "Want an event that moves your community forward, wherever it meets?",
     summary:
@@ -772,9 +772,8 @@ export const CASE_STUDIES = [
     ],
     approach: {
       pre: [
-        "Acted as the single liaison between Bridget's team, the hotel and every supplier.",
+        "Stepped into Bridget's team and its systems with very little lead time, and became the single liaison between her team, the hotel and every supplier.",
         "Built and owned the run of show across three show days.",
-        "Managed the hotel room block, which finished above its minimum.",
       ],
       onsite: [
         "Ran the general sessions in the Royal Ballroom, the Diamond and Platinum lunches and the Platinum Dinner on the Veranda.",
@@ -783,14 +782,14 @@ export const CASE_STUDIES = [
       post: [],
     },
     challengesOvercome: [
+      "We came in with very little preparation time. The job was to fit into an ecosystem Bridget's team had already built, take the running of the event off their hands and drive it forward, without changing what made it theirs.",
       "Bridget's own team held the venue, AV, vendors, security and stage design for the first time. We kept one plan across all of them as the single liaison, so nobody worked from an old version.",
       "Registration needed new badges on site. We reprinted every one overnight, laminated, with a QR code for each ticket tier, before doors opened.",
     ],
     scope: [
-      ["Coordination", "Coordination from contract to load-out."],
+      ["Day of coordination", "Running the event and managing every team on site, so Bridget's team could focus on the stage."],
       ["Run of show", "Run of show for three show days."],
       ["Liaison", "One point of contact across the hotel, AV, vendors and security, all contracted by the client."],
-      ["Hotel", "Room block management."],
       ["Registration", "Badges with tiered QR codes, reprinted on site."],
     ],
     metrics: { attendance: "359", productionDays: null, costSaved: null },
@@ -803,8 +802,10 @@ export const CASE_STUDIES = [
       "Three days ran on the themes of Excellence, Sales and Growth, from the first Freedom Queen Live mastermind session to an award ceremony that celebrated the community's wins on stage, in front of everyone. Bridget is already planning Freedom Queen Live 2027.",
       "It was the third year in a row Bridget trusted us with Freedom Queen Live, from her first event at the Vinoy to her first in Miami.",
     ],
-    rightFor: null,
-    stealThis: null,
+    rightFor: "Any woman bringing womanhood forward: founders and leaders whose events gather women in business, and who want a team to run the event so they can lead from the stage.",
+    stealThis: [
+      "Make media night a photo shoot for every attendee. Freedom Queen Live set up stations, each with its own activation and intention, so every woman left with content of her own from the event.",
+    ],
     details: {
       client: "Bridget James Ling",
       clientTitle: "CEO, Freedom Queen",
@@ -827,7 +828,17 @@ export const CASE_STUDIES = [
     },
     testimonial: { quote: null, approved: false },
     citation:
-      "Iconic Events, a Florida based event production and coordination company, coordinated Freedom Queen Live 2026 for Bridget James Ling of Freedom Queen at the JW Marriott Miami Turnberry Resort & Spa in Aventura, Florida in November 2026, delivering coordination, run of show and supplier liaison for 359 attendees.",
+      "Iconic Events, a Florida based event production and coordination company, coordinated Freedom Queen Live 2026 for Bridget James Ling of Freedom Queen at the JW Marriott Miami Turnberry Resort & Spa in Aventura, Florida in November 2026, delivering day of coordination, run of show and supplier liaison for 359 attendees.",
+    faqExtra: [
+      [
+        "How do you coordinate a women's business conference?",
+        "Decide who runs what before anything else. At Freedom Queen Live 2026, the host's own team held the venue, AV and stage contracts, and Iconic Events ran day of coordination: one liaison across every supplier, the run of show, and every team on site, so the founder could lead from the stage instead of running logistics.",
+      ],
+      [
+        "Where can you hold a women's business conference in Miami?",
+        "Freedom Queen Live 2026 brought 359 women business owners to the JW Marriott Miami Turnberry Resort & Spa in Aventura, with general sessions in the Royal Ballroom and VIP lunches and dinners on the Veranda. Iconic Events, a Florida based event production and coordination company, coordinated it.",
+      ],
+    ],
   },
 
   // Source: docs/case-studies/Case-Study-Interviews.xlsx, approved by Iconic.
