@@ -438,6 +438,77 @@ export const CASE_STUDIES = [
       "Iconic Events, a Florida based event production and coordination company, produced Freedom Queen Live 2025 for Bridget James Ling at the Vinoy in St. Petersburg, Florida in November 2025, delivering a Broadway style show with rehearsed dance performances, a flash mob opening and staged butler service for 530 attendees.",
   },
 
+  // Source: docs/case-studies/interviews/women-and-wealth.md, Icon's interview
+  // of 2026-11-24 and the brain's vision brief. AV credited as hand in hand
+  // with a local AV provider (Icon's directive). No cost saved, no Steal This
+  // (Icon).
+  {
+    slug: "women-and-wealth",
+    name: "Women and Wealth",
+    format: "Summit",
+    headline: "How Shelby Sapp's First Event Drew 3,000 Women, and Three Pink Cars Into a Third Floor Ballroom",
+    cta: "Want your first event to be the one everyone talks about?",
+    summary:
+      "Shelby Sapp, CEO of She Sells Academy, had never run a live event, and she wanted her first to be the largest women in sales event in the United States, with plenty of people doubting it could be done. We built Women and Wealth at the Broward County Convention Center as a summit that took every attendee through a transformation, from aerialists and champagne towers to Shelby's pink G-Wagon, Rolls-Royce and Porsche on the third floor. 3,000 women came, some lining up at 6 a.m., and the event drew tens of millions of views.",
+    challenge: [
+      "Shelby Sapp is on track to become the next female Tony Robbins. For Women and Wealth she wanted the largest women in sales event in the United States: Tony Robbins meets a world class women's summit, built around one transformation, becoming the top 1% woman in your field.",
+      "It was her first live event. And before the doors opened there was a lot of doubt about a women's event, much of it from people with no stake in it.",
+    ],
+    approach: [
+      "Designed every activation around the transformation, so the room told the story: aerialists, champagne towers and mirrored walls in an Old Money palette of dark green, cream, gold and maroon.",
+      "Brought Shelby's own pink G-Wagon, Rolls-Royce and Porsche inside as the centerpiece, a brand experience no other event could copy, with dedicated security to keep them untouched.",
+      "Closed Saturday with an Old Money gala in a Roaring 20s, Great Gatsby theme, taken from Shelby's own Gatsby house party.",
+      "Worked within a brand new union building, clearing every vendor through its rules, and delivered the stage hand in hand with a local AV provider.",
+      "Put six videographers and four photographers on every show day, so the transformation lived on beyond the room.",
+    ],
+    challengesOvercome: [
+      "The cars. The summit was on the third floor, so we found a shaft elevator that could take their weight and got the building to approve it. Then came the protocols: plastic on every floor, and every car under 20% fuel. With a tight load in window and no time for a mechanic, we had the Rolls-Royce tank drained by the dealer and drove the other two until they were under the line. All three made it upstairs.",
+      "Demand outran every plan. Attendees lined up from 6 a.m. to claim table space, and the lines were massive. Crowd control held, and the excitement made it into the room.",
+      "A first event, in a brand new union building, with a lot of outside doubt. Every vendor was cleared through the building's rules, and the event answered the doubters itself.",
+    ],
+    scope: [
+      ["Experience", "Activations designed around one transformation: aerialists, champagne towers and mirrored walls."],
+      ["Centerpiece", "Shelby's three pink cars on the third floor, with dedicated security."],
+      ["Gala", "An Old Money gala in a Roaring 20s theme."],
+      ["Venue", "Vendor clearance in a brand new union building, and crowd control for 3,000."],
+      ["Production", "The stage, hand in hand with a local AV provider."],
+      ["Content", "Six videographers and four photographers on every show day."],
+    ],
+    metrics: { attendance: "3,000", productionDays: "6", costSaved: null },
+    highlights: [
+      ["3,000", "Women"],
+      ["3", "Pink cars on the third floor"],
+    ],
+    results: [
+      "3,000 women came to Shelby's first event, and the event drew tens of millions of views. Shelby defined herself as a force to be reckoned with, and people now recognize her as the next female Tony Robbins. It was a huge home run.",
+    ],
+    rightFor: "Anyone genuinely trying to shift the consciousness of a generation, who wants to become the next Tony Robbins.",
+    stealThis: null,
+    details: {
+      client: "Shelby Sapp",
+      clientTitle: "CEO, She Sells Academy",
+      venue: "Broward County Convention Center",
+      city: "Fort Lauderdale",
+      region: "FL",
+      year: "2026",
+      dates: "July 31 to August 2, 2026",
+    },
+    media: {
+      // TODO(collect): photos, coming from Icon's team.
+      hero: null,
+      challenge: null,
+      band: null,
+      resultLeft: null,
+      resultRight: null,
+      gallery: [],
+      aftermovieUrl: null,
+      testimonialUrl: null,
+    },
+    testimonial: { quote: null, approved: false },
+    citation:
+      "Iconic Events, a Florida based event production and coordination company, produced Women and Wealth, Shelby Sapp's first live event, at the Broward County Convention Center in Fort Lauderdale, Florida from July 31 to August 2, 2026, delivering experience design, a pink car centerpiece on the third floor, an Old Money gala, production and crowd control for 3,000 women.",
+  },
+
   // Source: docs/case-studies/interviews/commas-air-traffic.md, Icon's answer
   // of 2026-11-23. Client printed as Commas, no person named (Icon). Hand
   // written FAQs, so the generated "Commas's Commas Air Traffic" never shows.
@@ -1600,7 +1671,7 @@ export const EVENT_INDEX = [
   { slug: "the-sales-summit", name: "The Sales Summit", client: "Jeremy Miner", when: "2026-07", location: "Irving, TX", venue: "Irving Convention Center at Las Colinas", size: "700", full: true },
   { slug: "hell-yes-live", name: "Hell Yes Live 2026", client: "Becca Pike", when: "2026-07", location: "Lexington, KY", venue: "The Manchester Hotel", size: "99", full: true },
   { slug: "limitless-live", name: "Limitless Live", client: "Gil Valerio", when: "2026", location: null, venue: null, size: null, full: false },
-  { slug: "women-and-wealth", name: "Women and Wealth", client: "Shelby Sapp", when: "2026-07", location: "Fort Lauderdale, FL", venue: "Broward County Convention Center", size: null, full: false },
+  { slug: "women-and-wealth", name: "Women and Wealth", client: "Shelby Sapp", when: "2026-07", location: "Fort Lauderdale, FL", venue: "Broward County Convention Center", size: "3,000", full: true },
   { slug: "closers-io-retreat", name: "Closers.io Retreat", client: "Cole Gordon", when: "2025", location: null, venue: null, size: null, full: false },
   { slug: "commas-air-traffic", name: "Commas Air Traffic", client: "Commas", when: "2026-09", location: "Las Vegas, NV", venue: "AREA15", size: "400", full: true },
   { slug: "bad-takeover-2026", name: "Bad Takeover 2026", client: "Eddie Maalouf", when: "2026-09", location: "Las Vegas, NV", venue: "AREA15", size: "1,000", full: true },
