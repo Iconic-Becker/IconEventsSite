@@ -679,11 +679,11 @@ export const CASE_STUDIES = [
       "Cameron England's earlier events had strong content and poor execution: bad venues and mic failures that pulled him into logistics when he should have been teaching and selling. For Scale or Sell he hired Icon as his event coach. We moved the dates away from Thanksgiving travel, took the mastermind into the Rebel Motor Club in Fort Lauderdale, cut $14,000 from the venue and AV, and had Pablo run all three days on site. It sold out a month early with a waitlist, and 150 attendees came.",
     challenge: [
       "Cameron England runs License and Scale. His earlier live events had strong content but poor execution, from bad venues to mic failures, and every problem landed on him. Instead of teaching and selling, he spent his own events running logistics.",
-      "For Scale or Sell he wanted a step change: a bigger room than ever before, and the best event he had run.",
+      "His last event, in Dubai, was run to a good standard (but the venue had no aura). For Scale or Sell he wanted a step change: a bigger room than ever before, a venue people would remember, and the best event he had run.",
     ],
     approach: [
       "Coached Cameron and his team through weekly calls and one playbook for the whole event.",
-      "Took the event out of the hotel ballroom and into the Rebel Motor Club, so attendees spent three days surrounded by vintage and new cars, and avoided hotel contracts altogether.",
+      "Took the event out of the hotel ballroom and into the Rebel Motor Club, so that every photo and every story told anyone following along that this was a Cameron England event. Attendees spent three days surrounded by Ferrari F40s, Lamborghini Aventadors and classic Mercedes, a step through the history of wealth, and the event avoided hotel contracts altogether.",
       "Negotiated the venue from $30,000 to $20,000, and helped Cam's team bring the AV from $18,000 to $14,000.",
       "Turned the cars into the brand: Cam's logo on the side of a Lamborghini Aventador.",
       "Packed the attendee gifts as stim packs, energy drinks and Zyn pouches inside Cam's branded boxes, to keep the room switched on.",
@@ -715,10 +715,11 @@ export const CASE_STUDIES = [
     ],
     results: [
       "Scale or Sell sold out a month before the doors opened, with a waitlist of people asking for tickets, and 150 attendees came. The jump in quality from Cam's earlier events was obvious to the people who had been to them, and Cam called it his best event ever.",
+      "The room did its job before anyone spoke. The speakers were amazed when they walked in, surrounded by Ferrari F40s, Aventadors and classic Mercedes, and every photo from the weekend could only have come from a Cameron England event.",
     ],
-    rightFor: null,
+    rightFor: "Hosts ready to kick off a mastermind who are not yet ready for a big hotel contract or a full AV build. A smaller, memorable venue that you bring the AV into, with an event coach in your corner, is the format to start with.",
     stealThis: [
-      "Make the gift part of the show. Cam's stim packs, energy drinks in his own branded boxes, kept the room switched on and gave attendees something to post on day one.",
+      "Make your event an extension of your brand. Cameron is loud and outrageous, and he owns it, so his attendee gifts were stim packs: energy drinks and Zyn pouches in his own branded boxes. Attendees felt closer to him for it. Plan on carrying your brand inside the walls of your event.",
     ],
     details: {
       client: "Cameron England",
@@ -752,6 +753,16 @@ export const CASE_STUDIES = [
     testimonial: { quote: null, approved: false },
     citation:
       "Iconic Events, a Florida based event production and coordination company, coached Cameron England through Scale or Sell, a mastermind at the Rebel Motor Club in Fort Lauderdale, Florida in November 2026, delivering event coaching, venue and AV negotiations saving $14,000, and day of coordination for 150 attendees.",
+    faqExtra: [
+      [
+        "What are cool event venues in Fort Lauderdale?",
+        "The Rebel Motor Club in Fort Lauderdale hosted Scale or Sell 2026, a mastermind for 150 surrounded by vintage and modern cars, from Ferrari F40s to Lamborghini Aventadors, with 132 seats on the floor and a mezzanine above. Iconic Events coached the host through the event.",
+      ],
+      [
+        "What are unique venues to host a business conference?",
+        "Look for a space that already says something about your brand. Scale or Sell held its mastermind in a Fort Lauderdale motor club rather than a hotel ballroom, so every photo and story marked it as a Cameron England event, and it avoided hotel contracts altogether.",
+      ],
+    ],
   },
 
   // Source: docs/case-studies/interviews/freedom-queen-live-2026.md, draft v3,

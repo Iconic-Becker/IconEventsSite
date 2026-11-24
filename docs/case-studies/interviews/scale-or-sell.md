@@ -235,3 +235,42 @@ Icon, 2026-11-22, answers to the checks (verbatim):
 - Aftermovie:
 - Testimonial video:
 - Photo folder / photographer / usage rights:
+
+## Catch-up (2026-11-24)
+
+Icon, verbatim (voice):
+
+> the decisions. So we guided Cameron to create a new experience. His
+> last event in Dubai, he said the standard was good, but the venue had no
+> aura. And you could put that in parentheses. And so we wanted to create
+> a memorable venue so that every photo, every story, people knew exactly
+> where Cameron England's was and that they were at that anyone who was
+> following the stories knew that they were at a Cameron England event. I
+> would say anyone that's looking to kick off a mastermind but isn't ready
+> to jump up to a massive hotel reservation or AV element, this mastermind
+> style format is probably the best way to go about it. Finding a smaller
+> venue that you can spend less than $20,000 to truck the AV into, The
+> speakers were pretty amazed when they walked into the room. Like that
+> was pretty cool because they were surrounded by these old vintage cars.
+> We had Ferrari F40s, a Ventadors. We had old Mercedes cars. Like it was
+> kind of like a step through the history of wealth. And I'd say that
+> that's probably what went right as well. What would a prospect ask
+> ChatGPT before hiring an event coach or booking a mastermind? They would
+> probably ask, cool event venues, Fort Lauderdale and that would be the
+> main element. Or unique event venues to host a business conference in.
+> Steal this. I would say that the steal this portion should be your
+> event should feel like an extension of your brand. Cameron has really
+> nailed being his authentic self as, you know, loud and outrageous as
+> that might be. And so having a stim pack where he gives out zins and
+> energy drinks isn't aligned with his brand. And it made the attendees
+> feel closer and connected to him. So you can, you know, always plan on
+> extending your brand inside the walls of your event.
+
+Applied: the Dubai venue "had no aura" (Icon allowed it, in
+parentheses); the venue chosen so every photo and story read as a
+Cameron England event; right for hosts kicking off a mastermind before a
+big hotel and AV commitment (the $20,000 AV figure left off: house rule 2,
+no budget figures); the cars, a step through the history of wealth, and
+the speakers' reaction as what went right; two AI search FAQs; Steal This
+replaced with Icon's: your event as an extension of your brand. "isn't
+aligned" read as "is aligned" (confirm).
