@@ -627,10 +627,11 @@ export const CASE_STUDIES = [
       ["2", "Ports of call, Nassau and CocoCay"],
     ],
     results: [
+      "The format gave attendees something no land event could: constant community. Nobody went home at night. They woke up and had breakfast together, went to the sessions together, went ashore in Nassau and CocoCay together, and found each other at the pool after the program ended.",
       "It was a huge success. Attendees who have come for years loved it, and first timers found a new home in the PMU community. Many cited it as the breakthrough they needed, or the assurance to keep going.",
       "It also gave Danny the breathing room he needed to focus on the wider vision: Beauty World, planned for late 2027 or 2028.",
     ],
-    rightFor: null,
+    rightFor: "An established event brand with a community that already knows and trusts it, and has been to the experience before. A cruise is a fun extension of an event that works, never a first event.",
     stealThis: [
       "When you need a year to build something bigger, change the format, not the calendar. A smaller, closer edition keeps the community together and buys the time.",
     ],
@@ -662,6 +663,12 @@ export const CASE_STUDIES = [
     testimonial: { quote: null, approved: false },
     citation:
       "Iconic Events, a Florida based event production and coordination company, produced PMU World at Sea for Danny Tran of Highstoke Media aboard Wonder of the Seas from Miami to Nassau and CocoCay in October 2026, delivering the cruise format, theater and workshop program, sponsor shipping and security clearance, and onboard AV for 455 attendees.",
+    faqExtra: [
+      [
+        "How do you host a conference on a cruise ship?",
+        "Plan for a venue where nothing can be bought once it sails and late arrivals miss the event. For PMU World at Sea, Iconic Events shipped every sponsor's workshop materials far earlier than a hotel event needs and cleared them through international and port security, ran the AV on board, held sessions in the ship's main theater and workshops in the afternoons, and managed boarding for 455 attendees.",
+      ],
+    ],
   },
 
   // Source: docs/case-studies/interviews/scale-or-sell.md, draft v2 and

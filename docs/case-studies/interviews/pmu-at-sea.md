@@ -233,3 +233,27 @@ went, so the results are kept to what is on record.
     brain.
 11. Photos, aftermovie, testimonial video, and usage rights.
 12. A quote from Danny, verbatim, with written permission.
+
+## Catch-up (2026-11-24)
+
+Icon, verbatim (voice):
+
+> I'd say that the real big format that the attendees got from this
+> event, the line events, was just a feeling of constant community. Like,
+> unlike hotels where everyone may live off the property or have homes to
+> go to, we're all staying in the same place. So people would quite
+> literally like wake up, get breakfast together, go to the event
+> together, get dinner together, go on the island together. They would
+> leave the event and see their friends from the event at the pool
+> together. Like that was really the cool community portion of it. A
+> cruise event, I think, is based for not for someone starting for
+> events. You should never do this as your first event. This should be
+> like a fun extension of a current event brand with a trusted community
+> that already knows and trusts you and has been to the experience
+> before. A prospect would ask ChatSPT, how do you host events in a
+> conference on a cruise ship? What the details are? That's the only
+> question they would ask. I like what you wrote for number four.
+
+Applied: constant community as what the format gave attendees; right for
+an established event brand with a trusted community, never a first event;
+one AI search FAQ; Steal This kept as written.
