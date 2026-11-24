@@ -7,6 +7,7 @@ import Vendors from "./components/Vendors.jsx"
 import Contact from "./components/Contact.jsx"
 import AboutPage from "./components/AboutPage.jsx"
 import FaqPage from "./components/FaqPage.jsx"
+import ContactLocationPage from "./components/ContactLocationPage.jsx"
 import QuotePage from "./components/QuotePage.jsx"
 import ServicesPage from "./components/ServicesPage.jsx"
 import ServicePage from "./components/ServicePage.jsx"
@@ -50,7 +51,7 @@ export function routeFor(pathname) {
   // The full brief. The brass tab and every "Start a conversation" land here;
   // /contact is the short page for everything else.
   if (path === "/get-a-quote") return <QuotePage />
-  if (path === "/contact") return <Contact />
+  if (path === "/contact") return <ContactLocationPage />
   if (path === "/about") return <AboutPage />
   if (path === "/faq") return <FaqPage />
 

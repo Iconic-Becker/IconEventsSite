@@ -67,9 +67,9 @@ ROUTES.push(
   },
   {
     path: '/contact',
-    title: 'Contact | Iconic Events',
+    title: 'Miami Event Production Company | Iconic Events',
     description:
-      'Contact Iconic Events. Call, email or send a message, and a director will write back within 48 hours. Offices in Miami and Las Vegas.',
+      'Contact Iconic Events, a Miami and Las Vegas event production company, to talk about your next sell-from-stage membership or sponsorship room.',
     image: '/og/default.jpg',
   },
 )
