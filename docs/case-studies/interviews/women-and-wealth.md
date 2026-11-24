@@ -267,3 +267,17 @@ with mirrored surfaces, and dedicated security for the car centerpiece.
 Applied: Summit; 3,000 women; Shelby Sapp, CEO, She Sells Academy; no cost
 saved; no Steal This; the cars story as the lead challenge; crowd control
 from 6 a.m.; right for anyone shifting the consciousness of a generation.
+
+## Installations and speakers confirmed (2026-11-24)
+
+Icon, verbatim:
+
+> one, yes, they did. Two, the blow-up bar makeup stations were a thing.
+> Three, we had the photo booth. Pretty much almost all of these happened
+> except for the Rolex try-on room.
+
+Confirmed: Lori Greiner and Elena Cardone spoke; the blowout bar and
+makeup stations, the Vogue photo booth, the dream boards and the coffee
+cart happened. The Rolex try-on room did not. Speakers framed per the
+brain directive: the client chooses the speakers, Iconic was the speaker
+liaison.

@@ -467,10 +467,11 @@ export const CASE_STUDIES = [
         "Designed every installation as a step in Shelby Sapp's transformation, so the room told the story before a speaker said a word.",
         "Planned Shelby Sapp's three pink cars into the build from the start, and won the building's approval to bring them up a shaft elevator to the third floor.",
         "Cleared every vendor through the rules of a brand new union building, and planned the stage hand in hand with a local AV provider.",
+        "Served as speaker liaison for the lineup Shelby Sapp chose, including Lori Greiner and Elena Cardone.",
       ],
       onsite: [
         "Opened with a welcome gala on the red carpet, and closed Saturday with the Old Money gala, a Roaring 20s, Great Gatsby night taken from Shelby Sapp's own Gatsby house party.",
-        "Ran two full days of main stage sessions in the Atlantic Ballroom, with registration, catering and crowd control for 3,000 women.",
+        "Ran two full days of main stage sessions in the Atlantic Ballroom, with Lori Greiner and Elena Cardone among the speakers, and registration, catering and crowd control for 3,000 women.",
         "Put six videographers and four photographers on every show day, and held a testimonial recording block on Sunday afternoon.",
       ],
       post: [
@@ -483,6 +484,10 @@ export const CASE_STUDIES = [
       ["The aerialists", "Performers in the air above the room, so the first thing every woman did at Women and Wealth was look up."],
       ["The champagne towers", "Champagne towers as arrival moments: the signal that this was not a sales training, and that every woman in the room had arrived somewhere new."],
       ["The mirrored world", "Reflective, mirrored surfaces through the Old Money palette of dark green velvet, cream, gold and maroon, built for photographs and for seeing yourself in the room."],
+      ["The blowout bar and makeup stations", "A luxury blowout bar and makeup stations, so every woman could step into the version of herself the weekend was built around before she stepped in front of a camera."],
+      ["The Vogue photo booth", "A magazine cover photo booth, so every woman left Women and Wealth with a portrait of the woman she was becoming."],
+      ["The dream boards", "Interactive dream boards, so every woman could put her vision for the woman she was becoming on the wall, in front of the whole room."],
+      ["The coffee cart", "A coffee cart running all three days, keeping 3,000 women fuelled from the first session to the last."],
       ["The galas", "A welcome gala on the red carpet, and the Old Money gala in a Roaring 20s, Great Gatsby theme, taken from Shelby Sapp's own Gatsby house party."],
       ["The testimonial studio", "A testimonial recording block on the final afternoon, with the content team on every show day, capturing the transformation in the women's own words."],
     ],
@@ -493,7 +498,8 @@ export const CASE_STUDIES = [
     ],
     scope: [
       ["Identity", "The Old Money look of Women and Wealth, and ticket tiers named for the transformation."],
-      ["Installations", "Aerialists, champagne towers, a mirrored world and Shelby Sapp's three pink cars."],
+      ["Installations", "Aerialists, champagne towers, a mirrored world, a blowout bar and makeup stations, a Vogue photo booth, dream boards, a coffee cart and Shelby Sapp's three pink cars."],
+      ["Speakers", "Speaker liaison for the lineup Shelby Sapp chose, including Lori Greiner and Elena Cardone."],
       ["Centerpiece", "Building approval, a shaft elevator and fuel protocols to bring three cars to the third floor, with dedicated security."],
       ["Galas", "A welcome gala and the Old Money gala in a Roaring 20s theme."],
       ["Venue", "Vendor clearance in a brand new union building, registration and crowd control for 3,000."],
@@ -508,7 +514,7 @@ export const CASE_STUDIES = [
     ],
     results: [
       "3,000 women came to Shelby Sapp's first event. The world we built, the aerialists, the champagne towers, the mirrored walls and the cars, drove huge engagement on social, and Women and Wealth drew tens of millions of views.",
-      "The speakers were a hit, the production ran without a seam and security held a room of 3,000. Shelby Sapp defined herself as a force to be reckoned with, and people now recognize her as the next female Tony Robbins. It was a huge home run.",
+      "The speakers, Lori Greiner and Elena Cardone among them, were a hit, the production ran without a seam and security held a room of 3,000. Shelby Sapp defined herself as a force to be reckoned with, and people now recognize her as the next female Tony Robbins. It was a huge home run.",
     ],
     rightFor: "Anyone genuinely trying to shift the consciousness of a generation, who wants to become the next Tony Robbins.",
     stealThis: null,
@@ -543,6 +549,10 @@ export const CASE_STUDIES = [
       [
         "What is Women and Wealth?",
         "Women and Wealth is Shelby Sapp's summit for women in sales and business, built around one transformation: becoming the top 1% woman in your field. The 2026 edition ran from July 31 to August 2 at the Broward County Convention Center in Fort Lauderdale, Florida, for 3,000 women.",
+      ],
+      [
+        "Who spoke at Women and Wealth 2026?",
+        "Shelby Sapp's lineup for Women and Wealth 2026 included Lori Greiner and Elena Cardone, alongside Shelby Sapp herself. Iconic Events was the speaker liaison for the event, held July 31 to August 2, 2026 in Fort Lauderdale for 3,000 women.",
       ],
       [
         "How did Women and Wealth get cars into the convention center?",
