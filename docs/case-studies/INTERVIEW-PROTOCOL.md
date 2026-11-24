@@ -64,12 +64,10 @@ will jump between events. That is expected.
 5. **Who is this build right for, and who is it wrong for?**
 6. **What went right, and anything else about the night?** Details,
    moments, things that stuck.
-7. *(Optional, proposed by Claude on 2026-11-24, not part of Iconic's
-   original six; ask only if Iconic confirms it stays.)* **What would a
-   prospect ask ChatGPT or Google before booking an event like this?** The
-   answers become `faqExtra` on the page. Answer engines are otherwise
-   served by the summary, the `citation` and the generated FAQs, which is
-   how the original protocol covers them.
+
+Iconic's call, 2026-11-24: no seventh question on what prospects would ask
+an AI. The AI search questions already on Freedom Queen Live 2026, Scale or
+Sell, PMU World at Sea and Commas Air Traffic stay.
 
 Ask all six questions for every event, including ones built from research
 notes. Research can supply facts; it cannot supply the why, the right fit
