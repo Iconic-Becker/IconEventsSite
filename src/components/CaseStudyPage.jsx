@@ -190,6 +190,33 @@ function Approach({ study }) {
   )
 }
 
+/* The installations, one card each: what was built and what it did for the
+   room. Optional; only the case studies that warrant the extra breakdown
+   carry it (Women and Wealth first, Iconic's call, 2026-11-24). */
+function Installations({ study }) {
+  const items = study.installations ?? []
+  if (!items.length) return null
+  return (
+    <section className="border-t border-bone/10 py-16 sm:py-24">
+      <div className="mx-auto max-w-6xl px-5 sm:px-6">
+        <p className="font-sans text-xs font-bold uppercase tracking-[0.24em] text-brass">The Installations</p>
+        {study.installationsLead && (
+          <p className="mt-5 max-w-[65ch] font-sans text-lg leading-relaxed text-bone/70">{study.installationsLead}</p>
+        )}
+        <ol className="mt-10 grid gap-px border border-bone/10 bg-bone/10 sm:grid-cols-2">
+          {items.map(([name, body], index) => (
+            <li key={name} className="bg-onyx p-6 sm:p-8">
+              <span className="font-serif text-lg text-brass">{String(index + 1).padStart(2, "0")}</span>
+              <h3 className="mt-3 font-serif text-2xl font-semibold leading-tight">{name}</h3>
+              <p className="mt-3 font-sans text-[15.5px] leading-relaxed text-bone/70">{body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  )
+}
+
 /* A labelled block of prose in the page's two column rhythm: Challenges
    Overcome and Right For. Renders nothing when the field is empty. */
 function ProseSection({ label, lead, value }) {
@@ -574,6 +601,7 @@ export default function CaseStudyPage({ study }) {
       </section>
 
       <Approach study={study} />
+      <Installations study={study} />
       <ProseSection
         label="Challenges Overcome"
         lead="What stood in the way, and how it was handled."
