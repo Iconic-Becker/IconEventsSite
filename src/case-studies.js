@@ -532,18 +532,21 @@ export const CASE_STUDIES = [
     headline: "How Bad Takeover Became the Party to Be at After Funnel Hacking Live, and Handed Its Sponsors the Whole Room",
     cta: "Want the party everyone goes to after the main event?",
     summary:
-      "Every Funnel Hacking Live, Eddie Maalouf's BAD Marketing throws Bad Takeover, the party the industry heads to when the main event closes. For 2026 Eddie wanted something attendees had not seen: not another night of projection mapping and gambling, but the hub, the place to be. We added a hookah lounge, brought back the custom branded casino tables with every sponsor's logo on the felt, and turned the projection wall over to the sponsors, each with a spotlight of their own content on rotation. 900 guests came.",
+      "Every Funnel Hacking Live, Eddie Maalouf's BAD Marketing throws Bad Takeover, the party the industry heads to when the main event closes. For 2026 Eddie wanted something attendees had not seen: not another night of projection mapping and gambling, but the hub, the place to be. We added a hookah lounge, brought back the custom branded casino tables with every sponsor's logo on the felt, and turned the projection wall over to the sponsors, each with a spotlight of their own content on rotation. 1,000 guests came.",
     challenge: [
       "Every Funnel Hacking Live, Eddie Maalouf's BAD Marketing throws Bad Takeover, a party that rides alongside the main event and brings the industry, and its sponsors, into one room.",
       "For 2026 Eddie wanted something attendees had not seen before. Projection mapping and gambling had become what people expected. This year the party had to be the hub: the place everyone wanted to be the moment Funnel Hacking Live closed.",
     ],
     approach: [
-      "Built a hookah lounge on site, an intimate place to sit, talk and stay.",
-      "Brought back the custom branded blackjack and casino tables, with every sponsor's logo on the felt.",
-      "Turned the projection mapping wall over to the sponsors: each had a spotlight of their own content, cycling through the night, so the sponsors took over the whole room.",
+      "Built a hookah lounge on site, a nod to Eddie's Lebanese roots and his love of hookah, and the easiest way to get people who had never met to sit down and connect.",
+      "Turned the projection mapping wall over to the sponsors instead of giving them booths. A booth is easy to walk past. Here each sponsor had a spotlight of its own content cycling through the night, so every video and every post from the party carried the sponsors with it.",
+      "Brought back the custom branded blackjack and casino tables, with every sponsor's logo on the felt: all the fun of Vegas, with none of the pressure of losing money.",
       "Held it at AREA15 in Las Vegas, the home of every BAD party.",
     ],
-    challengesOvercome: null,
+    challengesOvercome: [
+      "Any outdoor night in Las Vegas is either very hot or very cold, so the weather was planned for from the start.",
+      "We had a week to map every sponsor's graphics to a heavily customized projection map. It was hard, and the attendees loved it, so it was worth every hour.",
+    ],
     scope: [
       ["Concept", "A new format for the party: the hub after Funnel Hacking Live."],
       ["Lounge", "An on site hookah lounge."],
@@ -551,20 +554,20 @@ export const CASE_STUDIES = [
       ["Sponsors", "A content spotlight for each sponsor on the projection mapping wall."],
       ["Venue", "AREA15, Las Vegas."],
     ],
-    metrics: { attendance: "900", productionDays: null, costSaved: null },
+    metrics: { attendance: "1,000", productionDays: null, costSaved: null },
     highlights: [
-      ["900", "Guests"],
+      ["1,000", "Guests"],
     ],
     results: [
-      "Bad Takeover was the place to be after Funnel Hacking Live, and 900 guests came. Sponsors did not get a booth. They took over the whole room.",
+      "Bad Takeover was the place to be after Funnel Hacking Live, and 1,000 guests came. Sponsors did not get a booth. They took over the whole room, and the projection mapping the guests loved was their content.",
     ],
-    rightFor: null,
+    rightFor: "A company that does not want to sponsor an event but still wants its highest level attendees. An after party gives you an exclusive cut of the event's audience without paying to sponsor it.",
     stealThis: [
-      "Give every sponsor the room, not a booth: a spotlight of their own on the projection wall, cycling all night.",
+      "Give every sponsor the room, not a booth. Where you can showcase sponsors in a way that does not lower the quality of the event's branding, and instead makes it more immersive, like a spotlight of their own on the projection wall, it is a win for your sponsors and for your attendees.",
     ],
     details: {
       client: "Eddie Maalouf",
-      clientTitle: null,
+      clientTitle: "CEO, BAD Marketing",
       venue: "AREA15",
       city: "Las Vegas",
       region: "NV",
@@ -584,7 +587,7 @@ export const CASE_STUDIES = [
     },
     testimonial: { quote: null, approved: false },
     citation:
-      "Iconic Events, a Florida based event production and coordination company, produced Bad Takeover 2026 for Eddie Maalouf of BAD Marketing at AREA15 in Las Vegas, Nevada on September 22, 2026, after Funnel Hacking Live, delivering a hookah lounge, custom branded casino tables and sponsor spotlights on the projection mapping wall for 900 guests.",
+      "Iconic Events, a Florida based event production and coordination company, produced Bad Takeover 2026 for Eddie Maalouf of BAD Marketing at AREA15 in Las Vegas, Nevada on September 22, 2026, after Funnel Hacking Live, delivering a hookah lounge, custom branded casino tables and sponsor spotlights on the projection mapping wall for 1,000 guests.",
   },
 
   // Source: docs/case-studies/interviews/pmu-at-sea.md, Icon's answers of
@@ -1595,7 +1598,7 @@ export const EVENT_INDEX = [
   { slug: "women-and-wealth", name: "Women and Wealth", client: "Shelby Sapp", when: "2026-07", location: "Fort Lauderdale, FL", venue: "Broward County Convention Center", size: null, full: false },
   { slug: "closers-io-retreat", name: "Closers.io Retreat", client: "Cole Gordon", when: "2025", location: null, venue: null, size: null, full: false },
   { slug: "commas-air-traffic", name: "Commas Air Traffic", client: "Commas", when: "2026-09", location: "Las Vegas, NV", venue: "AREA15", size: "400", full: true },
-  { slug: "bad-takeover-2026", name: "Bad Takeover 2026", client: "Eddie Maalouf", when: "2026-09", location: "Las Vegas, NV", venue: "AREA15", size: "900", full: true },
+  { slug: "bad-takeover-2026", name: "Bad Takeover 2026", client: "Eddie Maalouf", when: "2026-09", location: "Las Vegas, NV", venue: "AREA15", size: "1,000", full: true },
   { slug: "bad-after-dark", name: "Bad After Dark", client: "Eddie Maalouf", when: "2024-01", location: null, venue: null, size: null, full: true },
   { slug: "agency-founders-dubai", name: "Agency Founders Dubai", client: "Eddie Maalouf", when: "2026", location: "Dubai, UAE", venue: null, size: null, full: false },
   { slug: "maxxed-out-summit", name: "Maxxed Out Summit", client: "Max Willett", when: "2025", location: null, venue: null, size: null, full: false },

@@ -95,7 +95,7 @@ projection wall, cycling all night.
 
 ## Facts
 
-- Attendance (final):
+- Attendance (final): 1,000 (Icon, 2026-11-24: "just call it a thousand")
 - Days of production on site:
 - Cost saved for the client:
 - Venue, city, month, year: AREA15, Las Vegas, NV, September 22, 2026
@@ -106,3 +106,41 @@ projection wall, cycling all night.
 - Aftermovie:
 - Testimonial video:
 - Photo folder / photographer / usage rights:
+
+## Catch-up (2026-11-24)
+
+Icon, verbatim (voice):
+
+> I don't know if we have to go as live or crazy about this one, but the
+> Hookah Lounge, you know, Eddie is Lebanese and he loves hookah and it's
+> just a cool way to get people to sit down and connect at an event that
+> may not know each other. Why give each sponsor the projection wall?
+> Because dude, it's way more of a unique activation and them just having
+> a booth. People can walk into an event and not see a sponsor booth. And
+> then, you know, just go about the event. This way, every time that
+> attendees took a video or a social from the event, they saw a sponsor
+> booth. And the casino tables is just a great way for people to have fun
+> in Vegas without feeling like there's any pressure of losing the money.
+> What made it hard is anytime you do an event outside in Vegas at
+> nighttime, it's either very hot or it's very cold. So weather is always
+> a factor. And then custom mapping the projection map. We only had a week
+> to map all of these graphics to fit a very customized projection map,
+> which was definitely difficult, but the attendees loved it, so it was
+> well worth it. A party like this is right for a company that maybe
+> doesn't want to sponsor an event, but still wants to gain access to an
+> event's highest level of attendees. Throwing these after parties is
+> always a home run because it essentially gives you an exclusive cut of
+> the attendees at an event without having to spend money to sponsor the
+> event. I don't know for number four. I think we can expand on what you
+> wrote for number five. I think it should be if there's an opportunity
+> where you can showcase your sponsors in a way that doesn't lower the
+> quality of branding at the event, but instead makes it even more
+> immersive, that not only creates a win for your sponsors, but also for
+> your attendees. And for the guests, just call it a thousand. Eddie is
+> the CEO of Bad Marketing.
+
+Applied: the why behind the hookah lounge, the sponsor wall and the
+casino; weather and a one week projection map as challenges; right for a
+company that wants an event's top attendees without sponsoring it; no AI
+search FAQs; Steal This expanded in Icon's words; 1,000 guests; Eddie
+Maalouf, CEO, BAD Marketing.

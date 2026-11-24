@@ -51,7 +51,7 @@ const CASE_STUDY_GROUP = [
   ["creatorhub-live", "CreatorHub Live", "Orlando, FL", "1,500+ creators and entrepreneurs under one roof."],
   ["creator-fest", "Creator Fest 2024", "Orlando, FL", "The third-largest creator event in the country in its first year."],
   ["commas-air-traffic", "Commas Air Traffic", "Commas, Las Vegas", "An after party for 400 inside a retrofitted 747."],
-  ["bad-takeover-2026", "Bad Takeover 2026", "Eddie Maalouf, Las Vegas", "900 guests after Funnel Hacking Live, with sponsors on every wall and table."],
+  ["bad-takeover-2026", "Bad Takeover 2026", "Eddie Maalouf, Las Vegas", "1,000 guests after Funnel Hacking Live, with sponsors on every wall and table."],
   ["bad-after-dark", "Bad After Dark", "Eddie Maalouf, Las Vegas", "$146K in sponsorships in six days."],
   ["scaling-with-systems-live", "Scaling With Systems LIVE 2021", "Ravi Abuvala, Miami, FL", "300 attendees in an open-air Miami parking garage, in April 2021."],
 ]
