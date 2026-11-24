@@ -59,6 +59,13 @@ ROUTES.push(
     image: '/og/default.jpg',
   },
   {
+    path: '/faq',
+    title: 'Event Production FAQ | Iconic Events',
+    description:
+      "Common questions about Iconic Events' event production timeline, requirements, and process, from who we work with to what happens after you reach out.",
+    image: '/og/default.jpg',
+  },
+  {
     path: '/contact',
     title: 'Contact | Iconic Events',
     description:
