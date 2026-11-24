@@ -52,14 +52,27 @@ ROUTES.push(
     image: '/og/default.jpg',
   },
   {
-    path: '/contact',
-    title: 'Contact | Iconic Events',
+    path: '/about',
+    title: 'Event Production Company | Iconic Events',
     description:
-      'Contact Iconic Events. Call, email or send a message, and a director will write back within 48 hours. Offices in Miami and Las Vegas.',
+      'Iconic Events is an event production company and agency engineering sell-from-stage events that drive membership and sponsorship revenue for founders.',
+    image: '/og/default.jpg',
+  },
+  {
+    path: '/faq',
+    title: 'Event Production FAQ | Iconic Events',
+    description:
+      "Common questions about Iconic Events' event production timeline, requirements, and process, from who we work with to what happens after you reach out.",
+    image: '/og/default.jpg',
+  },
+  {
+    path: '/contact',
+    title: 'Miami Event Production Company | Iconic Events',
+    description:
+      'Contact Iconic Events, a Miami and Las Vegas event production company, to talk about your next sell-from-stage membership or sponsorship room.',
     image: '/og/default.jpg',
   },
 )
-
 // The nav's own pages, so it never sends anyone back to the homepage.
 ROUTES.push(
   {

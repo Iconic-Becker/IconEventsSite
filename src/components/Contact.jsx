@@ -124,16 +124,9 @@ function MessageForm() {
   )
 }
 
-export default function Contact() {
-  useEffect(() => {
-    document.title = TITLE
-    const meta = document.querySelector('meta[name="description"]')
-    if (meta) meta.setAttribute("content", DESCRIPTION)
-  }, [])
-
+export function ContactForm() {
   return (
-    <main className="min-h-screen bg-onyx text-bone">
-      <SiteHeader />
+    <>
       <section className="lg:grid lg:min-h-[calc(100svh-4.5rem)] lg:grid-cols-2">
         <div className="px-5 py-16 sm:px-6 lg:py-24 lg:pl-[max(1.5rem,calc(50vw-34.5rem))] lg:pr-16">
           <p className="font-sans text-xs font-bold uppercase tracking-[0.28em] text-brass">Contact</p>
@@ -180,7 +173,16 @@ export default function Contact() {
           <MessageForm />
         </div>
       </section>
-      <SiteFooter />
-    </main>
+    </>
   )
+}
+
+export default function Contact() {
+  useEffect(() => {
+    document.title = TITLE
+    const meta = document.querySelector('meta[name="description"]')
+    if (meta) meta.setAttribute("content", DESCRIPTION)
+  }, [])
+
+  return <ContactForm />
 }
