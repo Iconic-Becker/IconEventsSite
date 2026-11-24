@@ -170,12 +170,14 @@ export const ROOM = {
     },
     {
       id: "r8",
-      // Placeholder card until a headshot is on file. No case study yet, so no link.
+      // Placeholder card until a headshot is on file. Figures: the Women and
+      // Wealth case study.
       img: null,
       name: "Shelby Sapp",
       event: "Women and Wealth",
+      slug: "women-and-wealth",
       stats: [
-        { value: "July 2026", label: "Fort Lauderdale, FL" },
+        { value: "3,000", label: "Women" },
       ],
       result: V("Women and Wealth", "Women and Wealth"),
     },

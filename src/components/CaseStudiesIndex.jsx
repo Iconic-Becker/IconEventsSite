@@ -43,6 +43,7 @@ const RECAP_GROUPS = [
 ]
 
 const CASE_STUDY_GROUP = [
+  ["women-and-wealth", "Women and Wealth", "Shelby Sapp, Fort Lauderdale, FL", "Shelby's first event: 3,000 women, and three pink cars on the third floor."],
   ["scale-or-sell", "Scale or Sell", "Cameron England, Fort Lauderdale, FL", "Sold out a month early, with $14K saved on the venue and AV."],
   ["the-sales-summit", "The Sales Summit", "Jeremy Miner, Irving, TX", "Produced 7th Level's largest event to date, with 700 attendees."],
   ["hell-yes-live", "Hell Yes Live 2026", "Becca Pike, Lexington, KY", "Sold 42 seats for next year within days."],
@@ -57,7 +58,6 @@ const CASE_STUDY_GROUP = [
 ]
 
 const MORE_EVENTS = [
-  ["Women and Wealth", "Shelby Sapp, Fort Lauderdale, FL"],
   ["Limitless Live", "Gil Valerio"],
   ["Agency Founders Dubai", "Eddie Maalouf, Dubai, UAE"],
   ["Creator Hub Madrid", "Universal Music Group, Madrid, Spain"],

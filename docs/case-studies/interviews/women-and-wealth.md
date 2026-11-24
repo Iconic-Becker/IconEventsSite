@@ -193,3 +193,77 @@ badges or a plan unless it says otherwise.
 - Aftermovie:
 - Testimonial video:
 - Photo folder / photographer / usage rights:
+
+## Interview (2026-11-24)
+
+Icon confirmed Q1 from the vision brief ("yup"). Then, verbatim (voice;
+expletives masked as [expletive] in this public file; the spend figure Icon
+mentioned under cost saved is left out: client finances never go in this
+repository):
+
+> Okay, first things first. They've never done an event before, so that's
+> what made it hard. Second, is, you know, this is a, this is a brand new
+> building and a union building, which means that, you know, we have to be
+> very delicate with which vendors we work with. We're being very
+> restricted on like who are allowed to, but none of that is nearly as
+> cool as the story about the [expletive] cars. Getting the cars inside was
+> such a pain in the [expletive]. And it's such a cool story that everyone
+> wants to hear. That's what we should focus on to get these cars inside.
+> Shelby has a big pink G-Wagon. She's got a pink Rolls Royce and a pink
+> Porsche. And we wanted to get these cars inside to create a really
+> unique brand experience. The problem is the event's on the third floor
+> of the building. So how do we get the cars in? Well, we found a shaft
+> elevator that technically could support the weight of the cars. So
+> first getting the building to approve getting the cars up there was the
+> first part. The second part was we had to work extensively through very,
+> very strict building protocols, such as like putting plastic on the
+> floor or even worse, having the car under 20% gas. Now, the problem is
+> we had a limited load-in window for what we're allowed to bring these
+> cars inside, and we did not have the cars under 20% gas, and we didn't
+> have the time to wait for a mechanic to come and siphon them out. So we
+> had to call Rolls-Royce to empty the gas can out and then drive the
+> [expletive] out of the other cars so that we were able to get them under
+> that 20%. On top of that, there was also just like a lot of pressure on,
+> against this event because a lot of women were very, suspicious of a
+> women event. You know, Shelby is, is on track to become the next female
+> Tony Robbins. And so, you know, ultimately like that's what we want to,
+> what we want to create. And so there was a lot of doubt, you know,
+> coming into that event, a lot of talk, a lot of people that had no
+> reason to give opinions were talking about it. What happened? There was
+> aerialists, there were champagne towers, there was all of these things.
+> Why did we choose them? Well, because the idea is that, again, we're
+> taking attendees through a transformation. And the transformation of
+> this event was all about designing her. Becoming her and then
+> transforming her, right? Like that was, That was kind of like the main
+> transformation. You might have to look back at the documents to see if
+> that was the correct transformation based on what was in our event
+> drive. But effectively, we chose all of these themes as activations to
+> help in the story we were trying to create to help drive these
+> attendees through that transformation. What nearly broke, I would say
+> that there was definitely there was definitely a lot of pressure on
+> crowd control, you know, because we didn't expect there was going to be
+> such a demand for Shelby in this event that we had attendees lining up
+> at 6 a.m. For like really, really massive lines to fight for table
+> space. So I would say that that was what was nearly broken was the
+> amount of excitement attendees had trying to get into the room and being
+> able to control that. Who is this right for? This is right for any
+> person who is trying to genuinely shift the consciousness of a
+> generation and wants to become the next Tony Robbins. What went right
+> was, dude, we had tens of millions of views around this event as well
+> on top of all of this. Like Shelby has defined herself as a force to be
+> reckoned with. People recognize her as the next upcoming female Tony
+> Robbins. And yeah, it was a huge home run. I don't think we need to have
+> a steal of this on this one. I would call this a summit. I would say
+> Shelby's title is the CEO of She Sells Academy. I'm not going to include
+> the cost saved [spend figure removed]. Then my team will work on getting
+> you photos.
+
+Transformation check (brain, 2026-11-24): the vision brief's stated
+transformation is "becoming the top 1% woman in your field"; "designing
+her, becoming her, transforming her" is not in the brain, so the page uses
+the brief's wording. Call log confirms aerialists, the Old Money palette
+with mirrored surfaces, and dedicated security for the car centerpiece.
+
+Applied: Summit; 3,000 women; Shelby Sapp, CEO, She Sells Academy; no cost
+saved; no Steal This; the cars story as the lead challenge; crowd control
+from 6 a.m.; right for anyone shifting the consciousness of a generation.
