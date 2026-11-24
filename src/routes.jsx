@@ -5,6 +5,7 @@ import CaseStudiesIndex from "./components/CaseStudiesIndex.jsx"
 import NextSteps from "./components/NextSteps.jsx"
 import Vendors from "./components/Vendors.jsx"
 import Contact from "./components/Contact.jsx"
+import AboutPage from "./components/AboutPage.jsx"
 import QuotePage from "./components/QuotePage.jsx"
 import ServicesPage from "./components/ServicesPage.jsx"
 import ServicePage from "./components/ServicePage.jsx"
@@ -49,6 +50,7 @@ export function routeFor(pathname) {
   // /contact is the short page for everything else.
   if (path === "/get-a-quote") return <QuotePage />
   if (path === "/contact") return <Contact />
+  if (path === "/about") return <AboutPage />
 
   // Pages of their own so the nav never sends anyone back to the homepage.
   if (path === "/services") return <ServicesPage />

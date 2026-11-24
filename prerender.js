@@ -52,6 +52,13 @@ ROUTES.push(
     image: '/og/default.jpg',
   },
   {
+    path: '/about',
+    title: 'Event Production Company | Iconic Events',
+    description:
+      'Iconic Events is an event production company and agency engineering sell-from-stage events that drive membership and sponsorship revenue for founders.',
+    image: '/og/default.jpg',
+  },
+  {
     path: '/contact',
     title: 'Contact | Iconic Events',
     description:
@@ -59,7 +66,6 @@ ROUTES.push(
     image: '/og/default.jpg',
   },
 )
-
 // The nav's own pages, so it never sends anyone back to the homepage.
 ROUTES.push(
   {
