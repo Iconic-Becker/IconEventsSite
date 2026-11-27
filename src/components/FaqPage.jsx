@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import SiteFooter from "./SiteFooter.jsx"
 import SiteHeader from "./SiteHeader.jsx"
 import Icon from "./Icon.jsx"
+import { CONTACT_EMAIL, CONTACT_PHONE } from "../lib/contact.js"
 
 const TITLE = "Event Production FAQ | Iconic Events"
 const DESCRIPTION =
@@ -97,7 +98,7 @@ export default function FaqPage() {
         <div className="mx-auto max-w-4xl px-5 text-center sm:px-6">
           <p className="font-serif text-3xl font-semibold leading-snug text-bone sm:text-5xl">A launch, a membership, a sponsorship push: if your business is staking one of those on a single room, begin with the vision call.</p>
           <p className="mt-8 font-sans text-lg leading-relaxed text-bone/75">
-            Or reach us directly: <a href="mailto:icon@iconicevents.com" className="underline underline-offset-4 hover:text-brass">icon@iconicevents.com</a> or <a href="tel:+13057915290" className="underline underline-offset-4 hover:text-brass">(305) 791-5290</a>.
+            Or reach us directly: <a href={`mailto:${CONTACT_EMAIL}`} className="underline underline-offset-4 hover:text-brass">{CONTACT_EMAIL}</a> or <a href={`tel:${CONTACT_PHONE.tel}`} className="underline underline-offset-4 hover:text-brass">{CONTACT_PHONE.display}</a>.
           </p>
         </div>
       </section>

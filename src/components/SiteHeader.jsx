@@ -100,7 +100,7 @@ export default function SiteHeader({ home = false }) {
           since the tab is hidden here, and a narrow call cell so the phone
           line stays in reach once the top row has scrolled away. */}
       <nav aria-label="Mobile navigation" className="mobile-nav sticky top-0 z-40 border-y border-bone/10 bg-onyx/95 backdrop-blur md:hidden">
-        <div className="grid grid-cols-[repeat(5,minmax(0,1fr))_2.5rem] items-stretch">
+        <div className="grid grid-cols-4 items-stretch">
           {NAV.links.map((n) => (
             <a key={n.href} href={n.href} className={`flex min-h-11 items-center justify-center px-1 text-center font-sans text-[10px] font-bold uppercase tracking-[0.04em] ${n.smallOnly ? "text-brass" : "text-bone/70"}`}>
               {n.label}
@@ -109,7 +109,7 @@ export default function SiteHeader({ home = false }) {
           <a
             href={`tel:${CONTACT_PHONE.tel}`}
             aria-label={`Call Iconic Events on ${CONTACT_PHONE.display}`}
-            className="flex min-h-11 items-center justify-center border-l border-bone/10 text-brass"
+            className="flex min-h-11 items-center justify-center text-brass"
           >
             <PhoneIcon className="h-4 w-4" />
           </a>

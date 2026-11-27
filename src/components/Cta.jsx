@@ -4,6 +4,7 @@ import { navigate } from "../navigate.js"
 import { CTA } from "../content.js"
 import { useVoice } from "../voice.jsx"
 import Icon from "./Icon.jsx"
+import { CONTACT_PHONE } from "../lib/contact.js"
 
 function Eyebrow({ text }) {
   return (
@@ -284,7 +285,7 @@ export default function Cta({ modal = false, split = false, eyebrow, title, asid
             </p>
             {home && (
               <p className="mt-5 font-sans text-xs text-bone/45">
-                Iconic Events works from Miami and Las Vegas. Call <a href="tel:+13057915290" className="underline underline-offset-4">(305) 791-5290</a>.
+                Iconic Events works from Miami and Las Vegas. Call <a href={`tel:${CONTACT_PHONE.tel}`} className="underline underline-offset-4">{CONTACT_PHONE.display}</a>.
               </p>
             )}
             {/* Vendors land on this section too, and the form above is written

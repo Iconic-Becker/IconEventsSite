@@ -64,8 +64,10 @@ export const NAV = {
   // under the bar covers it. /reviews is still live, from the footer.
   links: [
     { href: "/services", label: "Services" },
+    { href: "/about", label: "About" },
     { href: "/gallery", label: "Gallery" },
     { href: "/case-studies", label: "Portfolio" },
+    { href: "/faq", label: "FAQ" },
     { href: "/contact", label: "Contact" },
     { href: "/get-a-quote", label: "Get a quote", smallOnly: true },
   ],

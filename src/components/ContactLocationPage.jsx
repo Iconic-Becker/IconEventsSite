@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import SiteFooter from "./SiteFooter.jsx"
 import SiteHeader from "./SiteHeader.jsx"
 import Cta from "./Cta.jsx"
+import { CONTACT_EMAIL, CONTACT_PHONE } from "../lib/contact.js"
 
 const TITLE = "Miami Event Production Company | Iconic Events"
 const DESCRIPTION =
@@ -46,8 +47,8 @@ export default function ContactLocationPage() {
           <div>
             <h2 className="font-serif text-4xl font-semibold leading-tight sm:text-6xl">Reach Us Directly</h2>
             <dl className="mt-8 border-t border-bone/15">
-              <div className="border-b border-bone/15 py-5"><dt className="font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-brass">Email</dt><dd className="mt-2 font-sans text-lg"><a href="mailto:icon@iconicevents.com" className="underline underline-offset-4 hover:text-brass">icon@iconicevents.com</a></dd></div>
-              <div className="border-b border-bone/15 py-5"><dt className="font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-brass">Phone</dt><dd className="mt-2 font-sans text-lg"><a href="tel:+13057915290" className="underline underline-offset-4 hover:text-brass">(305) 791-5290</a></dd></div>
+              <div className="border-b border-bone/15 py-5"><dt className="font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-brass">Email</dt><dd className="mt-2 font-sans text-lg"><a href={`mailto:${CONTACT_EMAIL}`} className="underline underline-offset-4 hover:text-brass">{CONTACT_EMAIL}</a></dd></div>
+              <div className="border-b border-bone/15 py-5"><dt className="font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-brass">Phone</dt><dd className="mt-2 font-sans text-lg"><a href={`tel:${CONTACT_PHONE.tel}`} className="underline underline-offset-4 hover:text-brass">{CONTACT_PHONE.display}</a></dd></div>
             </dl>
           </div>
           <div>
